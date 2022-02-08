@@ -1,0 +1,17 @@
+
+
+POST http://localhost:8080/login
+Content-Type: application/json
+
+{
+    "userName":"ahmed07s5",  
+    "password":"masese"
+}
+###
+POST http://localhost:8080/changePassword
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImFobWVkMDdzNSIsImlhdCI6MTY0Mzk5ODk3MX0.eOCgGh13KcxJi6ZP7Y8mWGEvcxJ3DwHF9iF4oOg6I6k
+
+{
+    "newpassword":"masesse"
+}
