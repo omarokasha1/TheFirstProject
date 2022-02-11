@@ -1,15 +1,36 @@
 const mongoose = require('mongoose')
 const Joi = require('joi')
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
+const { type } = require('express/lib/response');
 
+
+const UserEducation = new mongoose.Schema({
+    university: { type: String, },
+    major: { type: String,},
+    faculty: { type: String,  },
+    experince: { type: String,  },
+    grade: { type: String,  },
+    interest:{
+        type:Array ,
+    },})
 // *schema like model of user
 const UserSchema = new mongoose.Schema({
-    userName: { type: String, required: true, minlength: 3, maxlength: 44 },
-    email: { type: String, required: true, minlength: 3, maxlength: 25 },
+    userName: { type: String,unique:true,required: true,lowercase:true, minlength: 3, maxlength: 44 },
+    email: { type: String, required: true, maxlength: 254 },
     password: { type: String, required: true, minlength: 8, maxlength: 1024 },
-    phone: { type: Number, unique: true, minlength: 11, maxlength: 11 },
-    isAdmin: { type: Boolean }
+    phone: { type: String, unique: true,minlength: 11, maxlength: 11,required:true },
+    gender:{type:String ,enum:['male','female']},
+    imageUrl:{type:String,},
+    birthDay:{type:String },
+    country:{type:String},
+    city:{type:String},
+    bio:{type:String},
+    isAdmin: { type: Boolean },
+    UserEducation:{UserEducation},
 })
+
+
+   
 
 /* UserSchema.methods.generateTokens = function () {
 
@@ -21,11 +42,26 @@ const UserSchema = new mongoose.Schema({
 function validateUser(user) {
     const JoiSchema = Joi.object({
 
-        userName: Joi.string().min(3).max(44).required(),
+        userName: Joi.string().min(3).max(44).required().regex(/[a-zA-Z]/).lowercase(),
 
-        email: Joi.string().email().min(3).max(25).required(),
+        email: Joi.string().email().max(254).required(),
 
-        password: Joi.string().min(8).max(512).required()
+        password: Joi.string().min(8).max(512).required(),
+
+        phone: Joi.string().min(11).max(11).required(),
+
+        gender: Joi.string(),
+
+        imageUrl:Joi.string(),
+
+        birthDay:Joi.string(),
+
+        country: Joi.string(),
+
+        city:Joi.string(),
+
+        bio: Joi.string(),
+
 
     }).options({ abortEarly: false });
 

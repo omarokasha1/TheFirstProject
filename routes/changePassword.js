@@ -30,20 +30,20 @@ router.post('/', async (req, res) => {
 
         const id = user.id
 
-        const password = await bcrypt.hash(plainTextPassword, 10)
+        const newPassword = await bcrypt.hash(plainTextPassword, 10)
 
         await User.updateOne(
             { id },
             {
-                $set: { password: password }
+                $set: { password : newPassword }
             }
         )
         console.log(id)
-        console.log(password)
+        console.log(newPassword)
         res.json({ status: 'ok' })
     } catch (error) {
         console.log(error)
-        res.json({ status: 'error', error: ';))' })
+        res.json({ status: 'error', error:error })
     }
 })
 
