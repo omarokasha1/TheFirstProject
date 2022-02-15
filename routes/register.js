@@ -20,7 +20,7 @@ router.post('/', async (req, res) => {
 
     //* if validate error just send to user an error message
     if (validateError.error) {
-        return res.json({ error: validateError.error.details[0].message })
+        return res.json({status:"false", message: validateError.error.details[0].message })
     }
 
     //* check in database by email     
@@ -29,15 +29,15 @@ router.post('/', async (req, res) => {
 
     //* if exist return an error messge
     if (user) {
-        return res.status(404).json({ status: 'false', message: 'email already in use' })
+        return res.status(200).json({ status: 'false', message: 'email already in use' })
     }
     try {
         //* take from user userName , email and password and not care for any value else
-        user = new Users(_.pick(req.body, ['userName', 'email', 'password','phone']))
+        user = new Users(_.pick(req.body, ['userName', 'email', 'password','phone',]))
 
         //* crypt the password using bcrypt package
         user.password = await bcrypt.hash(plainTextPassword, 10)
-     //   user.userName = userNameCheck
+        //   user.userName = userNameCheck
         //* generate token that have his id
         const token = jwt.sign({ id: user.id }, 'privateKey')
 
@@ -48,36 +48,12 @@ router.post('/', async (req, res) => {
 
         //* send his token in header and his data in body
        // return res.header('x-auth-token', token).json(_.pick(user, ['_id', 'userName', 'email','phone','token']),token)
-       return res.json({id:user._id,userName:user.userName,email:user.email,phone:user.phone,token:token})
+       return res.json({status:"ok",id:user._id,userName:user.userName,email:user.email,phone:user.phone,token:token})
     } catch (error) {
-        return res.json({ status: 'error', error: error.message })
-
+        return res.json({error:error.message})
     }
 })
 
-
-
-/* router.post('/', async (req, res) => {
-    const { userName, email, password: plainTextPassword } = req.body
-    const validateError = validateUser(req.body)
-    if (validateError.error) {
-        return res.json({ error: validateError.error.details[0].message })
-    }
-    const password = await bcrypt.hash(plainTextPassword, 10)
-    try {
-
-        const response = await Users.create({
-            userName,
-            email,
-            password
-        })
-        console.log(response)
-        return res.json({ response: response })
-    } catch (error) {
-        return res.json({ status: 'error', error: error.message })
-
-    }
-}) */
 
 
 

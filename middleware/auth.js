@@ -5,7 +5,7 @@ module.exports = function (req, res, next) {
     //* get the token from header called x-auth-token 
     const token = req.header('x-auth-token')
     if (!token) {
-        res.status(401).send('access denied not auth......')
+       return res.status(401).send('access denied not auth......')
     }
 
     try {
@@ -17,6 +17,6 @@ module.exports = function (req, res, next) {
         next()
 
     } catch (er) {
-        res.status(400).send('wrong token ......')
+      return  res.status(400).send('wrong token ......')
     }
 }

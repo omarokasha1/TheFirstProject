@@ -19,19 +19,20 @@ app.use(compression())
 
 //* import register
 const usersRegister = require('./routes/register')
-app.use('/register', usersRegister)
+app.use('/api/register', usersRegister)
 //* import login
 const usersLogin = require('./routes/login')
-app.use('/login', usersLogin)
+app.use('/api/login', usersLogin)
 //* import profile 
 const userProfile = require('./routes/profile')
-app.use('/profile', userProfile)
+app.use('/api/profile', userProfile)
 //* import profile 
 const changePassword = require('./routes/changePassword')
-app.use('/changePassword', changePassword)
+app.use('/api/changePassword', changePassword)
 
 const newCourse = require('./routes/courses')
-app.use('/course', newCourse)
+app.use('/api/course', newCourse)
+
 
 
 //* if write invalide url or end point send to user an error message

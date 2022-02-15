@@ -1,23 +1,18 @@
 const express = require('express')
 const router = express.Router()
 const User = require('../models/user')
-const bcrypt = require('bcryptjs')
 const auth = require('../middleware/auth')
 const admin = require('../middleware/admin')
+const getCourses = require('../middleware/getCourse')
 
-const jwt = require('jsonwebtoken')
 const _= require('lodash')
 const Course = require('../models/course')
 
 
 // Getting all
-router.get('/', async (req, res) => {
-  try {
-    const course = await Course.find().populate('author','-__v')
-    res.json(course)
-  } catch (err) {
-    res.status(500).json({ message: err.message })
-  }
+//* get courses middleware
+router.get('/',getCourses, async (req, res) => {
+  res.status(200).json({status : "ok",courses:res.course})
 })
 
 // Getting One
@@ -43,36 +38,15 @@ router.post('/newCourse', async (req, res) => {
   }
 })
 
-
 // Deleting One
 router.delete('/:id', [auth, admin], getUsers, async (req, res) => {
   try {
-    await res.subscriber.remove()
-    res.json({ message: 'Deleted Subscriber' })
+    await res.user.remove()
+    res.json({ message: 'Deleted User' })
   } catch (err) {
     res.status(500).json({ message: err.message })
   }
 })
-
-
-
-
-
-async function getCourses(req, res, next) {
-  let course
-  try {
-    course = await Course.find().populate('author')
-    if (!course) {
-      return res.status(404).json({ status: 'false', message: 'Cannot find courses' })
-    }
-    res.course = course
-  } catch (err) {
-    return res.status(500).json({ message: err.message })
-  }
-
-  res.course = course
-  next()
-}
 
 async function getCourse(req, res, next) {
   let course
@@ -80,7 +54,7 @@ async function getCourse(req, res, next) {
   try {
     course = await Course.find({title:req.params.title}).populate('author')
     if (!course) {
-      return res.status(404).json({ status: 'false', message: 'Cannot find course' })
+      return res.status(200).json({ status: 'false', message: 'Cannot find course' })
     }
     res.course = course
   } catch (err) {
@@ -94,9 +68,9 @@ async function getCourse(req, res, next) {
 async function getUsers(req, res, next) {
   let user
   try {
-    user = await User.findById(req.params.id)
+    user = await User.findById(req.user.id)
     if (!user) {
-      return res.status(404).json({ status: 'false', message: 'Cannot find user' })
+      return res.status(200).json({ status: 'false', message: 'Cannot find user' })
     }
     res.user = user
   } catch (err) {

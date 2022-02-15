@@ -17,7 +17,7 @@ router.post('/', async (req, res) => {
 
     //* if validate error just send to user an error message
     if (validateError.error) {
-        return res.json({ error: validateError.error.details[0].message })
+        return res.json({ message: validateError.error.details[0].message })
     }
 
     //* check in database by email
@@ -25,7 +25,7 @@ router.post('/', async (req, res) => {
 
     //* if not exist return an error messge
     if (!user) {
-        return res.status(404).json({ status: 'error', error: 'Invalid email or password' })
+        return res.status(200).json({ status: 'false', message: 'Invalid email or password' })
     }
 
     try {
@@ -34,7 +34,7 @@ router.post('/', async (req, res) => {
 
         //* if password doesnt match return to user an error message 
         if (!checkPassword) {
-            return res.status(404).json({ status: 'error', error: 'Invalid email or password' })
+            return res.status(200).json({ status: 'false', message: 'Invalid email or password' })
         }
 
         //* generate token that have his id and if admin or not
@@ -43,24 +43,12 @@ router.post('/', async (req, res) => {
         console.log(token)
         return res.json({ status: 'ok', token: token })
     } catch (error) {
-        console.log(error)
-        return res.json({ status: 'error', error: error.message })
+        if (error.code === 11000) {
+            return res.json({ status: 'false', message: 'in use' })
+          }
+          throw error
 
     }
 })
 
-/* router.post('/', async (req, res) => {
-    const { userName, email, password } = req.body
-    const user = await User.findOne({ email }).lean()
-
-    if (!user) {
-        return res.json({ status: 'error', error: 'Invalid email or password' })
-    }
-
-    if (await bcrypt.compare(password, user.password)) {
-        const token = jwt.sign({ id: user.id, userName: user.userName, email: user.email }, JWT_SECRET)
-        return res.json({ status: 'ok', token: token })
-    }
-    res.json({ status: 'error', error: 'Invalid username/password' })
-}) */
 module.exports = router

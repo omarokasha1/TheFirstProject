@@ -9,45 +9,52 @@ const router = express.Router()
 
 
 router.post('/', async (req, res) => {
-    //* take the inputs from user and validate them
-    const { newpassword: plainTextPassword } = req.body
-    //* take the token from header
-    var token = req.header('x-auth-token')
+    //! take the password from user and validate it
+    const { password: plainTextPassword } = req.body
 
+    //? take the token from header
+    const token = req.header('x-auth-token')
+    
+    //! validate the password if not string
     if (!plainTextPassword || typeof plainTextPassword !== 'string') {
-        return res.json({ status: 'error', error: 'Invalid password' })
+        return res.status(200).json({ status: 'false', message: 'Invalid password' })
     }
-
-    if (plainTextPassword.length < 5) {
-        return res.json({
-            status: 'error',
-            error: 'Password too small. Should be atleast 6 characters'
+    //! validate the password if less than 8 char
+    if (plainTextPassword.length < 8) {
+        return res.status(200).json({
+            status: 'false',
+            message: 'Password too small. Should be atleast 8 characters'
         })
     }
 
     try {
+        //* decode the token to get user data
         const user = jwt.verify(token, 'privateKey')
+        console.log(user)
 
+        //* get user id 
         const id = user.id
+        console.log(id)
 
+        //* incrypt new password
         const newPassword = await bcrypt.hash(plainTextPassword, 10)
 
+        //* find the user by id and change the password
         await User.updateOne(
-            { id },
+            { _id: id },
             {
-                $set: { password : newPassword }
+                $set: { password: newPassword }
             }
         )
         console.log(id)
         console.log(newPassword)
-        res.json({ status: 'ok' })
+
+        res.status(200).json({ status: 'ok', message: 'password changed' })
     } catch (error) {
         console.log(error)
-        res.json({ status: 'error', error:error })
+        res.json({ status: 'false', message: error.message })
     }
 })
-
-
 
 
 module.exports = router
