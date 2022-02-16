@@ -11,6 +11,8 @@ import 'package:lms/shared/component/observer.dart';
 import 'package:lms/shared/network/local/cache_helper.dart';
 import 'package:lms/shared/network/remote/dio-helper.dart';
 import 'package:lms/shared/themes/light_theme.dart';
+import 'modules/Auther/create_course/create_course_screen.dart';
+import 'modules/Auther/create_module/create_module_screen.dart';
 import 'modules/profile/profile_cubit/cubit.dart';
 import 'shared/cubit For Internet/cubit.dart';
 
@@ -106,7 +108,7 @@ class MyApp extends StatelessWidget {
               theme: lightTheme(context),
               //Here The Theme.
               themeMode: ThemeMode.light,
-              home: widget,
+              home: CreateCourseScreen(),
             ),
       ),
     );

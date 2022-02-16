@@ -47,8 +47,8 @@ Widget defaultButton({
       ),
     );
 
-//Widget for TextFormField
-Widget customTextFormField({
+//Widget for TextFormField  For Auth
+Widget customTextFormFieldAuth({
   required TextEditingController controller,
   required String label,
   bool obSecure = false,
@@ -64,7 +64,7 @@ Widget customTextFormField({
 }) {
   return TextFormField(
     onChanged: (value) {
-        onChanged!(value);
+      onChanged!(value);
     },
     // validator: (s) {
     //
@@ -74,8 +74,7 @@ Widget customTextFormField({
     //    validate(s);
     // },
 
-    validator:(value)
-    {
+    validator: (value) {
       return validate(value);
     },
     controller: controller,
@@ -113,6 +112,50 @@ Widget customTextFormField({
       LengthLimitingTextInputFormatter(maxDigit),
     ],
     //maxLength: maxDigit,
+  );
+}
+
+Widget customTextFormFieldWidget({
+  required TextEditingController controller,
+  required String label,
+  required String? Function(String?) validate,
+  TextInputType type = TextInputType.text,
+  Function? onChanged,
+  IconData? prefixIcon,
+  bool prefix = false,
+}) {
+  return Padding(
+    padding: const EdgeInsets.only(bottom: 20.0),
+    child: TextFormField(
+
+      controller: controller,
+      keyboardType: type,
+      decoration: InputDecoration(
+        labelText: label,
+        labelStyle: const TextStyle(
+        //  color: primaryColor,
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: const BorderSide(
+            color: primaryColor,
+          ),
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        prefixIcon: prefix
+            ? Icon(
+          prefixIcon,
+         // color: Colors.grey,
+          size: 20.h,
+        )
+            : null,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
+      ),
+      validator: (value) {
+        return validate(value);
+      },
+    ),
   );
 }
 

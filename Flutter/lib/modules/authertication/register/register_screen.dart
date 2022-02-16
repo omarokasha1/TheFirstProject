@@ -138,7 +138,7 @@ class RegisterScreen extends StatelessWidget {
                             key: formKey,
                             child: Column(
                               children: <Widget>[
-                                customTextFormField(
+                                customTextFormFieldAuth(
                                   onChanged: (name){
                                     cubit.onNameChanged(name);
                                   },
@@ -155,7 +155,7 @@ class RegisterScreen extends StatelessWidget {
                                   label: "Enter your Name",
                                   type: TextInputType.text,
                                 ),
-                                customTextFormField(
+                                customTextFormFieldAuth(
                                   onChanged: (email)
                                   {
                                     cubit.onEmailChanged(email);
@@ -174,7 +174,7 @@ class RegisterScreen extends StatelessWidget {
                                   label: "Enter your Email",
                                   type: TextInputType.emailAddress,
                                 ),
-                                customTextFormField(
+                                customTextFormFieldAuth(
                                   onChanged: (password)
                                   {
                                     cubit.onPasswordChanged(password);
@@ -204,7 +204,7 @@ class RegisterScreen extends StatelessWidget {
                                     cubit.changeEye();
                                   },
                                 ),
-                                customTextFormField(
+                                customTextFormFieldAuth(
                                   onChanged: (p)
                                   {
                                     cubit.onPasswordChanged(p);
@@ -232,7 +232,7 @@ class RegisterScreen extends StatelessWidget {
                                     cubit.changeConfirmEye();
                                   },
                                 ),
-                                customTextFormField(
+                                customTextFormFieldAuth(
                                   onChanged: (phone){
                                    cubit.onPhoneChange(phone);
                                   },
