@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lms/shared/component/component.dart';
-
+// this is a notification item
 PopupMenuItem customNotificationItem(context, index) {
   return PopupMenuItem<int>(
     child: InkWell(

@@ -13,7 +13,7 @@ import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
 
 import 'my_learning/mylearning.dart';
-
+// This is the class because there is no space at scroll
 class TransparentBehavior extends ScrollBehavior {
   @override
   Widget buildViewportChrome(
@@ -21,7 +21,7 @@ class TransparentBehavior extends ScrollBehavior {
     return child;
   }
 }
-
+// this is the main screen
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -37,6 +37,7 @@ class HomePage extends StatelessWidget {
             var courseCubit = CourseCubit.get(context);
             return Scaffold(
               appBar: myAppBar(context),
+              //layout is a my component
               body: Layout(
                   widget: ScrollConfiguration(
                 behavior: TransparentBehavior(),

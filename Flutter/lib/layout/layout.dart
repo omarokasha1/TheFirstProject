@@ -14,14 +14,21 @@ class Layout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // liston to the BlocProvider that exist in main.dart
     return BlocConsumer<InternetCubit, InternetStates>(
       listener: (context, state) {},
-      builder: (context, state) => RefreshIndicator(onRefresh: () async {
+      builder: (context, state) =>
+          // RefreshIndicator It was used because when scroll starts displaying the new data
+          // and show NoInternet Widget if we lost our connection
+          RefreshIndicator(onRefresh: () async {
+            // Check if the internet connection lost
         InternetCubit.get(context).checkInternetConnection();
       }, child: Builder(builder: (BuildContext context) {
+            // Check if the internet connection lost
         return OfflineBuilder(
           connectivityBuilder: (context, connectivity, child) {
             connected = connectivity != ConnectivityResult.none;
+            // if internet lost show container with the text no connection
             return SafeArea(
               child: Scaffold(
                 body: Stack(
@@ -67,7 +74,10 @@ class Layout extends StatelessWidget {
             );
           },
           child: ConditionalBuilder(
+            // if connected is true go to widget
+            // else show no internet screen
             condition: connected,
+            // The widget will be the screen I'm standing on
             builder: (context) => widget,
             fallback: (context) => noInternet(context),
           ),
