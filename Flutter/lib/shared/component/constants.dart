@@ -34,3 +34,13 @@ const MaterialColor color = MaterialColor(
   },
 );
 bool connected = true;
+
+const newVv=LinearGradient(
+  begin: Alignment(0.0, -1.0),
+  end: Alignment(0.0, 1.0),
+  colors: [
+    Color(0xff3FB8C0),
+    Color(0xff0399A0),
+    Color(0xff07919c)
+  ],
+);

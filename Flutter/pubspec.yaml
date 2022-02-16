@@ -56,6 +56,8 @@ dependencies:
   animated_splash_screen: ^1.1.0
   flutter_offline: "^2.1.0"
   intl: ^0.17.0
+  percent_indicator: ^4.0.0
+  timelines: ^0.1.0
 
 dev_dependencies:
   flutter_test:
