@@ -1,0 +1,35 @@
+{
+  "name": "lms-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "web.js",
+  "scripts": {
+    "startDev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": "v16.13.2"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.1",
+    "compresion": "^1.7.11",
+    "express": "^4.17.2",
+    "express-async-errors": "^3.1.1",
+    "joi": "^17.6.0",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.21",
+    "mongoose": "^6.2.0",
+    "multer": "^1.4.4",
+    "path": "^0.12.7",
+    "winston": "^3.5.1",
+    "winston-mongodb": "^5.0.7",
+    "dotenv": "^16.0.0"
+  },
+  "devDependencies": {
+   
+    "nodemon": "^2.0.15"
+  }
+}
