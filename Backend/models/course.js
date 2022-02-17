@@ -1,8 +1,6 @@
 const mongoose = require('mongoose')
 const Joi = require('joi')
 const jwt = require('jsonwebtoken');
-const { type } = require('express/lib/response');
-const User = require('./user');
 
 
 
@@ -17,6 +15,13 @@ const CourseSchema = new mongoose.Schema({
     description: { type: String,  },
     review: { type: String,  },
     imageUrl: { type: String,  },
+    contents:[{
+        contentTitle:{type : String},
+        contentDuration:{type:String},
+        contentType:{type:String},
+        createdAt:{type:String},
+        enumType:{ type: String, enum: ['image', 'video','document']},   
+    }],
     author:{
         
         type:mongoose.Schema.Types.ObjectId ,

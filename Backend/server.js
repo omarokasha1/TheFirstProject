@@ -8,9 +8,11 @@ const app = express()
 const compression = require('compression')
 
 const Course = require('./models/course')
+
 //* initial start
 app.use(bodyParser.json())
 app.use(express.urlencoded({ extended: true }));
+
 //* mongoose connection
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true, }).then(
     () => console.log('connected to database')).catch((error) => logger.error(error))
@@ -21,12 +23,15 @@ app.use(compression())
 //* import register
 const usersRegister = require('./routes/register')
 app.use('/api/register', usersRegister)
+
 //* import login
 const usersLogin = require('./routes/login')
 app.use('/api/login', usersLogin)
+
 //* import profile 
 const userProfile = require('./routes/profile')
 app.use('/api/profile', userProfile)
+
 //* import profile 
 const changePassword = require('./routes/changePassword')
 app.use('/api/changePassword', changePassword)
@@ -35,6 +40,7 @@ const newCourse = require('./routes/courses')
 app.use('/api/course', newCourse)
 
 app.use('/uploads',express.static('./uploads'));
+
 app.get('/', async(req, res) => {
     try {   
         const blog = await Course.find()
@@ -52,6 +58,6 @@ app.all('*', (req, res, next) => {
     })
 })
 //* listen on port 8080 local host
-app.listen(process.env.PORT || 3000, function(){
-    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+app.listen( 8080, function(){
+    console.log("Express server listening on port %d in %s mode");
   });

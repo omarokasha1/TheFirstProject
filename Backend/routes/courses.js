@@ -15,7 +15,7 @@ const path = require('path')
 const storage = multer.diskStorage({
   //destination for files
   destination: function (request, file, callback) {
-    callback(null, '../uploads');
+    callback(null, './uploads');
   },
 
   //add back the extension
@@ -67,13 +67,15 @@ router.post('/newCourse', [auth,upload.single('imageUrl')],async (req, res) => {
      language:req.body.language,
      review:req.body.review,
      imageUrl:req.file.filename,
+     contents:req.body.contents,
      author:id
    })
 
     const newCourse = await course.save()
     res.status(201).json(newCourse)
   } catch (err) {
-    res.status(400).json({ message: err.message })
+    console.log(err)
+    res.status(400).json({ message: err })
   }
 })
 

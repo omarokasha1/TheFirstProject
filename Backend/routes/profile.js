@@ -13,7 +13,7 @@ const { update } = require('lodash');
 const storage = multer.diskStorage({
   //destination for files
   destination: function (request, file, callback) {
-    callback(null, '../uploads');
+    callback(null, './uploads');
   },
 
   //add back the extension
