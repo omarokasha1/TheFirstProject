@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../shared/component/component.dart';
 import '../../../shared/component/constants.dart';
+import '../create_quiz/create_quiz_screen.dart';
 import 'cubit/cubit.dart';
 import 'cubit/states.dart';
 
@@ -52,35 +53,6 @@ class _CreateModuleScreenState extends State<CreateModuleScreen> {
                               bottomRight: Radius.elliptical(400, 150),
                             )),
                       ),
-                      Align(
-                        alignment: Alignment.bottomRight,
-                        child: Padding(
-                          padding: const EdgeInsets.only(right: 20, top: 80),
-                          child: Container(
-                            padding: const EdgeInsets.all(10.0),
-                            width: MediaQuery.of(context).size.width / 2.5,
-                            height: MediaQuery.of(context).size.width / 2.5,
-                            decoration: BoxDecoration(
-                              border:
-                                  Border.all(color: secondaryColor, width: 2),
-                              shape: BoxShape.circle,
-                              color: Colors.white,
-                            ),
-                            child:      Center(
-                              child: TextButton(
-                                  onPressed: () {},
-                                  child: const Padding(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "Upload",
-                                      style: TextStyle(fontSize: 25),
-                                    ),
-                                  )),
-                            ),
-                          ),
-                        ),
-                      ),
                       SafeArea(
                         child: Align(
                           alignment: Alignment.topLeft,
@@ -115,10 +87,12 @@ class _CreateModuleScreenState extends State<CreateModuleScreen> {
                                 const SizedBox(
                                   height: 60,
                                 ),
-
                                 Padding(
-                                  padding:const  EdgeInsets.only(left: 8.0),
-                                  child:  Text("Create Module",style: TextStyle(fontSize: 25,color: Colors.grey[600])),
+                                  padding: const EdgeInsets.only(left: 8.0),
+                                  child: Text("Create Module",
+                                      style: TextStyle(
+                                          fontSize: 25,
+                                          color: Colors.grey[600])),
                                 ),
                                 const SizedBox(
                                   height: 25,
@@ -177,8 +151,27 @@ class _CreateModuleScreenState extends State<CreateModuleScreen> {
                                   prefix: true,
                                   prefixIcon: Icons.access_time,
                                 ),
-                                SizedBox(
-                                  height: 15.h,
+                                const SizedBox(
+                                  height: 20,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 8.0),
+                                  child: Text("Content",
+                                      style: TextStyle(
+                                          fontSize: 25,
+                                          color: Colors.grey[600])),
+                                ),
+                                Center(
+                                  child: TextButton(
+                                      onPressed: () {},
+                                      child: const Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 22.0),
+                                        child: Text(
+                                          "Upload",
+                                          style: TextStyle(fontSize: 20),
+                                        ),
+                                      )),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(left: 8.0),
@@ -187,7 +180,9 @@ class _CreateModuleScreenState extends State<CreateModuleScreen> {
                                           fontSize: 25,
                                           color: Colors.grey[600])),
                                 ),
-                                SizedBox(height: 25,),
+                                SizedBox(
+                                  height: 25,
+                                ),
                                 SizedBox(
                                   width: double.infinity,
                                   child: DropdownButtonFormField<String>(
@@ -199,7 +194,6 @@ class _CreateModuleScreenState extends State<CreateModuleScreen> {
                                         borderRadius:
                                             BorderRadius.circular(10.0),
                                       ),
-
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(20),
                                       ),
@@ -211,11 +205,9 @@ class _CreateModuleScreenState extends State<CreateModuleScreen> {
                                         selectedItem = newValue!;
                                       });
                                     },
-                                    itemHeight:50 ,
+                                    itemHeight: 50,
                                     items: items.map<DropdownMenuItem<String>>(
-
                                         (String value) {
-
                                       return DropdownMenuItem<String>(
                                         value: value,
                                         child: Text(value),
@@ -223,19 +215,43 @@ class _CreateModuleScreenState extends State<CreateModuleScreen> {
                                     }).toList(),
                                   ),
                                 ),
-
+                                const SizedBox(
+                                  height: 20,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 8.0),
+                                  child: Text("Quiz",
+                                      style: TextStyle(
+                                          fontSize: 25,
+                                          color: Colors.grey[600])),
+                                ),
+                                Center(
+                                  child: TextButton(
+                                      onPressed: () {
+                                        navigator(context, CreateQuizScreen());
+                                      },
+                                      child: const Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 22.0),
+                                        child: Text(
+                                          "Create Quiz",
+                                          style: TextStyle(fontSize: 20),
+                                        ),
+                                      )),
+                                ),
                               ],
                             ),
                           ),
                         ),
+
+        
                         Padding(
-                          padding: const EdgeInsets.only(top: 20.0,left: 10,right: 10,bottom: 10),
+                          padding: const EdgeInsets.only(
+                              top: 20.0, left: 10, right: 10, bottom: 10),
                           child: defaultButton(
                               text: 'Save',
                               onPressed: () {
-                                if (formKey.currentState!.validate()) {
-
-                                }
+                                if (formKey.currentState!.validate()) {}
                               }),
                         ),
                       ],
