@@ -17,9 +17,17 @@ class DashboardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: myAppBar(context),
+      appBar: AppBar(
+        title: const Text('Dashboard',style: TextStyle(color: primaryColor,fontSize: 20,fontWeight: FontWeight.bold),),
+        leading: IconButton(onPressed: (){},icon: const Icon(Icons.menu_outlined,color:primaryColor,),),
+        actions: [
+          IconButton(onPressed: (){},icon: const Icon(Icons.notifications,color:primaryColor,),),
+        ],
+        
+      ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
+        //
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -50,11 +58,11 @@ class DashboardScreen extends StatelessWidget {
                               const SizedBox(
                                 width: 10,
                               ),
-                              // Image.asset(
-                              //   'assets/images/hand.png',
-                              //   width: 34.w,
-                              //   height: 34.h,
-                              // )
+                              Image.asset(
+                                'assets/images/hand.png',
+                                width: 34.w,
+                                height: 34.h,
+                              )
                             ],
                           ),
                           SizedBox(

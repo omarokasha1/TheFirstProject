@@ -36,7 +36,7 @@ class HomePage extends StatelessWidget {
           builder: (context, state) {
             var courseCubit = CourseCubit.get(context);
             return Scaffold(
-              appBar: myAppBar(context),
+              appBar: myAppBar(context,color: primaryColor,iconColor: Colors.white),
               body: Layout(
                   widget: ScrollConfiguration(
                 behavior: TransparentBehavior(),

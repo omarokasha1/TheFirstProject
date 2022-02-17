@@ -289,6 +289,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.0"
+  image_stack:
+    dependency: "direct main"
+    description:
+      name: image_stack
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.0"
   intl:
     dependency: "direct main"
     description:
@@ -394,6 +401,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.4.4"
+  number_slide_animation:
+    dependency: "direct main"
+    description:
+      name: number_slide_animation
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.1"
   octo_image:
     dependency: transitive
     description:
@@ -637,6 +651,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0"
+  syncfusion_flutter_charts:
+    dependency: "direct main"
+    description:
+      name: syncfusion_flutter_charts
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "19.4.52"
+  syncfusion_flutter_core:
+    dependency: transitive
+    description:
+      name: syncfusion_flutter_core
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "19.4.52"
   synchronized:
     dependency: transitive
     description:
