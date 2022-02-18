@@ -9,6 +9,7 @@ import 'popMenuItem.dart';
 
 AppBar myAppBar(context, {Color color=Colors.white,Color iconColor=primaryColor}) {
   return AppBar(
+    //status bar setting
     systemOverlayStyle: const SystemUiOverlayStyle(
     //  statusBarColor: primaryColor,
       statusBarIconBrightness: Brightness.light,
@@ -17,6 +18,7 @@ AppBar myAppBar(context, {Color color=Colors.white,Color iconColor=primaryColor}
     elevation: 0,
     backgroundColor: color,
     leading: InkWell(
+      //this used to switch between home screen  and drawer
       onTap: () {
 
         ZoomDrawer.of(context)!.toggle();
@@ -34,6 +36,7 @@ AppBar myAppBar(context, {Color color=Colors.white,Color iconColor=primaryColor}
       ),
     ),
     actions: [
+      //notifications
       PopupMenuButton(
         icon:  Icon(
           Icons.notifications,

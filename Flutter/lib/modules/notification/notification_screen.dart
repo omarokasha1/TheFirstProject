@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../shared/component/constants.dart';
 import '../../shared/component/popMenuItem.dart';
-
+// this is notification screen contains all user notifications
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({Key? key}) : super(key: key);
 

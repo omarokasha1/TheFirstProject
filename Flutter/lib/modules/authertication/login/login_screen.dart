@@ -149,7 +149,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               key: formKey,
                               child: Column(
                                 children: <Widget>[
-                                  customTextFormField(
+                                  customTextFormFieldAuth(
                                     onChanged:(email){
                                       cubit.onEmailChanged(email);
                                     } ,
@@ -168,7 +168,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     type: TextInputType.emailAddress,
 
                                   ),
-                                  customTextFormField(
+                                  customTextFormFieldAuth(
                                     onChanged: (password)
                                     {
                                       cubit.onPasswordChanged(password);

@@ -5,7 +5,7 @@ import 'package:lottie/lottie.dart';
 import '../cubit For Internet/cubit.dart';
 import '../cubit For Internet/states.dart';
 import 'component.dart';
-
+// screen appears when the internet is cut off
 Widget noInternet(context) => BlocConsumer<InternetCubit, InternetStates>(
       listener: (context, state) {},
       builder: (context, state) => Scaffold(

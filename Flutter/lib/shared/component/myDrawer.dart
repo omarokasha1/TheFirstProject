@@ -12,6 +12,7 @@ import 'package:lms/shared/network/local/cache_helper.dart';
 import 'component.dart';
 import 'constants.dart';
 
+// this is drawer widget
 class MyDrawer extends StatelessWidget {
   const MyDrawer({Key? key}) : super(key: key);
 
@@ -26,6 +27,7 @@ class MyDrawer extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(
                   bottom: MediaQuery.of(context).size.height / 20, top: 20),
+              //user info (image-name-gmail)
               child: UserAccountsDrawerHeader(
                 accountEmail: Text(
                   "Mariam Youssef@gmail.com",
@@ -57,6 +59,7 @@ class MyDrawer extends StatelessWidget {
                 ),
               ),
             ),
+            //this is all items in drawer
             SizedBox(
               height: MediaQuery.of(context).size.height / 2,
               child: SingleChildScrollView(
@@ -167,6 +170,8 @@ class MyDrawer extends StatelessWidget {
             SizedBox(
               height: MediaQuery.of(context).size.height / 20,
             ),
+
+            //log out button
             Padding(
               padding: EdgeInsets.only(left: 10.0.w, right: 100.w),
               child: Container(

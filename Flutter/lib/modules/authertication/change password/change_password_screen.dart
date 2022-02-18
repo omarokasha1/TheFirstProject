@@ -113,7 +113,7 @@ class ChangePasswordScreen extends StatelessWidget {
                               key: formKey,
                               child: Column(
                                 children: <Widget>[
-                                  customTextFormField(
+                                  customTextFormFieldAuth(
                                     controller: currentPasswordController,
                                    // error: "Password Must Be Not Empty",
                                     validate:(value){
@@ -133,7 +133,7 @@ class ChangePasswordScreen extends StatelessWidget {
                                       cubit.changeEye1();
                                     },
                                   ),
-                                  customTextFormField(
+                                  customTextFormFieldAuth(
                                     controller: passwordController,
                                     //error: "Password Must Be Not Empty",
                                     validate: (value) {
@@ -153,7 +153,7 @@ class ChangePasswordScreen extends StatelessWidget {
                                       cubit.changeEye2();
                                     },
                                   ),
-                                  customTextFormField(
+                                  customTextFormFieldAuth(
                                     controller: confirmPassController,
                                     //error: "Confirm Password Must Not Be Empty",
                                     validate: (value) {
