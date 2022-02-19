@@ -56,6 +56,16 @@ dependencies:
   animated_splash_screen: ^1.1.0
   flutter_offline: "^2.1.0"
   intl: ^0.17.0
+  image_picker: ^0.8.4+9
+  material_tag_editor: ^0.1.2
+  timelines: ^0.1.0
+  number_slide_animation: ^0.2.1
+  image_stack: ^2.1.0
+  syncfusion_flutter_charts: ^19.4.52
+  percent_indicator: ^4.0.0
+  flutter_speed_dial: ^5.0.0+1
+
+
 
 dev_dependencies:
   flutter_test:

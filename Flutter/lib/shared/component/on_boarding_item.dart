@@ -3,7 +3,7 @@ import 'package:lms/models/on_boarding_model.dart';
 import 'package:lottie/lottie.dart';
 
 import 'constants.dart';
-
+// this is onBoarding item
 Widget buildBoardingItem(BoardingModel model, context) => Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
