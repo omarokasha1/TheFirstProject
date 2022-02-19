@@ -7,6 +7,7 @@
 
 import 'package:connectivity_plus_web/connectivity_plus_web.dart';
 import 'package:fluttertoast/fluttertoast_web.dart';
+import 'package:image_picker_for_web/image_picker_for_web.dart';
 import 'package:network_info_plus_web/network_info_plus_web.dart';
 import 'package:shared_preferences_web/shared_preferences_web.dart';
 
@@ -16,6 +17,7 @@ import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 void registerPlugins(Registrar registrar) {
   ConnectivityPlusPlugin.registerWith(registrar);
   FluttertoastWebPlugin.registerWith(registrar);
+  ImagePickerPlugin.registerWith(registrar);
   NetworkInfoPlusPlugin.registerWith(registrar);
   SharedPreferencesPlugin.registerWith(registrar);
   registrar.registerMessageHandler();

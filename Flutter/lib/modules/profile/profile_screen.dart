@@ -1,11 +1,13 @@
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:lms/layout/layout.dart';
-import 'package:lms/modules/authertication/login/login_cubit/cubit.dart';
+import 'package:lms/modules/home_screen.dart';
 import 'package:lms/modules/profile/profile_cubit/cubit.dart';
 import 'package:lms/modules/profile/profile_cubit/state.dart';
 import 'package:lms/modules/profile/edit_profile_screen.dart';
@@ -16,26 +18,33 @@ import 'package:lms/shared/component/zoomDrawer.dart';
 class ProfileScreen extends StatelessWidget {
   ProfileScreen({Key? key}) : super(key: key);
 
+  File? profileImage;
+  var picker = ImagePicker();
+
   @override
   Widget build(BuildContext context) {
-
     return BlocConsumer<ProfileCubit, ProfileStates>(
-      listener: (context, state) {
-
-      },
+      listener: (context, state) {},
       builder: (context, state) {
-     var  cubit  = ProfileCubit.get(context);
+        var cubit = ProfileCubit.get(context);
+
         return Layout(
           widget: Scaffold(
             backgroundColor: primaryColor,
             appBar: AppBar(
-             backgroundColor: primaryColor,
+              backgroundColor: primaryColor,
               leading: IconButton(
-                icon: Icon(Icons.arrow_back,color: Colors.white,),
-                onPressed: (){
-                navigatorAndRemove(context, ZoomDrawerScreen());
+                icon: Icon(
+                  Icons.arrow_back,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  navigatorAndRemove(
+                      context,
+                      ZoomDrawerScreen(
+                        widget: HomePage(),
+                      ));
                 },
-
               ),
             ),
             floatingActionButton: IconButton(
@@ -56,9 +65,8 @@ class ProfileScreen extends StatelessWidget {
               alignment: Alignment.bottomRight,
             ),
             body: ConditionalBuilder(
-              condition: cubit.model!=null&&cubit.model!.profile !=null,
-
-              builder:(context)=> Center(
+              condition: cubit.model != null && cubit.model!.profile != null,
+              builder: (context) => Center(
                 child: SingleChildScrollView(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
@@ -66,7 +74,7 @@ class ProfileScreen extends StatelessWidget {
                       CircleAvatar(
                         radius: 45.0,
                         backgroundImage: CachedNetworkImageProvider(
-                          '${cubit.model!.profile!.imageUrl}',
+                          '${imageUrl}${cubit.model!.profile!.imageUrl}',
                         ),
                         child: Align(
                           alignment: AlignmentDirectional.bottomEnd,
@@ -82,8 +90,17 @@ class ProfileScreen extends StatelessWidget {
                                 ),
                                 color: Colors.white,
                                 iconSize: 15.0,
-                                onPressed: () {
-                                  print("Pic");
+                                onPressed: () async {
+                                  final pickedFile = await picker.pickImage(
+                                      source: ImageSource.gallery);
+                                  if (pickedFile != null) {
+                                    profileImage = File(pickedFile.path);
+                                  } else {
+                                    print('no image selected');
+                                  }
+                                  //image = await _picker.pickImage(source: ImageSource.gallery);
+                                  print(
+                                      "Piiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiic");
                                 },
                               ),
                             ),
@@ -123,103 +140,136 @@ class ProfileScreen extends StatelessWidget {
                           color: Colors.white,
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.all(20.0),
+                          padding: const EdgeInsets.all(30.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             textBaseline: TextBaseline.alphabetic,
                             children: [
-                              Text(
-                                "Email",
-                                style: TextStyle(
-                                  fontSize: 16.sp,
+                              ListTile(
+                                leading: Icon(
+                                  Icons.person,
                                   color: primaryColor,
-                                  fontWeight: FontWeight.bold,
+                                ),
+                                title: Text(
+                                  "Personal",
+                                  style: TextStyle(
+                                    fontSize: 20.sp,
+                                    color: primaryColor,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
+                              Divider(),
                               Text(
                                 "${cubit.model!.profile!.email}",
                                 style: TextStyle(
                                   fontSize: 20.sp,
                                 ),
                               ),
-                              Text(
-                                "Phone",
-                                style: TextStyle(
-                                  fontSize: 16.sp,
-                                  color: primaryColor,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
+                              // Text(
+                              //   "Phone",
+                              //   style: TextStyle(
+                              //     fontSize: 16.sp,
+                              //     color: primaryColor,
+                              //     fontWeight: FontWeight.bold,
+                              //   ),
+                              // ),
                               Text(
                                 "${cubit.model!.profile!.phone}",
                                 style: TextStyle(
                                   fontSize: 20.sp,
                                 ),
                               ),
-                              Text(
-                                "Gender",
-                                style: TextStyle(
-                                  fontSize: 16.sp,
-                                  color: primaryColor,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
+                              // Text(
+                              //   "Gender",
+                              //   style: TextStyle(
+                              //     fontSize: 16.sp,
+                              //     color: primaryColor,
+                              //     fontWeight: FontWeight.bold,
+                              //   ),
+                              // ),
                               Text(
                                 "${cubit.model!.profile!.gender}",
                                 style: TextStyle(
                                   fontSize: 20.sp,
                                 ),
                               ),
-                              Text(
-                                "City",
-                                style: TextStyle(
-                                  fontSize: 16.sp,
-                                  color: primaryColor,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                              // Text(
+                              //   "City",
+                              //   style: TextStyle(
+                              //     fontSize: 16.sp,
+                              //     color: primaryColor,
+                              //     fontWeight: FontWeight.bold,
+                              //   ),
+                              // ),
+                              Row(
+                                children: [
+                                  Text(
+                                    "${cubit.model!.profile!.city} ",
+                                    style: TextStyle(
+                                      fontSize: 20.sp,
+                                    ),
+                                  ),
+                                  Text(
+                                    "${cubit.model!.profile!.country}",
+                                    style: TextStyle(
+                                      fontSize: 20.sp,
+                                    ),
+                                  ),
+                                ],
                               ),
-                              Text(
-                                "${cubit.model!.profile!.city}",
-                                style: TextStyle(
-                                  fontSize: 20.sp,
-                                ),
-                              ),
-                              Text(
-                                "Country",
-                                style: TextStyle(
-                                  fontSize: 16.sp,
-                                  color: primaryColor,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              Text(
-                                "${cubit.model!.profile!.country}",
-                                style: TextStyle(
-                                  fontSize: 20.sp,
-                                ),
-                              ),
-                              Text(
-                                "Birthday",
-                                style: TextStyle(
-                                  fontSize: 16.sp,
-                                  color: primaryColor,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
+                              // Text(
+                              //   "Country",
+                              //   style: TextStyle(
+                              //     fontSize: 16.sp,
+                              //     color: primaryColor,
+                              //     fontWeight: FontWeight.bold,
+                              //   ),
+                              // ),
+
+                              // Text(
+                              //   "Birthday",
+                              //   style: TextStyle(
+                              //     fontSize: 16.sp,
+                              //     color: primaryColor,
+                              //     fontWeight: FontWeight.bold,
+                              //   ),
+                              // ),
                               Text(
                                 "${cubit.model!.profile!.birthDay}",
                                 style: TextStyle(
                                   fontSize: 20.sp,
                                 ),
                               ),
-                              Text(
-                                "Faculty",
-                                style: TextStyle(
-                                  fontSize: 16.sp,
+                              SizedBox(
+                                height: 10.0,
+                              ),
+                              ListTile(
+                                leading: Icon(
+                                  Icons.science_rounded,
                                   color: primaryColor,
-                                  fontWeight: FontWeight.bold,
                                 ),
+                                title: Text(
+                                  "Educational",
+                                  style: TextStyle(
+                                    fontSize: 20.sp,
+                                    color: primaryColor,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              Divider(),
+                              // Text(
+                              //   "Faculty",
+                              //   style: TextStyle(
+                              //     fontSize: 16.sp,
+                              //     color: primaryColor,
+                              //     fontWeight: FontWeight.bold,
+                              //   ),
+                              // ),
+                              SizedBox(
+                                height: 10.0,
                               ),
                               Text(
                                 "${cubit.model!.profile!.userEducation!.faculty}",
@@ -227,75 +277,140 @@ class ProfileScreen extends StatelessWidget {
                                   fontSize: 20.sp,
                                 ),
                               ),
-                              Text(
-                                "University",
-                                style: TextStyle(
-                                  fontSize: 16.sp,
-                                  color: primaryColor,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
+                              // Text(
+                              //   "University",
+                              //   style: TextStyle(
+                              //     fontSize: 16.sp,
+                              //     color: primaryColor,
+                              //     fontWeight: FontWeight.bold,
+                              //   ),
+                              // ),
                               Text(
                                 "${cubit.model!.profile!.userEducation!.university}",
                                 style: TextStyle(
                                   fontSize: 20.sp,
                                 ),
                               ),
-                              Text(
-                                "Major",
-                                style: TextStyle(
-                                  fontSize: 16.sp,
-                                  color: primaryColor,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
+                              // Text(
+                              //   "Major",
+                              //   style: TextStyle(
+                              //     fontSize: 16.sp,
+                              //     color: primaryColor,
+                              //     fontWeight: FontWeight.bold,
+                              //   ),
+                              // ),
                               Text(
                                 "${cubit.model!.profile!.userEducation!.major}",
                                 style: TextStyle(
                                   fontSize: 20.sp,
                                 ),
                               ),
-                              Text(
-                                "Grade",
-                                style: TextStyle(
-                                  fontSize: 16.sp,
+                              Row(
+                                children: [
+                                  // Text(
+                                  //   "Grade",
+                                  //   style: TextStyle(
+                                  //     fontSize: 20.sp,
+                                  //     color: primaryColor,
+                                  //     fontWeight: FontWeight.bold,
+                                  //   ),
+                                  // ),
+                                  //SizedBox(width: 10,),
+                                  Text(
+                                    "Grade ${cubit.model!.profile!.userEducation!.grade}",
+                                    style: TextStyle(
+                                      fontSize: 20.sp,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 10.0,
+                              ),
+                              ListTile(
+                                leading: Icon(
+                                  Icons.work_outline_rounded,
                                   color: primaryColor,
-                                  fontWeight: FontWeight.bold,
+                                ),
+                                title: Text(
+                                  "Experience",
+                                  style: TextStyle(
+                                    fontSize: 20.sp,
+                                    color: primaryColor,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
-                              Text(
-                                "${cubit.model!.profile!.userEducation!.grade}",
-                                style: TextStyle(
-                                  fontSize: 20.sp,
-                                ),
-                              ),
-                              Text(
-                                "Experience",
-                                style: TextStyle(
-                                  fontSize: 16.sp,
-                                  color: primaryColor,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
+                              Divider(),
+                              // Text(
+                              //   "Experience",
+                              //   style: TextStyle(
+                              //     fontSize: 16.sp,
+                              //     color: primaryColor,
+                              //     fontWeight: FontWeight.bold,
+                              //   ),
+                              // ),
                               Text(
                                 "${cubit.model!.profile!.userEducation!.experince}",
                                 style: TextStyle(
                                   fontSize: 20.sp,
                                 ),
                               ),
-                              Text(
-                                "Interested",
-                                style: TextStyle(
-                                  fontSize: 16.sp,
+                              // Text(
+                              //   "Interested",
+                              //   style: TextStyle(
+                              //     fontSize: 16.sp,
+                              //     color: primaryColor,
+                              //     fontWeight: FontWeight.bold,
+                              //   ),
+                              // ),
+                              SizedBox(
+                                height: 10.0,
+                              ),
+                              ListTile(
+                                leading: Icon(
+                                  Icons.import_contacts_rounded,
                                   color: primaryColor,
-                                  fontWeight: FontWeight.bold,
+                                ),
+                                title: Text(
+                                  "Interested",
+                                  style: TextStyle(
+                                    fontSize: 20.sp,
+                                    color: primaryColor,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
-                              Text(
-                                "${cubit.model!.profile!.userEducation!.interest!.join(" ")}",
-                                style: TextStyle(
-                                  fontSize: 20.sp,
-                                ),
+                              Divider(),
+                              SizedBox(
+                                height: 10.0,
+                              ),
+                              // Text(
+                              //   "${cubit.model!.profile!.userEducation!.interest!.join(" ")}",
+                              //   style: TextStyle(
+                              //     fontSize: 20.sp,
+                              //   ),
+                              // ),
+                              // Container(
+                              //   child: ListView.builder(
+                              //     shrinkWrap: true,
+                              //     //scrollDirection: Axis.horizontal,
+                              //     itemBuilder: (context, index) =>
+                              //         buildInterestItem(cubit.model!.profile!
+                              //             .userEducation!.interest![index]),
+                              //     itemCount: cubit.model!.profile!
+                              //         .userEducation!.interest!.length,
+                              //   ),
+                              // ),
+                              Wrap(
+                                spacing: 8.0, // gap between adjacent chips
+                                runSpacing: 4.0, // gap between lines
+                                //direction: Axis.vertical,
+                                children: List.generate(
+                                    cubit.model!.profile!.userEducation!
+                                        .interest!.length,
+                                    (index) => buildInterestItem(
+                                        '${cubit.model!.profile!.userEducation!.interest![index]}')),
                               ),
                             ],
                           ),
@@ -305,11 +420,33 @@ class ProfileScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              fallback:(context)=> Center(child: CircularProgressIndicator(),),
+              fallback: (context) => Center(
+                child: CircularProgressIndicator(),
+              ),
             ),
           ),
         );
       },
     );
+  }
+
+  Widget buildInterestItem(String text) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.grey[100],
+        borderRadius: BorderRadius.circular(20),
+      ),
+      padding: EdgeInsets.all(10.0),
+      child: Text(
+        '$text',
+        style: TextStyle(
+          fontSize: 16.sp,
+        ),
+      ),
+    );
+    // return Chip(
+    //   avatar: CircleAvatar(backgroundColor: Colors.blue.shade900, child: Text('JL')),
+    //   label: Text('Laurens'),
+    // );
   }
 }

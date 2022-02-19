@@ -43,7 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ProfileCubit.get(context).getUserProfile();
               navigatorAndRemove(
                 context,
-                const ZoomDrawerScreen(),
+                ZoomDrawerScreen(),
               );
             } else {
               print(" jsadjbasjdnj ${state.model.status}");

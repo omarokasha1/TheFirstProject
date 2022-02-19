@@ -3,22 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lms/modules/Auther/author_courses/author_courses_screen.dart';
+import 'package:lms/modules/Auther/dashboard/dashboard_auther.dart';
+import 'package:lms/modules/Auther/modules_library/modules_library.dart';
 import 'package:lms/modules/courses/cubit/cubit.dart';
-import 'package:lms/modules/dashboard/dashboard_auther.dart';
-import 'package:lms/modules/dashboard/dashboard_screen.dart';
 import 'package:lms/modules/onboarding/onboarding_screen.dart';
+import 'package:lms/modules/profile/profile_screen.dart';
 import 'package:lms/modules/splash_screen.dart';
 import 'package:lms/shared/component/constants.dart';
 import 'package:lms/shared/component/observer.dart';
-import 'package:lms/shared/component/zoomDrawer.dart';
 import 'package:lms/shared/network/local/cache_helper.dart';
 import 'package:lms/shared/network/remote/dio-helper.dart';
 import 'package:lms/shared/themes/light_theme.dart';
-import 'modules/Auther/create_course/create_course_screen.dart';
-import 'modules/Auther/create_module/create_module_screen.dart';
 import 'modules/profile/profile_cubit/cubit.dart';
 import 'shared/cubit For Internet/cubit.dart';
-
 
 void main() async {
   //This to ensure that all Widget of Application is ready to run.
@@ -54,7 +52,7 @@ void main() async {
   }
   //Here The Initialize of Observer of Bloc that's show me in Run where i'm in the States of Cubit
   BlocOverrides.runZoned(
-        () {
+    () {
       // Use cubits...
       runApp(MyApp(widget));
     },
@@ -77,16 +75,14 @@ class MyApp extends StatelessWidget {
         //Bloc of Profile Cubit (Data of User).
         BlocProvider(create: (context) {
           if (userToken != null) {
-            return ProfileCubit()
-              ..getUserProfile();
+            return ProfileCubit()..getUserProfile();
           }
           return ProfileCubit();
         }),
         //Bloc of Course Cubit.
         BlocProvider(create: (context) {
           if (userToken != null) {
-            return CourseCubit()
-              ..getAllCoursesData();
+            return CourseCubit()..getAllCoursesData();
           }
           return CourseCubit();
         }),
@@ -96,23 +92,23 @@ class MyApp extends StatelessWidget {
         designSize: const Size(360, 690),
         minTextAdapt: true,
         splitScreenMode: true,
-        builder: () =>
-            MaterialApp(
-              builder: (context, widget) {
-                ScreenUtil.setContext(context);
-                return MediaQuery(
-                  //Setting font does not change with system font size
-                  data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-                  child: widget!,
-                );
-              },
-              //This to Hide Debugger Banner in UI.
-              debugShowCheckedModeBanner: false,
-              theme: lightTheme(context),
-              //Here The Theme.
-              themeMode: ThemeMode.light,
-              home: CreateModuleScreen(),
-            ),
+        builder: () => MaterialApp(
+          builder: (context, widget) {
+            ScreenUtil.setContext(context);
+            return MediaQuery(
+              //Setting font does not change with system font size
+              data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+              child: widget!,
+            );
+          },
+          //This to Hide Debugger Banner in UI.
+          debugShowCheckedModeBanner: false,
+          theme: lightTheme(context),
+          //Here The Theme.
+          themeMode: ThemeMode.light,
+          //home: Tracks(),
+         home: DashboardAuthorScreen(),
+        ),
       ),
     );
   }

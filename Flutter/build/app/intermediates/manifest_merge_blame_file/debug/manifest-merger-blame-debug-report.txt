@@ -12,19 +12,19 @@
 12         to allow setting breakpoints, to provide hot reload, etc.
 13    -->
 14    <uses-permission android:name="android.permission.INTERNET" />
-14-->/home/odc5/project/Flutter/android/app/src/debug/AndroidManifest.xml:6:5-66
-14-->/home/odc5/project/Flutter/android/app/src/debug/AndroidManifest.xml:6:22-64
+14-->G:\ODS\TheFirstProject\Flutter\android\app\src\debug\AndroidManifest.xml:6:5-66
+14-->G:\ODS\TheFirstProject\Flutter\android\app\src\debug\AndroidManifest.xml:6:22-64
 15    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-15-->[:network_info_plus] /home/odc5/project/Flutter/build/network_info_plus/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-79
-15-->[:network_info_plus] /home/odc5/project/Flutter/build/network_info_plus/intermediates/library_manifest/debug/AndroidManifest.xml:7:22-76
+15-->[:network_info_plus] G:\ODS\TheFirstProject\Flutter\build\network_info_plus\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-79
+15-->[:network_info_plus] G:\ODS\TheFirstProject\Flutter\build\network_info_plus\intermediates\library_manifest\debug\AndroidManifest.xml:7:22-76
 16    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-16-->[:network_info_plus] /home/odc5/project/Flutter/build/network_info_plus/intermediates/library_manifest/debug/AndroidManifest.xml:8:5-76
-16-->[:network_info_plus] /home/odc5/project/Flutter/build/network_info_plus/intermediates/library_manifest/debug/AndroidManifest.xml:8:22-73
+16-->[:network_info_plus] G:\ODS\TheFirstProject\Flutter\build\network_info_plus\intermediates\library_manifest\debug\AndroidManifest.xml:8:5-76
+16-->[:network_info_plus] G:\ODS\TheFirstProject\Flutter\build\network_info_plus\intermediates\library_manifest\debug\AndroidManifest.xml:8:22-73
 17
 18    <application
 19        android:name="android.app.Application"
 20        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-20-->[androidx.core:core:1.6.0] /home/odc5/.gradle/caches/transforms-2/files-2.1/122df2e57d294d1a53db26bbc3b813c1/core-1.6.0/AndroidManifest.xml:24:18-86
+20-->[androidx.core:core:1.6.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\122df2e57d294d1a53db26bbc3b813c1\core-1.6.0\AndroidManifest.xml:24:18-86
 21        android:debuggable="true"
 22        android:icon="@mipmap/ic_launcher"
 23        android:label="lms" >
@@ -61,18 +61,36 @@
 54            android:name="flutterEmbedding"
 55            android:value="2" />
 56
-57        <uses-library
-57-->[androidx.window:window:1.0.0-beta04] /home/odc5/.gradle/caches/transforms-2/files-2.1/03c633e46d75bfb21f082f0417f55161/jetified-window-1.0.0-beta04/AndroidManifest.xml:25:9-27:40
-58            android:name="androidx.window.extensions"
-58-->[androidx.window:window:1.0.0-beta04] /home/odc5/.gradle/caches/transforms-2/files-2.1/03c633e46d75bfb21f082f0417f55161/jetified-window-1.0.0-beta04/AndroidManifest.xml:26:13-54
-59            android:required="false" />
-59-->[androidx.window:window:1.0.0-beta04] /home/odc5/.gradle/caches/transforms-2/files-2.1/03c633e46d75bfb21f082f0417f55161/jetified-window-1.0.0-beta04/AndroidManifest.xml:27:13-37
-60        <uses-library
-60-->[androidx.window:window:1.0.0-beta04] /home/odc5/.gradle/caches/transforms-2/files-2.1/03c633e46d75bfb21f082f0417f55161/jetified-window-1.0.0-beta04/AndroidManifest.xml:28:9-30:40
-61            android:name="androidx.window.sidecar"
-61-->[androidx.window:window:1.0.0-beta04] /home/odc5/.gradle/caches/transforms-2/files-2.1/03c633e46d75bfb21f082f0417f55161/jetified-window-1.0.0-beta04/AndroidManifest.xml:29:13-51
-62            android:required="false" />
-62-->[androidx.window:window:1.0.0-beta04] /home/odc5/.gradle/caches/transforms-2/files-2.1/03c633e46d75bfb21f082f0417f55161/jetified-window-1.0.0-beta04/AndroidManifest.xml:30:13-37
-63    </application>
-64
-65</manifest>
+57        <provider
+57-->[:image_picker] G:\ODS\TheFirstProject\Flutter\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-16:20
+58            android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
+58-->[:image_picker] G:\ODS\TheFirstProject\Flutter\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-82
+59            android:authorities="com.example.lms.flutter.image_provider"
+59-->[:image_picker] G:\ODS\TheFirstProject\Flutter\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:10:13-74
+60            android:exported="false"
+60-->[:image_picker] G:\ODS\TheFirstProject\Flutter\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:11:13-37
+61            android:grantUriPermissions="true" >
+61-->[:image_picker] G:\ODS\TheFirstProject\Flutter\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:12:13-47
+62            <meta-data
+62-->[:image_picker] G:\ODS\TheFirstProject\Flutter\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:13:13-15:75
+63                android:name="android.support.FILE_PROVIDER_PATHS"
+63-->[:image_picker] G:\ODS\TheFirstProject\Flutter\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:14:17-67
+64                android:resource="@xml/flutter_image_picker_file_paths" />
+64-->[:image_picker] G:\ODS\TheFirstProject\Flutter\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:15:17-72
+65        </provider>
+66
+67        <uses-library
+67-->[androidx.window:window:1.0.0-beta04] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\03c633e46d75bfb21f082f0417f55161\jetified-window-1.0.0-beta04\AndroidManifest.xml:25:9-27:40
+68            android:name="androidx.window.extensions"
+68-->[androidx.window:window:1.0.0-beta04] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\03c633e46d75bfb21f082f0417f55161\jetified-window-1.0.0-beta04\AndroidManifest.xml:26:13-54
+69            android:required="false" />
+69-->[androidx.window:window:1.0.0-beta04] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\03c633e46d75bfb21f082f0417f55161\jetified-window-1.0.0-beta04\AndroidManifest.xml:27:13-37
+70        <uses-library
+70-->[androidx.window:window:1.0.0-beta04] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\03c633e46d75bfb21f082f0417f55161\jetified-window-1.0.0-beta04\AndroidManifest.xml:28:9-30:40
+71            android:name="androidx.window.sidecar"
+71-->[androidx.window:window:1.0.0-beta04] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\03c633e46d75bfb21f082f0417f55161\jetified-window-1.0.0-beta04\AndroidManifest.xml:29:13-51
+72            android:required="false" />
+72-->[androidx.window:window:1.0.0-beta04] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\03c633e46d75bfb21f082f0417f55161\jetified-window-1.0.0-beta04\AndroidManifest.xml:30:13-37
+73    </application>
+74
+75</manifest>

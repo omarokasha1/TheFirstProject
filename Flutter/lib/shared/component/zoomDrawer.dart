@@ -6,11 +6,11 @@ import 'myDrawer.dart';
 
 class ZoomDrawerScreen extends StatelessWidget {
   final Widget widget;
-  const ZoomDrawerScreen({this.widget =const HomePage(),Key? key}) : super(key: key);
+   ZoomDrawerScreen({this.widget=const HomePage(),Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return  ZoomDrawer(
+    return ZoomDrawer(
       menuScreen: MyDrawer(),
       mainScreen: widget,
       style: DrawerStyle.Style1,
