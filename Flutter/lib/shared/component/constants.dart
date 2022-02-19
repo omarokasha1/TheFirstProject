@@ -34,3 +34,17 @@ const MaterialColor color = MaterialColor(
   },
 );
 bool connected = true;
+const kGreenColor = Color(0xFF6AC259);
+const kRedColor = Color(0xFFE92E30);
+const kGrayColor = Colors.grey;
+const kBlackColor = Color(0xFF101010);
+const double kDefaultPadding = 20.0;
+const newVv =LinearGradient(
+  begin: Alignment(0.0, -1.0),
+  end: Alignment(0.0, 1.0),
+  colors: [
+    Color(0xff3FB8C0),
+    Color(0xff0399A0),
+    Color(0xff07919c)
+  ],
+);
