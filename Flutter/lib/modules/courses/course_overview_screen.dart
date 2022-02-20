@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lms/shared/component/component.dart';
 
 import '../../models/course_model.dart';
@@ -24,11 +25,12 @@ class CoursesOverViewScreen extends StatelessWidget {
         child: Row(
           children: [
             Expanded(
+              flex: 3,
               child: Padding(
                 padding: const EdgeInsets.all(8),
                 // object from defaultButton on component.dart file
                 child: defaultButton(
-                    onPressed: () {}, text: 'Start Course', color: false),
+                    onPressed: () {}, text: 'Start Course',),
               ),
             ),
             Expanded(
@@ -37,7 +39,10 @@ class CoursesOverViewScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(8),
 
                 // object from defaultButton on component.dart file
-                child: defaultButton(onPressed: () {}, text: 'Add WatchList'),
+                child: defaultButton(onPressed: () {
+                  print("asdasdas");
+                  Fluttertoast.showToast(msg: "Added To Your wishlist");
+                }, text: 'Add WatchList', widget: Icon(Icons.favorite_rounded, color: primaryColor,), color: false),
               ),
             ),
           ],

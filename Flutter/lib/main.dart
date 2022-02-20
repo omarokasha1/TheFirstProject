@@ -4,11 +4,14 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lms/modules/Auther/author_courses/author_courses_screen.dart';
+import 'package:lms/modules/Auther/author_profile/author_profile_cubit/cubit.dart';
+import 'package:lms/modules/Auther/author_profile/author_profile_screen.dart';
 import 'package:lms/modules/Auther/dashboard/dashboard_auther.dart';
 import 'package:lms/modules/Auther/modules_library/modules_library.dart';
 import 'package:lms/modules/courses/cubit/cubit.dart';
 import 'package:lms/modules/dashboard/dashboard_screen.dart';
 import 'package:lms/modules/onboarding/onboarding_screen.dart';
+import 'package:lms/modules/profile/edit_profile_screen.dart';
 import 'package:lms/modules/profile/profile_screen.dart';
 import 'package:lms/modules/splash_screen.dart';
 import 'package:lms/shared/component/constants.dart';
@@ -88,6 +91,7 @@ class MyApp extends StatelessWidget {
           }
           return CourseCubit();
         }),
+        BlocProvider(create: (context) => AuthorProfileCubit()..getAuthorProfile()),
       ],
       //ScreenUTil is A Package make application responsive.
       child: ScreenUtilInit(
@@ -109,7 +113,9 @@ class MyApp extends StatelessWidget {
           //Here The Theme.
           themeMode: ThemeMode.light,
           //home: Tracks(),
-         home:ZoomDrawerScreen(widget:DashboardAuthorScreen() ,) ,
+         //home:ZoomDrawerScreen(widget:DashboardAuthorScreen() ,) ,
+          //home: ZoomDrawerScreen(widget: AuthorProfileScreen(),),
+          home: widget,
         ),
       ),
     );

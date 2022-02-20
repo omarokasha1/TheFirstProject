@@ -74,7 +74,7 @@ class ProfileScreen extends StatelessWidget {
                       CircleAvatar(
                         radius: 45.0,
                         backgroundImage: CachedNetworkImageProvider(
-                          '${imageUrl}${cubit.model!.profile!.imageUrl}',
+                          '${cubit.model!.profile!.imageUrl}',
                         ),
                         child: Align(
                           alignment: AlignmentDirectional.bottomEnd,
@@ -135,7 +135,7 @@ class ProfileScreen extends StatelessWidget {
                         width: double.infinity,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.vertical(
-                            top: Radius.circular(50.0),
+                            top: Radius.circular(25.0),
                           ),
                           color: Colors.white,
                         ),

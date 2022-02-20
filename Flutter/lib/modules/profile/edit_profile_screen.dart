@@ -109,7 +109,7 @@ class EditProfileScreen extends StatelessWidget {
                       CircleAvatar(
                         radius: 45.0,
                         backgroundImage: CachedNetworkImageProvider(
-                          '${imageUrl}${cubit.model!.profile!.imageUrl}',
+                          '${cubit.model!.profile!.imageUrl}',
                         ),
                         child: Align(
                           alignment: AlignmentDirectional.bottomEnd,
@@ -172,7 +172,7 @@ class EditProfileScreen extends StatelessWidget {
                           width: double.infinity,
                           decoration: const BoxDecoration(
                             borderRadius: const BorderRadius.vertical(
-                              top: Radius.circular(50.0),
+                              top: Radius.circular(25.0),
                             ),
                             color: Colors.white,
                           ),
@@ -253,6 +253,19 @@ class EditProfileScreen extends StatelessWidget {
       children: [
         const SizedBox(
           height: 10.0,
+        ),
+        customTextFormFieldWidget(
+          label: 'Bio',
+          controller: bioController,
+          prefixIcon: Icons.perm_device_information_outlined,
+          type: TextInputType.text,
+          prefix: true,
+          validate: (value){
+            if (value!.isEmpty) {
+              return "Please, Enter your Bio";
+            }
+            return null;
+          }
         ),
         TextFormField(
           controller: bioController,

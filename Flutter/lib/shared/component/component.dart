@@ -14,6 +14,7 @@ Widget defaultButton({
   required Function onPressed,
   required String text,
   bool color = true,
+  Widget? widget,
 }) =>
     Container(
       height: 50.h,
@@ -33,7 +34,7 @@ Widget defaultButton({
             width: double.infinity,
             height: double.infinity,
             child: Center(
-              child: Text(
+              child: widget != null ? widget : Text(
                 text,
                 style: TextStyle(
                   color: color ? Colors.white : primaryColor,
@@ -127,7 +128,9 @@ Widget customTextFormFieldWidget({
   return Padding(
     padding: const EdgeInsets.only(bottom: 20.0),
     child: TextFormField(
-
+      onChanged: (value){
+        onChanged!(value);
+      },
       controller: controller,
       keyboardType: type,
       decoration: InputDecoration(
