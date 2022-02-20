@@ -1,6 +1,11 @@
 const mongoose = require('mongoose')
 const Joi = require('joi')
 const jwt = require('jsonwebtoken');
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> d203f61374343ed9a27b7f0ceb3b0611d4e64e84
 
 
 
@@ -15,6 +20,12 @@ const CourseSchema = new mongoose.Schema({
     description: { type: String,  },
     review: { type: String,  },
     imageUrl: { type: String,  },
+<<<<<<< HEAD
+    contents:
+        [ {type:mongoose.Schema.Types.ObjectId,
+          ref:'Content'}]
+    ,
+=======
     contents:[{
         contentTitle:{type : String},
         contentDuration:{type:String},
@@ -22,6 +33,7 @@ const CourseSchema = new mongoose.Schema({
         createdAt:{type:String},
         enumType:{ type: String, enum: ['image', 'video','document']},   
     }],
+>>>>>>> d203f61374343ed9a27b7f0ceb3b0611d4e64e84
     author:{
         
         type:mongoose.Schema.Types.ObjectId ,

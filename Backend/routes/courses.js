@@ -7,6 +7,8 @@ const getCourses = require('../middleware/getCourse')
 const jwt = require('jsonwebtoken')
 const _= require('lodash')
 const Course = require('../models/course')
+const Content = require('../models/content')
+
 
 const multer = require('multer');
 const path = require('path')
@@ -15,7 +17,11 @@ const path = require('path')
 const storage = multer.diskStorage({
   //destination for files
   destination: function (request, file, callback) {
+<<<<<<< HEAD
+    callback(null, './uploads/');
+=======
     callback(null, './uploads');
+>>>>>>> d203f61374343ed9a27b7f0ceb3b0611d4e64e84
   },
 
   //add back the extension
@@ -44,6 +50,11 @@ router.get('/:title', getCourse, (req, res) => {
 
   res.json(res.course)
 })
+// Getting One
+router.get('/:title', getCourse, (req, res) => {
+
+  res.json(res.course)
+})
 
 // Creating one
 router.post('/newCourse', [auth,upload.single('imageUrl')],async (req, res) => {
@@ -66,8 +77,13 @@ router.post('/newCourse', [auth,upload.single('imageUrl')],async (req, res) => {
      totalTime:req.body.totalTime,
      language:req.body.language,
      review:req.body.review,
+<<<<<<< HEAD
+    imageUrl:req.file.filename,
+    contents:req.body.contents,
+=======
      imageUrl:req.file.filename,
      contents:req.body.contents,
+>>>>>>> d203f61374343ed9a27b7f0ceb3b0611d4e64e84
      author:id
    })
 
@@ -76,6 +92,36 @@ router.post('/newCourse', [auth,upload.single('imageUrl')],async (req, res) => {
   } catch (err) {
     console.log(err)
     res.status(400).json({ message: err })
+<<<<<<< HEAD
+  }
+})
+// Creating content
+router.post('/newContent', [auth,upload.single('contentType')],async (req, res) => {
+
+  //* const { title,  description,author } = req.body
+ 
+  const token = req.header('x-auth-token')
+  try {
+    const user = jwt.verify(token, 'privateKey')
+    console.log(user)
+    const id = user.id
+    console.log(id)
+
+   const content = new Content({
+    contentTitle:req.body.contentTitle,
+    contentDuration:req.body.contentDuration,
+    contentType:req.file.filename,
+    createdAt:req.body.createdAt,
+    enumType:req.body.enumType,
+   })
+
+    const newContent = await content.save()
+    res.status(201).json(newContent)
+  } catch (err) {
+    console.log(err)
+    res.status(400).json({ message: err })
+=======
+>>>>>>> d203f61374343ed9a27b7f0ceb3b0611d4e64e84
   }
 })
 

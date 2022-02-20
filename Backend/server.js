@@ -6,12 +6,22 @@ const mongoose = require('mongoose')
 const logger = require('./config/logger')
 const app = express()
 const compression = require('compression')
+const fileUpoad = require("express-fileupload");
+const cors = require("cors");
 
+
+app.use(express.json());
+app.use(cors());
+app.use(fileUpoad({ useTempFiles: true }));
 const Course = require('./models/course')
 
 //* initial start
 app.use(bodyParser.json())
+<<<<<<< HEAD
+app.use(express.urlencoded({ extended: false }));
+=======
 app.use(express.urlencoded({ extended: true }));
+>>>>>>> d203f61374343ed9a27b7f0ceb3b0611d4e64e84
 
 //* mongoose connection
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true, }).then(
@@ -49,15 +59,22 @@ app.get('/', async(req, res) => {
         res.status(500).json({ message: err.message })
       }
 });
+app.use("/user", require("./routes/userRouter"));
+
 
 //* if write invalide url or end point send to user an error message
-app.all('*', (req, res, next) => {
+/* app.all('*', (req, res, next) => {
     res.status(404).json({
         status: 'false',
         message: 'Page not found !'
     })
-})
+}) */
 //* listen on port 8080 local host
+<<<<<<< HEAD
+app.listen( process.env.PORT, function(){
+    console.log("Expreass server listening on port 80801");
+=======
 app.listen( 8080, function(){
     console.log("Express server listening on port %d in %s mode");
+>>>>>>> d203f61374343ed9a27b7f0ceb3b0611d4e64e84
   });

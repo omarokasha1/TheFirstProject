@@ -13,6 +13,7 @@ const UserSchema = new mongoose.Schema({
     phone: { type: String, minlength: 11, maxlength: 11, },
     gender: { type: String, enum: ['male', 'female'] },
     imageUrl: { type: String, },
+    cloudinary_id: {  type: String, },
     birthDay: { type: String },
     country: { type: String },
     city: { type: String },
