@@ -28,6 +28,7 @@ class CreateQuizScreen extends StatelessWidget {
           builder: (context, state) {
             var cubit = QuizCubit.get(context);
             return Scaffold(
+              appBar: AppBar(),
               key: scaffoldKey,
               floatingActionButton: FloatingActionButton(
                 onPressed: () {
@@ -163,7 +164,7 @@ class CreateQuizScreen extends StatelessWidget {
                       crossAxisCount: 1,
                       childAspectRatio: 1 / 0.68,
                       children: List.generate(
-                        20,
+                        5,
                             (index) => quistionItem(context, index),
                       ),
                     ),
@@ -198,10 +199,7 @@ class CreateQuizScreen extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.only(top: 15.0),
         child: Container(
-          width: MediaQuery
-              .of(context)
-              .size
-              .width / 2,
+          width: MediaQuery.of(context).size.width / 2,
           margin: EdgeInsets.symmetric(horizontal: 15),
           child: Material(
             shadowColor: Colors.grey[300],

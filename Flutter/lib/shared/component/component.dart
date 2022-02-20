@@ -6,6 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lms/models/course_model.dart';
 import 'package:lms/modules/courses/course_overview_screen.dart';
 import 'package:lms/shared/component/constants.dart';
+import 'package:multiselect_formfield/multiselect_formfield.dart';
 
 import '../../modules/courses/course_details_screen.dart';
 
@@ -128,6 +129,9 @@ Widget customTextFormFieldWidget({
     padding: const EdgeInsets.only(bottom: 20.0),
     child: TextFormField(
 
+      onChanged: (value) {
+        onChanged!(value);
+      },
       controller: controller,
       keyboardType: type,
       decoration: InputDecoration(
@@ -554,5 +558,63 @@ Widget offline(child) {
         ),
       ),
     ],
+  );
+}
+
+Widget selectMoreItem({
+  required String name,
+  required validate,
+  required  String myActivitiesResult,
+  required  List? myActivities ,
+  required  onSaved,
+
+}) {
+  return Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: MultiSelectFormField(
+      autovalidate: AutovalidateMode.disabled,
+      chipBackGroundColor: secondaryColor,
+      chipLabelStyle:
+      TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+      dialogTextStyle: TextStyle(fontWeight: FontWeight.bold),
+    //  checkBoxActiveColor: Colors.blue,
+      checkBoxCheckColor: Colors.white,
+      dialogShapeBorder: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(12.0))),
+      title: Text(
+        name,
+        style: TextStyle(fontSize: 16),
+      ),
+      validator: (value) {
+        return validate(value);
+      },
+      dataSource: [
+        {
+          "display": "Flutter",
+          "value": "Flutter",
+        },
+        {
+          "display": "Dart",
+          "value": "Dart",
+        },
+        {
+          "display": "C++",
+          "value": "C++",
+        },
+        {
+          "display": "Java",
+          "value": "Java",
+        },
+      ],
+      textField: 'display',
+      valueField: 'value',
+      okButtonLabel: 'OK',
+      cancelButtonLabel: 'CANCEL',
+      hintWidget: const Text('Please choose one or more Course'),
+      initialValue: myActivities,
+      onSaved: (value) {
+        return onSaved(value);
+      },
+    ),
   );
 }

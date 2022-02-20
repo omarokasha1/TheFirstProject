@@ -1,35 +1,33 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:multiselect_formfield/multiselect_formfield.dart';
 
 import '../../../shared/component/component.dart';
 import '../../../shared/component/constants.dart';
 import 'cubit/cubit.dart';
 import 'cubit/states.dart';
 
-class CreateCourseScreen extends StatefulWidget {
+class CreateCourseScreen extends StatelessWidget {
   CreateCourseScreen({Key? key}) : super(key: key);
 
-  @override
-  State<CreateCourseScreen> createState() => _CreateCourseScreenState();
-}
 
-class _CreateCourseScreenState extends State<CreateCourseScreen> {
+  File? courseImage;
+  var picker = ImagePicker();
+
   TextEditingController courseNameController = TextEditingController();
 
   TextEditingController shortDescriptionController = TextEditingController();
-
 
   TextEditingController requiermentController = TextEditingController();
 
   TextEditingController moduleTypeController = TextEditingController();
 
   var formKey = GlobalKey<FormState>();
-  List<String> items = ['Arabic', 'English', 'Italy', 'french'];
-  String selectedItem = "Arabic";
-
-  bool checkedValue=false;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -70,7 +68,18 @@ class _CreateCourseScreenState extends State<CreateCourseScreen> {
                             ),
                           ),
                         ),
-                      )
+                      ),
+                      SafeArea(
+                        child: Align(
+                          alignment: Alignment.topLeft,
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 40, top: 100),
+                            child: Text("Create Course",
+                                style: TextStyle(
+                                    fontSize: 30, color: Colors.white)),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                   Padding(
@@ -86,16 +95,6 @@ class _CreateCourseScreenState extends State<CreateCourseScreen> {
                               children: <Widget>[
                                 const SizedBox(
                                   height: 40,
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 8.0),
-                                  child: Text("Create Course",
-                                      style: TextStyle(
-                                          fontSize: 25,
-                                          color: Colors.grey[600])),
-                                ),
-                                const SizedBox(
-                                  height: 25,
                                 ),
                                 customTextFormFieldWidget(
                                   onChanged: (courseName) {
@@ -136,9 +135,6 @@ class _CreateCourseScreenState extends State<CreateCourseScreen> {
                                 customTextFormFieldWidget(
                                   controller: requiermentController,
                                   validate: (value) {
-                                    if (value!.isEmpty) {
-                                      return 'Requirement Must Be Not Empty';
-                                    }
                                     return null;
                                   },
                                   label: "Requirements",
@@ -166,33 +162,54 @@ class _CreateCourseScreenState extends State<CreateCourseScreen> {
                                       const SizedBox(
                                         height: 25,
                                       ),
-                                      customTextFormFieldWidget(
-
-                                        controller: courseNameController,
+                                      selectMoreItem(
+                                        name: "Content",
+                                        myActivities: cubit.myActivities,
+                                        myActivitiesResult: cubit.myActivitiesResult,
+                                        onSaved: (value) {
+                                          if (value == null) return;
+                                          // setState(() {
+                                          //   myActivities = value;
+                                          // });
+                                          cubit.changeActivity(value);
+                                        },
                                         validate: (value) {
-
+                                          if (value == null ||
+                                              value.length == 0) {
+                                            return 'Please select one or more Courses';
+                                          }
                                           return null;
                                         },
-                                        label: "Content",
-                                        type: TextInputType.text,
                                       ),
-                                      customTextFormFieldWidget(
-
-                                        controller: shortDescriptionController,
+                                      selectMoreItem(
+                                        name: "Assignment",
                                         validate: (value) {
                                           return null;
                                         },
-                                        label: "Assignment",
-                                        type: TextInputType.text,
+                                        myActivities: cubit.myActivities,
+                                        myActivitiesResult: cubit.myActivitiesResult,
+                                        onSaved: (value) {
+                                          if (value == null) return;
+                                          // setState(() {
+                                          //   myActivities = value;
+                                          // });
+                                          cubit.changeActivity(value);
+                                        },
                                       ),
-                                      customTextFormFieldWidget(
-                                        controller: requiermentController,
+                                      selectMoreItem(
+                                        name: "Quiz",
                                         validate: (value) {
-
                                           return null;
                                         },
-                                        label: "Quiz",
-                                        type: TextInputType.text,
+                                        myActivities: cubit.myActivities,
+                                          myActivitiesResult: cubit.myActivitiesResult,
+                                        onSaved: (value) {
+                                          if (value == null) return;
+                                          // setState(() {
+                                          //   myActivities = value;
+                                          // });
+                                          cubit.changeActivity(value);
+                                        },
                                       ),
                                     ],
                                   ),
@@ -225,15 +242,16 @@ class _CreateCourseScreenState extends State<CreateCourseScreen> {
                                         borderRadius: BorderRadius.circular(20),
                                       ),
                                     ),
-                                    value: selectedItem,
+                                    value: cubit.selectedItem,
                                     elevation: 16,
                                     onChanged: (newValue) {
-                                      setState(() {
-                                        selectedItem = newValue!;
-                                      });
+                                      // setState(() {
+                                      //   selectedItem = newValue!;
+                                      // });
+                                      cubit.changeItem(newValue!);
                                     },
                                     itemHeight: 50,
-                                    items: items.map<DropdownMenuItem<String>>(
+                                    items: cubit.items.map<DropdownMenuItem<String>>(
                                         (String value) {
                                       return DropdownMenuItem<String>(
                                         value: value,
@@ -254,7 +272,19 @@ class _CreateCourseScreenState extends State<CreateCourseScreen> {
                                 ),
                                 Center(
                                   child: TextButton(
-                                      onPressed: () {},
+                                      onPressed: () async {
+                                        final pickedFile =
+                                            await picker.pickImage(
+                                                source: ImageSource.gallery);
+                                        if (pickedFile != null) {
+                                          courseImage = File(pickedFile.path);
+                                        } else {
+                                          print('no image selected');
+                                        }
+                                        //image = await _picker.pickImage(source: ImageSource.gallery);
+                                        print(
+                                            "Piiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiic");
+                                      },
                                       child: const Padding(
                                         padding: EdgeInsets.symmetric(
                                             horizontal: 22.0),
@@ -268,23 +298,19 @@ class _CreateCourseScreenState extends State<CreateCourseScreen> {
                             ),
                           ),
                         ),
-                        CheckboxListTile(
-                          title:const  Text("you agree to sent request to admin",style: TextStyle(fontSize: 15),),
-                          value: checkedValue,
-                          onChanged: (newValue) {
-                            setState(() {
-                              checkedValue = newValue!;
-                            });
-                          },
-                          controlAffinity: ListTileControlAffinity.leading,  //  <-- leading Checkbox
-                        ),
                         Padding(
                           padding: const EdgeInsets.only(
                               top: 20.0, left: 10, right: 10, bottom: 10),
                           child: defaultButton(
                               text: 'Save',
                               onPressed: () {
-                                if (formKey.currentState!.validate()) {}
+                                if (formKey.currentState!.validate()) {
+                                  if (courseImage == null) {
+                                    showToast(
+                                        message:
+                                            "Course Image Must be Not empty");
+                                  }
+                                }
                               }),
                         ),
                       ],

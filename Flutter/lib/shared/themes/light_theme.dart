@@ -13,7 +13,7 @@ ThemeData lightTheme(context) {
     primaryColor: primaryColor,
     scaffoldBackgroundColor: Colors.white,
     appBarTheme: const AppBarTheme(
-      toolbarHeight: 80,
+    //  toolbarHeight: 80,
       systemOverlayStyle: SystemUiOverlayStyle(
         statusBarColor: primaryColor,
         statusBarIconBrightness: Brightness.light,

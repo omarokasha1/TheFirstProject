@@ -12,13 +12,13 @@ class QuizScreen extends StatelessWidget {
         listener: (context, state) {},
         builder: (context, state) {
           var cubit = QuizCubit.get(context);
-          return Scaffold(
+          return const  Scaffold(
             extendBodyBehindAppBar: true,
-            appBar: AppBar(
-              backgroundColor: Colors.transparent,
-              elevation: 0,
+
+            body: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Body(),
             ),
-            body: Body(),
           );
         });
   }

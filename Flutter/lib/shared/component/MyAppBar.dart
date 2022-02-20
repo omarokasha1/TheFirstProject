@@ -7,37 +7,40 @@ import 'package:lms/modules/notification/notification_screen.dart';
 import 'constants.dart';
 import 'popMenuItem.dart';
 
-AppBar myAppBar(context) {
+AppBar myAppBar(context, {Color color=Colors.white,Color iconColor=primaryColor}) {
   return AppBar(
     //status bar setting
     systemOverlayStyle: const SystemUiOverlayStyle(
-      statusBarColor: primaryColor,
+    //  statusBarColor: primaryColor,
       statusBarIconBrightness: Brightness.light,
     ),
     leadingWidth: 65,
     elevation: 0,
-    backgroundColor: primaryColor,
+    backgroundColor: color,
     leading: InkWell(
       //this used to switch between home screen  and drawer
       onTap: () {
+
         ZoomDrawer.of(context)!.toggle();
       },
-      child: const Padding(
+      child:  Padding(
         padding: EdgeInsets.only(left: 12.0),
-        child: CircleAvatar(
-          radius: 25,
-          backgroundColor: Color(0xff067B85),
-          backgroundImage: CachedNetworkImageProvider(
-              "https://cdn.lifehack.org/wp-content/uploads/2014/03/shutterstock_97566446.jpg"),
-        ),
+        child: Icon(Icons.menu,color: iconColor,)
+        // CircleAvatar(
+        //   radius: 25,
+        //   backgroundColor: Color(0xff067B85),
+        //   backgroundImage: CachedNetworkImageProvider(
+        //       "https://cdn.lifehack.org/wp-content/uploads/2014/03/shutterstock_97566446.jpg"),
+        // ),
+        
       ),
     ),
     actions: [
       //notifications
       PopupMenuButton(
-        icon: const Icon(
+        icon:  Icon(
           Icons.notifications,
-          color: Colors.white,
+          color: iconColor,
           size: 22,
         ),
         offset: const Offset(-25, 60),

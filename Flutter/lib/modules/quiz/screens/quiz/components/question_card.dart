@@ -31,29 +31,31 @@ class QuestionCard extends StatelessWidget {
           builder: (context, state) {
             var cubit = QuizCubit.get(context);
             cubit.context = context;
-            return Column(
+            return SingleChildScrollView(
+              child: Column(
 
-              children: [
-                Text(
-                  question.question,
-                  style: Theme.of(context)
-                      .textTheme
-                      .headline6
-                      ?.copyWith(color: kBlackColor),
-                ),
-                SizedBox(height: kDefaultPadding / 2),
-                ...List.generate(
-                  question.options.length,
-                  (index) => Option(
-                    index: index,
-                    text: question.options[index],
-                    press: () {
-                      cubit.context = context;
-                      cubit.checkAns(question, index);
-                    },
+                children: [
+                  Text(
+                    question.question,
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline6
+                        ?.copyWith(color: kBlackColor),
                   ),
-                ),
-              ],
+                  SizedBox(height: kDefaultPadding / 2),
+                  ...List.generate(
+                    question.options.length,
+                    (index) => Option(
+                      index: index,
+                      text: question.options[index],
+                      press: () {
+                        cubit.context = context;
+                        cubit.checkAns(question, index);
+                      },
+                    ),
+                  ),
+                ],
+              ),
             );
           }),
     );

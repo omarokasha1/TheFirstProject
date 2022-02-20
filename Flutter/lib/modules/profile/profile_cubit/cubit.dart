@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lms/models/login_model.dart';
 import 'package:lms/models/user.dart';
@@ -14,6 +15,18 @@ class ProfileCubit extends Cubit<ProfileStates> {
 
   User? model;
 
+  var interestedItems;
+
+  void addInterestedItem(String value){
+    interestedItems.add(value);
+    emit(AddInterestedItem());
+  }
+
+  void deleteInterestedItem(int index){
+    interestedItems.removeAt(index);
+    emit(DeleteInterestedItem());
+  }
+
   void getUserProfile() {
     emit(ProfileLoadingState());
     DioHelper.getData(
@@ -21,7 +34,6 @@ class ProfileCubit extends Cubit<ProfileStates> {
       token:userToken,
     ).then((value) {
       model = User.fromJson(value.data);
-
       // print(model!.userName);
       emit(ProfileSuccessState(model!));
     }).catchError((onError) {
@@ -36,7 +48,7 @@ class ProfileCubit extends Cubit<ProfileStates> {
     required String? city,
     required String? country,
     required String? gender,
-    required String? imageUrl,
+    //required String? imageUrl,
     required String? university,
     required String? major,
     required String? faculty,
@@ -53,7 +65,7 @@ class ProfileCubit extends Cubit<ProfileStates> {
       'city': city,
       'country': country,
       'gender': gender,
-      'imageUrl': imageUrl,
+      //'imageUrl': imageUrl,
       'userEducation': {
         'university': university,
         'major': major,

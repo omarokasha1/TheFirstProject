@@ -14,4 +14,12 @@ class CreateModuleCubit extends Cubit<CreateModuleStates> {
       hasModuleName = true;
     }
   }
+  List<String> items = ['Content', 'Assignment'];
+  String selectedItem = "Content";
+
+  void changeItem(String value)
+  {
+    selectedItem=value;
+    emit(ChangeItemState());
+  }
 }
