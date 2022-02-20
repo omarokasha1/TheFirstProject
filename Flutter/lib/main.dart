@@ -6,8 +6,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lms/modules/Auther/author_courses/author_courses_screen.dart';
 import 'package:lms/modules/Auther/dashboard/dashboard_auther.dart';
 import 'package:lms/modules/Auther/modules_library/modules_library.dart';
+import 'package:lms/modules/anmition.dart';
 import 'package:lms/modules/courses/cubit/cubit.dart';
 import 'package:lms/modules/dashboard/dashboard_screen.dart';
+import 'package:lms/modules/home_screen.dart';
 import 'package:lms/modules/onboarding/onboarding_screen.dart';
 import 'package:lms/modules/profile/profile_screen.dart';
 import 'package:lms/modules/splash_screen.dart';
@@ -109,7 +111,7 @@ class MyApp extends StatelessWidget {
           //Here The Theme.
           themeMode: ThemeMode.light,
           //home: Tracks(),
-         home:ZoomDrawerScreen(widget:DashboardAuthorScreen() ,) ,
+         home:ZoomDrawerScreen(widget:HomePage() ,) ,
         ),
       ),
     );
