@@ -181,7 +181,7 @@ class DashboardAuthorScreen extends StatelessWidget {
                         },
                         child: Column(
                           children: [
-                            Image.asset('assets/images/tracks.png',
+                            Image.asset('assets/images/pointer.png',
                                 width: 60.w, height: 60.h),
                             const Text('Tracks',
                                 style: TextStyle(

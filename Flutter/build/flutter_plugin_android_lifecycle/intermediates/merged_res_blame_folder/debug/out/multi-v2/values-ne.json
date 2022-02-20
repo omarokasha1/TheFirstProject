@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "G:\\ODS\\TheFirstProject\\Flutter\\build\\flutter_plugin_android_lifecycle\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ne\\values-ne.xml",
+            "outputFile": "/home/odc6/ODC/TheFirstProject/Flutter/build/flutter_plugin_android_lifecycle/intermediates/res/merged/debug/values-ne/values-ne.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\youss\\.gradle\\caches\\transforms-2\\files-2.1\\122df2e57d294d1a53db26bbc3b813c1\\core-1.6.0\\res\\values-ne\\values-ne.xml",
+                    "source": "/home/odc6/.gradle/caches/transforms-2/files-2.1/122df2e57d294d1a53db26bbc3b813c1/core-1.6.0/res/values-ne/values-ne.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -16,10 +16,10 @@
             ]
         },
         {
-            "outputFile": "G:\\ODS\\TheFirstProject\\Flutter\\build\\flutter_plugin_android_lifecycle\\intermediates\\res\\merged\\debug\\values-ne\\values-ne.xml",
+            "outputFile": "/home/odc6/ODC/TheFirstProject/Flutter/build/flutter_plugin_android_lifecycle/intermediates/incremental/mergeDebugResources/merged.dir/values-ne/values-ne.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\youss\\.gradle\\caches\\transforms-2\\files-2.1\\122df2e57d294d1a53db26bbc3b813c1\\core-1.6.0\\res\\values-ne\\values-ne.xml",
+                    "source": "/home/odc6/.gradle/caches/transforms-2/files-2.1/122df2e57d294d1a53db26bbc3b813c1/core-1.6.0/res/values-ne/values-ne.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
