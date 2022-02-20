@@ -8,6 +8,7 @@ const jwt = require('jsonwebtoken')
 const _= require('lodash')
 const Course = require('../models/course')
 const Content = require('../models/content')
+const cloudinary = require('../controllers/cloudinary')
 
 
 const multer = require('multer');
@@ -17,11 +18,7 @@ const path = require('path')
 const storage = multer.diskStorage({
   //destination for files
   destination: function (request, file, callback) {
-<<<<<<< HEAD
     callback(null, './uploads/');
-=======
-    callback(null, './uploads');
->>>>>>> d203f61374343ed9a27b7f0ceb3b0611d4e64e84
   },
 
   //add back the extension
@@ -45,11 +42,10 @@ router.get('/',getCourses, async (req, res) => {
   res.status(200).json({status : "ok",courses:res.course})
 })
 
-// Getting One
-router.get('/:title', getCourse, (req, res) => {
-
-  res.json(res.course)
+router.get('/AuthorContent',getContent, async (req, res) => {
+  res.status(200).json({status : "ok",contents:res.content})
 })
+
 // Getting One
 router.get('/:title', getCourse, (req, res) => {
 
@@ -59,14 +55,21 @@ router.get('/:title', getCourse, (req, res) => {
 // Creating one
 router.post('/newCourse', [auth,upload.single('imageUrl')],async (req, res) => {
 
-  //* const { title,  description,author } = req.body
- 
+  
+   const fileUrl = req.file.path
+  console.log(fileUrl)
   const token = req.header('x-auth-token')
   try {
     const user = jwt.verify(token, 'privateKey')
     console.log(user)
     const id = user.id
     console.log(id)
+    const result = await cloudinary.uploader.upload(fileUrl, {
+        
+      public_id: `${user.id}_course`,
+      folder: 'course', width: 150, height: 150, crop: "fill"
+    });
+    console.log(result)
 
    const course = new Course({
      title:req.body.title,
@@ -77,13 +80,8 @@ router.post('/newCourse', [auth,upload.single('imageUrl')],async (req, res) => {
      totalTime:req.body.totalTime,
      language:req.body.language,
      review:req.body.review,
-<<<<<<< HEAD
-    imageUrl:req.file.filename,
+    imageUrl:result.url,
     contents:req.body.contents,
-=======
-     imageUrl:req.file.filename,
-     contents:req.body.contents,
->>>>>>> d203f61374343ed9a27b7f0ceb3b0611d4e64e84
      author:id
    })
 
@@ -92,37 +90,42 @@ router.post('/newCourse', [auth,upload.single('imageUrl')],async (req, res) => {
   } catch (err) {
     console.log(err)
     res.status(400).json({ message: err })
-<<<<<<< HEAD
   }
 })
 // Creating content
-router.post('/newContent', [auth,upload.single('contentType')],async (req, res) => {
+router.post('/newContent', [auth,upload.single('imageUrl')],async (req, res) => {
 
-  //* const { title,  description,author } = req.body
- 
-  const token = req.header('x-auth-token')
-  try {
-    const user = jwt.verify(token, 'privateKey')
-    console.log(user)
-    const id = user.id
-    console.log(id)
+  const uploadType=req.body.enumType
+  console.log(uploadType)
+ // const fileUrl = req.file.path
+ const token = req.header('x-auth-token')
+ try {
+   const user = jwt.verify(token, 'privateKey')
+   console.log(user)
+   const id = user.id
+   console.log(id)
+   /* const result = await cloudinary.uploader.upload(fileUrl, {
+  
+     public_id: `${user.id}_content`,
+     folder: 'content', width: 1920, height: 1080, crop: "fill"
+   });
+   console. */
 
    const content = new Content({
     contentTitle:req.body.contentTitle,
     contentDuration:req.body.contentDuration,
-    contentType:req.file.filename,
-    createdAt:req.body.createdAt,
-    enumType:req.body.enumType,
+   // imageUrl:result.url,
+    contentType:req.body.contentType,
+    description:req.body.description,
+     author:id
    })
 
-    const newContent = await content.save()
-    res.status(201).json(newContent)
-  } catch (err) {
-    console.log(err)
-    res.status(400).json({ message: err })
-=======
->>>>>>> d203f61374343ed9a27b7f0ceb3b0611d4e64e84
-  }
+   const newContent = await content.save()
+   res.status(201).json(newContent)
+ } catch (err) {
+   console.log(err)
+   res.status(400).json({ message: err })
+ }
 })
 
 // Deleting One
@@ -152,6 +155,27 @@ async function getCourse(req, res, next) {
   next()
 }
 
+async function getContent(req, res, next) {
+  let content
+  const token = req.header('x-auth-token')
+  try {
+    const user = jwt.verify(token, 'privateKey')
+   console.log(user)
+   const id = user.id
+   console.log(id)
+    content = await Content.find().populate('author').select('-__v')
+    if (!content) {
+      return res.status(200).json({ status: 'false', message: 'Cannot find contents' })
+    }
+    res.content = content
+  } catch (err) {
+    console.log(err)
+    return res.status(500).json({ message: err })
+  }
+
+  res.content = content
+  next()
+}
 async function getUsers(req, res, next) {
   let user
   try {

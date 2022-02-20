@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const userCtrl = require('../controllers/userController')
+const courseCtrl = require('../controllers/courseController')
 const authGoogle = require('../middleware/authGoogle')
 const authAdmin = require('../middleware/admin')
 const auth = require('../middleware/auth')
@@ -38,10 +39,18 @@ const fileFilter = (req, file, cb) => {
 };
 
 const uploads = multer({ storage, fileFilter });
+
 router.post(
     '/upload-profile',
     auth,
     uploads.single('profile'),
     userCtrl.uploadProfile
+  );
+
+  router.post(
+    '/newCourse',
+    auth,
+   multer().single('file'),
+    courseCtrl.uploadCourse
   );
 module.exports = router

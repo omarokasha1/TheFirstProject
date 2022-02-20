@@ -3,11 +3,17 @@ const mongoose = require('mongoose')
 
 const Content = new mongoose.Schema({
     
-        contentTitle:{type : String},
+     contentTitle:{type : String,required:true},
         contentDuration:{type:String},
-        contentType:{type:String},
+        imageUrl:{type:String},
         createdAt:{type:String},
         enumType:{ type: String, enum: ['image', 'video','document']},   
+        description:{type:String},
+        author:{
+        
+                type:mongoose.Schema.Types.ObjectId ,
+                ref:'User'
+            }
    
 })
 

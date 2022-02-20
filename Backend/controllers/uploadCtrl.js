@@ -23,7 +23,7 @@ const uploadCtrl = {
         })
 
      } catch (err) {
-        return res.status(500).json({msg: err.message})
+        return res.status(500).json({msg: err})
     }
     },
     uploadCourseimage: async (req, res) => { 
@@ -41,7 +41,7 @@ const uploadCtrl = {
         
         })
     } catch (err) {
-        return res.status(500).json({msg: err.message})
+        return res.status(500).json({msg: err})
     }
     }
 }

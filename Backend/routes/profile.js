@@ -42,6 +42,17 @@ router.get('/', auth, async (req, res) => {
 
 // Updating One
 router.put('/update',[ upload.single('imageUrl'),auth], async (req, res) => {
+  const { userName, email, phone } = req.body
+   // console.log(userName.replace(/\s+/g, ''))
+ //   let userNameCheck =userName.replace(/\s+/g, '')
+    
+   
+    const validateError = validateUser(req.body)
+
+    //* if validate error just send to user an error message
+    if (validateError.error) {
+        return res.json({status:"false", message: validateError.error.details[0].message })
+    }
   const token = req.header('x-auth-token')
   try {
     const user = jwt.verify(token, 'privateKey')
