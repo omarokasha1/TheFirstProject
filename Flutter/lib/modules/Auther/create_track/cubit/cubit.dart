@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lms/modules/Author/create_track/cubit/statues.dart';
+import 'package:lms/modules/Auther/create_track/cubit/statues.dart';
 enum Sequences { ordered, unordered }
 
 class CreateTrackCubit extends Cubit<CreateTrackStates> {

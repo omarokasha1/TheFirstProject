@@ -3,13 +3,13 @@
 3    package="dev.fluttercommunity.plus.network_info" >
 4
 5    <uses-sdk android:minSdkVersion="16" />
-5-->/home/odc6/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/network_info_plus-2.1.2/android/src/main/AndroidManifest.xml
+5-->/home/odc2/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/network_info_plus-2.1.2/android/src/main/AndroidManifest.xml
 6
 7    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-7-->/home/odc6/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/network_info_plus-2.1.2/android/src/main/AndroidManifest.xml:3:3-76
-7-->/home/odc6/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/network_info_plus-2.1.2/android/src/main/AndroidManifest.xml:3:20-74
+7-->/home/odc2/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/network_info_plus-2.1.2/android/src/main/AndroidManifest.xml:3:3-76
+7-->/home/odc2/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/network_info_plus-2.1.2/android/src/main/AndroidManifest.xml:3:20-74
 8    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-8-->/home/odc6/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/network_info_plus-2.1.2/android/src/main/AndroidManifest.xml:4:3-74
-8-->/home/odc6/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/network_info_plus-2.1.2/android/src/main/AndroidManifest.xml:4:20-71
+8-->/home/odc2/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/network_info_plus-2.1.2/android/src/main/AndroidManifest.xml:4:3-74
+8-->/home/odc2/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/network_info_plus-2.1.2/android/src/main/AndroidManifest.xml:4:20-71
 9
 10</manifest>

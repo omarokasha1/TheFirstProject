@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_picker/flutter_picker.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lms/modules/Author/create_track/cubit/cubit.dart';
-import 'package:lms/modules/Author/create_track/cubit/statues.dart';
+import 'package:lms/modules/Auther/create_track/cubit/cubit.dart';
+import 'package:lms/modules/Auther/create_track/cubit/statues.dart';
 import 'package:multiselect_formfield/multiselect_formfield.dart';
 import '../../../shared/component/component.dart';
 import '../../../shared/component/constants.dart';
@@ -88,7 +88,7 @@ class _CreateTrackScreenState extends State<CreateTrackScreen> {
                         child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              customTextFormField(
+                              customTextFormFieldWidget(
                                 validate: (value) {
                                   if (value!.isEmpty) {
                                     return 'Track Name Must Be Not Empty';
@@ -103,7 +103,7 @@ class _CreateTrackScreenState extends State<CreateTrackScreen> {
                               SizedBox(
                                 height: 15.h,
                               ),
-                              customTextFormField(
+                              customTextFormFieldWidget(
                                 validate: (value) {
                                   if (value!.isEmpty) {
                                     return 'Description Must Be Not Empty';
