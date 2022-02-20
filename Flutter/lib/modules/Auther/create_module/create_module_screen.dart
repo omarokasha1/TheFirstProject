@@ -94,11 +94,11 @@ class CreateModuleScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 const SizedBox(
-                                  height: 40,
+                                  height: 30,
                                 ),
-                                const SizedBox(
-                                  height: 25,
-                                ),
+                                // const SizedBox(
+                                //   height: 25,
+                                // ),
                                 customTextFormFieldWidget(
                                   onChanged: (moduleName) {
                                     print(moduleName);
@@ -287,10 +287,11 @@ class CreateModuleScreen extends StatelessWidget {
                               text: 'Save',
                               onPressed: () {
                                 if (formKey.currentState!.validate()) {
-                                  if (result == null) {
-                                    showToast(
-                                        message: "content must be not empty");
-                                  }
+                                  // if (result == null) {
+                                  //   showToast(
+                                  //       message: "content must be not empty");
+                                  // }
+                                  cubit.createNewModule(moduleName: moduleNameController.text, description: shortDescriptionController.text, duration: durationController.text, moduleType: moduleTypeController.text);
                                 }
                               }),
                         ),

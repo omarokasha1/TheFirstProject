@@ -81,6 +81,9 @@ class CreateTrackScreen extends StatelessWidget {
                         child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
+                              const SizedBox(
+                                height: 30,
+                              ),
                               customTextFormFieldWidget(
 
                                 validate: (value) {

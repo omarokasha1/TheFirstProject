@@ -130,7 +130,7 @@ Widget customTextFormFieldWidget({
     child: TextFormField(
 
       onChanged: (value) {
-        onChanged!(value);
+        onChanged!=null?   onChanged(value):null;
       },
       controller: controller,
       keyboardType: type,

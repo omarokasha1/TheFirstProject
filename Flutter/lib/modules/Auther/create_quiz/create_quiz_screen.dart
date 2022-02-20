@@ -7,17 +7,27 @@ import 'package:lms/shared/component/constants.dart';
 import '../../../shared/component/component.dart';
 import 'cubit/cubit.dart';
 
-class CreateQuizScreen extends StatelessWidget {
+class CreateQuizScreen extends StatefulWidget {
   CreateQuizScreen({Key? key}) : super(key: key);
 
+  @override
+  State<CreateQuizScreen> createState() => _CreateQuizScreenState();
+}
+
+class _CreateQuizScreenState extends State<CreateQuizScreen> {
   var scaffoldKey = GlobalKey<ScaffoldState>();
+
   var formKey = GlobalKey<FormState>();
 
   var quistionController = TextEditingController();
-  var correctAnswerController = TextEditingController();
+
   var answerOneController = TextEditingController();
+
   var answerTwoController = TextEditingController();
+
   var answerThreeController = TextEditingController();
+
+  var answerFourController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -41,100 +51,171 @@ class CreateQuizScreen extends StatelessWidget {
                   } else {
                     scaffoldKey.currentState!
                         .showBottomSheet((context) {
-                      return SingleChildScrollView(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              //   border: Border.all(color: primaryColor),
-                              color: Colors.white10,
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(20.0),
-                              child: Form(
-                                key: formKey,
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    customTextFormFieldWidget(
-                                        type: TextInputType.text,
-                                        prefixIcon: Icons.quiz_sharp,
-                                        prefix: true,
-                                        label: "Quistion",
-                                        controller: quistionController,
-                                        validate: (value) {
-                                          if (value!.isEmpty) {
-                                            return 'QuistionMust Be Not Empty';
-                                          } else if (!cubit
-                                              .hasQuistionName) {
-                                            return 'please, enter a valid Quistion';
-                                          }
-                                          return null;
-                                        }),
-                                    customTextFormFieldWidget(
-                                        type: TextInputType.text,
-                                        prefixIcon: Icons.question_answer,
-                                        prefix: true,
-                                        label: "Correct Answer",
-                                        controller: correctAnswerController,
-                                        validate: (value) {
-                                          if (value!.isEmpty) {
-                                            return 'Correct Answer Must Be Not Empty';
-                                          } else if (!cubit
-                                              .hasQuistionName) {
-                                            return 'please, enter a valid Correct Answer';
-                                          }
-                                          return null;
-                                        }),
-                                    customTextFormFieldWidget(
-                                        type: TextInputType.text,
-                                        prefixIcon:
-                                        Icons.question_answer_outlined,
-                                        prefix: true,
-                                        label: "Answer One",
-                                        controller: answerOneController,
-                                        validate: (value) {
-                                          if (value!.isEmpty) {
-                                            return 'Answer One Must Be Not Empty';
-                                          } else if (!cubit
-                                              .hasQuistionName) {
-                                            return 'please, enter a valid Answer One';
-                                          }
-                                          return null;
-                                        }),
-                                    customTextFormFieldWidget(
-                                        type: TextInputType.text,
-                                        prefixIcon:
-                                        Icons.question_answer_outlined,
-                                        prefix: true,
-                                        label: "Answer Two",
-                                        controller: answerTwoController,
-                                        validate: (value) {
-                                          if (value!.isEmpty) {
-                                            return 'Answer Two Must Be Not Empty';
-                                          } else if (!cubit
-                                              .hasQuistionName) {
-                                            return 'please, enter a valid Answer Two';
-                                          }
-                                          return null;
-                                        }),
-                                    customTextFormFieldWidget(
-                                        type: TextInputType.text,
-                                        prefixIcon:
-                                        Icons.question_answer_outlined,
-                                        prefix: true,
-                                        label: "Answer Three",
-                                        controller: answerThreeController,
-                                        validate: (value) {
-                                          if (value!.isEmpty) {
-                                            return 'Answer Three Must Be Not Empty';
-                                          } else if (!cubit
-                                              .hasQuistionName) {
-                                            return 'please, enter a valid Answer Three';
-                                          }
-                                          return null;
-                                        }),
-                                  ],
+                      return BlocConsumer<QuizCubit,QuizStates>(
+                        listener: (context,state){},
+                        builder:(context,state)=> SingleChildScrollView(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                //   border: Border.all(color: primaryColor),
+                                color: Colors.white10,
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(20.0),
+                                child: Form(
+                                  key: formKey,
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      customTextFormFieldWidget(
+                                          type: TextInputType.text,
+                                          prefixIcon: Icons.quiz_sharp,
+                                          prefix: true,
+                                          label: "Quistion",
+                                          controller: quistionController,
+                                          validate: (value) {
+                                            if (value!.isEmpty) {
+                                              return 'Quistion Must Be Not Empty';
+                                            } else if (!cubit
+                                                .hasQuistionName) {
+                                              return 'please, enter a valid Quistion';
+                                            }
+                                            return null;
+                                          }),
+
+                                      ListTile(
+                                        contentPadding: EdgeInsets.all(0),
+                                        title:  customTextFormFieldWidget(
+                                            type: TextInputType.text,
+                                            prefixIcon:
+                                            Icons.question_answer_outlined,
+                                            prefix: true,
+                                            label: "Answer One",
+                                            controller: answerOneController,
+                                            validate: (value) {
+                                              if (value!.isEmpty) {
+                                                return 'Answer One Must Be Not Empty';
+                                              } else if (!cubit
+                                                  .hasQuistionName) {
+                                                return 'please, enter a valid Answer One';
+                                              }
+                                              return null;
+                                            }),
+                                        leading: Radio(
+                                          value: 0,
+                                          groupValue: cubit.val,
+                                          onChanged: (x) {
+                                            // setState(() {
+                                            //   print(x);
+                                            //   //val=x;
+                                            //
+                                            //   //  val =int.parse(x!);
+                                            // });
+                                            cubit.selectCorrectAnswer(x);
+                                          },
+                                          activeColor: Colors.green,
+                                        ),
+                                      ),
+                                      ListTile(
+                                        contentPadding: EdgeInsets.all(0),
+                                        title:  customTextFormFieldWidget(
+                                            type: TextInputType.text,
+                                            prefixIcon:
+                                            Icons.question_answer_outlined,
+                                            prefix: true,
+                                            label: "Answer Two",
+                                            controller: answerTwoController,
+                                            validate: (value) {
+                                              if (value!.isEmpty) {
+                                                return 'Answer Two Must Be Not Empty';
+                                              } else if (!cubit
+                                                  .hasQuistionName) {
+                                                return 'please, enter a valid Answer Two';
+                                              }
+                                              return null;
+                                            }),
+                                        leading: Radio(
+                                          value: 1,
+                                          groupValue: cubit.val,
+                                          onChanged: (x) {
+                                            // setState(() {
+                                            //   print(x);
+                                            //   val=x;
+                                            //   //  val =int.parse(x!);
+                                            // });
+                                            cubit.selectCorrectAnswer(x);
+                                          },
+                                          activeColor: Colors.green,
+                                        ),
+                                      ),
+                                      ListTile(
+                                        contentPadding: EdgeInsets.all(0),
+                                        title:  customTextFormFieldWidget(
+                                            type: TextInputType.text,
+                                            prefixIcon:
+                                            Icons.question_answer_outlined,
+                                            prefix: true,
+                                            label: "Answer Three",
+                                            controller: answerThreeController,
+                                            validate: (value) {
+                                              if (value!.isEmpty) {
+                                                return 'Answer Three Must Be Not Empty';
+                                              } else if (!cubit
+                                                  .hasQuistionName) {
+                                                return 'please, enter a valid Answer Three';
+                                              }
+                                              return null;
+                                            }),
+                                        leading: Radio(
+                                          value: 2,
+                                          groupValue: cubit.val,
+                                          onChanged: (x) {
+                                            // setState(() {
+                                            //   print(x);
+                                            //   val=x;
+                                            //   //  val =int.parse(x!);
+                                            // });
+                                            cubit.selectCorrectAnswer(x);
+                                          },
+                                          activeColor: Colors.green,
+                                        ),
+                                      ),
+                                      ListTile(
+                                        contentPadding: EdgeInsets.all(0),
+                                        title:     customTextFormFieldWidget(
+                                            type: TextInputType.text,
+                                            prefixIcon:  Icons.question_answer_outlined,
+                                            prefix: true,
+                                            label: "Answer Four",
+                                            controller: answerFourController,
+                                            validate: (value) {
+                                              if (value!.isEmpty) {
+                                                return 'Answer Four Must Be Not Empty';
+                                              } else if (!cubit
+                                                  .hasQuistionName) {
+                                                return 'please, enter a valid Answer Four';
+                                              }
+                                              return null;
+                                            }),
+                                        leading: Radio(
+                                          value: 3,
+                                          groupValue: cubit.val,
+                                          onChanged: (x) {
+                                            // setState(() {
+                                            //   print(x);
+                                            //   val=x;
+                                            //   //  val =int.parse(x!);
+                                            // });
+                                            cubit.selectCorrectAnswer(x);
+                                          },
+                                          activeColor: Colors.green,
+                                        ),
+                                      ),
+
+
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
@@ -269,6 +350,7 @@ class CreateQuizScreen extends StatelessWidget {
       onDismissed: (direction) {},
     );
   }
+
   Widget answerItem(String ch,String answer)
   {
     return Padding(

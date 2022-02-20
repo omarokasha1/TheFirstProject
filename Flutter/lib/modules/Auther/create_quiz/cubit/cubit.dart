@@ -22,5 +22,11 @@ class QuizCubit extends Cubit<QuizStates> {
 
   }
 
+  dynamic val=-1;
+  void selectCorrectAnswer(value)
+  {
+    val=value;
+    emit(SelectCorrectAnswerState());
 
+  }
 }

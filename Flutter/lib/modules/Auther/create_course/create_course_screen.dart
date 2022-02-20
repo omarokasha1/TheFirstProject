@@ -94,7 +94,7 @@ class CreateCourseScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 const SizedBox(
-                                  height: 40,
+                                  height: 30,
                                 ),
                                 customTextFormFieldWidget(
                                   onChanged: (courseName) {

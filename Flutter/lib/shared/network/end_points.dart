@@ -5,3 +5,4 @@ const profile = "api/profile";
 const updateProfile = "api/profile/update";
 const changePassword = "api/changePassword";
 const courses = "api/course";
+const module = "api/course/newContent";
