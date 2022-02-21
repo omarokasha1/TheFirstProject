@@ -430,14 +430,14 @@ class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
                       children: [
                         Container(
                           height: 80,
-                          width: 320,
+                          width: 300,
                           child: Stack(
                             children: [
                               Positioned(
                                 top:24,
                                 child: Container(
                                   height: 3,
-                                  width: 900,
+                                  width: 800.w,
                                   color: primaryColor,
                                 ),
                               ),

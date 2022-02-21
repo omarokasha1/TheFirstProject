@@ -10,6 +10,7 @@ import 'package:lms/modules/anmition.dart';
 import 'package:lms/modules/courses/cubit/cubit.dart';
 import 'package:lms/modules/dashboard/dashboard_screen.dart';
 import 'package:lms/modules/home_screen.dart';
+import 'package:lms/modules/manager/dashboard/dashboard_manager_screen.dart';
 import 'package:lms/modules/onboarding/onboarding_screen.dart';
 import 'package:lms/modules/profile/profile_screen.dart';
 import 'package:lms/modules/splash_screen.dart';
@@ -19,6 +20,7 @@ import 'package:lms/shared/component/zoomDrawer.dart';
 import 'package:lms/shared/network/local/cache_helper.dart';
 import 'package:lms/shared/network/remote/dio-helper.dart';
 import 'package:lms/shared/themes/light_theme.dart';
+import 'layout/layout.dart';
 import 'modules/profile/profile_cubit/cubit.dart';
 import 'shared/cubit For Internet/cubit.dart';
 
@@ -110,8 +112,8 @@ class MyApp extends StatelessWidget {
           theme: lightTheme(context),
           //Here The Theme.
           themeMode: ThemeMode.light,
-          //home: Tracks(),
-         home:ZoomDrawerScreen(widget:HomePage() ,) ,
+        // home: ZoomDrawerScreen(widget:DashboardAuthorScreen() ,),
+          home:Layout(widget: ZoomDrawerScreen(widget:DashboardManagerScreen() ,)) ,
         ),
       ),
     );
