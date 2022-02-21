@@ -64,6 +64,8 @@ dependencies:
   syncfusion_flutter_charts: ^19.4.52
   percent_indicator: ^4.0.0
   flutter_speed_dial: ^5.0.0+1
+  native_notify: ^0.0.3
+  awesome_dialog: ^2.1.2
 
 
 

@@ -8,10 +8,6 @@
         "source": "/home/odc4/Main Project/TheFirstProject/Flutter/android/app/src/main/res/drawable-v21/launch_background.xml"
     },
     {
-        "merged": "/home/odc4/Main Project/TheFirstProject/Flutter/build/app/intermediates/res/merged/debug/drawable_launch_background.xml.flat",
-        "source": "/home/odc4/Main Project/TheFirstProject/Flutter/android/app/src/main/res/drawable/launch_background.xml"
-    },
-    {
         "merged": "/home/odc4/Main Project/TheFirstProject/Flutter/build/app/intermediates/res/merged/debug/mipmap-xxxhdpi_ic_launcher.png.flat",
         "source": "/home/odc4/Main Project/TheFirstProject/Flutter/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png"
     },

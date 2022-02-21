@@ -254,19 +254,19 @@ class EditProfileScreen extends StatelessWidget {
         const SizedBox(
           height: 10.0,
         ),
-        customTextFormFieldWidget(
-          label: 'Bio',
-          controller: bioController,
-          prefixIcon: Icons.perm_device_information_outlined,
-          type: TextInputType.text,
-          prefix: true,
-          validate: (value){
-            if (value!.isEmpty) {
-              return "Please, Enter your Bio";
-            }
-            return null;
-          }
-        ),
+        // customTextFormFieldWidget(
+        //   label: 'Bio',
+        //   controller: bioController,
+        //   prefixIcon: Icons.perm_device_information_outlined,
+        //   type: TextInputType.text,
+        //   prefix: true,
+        //   validate: (value){
+        //     if (value!.isEmpty) {
+        //       return "Please, Enter your Bio";
+        //     }
+        //     return null;
+        //   }
+        // ),
         TextFormField(
           controller: bioController,
           keyboardType: TextInputType.text,

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,7 @@ class ProfileScreen extends StatelessWidget {
 
   File? profileImage;
   var picker = ImagePicker();
-
+  var formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ProfileCubit, ProfileStates>(
@@ -121,11 +122,60 @@ class ProfileScreen extends StatelessWidget {
                       SizedBox(
                         height: 2.0,
                       ),
-                      Text(
-                        "${cubit.model!.profile!.bio}",
-                        style: TextStyle(
-                          fontSize: 16.0,
-                          color: Colors.grey[300],
+                      // Text(
+                      //   "${cubit.model!.profile!.bio}",
+                      //   style: TextStyle(
+                      //     fontSize: 16.0,
+                      //     color: Colors.grey[300],
+                      //   ),
+                      // ),
+                      TextButton(
+                        onPressed: () {
+                          AwesomeDialog(
+                            context: context,
+                            animType: AnimType.SCALE,
+                            dialogType: DialogType.QUESTION,
+                            body:  Center(child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Form(
+                                key:formKey ,
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      'Are you sure want be become a Author ?',
+                                      style: TextStyle(fontStyle: FontStyle.italic),
+                                    ),
+                                    SizedBox(height: 30,),
+                                    Container(
+                                      height: 40,
+                                      child: defaultButton(
+                                          text: 'OK',
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          }),
+                                    ),
+
+                                  ],
+                                ),
+                              ),
+                            ),),
+                            title: 'This is Ignored',
+                            desc:   'This is also Ignored',
+                         //   btnOkOnPress: () {},
+
+                          ).show();
+                        },
+                        child: Text(
+                          "Become an Author",
+
+
+
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            color: Colors.grey[300],
+                            decoration: TextDecoration.underline,
+
+                          ),
                         ),
                       ),
                       SizedBox(
@@ -147,6 +197,8 @@ class ProfileScreen extends StatelessWidget {
                             textBaseline: TextBaseline.alphabetic,
                             children: [
                               ListTile(
+                                contentPadding: EdgeInsets.all(0),
+                                horizontalTitleGap: 0,
                                 leading: Icon(
                                   Icons.person,
                                   color: primaryColor,
@@ -246,6 +298,8 @@ class ProfileScreen extends StatelessWidget {
                                 height: 10.0,
                               ),
                               ListTile(
+                                contentPadding: EdgeInsets.all(0),
+                                horizontalTitleGap: 0,
                                 leading: Icon(
                                   Icons.science_rounded,
                                   color: primaryColor,
@@ -328,6 +382,8 @@ class ProfileScreen extends StatelessWidget {
                                 height: 10.0,
                               ),
                               ListTile(
+                                contentPadding: EdgeInsets.all(0),
+                                horizontalTitleGap: 0,
                                 leading: Icon(
                                   Icons.work_outline_rounded,
                                   color: primaryColor,
@@ -368,6 +424,8 @@ class ProfileScreen extends StatelessWidget {
                                 height: 10.0,
                               ),
                               ListTile(
+                                contentPadding: EdgeInsets.all(0),
+                                horizontalTitleGap: 0,
                                 leading: Icon(
                                   Icons.import_contacts_rounded,
                                   color: primaryColor,
