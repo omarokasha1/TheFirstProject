@@ -4,11 +4,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lms/modules/Auther/create_quiz/cubit/states.dart';
 import 'package:lms/shared/component/constants.dart';
 
+import '../../../models/Questions.dart';
 import '../../../shared/component/component.dart';
 import 'cubit/cubit.dart';
 
 class CreateQuizScreen extends StatefulWidget {
-  CreateQuizScreen({Key? key}) : super(key: key);
+  final String quizName;
+
+  CreateQuizScreen(this.quizName, {Key? key}) : super(key: key);
 
   @override
   State<CreateQuizScreen> createState() => _CreateQuizScreenState();
@@ -21,13 +24,10 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
 
   var quistionController = TextEditingController();
 
-  var answerOneController = TextEditingController();
+  int answerItems = 0;
+  List controllerList = [];
 
-  var answerTwoController = TextEditingController();
-
-  var answerThreeController = TextEditingController();
-
-  var answerFourController = TextEditingController();
+  int questionNumber = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +37,7 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
           listener: (context, state) {},
           builder: (context, state) {
             var cubit = QuizCubit.get(context);
+
             return Scaffold(
               appBar: AppBar(),
               key: scaffoldKey,
@@ -44,192 +45,134 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
                 onPressed: () {
                   if (cubit.clickFloat) {
                     if (formKey.currentState!.validate()) {
-                      Navigator.pop(context);
+                      if (cubit.val != -1) {
+                        cubit.addItemInList(
+                          Question(
+                            id: questionNumber,
+                            question: quistionController.text,
+                            answer: cubit.val,
+                            options: [
+                              for (TextEditingController j in controllerList)
+                                j.text
+                            ],
+                          ),
+                        );
+
+                        cubit.getItemInList(cubit.questions);
+                        questionNumber++;
+                        answerItems = 0;
+                        controllerList.clear();
+                        formKey.currentState!.reset();
+                        cubit.val = -1;
+                        Navigator.pop(context);
+                        print(cubit.questions[0].options[1].toString());
+                        quistionController.clear();
+                      } else {
+                        showToast(message: "Must choose the correct answer");
+                      }
                     } else {
                       cubit.changeCurrentIndex(false);
                     }
                   } else {
                     scaffoldKey.currentState!
                         .showBottomSheet((context) {
-                      return BlocConsumer<QuizCubit,QuizStates>(
-                        listener: (context,state){},
-                        builder:(context,state)=> SingleChildScrollView(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                //   border: Border.all(color: primaryColor),
-                                color: Colors.white10,
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(20.0),
-                                child: Form(
-                                  key: formKey,
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      customTextFormFieldWidget(
-                                          type: TextInputType.text,
-                                          prefixIcon: Icons.quiz_sharp,
-                                          prefix: true,
-                                          label: "Quistion",
-                                          controller: quistionController,
-                                          validate: (value) {
-                                            if (value!.isEmpty) {
-                                              return 'Quistion Must Be Not Empty';
-                                            } else if (!cubit
-                                                .hasQuistionName) {
-                                              return 'please, enter a valid Quistion';
-                                            }
-                                            return null;
-                                          }),
-
-                                      ListTile(
-                                        contentPadding: EdgeInsets.all(0),
-                                        title:  customTextFormFieldWidget(
-                                            type: TextInputType.text,
-                                            prefixIcon:
-                                            Icons.question_answer_outlined,
-                                            prefix: true,
-                                            label: "Answer One",
-                                            controller: answerOneController,
-                                            validate: (value) {
-                                              if (value!.isEmpty) {
-                                                return 'Answer One Must Be Not Empty';
-                                              } else if (!cubit
-                                                  .hasQuistionName) {
-                                                return 'please, enter a valid Answer One';
-                                              }
-                                              return null;
-                                            }),
-                                        leading: Radio(
-                                          value: 0,
-                                          groupValue: cubit.val,
-                                          onChanged: (x) {
-                                            // setState(() {
-                                            //   print(x);
-                                            //   //val=x;
-                                            //
-                                            //   //  val =int.parse(x!);
-                                            // });
-                                            cubit.selectCorrectAnswer(x);
-                                          },
-                                          activeColor: Colors.green,
-                                        ),
+                          return BlocConsumer<QuizCubit, QuizStates>(
+                            listener: (context, state) {},
+                            builder: (context, state) => Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  //   border: Border.all(color: primaryColor),
+                                  color: Colors.white10,
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(20.0),
+                                  child: Form(
+                                    key: formKey,
+                                    child: SingleChildScrollView(
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          customTextFormFieldWidget(
+                                              type: TextInputType.text,
+                                              onChanged: (courseName) {
+                                                cubit.onCourseNameChanged(
+                                                    courseName);
+                                              },
+                                              prefixIcon: Icons.quiz_sharp,
+                                              prefix: true,
+                                              label: "Quistion",
+                                              controller: quistionController,
+                                              validate: (value) {
+                                                if (value!.isEmpty) {
+                                                  return 'Quistion Must Be Not Empty';
+                                                } else if (!cubit
+                                                    .hasQuistionName) {
+                                                  return 'please, enter a valid Quistion';
+                                                }
+                                                return null;
+                                              }),
+                                          Container(
+                                            height: 300,
+                                            child: ListView.builder(
+                                              itemCount: controllerList.length,
+                                              physics: BouncingScrollPhysics(),
+                                              // shrinkWrap: true,
+                                              //   physics: NeverScrollableScrollPhysics(),
+                                              itemBuilder: (context, index) =>
+                                                  answer(
+                                                index: index,
+                                                onChange: (value) {
+                                                  print(value);
+                                                  cubit.selectCorrectAnswer(
+                                                      value);
+                                                },
+                                                val: cubit.val,
+                                                controller:
+                                                    controllerList[index],
+                                                label: "Answer ${index + 1}",
+                                              ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                top: 20.0,
+                                                left: 10,
+                                                right: 10,
+                                                bottom: 10),
+                                            child: defaultButton(
+                                                text: 'Add Answer',
+                                                onPressed: () {
+                                                  controllerList
+                                                      .add("answerController");
+                                                  controllerList[answerItems] =
+                                                      TextEditingController();
+                                                  answerItems++;
+                                                  cubit.addAnswerItem();
+                                                }),
+                                          ),
+                                        ],
                                       ),
-                                      ListTile(
-                                        contentPadding: EdgeInsets.all(0),
-                                        title:  customTextFormFieldWidget(
-                                            type: TextInputType.text,
-                                            prefixIcon:
-                                            Icons.question_answer_outlined,
-                                            prefix: true,
-                                            label: "Answer Two",
-                                            controller: answerTwoController,
-                                            validate: (value) {
-                                              if (value!.isEmpty) {
-                                                return 'Answer Two Must Be Not Empty';
-                                              } else if (!cubit
-                                                  .hasQuistionName) {
-                                                return 'please, enter a valid Answer Two';
-                                              }
-                                              return null;
-                                            }),
-                                        leading: Radio(
-                                          value: 1,
-                                          groupValue: cubit.val,
-                                          onChanged: (x) {
-                                            // setState(() {
-                                            //   print(x);
-                                            //   val=x;
-                                            //   //  val =int.parse(x!);
-                                            // });
-                                            cubit.selectCorrectAnswer(x);
-                                          },
-                                          activeColor: Colors.green,
-                                        ),
-                                      ),
-                                      ListTile(
-                                        contentPadding: EdgeInsets.all(0),
-                                        title:  customTextFormFieldWidget(
-                                            type: TextInputType.text,
-                                            prefixIcon:
-                                            Icons.question_answer_outlined,
-                                            prefix: true,
-                                            label: "Answer Three",
-                                            controller: answerThreeController,
-                                            validate: (value) {
-                                              if (value!.isEmpty) {
-                                                return 'Answer Three Must Be Not Empty';
-                                              } else if (!cubit
-                                                  .hasQuistionName) {
-                                                return 'please, enter a valid Answer Three';
-                                              }
-                                              return null;
-                                            }),
-                                        leading: Radio(
-                                          value: 2,
-                                          groupValue: cubit.val,
-                                          onChanged: (x) {
-                                            // setState(() {
-                                            //   print(x);
-                                            //   val=x;
-                                            //   //  val =int.parse(x!);
-                                            // });
-                                            cubit.selectCorrectAnswer(x);
-                                          },
-                                          activeColor: Colors.green,
-                                        ),
-                                      ),
-                                      ListTile(
-                                        contentPadding: EdgeInsets.all(0),
-                                        title:     customTextFormFieldWidget(
-                                            type: TextInputType.text,
-                                            prefixIcon:  Icons.question_answer_outlined,
-                                            prefix: true,
-                                            label: "Answer Four",
-                                            controller: answerFourController,
-                                            validate: (value) {
-                                              if (value!.isEmpty) {
-                                                return 'Answer Four Must Be Not Empty';
-                                              } else if (!cubit
-                                                  .hasQuistionName) {
-                                                return 'please, enter a valid Answer Four';
-                                              }
-                                              return null;
-                                            }),
-                                        leading: Radio(
-                                          value: 3,
-                                          groupValue: cubit.val,
-                                          onChanged: (x) {
-                                            // setState(() {
-                                            //   print(x);
-                                            //   val=x;
-                                            //   //  val =int.parse(x!);
-                                            // });
-                                            cubit.selectCorrectAnswer(x);
-                                          },
-                                          activeColor: Colors.green,
-                                        ),
-                                      ),
-
-
-                                    ],
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                        ),
-                      );
-                    })
+                          );
+                        })
                         .closed
                         .then((value) {
-                      formKey.currentState!.reset();
-                      cubit.changeCurrentIndex(false);
-                    });
+                          cubit.val = -1;
+                          answerItems = 0;
+                          controllerList.clear();
+                          formKey.currentState!.reset();
+                          quistionController.clear();
+                          cubit.changeCurrentIndex(false);
+                        });
                   }
-                  cubit.changeCurrentIndex(!(cubit.clickFloat));
+                  cubit.val != -1
+                      ? cubit.changeCurrentIndex(!(cubit.clickFloat))
+                      : null;
                 },
                 child: Icon(
                   Icons.add,
@@ -237,51 +180,64 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
                 ),
               ),
               body: ConditionalBuilder(
-                condition: true,
+                condition: cubit.questions.isNotEmpty,
                 builder: (context) =>
-                    GridView.count(
-                      //   shrinkWrap: true,
 
-                      crossAxisCount: 1,
-                      childAspectRatio: 1 / 0.68,
-                      children: List.generate(
-                        5,
-                            (index) => quistionItem(context, index),
-                      ),
-                    ),
-                fallback: (context) =>
-                    Center(
-                      child: SingleChildScrollView(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.quiz_sharp,
-                              color: Colors.grey[400],
-                              size: 100,
-                            ),
-                            const Text(
-                              "No Question Yet",
-                              style: TextStyle(fontSize: 20),
-                            ),
-                          ],
+                    //     SingleChildScrollView(
+                    //       child: Column(
+                    //         children: [
+                    //           ListView.builder(
+                    //             shrinkWrap: true,
+                    //   itemBuilder: (context, index) => quistionItem(context, index,cubit.questions[index]),
+                    //   itemCount: cubit.questions.length,
+                    // ),
+                    //         ],
+                    //       ),
+                    //     ),
+
+                    GridView.count(
+                  //   shrinkWrap: true,
+
+                  crossAxisCount: 1,
+                  childAspectRatio: 1 / 0.75,
+                  children: List.generate(
+                    cubit.questions.length,
+                    (index) =>
+                        quistionItem(context, index, cubit.questions[index]),
+                  ),
+                ),
+                fallback: (context) => Center(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.quiz_sharp,
+                          color: Colors.grey[400],
+                          size: 100,
                         ),
-                      ),
+                        const Text(
+                          "No Question Yet",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ],
                     ),
+                  ),
+                ),
               ),
             );
           }),
     );
   }
 
-  Widget quistionItem(context, index) {
+  Widget quistionItem(context, index, Question question) {
     return Dismissible(
       key: UniqueKey(),
       child: Padding(
         padding: const EdgeInsets.only(top: 15.0),
         child: Container(
           width: MediaQuery.of(context).size.width / 2,
-          margin: EdgeInsets.symmetric(horizontal: 15),
+          margin: const EdgeInsets.symmetric(horizontal: 15),
           child: Material(
             shadowColor: Colors.grey[300],
             elevation: 6,
@@ -296,10 +252,11 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
                   padding: const EdgeInsets.all(8.0),
                   child: SizedBox(
                     width: 30,
-                    child: Text("$index -" ,style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15
-                    ),),
+                    child: Text(
+                      "${index + 1}-",
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 15),
+                    ),
                   ),
                 ),
                 Padding(
@@ -313,32 +270,41 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
                         Container(
                           width: double.infinity,
                           child: Text(
-                            "Which language runs in a web browser",
+                            question.question,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.bold),
                           ),
                         ),
-                        Spacer(),
-                        answerItem("A:","Java"),
-                        answerItem("B:","C"),
-                        answerItem("C:","Python"),
-                        answerItem("D:","JavaScript"),
-
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Expanded(
+                          child: SingleChildScrollView(
+                            child: ListView.builder(
+                              shrinkWrap: true,
+                              physics: NeverScrollableScrollPhysics(),
+                              itemBuilder: (context, index) => answerItem(
+                                "${index + 1}",
+                                question.options[index],
+                              ),
+                              itemCount: question.options.length,
+                            ),
+                          ),
+                        )
                       ],
                     ),
                   ),
                 ),
-              Spacer(),
+                Spacer(),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: IconButton(
-                    onPressed: (){},
+                    onPressed: () {},
                     icon: Icon(Icons.edit),
                   ),
                 ),
-
               ],
             ),
           ),
@@ -351,28 +317,29 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
     );
   }
 
-  Widget answerItem(String ch,String answer)
-  {
+  Widget answerItem(String ch, String answer) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 3.0),
       child: Container(
         decoration: BoxDecoration(
-         // color: Colors.grey[200],
+            // color: Colors.grey[200],
 
-          borderRadius: BorderRadius.circular(15),
-          border: Border.all(color: primaryColor)
-        ),
+            borderRadius: BorderRadius.circular(15),
+            border: Border.all(color: primaryColor)),
         child: Padding(
           padding: const EdgeInsets.all(5.0),
           child: Row(
             children: [
-              SizedBox(width: 10,),
+              SizedBox(
+                width: 10,
+              ),
               Text(
                 ch,
-
                 style: TextStyle(fontSize: 20),
               ),
-              SizedBox(width: 15,),
+              SizedBox(
+                width: 15,
+              ),
               Text(
                 answer,
                 maxLines: 2,
@@ -382,6 +349,44 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget answer(
+      {required int index,
+      required Function onChange,
+      required val,
+      required controller,
+      required label}) {
+    return ListTile(
+      contentPadding: EdgeInsets.all(0),
+      title: customTextFormFieldWidget(
+        type: TextInputType.text,
+        prefixIcon: Icons.question_answer_outlined,
+        prefix: true,
+        label: label,
+        controller: controller,
+        validate: (value) {
+          if (value!.isEmpty) {
+            return 'Answer ${index + 1} Must Be Not Empty';
+          }
+          return null;
+        },
+      ),
+      leading: Radio(
+        value: index,
+        groupValue: val,
+        onChanged: (x) {
+          // setState(() {
+          //   print(x);
+          //   //val=x;
+          //
+          //   //  val =int.parse(x!);
+          // });
+          onChange(x);
+        },
+        activeColor: Colors.green,
       ),
     );
   }

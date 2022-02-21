@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -38,6 +39,9 @@ class DashboardAuthorScreen extends StatelessWidget {
     _SalesData('May', 40),
   ];
 
+  var formKey = GlobalKey<FormState>();
+  var quizController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +52,53 @@ class DashboardAuthorScreen extends StatelessWidget {
           SpeedDialChild(
               child: Icon(Icons.post_add),
               onTap: () {
-                navigator(context, CreateQuizScreen());
+                AwesomeDialog(
+                  context: context,
+                  animType: AnimType.SCALE,
+                  dialogType: DialogType.QUESTION,
+                  body: Form(
+                    key: formKey,
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: Column(
+                          children: [
+                            customTextFormFieldWidget(
+                                type: TextInputType.text,
+                                prefixIcon: Icons.drive_file_rename_outline,
+                                prefix: true,
+                                label: "Quiz Name",
+                                controller: quizController,
+                                validate: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'Quiz Name Must Be Not Empty';
+                                  }
+                                  return null;
+                                }),
+                            Container(
+                              height: 40,
+                              child: defaultButton(
+                                  text: 'OK',
+                                  onPressed: () {
+                                  if(formKey.currentState!.validate())
+                                    {
+
+                                      navigator(context, CreateQuizScreen(quizController.text));
+                                    }
+                                  }),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  title: 'This is Ignored',
+                  desc: 'This is also Ignored',
+
+                  // btnOkOnPress: () {
+                  //   navigator(context, CreateQuizScreen());
+                  // },
+                ).show();
               },
               label: 'Add Quiz'),
           SpeedDialChild(
@@ -188,7 +238,7 @@ class DashboardAuthorScreen extends StatelessWidget {
                         },
                         child: Column(
                           children: [
-                            Image.asset('assets/images/tracks.png',
+                            Image.asset('assets/images/pointer.png',
                                 width: 60.w, height: 60.h),
                             const Text('Tracks',
                                 style: TextStyle(
@@ -288,7 +338,7 @@ class DashboardAuthorScreen extends StatelessWidget {
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 17.0),
                             ),
-                             Text(
+                            Text(
                               "17 completed",
                               style: Theme.of(context).textTheme.caption,
                             ),
@@ -313,38 +363,48 @@ class DashboardAuthorScreen extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    const Text('Top Student',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,),),
-                    SizedBox(height: 4,),
+                    const Text(
+                      'Top Student',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 4,
+                    ),
                     Row(
                       children: [
                         Container(
-
                           height: 100.h,
                           child: FixedTimeline.tileBuilder(
                             direction: Axis.horizontal,
                             builder: TimelineTileBuilder.connectedFromStyle(
                               contentsAlign: ContentsAlign.alternating,
                               oppositeContentsBuilder: (context, index) =>
-                              const Padding(
+                                  const Padding(
                                 padding: EdgeInsets.all(8.0),
                                 child: Text('Any name'),
                               ),
                               contentsBuilder: (context, index) =>
-                              const CircleAvatar(
+                                  const CircleAvatar(
                                 backgroundColor: Color(0xff067B85),
                                 backgroundImage: CachedNetworkImageProvider(
                                     "https://cdn.lifehack.org/wp-content/uploads/2014/03/shutterstock_97566446.jpg"),
                               ),
                               connectorStyleBuilder: (context, index) =>
-                              ConnectorStyle.solidLine,
+                                  ConnectorStyle.solidLine,
                               indicatorStyleBuilder: (context, index) =>
-                              IndicatorStyle.dot,
+                                  IndicatorStyle.dot,
                               itemCount: 3,
                             ),
                           ),
                         ),
-                        LottieBuilder.network('https://assets8.lottiefiles.com/packages/lf20_qtt2dv.json',width: 60.w,height: 60.h,),
-
+                        LottieBuilder.network(
+                          'https://assets8.lottiefiles.com/packages/lf20_qtt2dv.json',
+                          width: 60.w,
+                          height: 60.h,
+                        ),
                       ],
                     ),
                   ],
@@ -380,7 +440,6 @@ class DashboardAuthorScreen extends StatelessWidget {
                           dataLabelSettings: DataLabelSettings(isVisible: true))
                     ]),
               ),
-
             ],
           ),
         ),

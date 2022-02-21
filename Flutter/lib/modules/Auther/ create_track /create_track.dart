@@ -1,7 +1,11 @@
+
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_picker/Picker.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:multiselect_formfield/multiselect_formfield.dart';
 import '../../../shared/component/component.dart';
 import '../../../shared/component/constants.dart';
@@ -15,6 +19,9 @@ class CreateTrackScreen extends StatelessWidget {
   TextEditingController shortDescriptionController = TextEditingController();
   TextEditingController durationController = TextEditingController();
   Duration? duration;
+
+  File? courseImage;
+  var picker = ImagePicker();
 
   @override
   Widget build(BuildContext context) {
@@ -212,6 +219,37 @@ class CreateTrackScreen extends StatelessWidget {
                               ),
                               const SizedBox(
                                 height: 20,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: Text("Track Image",
+                                    style: TextStyle(
+                                        fontSize: 25,
+                                        color: Colors.grey[600])),
+                              ),
+                              Center(
+                                child: TextButton(
+                                    onPressed: () async {
+                                      final pickedFile =
+                                      await picker.pickImage(
+                                          source: ImageSource.gallery);
+                                      if (pickedFile != null) {
+                                        courseImage = File(pickedFile.path);
+                                      } else {
+                                        print('no image selected');
+                                      }
+                                      //image = await _picker.pickImage(source: ImageSource.gallery);
+                                      print(
+                                          "Piiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiic");
+                                    },
+                                    child: const Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 22.0),
+                                      child: Text(
+                                        "Upload",
+                                        style: TextStyle(fontSize: 20),
+                                      ),
+                                    )),
                               ),
                               // Row(children: [
                               //   ListTile(

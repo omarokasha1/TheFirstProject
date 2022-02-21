@@ -15,7 +15,6 @@ import 'cubit/states.dart';
 class CreateCourseScreen extends StatelessWidget {
   CreateCourseScreen({Key? key}) : super(key: key);
 
-
   File? courseImage;
   var picker = ImagePicker();
 
@@ -28,6 +27,7 @@ class CreateCourseScreen extends StatelessWidget {
   TextEditingController moduleTypeController = TextEditingController();
 
   var formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -165,7 +165,8 @@ class CreateCourseScreen extends StatelessWidget {
                                       selectMoreItem(
                                         name: "Content",
                                         myActivities: cubit.myActivities,
-                                        myActivitiesResult: cubit.myActivitiesResult,
+                                        myActivitiesResult:
+                                            cubit.myActivitiesResult,
                                         onSaved: (value) {
                                           if (value == null) return;
                                           // setState(() {
@@ -187,7 +188,8 @@ class CreateCourseScreen extends StatelessWidget {
                                           return null;
                                         },
                                         myActivities: cubit.myActivities,
-                                        myActivitiesResult: cubit.myActivitiesResult,
+                                        myActivitiesResult:
+                                            cubit.myActivitiesResult,
                                         onSaved: (value) {
                                           if (value == null) return;
                                           // setState(() {
@@ -202,7 +204,8 @@ class CreateCourseScreen extends StatelessWidget {
                                           return null;
                                         },
                                         myActivities: cubit.myActivities,
-                                          myActivitiesResult: cubit.myActivitiesResult,
+                                        myActivitiesResult:
+                                            cubit.myActivitiesResult,
                                         onSaved: (value) {
                                           if (value == null) return;
                                           // setState(() {
@@ -251,8 +254,9 @@ class CreateCourseScreen extends StatelessWidget {
                                       cubit.changeItem(newValue!);
                                     },
                                     itemHeight: 50,
-                                    items: cubit.items.map<DropdownMenuItem<String>>(
-                                        (String value) {
+                                    items: cubit.items
+                                        .map<DropdownMenuItem<String>>(
+                                            (String value) {
                                       return DropdownMenuItem<String>(
                                         value: value,
                                         child: Text(value),
