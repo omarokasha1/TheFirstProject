@@ -1,20 +1,18 @@
 const express = require('express')
 const router = express.Router()
-const User = require('../models/user')
 const auth = require('../middleware/auth')
 const admin = require('../middleware/admin')
-const getCourses = require('../middleware/getCourse')
+const authCtrl = require('../controllers/authController')
 const jwt = require('jsonwebtoken')
-const _= require('lodash')
 const Course = require('../models/course')
 const Content = require('../models/content')
+const Track = require('../models/track')
 const cloudinary = require('../controllers/cloudinary')
-
 
 const multer = require('multer');
 const path = require('path')
-//define storage for the images
 
+//define storage for the images
 const storage = multer.diskStorage({
   //destination for files
   destination: function (request, file, callback) {
@@ -38,21 +36,27 @@ const upload = multer({
 
 // Getting all
 //* get courses middleware
-router.get('/',getCourses, async (req, res) => {
+router.get('/allCourses',authCtrl.getCourses, async (req, res) => {
   res.status(200).json({status : "ok",courses:res.course})
 })
-
-router.get('/AuthorContent',getContent, async (req, res) => {
+// Getting Author Contents
+router.get('/authorContent',authCtrl.getAuthorContents, async (req, res) => {
   res.status(200).json({status : "ok",contents:res.content})
 })
 
-// Getting One
-router.get('/:title', getCourse, (req, res) => {
+// Getting Author Courses
+router.get('/authorCourse',authCtrl.getAuthorCourses, (req, res) => {
 
-  res.json(res.course)
+  res.status(200).json({status : "ok",courses:res.course})
 })
 
-// Creating one
+// Getting Author tracks
+router.get('/authorTracks', authCtrl.getAuthorTracks, (req, res) => {
+
+  res.status(200).json({status : "ok",tracks:res.track})
+})
+
+// Creating one Course
 router.post('/newCourse', [auth,upload.single('imageUrl')],async (req, res) => {
 
   
@@ -97,24 +101,23 @@ router.post('/newContent', [auth,upload.single('imageUrl')],async (req, res) => 
 
   const uploadType=req.body.enumType
   console.log(uploadType)
- // const fileUrl = req.file.path
+  const fileUrl = req.file.path
  const token = req.header('x-auth-token')
  try {
    const user = jwt.verify(token, 'privateKey')
    console.log(user)
    const id = user.id
    console.log(id)
-   /* const result = await cloudinary.uploader.upload(fileUrl, {
+   const result = await cloudinary.uploader.upload(fileUrl, {
   
      public_id: `${user.id}_content`,
      folder: 'content', width: 1920, height: 1080, crop: "fill"
    });
-   console. */
 
    const content = new Content({
     contentTitle:req.body.contentTitle,
     contentDuration:req.body.contentDuration,
-   // imageUrl:result.url,
+    imageUrl:result.url,
     contentType:req.body.contentType,
     description:req.body.description,
      author:id
@@ -128,8 +131,41 @@ router.post('/newContent', [auth,upload.single('imageUrl')],async (req, res) => 
  }
 })
 
+// Creating one Track
+router.post('/newTrack', [auth,upload.single('imageUrl')],async (req, res) => {
+//const {trackName,description,duration,courses} = req.body
+ 
+  const fileUrl = req.file.path
+ const token = req.header('x-auth-token')
+ try {
+   const user = jwt.verify(token, 'privateKey')
+   console.log(user)
+   const id = user.id
+   console.log(id)
+   const result = await cloudinary.uploader.upload(fileUrl, {
+  
+    public_id: `${user.id}_track`,
+    folder: 'track', width: 1920, height: 1080, crop: "fill"
+  });
+
+  const track = new Track({
+    trackName:req.body.trackName,
+    description:req.body.description, 
+    duration:req.body.duration,
+   imageUrl:result.url,
+    author:id,
+    courses:req.body.courses,
+  })
+  console.log(track)
+   const newTrack = await track.save()
+   res.status(201).json(newTrack)
+ } catch (err) {
+   console.log(err)
+   res.status(400).json({ message: err })
+ }
+})
 // Deleting One
-router.delete('/:id', [auth, admin], getUsers, async (req, res) => {
+router.delete('/:id', [auth, admin],authCtrl.getUsers, async (req, res) => {
   try {
     await res.user.remove()
     res.json({ message: 'Deleted User' })
@@ -152,43 +188,6 @@ async function getCourse(req, res, next) {
   }
 
   res.course = course
-  next()
-}
-
-async function getContent(req, res, next) {
-  let content
-  const token = req.header('x-auth-token')
-  try {
-    const user = jwt.verify(token, 'privateKey')
-   console.log(user)
-   const id = user.id
-   console.log(id)
-    content = await Content.find().populate('author').select('-__v')
-    if (!content) {
-      return res.status(200).json({ status: 'false', message: 'Cannot find contents' })
-    }
-    res.content = content
-  } catch (err) {
-    console.log(err)
-    return res.status(500).json({ message: err })
-  }
-
-  res.content = content
-  next()
-}
-async function getUsers(req, res, next) {
-  let user
-  try {
-    user = await User.findById(req.user.id)
-    if (!user) {
-      return res.status(200).json({ status: 'false', message: 'Cannot find user' })
-    }
-    res.user = user
-  } catch (err) {
-    return res.status(500).json({ message: err.message })
-  }
-
-  res.user = user
   next()
 }
 

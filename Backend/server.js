@@ -42,6 +42,7 @@ app.use('/api/profile', userProfile)
 const changePassword = require('./routes/changePassword')
 app.use('/api/changePassword', changePassword)
 const Course = require('./models/course')
+
 const newCourse = require('./routes/courses')
 app.use('/api/course', newCourse)
 
@@ -59,12 +60,12 @@ app.use("/user", require("./routes/userRouter"));
 
 
 //* if write invalide url or end point send to user an error message
-/* app.all('*', (req, res, next) => {
+app.all('*', (req, res, next) => {
     res.status(404).json({
         status: 'false',
         message: 'Page not found !'
     })
-}) */
+})
 //* listen on port 8080 local host
 app.listen( process.env.PORT, function(){
     console.log("Expreass server listening on port 80801");

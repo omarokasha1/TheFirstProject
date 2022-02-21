@@ -19,6 +19,9 @@ const UserSchema = new mongoose.Schema({
     city: { type: String },
     bio: { type: String },
     isAdmin: { type: Boolean },
+    isAuthor:{type:Boolean},
+    myCourses: [ {type:mongoose.Schema.Types.ObjectId,
+        ref:'Courses'}],
     userEducation:  {
         university: { type: String, },
         major: { type: String, },
