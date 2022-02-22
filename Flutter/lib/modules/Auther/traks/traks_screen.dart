@@ -1,19 +1,20 @@
 import 'dart:ui';
 
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lms/layout/layout.dart';
-import 'package:lms/modules/Auther/author_courses/author_courses_cubit/cubit.dart';
-
-import 'package:lms/shared/component/MyAppBar.dart';
+import 'package:lms/models/track_model.dart';
+import 'package:lms/modules/Auther/%20create_track%20/create_track.dart';
+import 'package:lms/modules/Auther/traks/traks_cubit/cubit.dart';
+import 'package:lms/modules/Auther/traks/traks_cubit/status.dart';
+import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
+import 'package:lms/shared/component/zoomDrawer.dart';
 
-import '../author_courses/author_courses_cubit/status.dart';
-
-class Tracks extends StatelessWidget {
-  Tracks({Key? key}) : super(key: key);
+class TracksScreen extends StatelessWidget {
+  TracksScreen({Key? key}) : super(key: key);
 
   final List<Widget> myTabs = [
     Tab(text: 'Drafts'),
@@ -24,66 +25,72 @@ class Tracks extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AuthorCourseCubit(),
-      child: BlocConsumer<AuthorCourseCubit, AuthorCourseStates>(
+      create: (context) => TrackCubit()..getAllTracks(),
+      child: BlocConsumer<TrackCubit, TrackStates>(
         listener: (context, state) {},
         builder: (context, state) {
-          var cubit = AuthorCourseCubit.get(context);
+          var cubit = TrackCubit.get(context);
           return Layout(
             widget: DefaultTabController(
               length: myTabs.length,
               child: Scaffold(
                 appBar: AppBar(),
-                body: Column(
+                body: ConditionalBuilder(
+                  condition: cubit.trackModel != null,
+                  builder: (context) =>Column(
+                children: [
+                Padding(
+                padding: const EdgeInsets.only(
+                    left: 20.0, right: 20.0, top: 10),
+                child: Row(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          left: 20.0, right: 20.0, top: 10),
-                      child: Row(
-                        children: [
-                          Text(
-                            'Tracks',
-                            style: TextStyle(
-                              fontSize: 20.sp,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                            ),
-                          ),
-                          Spacer(),
-                          ElevatedButton(
-                            onPressed: () {},
-                            child: Text(
-                              'New Track',
-                              style: TextStyle(
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    TabBar(
-                      labelColor: primaryColor,
-                      indicatorColor: primaryColor,
-                      unselectedLabelColor: Colors.black,
-                      isScrollable: true,
-                      tabs: myTabs,
-                      labelStyle: TextStyle(
-                        fontSize: 16.sp,
+                    Text(
+                      'Tracks',
+                      style: TextStyle(
+                        fontSize: 20.sp,
                         fontWeight: FontWeight.bold,
+                        color: Colors.black,
                       ),
                     ),
-                    Expanded(
-                      child: TabBarView(
-                        children: [
-                          publishedCourses(),
-                          penddingCourses(),
-                          draftsCourses(),
-                        ],
+                    Spacer(),
+                    ElevatedButton(
+                      onPressed: () {
+                        navigator(context, CreateTrackScreen());
+                      },
+                      child: Text(
+                        'New Track',
+                        style: TextStyle(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ],
+                ),
+              ),
+              TabBar(
+                labelColor: primaryColor,
+                indicatorColor: primaryColor,
+                unselectedLabelColor: Colors.black,
+                // isScrollable: true,
+                tabs: myTabs,
+                labelStyle: TextStyle(
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Expanded(
+                child: TabBarView(
+                  children: [
+                    publishedCourses(cubit),
+                    penddingCourses(cubit),
+                    draftsCourses(cubit),
+                  ],
+                ),
+              ),
+              ],
+            ),
+                  fallback: (context) => Center(child: CircularProgressIndicator(),),
                 ),
               ),
             ),
@@ -93,8 +100,38 @@ class Tracks extends StatelessWidget {
     );
   }
 
+  //Published Courses PageView
+  Widget publishedCourses(TrackCubit cubit) {
+    return ListView.builder(
+        physics: BouncingScrollPhysics(),
+        itemBuilder: (context, index) {
+          return BuildAuthorCourse(cubit.trackModel!.tracks![index]);
+        },
+        itemCount: cubit.trackModel!.tracks!.length);
+  }
+
+  //Pending Courses PageView
+  Widget penddingCourses(TrackCubit cubit) {
+    return ListView.builder(
+        physics: BouncingScrollPhysics(),
+        itemBuilder: (context, index) {
+          return BuildAuthorCourse(cubit.trackModel!.tracks![index]);
+        },
+        itemCount: cubit.trackModel!.tracks!.length);
+  }
+
+  //Drafts Courses PageView
+  Widget draftsCourses(TrackCubit cubit) {
+    return ListView.builder(
+        physics: BouncingScrollPhysics(),
+        itemBuilder: (context, index) {
+          return BuildAuthorCourse(cubit.trackModel!.tracks![index]);
+        },
+        itemCount: cubit.trackModel!.tracks!.length);
+  }
+
   //Course Widget
-  Widget BuildAuthorCourse() {
+  Widget BuildAuthorCourse(Tracks modelTrack) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
@@ -123,7 +160,8 @@ class Tracks extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(30),
               child: Image.network(
-                'https://media.gettyimages.com/vectors/-vector-id960988454',
+                //'https://media.gettyimages.com/vectors/-vector-id960988454',
+                '${modelTrack.imageUrl}',
                 height: 150.w,
                 width: 140.h,
                 fit: BoxFit.cover,
@@ -141,7 +179,8 @@ class Tracks extends StatelessWidget {
                   ),
                   Container(
                     child: Text(
-                      'Track Name',
+                      //'Track Name',
+                      '${modelTrack.trackName}',
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 20.sp,
@@ -214,35 +253,5 @@ class Tracks extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  //Published Courses PageView
-  Widget publishedCourses() {
-    return ListView.builder(
-        physics: BouncingScrollPhysics(),
-        itemBuilder: (context, index) {
-          return BuildAuthorCourse();
-        },
-        itemCount: 10);
-  }
-
-  //Pending Courses PageView
-  Widget penddingCourses() {
-    return ListView.builder(
-        physics: BouncingScrollPhysics(),
-        itemBuilder: (context, index) {
-          return BuildAuthorCourse();
-        },
-        itemCount: 10);
-  }
-
-  //Drafts Courses PageView
-  Widget draftsCourses() {
-    return ListView.builder(
-        physics: BouncingScrollPhysics(),
-        itemBuilder: (context, index) {
-          return BuildAuthorCourse();
-        },
-        itemCount: 10);
   }
 }

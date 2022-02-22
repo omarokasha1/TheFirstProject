@@ -1,4 +1,8 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
+import 'package:lms/shared/component/constants.dart';
+import 'package:lms/shared/network/end_points.dart';
 
 //Dio Helper That's Connect and Talk to API.
 class DioHelper {
@@ -10,9 +14,8 @@ class DioHelper {
       BaseOptions(
         //Here the URL of API.
 
-        baseUrl: "https://lms-ap.herokuapp.com/",
-        //baseUrl: "http://10.5.62.214:8080/",
-        // baseUrl: "https://lms-ap.herokuapp.com/",
+        //baseUrl: "https://lms-ap.herokuapp.com/",
+        baseUrl: "http://10.5.62.214:8081/",
         receiveDataWhenStatusError: true,
         //Here we Put The Headers Needed in The API.
         headers: {
@@ -21,6 +24,16 @@ class DioHelper {
         },
       ),
     );
+  }
+
+  static Future<String> uploadImage(File file) async {
+    String fileName = file.path.split('/').last;
+    FormData formData = FormData.fromMap({
+      "profile":
+      await MultipartFile.fromFile(file.path, filename:fileName),
+    });
+    var response = await DioHelper.postData(url:uploadImageProfile, data: {'profile':formData},token: userToken);
+    return response.data.toString();
   }
 
   //This Function to call API and get Some Data based on url(End Points) and Headers needed in API to get the Specific Data.
@@ -65,5 +78,15 @@ class DioHelper {
       url,
       data: data,
     );
+  }
+
+  static Future<Response> pushFile() async{
+    var formData = FormData.fromMap({
+      'name': 'wendux',
+      'age': 25,
+      'file': await MultipartFile.fromFile('./text.txt',filename: 'upload.txt')
+    });
+    var response = await dio.post('/info', data: formData);
+    return response;
   }
 }

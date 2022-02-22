@@ -18,6 +18,8 @@ import 'package:lms/modules/profile/profile_screen.dart';
 import 'package:lms/shared/component/MyAppBar.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
+import 'package:lms/shared/network/end_points.dart';
+import 'package:lms/shared/network/remote/dio-helper.dart';
 import 'package:material_tag_editor/tag_editor.dart';
 
 class EditProfileScreen extends StatelessWidget {
@@ -143,12 +145,15 @@ bool check =true;
                                       source: ImageSource.gallery);
                                   if (pickedFile != null) {
                                     profileImage = File(pickedFile.path);
+                                    // DioHelper.postData(url: uploadImageProfile, data: {
+                                    //   'profile': profileImage,
+                                    // });
+                                    DioHelper.uploadImage(profileImage!);
                                   } else {
                                     print('no image selected');
                                   }
                                   //image = await _picker.pickImage(source: ImageSource.gallery);
-                                  print(
-                                      'hereeeeee ${profileImage!.uri.toString()}');
+                                  //print('hereeeeee ${profileImage!.uri.toString()}');
                                   print(
                                       "Piiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiic");
                                 },
@@ -225,7 +230,7 @@ bool check =true;
                                       city: cityController.text,
                                       country: countryController.text,
                                       gender: selectedItem,
-                                      //imageUrl: cubit.model!.profile!.imageUrl,
+                                      //imageUrl: profileImage,
                                       bio: bioController.text,
                                       university: universityController.text,
                                       major: majorController.text,

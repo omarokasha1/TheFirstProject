@@ -3,16 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lms/models/track_model.dart';
 import 'package:lms/modules/Auther/author_courses/author_courses_screen.dart';
 import 'package:lms/modules/Auther/author_profile/author_profile_cubit/cubit.dart';
 import 'package:lms/modules/Auther/author_profile/author_profile_screen.dart';
 import 'package:lms/modules/Auther/dashboard/dashboard_auther.dart';
 import 'package:lms/modules/Auther/modules_library/modules_library.dart';
+import 'package:lms/modules/Auther/traks/traks_screen.dart';
 import 'package:lms/modules/courses/cubit/cubit.dart';
 import 'package:lms/modules/dashboard/dashboard_screen.dart';
 import 'package:lms/modules/home_screen.dart';
 import 'package:lms/modules/manager/dashboard/dashboard_manager_screen.dart';
 import 'package:lms/modules/onboarding/onboarding_screen.dart';
+import 'package:lms/modules/profile/profile_screen.dart';
 import 'package:lms/modules/quiz/cubit/cubit.dart';
 import 'package:lms/modules/splash_screen.dart';
 import 'package:lms/shared/component/constants.dart';
@@ -127,6 +130,7 @@ class MyApp extends StatelessWidget {
           //home: Tracks(),
          //home:ZoomDrawerScreen(widget:DashboardAuthorScreen() ,) ,
           //home: ZoomDrawerScreen(widget: AuthorProfileScreen(),),
+          //home: TracksScreen(),
           home: widget,
         // home: ZoomDrawerScreen(widget:DashboardAuthorScreen() ,),
         //  home:Layout(widget: ZoomDrawerScreen(widget:DashboardManagerScreen() ,)) ,

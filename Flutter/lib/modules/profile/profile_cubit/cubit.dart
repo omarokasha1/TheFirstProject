@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lms/models/login_model.dart';
@@ -49,7 +51,7 @@ class ProfileCubit extends Cubit<ProfileStates> {
     required String? city,
     required String? country,
     required String? gender,
-    //required String? imageUrl,
+    //required File? imageUrl,
     required String? university,
     required String? major,
     required String? faculty,

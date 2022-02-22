@@ -27,11 +27,11 @@ class AuthorCourses extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AuthorCourseCubit(),
-      child: BlocConsumer<AuthorCourseCubit, AuthorCourseStates>(
+      create: (context) => AuthorCoursesCubit(),
+      child: BlocConsumer<AuthorCoursesCubit, AuthorCoursesStates>(
         listener: (context, state) {},
         builder: (context, state) {
-          var cubit = AuthorCourseCubit.get(context);
+          var cubit = AuthorCoursesCubit.get(context);
           return Layout(
             widget: DefaultTabController(
               length: myTabs.length,

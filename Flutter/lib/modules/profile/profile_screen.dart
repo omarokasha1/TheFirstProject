@@ -15,6 +15,7 @@ import 'package:lms/modules/profile/edit_profile_screen.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
 import 'package:lms/shared/component/zoomDrawer.dart';
+import 'package:lms/shared/network/remote/dio-helper.dart';
 
 class ProfileScreen extends StatelessWidget {
   ProfileScreen({Key? key}) : super(key: key);
@@ -97,6 +98,8 @@ class ProfileScreen extends StatelessWidget {
                                       source: ImageSource.gallery);
                                   if (pickedFile != null) {
                                     profileImage = File(pickedFile.path);
+
+                                    //print(profileImage!.path.split('/').last);
                                   } else {
                                     print('no image selected');
                                   }

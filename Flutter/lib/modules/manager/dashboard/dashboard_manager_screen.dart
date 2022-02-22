@@ -211,7 +211,7 @@ class DashboardManagerScreen extends StatelessWidget {
                         children: [
                           TextButton(
                               onPressed: () {
-                                navigator(context, Tracks());
+                                navigator(context, TracksScreen());
                               },
                               child: const Text("Views All ")),
                           Spacer(),
