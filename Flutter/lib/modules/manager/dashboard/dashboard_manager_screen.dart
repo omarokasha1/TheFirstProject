@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lms/modules/Auther/traks/traks_screen.dart';
 import 'package:lms/shared/component/MyAppBar.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
@@ -209,7 +210,9 @@ class DashboardManagerScreen extends StatelessWidget {
                       Row(
                         children: [
                           TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                navigator(context, Tracks());
+                              },
                               child: const Text("Views All ")),
                           Spacer(),
                           MaterialButton(
@@ -233,140 +236,8 @@ class DashboardManagerScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Container(
-                width: double.infinity,
-                padding: EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Colors.grey[100],
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    // ListView(shrinkWrap: true, children: [
-                    //   Center(
-                    //       child: Text(
-                    //     'Requests',
-                    //     style: TextStyle(
-                    //         fontSize: 25, fontWeight: FontWeight.bold),
-                    //   )),
-                    //   DataTable(
-                    //     columns: [
-                    //       DataColumn(
-                    //           label: Text('',
-                    //               style: TextStyle(
-                    //                   fontSize: 18,
-                    //                   fontWeight: FontWeight.bold))),
-                    //       DataColumn(
-                    //           label: Text('Name',
-                    //               style: TextStyle(
-                    //                   fontSize: 18,
-                    //                   fontWeight: FontWeight.bold))),
-                    //       DataColumn(
-                    //           label: Text('Course',
-                    //               style: TextStyle(
-                    //                   fontSize: 18,
-                    //                   fontWeight: FontWeight.bold))),
-                    //       DataColumn(
-                    //           label: Text('Course',
-                    //               style: TextStyle(
-                    //                   fontSize: 18,
-                    //                   fontWeight: FontWeight.bold))),
-                    //       DataColumn(
-                    //           label: Text('Course',
-                    //               style: TextStyle(
-                    //                   fontSize: 18,
-                    //                   fontWeight: FontWeight.bold))),
-                    //     ],
-                    //     rows: [
-                    //       DataRow(cells: [
-                    //         DataCell(
-                    //           CircleAvatar(
-                    //             backgroundImage: NetworkImage(
-                    //                 'https://www.mnp.ca/-/media/foundation/integrations/personnel/2020/12/16/13/57/personnel-image-4483.jpg?h=800&w=600&hash=9D5E5FCBEE00EB562DCD8AC8FDA8433D'),
-                    //           ),
-                    //         ),
-                    //         DataCell(Text('Stephen')),
-                    //         DataCell(Text('Actor')),
-                    //         DataCell(Text('Actor')),
-                    //         DataCell(Text('Actor')),
-                    //       ]),
-                    //       DataRow(cells: [
-                    //         DataCell(
-                    //           CircleAvatar(
-                    //             backgroundImage: NetworkImage(
-                    //                 'https://www.mnp.ca/-/media/foundation/integrations/personnel/2020/12/16/13/57/personnel-image-4483.jpg?h=800&w=600&hash=9D5E5FCBEE00EB562DCD8AC8FDA8433D'),
-                    //           ),
-                    //         ),
-                    //         DataCell(Column(
-                    //           children: [
-                    //             Text('John'),
-                    //             Text('Author'),
-                    //           ],
-                    //         )),
-                    //         DataCell(Text('Student')),
-                    //         DataCell(Text('Student')),
-                    //         DataCell(Text('Student')),
-                    //       ]),
-                    //       DataRow(cells: [
-                    //         DataCell(
-                    //           CircleAvatar(
-                    //             backgroundImage: NetworkImage(
-                    //                 'https://www.mnp.ca/-/media/foundation/integrations/personnel/2020/12/16/13/57/personnel-image-4483.jpg?h=800&w=600&hash=9D5E5FCBEE00EB562DCD8AC8FDA8433D'),
-                    //           ),
-                    //         ),
-                    //         DataCell(
-                    //           Column(
-                    //             children: [
-                    //               Text('John'),
-                    //               Text('Author'),
-                    //             ],
-                    //           ),
-                    //         ),
-                    //         DataCell(Text('Leader')),
-                    //         DataCell(Text('Leader')),
-                    //         DataCell(Text('Leader')),
-                    //       ]),
-                    //     ],
-                    //   ),
-                    // ]),
 
-                    // const Text('Requests',
-                    //   style: TextStyle(
-                    //     fontWeight: FontWeight.bold,
-                    //     fontSize: 18
-                    //   ),
-                    // ),
-                    // Divider(),
-                    // Row(children: [
-                    //   Expanded(child: Text('   ')),
-                    //   Expanded(child: Text('Name')),
-                    //   Expanded(child: Text('Course')),
-                    //   Expanded(child: Text('Status')),
-                    //   Expanded(child: Text('Accepts')),
-                    // ],),
-                    // Divider(),
-                    // Row(
-                    //   children: [
-                    //     CircleAvatar(backgroundImage: NetworkImage('https://www.mnp.ca/-/media/foundation/integrations/personnel/2020/12/16/13/57/personnel-image-4483.jpg?h=800&w=600&hash=9D5E5FCBEE00EB562DCD8AC8FDA8433D'),),
-                    //     SizedBox(
-                    //       width: 15,
-                    //     ),
-                    //     Column(
-                    //       children: [
-                    //         Text('Name',style: Theme.of(context).textTheme.titleMedium,),
-                    //         Text('Author',style: Theme.of(context).textTheme.caption,)
-                    //       ],
-                    //     ),
-                    //     Text('data')
-                    //   ],
-                    // )
-                  ],
-                ),
+
               ),
               SizedBox(
                 height: 10,
@@ -380,12 +251,12 @@ class DashboardManagerScreen extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                  const Text('Requests',
-                   style: TextStyle(
-                   fontWeight: FontWeight.bold,
-                     fontSize: 18
-                     ),
-                   ),
+                    const Text('Requests',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18
+                      ),
+                    ),
                     SizedBox(height: 15,),
                     ListView.separated(
                       shrinkWrap: true,
@@ -398,30 +269,64 @@ class DashboardManagerScreen extends StatelessWidget {
                           color: Colors.white,
                         ),
                         child: Row (
-                        children: [
-                          CircleAvatar(
-                            backgroundImage: NetworkImage(
-                                'https://www.mnp.ca/-/media/foundation/integrations/personnel/2020/12/16/13/57/personnel-image-4483.jpg?h=800&w=600&hash=9D5E5FCBEE00EB562DCD8AC8FDA8433D'),
-                          ),
-                          SizedBox(width: 18,),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('Youssef',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
-                              Text('Author'),
-                            ],
-                          ),
-                          SizedBox(width: 20,),
-                          Text('Course Name',style: TextStyle(fontSize: 15,fontWeight: FontWeight.w500),),
+                          children: [
+                            CircleAvatar(
+                              backgroundImage: NetworkImage(
+                                  'https://www.mnp.ca/-/media/foundation/integrations/personnel/2020/12/16/13/57/personnel-image-4483.jpg?h=800&w=600&hash=9D5E5FCBEE00EB562DCD8AC8FDA8433D'),
+                            ),
+                            SizedBox(width: 18,),
+                            Text('Youssef',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
+                            SizedBox(width: 20,),
+                            Text('Course Name',style: TextStyle(fontSize: 15,fontWeight: FontWeight.w500),),
 
-                          Spacer(),
-                          TextButton(onPressed: (){}, child: Text('Accepts'))
-                        ],
+                            Spacer(),
+                            TextButton(onPressed: (){}, child: Text('Accepts'))
+                          ],
+                        ),
+                      ),itemCount: 3, ),
+                    Column(
+                      children: [
+                        const Text('Users',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18
+                          ),
+                        ),
+                        SizedBox(height: 15,),
+                        ListView.separated(
+                          shrinkWrap: true,
+                          separatorBuilder: (context, index) => SizedBox(height: 10,),
+                          itemBuilder: (context, index) => Container(
+                            width: double.infinity,
+                            padding: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: Colors.white,
+                            ),
+                            child: Row (
+                              children: [
+                                CircleAvatar(
+                                  backgroundImage: NetworkImage(
+                                      'https://www.mnp.ca/-/media/foundation/integrations/personnel/2020/12/16/13/57/personnel-image-4483.jpg?h=800&w=600&hash=9D5E5FCBEE00EB562DCD8AC8FDA8433D'),
+                                ),
+                                SizedBox(width: 18,),
+                                Text('Youssef',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
+                                SizedBox(width: 20,),
+                                Text('Course Name',style: TextStyle(fontSize: 15,fontWeight: FontWeight.w500),),
+
+                                Spacer(),
+                                TextButton(onPressed: (){}, child: Text('Accepts'))
+                              ],
+                            ),
+                          ),itemCount: 3, )
+                      ],
                     ),
-                      ),itemCount: 3, )
                   ],
                 ),
-              )
+              ),
+              SizedBox(
+                height: 10,
+              ),
             ],
           ),
         ),
