@@ -6,7 +6,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lms/modules/Auther/author_courses/author_courses_screen.dart';
 import 'package:lms/modules/Auther/dashboard/dashboard_auther.dart';
 import 'package:lms/modules/Auther/modules_library/modules_library.dart';
+import 'package:lms/modules/anmition.dart';
 import 'package:lms/modules/courses/cubit/cubit.dart';
+import 'package:lms/modules/dashboard/dashboard_screen.dart';
+import 'package:lms/modules/home_screen.dart';
+import 'package:lms/modules/manager/dashboard/dashboard_manager_screen.dart';
 import 'package:lms/modules/onboarding/onboarding_screen.dart';
 
 import 'package:lms/modules/quiz/cubit/cubit.dart';
@@ -16,10 +20,15 @@ import 'package:lms/modules/profile/profile_screen.dart';
 import 'package:lms/modules/splash_screen.dart';
 import 'package:lms/shared/component/constants.dart';
 import 'package:lms/shared/component/observer.dart';
+import 'package:lms/shared/component/zoomDrawer.dart';
 import 'package:lms/shared/network/local/cache_helper.dart';
 import 'package:lms/shared/network/remote/dio-helper.dart';
 import 'package:lms/shared/themes/light_theme.dart';
+
 import 'modules/dashboard/dashboard_screen.dart';
+
+import 'layout/layout.dart';
+
 import 'modules/profile/profile_cubit/cubit.dart';
 import 'modules/quiz/screens/welcome/welcome_screen.dart';
 import 'shared/cubit For Internet/cubit.dart';
@@ -116,6 +125,10 @@ class MyApp extends StatelessWidget {
 
           //home: Tracks(),
           home: DashboardAuthorScreen(),
+
+        // home: ZoomDrawerScreen(widget:DashboardAuthorScreen() ,),
+        //  home:Layout(widget: ZoomDrawerScreen(widget:DashboardManagerScreen() ,)) ,
+
         ),
       ),
     );

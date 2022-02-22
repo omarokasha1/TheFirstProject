@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 #Tue Feb 22 12:30:21 EET 2022
 base.0=/home/odc5/project/Flutter/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
+=======
+#Tue Feb 22 11:28:31 EET 2022
+base.0=/home/odc6/ODC/TheFirstProject/Flutter/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
+>>>>>>> main
 renamed.0=classes.dex
 path.0=classes.dex
