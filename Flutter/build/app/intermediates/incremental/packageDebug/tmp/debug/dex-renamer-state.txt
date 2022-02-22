@@ -1,4 +1,4 @@
-#Sun Feb 20 11:19:21 EET 2022
+#Tue Feb 22 11:28:31 EET 2022
 base.0=/home/odc6/ODC/TheFirstProject/Flutter/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
 renamed.0=classes.dex
 path.0=classes.dex

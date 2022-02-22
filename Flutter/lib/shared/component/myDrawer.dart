@@ -6,6 +6,7 @@ import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:lms/modules/Auther/author_courses/author_courses_screen.dart';
 import 'package:lms/modules/authertication/change%20password/change_password_screen.dart';
 import 'package:lms/modules/authertication/login/login_screen.dart';
+import 'package:lms/modules/dashboard/dashboard_screen.dart';
 import 'package:lms/modules/my_learning/mylearning.dart';
 import 'package:lms/modules/profile/profile_screen.dart';
 import 'package:lms/shared/component/zoomDrawer.dart';
@@ -84,6 +85,23 @@ class MyDrawer extends StatelessWidget {
                       ),
                       onTap: () {
                         ZoomDrawer.of(context)!.toggle();
+                      },
+                    ),
+                    ListTile(
+                      title: const Text(
+                        "Dashboard",
+                        style: TextStyle(
+                          color: textColorDrawer,
+                          fontSize: 16,
+                        ),
+                      ),
+                      leading: const Icon(
+                        Icons.dashboard,
+                        color: iconColorDrawer,
+                        size: 25,
+                      ),
+                      onTap: () {
+                        navigator(context,DashboardScreen());
                       },
                     ),
                     ListTile(

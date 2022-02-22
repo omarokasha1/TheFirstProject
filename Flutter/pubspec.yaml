@@ -64,8 +64,8 @@ dependencies:
   syncfusion_flutter_charts: ^19.4.52
   percent_indicator: ^4.0.0
   flutter_speed_dial: ^5.0.0+1
-
-
+  flutter_rating_bar: ^4.0.0
+  carousel_slider: ^4.0.0
 
 dev_dependencies:
   flutter_test:

@@ -162,7 +162,7 @@ class CreateQuizScreen extends StatelessWidget {
                       //   shrinkWrap: true,
 
                       crossAxisCount: 1,
-                      childAspectRatio: 1 / 0.68,
+                      childAspectRatio: 1.25,
                       children: List.generate(
                         5,
                             (index) => quistionItem(context, index),

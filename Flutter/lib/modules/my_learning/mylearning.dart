@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
 import 'package:lms/shared/component/zoomDrawer.dart';
@@ -392,7 +393,7 @@ Widget builtTrackContant(context) => Padding(
                       //container for completed percentage
                       Container(
                         height: 8,
-                        width: 240,
+                        width: 220.w,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(40),
                           color: grayText,
@@ -401,7 +402,7 @@ Widget builtTrackContant(context) => Padding(
                      //container for uncompleted percentage
                       Container(
                         height: 8,
-                        width: 180,
+                        width: 140.w,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(40),
                           color: primaryColor,
