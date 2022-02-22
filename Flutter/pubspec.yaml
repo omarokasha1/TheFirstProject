@@ -30,7 +30,6 @@ dependencies:
   flutter:
     sdk: flutter
 
-
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
@@ -67,6 +66,14 @@ dependencies:
   native_notify: ^0.0.3
   awesome_dialog: ^2.1.2
 
+  file_picker: ^4.4.0
+  multiselect_formfield: ^0.1.7
+  flutter_picker: ^2.0.2
+
+
+
+  flutter_rating_bar: ^4.0.0
+  carousel_slider: ^4.0.0
 
 
 dev_dependencies:

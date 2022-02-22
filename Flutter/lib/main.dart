@@ -8,12 +8,12 @@ import 'package:lms/modules/Auther/author_profile/author_profile_cubit/cubit.dar
 import 'package:lms/modules/Auther/author_profile/author_profile_screen.dart';
 import 'package:lms/modules/Auther/dashboard/dashboard_auther.dart';
 import 'package:lms/modules/Auther/modules_library/modules_library.dart';
-import 'package:lms/modules/Auther/quiz/author_quiz_screen.dart';
 import 'package:lms/modules/courses/cubit/cubit.dart';
 import 'package:lms/modules/dashboard/dashboard_screen.dart';
+import 'package:lms/modules/home_screen.dart';
+import 'package:lms/modules/manager/dashboard/dashboard_manager_screen.dart';
 import 'package:lms/modules/onboarding/onboarding_screen.dart';
-import 'package:lms/modules/profile/edit_profile_screen.dart';
-import 'package:lms/modules/profile/profile_screen.dart';
+import 'package:lms/modules/quiz/cubit/cubit.dart';
 import 'package:lms/modules/splash_screen.dart';
 import 'package:lms/shared/component/constants.dart';
 import 'package:lms/shared/component/observer.dart';
@@ -21,8 +21,15 @@ import 'package:lms/shared/component/zoomDrawer.dart';
 import 'package:lms/shared/network/local/cache_helper.dart';
 import 'package:lms/shared/network/remote/dio-helper.dart';
 import 'package:lms/shared/themes/light_theme.dart';
+
 import 'package:native_notify/native_notify.dart';
+
+import 'modules/dashboard/dashboard_screen.dart';
+
+import 'layout/layout.dart';
+
 import 'modules/profile/profile_cubit/cubit.dart';
+import 'modules/quiz/screens/welcome/welcome_screen.dart';
 import 'shared/cubit For Internet/cubit.dart';
 
 void main() async {
@@ -81,6 +88,7 @@ class MyApp extends StatelessWidget {
       providers: [
         //Bloc of Internet Cubit.
         BlocProvider(create: (context) => InternetCubit()),
+        BlocProvider(create: (context) => QuizCubit()),
         //Bloc of Profile Cubit (Data of User).
         BlocProvider(create: (context) {
           if (userToken != null) {
@@ -120,6 +128,8 @@ class MyApp extends StatelessWidget {
          //home:ZoomDrawerScreen(widget:DashboardAuthorScreen() ,) ,
           //home: ZoomDrawerScreen(widget: AuthorProfileScreen(),),
           home: widget,
+        // home: ZoomDrawerScreen(widget:DashboardAuthorScreen() ,),
+        //  home:Layout(widget: ZoomDrawerScreen(widget:DashboardManagerScreen() ,)) ,
         ),
       ),
     );

@@ -1,4 +1,29 @@
 //This Course Model to get Data From API
+class ListCourseModel {
+  String? status;
+  List<CourseModel>? courses;
+
+  ListCourseModel({this.status, this.courses});
+
+  ListCourseModel.fromJson(Map<String, dynamic> json) {
+    status = json['status'];
+    if (json['courses'] != null) {
+      courses = <CourseModel>[];
+      json['courses'].forEach((v) {
+        courses!.add(new CourseModel.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['status'] = this.status;
+    if (this.courses != null) {
+      data['courses'] = this.courses!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
 class CourseModel {
   String? sId;
   String? totalTime;
@@ -12,6 +37,7 @@ class CourseModel {
   String? review;
   String? imageUrl;
   Author? author;
+  List<String>? contents;
 
   CourseModel(
       {this.sId,
@@ -25,7 +51,8 @@ class CourseModel {
         this.description,
         this.review,
         this.imageUrl,
-        this.author,});
+        this.author,
+      this.contents});
 
   CourseModel.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -41,6 +68,12 @@ class CourseModel {
     imageUrl = json['imageUrl'];
     author =
     json['author'] != null ? new Author.fromJson(json['author']) : null;
+    if (json['courses'] != null) {
+      contents = <String>[];
+      json['courses'].forEach((v) {
+        contents!.add(v);
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -59,6 +92,10 @@ class CourseModel {
     if (this.author != null) {
       data['author'] = this.author!.toJson();
     }
+    if(this.contents!=null)
+      {
+        data['contents']=this.contents!.toList();
+      }
     return data;
   }
 }

@@ -26,6 +26,7 @@ MERGED from /home/odc4/Main Project/TheFirstProject/Flutter/android/app/src/main
 MERGED from [:shared_preferences_android] /home/odc4/Main Project/TheFirstProject/Flutter/build/shared_preferences_android/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:network_info_plus] /home/odc4/Main Project/TheFirstProject/Flutter/build/network_info_plus/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-10:12
 MERGED from [:image_picker] /home/odc4/Main Project/TheFirstProject/Flutter/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-19:12
+MERGED from [:file_picker] /home/odc4/Main Project/TheFirstProject/Flutter/build/file_picker/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-17:12
 MERGED from [:flutter_plugin_android_lifecycle] /home/odc4/Main Project/TheFirstProject/Flutter/build/flutter_plugin_android_lifecycle/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:awesome_notifications] /home/odc4/Main Project/TheFirstProject/Flutter/build/awesome_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-36:12
 MERGED from [:sqflite] /home/odc4/Main Project/TheFirstProject/Flutter/build/sqflite/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
@@ -96,6 +97,8 @@ MERGED from [:network_info_plus] /home/odc4/Main Project/TheFirstProject/Flutter
 MERGED from [:network_info_plus] /home/odc4/Main Project/TheFirstProject/Flutter/build/network_info_plus/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:image_picker] /home/odc4/Main Project/TheFirstProject/Flutter/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:image_picker] /home/odc4/Main Project/TheFirstProject/Flutter/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:file_picker] /home/odc4/Main Project/TheFirstProject/Flutter/build/file_picker/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:file_picker] /home/odc4/Main Project/TheFirstProject/Flutter/build/file_picker/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:flutter_plugin_android_lifecycle] /home/odc4/Main Project/TheFirstProject/Flutter/build/flutter_plugin_android_lifecycle/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:flutter_plugin_android_lifecycle] /home/odc4/Main Project/TheFirstProject/Flutter/build/flutter_plugin_android_lifecycle/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:awesome_notifications] /home/odc4/Main Project/TheFirstProject/Flutter/build/awesome_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
@@ -220,6 +223,22 @@ ADDED from [:image_picker] /home/odc4/Main Project/TheFirstProject/Flutter/build
 		ADDED from [:image_picker] /home/odc4/Main Project/TheFirstProject/Flutter/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:15:17-72
 	android:name
 		ADDED from [:image_picker] /home/odc4/Main Project/TheFirstProject/Flutter/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:14:17-67
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from [:file_picker] /home/odc4/Main Project/TheFirstProject/Flutter/build/file_picker/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-80
+	android:name
+		ADDED from [:file_picker] /home/odc4/Main Project/TheFirstProject/Flutter/build/file_picker/intermediates/library_manifest/debug/AndroidManifest.xml:7:22-77
+queries
+ADDED from [:file_picker] /home/odc4/Main Project/TheFirstProject/Flutter/build/file_picker/intermediates/library_manifest/debug/AndroidManifest.xml:9:5-15:15
+intent#action:name:android.intent.action.GET_CONTENT+data:mimeType:*/*
+ADDED from [:file_picker] /home/odc4/Main Project/TheFirstProject/Flutter/build/file_picker/intermediates/library_manifest/debug/AndroidManifest.xml:10:9-14:18
+action#android.intent.action.GET_CONTENT
+ADDED from [:file_picker] /home/odc4/Main Project/TheFirstProject/Flutter/build/file_picker/intermediates/library_manifest/debug/AndroidManifest.xml:11:13-72
+	android:name
+		ADDED from [:file_picker] /home/odc4/Main Project/TheFirstProject/Flutter/build/file_picker/intermediates/library_manifest/debug/AndroidManifest.xml:11:21-69
+data
+ADDED from [:file_picker] /home/odc4/Main Project/TheFirstProject/Flutter/build/file_picker/intermediates/library_manifest/debug/AndroidManifest.xml:13:13-44
+	android:mimeType
+		ADDED from [:file_picker] /home/odc4/Main Project/TheFirstProject/Flutter/build/file_picker/intermediates/library_manifest/debug/AndroidManifest.xml:13:19-41
 uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
 ADDED from [:awesome_notifications] /home/odc4/Main Project/TheFirstProject/Flutter/build/awesome_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-81
 	android:name

@@ -33,3 +33,19 @@ class AllCoursesErrorState extends CourseStates {
 
   AllCoursesErrorState(this.error);
 }
+
+
+
+class CreateCourseLoadingState extends CourseStates {}
+
+class CreateCourseSuccessState extends CourseStates {
+  final CourseModel courseModel;
+
+  CreateCourseSuccessState(this.courseModel);
+}
+
+class CreateCourseErrorState extends CourseStates {
+  final String error;
+
+  CreateCourseErrorState(this.error);
+}
