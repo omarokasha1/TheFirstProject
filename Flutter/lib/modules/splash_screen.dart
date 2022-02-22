@@ -1,5 +1,6 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:lms/modules/Auther/dashboard/dashboard_auther.dart';
 import 'package:lms/modules/authertication/login/login_screen.dart';
 import 'package:lms/shared/component/zoomDrawer.dart';
 
@@ -13,6 +14,7 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     // get token already saved in cache helper before go to screens
      userToken = CacheHelper.get(key: "token");
+     print(userToken);
      // AnimatedSplashScreen You appear to the user for a while, and after that you go to the next
     return AnimatedSplashScreen(
       splash: const Image(
@@ -23,7 +25,7 @@ class SplashScreen extends StatelessWidget {
       ),
       //if the user already sign in ->go to ZoomDrawerScreen (that contains Drawer Screen  and Home Screen)
       //Or go to LoginScreen
-      nextScreen: userToken == null ? LoginScreen() : ZoomDrawerScreen(),
+      nextScreen: userToken == null ? LoginScreen() : DashboardAuthorScreen(),
       splashTransition: SplashTransition.fadeTransition,
       backgroundColor: Colors.white,
     );

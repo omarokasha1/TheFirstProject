@@ -8,4 +8,4 @@ const changePassword = "api/changePassword";
 const courses = "api/course/allCourses";
 
 const module = "api/course/newContent";
-
+const getModule = "api/course/authorContents";

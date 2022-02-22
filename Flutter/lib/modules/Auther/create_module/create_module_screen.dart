@@ -7,6 +7,7 @@ import 'package:flutter_picker/Picker.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../shared/component/component.dart';
 import '../../../shared/component/constants.dart';
+import '../modules_library/modules_library.dart';
 import 'cubit/cubit.dart';
 import 'cubit/states.dart';
 
@@ -25,9 +26,9 @@ class CreateModuleScreen extends StatelessWidget {
   TextEditingController moduleTypeController = TextEditingController();
 
   var formKey = GlobalKey<FormState>();
-
+  String? filePath;
   String dropdownValue = "City";
-
+  File? file;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -217,15 +218,19 @@ class CreateModuleScreen extends StatelessWidget {
                                             .pickFiles();
 
                                         if (result != null) {
-                                          File file =
+                                        file=
                                               File(result!.files.single.path!);
-                                        } else {}
+                                        filePath=file!.path;
+                                         cubit.uploadFile(file!);
+                                        } else {
+                                          showToast(message: "upload file must be not empty");
+                                        }
                                       },
-                                      child: const Padding(
+                                      child:  Padding(
                                         padding: EdgeInsets.symmetric(
                                             horizontal: 22.0),
                                         child: Text(
-                                          "Upload",
+                                          filePath==null?"Upload":filePath!,
                                           style: TextStyle(fontSize: 20),
                                         ),
                                       )),
@@ -291,7 +296,19 @@ class CreateModuleScreen extends StatelessWidget {
                                   //   showToast(
                                   //       message: "content must be not empty");
                                   // }
-                                  cubit.createNewModule(moduleName: moduleNameController.text, description: shortDescriptionController.text, duration: durationController.text, moduleType: moduleTypeController.text);
+                                  if(filePath!=null)
+                                    {
+                                      print(filePath);
+                                      print(file!.absolute);
+                                      cubit.createNewModule(moduleName: moduleNameController.text, description: shortDescriptionController.text, duration: durationController.text, moduleType: moduleTypeController.text,content:filePath);
+
+                                    //  navigator(context, ModulesLibraryScreen());
+                                    }
+                                  else
+                                    {
+
+                                    }
+
                                 }
                               }),
                         ),

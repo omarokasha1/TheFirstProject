@@ -14,6 +14,33 @@ class CourseCubit extends Cubit<CourseStates> {
 
   List<CourseModel?> coursesModel = [];
 
+  bool hasCourseName = false;
+
+  onCourseNameChanged(String name) {
+    hasCourseName = false;
+    if (name.length > 2) {
+      hasCourseName = true;
+    }
+  }
+  List? myActivities = [];
+  String myActivitiesResult = '';
+
+
+  bool checkedValue = false;
+  void changeActivity(value)
+  {
+    myActivities=value;
+    emit(ChangeActivityState());
+  }
+
+  List<String> items = ['Content', 'Assignment'];
+  String selectedItem = "Content";
+
+  void changeItem(String value)
+  {
+    selectedItem=value;
+    emit(ChangeItemState());
+  }
   void getAllCoursesData() {
     emit(AllCoursesLoadingState());
     DioHelper.getData(url: courses).then((value) {
@@ -43,27 +70,25 @@ class CourseCubit extends Cubit<CourseStates> {
 
   CourseModel? createCourseModel;
 
-  void createNewModule({
-    required String moduleName,
+  void createNewCourse({
+    required String courseName,
     required String description,
-    required String duration,
-    // required File content,
-    required String moduleType,
+    required String requirement,
+    required List<dynamic> content,
+    required String lang,
+    required image,
   }) {
     emit(CreateCourseLoadingState());
     DioHelper.postData(
       data: {
-        'title': moduleName,
+        'title': courseName,
         'description': description,
-        'requiremnets'
-            ''
-            '': duration,
-        // '':content,
-        'contentType': moduleType,
+        'requiremnets': requirement,
+        'language': lang,
+        'imageUrl': image
       },
       url: module,
-      token:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMDBmZjc3MzA0OWY3ZDUyYzM3NWRhMCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0NDY3NDEyOX0.Yf9fhh-y_HDFtmUw4EeCKhr11Xw0bGPvM2q6ehpZyQQ",
+      token: userToken,
     ).then((value) {
       createCourseModel = CourseModel.fromJson(value.data);
       emit(CreateCourseSuccessState(createCourseModel!));

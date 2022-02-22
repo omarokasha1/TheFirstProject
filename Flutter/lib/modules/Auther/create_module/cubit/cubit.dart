@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lms/modules/Auther/create_module/cubit/states.dart';
 
@@ -28,26 +31,41 @@ class CreateModuleCubit extends Cubit<CreateModuleStates> {
     emit(ChangeItemState());
   }
 
+  CreateContent? getModuleModel;
+
+  void getModulesData() {
+    emit(GetNewModuleLoadingState());
+    DioHelper.getData(url: getModule, token: userToken).then((value) {
+      getModuleModel = CreateContent.fromJson(value.data);
+      print(getModuleModel!.status);
+      emit(GetNewModuleSuccssesState(getModuleModel!));
+    }).catchError((error) {
+      emit(GetNewModuleErrorState(error.toString()));
+      print(error.toString());
+    });
+  }
+
   CreateContent? createContentModel;
 
   void createNewModule({
     required String moduleName,
     required String description,
     required String duration,
-   // required File content,
+    required content,
     required String moduleType,
   }) {
     emit(CreateNewModuleLoadingState());
+
     DioHelper.postData(
       data: {
-        'contentTitle':moduleName,
-        'description':description,
-        'contentDuration':duration,
-       // '':content,
-        'contentType':moduleType,
+        'contentTitle': moduleName,
+        'description': description,
+        'contentDuration': duration,
+        'imageUrl': content,
+        'contentType': moduleType,
       },
       url: module,
-      token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMDBmZjc3MzA0OWY3ZDUyYzM3NWRhMCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0NDY3NDEyOX0.Yf9fhh-y_HDFtmUw4EeCKhr11Xw0bGPvM2q6ehpZyQQ",
+      token: userToken,
     ).then((value) {
       createContentModel = CreateContent.fromJson(value.data);
       emit(CreateNewModuleSuccssesState(createContentModel!));
@@ -55,5 +73,16 @@ class CreateModuleCubit extends Cubit<CreateModuleStates> {
       print(onError.toString());
       emit(CreateNewModuleErrorState(onError.toString()));
     });
+  }
+
+  Response? response;
+  FormData? formData;
+  void  uploadFile(File file) async {
+    String fileName = file.path.split('/').last;
+    formData= FormData.fromMap({
+      "file": await MultipartFile.fromFile(file.path, filename: fileName),
+    });
+
+
   }
 }

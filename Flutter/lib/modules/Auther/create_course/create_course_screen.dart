@@ -5,10 +5,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:lms/modules/courses/cubit/cubit.dart';
 import 'package:multiselect_formfield/multiselect_formfield.dart';
 
 import '../../../shared/component/component.dart';
 import '../../../shared/component/constants.dart';
+import '../../courses/cubit/states.dart';
 import 'cubit/cubit.dart';
 import 'cubit/states.dart';
 
@@ -31,11 +33,11 @@ class CreateCourseScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext context) => CreateCourseCubit(),
-      child: BlocConsumer<CreateCourseCubit, CreateCourseStates>(
+      create: (BuildContext context) => CourseCubit(),
+      child: BlocConsumer<CourseCubit, CourseStates>(
         listener: (context, state) {},
         builder: (context, state) {
-          var cubit = CreateCourseCubit.get(context);
+          var cubit = CourseCubit.get(context);
           return Scaffold(
             body: SingleChildScrollView(
               child: Column(
@@ -44,7 +46,10 @@ class CreateCourseScreen extends StatelessWidget {
                   Stack(
                     children: [
                       Container(
-                        height: MediaQuery.of(context).size.height / 10 + 150,
+                        height: MediaQuery
+                            .of(context)
+                            .size
+                            .height / 10 + 150,
                         decoration: const BoxDecoration(
                             color: primaryColor,
                             borderRadius: BorderRadius.only(
@@ -146,14 +151,14 @@ class CreateCourseScreen extends StatelessWidget {
                                   padding: const EdgeInsets.only(left: 40.0),
                                   child: Column(
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    CrossAxisAlignment.start,
                                     children: <Widget>[
                                       const SizedBox(
                                         height: 20,
                                       ),
                                       Padding(
                                         padding:
-                                            const EdgeInsets.only(left: 8.0),
+                                        const EdgeInsets.only(left: 8.0),
                                         child: Text("Modules",
                                             style: TextStyle(
                                                 fontSize: 25,
@@ -166,7 +171,7 @@ class CreateCourseScreen extends StatelessWidget {
                                         name: "Content",
                                         myActivities: cubit.myActivities,
                                         myActivitiesResult:
-                                            cubit.myActivitiesResult,
+                                        cubit.myActivitiesResult,
                                         onSaved: (value) {
                                           if (value == null) return;
                                           // setState(() {
@@ -189,7 +194,7 @@ class CreateCourseScreen extends StatelessWidget {
                                         },
                                         myActivities: cubit.myActivities,
                                         myActivitiesResult:
-                                            cubit.myActivitiesResult,
+                                        cubit.myActivitiesResult,
                                         onSaved: (value) {
                                           if (value == null) return;
                                           // setState(() {
@@ -205,7 +210,7 @@ class CreateCourseScreen extends StatelessWidget {
                                         },
                                         myActivities: cubit.myActivities,
                                         myActivitiesResult:
-                                            cubit.myActivitiesResult,
+                                        cubit.myActivitiesResult,
                                         onSaved: (value) {
                                           if (value == null) return;
                                           // setState(() {
@@ -239,7 +244,7 @@ class CreateCourseScreen extends StatelessWidget {
                                           color: primaryColor,
                                         ),
                                         borderRadius:
-                                            BorderRadius.circular(10.0),
+                                        BorderRadius.circular(10.0),
                                       ),
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(20),
@@ -257,11 +262,11 @@ class CreateCourseScreen extends StatelessWidget {
                                     items: cubit.items
                                         .map<DropdownMenuItem<String>>(
                                             (String value) {
-                                      return DropdownMenuItem<String>(
-                                        value: value,
-                                        child: Text(value),
-                                      );
-                                    }).toList(),
+                                          return DropdownMenuItem<String>(
+                                            value: value,
+                                            child: Text(value),
+                                          );
+                                        }).toList(),
                                   ),
                                 ),
                                 const SizedBox(
@@ -278,8 +283,8 @@ class CreateCourseScreen extends StatelessWidget {
                                   child: TextButton(
                                       onPressed: () async {
                                         final pickedFile =
-                                            await picker.pickImage(
-                                                source: ImageSource.gallery);
+                                        await picker.pickImage(
+                                            source: ImageSource.gallery);
                                         if (pickedFile != null) {
                                           courseImage = File(pickedFile.path);
                                         } else {
@@ -312,7 +317,18 @@ class CreateCourseScreen extends StatelessWidget {
                                   if (courseImage == null) {
                                     showToast(
                                         message:
-                                            "Course Image Must be Not empty");
+                                        "Course Image Must be Not empty");
+                                  }
+                                  else {
+                                    cubit.createNewCourse(
+                                        courseName: courseNameController.text,
+                                        description: shortDescriptionController
+                                            .text,
+                                        requirement: requiermentController.text,
+                                        content:cubit.myActivities!,
+                                        lang:cubit.selectedItem,
+                                        image:courseImage,
+                                    );
                                   }
                                 }
                               }),

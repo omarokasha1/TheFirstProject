@@ -19,3 +19,15 @@ class CreateNewModuleErrorState extends CreateModuleStates {
   final String error;
   CreateNewModuleErrorState(this.error);
 }
+class GetNewModuleLoadingState extends CreateModuleStates {}
+
+class GetNewModuleSuccssesState extends CreateModuleStates {
+
+  final CreateContent createContentModel;
+  GetNewModuleSuccssesState(this.createContentModel);
+}
+
+class GetNewModuleErrorState extends CreateModuleStates {
+  final String error;
+  GetNewModuleErrorState(this.error);
+}

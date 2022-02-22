@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/odc4/Main Project/TheFirstProject/Flutter/build/image_picker/intermediates/incremental/mergeDebugResources/merged.dir/values-vi/values-vi.xml",
+            "outputFile": "/home/odc5/project/Flutter/build/image_picker/intermediates/res/merged/debug/values-vi/values-vi.xml",
             "map": [
                 {
-                    "source": "/home/odc4/.gradle/caches/transforms-2/files-2.1/122df2e57d294d1a53db26bbc3b813c1/core-1.6.0/res/values-vi/values-vi.xml",
+                    "source": "/home/odc5/.gradle/caches/transforms-2/files-2.1/122df2e57d294d1a53db26bbc3b813c1/core-1.6.0/res/values-vi/values-vi.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -16,10 +16,10 @@
             ]
         },
         {
-            "outputFile": "/home/odc4/Main Project/TheFirstProject/Flutter/build/image_picker/intermediates/res/merged/debug/values-vi/values-vi.xml",
+            "outputFile": "/home/odc5/project/Flutter/build/image_picker/intermediates/incremental/mergeDebugResources/merged.dir/values-vi/values-vi.xml",
             "map": [
                 {
-                    "source": "/home/odc4/.gradle/caches/transforms-2/files-2.1/122df2e57d294d1a53db26bbc3b813c1/core-1.6.0/res/values-vi/values-vi.xml",
+                    "source": "/home/odc5/.gradle/caches/transforms-2/files-2.1/122df2e57d294d1a53db26bbc3b813c1/core-1.6.0/res/values-vi/values-vi.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

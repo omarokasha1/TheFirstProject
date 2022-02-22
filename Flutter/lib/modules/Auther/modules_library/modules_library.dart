@@ -1,3 +1,4 @@
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,9 +8,10 @@ import 'package:lms/modules/Auther/create_module/create_module_screen.dart';
 import 'package:lms/shared/component/MyAppBar.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
-import 'modules_library_cubit/cubit.dart';
-import 'modules_library_cubit/status.dart';
 
+import '../../../models/module_model.dart';
+import '../create_module/cubit/cubit.dart';
+import '../create_module/cubit/states.dart';
 class ModulesLibraryScreen extends StatelessWidget {
   ModulesLibraryScreen({Key? key}) : super(key: key);
 
@@ -21,11 +23,11 @@ class ModulesLibraryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ModulesLibraryCubit(),
-      child: BlocConsumer<ModulesLibraryCubit, ModulesLibraryStates>(
+      create: (context) => CreateModuleCubit()..getModulesData(),
+      child: BlocConsumer<CreateModuleCubit, CreateModuleStates>(
         listener: (context, state) {},
         builder: (context, state) {
-          var cubit = ModulesLibraryCubit.get(context);
+          var cubit = CreateModuleCubit.get(context);
           return Layout(
             widget: DefaultTabController(
               length: myTabs.length,
@@ -65,7 +67,7 @@ class ModulesLibraryScreen extends StatelessWidget {
                           labelColor: primaryColor,
                           indicatorColor: primaryColor,
                           unselectedLabelColor: Colors.black,
-                          isScrollable: true,
+                         // isScrollable: true,
                           tabs: myTabs,
                           labelStyle: TextStyle(
                             fontSize: 16.sp,
@@ -77,8 +79,19 @@ class ModulesLibraryScreen extends StatelessWidget {
                           child: TabBarView(
                             physics: BouncingScrollPhysics(),
                             children: [
-                              buildContentTab(),
-                              buildContentTab(),
+                              ConditionalBuilder(
+                                condition: cubit.getModuleModel!=null,
+                                builder: (context)=> buildContentTab(cubit.getModuleModel!.contents!),
+                                fallback: (context)=>Center(child: CircularProgressIndicator(),),
+
+                              ),
+                              ConditionalBuilder(
+                                condition: cubit.getModuleModel!=null,
+                                builder: (context)=> buildContentTab(cubit.getModuleModel!.contents!),
+                                fallback: (context)=>Center(child: CircularProgressIndicator(),),
+
+                              ),
+
                             ],
                           ),
                         ),
@@ -95,7 +108,7 @@ class ModulesLibraryScreen extends StatelessWidget {
   }
 
   //Build ModuleItem
-  Widget buildModuleItem(context) {
+  Widget buildModuleItem(context,index,Contents model) {
     return Container(
       width: double.infinity,
       height: 100.0,
@@ -111,7 +124,8 @@ class ModulesLibraryScreen extends StatelessWidget {
           ),
           Expanded(
             child: Text(
-              "File name asd afew werg  iuejh iujh iuvjh iuwjhuijv iujhuijh iuwhji uhwuivh iuwhu wiuhf uiwh ifuhwiushviu hsdfubifh iuhfbiughr siih iuv iusb bs ",
+            //  "File name asd afew werg  iuejh iujh iuvjh iuwjhuijv iujhuijh iuwhji uhwuivh iuwhu wiuhf uiwh ifuhwiushviu hsdfubifh iuhfbiughr siih iuv iusb bs ",
+              model.contentTitle!,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
@@ -160,15 +174,15 @@ class ModulesLibraryScreen extends StatelessWidget {
     );
   }
 
-  Widget buildContentTab() {
+  Widget buildContentTab(List<Contents> content) {
     return ListView.separated(
       physics: BouncingScrollPhysics(),
-      itemBuilder: (context, index) => buildModuleItem(context),
+      itemBuilder: (context, index) => buildModuleItem(context,index,content[index]),
       separatorBuilder: (context, index) => SizedBox(
         height: 10,
       ),
       shrinkWrap: true,
-      itemCount: 10,
+      itemCount: content.length,
     );
   }
 }

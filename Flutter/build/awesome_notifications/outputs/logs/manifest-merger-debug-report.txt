@@ -1,83 +1,83 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /home/odc4/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:1:1-30:12
-INJECTED from /home/odc4/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:1:1-30:12
-INJECTED from /home/odc4/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:1:1-30:12
+ADDED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:1:1-30:12
+INJECTED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:1:1-30:12
+INJECTED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:1:1-30:12
 	package
-		ADDED from /home/odc4/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:2:3-43
-		INJECTED from /home/odc4/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml
-		INJECTED from /home/odc4/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml
+		ADDED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:2:3-43
+		INJECTED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml
+		INJECTED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml
 	xmlns:android
-		ADDED from /home/odc4/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:1:11-69
+		ADDED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:1:11-69
 uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
-ADDED from /home/odc4/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:4:5-80
+ADDED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:4:5-80
 	android:name
-		ADDED from /home/odc4/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:4:22-78
+		ADDED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:4:22-78
 uses-permission#android.permission.VIBRATE
-ADDED from /home/odc4/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:5:5-65
+ADDED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:5:5-65
 	android:name
-		ADDED from /home/odc4/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:5:22-63
+		ADDED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:5:22-63
 application
-ADDED from /home/odc4/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:7:5-29:19
+ADDED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:7:5-29:19
 receiver#me.carda.awesome_notifications.notifications.broadcastReceivers.DismissedNotificationReceiver
-ADDED from /home/odc4/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:9:9-10:39
+ADDED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:9:9-10:39
 	android:exported
-		ADDED from /home/odc4/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:10:13-37
+		ADDED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:10:13-37
 	android:name
-		ADDED from /home/odc4/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:9:19-97
+		ADDED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:9:19-97
 receiver#me.carda.awesome_notifications.notifications.broadcastReceivers.ScheduledNotificationReceiver
-ADDED from /home/odc4/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:11:9-12:39
+ADDED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:11:9-12:39
 	android:exported
-		ADDED from /home/odc4/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:12:13-37
+		ADDED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:12:13-37
 	android:name
-		ADDED from /home/odc4/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:11:19-97
+		ADDED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:11:19-97
 receiver#me.carda.awesome_notifications.notifications.broadcastReceivers.KeepOnTopActionReceiver
-ADDED from /home/odc4/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:13:9-14:39
+ADDED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:13:9-14:39
 	android:exported
-		ADDED from /home/odc4/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:14:13-37
+		ADDED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:14:13-37
 	android:name
-		ADDED from /home/odc4/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:13:19-91
+		ADDED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:13:19-91
 receiver#me.carda.awesome_notifications.notifications.broadcastReceivers.RefreshSchedulesReceiver
-ADDED from /home/odc4/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:15:9-27:20
+ADDED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:15:9-27:20
 	android:exported
-		ADDED from /home/odc4/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:17:13-37
+		ADDED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:17:13-37
 	android:name
-		ADDED from /home/odc4/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:16:13-86
+		ADDED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:16:13-86
 intent-filter#action:name:android.app.action.SCHEDULE_EXACT_ALARM_PERMISSION_STATE_CHANGED+action:name:android.intent.action.BOOT_COMPLETED+action:name:android.intent.action.LOCKED_BOOT_COMPLETED+action:name:android.intent.action.MY_PACKAGE_REPLACED+action:name:android.intent.action.QUICKBOOT_POWERON+action:name:com.htc.intent.action.QUICKBOOT_POWERON+category:name:android.intent.category.DEFAULT
-ADDED from /home/odc4/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:18:13-26:29
+ADDED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:18:13-26:29
 category#android.intent.category.DEFAULT
-ADDED from /home/odc4/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:19:17-75
+ADDED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:19:17-75
 	android:name
-		ADDED from /home/odc4/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:19:27-73
+		ADDED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:19:27-73
 action#android.intent.action.BOOT_COMPLETED
-ADDED from /home/odc4/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:20:17-78
+ADDED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:20:17-78
 	android:name
-		ADDED from /home/odc4/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:20:25-76
+		ADDED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:20:25-76
 action#android.intent.action.LOCKED_BOOT_COMPLETED
-ADDED from /home/odc4/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:21:17-85
+ADDED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:21:17-85
 	android:name
-		ADDED from /home/odc4/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:21:25-83
+		ADDED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:21:25-83
 action#android.intent.action.MY_PACKAGE_REPLACED
-ADDED from /home/odc4/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:22:17-83
+ADDED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:22:17-83
 	android:name
-		ADDED from /home/odc4/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:22:25-81
+		ADDED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:22:25-81
 action#android.intent.action.QUICKBOOT_POWERON
-ADDED from /home/odc4/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:23:17-81
+ADDED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:23:17-81
 	android:name
-		ADDED from /home/odc4/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:23:25-79
+		ADDED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:23:25-79
 action#com.htc.intent.action.QUICKBOOT_POWERON
-ADDED from /home/odc4/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:24:17-81
+ADDED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:24:17-81
 	android:name
-		ADDED from /home/odc4/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:24:25-79
+		ADDED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:24:25-79
 action#android.app.action.SCHEDULE_EXACT_ALARM_PERMISSION_STATE_CHANGED
-ADDED from /home/odc4/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:25:17-106
+ADDED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:25:17-106
 	android:name
-		ADDED from /home/odc4/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:25:25-104
+		ADDED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml:25:25-104
 uses-sdk
-INJECTED from /home/odc4/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from /home/odc4/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml
-INJECTED from /home/odc4/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml
+INJECTED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml
+INJECTED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from /home/odc4/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml
-		ADDED from /home/odc4/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml
-		INJECTED from /home/odc4/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml
+		INJECTED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml
+		ADDED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml
+		INJECTED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.6.21/android/src/main/AndroidManifest.xml
