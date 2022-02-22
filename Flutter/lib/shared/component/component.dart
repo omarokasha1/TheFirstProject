@@ -34,14 +34,16 @@ Widget defaultButton({
             width: double.infinity,
             height: double.infinity,
             child: Center(
-              child: widget != null ? widget : Text(
-                text,
-                style: TextStyle(
-                  color: color ? Colors.white : primaryColor,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16.sp,
-                ),
-              ),
+              child: widget != null
+                  ? widget
+                  : Text(
+                      text,
+                      style: TextStyle(
+                        color: color ? Colors.white : primaryColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16.sp,
+                      ),
+                    ),
             ),
           ),
         ),
@@ -124,19 +126,23 @@ Widget customTextFormFieldWidget({
   Function? onChanged,
   IconData? prefixIcon,
   bool prefix = false,
+  bool? colorPerfix,
+  TextInputFormatter? textInputFormatter,
+  bool textInput = false,
+  Function? onTab,
 }) {
   return Padding(
-    padding: const EdgeInsets.only(bottom: 20.0),
+    padding: EdgeInsets.only(bottom: 20.0),
     child: TextFormField(
-      onChanged: (value){
-        onChanged!(value);
+      onChanged: (value) {
+        onChanged != null ? onChanged(value) : null;
       },
       controller: controller,
       keyboardType: type,
       decoration: InputDecoration(
         labelText: label,
-        labelStyle: const TextStyle(
-        //  color: primaryColor,
+        labelStyle: TextStyle(
+          color: colorPerfix != null ? primaryColor : null,
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: const BorderSide(
@@ -146,17 +152,23 @@ Widget customTextFormFieldWidget({
         ),
         prefixIcon: prefix
             ? Icon(
-          prefixIcon,
-         // color: Colors.grey,
-          size: 20.h,
-        )
+                prefixIcon,
+                color: colorPerfix != null ? primaryColor : null,
+                size: 20.h,
+              )
             : null,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),
         ),
       ),
+      inputFormatters: <TextInputFormatter>[
+        if (textInput) textInputFormatter!,
+      ],
       validator: (value) {
         return validate(value);
+      },
+      onTap: () {
+        onTab != null ? onTab() : null;
       },
     ),
   );

@@ -95,7 +95,7 @@ class RegisterCubit extends Cubit<RegisterStates> {
   onPhoneChange(String phone) {
 
     hasPhonedNumber = false;
-    if (phone.length > 11) {
+    if (phone.length >= 11) {
         hasPhonedNumber = true;
     }
   }

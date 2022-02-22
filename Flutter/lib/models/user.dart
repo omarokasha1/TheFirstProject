@@ -46,19 +46,19 @@ class Profile {
         this.bio});
 
   Profile.fromJson(Map<String, dynamic> json) {
-    sId = json['_id'];
-    userName = json['userName'];
-    email = json['email'];
-    phone = json['phone'];
-    birthDay = json['birthDay'];
-    city = json['city'];
-    country = json['country'];
-    gender = json['gender'];
-    imageUrl = json['imageUrl'];
+    sId = json['_id'] ?? '';
+    userName = json['userName'] ?? '';
+    email = json['email'] ?? '';
+    phone = json['phone'] ?? '';
+    birthDay = json['birthDay'] ?? '';
+    city = json['city'] ?? '';
+    country = json['country'] ?? '';
+    gender = json['gender'] ?? 'Male';
+    imageUrl = json['imageUrl'] ?? '';
     userEducation = json['userEducation'] != null
         ? new UserEducation.fromJson(json['userEducation'])
-        : null;
-    bio = json['bio'];
+        : UserEducation();
+    bio = json['bio'] ?? '';
   }
 
   Map<String, dynamic> toJson() {
@@ -87,7 +87,7 @@ class UserEducation {
   String? faculty;
   String? grade;
   String? experince;
-  List<String>? interest;
+  List<String>? interest = [];
 
   UserEducation(
       {this.university,
@@ -98,12 +98,12 @@ class UserEducation {
         this.interest});
 
   UserEducation.fromJson(Map<String, dynamic> json) {
-    university = json['university'];
-    major = json['major'];
-    faculty = json['faculty'];
-    grade = json['grade'];
-    experince = json['experince'];
-    interest = json['interest'].cast<String>();
+    university = json['university'] ?? '';
+    major = json['major'] ?? '';
+    faculty = json['faculty'] ?? '';
+    grade = json['grade'] ?? '';
+    experince = json['experince'] ?? '';
+    interest = json['interest'].cast<String>() ?? '';
   }
 
   Map<String, dynamic> toJson() {

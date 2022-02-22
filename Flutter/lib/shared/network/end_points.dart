@@ -4,4 +4,4 @@ const register = "api/register";
 const profile = "api/profile";
 const updateProfile = "api/profile/update";
 const changePassword = "api/changePassword";
-const courses = "api/course";
+const courses = "api/course/allCourses";

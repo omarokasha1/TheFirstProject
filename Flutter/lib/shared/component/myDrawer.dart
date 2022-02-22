@@ -6,6 +6,7 @@ import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:lms/modules/Auther/author_courses/author_courses_screen.dart';
 import 'package:lms/modules/Auther/author_profile/author_profile_cubit/cubit.dart';
 import 'package:lms/modules/Auther/author_profile/author_profile_screen.dart';
+import 'package:lms/modules/Auther/modules_library/modules_library.dart';
 import 'package:lms/modules/authertication/change%20password/change_password_screen.dart';
 import 'package:lms/modules/authertication/login/login_screen.dart';
 import 'package:lms/modules/my_learning/mylearning.dart';
@@ -135,7 +136,9 @@ class MyDrawer extends StatelessWidget {
                         color: iconColorDrawer,
                         size: 25,
                       ),
-                      onTap: () {},
+                      onTap: () {
+                        navigator(context, ZoomDrawerScreen(widget: ModulesLibraryScreen(),));
+                      },
                     ),
                     ListTile(
                       title: const Text(

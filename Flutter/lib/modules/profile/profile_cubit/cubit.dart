@@ -20,12 +20,12 @@ class ProfileCubit extends Cubit<ProfileStates> {
 
   void addInterestedItem(String value){
     interestedItems.add(value);
-    emit(AddInterestedItem());
+    emit(AddInterestedItemState());
   }
 
   void deleteInterestedItem(int index){
     interestedItems.removeAt(index);
-    emit(DeleteInterestedItem());
+    emit(DeleteInterestedItemState());
   }
 
   void getUserProfile() {
@@ -86,5 +86,13 @@ class ProfileCubit extends Cubit<ProfileStates> {
       print(onError.toString());
       emit(UpdadteProfileErrorState(onError.toString()));
     });
+  }
+
+  List<String> gradeItems = ['Excellent', 'Very Good', 'Good', 'Satisfy', 'Pass', 'GPA',];
+  String? selectedItemGrade;
+  
+  void changeSelectedItemGrade (String value){
+    selectedItemGrade = value;
+    emit(ChangeSelectedItemGradeState());
   }
 }

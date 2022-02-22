@@ -22,13 +22,13 @@ class ProfileScreen extends StatelessWidget {
   File? profileImage;
   var picker = ImagePicker();
   var formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ProfileCubit, ProfileStates>(
       listener: (context, state) {},
       builder: (context, state) {
         var cubit = ProfileCubit.get(context);
-
         return Layout(
           widget: Scaffold(
             backgroundColor: primaryColor,
@@ -41,10 +41,11 @@ class ProfileScreen extends StatelessWidget {
                 ),
                 onPressed: () {
                   navigatorAndRemove(
-                      context,
-                      ZoomDrawerScreen(
-                        widget: HomePage(),
-                      ));
+                    context,
+                    ZoomDrawerScreen(
+                      widget: HomePage(),
+                    ),
+                  );
                 },
               ),
             ),
@@ -135,46 +136,46 @@ class ProfileScreen extends StatelessWidget {
                             context: context,
                             animType: AnimType.SCALE,
                             dialogType: DialogType.QUESTION,
-                            body:  Center(child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Form(
-                                key:formKey ,
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      'Are you sure want be become a Author ?',
-                                      style: TextStyle(fontStyle: FontStyle.italic),
-                                    ),
-                                    SizedBox(height: 30,),
-                                    Container(
-                                      height: 40,
-                                      child: defaultButton(
+                            body: Center(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Form(
+                                  key: formKey,
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        'Are you sure want be become a Author ?',
+                                        style: TextStyle(
+                                            fontStyle: FontStyle.italic),
+                                      ),
+                                      SizedBox(
+                                        height: 30,
+                                      ),
+                                      Container(
+                                        height: 40,
+                                        child: defaultButton(
                                           text: 'OK',
                                           onPressed: () {
                                             Navigator.pop(context);
-                                          }),
-                                    ),
-
-                                  ],
+                                          },
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ),),
+                            ),
                             title: 'This is Ignored',
-                            desc:   'This is also Ignored',
-                         //   btnOkOnPress: () {},
-
+                            desc: 'This is also Ignored',
+                            //   btnOkOnPress: () {},
                           ).show();
                         },
                         child: Text(
                           "Become an Author",
-
-
-
                           style: TextStyle(
                             fontSize: 16.0,
                             color: Colors.grey[300],
                             decoration: TextDecoration.underline,
-
                           ),
                         ),
                       ),
