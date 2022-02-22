@@ -25,7 +25,7 @@ class EditProfileScreen extends StatelessWidget {
 
   var bioController = TextEditingController();
   var phoneController = TextEditingController();
-
+bool check =true;
   //var genderController = TextEditingController();
   var cityController = TextEditingController();
   var countryController = TextEditingController();
@@ -88,6 +88,7 @@ class EditProfileScreen extends StatelessWidget {
                   phoneController.text = cubit.model!.profile!.phone!;
                   //genderController.text = cubit.model!.profile!.gender!;
                   selectedItem = cubit.model!.profile!.gender!;
+                  //print(selectedItem);
                   cityController.text = cubit.model!.profile!.city!;
                   countryController.text = cubit.model!.profile!.country!;
                   birthdayController.text = cubit.model!.profile!.birthDay!;
@@ -97,19 +98,31 @@ class EditProfileScreen extends StatelessWidget {
                       cubit.model!.profile!.userEducation!.university!;
                   majorController.text =
                       cubit.model!.profile!.userEducation!.major!;
-                  gradeController.text =
-                      cubit.model!.profile!.userEducation!.grade!;
+                  for(int i=0;i<cubit.gradeItems.length&&check;i++)
+                    {
+                      if(cubit.model!.profile!.userEducation!.grade! == cubit.gradeItems[i]){
+                        cubit.selectedItemGrade = cubit.model!.profile!.userEducation!.grade!;
+                        check=false;
+                        break;
+                      }
+                    }
+                  if(cubit.selectedItemGrade == null && check){
+                    cubit.changeSelectedItemGrade('GPA');
+                    gradeController.text =
+                    cubit.model!.profile!.userEducation!.grade!;
+                    check=false;
+                  }
                   experienceController.text =
                       cubit.model!.profile!.userEducation!.experince!;
-                  interestedController.text =
-                      cubit.model!.profile!.userEducation!.interest!.join(" ");
-                  cubit.interestedItems = cubit.model!.profile!.userEducation!.interest;
+                  //interestedController.text = cubit.model!.profile!.userEducation!.interest!.join(" ");
+                  cubit.interestedItems =
+                      cubit.model!.profile!.userEducation!.interest;
                   return Column(
                     children: [
                       CircleAvatar(
                         radius: 45.0,
                         backgroundImage: CachedNetworkImageProvider(
-                          '${imageUrl}${cubit.model!.profile!.imageUrl}',
+                          '${cubit.model!.profile!.imageUrl}',
                         ),
                         child: Align(
                           alignment: AlignmentDirectional.bottomEnd,
@@ -134,6 +147,8 @@ class EditProfileScreen extends StatelessWidget {
                                     print('no image selected');
                                   }
                                   //image = await _picker.pickImage(source: ImageSource.gallery);
+                                  print(
+                                      'hereeeeee ${profileImage!.uri.toString()}');
                                   print(
                                       "Piiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiic");
                                 },
@@ -172,7 +187,7 @@ class EditProfileScreen extends StatelessWidget {
                           width: double.infinity,
                           decoration: const BoxDecoration(
                             borderRadius: const BorderRadius.vertical(
-                              top: Radius.circular(50.0),
+                              top: Radius.circular(25.0),
                             ),
                             color: Colors.white,
                           ),
@@ -215,7 +230,7 @@ class EditProfileScreen extends StatelessWidget {
                                       university: universityController.text,
                                       major: majorController.text,
                                       faculty: facultyController.text,
-                                      grade: gradeController.text,
+                                      grade: cubit.selectedItemGrade == 'GPA' ? gradeController.text : cubit.selectedItemGrade,
                                       experience: experienceController.text,
                                       // interest:
                                       //     interestedController.text.split(" "),
@@ -236,7 +251,7 @@ class EditProfileScreen extends StatelessWidget {
                   );
                 },
                 fallback: (context) => const Center(
-                  child:  CircularProgressIndicator(),
+                  child: CircularProgressIndicator(),
                 ),
               ),
             ),
@@ -254,76 +269,35 @@ class EditProfileScreen extends StatelessWidget {
         const SizedBox(
           height: 10.0,
         ),
-        TextFormField(
+        customTextFormFieldWidget(
+          colorPerfix: true,
+          label: 'Bio',
           controller: bioController,
-          keyboardType: TextInputType.text,
-          cursorColor: primaryColor,
-          decoration: InputDecoration(
-            labelText: 'Bio',
-            labelStyle: const TextStyle(
-              color: primaryColor,
-            ),
-            focusColor: primaryColor,
-            focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide(
-                color: primaryColor,
-                width: 2.0,
-              ),
-            ),
-            prefixIcon: const Icon(
-              Icons.perm_device_information_outlined,
-              color: primaryColor,
-            ),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-          ),
-          validator: (value) {
+          prefixIcon: Icons.perm_device_information_outlined,
+          type: TextInputType.text,
+          prefix: true,
+          validate: (value) {
             if (value!.isEmpty) {
               return "Please, Enter your Bio";
             }
             return null;
           },
         ),
-        const SizedBox(
-          height: 10.0,
-        ),
-        TextFormField(
+        customTextFormFieldWidget(
+          colorPerfix: true,
+          label: 'Phone',
           controller: phoneController,
-          keyboardType: TextInputType.number,
-          cursorColor: primaryColor,
-          decoration: InputDecoration(
-            labelText: 'Phone',
-            labelStyle: const TextStyle(
-              color: primaryColor,
-            ),
-            focusColor: primaryColor,
-            focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide(
-                color: primaryColor,
-                width: 2.0,
-              ),
-            ),
-            prefixIcon: const Icon(
-              Icons.phone,
-              color: primaryColor,
-            ),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-          ),
-          inputFormatters: [
-            LengthLimitingTextInputFormatter(11),
-          ],
-          validator: (value) {
+          prefixIcon: Icons.perm_device_information_outlined,
+          type: TextInputType.number,
+          prefix: true,
+          validate: (value) {
             if (value!.isEmpty) {
               return "Please, Enter your Phone";
             }
             return null;
           },
-        ),
-        const SizedBox(
-          height: 10.0,
+          textInput: true,
+          textInputFormatter: LengthLimitingTextInputFormatter(11),
         ),
         SizedBox(
           width: double.infinity,
@@ -362,159 +336,65 @@ class EditProfileScreen extends StatelessWidget {
             }).toList(),
           ),
         ),
-        const SizedBox(
-          height: 10.0,
+        SizedBox(
+          height: 20,
         ),
-        // TextFormField(
-        //   controller: genderController,
-        //   keyboardType: TextInputType.text,
-        //   cursorColor: primaryColor,
-        //   decoration: InputDecoration(
-        //     labelText: 'Gender',
-        //     labelStyle: TextStyle(
-        //       color: primaryColor,
-        //     ),
-        //     focusColor: primaryColor,
-        //     focusedBorder: OutlineInputBorder(
-        //       borderSide: BorderSide(
-        //         color: primaryColor,
-        //         width: 2.0,
-        //       ),
-        //     ),
-        //     prefixIcon: Icon(
-        //       Icons.person,
-        //       color: primaryColor,
-        //     ),
-        //     border: OutlineInputBorder(
-        //       borderRadius: BorderRadius.circular(10.0),
-        //     ),
-        //   ),
-        //   validator: (value) {
-        //     if (value!.isEmpty) {
-        //       return "Please, Enter your Gender";
-        //     }
-        //     return null;
-        //   },
-        // ),
-        // SizedBox(
-        //   height: 10.0,
-        // ),
-        TextFormField(
+        customTextFormFieldWidget(
+          colorPerfix: true,
+          label: 'City',
           controller: cityController,
-          keyboardType: TextInputType.text,
-          cursorColor: primaryColor,
-          decoration: InputDecoration(
-            labelText: 'City',
-            labelStyle: const TextStyle(
-              color: primaryColor,
-            ),
-            focusColor: primaryColor,
-            focusedBorder: const OutlineInputBorder(
-              borderSide: const BorderSide(
-                color: primaryColor,
-                width: 2.0,
-              ),
-            ),
-            prefixIcon: const Icon(
-              Icons.location_city_outlined,
-              color: primaryColor,
-            ),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-          ),
-          validator: (value) {
+          prefixIcon: Icons.location_city_outlined,
+          type: TextInputType.text,
+          prefix: true,
+          validate: (value) {
             if (value!.isEmpty) {
               return "Please, Enter your City";
             }
             return null;
           },
         ),
-        const SizedBox(
-          height: 10.0,
-        ),
-        TextFormField(
+        customTextFormFieldWidget(
+          colorPerfix: true,
+          label: 'Country',
           controller: countryController,
-          keyboardType: TextInputType.text,
-          cursorColor: primaryColor,
-          decoration: InputDecoration(
-            labelText: 'Country',
-            labelStyle: const TextStyle(
-              color: primaryColor,
-            ),
-            focusColor: primaryColor,
-            focusedBorder: const OutlineInputBorder(
-              borderSide: const BorderSide(
-                color: primaryColor,
-                width: 2.0,
-              ),
-            ),
-            prefixIcon: const Icon(
-              Icons.account_balance_rounded,
-              color: primaryColor,
-            ),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-          ),
-          validator: (value) {
+          prefixIcon: Icons.account_balance_rounded,
+          type: TextInputType.text,
+          prefix: true,
+          validate: (value) {
             if (value!.isEmpty) {
               return "Please, Enter your Country";
             }
             return null;
           },
         ),
-        const SizedBox(
-          height: 10.0,
-        ),
-        TextFormField(
+        customTextFormFieldWidget(
+          colorPerfix: true,
+          label: 'Birthday',
           controller: birthdayController,
-          keyboardType: TextInputType.none,
-          cursorColor: primaryColor,
-          decoration: InputDecoration(
-            labelText: 'Birthday',
-            labelStyle: const TextStyle(
-              color: primaryColor,
-            ),
-            focusColor: primaryColor,
-            focusedBorder: const OutlineInputBorder(
-              borderSide: const BorderSide(
-                color: primaryColor,
-                width: 2.0,
-              ),
-            ),
-            prefixIcon: const Icon(
-              Icons.today_rounded,
-              color: primaryColor,
-            ),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-          ),
-          validator: (value) {
+          prefixIcon: Icons.account_balance_rounded,
+          type: TextInputType.none,
+          prefix: true,
+          validate: (value) {
             if (value!.isEmpty) {
               return "Please, Enter your Birthday";
             }
             return null;
           },
-          onTap: () {
+          onTab: () {
             showDatePicker(
                     context: context,
                     initialDate:
-                        DateTime.parse('${DateTime.now().year - 10}-01-01'),
+                        DateTime.parse('${DateTime.now().year - 10}-12-01'),
                     firstDate:
-                        DateTime.parse('${DateTime.now().year - 70}-01-01'),
+                        DateTime.parse('${DateTime.now().year - 50}-01-01'),
                     lastDate:
-                        DateTime.parse('${DateTime.now().year - 10}-01-01'))
+                        DateTime.parse('${DateTime.now().year - 10}-31-12'))
                 .then(
               (value) {
                 birthdayController.text = DateFormat.yMMMd().format(value!);
               },
             );
           },
-        ),
-        const SizedBox(
-          height: 10.0,
         ),
       ],
     );
@@ -527,213 +407,123 @@ class EditProfileScreen extends StatelessWidget {
         const SizedBox(
           height: 10.0,
         ),
-        TextFormField(
+        customTextFormFieldWidget(
+          colorPerfix: true,
+          label: 'Faculty',
           controller: facultyController,
-          keyboardType: TextInputType.text,
-          cursorColor: primaryColor,
-          decoration: InputDecoration(
-            labelText: 'Faculty',
-            labelStyle: const TextStyle(
-              color: primaryColor,
-            ),
-            focusColor: primaryColor,
-            focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide(
-                color: primaryColor,
-                width: 2.0,
-              ),
-            ),
-            prefixIcon: const Icon(
-              Icons.art_track_rounded,
-              color: primaryColor,
-            ),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-          ),
-          validator: (value) {
+          prefixIcon: Icons.art_track_rounded,
+          type: TextInputType.text,
+          prefix: true,
+          validate: (value) {
             if (value!.isEmpty) {
               return "Please, Enter your Faculty";
             }
             return null;
           },
         ),
-        const SizedBox(
-          height: 10.0,
-        ),
-        TextFormField(
+        customTextFormFieldWidget(
+          colorPerfix: true,
+          label: 'University',
           controller: universityController,
-          keyboardType: TextInputType.text,
-          cursorColor: primaryColor,
-          decoration: InputDecoration(
-            labelText: 'University',
-            labelStyle: const TextStyle(
-              color: primaryColor,
-            ),
-            focusColor: primaryColor,
-            focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide(
-                color: primaryColor,
-                width: 2.0,
-              ),
-            ),
-            prefixIcon: const Icon(
-              Icons.account_balance_rounded,
-              color: primaryColor,
-            ),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-          ),
-          validator: (value) {
+          prefixIcon: Icons.account_balance_rounded,
+          type: TextInputType.text,
+          prefix: true,
+          validate: (value) {
             if (value!.isEmpty) {
               return "Please, Enter your University";
             }
             return null;
           },
         ),
-        const SizedBox(
-          height: 10.0,
-        ),
-        TextFormField(
+        customTextFormFieldWidget(
+          colorPerfix: true,
+          label: 'Major',
           controller: majorController,
-          keyboardType: TextInputType.text,
-          cursorColor: primaryColor,
-          decoration: InputDecoration(
-            labelText: 'Major',
-            labelStyle: const TextStyle(
-              color: primaryColor,
-            ),
-            focusColor: primaryColor,
-            focusedBorder: const OutlineInputBorder(
-              borderSide: const BorderSide(
-                color: primaryColor,
-                width: 2.0,
-              ),
-            ),
-            prefixIcon: const Icon(
-              Icons.wysiwyg_rounded,
-              color: primaryColor,
-            ),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-          ),
-          validator: (value) {
+          prefixIcon: Icons.wysiwyg_rounded,
+          type: TextInputType.text,
+          prefix: true,
+          validate: (value) {
             if (value!.isEmpty) {
               return "Please, Enter your Major";
             }
             return null;
           },
         ),
-        const SizedBox(
-          height: 10.0,
-        ),
-        TextFormField(
-          controller: gradeController,
-          keyboardType: TextInputType.number,
-          // inputFormatters: <TextInputFormatter>[
-          //   FilteringTextInputFormatter.allow(RegExp('[[1-9].[0-9][0-9]]')),
-          // ],
-          cursorColor: primaryColor,
-          decoration: InputDecoration(
-            labelText: 'Grade',
-            labelStyle: const TextStyle(
-              color: primaryColor,
-            ),
-            focusColor: primaryColor,
-            focusedBorder: const OutlineInputBorder(
-              borderSide: const BorderSide(
+        SizedBox(
+          width: double.infinity,
+          child: DropdownButtonFormField<String>(
+            decoration: InputDecoration(
+              labelText: 'Grade',
+              labelStyle: const TextStyle(
                 color: primaryColor,
-                width: 2.0,
+              ),
+              focusColor: primaryColor,
+              focusedBorder: const OutlineInputBorder(
+                borderSide: const BorderSide(
+                  color: primaryColor,
+                  width: 2.0,
+                ),
+              ),
+              prefixIcon: const Icon(
+                Icons.grade_rounded,
+                color: primaryColor,
+              ),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10.0),
               ),
             ),
-            prefixIcon: const Icon(
-              Icons.grade_rounded,
-              color: primaryColor,
-            ),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-            ),
+            value: cubit.selectedItemGrade,
+            elevation: 16,
+            onChanged: (newValue) {
+              cubit.changeSelectedItemGrade(newValue!);
+              print('Grade change ${cubit.selectedItemGrade}');
+            },
+            itemHeight: 50,
+            items: cubit.gradeItems.map<DropdownMenuItem<String>>((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Text(value),
+              );
+            }).toList(),
           ),
-          validator: (value) {
+        ),
+        SizedBox(height: 20,),
+        cubit.selectedItemGrade != null && cubit.selectedItemGrade == 'GPA'?
+        customTextFormFieldWidget(
+          colorPerfix: true,
+          label: 'GPA',
+          controller: gradeController,
+          prefixIcon: Icons.grade_rounded,
+          type: TextInputType.number,
+          prefix: true,
+          validate: (value) {
             if (value!.isEmpty) {
-              return "Please, Enter your Grade";
+              return "Please, Enter your GPA";
             }
             return null;
           },
-        ),
+          textInput: true,
+          textInputFormatter: FilteringTextInputFormatter.allow(
+            RegExp(r'^[1-4]|\.(\d?\d?)'),
+          ),
+        ) : Container(),
         const SizedBox(
           height: 10.0,
         ),
-        TextFormField(
+        customTextFormFieldWidget(
+          colorPerfix: true,
+          label: 'Experience',
           controller: experienceController,
-          keyboardType: TextInputType.text,
-          cursorColor: primaryColor,
-          decoration: InputDecoration(
-            labelText: 'Experience',
-            labelStyle: const TextStyle(
-              color: primaryColor,
-            ),
-            focusColor: primaryColor,
-            focusedBorder: const OutlineInputBorder(
-              borderSide: const BorderSide(
-                color: primaryColor,
-                width: 2.0,
-              ),
-            ),
-            prefixIcon: const Icon(
-              Icons.work_outline_rounded,
-              color: primaryColor,
-            ),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-          ),
-          validator: (value) {
+          prefixIcon: Icons.work_outline_rounded,
+          type: TextInputType.text,
+          prefix: true,
+          validate: (value) {
             if (value!.isEmpty) {
               return "Please, Enter your Experience";
             }
             return null;
           },
         ),
-        const SizedBox(
-          height: 10.0,
-        ),
-        // TextFormField(
-        //   controller: interestedController,
-        //   keyboardType: TextInputType.text,
-        //   cursorColor: primaryColor,
-        //   decoration: InputDecoration(
-        //     labelText: 'interested',
-        //     labelStyle: TextStyle(
-        //       color: primaryColor,
-        //     ),
-        //     focusColor: primaryColor,
-        //     focusedBorder: OutlineInputBorder(
-        //       borderSide: BorderSide(
-        //         color: primaryColor,
-        //         width: 2.0,
-        //       ),
-        //     ),
-        //     prefixIcon: Icon(
-        //       Icons.import_contacts_rounded,
-        //       color: primaryColor,
-        //     ),
-        //     border: OutlineInputBorder(
-        //       borderRadius: BorderRadius.circular(10.0),
-        //     ),
-        //   ),
-        //   validator: (value) {
-        //     if (value!.isEmpty) {
-        //       return "Please, Enter your interested";
-        //     }
-        //     return null;
-        //   },
-        // ),
-        // SizedBox(
-        //   height: 10.0,
-        // ),
         TagEditor(
           length: cubit.interestedItems.length,
           delimiters: [',', ' '],
@@ -759,6 +549,7 @@ class EditProfileScreen extends StatelessWidget {
     );
   }
 }
+
 class _Chip extends StatelessWidget {
   const _Chip({
     required this.label,

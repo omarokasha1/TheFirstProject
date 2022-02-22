@@ -24,7 +24,7 @@ class SplashScreen extends StatelessWidget {
       //if the user already sign in ->go to ZoomDrawerScreen (that contains Drawer Screen  and Home Screen)
       //Or go to LoginScreen
       nextScreen: userToken == null ? LoginScreen() : ZoomDrawerScreen(),
-      splashTransition: SplashTransition.rotationTransition,
+      splashTransition: SplashTransition.fadeTransition,
       backgroundColor: Colors.white,
     );
   }

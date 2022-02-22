@@ -117,8 +117,15 @@ class ChangePasswordScreen extends StatelessWidget {
                                     controller: currentPasswordController,
                                    // error: "Password Must Be Not Empty",
                                     validate:(value){
-                                      if (value!.isEmpty || !cubit.hasEmailValid) {
-                                        return 'Email Must Be Not Empty ';
+                                      cubit.onPasswordChanged(value!);
+                                      if (value.isEmpty) {
+                                        return 'Password Must Be Not Empty';
+                                      }
+                                      else if(!cubit.hasPasswordNumber){
+                                        return 'Please, Enter A valid Password';
+                                      }
+                                      else if(!cubit.isPasswordCharacters){
+                                        return 'please, Enter a 8 characters';
                                       }
                                       return null;
                                     },
@@ -134,11 +141,22 @@ class ChangePasswordScreen extends StatelessWidget {
                                     },
                                   ),
                                   customTextFormFieldAuth(
+                                    onChanged: (password)
+                                    {
+                                      cubit.onPasswordChanged(password);
+                                    },
                                     controller: passwordController,
                                     //error: "Password Must Be Not Empty",
                                     validate: (value) {
-                                      if (value!.isEmpty || !cubit.hasPasswordNumber || !cubit.isPasswordCharacters) {
+                                      cubit.onPasswordChanged(value!);
+                                      if (value.isEmpty) {
                                         return 'Password Must Be Not Empty';
+                                      }
+                                      else if(!cubit.hasPasswordNumber){
+                                        return 'Please, Enter A valid Password';
+                                      }
+                                      else if(!cubit.isPasswordCharacters){
+                                        return 'please, Enter a 8 characters';
                                       }
                                       return null;
                                     },
@@ -154,11 +172,22 @@ class ChangePasswordScreen extends StatelessWidget {
                                     },
                                   ),
                                   customTextFormFieldAuth(
+                                    onChanged: (password)
+                                    {
+                                      cubit.onPasswordChanged(password);
+                                    },
                                     controller: confirmPassController,
                                     //error: "Confirm Password Must Not Be Empty",
                                     validate: (value) {
-                                      if (value!.isEmpty || !cubit.hasPasswordNumber || !cubit.isPasswordCharacters) {
+                                      cubit.onPasswordChanged(value!);
+                                      if (value.isEmpty) {
                                         return 'Password Must Be Not Empty';
+                                      }
+                                      else if(!cubit.hasPasswordNumber){
+                                        return 'Please, Enter A valid Password';
+                                      }
+                                      else if(!cubit.isPasswordCharacters){
+                                        return 'please, Enter a 8 characters';
                                       }
                                       return null;
                                     },
@@ -196,7 +225,7 @@ class ChangePasswordScreen extends StatelessWidget {
                                   }
                                 }
                               },
-                              text: "Chane Password"),
+                              text: "Change Password"),
                           SizedBox(
                             height: 5.h,
                           ),

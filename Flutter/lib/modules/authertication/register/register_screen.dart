@@ -175,6 +175,25 @@ class RegisterScreen extends StatelessWidget {
                                   type: TextInputType.emailAddress,
                                 ),
                                 customTextFormFieldAuth(
+                                  onChanged: (phone){
+                                    cubit.onPhoneChange(phone);
+                                  },
+                                  controller: phoneController,
+                                  // error: "Phone Must Be Not Empty",
+                                  validate: (value) {
+                                    if (value!.isEmpty ) {
+                                      return 'Phone Must Be Not Empty';
+                                    }else if(!cubit.hasPhonedNumber)
+                                    {
+                                      return 'phone number lass then 11';
+                                    }
+                                    return null;
+                                  },
+                                  label: "Enter your Phone",
+                                  type: TextInputType.phone,
+                                  // maxDigit: 11,
+                                ),
+                                customTextFormFieldAuth(
                                   onChanged: (password)
                                   {
                                     cubit.onPasswordChanged(password);
@@ -231,25 +250,6 @@ class RegisterScreen extends StatelessWidget {
                                   onPressed: () {
                                     cubit.changeConfirmEye();
                                   },
-                                ),
-                                customTextFormFieldAuth(
-                                  onChanged: (phone){
-                                   cubit.onPhoneChange(phone);
-                                  },
-                                  controller: phoneController,
-                                 // error: "Phone Must Be Not Empty",
-                                  validate: (value) {
-                                    if (value!.isEmpty ) {
-                                      return 'Phone Must Be Not Empty';
-                                    }else if(!cubit.hasPhonedNumber)
-                                    {
-                                      return 'phone number lass then 11';
-                                    }
-                                    return null;
-                                  },
-                                  label: "Enter your Phone",
-                                  type: TextInputType.phone,
-                                 // maxDigit: 11,
                                 ),
                                 SizedBox(
                                   height: 15.h,

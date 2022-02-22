@@ -1,17 +1,10 @@
 {
     "logs": [
         {
-<<<<<<< HEAD
-            "outputFile": "/home/odc5/project/Flutter/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-night-v8/values-night-v8.xml",
+            "outputFile": "/home/odc4/Main Project/TheFirstProject/Flutter/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-night-v8/values-night-v8.xml",
             "map": [
                 {
-                    "source": "/home/odc5/project/Flutter/android/app/src/main/res/values-night/styles.xml",
-=======
-            "outputFile": "/home/odc6/ODC/TheFirstProject/Flutter/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-night-v8/values-night-v8.xml",
-            "map": [
-                {
-                    "source": "/home/odc6/ODC/TheFirstProject/Flutter/android/app/src/main/res/values-night/styles.xml",
->>>>>>> main
+                    "source": "/home/odc4/Main Project/TheFirstProject/Flutter/android/app/src/main/res/values-night/styles.xml",
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",
