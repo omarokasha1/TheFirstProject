@@ -8,16 +8,12 @@ import '../../../models/Questions.dart';
 import '../../../shared/component/component.dart';
 import 'cubit/cubit.dart';
 
-class CreateQuizScreen extends StatefulWidget {
+class CreateQuizScreen extends StatelessWidget {
   final String quizName;
 
   CreateQuizScreen(this.quizName, {Key? key}) : super(key: key);
 
-  @override
-  State<CreateQuizScreen> createState() => _CreateQuizScreenState();
-}
 
-class _CreateQuizScreenState extends State<CreateQuizScreen> {
   var scaffoldKey = GlobalKey<ScaffoldState>();
 
   var formKey = GlobalKey<FormState>();
@@ -39,7 +35,9 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
             var cubit = QuizCubit.get(context);
 
             return Scaffold(
-              appBar: AppBar(),
+              appBar: AppBar(
+                title: Text(quizName,style: const TextStyle(color: primaryColor,fontSize: 25),),
+              ),
               key: scaffoldKey,
               floatingActionButton: FloatingActionButton(
                 onPressed: () {
@@ -170,9 +168,7 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
                           cubit.changeCurrentIndex(false);
                         });
                   }
-                  cubit.val != -1
-                      ? cubit.changeCurrentIndex(!(cubit.clickFloat))
-                      : null;
+                 cubit.changeCurrentIndex(!(cubit.clickFloat));
                 },
                 child: Icon(
                   Icons.add,

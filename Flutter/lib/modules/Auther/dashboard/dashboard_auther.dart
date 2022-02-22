@@ -80,10 +80,19 @@ class DashboardAuthorScreen extends StatelessWidget {
                               child: defaultButton(
                                   text: 'OK',
                                   onPressed: () {
-                                  if(formKey.currentState!.validate())
-                                    {
-
-                                      navigator(context, CreateQuizScreen(quizController.text));
+                                    if (formKey.currentState!.validate()) {
+                                      Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      CreateQuizScreen(
+                                                          quizController.text)))
+                                          .then(
+                                        (value) {
+                                          quizController.text = "";
+                                          Navigator.pop(context);
+                                        },
+                                      );
                                     }
                                   }),
                             ),
