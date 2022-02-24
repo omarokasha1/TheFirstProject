@@ -6,13 +6,13 @@ const textColorDrawer = Colors.white;
 const iconColorDrawer = Colors.white;
 const shadowColor = Color.fromRGBO(143, 148, 251, .2);
 String? userToken;
-
+const String token= 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMTRiOTRhZDgzMmIwNTQ5YjQzNjI2NCIsImlzQWRtaW4iOiJ0cnVlIiwiaXNBdXRob3IiOiJ0cnVlIiwiaWF0IjoxNjQ1NTQ1NzIxfQ.FjVmQalGobRUTx_-bhmvzrVNDHFq3AHw8XYfaVoS3kI';
 LinearGradient gradientColor({required Color one, required Color two}) {
   return LinearGradient(
     colors: [one, two],
   );
 }
-
+bool  userAuthor=!true;
 const gray = Color(0xfffafafa);
 
 const grayText = Color(0xff9F9D9B);

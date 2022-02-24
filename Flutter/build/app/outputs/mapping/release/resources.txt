@@ -1,0 +1,2453 @@
+android.content.res.Resources#getIdentifier present: true
+Web content present: false
+Referenced Strings:
+  $
+  $2
+  $activityFilters
+  $newLayoutInfo
+  $splitPairFilters
+  $splitRule
+  $splitsWithActivity
+  $this$$receiver
+  %02d:%02d:%02d
+  %02x
+  %032x
+  %d.%d.%d.%d
+  %s
+  %s.%sParcelizer
+  .Companion
+  .Gr
+  .flutter.image_provider
+  .immediate
+  .jpg
+  .mp4
+  /$2
+  /1
+  /file_picker/
+  /scaled_
+  0
+  00
+  0_resource_name_obfuscated
+  0x%08x
+  :WakeupCpuLock
+  :WakeupLock
+  :memory:
+  A::
+  ACCESSIBLE_NAVIGATION
+  ACTION_ARGUMENT_EXTEND_SELECTION_BOOLEAN
+  ACTION_ARGUMENT_MOVEMENT_GRANULARITY_INT
+  ACTION_ARGUMENT_SELECTION_END_INT
+  ACTION_ARGUMENT_SELECTION_START_INT
+  ACTION_ARGUMENT_SET_TEXT_CHARSEQUENCE
+  ACTION_NOTIFICATION
+  ACTION_NOTIFICATION_
+  ALERT
+  ANIM
+  ANMF
+  APR
+  ATOMIC
+  AUG
+  AccessibilityBridge
+  AccessibilityChannel
+  ActionReceived
+  Active
+  ActivityFilter
+  ActivityRule
+  Alarm
+  Alert
+  All
+  ApertureValue
+  AppKilled
+  AppLifecycleState.detached
+  AppLifecycleState.inactive
+  AppLifecycleState.paused
+  AppLifecycleState.resumed
+  Arab
+  Array
+  Artist
+  Asc
+  AspectFrame
+  Asset
+  AudioAttributesCompat:
+  AwesomeNotificationsPlugin
+  B:
+  BEGIN_ARRAY
+  BEGIN_OBJECT
+  BITMAP
+  BITMAP_MASKABLE
+  BLOCKING
+  BOOLEAN
+  BOTH
+  BOTTOM_OVERLAYS
+  BYTE
+  Background
+  Badge
+  BanParcelableUsage
+  BanUncheckedReflection
+  BigPicture
+  BigText
+  BitmapResourceDecoder
+  BitsPerSample
+  BlockedPrivateApi
+  BodySerialNumber
+  Brightness.dark
+  Brightness.light
+  BrightnessValue
+  BundleCompatBaseImpl
+  C::
+  CANCELLED
+  CFAPattern
+  CHARACTERS
+  CLICK
+  CLIP_PATH
+  CLIP_RECT
+  CLIP_RRECT
+  CLOSED_EMPTY
+  CNAME
+  COMPLETING_ALREADY
+  COMPLETING_RETRY
+  COMPLETING_WAITING_CHILDREN
+  CONDITION_FALSE
+  COPY
+  COROUTINE_SUSPENDED
+  COUNT
+  CPU_ACQUIRED
+  CREATED
+  CUSTOM_ACTION
+  CUT
+  CUTOUT
+  Call
+  CameraOwnerName
+  CameraSettingsIFDPointer
+  CancellableContinuation
+  CancellationManager
+  Cancelled
+  Cancelling
+  Car
+  ChannelGroupManager
+  ChannelManager
+  Children
+  ClassVerificationFailure
+  ClickableViewAccessibility
+  Clipboard.getData
+  Clipboard.hasStrings
+  Clipboard.setData
+  ColorSpace
+  CommonPool
+  CompanionObject
+  Completed
+  Completing
+  ComponentsConfiguration
+  CompressedBitsPerPixel
+  Compression
+  Contrast
+  Copyright
+  CreatedManager
+  CriticalAlert
+  CustomRendered
+  DARK
+  DATA
+  DATETIME
+  DEC
+  DECREASE
+  DEFAULT
+  DESTROYED
+  DID_GAIN_ACCESSIBILITY_FOCUS
+  DID_LOSE_ACCESSIBILITY_FOCUS
+  DISABLE_ANIMATIONS
+  DISMISS
+  DISMISSED_NOTIFICATION
+  DNGVersion
+  DORMANT
+  DOUBLE
+  DROP_LATEST
+  DROP_OLDEST
+  DartExecutor
+  DartMessenger
+  DateTime
+  DateTimeDigitized
+  DateTimeOriginal
+  Default
+  DefaultCropSize
+  DefaultDispatcher
+  DefaultLocale
+  Defaults
+  DefaultsManager
+  DefaultsModel
+  DeferredComponentChannel
+  Desc
+  Destroying.
+  DeviceOrientation.landscapeLeft
+  DeviceOrientation.landscapeRight
+  DeviceOrientation.portraitDown
+  DeviceOrientation.portraitUp
+  DeviceSettingDescription
+  DigitalZoomRatio
+  DisabledAction
+  DismissedManager
+  Dispatchers.Default
+  Dispatchers.IO
+  Dispatchers.Main
+  Dispatchers.Main.immediate
+  Dispatchers.Unconfined
+  DisplayedManager
+  EDGE_TO_EDGE
+  EMAIL_ADDRESS
+  EMPTY
+  END_ARRAY
+  END_DOCUMENT
+  END_OBJECT
+  Email
+  EmbeddingBackend
+  EmbeddingCompat
+  EmptyCoroutineContext
+  EmptyQueue
+  Error
+  Event
+  Exif
+  ExifDataCopier
+  ExifIFDPointer
+  ExifInterface
+  ExifVersion
+  ExposureBiasValue
+  ExposureIndex
+  ExposureMode
+  ExposureProgram
+  ExposureTime
+  FALSE
+  FEB
+  FF
+  FIREBASE_ENABLED
+  FLAT
+  FNumber
+  FOLD
+  FRAMEWORK_CLIENT
+  FRI
+  FRONT
+  FULL
+  Failed
+  File
+  FilePicker
+  FilePickerDelegate
+  FilePickerUtils
+  FileSource
+  Firebase
+  Flash
+  FlashEnergy
+  FlashpixVersion
+  Flow.kt
+  FlutterActivity
+  FlutterActivityAndFragmentDelegate
+  FlutterEngine
+  FlutterEngineCxnRegstry
+  FlutterImageView
+  FlutterJNI
+  FlutterLoader
+  FlutterRenderer
+  FlutterSharedPreferences
+  FlutterSplashView
+  FlutterSurfaceView
+  FlutterTextureView
+  FlutterView
+  FocalLength
+  FocalLengthIn35mmFilm
+  FocalPlaneResolutionUnit
+  FocalPlaneXResolution
+  FocalPlaneYResolution
+  Foreground
+  FullScreenIntent
+  GMT
+  GPSAltitude
+  GPSAltitudeRef
+  GPSAreaInformation
+  GPSDOP
+  GPSDateStamp
+  GPSDestBearing
+  GPSDestBearingRef
+  GPSDestDistance
+  GPSDestDistanceRef
+  GPSDestLatitude
+  GPSDestLatitudeRef
+  GPSDestLongitude
+  GPSDestLongitudeRef
+  GPSDifferential
+  GPSHPositioningError
+  GPSImgDirection
+  GPSImgDirectionRef
+  GPSInfoIFDPointer
+  GPSLatitude
+  GPSLatitudeRef
+  GPSLongitude
+  GPSLongitudeRef
+  GPSMapDatum
+  GPSMeasureMode
+  GPSProcessingMethod
+  GPSSatellites
+  GPSSpeed
+  GPSSpeedRef
+  GPSStatus
+  GPSTimeStamp
+  GPSTrack
+  GPSTrackRef
+  GPSVersionID
+  GainControl
+  Gamma
+  GeneratedPluginRegistrant
+  GeneratedPluginsRegister
+  HALF_OPENED
+  HAS_CHECKED_STATE
+  HAS_ENABLED_STATE
+  HAS_IMPLICIT_SCROLLING
+  HAS_TOGGLED_STATE
+  HC_PLATFORM_VIEW
+  HEAVY_IMPACT
+  HINGE
+  HORIZONTAL
+  HapticFeedback.vibrate
+  HapticFeedbackType.heavyImpact
+  HapticFeedbackType.lightImpact
+  HapticFeedbackType.mediumImpact
+  HapticFeedbackType.selectionClick
+  Hebr
+  High
+  I
+  ICUCompat
+  IDENTITY
+  IFD
+  II
+  IMMERSIVE
+  IMMERSIVE_STICKY
+  INCREASE
+  INITIALIZED
+  INTERNAL
+  INVERT_COLORS
+  ISO
+  ISOSpeed
+  ISOSpeedLatitudeyyy
+  ISOSpeedLatitudezzz
+  ISOSpeedRatings
+  IS_BUTTON
+  IS_CHECKED
+  IS_ENABLED
+  IS_FOCUSABLE
+  IS_FOCUSED
+  IS_HEADER
+  IS_HIDDEN
+  IS_IMAGE
+  IS_IN_MUTUALLY_EXCLUSIVE_GROUP
+  IS_KEYBOARD_KEY
+  IS_LINK
+  IS_LIVE_REGION
+  IS_OBSCURED
+  IS_READ_ONLY
+  IS_SELECTED
+  IS_SLIDER
+  IS_TEXT_FIELD
+  IS_TOGGLED
+  IconCompat
+  ImageDescription
+  ImageLength
+  ImageProcessingIFDPointer
+  ImageResizer
+  ImageUniqueID
+  ImageWidth
+  Inbox
+  Infinity
+  InlinedApi
+  InputConnectionAdaptor
+  InputField
+  InteroperabilityIFDPointer
+  InteroperabilityIndex
+  InvalidNullConversion
+  J
+  JAN
+  JPEGInterchangeFormat
+  JPEGInterchangeFormatLength
+  JUL
+  JUN
+  JpgFromRaw
+  KeepOnTop
+  KeyEventChannel
+  KeyboardManager
+  L
+  LANDSCAPE_LEFT
+  LANDSCAPE_RIGHT
+  LAZY
+  LEAN_BACK
+  LEFT
+  LIGHT
+  LIGHT_IMPACT
+  LOCALE
+  LONG_PRESS
+  LOWER_CASE_WITH_DASHES
+  LOWER_CASE_WITH_DOTS
+  LOWER_CASE_WITH_UNDERSCORES
+  LTR
+  LW
+  LensMake
+  LensModel
+  LensSpecification
+  LifecycleChannel
+  Light
+  LightSource
+  ListenableEditingState
+  Local
+  LocalBroadcastManager
+  LocalSharing
+  Localization.getStringResource
+  LocalizationChannel
+  Low
+  M/d/yy
+  M::
+  MAR
+  MAY
+  MD5
+  MEDIUM_IMPACT
+  MON
+  MOVE_CURSOR_BACKWARD_BY_CHARACTER
+  MOVE_CURSOR_BACKWARD_BY_WORD
+  MOVE_CURSOR_FORWARD_BY_CHARACTER
+  MOVE_CURSOR_FORWARD_BY_WORD
+  MULTILINE
+  Make
+  MakerNote
+  MapUtils
+  Max
+  MaxApertureValue
+  MediaBrowserCompat
+  MediaButtonReceiver
+  MediaControllerCompat
+  MediaPlayer
+  MediaSessionCompat
+  MediaSessionCompatApi24
+  Message
+  Messaging
+  MessagingGroup
+  MeteringMode
+  Min
+  MissedCall
+  Model
+  MouseCursorChannel
+  NAME
+  NAMES_ROUTE
+  NONE
+  NOT_IN_STACK
+  NOV
+  NO_DECISION
+  NO_TARGET
+  NO_THREAD_ELEMENTS
+  NULL
+  NUMBER
+  NaN
+  Navigation
+  NavigationChannel
+  Network
+  New
+  NewApi
+  NewSubfileType
+  NonDisposableHandle
+  None
+  NotifManCompat
+  Notification
+  NotificationBuilder
+  NotificationChannelGroup
+  NotificationChannelModel
+  NotificationCompat
+  NotificationManagerCompat
+  NotificationModel
+  NotificationReceived
+  NotificationScheduler
+  Notifications
+  OCT
+  OECF
+  OFFER_FAILED
+  OFFER_SUCCESS
+  ON_ANY
+  ON_CREATE
+  ON_DESTROY
+  ON_PAUSE
+  ON_RESUME
+  ON_START
+  ON_STOP
+  OPACITY
+  OPPO
+  OP_POST_NOTIFICATION
+  ObsoleteSdkInt
+  OffsetTime
+  OffsetTimeDigitized
+  OffsetTimeOriginal
+  OneSignal
+  Orientation
+  Override
+  OverrideDnD
+  P10:
+  P11:
+  P12:
+  P13:
+  P14:
+  P15:
+  P16:
+  P17:
+  P18:
+  P19:
+  P20:
+  P21:
+  P22:
+  P2:
+  P3:
+  P4:
+  P5:
+  P6:
+  P7:
+  P8:
+  P9:
+  PARKING
+  PASTE
+  PENDING
+  PENTAX
+  PHONE
+  PLAIN_TEXT
+  PNAME
+  POLL_FAILED
+  PORTRAIT_DOWN
+  PORTRAIT_UP
+  POSTAL_ADDRESS
+  POSTURE_FLAT
+  POSTURE_HALF_OPENED
+  PRIVATE
+  PROTECTED
+  PUBLIC
+  PUSH_MEDIA
+  PathProviderPlugin
+  PermissionManager
+  PhoneCall
+  PhotographicSensitivity
+  PhotometricInterpretation
+  PixelXDimension
+  PixelYDimension
+  PlanarConfiguration
+  PlatformChannel
+  PlatformPlugin
+  PlatformViewsChannel
+  PlatformViewsController
+  PonnamKarthik/fluttertoast
+  PreciseAlarms
+  PreviewImageLength
+  PreviewImageStart
+  PrimaryChromaticities
+  Private
+  PrivateApi
+  PrivateConstructorForUtilityClass
+  Progress
+  ProgressBar
+  Promo
+  Provisional
+  Public
+  R:
+  REAR
+  REL
+  REMOVED_TASK
+  REMOVE_FROZEN
+  RESOURCE
+  RESUMED
+  RESUME_TOKEN
+  REUSABLE_CLAIMED
+  RIGHT
+  RTL
+  Rating
+  ReceiveQueued
+  Recommendation
+  RecommendedExposureIndex
+  ReferenceBlackWhite
+  RelatedSoundFile
+  Reminder
+  ResolutionUnit
+  Resource
+  RestorationChannel
+  RestrictedApi
+  Ringtone
+  RowsPerStrip
+  S
+  S:
+  SAT
+  SBYTE
+  SCOPES_ROUTE
+  SCROLL_DOWN
+  SCROLL_LEFT
+  SCROLL_RIGHT
+  SCROLL_UP
+  SEALED
+  SELECTION_CLICK
+  SELECT_NOTIFICATION
+  SENTENCES
+  SEP
+  SET_SELECTION
+  SET_TEXT
+  SHOW_ON_SCREEN
+  SINGLE
+  SLONG
+  SPELLOUT
+  SRATIONAL
+  SSHORT
+  STANDARD
+  STARTED
+  STRING
+  SUN
+  SUSPEND
+  SamplesPerPixel
+  Saturation
+  SceneCaptureType
+  SceneType
+  Schedule
+  ScheduleManager
+  ScheduledNotificationReceiver
+  Secret
+  SendQueued
+  SensingMethod
+  SensitivityType
+  SensorBottomBorder
+  SensorLeftBorder
+  SensorRightBorder
+  SensorTopBorder
+  Service
+  SettingsChannel
+  SharedManager
+  Sharpness
+  ShortcutBadger
+  ShutterSpeedValue
+  SidecarCompat
+  Social
+  Software
+  Sound
+  SpatialFrequencyResponse
+  SpectralSensitivity
+  SplitPairFilter
+  SplitPairRule
+  SplitPlaceholderRule
+  SplitRuleResolution
+  Sqflite
+  StandardOutputSensitivity
+  StaticFieldLeak
+  Status
+  StopWatch
+  StorageError
+  StripByteCounts
+  StripOffsets
+  SubIFDPointer
+  SubSecTime
+  SubSecTimeDigitized
+  SubSecTimeOriginal
+  SubfileType
+  SubjectArea
+  SubjectDistance
+  SubjectDistanceRange
+  SubjectLocation
+  Summary
+  SyntheticAccessor
+  SystemChannel
+  SystemChrome.restoreSystemUIOverlays
+  SystemChrome.setApplicationSwitcherDe...
+  SystemChrome.setEnabledSystemUIMode
+  SystemChrome.setEnabledSystemUIOverlays
+  SystemChrome.setPreferredOrientations
+  SystemChrome.setSystemUIChangeListener
+  SystemChrome.setSystemUIOverlayStyle
+  SystemChrome.systemUIChange
+  SystemNavigator.pop
+  SystemSound.play
+  SystemSoundType.alert
+  SystemSoundType.click
+  SystemUiMode.edgeToEdge
+  SystemUiMode.immersive
+  SystemUiMode.immersiveSticky
+  SystemUiMode.leanBack
+  SystemUiOverlay.bottom
+  SystemUiOverlay.top
+  T:
+  TAP
+  TERMINATED
+  TEXT
+  THU
+  TOO_LATE_TO_CANCEL
+  TOP_OVERLAYS
+  TRANSFORM
+  TRUE
+  TUE
+  TextCapitalization.characters
+  TextCapitalization.none
+  TextCapitalization.sentences
+  TextCapitalization.words
+  TextEditingDelta
+  TextInput.clearClient
+  TextInput.finishAutofillContext
+  TextInput.hide
+  TextInput.requestAutofill
+  TextInput.sendAppPrivateCommand
+  TextInput.setClient
+  TextInput.setEditableSizeAndTransform
+  TextInput.setEditingState
+  TextInput.setPlatformViewClient
+  TextInput.show
+  TextInputAction.done
+  TextInputAction.go
+  TextInputAction.newline
+  TextInputAction.next
+  TextInputAction.none
+  TextInputAction.previous
+  TextInputAction.search
+  TextInputAction.send
+  TextInputAction.unspecified
+  TextInputChannel
+  TextInputClient.performAction
+  TextInputClient.performPrivateCommand
+  TextInputClient.requestExistingInputS...
+  TextInputClient.updateEditingState
+  TextInputClient.updateEditingStateWit...
+  TextInputClient.updateEditingStateWit...
+  TextInputPlugin
+  TextInputType.address
+  TextInputType.datetime
+  TextInputType.emailAddress
+  TextInputType.multiline
+  TextInputType.name
+  TextInputType.none
+  TextInputType.number
+  TextInputType.phone
+  TextInputType.text
+  TextInputType.url
+  TextInputType.visiblePassword
+  ThumbnailImage
+  ThumbnailImageLength
+  ThumbnailImageWidth
+  ThumbnailOrientation
+  TransferFunction
+  Transport
+  ULONG
+  UNDECIDED
+  UNDEFINED
+  UNDISPATCHED
+  UNEXPECTED:
+  UNKNOWN
+  UPPER_CAMEL_CASE
+  UPPER_CAMEL_CASE_WITH_SPACES
+  URATIONAL
+  URI
+  URI_MASKABLE
+  URL
+  USAGE_ALARM
+  USAGE_ASSISTANCE_ACCESSIBILITY
+  USAGE_ASSISTANCE_NAVIGATION_GUIDANCE
+  USAGE_ASSISTANCE_SONIFICATION
+  USAGE_ASSISTANT
+  USAGE_GAME
+  USAGE_MEDIA
+  USAGE_NOTIFICATION
+  USAGE_NOTIFICATION_COMMUNICATION_DELAYED
+  USAGE_NOTIFICATION_COMMUNICATION_INSTANT
+  USAGE_NOTIFICATION_COMMUNICATION_REQUEST
+  USAGE_NOTIFICATION_EVENT
+  USAGE_NOTIFICATION_RINGTONE
+  USAGE_UNKNOWN
+  USAGE_VOICE_COMMUNICATION
+  USAGE_VOICE_COMMUNICATION_SIGNALLING
+  USHORT
+  UTC
+  UTF8
+  Unknown
+  UnknownNullness
+  UseSparseArrays
+  UserComment
+  V:
+  VD_PLATFORM_VIEW
+  VERTICAL
+  VGhpcyBpcyB0aGUgcHJlZml4IGZvciBCaWdJb...
+  VGhpcyBpcyB0aGUgcHJlZml4IGZvciBEb3VibGUu
+  VGhpcyBpcyB0aGUgcHJlZml4IGZvciBhIGxpc3Qu
+  VISIBLE_PASSWORD
+  VIVO
+  VP8L
+  VP8X
+  Vibration
+  WED
+  WORDS
+  WhiteBalance
+  WhitePoint
+  WindowInfoTrackerCallbackAdapter.kt
+  WindowInfoTrackerImpl.kt
+  WindowServer
+  Workout
+  WrongConstant
+  XResolution
+  Xiaomi
+  Xmp
+  YCbCrCoefficients
+  YCbCrPositioning
+  YCbCrSubSampling
+  YResolution
+  ZI
+  ZTE
+  ZUK
+  _
+  _LifecycleAdapter
+  _bounds
+  _consensus
+  _cur
+  _decision
+  _delayed
+  _display_name
+  _handled
+  _id
+  _invoked
+  _isTerminated
+  _next
+  _prev
+  _queue
+  _removedRef
+  _resumed
+  _reusableCancellableContinuation
+  _size
+  _state
+  a
+  acc
+  accessibility
+  action
+  actionButtons
+  actionDate
+  actionIntent
+  actionLabel
+  actionLifeCycle
+  activateSystemCursor
+  activities
+  activity
+  activity.windowManager.currentWindowM...
+  activity.windowManager.maximumWindowM...
+  activityComponent.className
+  activityComponent.packageName
+  activityFilters
+  activity_name
+  adapter
+  addLikelySubtags
+  addObserver
+  addSuppressed
+  addView
+  addressCity
+  addressCountry
+  addressLocality
+  addressRegion
+  addressState
+  alarm
+  alias
+  allScroll
+  allocateInstance
+  allowFreeFormInput
+  allowMultipleSelection
+  allowWhileIdle
+  allowedDataTypes
+  allowedExtensions
+  already_active
+  alwaysUse24HourFormat
+  android
+  android.app.MiuiNotification
+  android.bigText
+  android.car.EXTENSIONS
+  android.conversationTitle
+  android.hiddenConversationTitle
+  android.intent.action.APPLICATION_MES...
+  android.intent.action.BADGE_COUNT_UPDATE
+  android.intent.action.GET_CONTENT
+  android.intent.action.MAIN
+  android.intent.action.MEDIA_BUTTON
+  android.intent.action.OPEN_DOCUMENT_TREE
+  android.intent.action.PICK
+  android.intent.action.RUN
+  android.intent.category.HOME
+  android.intent.category.OPENABLE
+  android.intent.extra.ALLOW_MULTIPLE
+  android.intent.extra.KEY_EVENT
+  android.intent.extra.MIME_TYPES
+  android.intent.extra.USE_FRONT_CAMERA
+  android.intent.extra.durationLimit
+  android.intent.extra.update_applicati...
+  android.intent.extra.update_applicati...
+  android.intent.extras.CAMERA_FACING
+  android.isGroupConversation
+  android.media.action.IMAGE_CAPTURE
+  android.media.action.VIDEO_CAPTURE
+  android.media.metadata.ADVERTISEMENT
+  android.media.metadata.ALBUM
+  android.media.metadata.ALBUM_ART
+  android.media.metadata.ALBUM_ARTIST
+  android.media.metadata.ALBUM_ART_URI
+  android.media.metadata.ART
+  android.media.metadata.ARTIST
+  android.media.metadata.ART_URI
+  android.media.metadata.AUTHOR
+  android.media.metadata.BT_FOLDER_TYPE
+  android.media.metadata.COMPILATION
+  android.media.metadata.COMPOSER
+  android.media.metadata.DATE
+  android.media.metadata.DISC_NUMBER
+  android.media.metadata.DISPLAY_DESCRI...
+  android.media.metadata.DISPLAY_ICON
+  android.media.metadata.DISPLAY_ICON_URI
+  android.media.metadata.DISPLAY_SUBTITLE
+  android.media.metadata.DISPLAY_TITLE
+  android.media.metadata.DOWNLOAD_STATUS
+  android.media.metadata.DURATION
+  android.media.metadata.GENRE
+  android.media.metadata.MEDIA_ID
+  android.media.metadata.MEDIA_URI
+  android.media.metadata.NUM_TRACKS
+  android.media.metadata.RATING
+  android.media.metadata.TITLE
+  android.media.metadata.TRACK_NUMBER
+  android.media.metadata.USER_RATING
+  android.media.metadata.WRITER
+  android.media.metadata.YEAR
+  android.media.session.MediaController
+  android.messages
+  android.messages.historic
+  android.messagingStyleUser
+  android.net.conn.CONNECTIVITY_CHANGE
+  android.os.Build
+  android.os.storage.StorageVolume
+  android.people
+  android.permission.CAMERA
+  android.permission.READ_EXTERNAL_STORAGE
+  android.permission.SCHEDULE_EXACT_ALARM
+  android.permission.USE_FULL_SCREEN_IN...
+  android.provider.extra.APP_PACKAGE
+  android.provider.extra.CHANNEL_ID
+  android.remoteinput.results
+  android.remoteinput.resultsData
+  android.resource://
+  android.selfDisplayName
+  android.settings.APP_NOTIFICATION_SET...
+  android.settings.CHANNEL_NOTIFICATION...
+  android.settings.NOTIFICATION_POLICY_...
+  android.settings.REQUEST_SCHEDULE_EXA...
+  android.summaryText
+  android.support.BIND_NOTIFICATION_SID...
+  android.support.FILE_PROVIDER_PATHS
+  android.support.action.semanticAction
+  android.support.action.showsUserInter...
+  android.support.actionExtras
+  android.support.allowGeneratedReplies
+  android.support.dataRemoteInputs
+  android.support.groupKey
+  android.support.isGroupSummary
+  android.support.localOnly
+  android.support.remoteInputs
+  android.support.sortKey
+  android.support.useSideChannel
+  android.support.v4.app.INotificationS...
+  android.support.v4.media.description....
+  android.support.v4.media.description....
+  android.support.v4.media.session.EXTR...
+  android.support.v4.media.session.IMed...
+  android.support.v4.media.session.IMed...
+  android.support.v4.media.session.SESS...
+  android.support.v4.media.session.acti...
+  android.support.v4.media.session.acti...
+  android.support.v4.media.session.acti...
+  android.support.v4.media.session.acti...
+  android.support.v4.media.session.acti...
+  android.support.v4.media.session.acti...
+  android.support.v4.media.session.acti...
+  android.support.v4.media.session.acti...
+  android.support.v4.media.session.acti...
+  android.support.v4.media.session.acti...
+  android.support.v4.media.session.acti...
+  android.support.v4.media.session.acti...
+  android.support.v4.media.session.acti...
+  android.support.v4.media.session.acti...
+  android.support.v4.media.session.acti...
+  android.support.v4.media.session.acti...
+  android.support.v4.media.session.acti...
+  android.support.v4.media.session.comm...
+  android.support.v4.media.session.comm...
+  android.support.v4.media.session.comm...
+  android.support.v4.media.session.comm...
+  android.support.v4.media.session.comm...
+  android.support.v4.media.session.comm...
+  android.support.v4.media.session.comm...
+  android.support.v4.os.IResultReceiver
+  android.title.big
+  android.type.verbatim
+  android.util.LongArray
+  android.view.DisplayInfo
+  android.view.View
+  android.widget.Button
+  android.widget.CheckBox
+  android.widget.EditText
+  android.widget.HorizontalScrollView
+  android.widget.ImageView
+  android.widget.RadioButton
+  android.widget.ScrollView
+  android.widget.SeekBar
+  android.widget.Switch
+  androidThreadPriority
+  androidx.core.app.NotificationCompat$...
+  androidx.core.app.NotificationCompat$...
+  androidx.core.app.NotificationCompat$...
+  androidx.core.app.NotificationCompat$...
+  androidx.core.app.extra.COMPAT_TEMPLATE
+  androidx.lifecycle.LifecycleDispatche...
+  androidx.savedstate.Restarter
+  androidx.window.java.layout.WindowInf...
+  androidx.window.layout.WindowInfoTrac...
+  announce
+  any
+  app_badge_component_name
+  app_badge_count
+  app_flutter
+  app_package
+  app_uid
+  appops
+  arch_disk_io_%d
+  args
+  arguments
+  array
+  audio
+  auto
+  autoDismissible
+  autocorrect
+  autofill
+  awesome_notifications
+  b
+  background
+  backgroundColor
+  background_mode
+  bad_param
+  badgeCount
+  badge_count
+  badge_count_class_name
+  badge_count_package_name
+  badge_vip_count
+  badgecount
+  badgenumber
+  base
+  baseKey
+  basic
+  batch
+  bgcolor
+  bigPicture
+  binding
+  binding.applicationContext
+  binding.binaryMessenger
+  birthDateDay
+  birthDateFull
+  birthDateMonth
+  birthDateYear
+  birthday
+  birthdayDay
+  birthdayMonth
+  birthdayYear
+  blockingTasksInBuffer
+  bluetooth
+  body
+  boolean
+  bounds
+  broadcast.awesome_notifications.CREAT...
+  broadcast.awesome_notifications.DISMI...
+  broadcast.awesome_notifications.DISPL...
+  broadcast.awesome_notifications.KEEP_...
+  broadcast.awesome_notifications.MEDIA...
+  buffer
+  buttonKeyInput
+  buttonKeyPressed
+  buttonType
+  byte
+  bytes
+  cache
+  cached_engine_id
+  call
+  callback
+  callbackInterface
+  callbackWrapper
+  cameraDevice
+  camera_access_denied
+  cancel
+  cancelAllNotifications
+  cancelAllSchedules
+  cancelNotification
+  cancelNotificationsByChannelKey
+  cancelNotificationsByGroupKey
+  cancelSchedule
+  cancelSchedulesByChannelKey
+  cancelSchedulesByGroupKey
+  category
+  cause
+  cell
+  center
+  change_badge
+  channel
+  channelDescription
+  channelGroup
+  channelGroupKey
+  channelGroupName
+  channelKey
+  channelName
+  channelShowBadge
+  channels
+  char
+  character
+  chars
+  check
+  checkOpNoThrow
+  checkPermissions
+  choices
+  cl:
+  class
+  className
+  clear
+  clearFocus
+  cleartextTrafficPermitted
+  click
+  clipboard
+  closeDatabase
+  closed
+  cmd
+  code
+  codePoint
+  collect
+  collection
+  color
+  columns
+  com.anddoes.launcher
+  com.anddoes.launcher.COUNTER_CHANGED
+  com.android.providers.downloads.docum...
+  com.asus.launcher
+  com.google.common.base.Strings
+  com.google.common.util.concurrent.
+  com.htc.launcher
+  com.htc.launcher.action.SET_NOTIFICATION
+  com.htc.launcher.action.UPDATE_SHORTCUT
+  com.htc.launcher.extra.COMPONENT
+  com.htc.launcher.extra.COUNT
+  com.huawei.android.launcher
+  com.i.miui.launcher
+  com.miui.home
+  com.miui.mihome
+  com.miui.mihome2
+  com.miui.miuihome
+  com.miui.miuihome2
+  com.miui.miuilite
+  com.oppo.launcher
+  com.oppo.unsettledevent
+  com.quaap.launchtime
+  com.quaap.launchtime_official
+  com.sec.android.app.launcher
+  com.sec.android.app.twlauncher
+  com.sonyericsson.home
+  com.sonyericsson.home.action.UPDATE_B...
+  com.sonyericsson.home.intent.extra.ba...
+  com.sonyericsson.home.intent.extra.ba...
+  com.sonyericsson.home.intent.extra.ba...
+  com.sonyericsson.home.intent.extra.ba...
+  com.sonymobile.home
+  com.sonymobile.home.resourceprovider
+  com.tekartik.sqflite
+  com.teslacoilsw.launcher
+  com.vivo.launcher
+  com.zui.launcher
+  commit
+  commonPool
+  comparator
+  completion
+  component
+  componentName
+  componentName.className
+  componentName.packageName
+  composingBase
+  composingExtent
+  connectivity
+  consumer
+  consumerIndex
+  content
+  content://com.android.badge/badge
+  content://com.android.launcher3.corne...
+  content://com.huawei.android.launcher...
+  content://com.sonymobile.home.resourc...
+  content://com.teslacoilsw.notifier/un...
+  content://me.everything.badger/apps
+  context
+  contextMenu
+  continuation
+  continueOnError
+  controlState
+  copy
+  coroutine
+  count
+  countryName
+  create
+  createAsync
+  createNewNotification
+  created
+  createdDate
+  createdLifeCycle
+  createdSource
+  creditCardExpirationDate
+  creditCardExpirationDay
+  creditCardExpirationMonth
+  creditCardExpirationYear
+  creditCardNumber
+  creditCardSecurityCode
+  criticalAlerts
+  crontabExpression
+  currentDisplay
+  custom
+  customSound
+  d
+  dark
+  data
+  data_calling_pid
+  data_calling_pkg
+  data_calling_uid
+  data_extras
+  databases
+  day
+  dayOfMonth
+  debug
+  debugMode
+  decBadgeCount
+  decimal
+  decorate
+  default
+  defaultColor
+  defaultDisplay
+  defaultIcon
+  defaultPrivacy
+  defaultRingtoneType
+  defaults
+  deleteDatabase
+  delimiter
+  delimiters
+  deltaEnd
+  deltaStart
+  deltaText
+  deltas
+  description
+  destination
+  destroy_engine_with_activity
+  dev.fluttercommunity.plus/connectivity
+  dev.fluttercommunity.plus/connectivit...
+  dev.fluttercommunity.plus/network_info
+  deviceId
+  deviceState
+  dimen
+  dir
+  direction
+  dismissAllNotifications
+  dismissNotification
+  dismissNotificationsByChannelKey
+  dismissNotificationsByGroupKey
+  dismissed
+  dismissedDate
+  dismissedLifeCycle
+  display
+  displayCutout
+  displayFeature.rect
+  displayFeatures
+  displayName
+  displayOnBackground
+  displayOnForeground
+  displayed
+  displayedDate
+  displayedLifeCycle
+  dispose
+  domain
+  double
+  downloads
+  e
+  editingValue
+  element
+  elements
+  email
+  emailAddress
+  embeddingCallback
+  embeddingExtension
+  emit
+  empty
+  enableDeltaModel
+  enableIMEPersonalizedLearning
+  enableLights
+  enableSuggestions
+  enableVibration
+  enableWakelock
+  enable_state_restoration
+  enabled
+  enabled_notification_listeners
+  era
+  err
+  error
+  errorCode
+  errorMessage
+  ethernet
+  event
+  exception
+  execute
+  executor
+  expirationDateTime
+  extendedAddress
+  extendedPostalCode
+  extensionCallback
+  extent
+  extraNotification
+  extras
+  f
+  false
+  familyName
+  feature
+  feature.rect
+  featureBounds
+  fields
+  file
+  file:
+  files
+  filter
+  filters
+  fixedDate
+  flags
+  float
+  flutter
+  flutter.
+  flutter/accessibility
+  flutter/deferredcomponent
+  flutter/isolate
+  flutter/keyevent
+  flutter/lifecycle
+  flutter/localization
+  flutter/mousecursor
+  flutter/navigation
+  flutter/platform
+  flutter/platform_views
+  flutter/restoration
+  flutter/settings
+  flutter/system
+  flutter/textinput
+  flutter_assets
+  flutter_assets/
+  flutter_deeplinking_enabled
+  flutter_image_picker_error_code
+  flutter_image_picker_error_message
+  flutter_image_picker_image_path
+  flutter_image_picker_image_quality
+  flutter_image_picker_max_height
+  flutter_image_picker_max_width
+  flutter_image_picker_pending_image_uri
+  flutter_image_picker_shared_preference
+  flutter_image_picker_type
+  fontSize
+  forbidden
+  forceUpdate
+  foregroundServiceType
+  fr.neamar.kiss
+  frame
+  framework
+  fullScreenIntent
+  fullStreetAddress
+  gender
+  get
+  getAll
+  getAppBounds
+  getApplicationDocumentsDirectory
+  getApplicationSupportDirectory
+  getBadgeCount
+  getBounds
+  getCallingPackage
+  getChildId
+  getConstructorId
+  getDatabasesPath
+  getDeferredComponentInstallState
+  getDescriptor
+  getDirectory
+  getDisplayFeatures
+  getDisplayInfo
+  getDrawableData
+  getExternalCacheDirectories
+  getExternalStorageDirectories
+  getIBinder
+  getJavaLangAccess
+  getLocalTimeZoneIdentifier
+  getModule
+  getNextDate
+  getNextMatch
+  getParentNodeId
+  getPath
+  getPlatformVersion
+  getPoolSize
+  getPosture
+  getRealSize
+  getResId
+  getResPackage
+  getScript
+  getSourceNodeId
+  getStackTraceDepth
+  getStackTraceElement
+  getStorageDirectory
+  getSuppressed
+  getTemporaryDirectory
+  getType
+  getUncaughtExceptionPreHandler
+  getUri
+  getUtcTimeZoneIdentifier
+  getUuid
+  getVolumeList
+  getWindowLayoutInfo
+  givenName
+  grab
+  grabbing
+  gravity
+  group
+  groupAlertBehavior
+  groupKey
+  groupSort
+  guava.concurrent.generate_cancellatio...
+  h.a.c.a.b$c
+  h.a.c.a.j
+  handleLifecycleEvent
+  handled
+  hasForegroundServiceType
+  height
+  help
+  hideLargeIconOnExpand
+  hintText
+  hints
+  hour
+  hourOfDay
+  http://ns.adobe.com/xap/1.0/
+  hybrid
+  i.s.j.a.a
+  i.t.d.a
+  i.t.e.a
+  ic:
+  ic_launcher
+  icon
+  iconResourceId
+  id
+  identifier
+  ig:
+  image
+  imageQuality
+  image_picker
+  importance
+  inFlightTasks
+  inTransaction
+  incBadgeCount
+  includeSubdomains
+  index
+  info
+  info.displayFeatures
+  initialDateTime
+  initialize
+  initializeChannelGroups
+  initializeChannels
+  initializer
+  input
+  inputAction
+  inputType
+  input_method
+  insert
+  installDeferredComponent
+  int
+  int1
+  int2
+  integer
+  intent
+  interval
+  invalid_format_type
+  invisible_actions
+  invokeSuspend
+  io.flutter.Entrypoint
+  io.flutter.InitialRoute
+  io.flutter.embedding.android.EnableSk...
+  io.flutter.embedding.android.NormalTheme
+  io.flutter.embedding.android.OldGenHe...
+  io.flutter.embedding.android.SplashSc...
+  io.flutter.plugins.GeneratedPluginReg...
+  isBot
+  isDangerousOption
+  isImportant
+  isNotificationAllowed
+  isPrimary
+  it
+  it.parameterTypes
+  jClass
+  jar
+  jar:file:
+  java.
+  java.lang.Boolean
+  java.lang.Byte
+  java.lang.CharSequence
+  java.lang.Character
+  java.lang.Cloneable
+  java.lang.Comparable
+  java.lang.Double
+  java.lang.Enum
+  java.lang.Float
+  java.lang.Integer
+  java.lang.Iterable
+  java.lang.Long
+  java.lang.Module
+  java.lang.Number
+  java.lang.Object
+  java.lang.Short
+  java.lang.String
+  java.lang.Throwable
+  java.lang.annotation.Annotation
+  java.lang.module.ModuleDescriptor
+  java.specification.version
+  java.util.Collection
+  java.util.Iterator
+  java.util.List
+  java.util.ListIterator
+  java.util.Map
+  java.util.Map$Entry
+  java.util.Set
+  java.util.concurrent.ForkJoinPool
+  java.version
+  job
+  jpg
+  key
+  keyCode
+  keydown
+  keymap
+  keyup
+  kind
+  kotlin.Annotation
+  kotlin.Any
+  kotlin.Boolean
+  kotlin.Byte
+  kotlin.Char
+  kotlin.CharSequence
+  kotlin.Cloneable
+  kotlin.Comparable
+  kotlin.Double
+  kotlin.Enum
+  kotlin.Enum.Companion
+  kotlin.Float
+  kotlin.Function
+  kotlin.Int
+  kotlin.Long
+  kotlin.Number
+  kotlin.Short
+  kotlin.String
+  kotlin.String.Companion
+  kotlin.Throwable
+  kotlin.Unit
+  kotlin.collections.Collection
+  kotlin.collections.Iterable
+  kotlin.collections.Iterator
+  kotlin.collections.List
+  kotlin.collections.ListIterator
+  kotlin.collections.Map
+  kotlin.collections.Map.Entry
+  kotlin.collections.Set
+  kotlin.coroutines.jvm.internal.BaseCo...
+  kotlin.internal.JRE7PlatformImplement...
+  kotlin.internal.JRE8PlatformImplement...
+  kotlin.jvm.functions.
+  kotlin.jvm.functions.Function
+  kotlin.jvm.internal.
+  kotlin.jvm.internal.EnumCompanionObject
+  kotlin.jvm.internal.StringCompanionOb...
+  kotlin.reflect.jvm.internal.Reflectio...
+  kotlinName
+  kotlinx.coroutines.DefaultExecutor
+  kotlinx.coroutines.DefaultExecutor.ke...
+  kotlinx.coroutines.android.AndroidDis...
+  kotlinx.coroutines.channels.defaultBu...
+  kotlinx.coroutines.debug
+  kotlinx.coroutines.default.parallelism
+  kotlinx.coroutines.fast.service.loader
+  kotlinx.coroutines.flow.AbstractFlow
+  kotlinx.coroutines.internal.StackTrac...
+  kotlinx.coroutines.internal.y
+  kotlinx.coroutines.io.parallelism
+  kotlinx.coroutines.scheduler
+  kotlinx.coroutines.scheduler.blocking...
+  kotlinx.coroutines.scheduler.core.poo...
+  kotlinx.coroutines.scheduler.keep.ali...
+  kotlinx.coroutines.scheduler.max.pool...
+  kotlinx.coroutines.scheduler.resoluti...
+  kotlinx.coroutines.stacktrace.recovery
+  kotlinx.coroutines.test.internal.Test...
+  label
+  largeIcon
+  lastScheduledTask
+  launcher.action.CHANGE_APPLICATION_NO...
+  layout_inflater
+  ledColor
+  ledOffMs
+  ledOnMs
+  left
+  length
+  libapp.so
+  libcore.icu.ICU
+  libflutter.so
+  light
+  line
+  listAllSchedules
+  listen
+  listener
+  loadingUnitId
+  locale
+  location_sharing
+  locked
+  logLevel
+  long
+  longPress
+  mChildNodeIds
+  mH
+  mNextServedView
+  mServedView
+  mToast
+  main
+  makeBackgroundTaskQueue
+  maxDuration
+  maxHeight
+  maxWidth
+  me.carda.awesome_notifications.servic...
+  me.everything.launcher
+  me.leolin.shortcutbadger.BADGE_COUNT_...
+  media
+  mediaButton
+  media_item
+  memoryPressure
+  message
+  messageCount
+  messages
+  messenger
+  metaState
+  method
+  middleInitial
+  middleName
+  miguelruivo.flutter.plugins.filepicker
+  miguelruivo.flutter.plugins.filepicke...
+  millisecond
+  minute
+  mipmap
+  miscellaneous
+  missed_call
+  missingDelimiterValue
+  mobile
+  moduleName
+  month
+  move
+  msg
+  name
+  name:
+  namePrefix
+  nameSuffix
+  navigation
+  navigation_bar_height
+  newConfig
+  newDeviceState
+  newIndent
+  newInstance
+  newLayout
+  newLayoutInfo
+  newPassword
+  newUsername
+  noDrop
+  noResult
+  no_activity
+  no_available_camera
+  nodeId
+  none
+  notification
+  notificationCreated
+  notificationData
+  notificationDismissed
+  notificationDisplayed
+  notificationJson
+  notificationLayout
+  notificationNum
+  notification_badging
+  null
+  number
+  obj
+  objectFieldOffset
+  obscureText
+  oemFeature
+  oemFeature.bounds
+  off
+  oldText
+  on
+  onActivityResult
+  onBackPressed
+  onCloseHandler
+  onDestroy
+  onNewIntent
+  onPause
+  onPostResume
+  onRequestPermissionsResult
+  onResume
+  onSaveInstanceState
+  onStart
+  onStop
+  onTrimMemory
+  onUserLeaveHint
+  onWindowLayoutChangeListenerAdded
+  onWindowLayoutChangeListenerRemoved
+  oneTimeCode
+  onlyAlertOnce
+  opaque
+  openDatabase
+  operation
+  operations
+  options
+  org.adw.launcher
+  org.adw.launcher.counter.SEND
+  org.adwfreak.launcher
+  other
+  output
+  overlay
+  override
+  overridingDecorator
+  p0
+  package
+  package:
+  packageName
+  packageName:
+  package_name
+  packagename
+  pair
+  pairs
+  pakeageName
+  params
+  parentMetrics
+  parkedWorkersStack
+  password
+  path
+  pathList
+  payload
+  permissions
+  person
+  personFamilyName
+  personGivenName
+  personMiddleInitial
+  personMiddleName
+  personName
+  personNamePrefix
+  personNameSuffix
+  phoneCountryCode
+  phoneNational
+  phoneNumber
+  phoneNumberDevice
+  pickImage
+  pickMultiImage
+  pickVideo
+  placeholderIntent
+  plainCodePoint
+  platformBrightness
+  platformViewId
+  playSound
+  plugins
+  plugins.flutter.io/image_picker
+  plugins.flutter.io/path_provider
+  plugins.flutter.io/shared_preferences...
+  point
+  popRoute
+  postalAddress
+  postalAddressExtended
+  postalAddressExtendedPostalCode
+  postalCode
+  postfix
+  power
+  precise
+  preciseAlarm
+  preciseSchedules
+  prefix
+  primary
+  primaryActivity
+  primaryActivityName
+  primaryActivityName.className
+  primaryActivityName.packageName
+  primaryActivityStack
+  primaryActivityStack.activities
+  primaryColor
+  primitiveFqNames.values
+  privacy
+  privateMessage
+  producerIndex
+  productId
+  progress
+  promo
+  push
+  pushRoute
+  put
+  putBoolean
+  putIBinder
+  query
+  queryAsMapList
+  r
+  randomId
+  range
+  raw:
+  read
+  readOnly
+  read_external_storage_denied
+  receivedAction
+  recommendation
+  recovered
+  recoveredInTransaction
+  rect
+  registerWith
+  reminder
+  remoteInputs
+  remove
+  removeNotificationChannel
+  removeObserver
+  removeView
+  removeViewImmediate
+  repeatCount
+  repeats
+  requestNotifications
+  res_%1s
+  resetBadge
+  resize
+  resizeColumn
+  resizeDown
+  resizeDownRight
+  resizeLeft
+  resizeLeftRight
+  resizeRight
+  resizeRow
+  resizeUp
+  resizeUpDown
+  resizeUpLeft
+  resizeUpLeftDownRight
+  resizeUpRight
+  resizeUpRightDownLeft
+  result
+  resultKey
+  retrieve
+  roundedBigPicture
+  roundedLargeIcon
+  route
+  rows
+  rule
+  ruleComponent
+  ruleComponent.className
+  ruleComponent.packageName
+  rules
+  rw
+  rwt
+  safeCast
+  scanCode
+  schedule
+  schedules
+  search_results
+  second
+  secondaryActivity
+  secondaryActivity.intent
+  secondaryActivityIntent
+  secondaryActivityName
+  secondaryActivityName.className
+  secondaryActivityName.packageName
+  secondaryActivityStack
+  secondaryActivityStack.activities
+  selectedItems
+  selectionBase
+  selectionExtent
+  semanticAction
+  sender
+  sender_person
+  separator
+  sequence
+  service
+  setAlpha
+  setAppBadgeCount
+  setAppUnreadCount
+  setBackgroundResource
+  setBadgeCount
+  setBase
+  setBool
+  setDirection
+  setDisplayFeatures
+  setDouble
+  setInitialRoute
+  setInt
+  setLocale
+  setMessageCount
+  setNotificationChannel
+  setPosture
+  setRemoveOnCancelPolicy
+  setSidecarCallback
+  setStarted
+  setString
+  setStringList
+  setTime
+  sharedManager.
+  short
+  shouldShowRationale
+  showAlarmPage
+  showGlobalDndPage
+  showInCompactView
+  showNotificationPage
+  showToast
+  showWhen
+  showsUserInterface
+  sidecarAdapter
+  sidecarCompat
+  sidecarDeviceState
+  sidecarDisplayFeatures
+  signed
+  silent
+  singleInstance
+  size
+  smsOTPCode
+  social
+  soundSource
+  source
+  splitInfo
+  splitInfo.primaryActivityStack
+  splitInfo.secondaryActivityStack
+  splitInfoList
+  splitPairFilters
+  splitRule
+  splitRules
+  sql
+  sqlite_error
+  startForeground
+  startType
+  state
+  status
+  statusBarColor
+  statusBarIconBrightness
+  stopForeground
+  stopwatch
+  storage
+  streetAddress
+  string
+  string1
+  suffix
+  summary
+  sun.misc.JavaLangAccess
+  sun.misc.SharedSecrets
+  sun.misc.Unsafe
+  surface
+  synchronizeToNativeViewHierarchy
+  systemNavigationBarColor
+  systemNavigationBarContrastEnforced
+  systemNavigationBarDividerColor
+  systemNavigationBarIconBrightness
+  systemStatusBarContrastEnforced
+  tag
+  tap
+  tekartik_sqflite.db
+  telephoneNumber
+  telephoneNumberCountryCode
+  telephoneNumberDevice
+  telephoneNumberNational
+  temp
+  text
+  text/plain
+  text/vnd.android.intent
+  textCapitalization
+  textScaleFactor
+  textcolor
+  texture
+  theUnsafe
+  this
+  this$0
+  throwableMethods
+  ticker
+  time
+  timeZone
+  timestamp
+  tint_list
+  tint_mode
+  title
+  tmp
+  token
+  tooltip
+  top
+  touch
+  tracker
+  transform
+  transformer
+  transition_animation_scale
+  transparent
+  transport
+  true
+  truncated
+  type
+  uninstallDeferredComponent
+  uniqueIdentifier
+  unknown_activity
+  unknown_path
+  unrated
+  update
+  updateViewLayout
+  upgradeNumber
+  uri
+  username
+  usesVirtualDisplay
+  value
+  vendorId
+  verticalText
+  vibrationPattern
+  video
+  view
+  viewFocused
+  viewType
+  void
+  w
+  wa
+  wait
+  wakeUpScreen
+  weekOfMonth
+  weekOfYear
+  weekday
+  width
+  wifi
+  wifiBSSID
+  wifiBroadcast
+  wifiGatewayAddress
+  wifiIPAddress
+  wifiIPv6Address
+  wifiName
+  wifiSubmask
+  window
+  windowBackend
+  windowConfiguration
+  windowMetrics
+  windowMetrics.bounds
+  windowMetricsCalculator
+  windowToken
+  withData
+  workerCtl
+  workout
+  write
+  wt
+  x
+  year
+  yes
+  zoomIn
+  zoomOut
+Marking id:cancel_action:2131034156 used because its prefix matches string pool constant cancel
+Marking integer:cancel_button_image_alpha:2131099648 used because its prefix matches string pool constant cancel
+Marking id:left:2131034178 used because its prefix matches string pool constant left
+Marking id:locale:2131034181 used because its prefix matches string pool constant locale
+Marking id:top:2131034212 used because its prefix matches string pool constant top
+Marking styleable:ActivityFilter:-1 used because its prefix matches string pool constant ActivityFilter
+Marking id:accessibility_action_clickable_span:2131034112 used because its prefix matches string pool constant accessibility
+Marking id:accessibility_custom_action_0:2131034113 used because its prefix matches string pool constant accessibility
+Marking id:accessibility_custom_action_1:2131034114 used because its prefix matches string pool constant accessibility
+Marking id:accessibility_custom_action_10:2131034115 used because its prefix matches string pool constant accessibility
+Marking id:accessibility_custom_action_11:2131034116 used because its prefix matches string pool constant accessibility
+Marking id:accessibility_custom_action_12:2131034117 used because its prefix matches string pool constant accessibility
+Marking id:accessibility_custom_action_13:2131034118 used because its prefix matches string pool constant accessibility
+Marking id:accessibility_custom_action_14:2131034119 used because its prefix matches string pool constant accessibility
+Marking id:accessibility_custom_action_15:2131034120 used because its prefix matches string pool constant accessibility
+Marking id:accessibility_custom_action_16:2131034121 used because its prefix matches string pool constant accessibility
+Marking id:accessibility_custom_action_17:2131034122 used because its prefix matches string pool constant accessibility
+Marking id:accessibility_custom_action_18:2131034123 used because its prefix matches string pool constant accessibility
+Marking id:accessibility_custom_action_19:2131034124 used because its prefix matches string pool constant accessibility
+Marking id:accessibility_custom_action_2:2131034125 used because its prefix matches string pool constant accessibility
+Marking id:accessibility_custom_action_20:2131034126 used because its prefix matches string pool constant accessibility
+Marking id:accessibility_custom_action_21:2131034127 used because its prefix matches string pool constant accessibility
+Marking id:accessibility_custom_action_22:2131034128 used because its prefix matches string pool constant accessibility
+Marking id:accessibility_custom_action_23:2131034129 used because its prefix matches string pool constant accessibility
+Marking id:accessibility_custom_action_24:2131034130 used because its prefix matches string pool constant accessibility
+Marking id:accessibility_custom_action_25:2131034131 used because its prefix matches string pool constant accessibility
+Marking id:accessibility_custom_action_26:2131034132 used because its prefix matches string pool constant accessibility
+Marking id:accessibility_custom_action_27:2131034133 used because its prefix matches string pool constant accessibility
+Marking id:accessibility_custom_action_28:2131034134 used because its prefix matches string pool constant accessibility
+Marking id:accessibility_custom_action_29:2131034135 used because its prefix matches string pool constant accessibility
+Marking id:accessibility_custom_action_3:2131034136 used because its prefix matches string pool constant accessibility
+Marking id:accessibility_custom_action_30:2131034137 used because its prefix matches string pool constant accessibility
+Marking id:accessibility_custom_action_31:2131034138 used because its prefix matches string pool constant accessibility
+Marking id:accessibility_custom_action_4:2131034139 used because its prefix matches string pool constant accessibility
+Marking id:accessibility_custom_action_5:2131034140 used because its prefix matches string pool constant accessibility
+Marking id:accessibility_custom_action_6:2131034141 used because its prefix matches string pool constant accessibility
+Marking id:accessibility_custom_action_7:2131034142 used because its prefix matches string pool constant accessibility
+Marking id:accessibility_custom_action_8:2131034143 used because its prefix matches string pool constant accessibility
+Marking id:accessibility_custom_action_9:2131034144 used because its prefix matches string pool constant accessibility
+Marking styleable:SplitPlaceholderRule:-1 used because its prefix matches string pool constant SplitPlaceholderRule
+Marking id:center:2131034157 used because its prefix matches string pool constant center
+Marking id:center_horizontal:2131034158 used because its prefix matches string pool constant center
+Marking id:center_vertical:2131034159 used because its prefix matches string pool constant center
+Marking attr:shortcutMatchRequired:2130772001 used because its prefix matches string pool constant short
+Marking id:time:2131034210 used because its prefix matches string pool constant time
+Marking attr:primaryActivityName:2130771997 used because its prefix matches string pool constant primary
+Marking color:primary_text_default_material_dark:2130837509 used because its prefix matches string pool constant primary
+Marking attr:clearTop:2130771972 used because its prefix matches string pool constant clear
+Marking attr:secondaryActivityName:2130772000 used because its prefix matches string pool constant secondaryActivityName
+Marking id:info:2131034172 used because its prefix matches string pool constant info
+Marking id:title:2131034211 used because its prefix matches string pool constant title
+Marking attr:primaryActivityName:2130771997 used because its prefix matches string pool constant primaryActivity
+Marking attr:secondaryActivityAction:2130771999 used because its prefix matches string pool constant secondaryActivity
+Marking attr:secondaryActivityName:2130772000 used because its prefix matches string pool constant secondaryActivity
+Marking layout:custom_dialog:2131165184 used because its prefix matches string pool constant custom
+Marking id:action0:2131034145 used because its prefix matches string pool constant action
+Marking id:action_container:2131034146 used because its prefix matches string pool constant action
+Marking id:action_divider:2131034147 used because its prefix matches string pool constant action
+Marking id:action_image:2131034148 used because its prefix matches string pool constant action
+Marking id:action_text:2131034149 used because its prefix matches string pool constant action
+Marking id:actions:2131034150 used because its prefix matches string pool constant action
+Marking id:text:2131034208 used because its prefix matches string pool constant text
+Marking id:text2:2131034209 used because its prefix matches string pool constant text
+Marking attr:statusBarBackground:2130772006 used because its prefix matches string pool constant status
+Marking id:status_bar_latest_event_content:2131034194 used because its prefix matches string pool constant status
+Marking integer:status_bar_notification_info_maxnum:2131099649 used because its prefix matches string pool constant status
+Marking string:status_bar_notification_info_overflow:2131361792 used because its prefix matches string pool constant status
+Marking styleable:ActivityRule:-1 used because its prefix matches string pool constant ActivityRule
+Marking id:accessibility_action_clickable_span:2131034112 used because its prefix matches string pool constant acc
+Marking id:accessibility_custom_action_0:2131034113 used because its prefix matches string pool constant acc
+Marking id:accessibility_custom_action_1:2131034114 used because its prefix matches string pool constant acc
+Marking id:accessibility_custom_action_10:2131034115 used because its prefix matches string pool constant acc
+Marking id:accessibility_custom_action_11:2131034116 used because its prefix matches string pool constant acc
+Marking id:accessibility_custom_action_12:2131034117 used because its prefix matches string pool constant acc
+Marking id:accessibility_custom_action_13:2131034118 used because its prefix matches string pool constant acc
+Marking id:accessibility_custom_action_14:2131034119 used because its prefix matches string pool constant acc
+Marking id:accessibility_custom_action_15:2131034120 used because its prefix matches string pool constant acc
+Marking id:accessibility_custom_action_16:2131034121 used because its prefix matches string pool constant acc
+Marking id:accessibility_custom_action_17:2131034122 used because its prefix matches string pool constant acc
+Marking id:accessibility_custom_action_18:2131034123 used because its prefix matches string pool constant acc
+Marking id:accessibility_custom_action_19:2131034124 used because its prefix matches string pool constant acc
+Marking id:accessibility_custom_action_2:2131034125 used because its prefix matches string pool constant acc
+Marking id:accessibility_custom_action_20:2131034126 used because its prefix matches string pool constant acc
+Marking id:accessibility_custom_action_21:2131034127 used because its prefix matches string pool constant acc
+Marking id:accessibility_custom_action_22:2131034128 used because its prefix matches string pool constant acc
+Marking id:accessibility_custom_action_23:2131034129 used because its prefix matches string pool constant acc
+Marking id:accessibility_custom_action_24:2131034130 used because its prefix matches string pool constant acc
+Marking id:accessibility_custom_action_25:2131034131 used because its prefix matches string pool constant acc
+Marking id:accessibility_custom_action_26:2131034132 used because its prefix matches string pool constant acc
+Marking id:accessibility_custom_action_27:2131034133 used because its prefix matches string pool constant acc
+Marking id:accessibility_custom_action_28:2131034134 used because its prefix matches string pool constant acc
+Marking id:accessibility_custom_action_29:2131034135 used because its prefix matches string pool constant acc
+Marking id:accessibility_custom_action_3:2131034136 used because its prefix matches string pool constant acc
+Marking id:accessibility_custom_action_30:2131034137 used because its prefix matches string pool constant acc
+Marking id:accessibility_custom_action_31:2131034138 used because its prefix matches string pool constant acc
+Marking id:accessibility_custom_action_4:2131034139 used because its prefix matches string pool constant acc
+Marking id:accessibility_custom_action_5:2131034140 used because its prefix matches string pool constant acc
+Marking id:accessibility_custom_action_6:2131034141 used because its prefix matches string pool constant acc
+Marking id:accessibility_custom_action_7:2131034142 used because its prefix matches string pool constant acc
+Marking id:accessibility_custom_action_8:2131034143 used because its prefix matches string pool constant acc
+Marking id:accessibility_custom_action_9:2131034144 used because its prefix matches string pool constant acc
+Marking styleable:SplitPairRule:-1 used because its prefix matches string pool constant SplitPairRule
+Marking id:media_actions:2131034183 used because its prefix matches string pool constant media
+Marking id:view_tree_lifecycle_owner:2131034213 used because its prefix matches string pool constant view
+Marking mipmap:ic_launcher:2131296256 used because its prefix matches string pool constant ic_launcher
+Marking attr:primaryActivityName:2130771997 used because its prefix matches string pool constant primaryActivityName
+Marking xml:flutter_image_picker_file_paths:2131558400 used because its prefix matches string pool constant flutter
+Marking color:androidx_core_ripple_material_light:2130837504 used because its prefix matches string pool constant android
+Marking color:androidx_core_secondary_text_default_material_light:2130837505 used because its prefix matches string pool constant android
+Marking id:androidx_window_activity_scope:2131034152 used because its prefix matches string pool constant android
+Marking attr:android_colorBackground:-1 used because its prefix matches string pool constant android
+Marking attr:android_color:-1 used because its prefix matches string pool constant android
+Marking attr:android_alpha:-1 used because its prefix matches string pool constant android
+Marking attr:android_lStar:-1 used because its prefix matches string pool constant android
+Marking attr:android_layout_gravity:-1 used because its prefix matches string pool constant android
+Marking attr:android_fontStyle:-1 used because its prefix matches string pool constant android
+Marking attr:android_font:-1 used because its prefix matches string pool constant android
+Marking attr:android_fontWeight:-1 used because its prefix matches string pool constant android
+Marking attr:android_fontVariationSettings:-1 used because its prefix matches string pool constant android
+Marking attr:android_ttcIndex:-1 used because its prefix matches string pool constant android
+Marking attr:android_startColor:-1 used because its prefix matches string pool constant android
+Marking attr:android_centerColor:-1 used because its prefix matches string pool constant android
+Marking attr:android_endColor:-1 used because its prefix matches string pool constant android
+Marking attr:android_type:-1 used because its prefix matches string pool constant android
+Marking attr:android_gradientRadius:-1 used because its prefix matches string pool constant android
+Marking attr:android_centerX:-1 used because its prefix matches string pool constant android
+Marking attr:android_centerY:-1 used because its prefix matches string pool constant android
+Marking attr:android_startX:-1 used because its prefix matches string pool constant android
+Marking attr:android_startY:-1 used because its prefix matches string pool constant android
+Marking attr:android_endX:-1 used because its prefix matches string pool constant android
+Marking attr:android_endY:-1 used because its prefix matches string pool constant android
+Marking attr:android_tileMode:-1 used because its prefix matches string pool constant android
+Marking attr:android_offset:-1 used because its prefix matches string pool constant android
+Marking color:notification_action_color_filter:2130837506 used because its prefix matches string pool constant notification
+Marking color:notification_icon_bg_color:2130837507 used because its prefix matches string pool constant notification
+Marking color:notification_material_background_media_default_color:2130837508 used because its prefix matches string pool constant notification
+Marking dimen:notification_action_icon_size:2130903047 used because its prefix matches string pool constant notification
+Marking dimen:notification_action_text_size:2130903048 used because its prefix matches string pool constant notification
+Marking dimen:notification_big_circle_margin:2130903049 used because its prefix matches string pool constant notification
+Marking dimen:notification_content_margin_start:2130903050 used because its prefix matches string pool constant notification
+Marking dimen:notification_large_icon_height:2130903051 used because its prefix matches string pool constant notification
+Marking dimen:notification_large_icon_width:2130903052 used because its prefix matches string pool constant notification
+Marking dimen:notification_main_column_padding_top:2130903053 used because its prefix matches string pool constant notification
+Marking dimen:notification_media_narrow_margin:2130903054 used because its prefix matches string pool constant notification
+Marking dimen:notification_right_icon_size:2130903055 used because its prefix matches string pool constant notification
+Marking dimen:notification_right_side_padding_top:2130903056 used because its prefix matches string pool constant notification
+Marking dimen:notification_small_icon_background_padding:2130903057 used because its prefix matches string pool constant notification
+Marking dimen:notification_small_icon_size_as_large:2130903058 used because its prefix matches string pool constant notification
+Marking dimen:notification_subtext_size:2130903059 used because its prefix matches string pool constant notification
+Marking dimen:notification_top_pad:2130903060 used because its prefix matches string pool constant notification
+Marking dimen:notification_top_pad_large_text:2130903061 used because its prefix matches string pool constant notification
+Marking drawable:notification_action_background:2130968578 used because its prefix matches string pool constant notification
+Marking drawable:notification_bg:2130968579 used because its prefix matches string pool constant notification
+Marking drawable:notification_bg_low:2130968580 used because its prefix matches string pool constant notification
+Marking drawable:notification_bg_low_normal:2130968581 used because its prefix matches string pool constant notification
+Marking drawable:notification_bg_low_pressed:2130968582 used because its prefix matches string pool constant notification
+Marking drawable:notification_bg_normal:2130968583 used because its prefix matches string pool constant notification
+Marking drawable:notification_bg_normal_pressed:2130968584 used because its prefix matches string pool constant notification
+Marking drawable:notification_icon_background:2130968585 used because its prefix matches string pool constant notification
+Marking drawable:notification_template_icon_bg:2130968586 used because its prefix matches string pool constant notification
+Marking drawable:notification_template_icon_low_bg:2130968587 used because its prefix matches string pool constant notification
+Marking drawable:notification_tile_bg:2130968588 used because its prefix matches string pool constant notification
+Marking id:notification_background:2131034186 used because its prefix matches string pool constant notification
+Marking id:notification_main_column:2131034187 used because its prefix matches string pool constant notification
+Marking id:notification_main_column_container:2131034188 used because its prefix matches string pool constant notification
+Marking layout:notification_action:2131165185 used because its prefix matches string pool constant notification
+Marking layout:notification_action_tombstone:2131165186 used because its prefix matches string pool constant notification
+Marking layout:notification_media_action:2131165187 used because its prefix matches string pool constant notification
+Marking layout:notification_media_cancel_action:2131165188 used because its prefix matches string pool constant notification
+Marking layout:notification_template_big_media:2131165189 used because its prefix matches string pool constant notification
+Marking layout:notification_template_big_media_custom:2131165190 used because its prefix matches string pool constant notification
+Marking layout:notification_template_big_media_narrow:2131165191 used because its prefix matches string pool constant notification
+Marking layout:notification_template_big_media_narrow_custom:2131165192 used because its prefix matches string pool constant notification
+Marking layout:notification_template_custom_big:2131165193 used because its prefix matches string pool constant notification
+Marking layout:notification_template_icon_group:2131165194 used because its prefix matches string pool constant notification
+Marking layout:notification_template_lines_media:2131165195 used because its prefix matches string pool constant notification
+Marking layout:notification_template_media:2131165196 used because its prefix matches string pool constant notification
+Marking layout:notification_template_media_custom:2131165197 used because its prefix matches string pool constant notification
+Marking layout:notification_template_part_chronometer:2131165198 used because its prefix matches string pool constant notification
+Marking layout:notification_template_part_time:2131165199 used because its prefix matches string pool constant notification
+Marking styleable:SplitPairFilter:-1 used because its prefix matches string pool constant SplitPairFilter
+Marking id:icon:2131034170 used because its prefix matches string pool constant icon
+Marking id:icon_group:2131034171 used because its prefix matches string pool constant icon
+Marking attr:secondaryActivityAction:2130771999 used because its prefix matches string pool constant second
+Marking attr:secondaryActivityName:2130772000 used because its prefix matches string pool constant second
+Marking color:secondary_text_default_material_dark:2130837510 used because its prefix matches string pool constant second
+Marking attr:activityAction:2130771968 used because its prefix matches string pool constant activity
+Marking attr:activityName:2130771969 used because its prefix matches string pool constant activity
+Marking attr:keylines:2130771987 used because its prefix matches string pool constant key
+Marking attr:queryPatterns:2130771998 used because its prefix matches string pool constant query
+Marking id:none:2131034184 used because its prefix matches string pool constant none
+Marking id:tag_accessibility_actions:2131034195 used because its prefix matches string pool constant tag
+Marking id:tag_accessibility_clickable_spans:2131034196 used because its prefix matches string pool constant tag
+Marking id:tag_accessibility_heading:2131034197 used because its prefix matches string pool constant tag
+Marking id:tag_accessibility_pane_title:2131034198 used because its prefix matches string pool constant tag
+Marking id:tag_on_apply_window_listener:2131034199 used because its prefix matches string pool constant tag
+Marking id:tag_on_receive_content_listener:2131034200 used because its prefix matches string pool constant tag
+Marking id:tag_on_receive_content_mime_types:2131034201 used because its prefix matches string pool constant tag
+Marking id:tag_screen_reader_focusable:2131034202 used because its prefix matches string pool constant tag
+Marking id:tag_state_description:2131034203 used because its prefix matches string pool constant tag
+Marking id:tag_transition_group:2131034204 used because its prefix matches string pool constant tag
+Marking id:tag_unhandled_key_event_manager:2131034205 used because its prefix matches string pool constant tag
+Marking id:tag_unhandled_key_listeners:2131034206 used because its prefix matches string pool constant tag
+Marking id:tag_window_insets_animation_callback:2131034207 used because its prefix matches string pool constant tag
+Marking id:line1:2131034179 used because its prefix matches string pool constant line
+Marking id:line3:2131034180 used because its prefix matches string pool constant line
+Resource Reference Graph:
+color:notification_action_color_filter:2130837506 => [color:androidx_core_secondary_text_default_material_light:2130837505]
+dimen:notification_media_narrow_margin:2130903054 => [dimen:notification_content_margin_start:2130903050]
+drawable:notification_action_background:2130968578 => [color:androidx_core_ripple_material_light:2130837504, dimen:compat_button_inset_vertical_material:2130903041, dimen:compat_button_inset_horizontal_material:2130903040, dimen:compat_control_corner_material:2130903044, dimen:compat_button_padding_vertical_material:2130903043, dimen:compat_button_padding_horizontal_material:2130903042]
+drawable:notification_bg:2130968579 => [drawable:notification_bg_normal_pressed:2130968584, drawable:notification_bg_normal:2130968583]
+drawable:notification_bg_low:2130968580 => [drawable:notification_bg_low_pressed:2130968582, drawable:notification_bg_low_normal:2130968581]
+drawable:notification_icon_background:2130968585 => [color:notification_icon_bg_color:2130837507]
+drawable:notification_tile_bg:2130968588 => [drawable:notify_panel_notification_icon_bg:2130968589]
+layout:notification_action:2131165185 => [style:Widget_Compat_NotificationActionContainer:2131427340, dimen:notification_action_icon_size:2130903047, style:Widget_Compat_NotificationActionText:2131427341]
+layout:notification_action_tombstone:2131165186 => [style:Widget_Compat_NotificationActionContainer:2131427340, dimen:notification_action_icon_size:2130903047, style:Widget_Compat_NotificationActionText:2131427341]
+layout:notification_template_big_media:2131165189 => [dimen:notification_large_icon_height:2130903051, dimen:notification_large_icon_width:2130903052, layout:notification_template_icon_group:2131165194, layout:notification_media_cancel_action:2131165188, id:cancel_action:2131034156, layout:notification_template_lines_media:2131165195, id:media_actions:2131034183]
+layout:notification_template_big_media_custom:2131165190 => [dimen:notification_large_icon_height:2130903051, dimen:notification_large_icon_width:2130903052, layout:notification_template_icon_group:2131165194, layout:notification_media_cancel_action:2131165188, id:cancel_action:2131034156, dimen:notification_main_column_padding_top:2130903053, dimen:notification_content_margin_start:2130903050, dimen:notification_right_side_padding_top:2130903056, style:TextAppearance_Compat_Notification_Time_Media:2131427337, style:TextAppearance_Compat_Notification_Info_Media:2131427332, id:media_actions:2131034183]
+layout:notification_template_big_media_narrow:2131165191 => [layout:notification_media_cancel_action:2131165188, id:cancel_action:2131034156, layout:notification_template_lines_media:2131165195, id:icon:2131034170, id:media_actions:2131034183]
+layout:notification_template_big_media_narrow_custom:2131165192 => [layout:notification_media_cancel_action:2131165188, id:cancel_action:2131034156, dimen:notification_large_icon_height:2130903051, dimen:notification_main_column_padding_top:2130903053, dimen:notification_media_narrow_margin:2130903054, dimen:notification_right_side_padding_top:2130903056, style:TextAppearance_Compat_Notification_Time_Media:2131427337, style:TextAppearance_Compat_Notification_Info_Media:2131427332, id:icon:2131034170, id:media_actions:2131034183]
+layout:notification_template_custom_big:2131165193 => [dimen:notification_large_icon_height:2130903051, dimen:notification_large_icon_width:2130903052, layout:notification_template_icon_group:2131165194, dimen:notification_right_side_padding_top:2130903056, layout:notification_template_part_time:2131165199, layout:notification_template_part_chronometer:2131165198, style:TextAppearance_Compat_Notification_Info:2131427331]
+layout:notification_template_icon_group:2131165194 => [dimen:notification_large_icon_height:2130903051, dimen:notification_large_icon_width:2130903052, dimen:notification_big_circle_margin:2130903049, dimen:notification_right_icon_size:2130903055]
+layout:notification_template_lines_media:2131165195 => [dimen:notification_content_margin_start:2130903050, style:TextAppearance_Compat_Notification_Title_Media:2131427339, style:TextAppearance_Compat_Notification_Time_Media:2131427337, style:TextAppearance_Compat_Notification_Line2_Media:2131427334, style:TextAppearance_Compat_Notification_Media:2131427335, style:TextAppearance_Compat_Notification_Info_Media:2131427332]
+layout:notification_template_media:2131165196 => [dimen:notification_large_icon_height:2130903051, dimen:notification_large_icon_width:2130903052, layout:notification_template_icon_group:2131165194, layout:notification_template_lines_media:2131165195, layout:notification_media_cancel_action:2131165188]
+layout:notification_template_media_custom:2131165197 => [dimen:notification_large_icon_height:2130903051, dimen:notification_large_icon_width:2130903052, layout:notification_template_icon_group:2131165194, id:cancel_action:2131034156, dimen:notification_main_column_padding_top:2130903053, dimen:notification_content_margin_start:2130903050, dimen:notification_right_side_padding_top:2130903056, style:TextAppearance_Compat_Notification_Time_Media:2131427337, style:TextAppearance_Compat_Notification_Info_Media:2131427332, layout:notification_media_cancel_action:2131165188]
+layout:notification_template_part_chronometer:2131165198 => [style:TextAppearance_Compat_Notification_Time:2131427336]
+layout:notification_template_part_time:2131165199 => [style:TextAppearance_Compat_Notification_Time:2131427336]
+layout:toast_custom:2131165200 => [drawable:corner:2130968576]
+style:LaunchTheme:2131427328 => [drawable:launch_background:2130968577]
+style:NormalTheme:2131427329 => [attr:android_colorBackground:-1]
+style:TextAppearance_Compat_Notification_Info:2131427331 => [style:TextAppearance_Compat_Notification:2131427330, style:TextAppearance_Compat:-1, style:TextAppearance:-1]
+style:TextAppearance_Compat_Notification_Info_Media:2131427332 => [style:TextAppearance_Compat_Notification_Info:2131427331, style:TextAppearance_Compat_Notification:2131427330, style:TextAppearance_Compat:-1, style:TextAppearance:-1, color:secondary_text_default_material_dark:2130837510]
+style:TextAppearance_Compat_Notification_Line2:2131427333 => [style:TextAppearance_Compat_Notification_Info:2131427331]
+style:TextAppearance_Compat_Notification_Line2_Media:2131427334 => [style:TextAppearance_Compat_Notification_Info_Media:2131427332]
+style:TextAppearance_Compat_Notification_Media:2131427335 => [style:TextAppearance_Compat_Notification:2131427330, style:TextAppearance_Compat:-1, style:TextAppearance:-1, color:secondary_text_default_material_dark:2130837510]
+style:TextAppearance_Compat_Notification_Time:2131427336 => [style:TextAppearance_Compat_Notification:2131427330, style:TextAppearance_Compat:-1, style:TextAppearance:-1]
+style:TextAppearance_Compat_Notification_Time_Media:2131427337 => [style:TextAppearance_Compat_Notification_Time:2131427336, style:TextAppearance_Compat_Notification:2131427330, style:TextAppearance_Compat:-1, style:TextAppearance:-1, color:secondary_text_default_material_dark:2130837510]
+style:TextAppearance_Compat_Notification_Title_Media:2131427339 => [style:TextAppearance_Compat_Notification_Title:2131427338, style:TextAppearance_Compat_Notification:2131427330, style:TextAppearance_Compat:-1, style:TextAppearance:-1, color:primary_text_default_material_dark:2130837509]
+style:Widget_Compat_NotificationActionContainer:2131427340 => [drawable:notification_action_background:2130968578]
+style:Widget_Compat_NotificationActionText:2131427341 => [color:androidx_core_secondary_text_default_material_light:2130837505, dimen:notification_action_text_size:2130903048]
+
+The root reachable resources are:
+attr:activityAction:2130771968,
+   attr:activityName:2130771969,
+   attr:clearTop:2130771972,
+   attr:keylines:2130771987,
+   attr:primaryActivityName:2130771997,
+   attr:queryPatterns:2130771998,
+   attr:secondaryActivityAction:2130771999,
+   attr:secondaryActivityName:2130772000,
+   attr:shortcutMatchRequired:2130772001,
+   attr:statusBarBackground:2130772006,
+   color:androidx_core_ripple_material_light:2130837504,
+   color:androidx_core_secondary_text_default_material_light:2130837505,
+   color:notification_action_color_filter:2130837506,
+   color:notification_icon_bg_color:2130837507,
+   color:notification_material_background_media_default_color:2130837508,
+   color:primary_text_default_material_dark:2130837509,
+   color:secondary_text_default_material_dark:2130837510,
+   dimen:compat_notification_large_icon_max_height:2130903045,
+   dimen:compat_notification_large_icon_max_width:2130903046,
+   dimen:notification_action_icon_size:2130903047,
+   dimen:notification_action_text_size:2130903048,
+   dimen:notification_big_circle_margin:2130903049,
+   dimen:notification_content_margin_start:2130903050,
+   dimen:notification_large_icon_height:2130903051,
+   dimen:notification_large_icon_width:2130903052,
+   dimen:notification_main_column_padding_top:2130903053,
+   dimen:notification_media_narrow_margin:2130903054,
+   dimen:notification_right_icon_size:2130903055,
+   dimen:notification_right_side_padding_top:2130903056,
+   dimen:notification_small_icon_background_padding:2130903057,
+   dimen:notification_small_icon_size_as_large:2130903058,
+   dimen:notification_subtext_size:2130903059,
+   dimen:notification_top_pad:2130903060,
+   dimen:notification_top_pad_large_text:2130903061,
+   drawable:corner:2130968576,
+   drawable:notification_action_background:2130968578,
+   drawable:notification_bg:2130968579,
+   drawable:notification_bg_low:2130968580,
+   drawable:notification_bg_low_normal:2130968581,
+   drawable:notification_bg_low_pressed:2130968582,
+   drawable:notification_bg_normal:2130968583,
+   drawable:notification_bg_normal_pressed:2130968584,
+   drawable:notification_icon_background:2130968585,
+   drawable:notification_template_icon_bg:2130968586,
+   drawable:notification_template_icon_low_bg:2130968587,
+   drawable:notification_tile_bg:2130968588,
+   id:accessibility_action_clickable_span:2131034112,
+   id:accessibility_custom_action_0:2131034113,
+   id:accessibility_custom_action_1:2131034114,
+   id:accessibility_custom_action_10:2131034115,
+   id:accessibility_custom_action_11:2131034116,
+   id:accessibility_custom_action_12:2131034117,
+   id:accessibility_custom_action_13:2131034118,
+   id:accessibility_custom_action_14:2131034119,
+   id:accessibility_custom_action_15:2131034120,
+   id:accessibility_custom_action_16:2131034121,
+   id:accessibility_custom_action_17:2131034122,
+   id:accessibility_custom_action_18:2131034123,
+   id:accessibility_custom_action_19:2131034124,
+   id:accessibility_custom_action_2:2131034125,
+   id:accessibility_custom_action_20:2131034126,
+   id:accessibility_custom_action_21:2131034127,
+   id:accessibility_custom_action_22:2131034128,
+   id:accessibility_custom_action_23:2131034129,
+   id:accessibility_custom_action_24:2131034130,
+   id:accessibility_custom_action_25:2131034131,
+   id:accessibility_custom_action_26:2131034132,
+   id:accessibility_custom_action_27:2131034133,
+   id:accessibility_custom_action_28:2131034134,
+   id:accessibility_custom_action_29:2131034135,
+   id:accessibility_custom_action_3:2131034136,
+   id:accessibility_custom_action_30:2131034137,
+   id:accessibility_custom_action_31:2131034138,
+   id:accessibility_custom_action_4:2131034139,
+   id:accessibility_custom_action_5:2131034140,
+   id:accessibility_custom_action_6:2131034141,
+   id:accessibility_custom_action_7:2131034142,
+   id:accessibility_custom_action_8:2131034143,
+   id:accessibility_custom_action_9:2131034144,
+   id:action0:2131034145,
+   id:action_container:2131034146,
+   id:action_divider:2131034147,
+   id:action_image:2131034148,
+   id:action_text:2131034149,
+   id:actions:2131034150,
+   id:androidx_window_activity_scope:2131034152,
+   id:cancel_action:2131034156,
+   id:center:2131034157,
+   id:center_horizontal:2131034158,
+   id:center_vertical:2131034159,
+   id:chronometer:2131034160,
+   id:end_padder:2131034165,
+   id:icon:2131034170,
+   id:icon_group:2131034171,
+   id:info:2131034172,
+   id:left:2131034178,
+   id:line1:2131034179,
+   id:line3:2131034180,
+   id:locale:2131034181,
+   id:media_actions:2131034183,
+   id:none:2131034184,
+   id:notification_background:2131034186,
+   id:notification_main_column:2131034187,
+   id:notification_main_column_container:2131034188,
+   id:right_icon:2131034190,
+   id:right_side:2131034191,
+   id:status_bar_latest_event_content:2131034194,
+   id:tag_accessibility_actions:2131034195,
+   id:tag_accessibility_clickable_spans:2131034196,
+   id:tag_accessibility_heading:2131034197,
+   id:tag_accessibility_pane_title:2131034198,
+   id:tag_on_apply_window_listener:2131034199,
+   id:tag_on_receive_content_listener:2131034200,
+   id:tag_on_receive_content_mime_types:2131034201,
+   id:tag_screen_reader_focusable:2131034202,
+   id:tag_state_description:2131034203,
+   id:tag_transition_group:2131034204,
+   id:tag_unhandled_key_event_manager:2131034205,
+   id:tag_unhandled_key_listeners:2131034206,
+   id:tag_window_insets_animation_callback:2131034207,
+   id:text:2131034208,
+   id:text2:2131034209,
+   id:time:2131034210,
+   id:title:2131034211,
+   id:top:2131034212,
+   id:view_tree_lifecycle_owner:2131034213,
+   integer:cancel_button_image_alpha:2131099648,
+   integer:status_bar_notification_info_maxnum:2131099649,
+   layout:custom_dialog:2131165184,
+   layout:notification_action:2131165185,
+   layout:notification_action_tombstone:2131165186,
+   layout:notification_media_action:2131165187,
+   layout:notification_media_cancel_action:2131165188,
+   layout:notification_template_big_media:2131165189,
+   layout:notification_template_big_media_custom:2131165190,
+   layout:notification_template_big_media_narrow:2131165191,
+   layout:notification_template_big_media_narrow_custom:2131165192,
+   layout:notification_template_custom_big:2131165193,
+   layout:notification_template_icon_group:2131165194,
+   layout:notification_template_lines_media:2131165195,
+   layout:notification_template_media:2131165196,
+   layout:notification_template_media_custom:2131165197,
+   layout:notification_template_part_chronometer:2131165198,
+   layout:notification_template_part_time:2131165199,
+   layout:toast_custom:2131165200,
+   mipmap:ic_launcher:2131296256,
+   string:status_bar_notification_info_overflow:2131361792,
+   style:LaunchTheme:2131427328,
+   style:NormalTheme:2131427329,
+   styleable:ActivityFilter:-1,
+   styleable:ActivityRule:-1,
+   styleable:SplitPairFilter:-1,
+   styleable:SplitPairRule:-1,
+   styleable:SplitPlaceholderRule:-1,
+   xml:flutter_image_picker_file_paths:2131558400,
+   attr:android_colorBackground:-1,
+   attr:android_color:-1,
+   attr:android_alpha:-1,
+   attr:android_lStar:-1,
+   attr:android_layout_gravity:-1,
+   attr:android_fontStyle:-1,
+   attr:android_font:-1,
+   attr:android_fontWeight:-1,
+   attr:android_fontVariationSettings:-1,
+   attr:android_ttcIndex:-1,
+   attr:android_startColor:-1,
+   attr:android_centerColor:-1,
+   attr:android_endColor:-1,
+   attr:android_type:-1,
+   attr:android_gradientRadius:-1,
+   attr:android_centerX:-1,
+   attr:android_centerY:-1,
+   attr:android_startX:-1,
+   attr:android_startY:-1,
+   attr:android_endX:-1,
+   attr:android_endY:-1,
+   attr:android_tileMode:-1,
+   attr:android_offset:-1
+Skipped unused resource res/drawable/toast_bg.xml: 700 bytes (replaced with small dummy file of size 104 bytes)
+Skipped unused resource res/menu/example_menu.xml: 492 bytes (replaced with small dummy file of size 104 bytes)
+Skipped unused resource res/menu/example_menu2.xml: 492 bytes (replaced with small dummy file of size 104 bytes)

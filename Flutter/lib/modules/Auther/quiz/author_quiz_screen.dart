@@ -1,9 +1,13 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lms/modules/Auther/create_module/create_module_screen.dart';
+import 'package:lms/modules/Auther/create_quiz/create_quiz_screen.dart';
 import 'package:lms/modules/Auther/create_quiz/cubit/cubit.dart';
 import 'package:lms/modules/Auther/create_quiz/cubit/states.dart';
+import 'package:lms/modules/Auther/dashboard/dashboard_auther.dart';
+import 'package:lms/modules/quiz/screens/quiz/quiz_screen.dart';
 
 import 'package:lms/shared/component/MyAppBar.dart';
 import 'package:lms/shared/component/component.dart';
@@ -40,7 +44,62 @@ class AuthorQuizScreen extends StatelessWidget {
                         Spacer(),
                         ElevatedButton(
                           onPressed: () {
-                            //navigator(context, CreateModuleScreen());
+                            AwesomeDialog(
+                              context: context,
+                              animType: AnimType.SCALE,
+                              dialogType: DialogType.QUESTION,
+                              body: Form(
+                                key: formKey,
+                                child: Center(
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                    child: Column(
+                                      children: [
+                                        customTextFormFieldWidget(
+                                            type: TextInputType.text,
+                                            prefixIcon: Icons.drive_file_rename_outline,
+                                            prefix: true,
+                                            label: "Quiz Name",
+                                            controller: quizController,
+                                            validate: (value) {
+                                              if (value!.isEmpty) {
+                                                return 'Quiz Name Must Be Not Empty';
+                                              }
+                                              return null;
+                                            }),
+                                        Container(
+                                          height: 40,
+                                          child: defaultButton(
+                                              text: 'OK',
+                                              onPressed: () {
+                                                if (formKey.currentState!.validate()) {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              CreateQuizScreen(
+                                                                  quizController.text)))
+                                                      .then(
+                                                        (value) {
+                                                      quizController.text = "";
+                                                      Navigator.pop(context);
+                                                    },
+                                                  );
+                                                }
+                                              }),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              title: 'This is Ignored',
+                              desc: 'This is also Ignored',
+
+                              // btnOkOnPress: () {
+                              //   navigator(context, CreateQuizScreen());
+                              // },
+                            ).show();
                           },
                           child: Text(
                             'New Quiz',

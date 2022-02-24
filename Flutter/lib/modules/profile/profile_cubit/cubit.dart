@@ -57,6 +57,7 @@ class ProfileCubit extends Cubit<ProfileStates> {
     required String? experience,
     required List<String>? interest,
     required String? bio,
+
   }) {
     emit(UpdadteProfileLoadingState());
 

@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/home/odc2/ODC/TheFirstProject/Flutter/build/awesome_notifications/intermediates/res/merged/release/drawable/notification_bg_low.xml",
+        "source": "/home/odc2/.gradle/caches/transforms-2/files-2.1/b9a960218f5163997c0fdfa3d3078c0e/core-1.7.0/res/drawable/notification_bg_low.xml"
+    },
+    {
+        "merged": "/home/odc2/ODC/TheFirstProject/Flutter/build/awesome_notifications/intermediates/res/merged/release/drawable/notification_tile_bg.xml",
+        "source": "/home/odc2/.gradle/caches/transforms-2/files-2.1/b9a960218f5163997c0fdfa3d3078c0e/core-1.7.0/res/drawable/notification_tile_bg.xml"
+    },
+    {
+        "merged": "/home/odc2/ODC/TheFirstProject/Flutter/build/awesome_notifications/intermediates/res/merged/release/drawable/notification_icon_background.xml",
+        "source": "/home/odc2/.gradle/caches/transforms-2/files-2.1/b9a960218f5163997c0fdfa3d3078c0e/core-1.7.0/res/drawable/notification_icon_background.xml"
+    },
+    {
+        "merged": "/home/odc2/ODC/TheFirstProject/Flutter/build/awesome_notifications/intermediates/res/merged/release/drawable/notification_bg.xml",
+        "source": "/home/odc2/.gradle/caches/transforms-2/files-2.1/b9a960218f5163997c0fdfa3d3078c0e/core-1.7.0/res/drawable/notification_bg.xml"
+    }
+]

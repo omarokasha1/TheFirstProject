@@ -8,6 +8,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lms/layout/layout.dart';
+import 'package:lms/modules/Auther/author_profile/author_profile_screen.dart';
+import 'package:lms/modules/Auther/dashboard/dashboard_auther.dart';
 import 'package:lms/modules/home_screen.dart';
 import 'package:lms/modules/profile/profile_cubit/cubit.dart';
 import 'package:lms/modules/profile/profile_cubit/state.dart';
@@ -42,9 +44,7 @@ class ProfileScreen extends StatelessWidget {
                 onPressed: () {
                   navigatorAndRemove(
                     context,
-                    ZoomDrawerScreen(
-                      widget: HomePage(),
-                    ),
+                    userAuthor?ZoomDrawerScreen(widget:DashboardAuthorScreen()): ZoomDrawerScreen(widget:HomePage()),
                   );
                 },
               ),

@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lms/modules/Auther/dashboard/dashboard_auther.dart';
 import 'package:lms/modules/authertication/forget%20password/forget_Password_screen.dart';
 import 'package:lms/modules/authertication/login/login_cubit/state.dart';
 import 'package:lms/modules/authertication/register/register_screen.dart';
 import 'package:lms/modules/courses/cubit/cubit.dart';
+import 'package:lms/modules/home_screen.dart';
+import 'package:lms/modules/manager/dashboard/dashboard_manager_screen.dart';
 import 'package:lms/modules/profile/profile_cubit/cubit.dart';
 import 'package:lms/shared/component/constants.dart';
 import 'package:lms/shared/component/zoomDrawer.dart';
@@ -43,7 +46,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ProfileCubit.get(context).getUserProfile();
               navigatorAndRemove(
                 context,
-                ZoomDrawerScreen(),
+               userAuthor?ZoomDrawerScreen(widget:DashboardAuthorScreen()): ZoomDrawerScreen(),
               );
             } else {
               print(" jsadjbasjdnj ${state.model.status}");
@@ -218,10 +221,15 @@ class _LoginScreenState extends State<LoginScreen> {
                                     email: emailController.text,
                                     password: passwordController.text,
                                   );
-                                  //CacheHelper.put(key: "token", value:cubit.model!.token);
-                                  //   navigatorAndRemove(
-                                  //       context, ZoomDrawerScreen());
+                                  // if(userToken != token){
+                                  //   CacheHelper.put(key: "token", value: cubit.model!.token);
+                                  //   navigatorAndRemove(context, ZoomDrawerScreen(widget:DashboardAuthorScreen()));
+                                  // }else {
+                                  //   return null;
                                   // }
+                                  CacheHelper.put(key: "token", value:cubit.model!.token);
+                                    navigatorAndRemove(
+                                        context, ZoomDrawerScreen(widget: HomePage(),));
                                 }
                               }),
                           SizedBox(

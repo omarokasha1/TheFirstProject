@@ -5,9 +5,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lms/layout/layout.dart';
+import 'package:lms/modules/Auther/%20create_track%20/create_track.dart';
 import 'package:lms/modules/Auther/author_courses/author_courses_cubit/cubit.dart';
 
 import 'package:lms/shared/component/MyAppBar.dart';
+import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
 
 import '../author_courses/author_courses_cubit/status.dart';
@@ -51,7 +53,9 @@ class Tracks extends StatelessWidget {
                           ),
                           Spacer(),
                           ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              navigator(context, CreateTrackScreen());
+                            },
                             child: Text(
                               'New Track',
                               style: TextStyle(

@@ -30,7 +30,7 @@ class ModulesLibraryScreen extends StatelessWidget {
             widget: DefaultTabController(
               length: myTabs.length,
               child: Scaffold(
-                appBar: myAppBar(context),
+                appBar: AppBar(),
                 body: Container(
                   child: Padding(
                     padding: const EdgeInsets.all(20.0),

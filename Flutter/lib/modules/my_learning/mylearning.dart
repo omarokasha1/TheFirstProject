@@ -29,10 +29,9 @@ class _MyLearningState extends State<MyLearning> with TickerProviderStateMixin {
         // app bar contains title and back icon
         appBar: AppBar(
           title: Text('My Learning',style: const TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
-          leading: IconButton(onPressed: (){
-            //when click on icon navigate to user home screen
-            navigatorAndRemove(context, ZoomDrawerScreen());
-          }, icon: Icon(Icons.arrow_back, color: Colors.white,)),
+          iconTheme: IconThemeData(
+            color: Colors.white
+          ),
           centerTitle: true,
           backgroundColor: primaryColor,
         ),

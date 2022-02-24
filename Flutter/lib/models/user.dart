@@ -43,7 +43,8 @@ class Profile {
         this.gender,
         this.imageUrl,
         this.userEducation,
-        this.bio});
+        this.bio,
+      });
 
   Profile.fromJson(Map<String, dynamic> json) {
     sId = json['_id'] ?? '';

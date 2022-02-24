@@ -8,7 +8,9 @@ import 'package:lms/modules/Auther/create_course/create_course_screen.dart';
 import 'package:lms/modules/Auther/create_module/create_module_screen.dart';
 import 'package:lms/modules/Auther/create_quiz/create_quiz_screen.dart';
 import 'package:lms/modules/Auther/modules_library/modules_library.dart';
+import 'package:lms/modules/Auther/quiz/author_quiz_screen.dart';
 import 'package:lms/modules/Auther/traks/traks_screen.dart';
+import 'package:lms/modules/quiz/screens/quiz/quiz_screen.dart';
 import 'package:lms/modules/search/search_screen.dart';
 import 'package:lms/shared/component/MyAppBar.dart';
 import 'package:lms/shared/component/component.dart';
@@ -332,7 +334,7 @@ class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
                         child: Column(
                           children: [
                             Image.asset('assets/images/online-course.png',
-                                width: 60.w, height: 60.h),
+                                width: 50.w, height: 50.h),
                             const Text(
                               'Courses',
                               style: TextStyle(
@@ -352,8 +354,26 @@ class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
                         child: Column(
                           children: [
                             Image.asset('assets/images/pointer.png',
-                                width: 60.w, height: 60.h),
+                                width: 50.w, height: 50.h),
                             const Text('Tracks',
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                    color: primaryColor)),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: InkWell(
+                        onTap: () {
+                          navigator(context, AuthorQuizScreen());
+                        },
+                        child: Column(
+                          children: [
+                            Image.asset('assets/images/quiz.png',
+                          width: 50.w, height: 50.h),
+                            const Text('Quiz',
                                 style: TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.bold,
@@ -369,9 +389,9 @@ class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
                         },
                         child: Column(
                           children: [
-                            Image.asset('assets/images/quiz.png',
-                                width: 60.w, height: 60.h),
-                            const Text('Assignment',
+                            Image.asset('assets/images/modules.png',
+                                width: 50.w, height: 50.h),
+                            const Text('Module',
                                 style: TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.bold,

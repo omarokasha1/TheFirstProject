@@ -1,0 +1,4 @@
+#Wed Feb 23 16:34:19 EET 2022
+base.0=/home/odc2/ODC/TheFirstProject/Flutter/build/app/intermediates/dex/release/minifyReleaseWithR8/classes.dex
+renamed.0=classes.dex
+path.0=classes.dex
