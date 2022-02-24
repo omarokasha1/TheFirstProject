@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken')
 const JWT_SECRET = 'kdhakjdhwdhqwiu;hdl/akjd;lakhdulhdw$$@$#^324uoqdald'
 const router = express.Router()
 const auth = require('../middleware/auth')
-
+const validateUser = require('../models/user')
 const multer = require('multer');
 const path = require('path');
 const { update } = require('lodash');
@@ -59,23 +59,29 @@ router.put('/update',[ upload.single('imageUrl'),auth], async (req, res) => {
     console.log(user)
     const id = user.id
     console.log(id)
-    if(req.file){
-      await User.updateOne(
+    await User.updateOne(
         { _id: id },
         {
-          $set: {
-            imageUrl:req.file.filename
-          }
+          $set: req.body
         }
-      )
-    }else{
-        await User.updateOne(
-      { _id: id },
-      {
-        $set: req.body
-      }
-    )
-    }
+     )
+    // if(req.file){
+    //   await User.updateOne(
+    //     { _id: id },
+    //     {
+    //       $set: {
+    //         imageUrl:req.file.filename
+    //       }
+    //     }
+    //   )
+    // }else{
+    //     await User.updateOne(
+    //   { _id: id },
+    //   {
+    //     $set: req.body
+    //   }
+    // )
+    // }
 
   
 

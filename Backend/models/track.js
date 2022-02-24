@@ -7,6 +7,7 @@ const TrackSchema = new mongoose.Schema({
     description:{type:String},
     duration:{type:String},
     imageUrl:{type:String},
+    check:{type:String},
     author:{
             type:mongoose.Schema.Types.ObjectId ,
                 ref:'User'

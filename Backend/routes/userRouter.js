@@ -28,17 +28,28 @@ router.delete('/delete/:id', auth, authAdmin, userCtrl.deleteUser)
 
 
 const multer = require('multer');
+const path = require('path')
+//define storage for the images
+const storage = multer.diskStorage({
+  //destination for files
+  destination: function (request, file, callback) {
+    callback(null, './uploads/');
+  },
 
-const storage = multer.diskStorage({});
-const fileFilter = (req, file, cb) => {
-  if (file.mimetype.startsWith('image')) {
-    cb(null, true);
-  } else {
-    cb('invalid image file!', false);
-  }
-};
+  //add back the extension
+  filename: function (request, file, callback) {
+    let ext = path.extname(file.originalname)
+    callback(null, Date.now() + ext);
+  },
+});
 
-const uploads = multer({ storage, fileFilter });
+//upload parameters for multer
+const uploads = multer({
+  storage: storage,
+  limits: {
+    fieldSize: 1024 * 1024 * 2,
+  },
+});
 
 router.post(
     '/upload-profile',

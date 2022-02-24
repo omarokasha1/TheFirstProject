@@ -1,4 +1,9 @@
 const Course = require("../models/course");
+const Content = require("../models/content");
+const Track = require("../models/track");
+const Assignment = require("../models/assignment");
+
+
 const bcrypt = require('bcrypt');
 const jwt = require("jsonwebtoken");
 const sendMail = require("./sendMail");
@@ -22,7 +27,7 @@ const courseCtrl = {
        const desc = req.body.description
 
         console.log(titlee)
-        const fileUrl = req.files.file
+        const fileUrl = req.files
     console.log(fileUrl)
     const token = req.header('x-auth-token')
   try {
@@ -60,7 +65,53 @@ const courseCtrl = {
         .status(500)
         .json({ success: false, message: 'server error, try after some time' });
      
-    }}
+    }},
+
+    deleteCourse: async (req, res) => {
+      try {
+        await Course.findByIdAndDelete(req.params.id);
+  
+        res.json({ msg: "Deleted Success!" });
+      } catch (err) {
+        return res.status(500).json({ msg: err.message });
+      }
+    },
+
+
+    deleteContent: async (req, res) => {
+      try {
+        await Content.findByIdAndDelete(req.params.id);
+  
+        res.json({ msg: "Deleted Success!" });
+      } catch (err) {
+        return res.status(500).json({ msg: err.message });
+      }
+    },
+
+
+    deleteTrack: async (req, res) => {
+      try {
+        await Track.findByIdAndDelete(req.params.id);
+  
+        res.json({ msg: "Deleted Success!" });
+      } catch (err) {
+        return res.status(500).json({ msg: err.message });
+      }
+    },
+
+
+    deleteAssignment: async (req, res) => {
+      try {
+        await Assignment.findByIdAndDelete(req.params.id);
+  
+        res.json({ msg: "Deleted Success!" });
+      } catch (err) {
+        return res.status(500).json({ msg: err.message });
+      }
+    },
+  
+
   };
 
+ 
   module.exports = courseCtrl;

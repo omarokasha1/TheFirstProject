@@ -272,19 +272,21 @@ const userCtrl = {
 
 
   uploadProfile : async (req, res) => {
+  //  req.headers['content-type'] = 'multipart/form-data';
+
     const { user } = req;
     if (!user)
       return res
         .status(401)
         .json({ success: false, message: 'unauthorized access!' });
        
-        const file = req.files.file
-    console.log(file)
+        const fileUrl = req.file
+    console.log(fileUrl)
     try {
-      const result = await cloudinary.uploader.upload(file.tempFilePath, {
-        
-        public_id: `${user.id}_profile`,
-        folder: 'avatar', width: 150, height: 150, crop: "fill"
+      const result = await cloudinary.uploader.upload(fileUrl.path, {
+  
+        public_id: `${user.id}_avatar${Date.now()}`,
+        folder: 'avatar', width: 1920, height: 1080, crop: "fill"
       });
   console.log(result)
       const updatedUser = await Users.findByIdAndUpdate(

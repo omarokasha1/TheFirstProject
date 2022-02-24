@@ -38,7 +38,7 @@ router.post('/', async (req, res) => {
         }
 
         //* generate token that have his id and if admin or not
-        const token = jwt.sign({ id: user._id, isAdmin: user.isAdmin }, 'privateKey')
+        const token = jwt.sign({ id: user._id, isAdmin: user.isAdmin, isAuthor:user.isAuthor }, 'privateKey')
 
         console.log(token)
         return res.json({ status: 'ok', token: token })
