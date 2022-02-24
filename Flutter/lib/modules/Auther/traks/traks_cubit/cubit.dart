@@ -27,4 +27,49 @@ class TrackCubit extends Cubit<TrackStates> {
       print(error.toString());
     });
   }
+
+  // void updateUserProfile({
+  //   required String? phone,
+  //   required String? birthday,
+  //   required String? city,
+  //   required String? country,
+  //   required String? gender,
+  //   //required File? imageUrl,
+  //   required String? university,
+  //   required String? major,
+  //   required String? faculty,
+  //   required String? grade,
+  //   required String? experience,
+  //   required List<String>? interest,
+  //   required String? bio,
+  // }) {
+  //   emit(UpdadteProfileLoadingState());
+  //
+  //   DioHelper.putData(url: updateProfile, token:userToken, data: {
+  //     'phone': phone,
+  //     'birthDay': birthday,
+  //     'city': city,
+  //     'country': country,
+  //     'gender': gender,
+  //     //'imageUrl': imageUrl,
+  //     'userEducation': {
+  //       'university': university,
+  //       'major': major,
+  //       'faculty': faculty,
+  //       'grade': grade,
+  //       'experince': experience,
+  //       'interest': interest,
+  //     },
+  //     'bio': bio,
+  //   }).then((value) {
+  //     print(value.toString());
+  //     model = User.fromJson(value.data);
+  //     getUserProfile();
+  //     //print(model!.profile!.userName);
+  //     emit(UpdadteProfileSuccessState(model!));
+  //   }).catchError((onError) {
+  //     print(onError.toString());
+  //     emit(UpdadteProfileErrorState(onError.toString()));
+  //   });
+  // }
 }

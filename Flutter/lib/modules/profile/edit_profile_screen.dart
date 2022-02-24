@@ -141,21 +141,20 @@ bool check =true;
                                 color: Colors.white,
                                 iconSize: 15.0,
                                 onPressed: () async {
-                                  final pickedFile = await picker.pickImage(
-                                      source: ImageSource.gallery);
-                                  if (pickedFile != null) {
-                                    profileImage = File(pickedFile.path);
-                                    // DioHelper.postData(url: uploadImageProfile, data: {
-                                    //   'profile': profileImage,
-                                    // });
-                                    DioHelper.uploadImage(profileImage!);
-                                  } else {
-                                    print('no image selected');
-                                  }
-                                  //image = await _picker.pickImage(source: ImageSource.gallery);
-                                  //print('hereeeeee ${profileImage!.uri.toString()}');
-                                  print(
-                                      "Piiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiic");
+                                  // final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+                                  // if (pickedFile != null) {
+                                  //   profileImage = File(pickedFile.path);
+                                  //   // DioHelper.postData(url: uploadImageProfile, data: {
+                                  //   //   'profile': profileImage,
+                                  //   // });
+                                  //   DioHelper.uploadImage(profileImage!);
+                                  // } else {
+                                  //   print('no image selected');
+                                  // }
+                                  // //image = await _picker.pickImage(source: ImageSource.gallery);
+                                  // //print('hereeeeee ${profileImage!.uri.toString()}');
+                                  // print(
+                                  //     "Piiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiic");
                                 },
                               ),
                             ),

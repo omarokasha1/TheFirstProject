@@ -1,8 +1,10 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,6 +17,7 @@ import 'package:lms/modules/profile/edit_profile_screen.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
 import 'package:lms/shared/component/zoomDrawer.dart';
+import 'package:lms/shared/network/end_points.dart';
 import 'package:lms/shared/network/remote/dio-helper.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -23,6 +26,9 @@ class ProfileScreen extends StatelessWidget {
   File? profileImage;
   var picker = ImagePicker();
   var formKey = GlobalKey<FormState>();
+
+  Dio dio = Dio();
+
 
   @override
   Widget build(BuildContext context) {
@@ -94,18 +100,58 @@ class ProfileScreen extends StatelessWidget {
                                 color: Colors.white,
                                 iconSize: 15.0,
                                 onPressed: () async {
-                                  final pickedFile = await picker.pickImage(
-                                      source: ImageSource.gallery);
-                                  if (pickedFile != null) {
-                                    profileImage = File(pickedFile.path);
+                                  // File? image;
+                                  // var imagePicker = await ImagePicker.pickImage2(source: ImageSource.gallery);
+                                  // if(imagePicker != null){
+                                  //   //SetState
+                                  //   image = imagePicker as File;
+                                  // }
+                                  // try{
+                                  //   String fileName = image!.path.split('/').last;
+                                  //   FormData formData = FormData.fromMap({
+                                  //     'profile': await MultipartFile.fromFile(image.path, filename: fileName),
+                                  //     //contentType: MediaType('image', 'png')),
+                                  //   });
+                                  // }catch(e){
+                                  //   print(e);
+                                  // }
+                                  File? imageFile;
+                                  var base64Imageteam;
+                                  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+                                  /// Get from gallery
+                                  getFromGallery() async {
+                                    PickedFile? pickedFile = await ImagePicker().getImage(
+                                      source: ImageSource.gallery,
+                                      //maxWidth: 1800,
+                                      //maxHeight: 1800,
+                                    );
+                                    if (pickedFile != null) {
+                                      //setState(() {
+                                        imageFile = File(pickedFile.path);
+                                        print("imageFile----------------------------->$imageFile");
+                                        List<int> imageBytes = imageFile!.readAsBytesSync();
+                                        base64Imageteam = base64Encode(imageBytes);
 
-                                    //print(profileImage!.path.split('/').last);
-                                  } else {
-                                    print('no image selected');
+                                        print(imageFile!.runtimeType);
+                                        //print(base64Imageteam);
+                                        //DioHelper.postData(url: uploadImageProfile, data: {'profile':imageFile},token: userToken);
+                                      DioHelper.uploadImage(imageFile!);
+                                        // updatimge(base64Image, id);
+                                      //});
+                                    }
                                   }
+                                  getFromGallery();
+                                  // final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+                                  // if (pickedFile != null) {
+                                  //   profileImage = File(pickedFile.path);
+                                  //   DioHelper.uploadImage(profileImage!);
+                                  //   cubit.getUserProfile();
+                                  //   //print(profileImage!.path.split('/').last);
+                                  // } else {
+                                  //   print('no image selected');
+                                  // }
                                   //image = await _picker.pickImage(source: ImageSource.gallery);
-                                  print(
-                                      "Piiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiic");
+                                  //print("Piiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiic");
                                 },
                               ),
                             ),

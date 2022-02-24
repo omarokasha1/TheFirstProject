@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:http_parser/http_parser.dart';
 import 'package:lms/shared/component/constants.dart';
 import 'package:lms/shared/network/end_points.dart';
 
@@ -26,15 +27,18 @@ class DioHelper {
     );
   }
 
-  static Future<String> uploadImage(File file) async {
+  static void uploadImage(File file) async {
     String fileName = file.path.split('/').last;
-    FormData formData = FormData.fromMap({
-      "profile":
-      await MultipartFile.fromFile(file.path, filename:fileName),
-    });
-    var response = await DioHelper.postData(url:uploadImageProfile, data: {'profile':formData},token: userToken);
-    return response.data.toString();
+    await DioHelper.postData(url:uploadImageProfile, data: {
+        //'profile': await MultipartFile.fromFile(file.path, filename: fileName,contentType: MediaType("image", fileName.split(".").last))
+      'profile':file
+        }
+        ,token: userToken).then((value) => print('value ${value}')).catchError((onError){print('error ${onError}');});
+    //print('here :::::: ${response.data['id']}');
+    //print('here 2 :::::: ${response.data.toString()}');
+    //return response.data['id'];
   }
+
 
   //This Function to call API and get Some Data based on url(End Points) and Headers needed in API to get the Specific Data.
   static Future<Response> getData({
@@ -58,7 +62,7 @@ class DioHelper {
   }) async {
     dio.options.headers = {
       'x-auth-token': token ?? '',
-      'Content-Type': 'application/json',
+      //'Content-Type': 'multipart/form-data',
     };
 
     return await dio.post(url, data: data);
