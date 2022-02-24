@@ -22,19 +22,14 @@ class CourseCubit extends Cubit<CourseStates> {
       hasCourseName = true;
     }
   }
-  List? myActivities = [];
-  String myActivitiesResult = '';
+
 
 
   bool checkedValue = false;
-  void changeActivity(value)
-  {
-    myActivities=value;
-    emit(ChangeActivityState());
-  }
 
-  List<String> items = ['Content', 'Assignment'];
-  String selectedItem = "Content";
+
+  List<String> items = ['English', 'Arabic'];
+  String selectedItem = "English";
 
   void changeItem(String value)
   {

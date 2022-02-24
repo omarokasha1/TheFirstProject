@@ -16,16 +16,10 @@ class CreateCourseCubit extends Cubit<CreateCourseStates> {
       hasCourseName = true;
     }
   }
-  List? myActivities = [];
-  String myActivitiesResult = '';
 
 
   bool checkedValue = false;
-  void changeActivity(value)
-  {
-    myActivities=value;
-    emit(ChangeActivityState());
-  }
+
 
   List<String> items = ['Content', 'Assignment'];
   String selectedItem = "Content";

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:lms/shared/network/local/cache_helper.dart';
 
 const Color primaryColor = Color(0xff07919C);
 const Color secondaryColor = Color(0xff3FB8C0);
 const textColorDrawer = Colors.white;
 const iconColorDrawer = Colors.white;
 const shadowColor = Color.fromRGBO(143, 148, 251, .2);
-String? userToken;
+String? userToken = CacheHelper.get(key: "token");
 
 LinearGradient gradientColor({required Color one, required Color two}) {
   return LinearGradient(

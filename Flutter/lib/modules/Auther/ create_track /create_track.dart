@@ -200,8 +200,7 @@ class CreateTrackScreen extends StatelessWidget {
                               ),
                               selectMoreItem(
                                 name: "My Courses",
-                                myActivities: cubit.myActivities,
-                                myActivitiesResult: cubit.myActivitiesResult,
+                                myActivities: [{}],
                                 onSaved: (value) {
                                   if (value == null) return;
                                   // setState(() {
@@ -215,7 +214,7 @@ class CreateTrackScreen extends StatelessWidget {
                                     return 'Please select one or more Courses';
                                   }
                                   return null;
-                                },
+                                }, dataSource: [],
                               ),
                               const SizedBox(
                                 height: 20,

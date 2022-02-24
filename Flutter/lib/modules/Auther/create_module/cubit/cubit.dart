@@ -32,12 +32,41 @@ class CreateModuleCubit extends Cubit<CreateModuleStates> {
   }
 
   CreateContent? getModuleModel;
+  Map<String, String>? content = {};
+  List? list = [];
+  List? myActivities = [];
+
+  void changeActivity(value) {
+    myActivities = value;
+    print(myActivities);
+    emit(ChangeActivityState());
+  }
 
   void getModulesData() {
+    print(userToken);
     emit(GetNewModuleLoadingState());
+
     DioHelper.getData(url: getModule, token: userToken).then((value) {
+      //print(value.data);
+      list = [];
       getModuleModel = CreateContent.fromJson(value.data);
-      print(getModuleModel!.status);
+
+      getModuleModel!.contents!.forEach((element) {
+        list!.add({'display': element.contentTitle, 'value': element.sId});
+      });
+      print(
+          "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh${list.toString()}");
+      //print(content!);
+      // value.data['contents'].forEach((element) {
+      //
+      //   content!.addAll({element.sId!: element.contentTitle!});
+      // });
+
+      // cartModel = GetCartModel.fromJson(json.data);
+      // cartModel.data.cartItems.forEach((element) {
+      //   productCartIds[element.product.id] = element.id;
+      //   productsQuantity[element.product.id] = element.quantity;
+      // });
       emit(GetNewModuleSuccssesState(getModuleModel!));
     }).catchError((error) {
       emit(GetNewModuleErrorState(error.toString()));
@@ -77,12 +106,16 @@ class CreateModuleCubit extends Cubit<CreateModuleStates> {
 
   Response? response;
   FormData? formData;
-  void  uploadFile(File file) async {
+
+  void uploadFile(File file) async {
     String fileName = file.path.split('/').last;
-    formData= FormData.fromMap({
-      "file": await MultipartFile.fromFile(file.path, filename: fileName),
+    formData = FormData.fromMap({
+      "imageUrl": await MultipartFile.fromFile(
+        file.path,
+      ),
     });
-
-
   }
+
+
+
 }

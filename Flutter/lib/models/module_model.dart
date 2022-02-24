@@ -35,7 +35,7 @@ class Contents {
   String? enumType;
   String? imageUrl;
   String? description;
-  Author? author;
+  String? author;
 
   Contents(
       {this.sId,
@@ -57,8 +57,7 @@ class Contents {
     enumType = json['enumType'];
     imageUrl = json['imageUrl'];
     description = json['description'];
-    author =
-        json['author'] != null ? new Author.fromJson(json['author']) : null;
+    author = json['author'];
   }
 
   Map<String, dynamic> toJson() {
@@ -70,9 +69,8 @@ class Contents {
     data['createdAt'] = this.createdAt;
     data['enumType'] = this.enumType;
     data['imageUrl'] = this.imageUrl;
-    if (this.author != null) {
-      data['author'] = this.author!.toJson();
-    }
+      data['author'] = this.author;
+
     return data;
   }
 }

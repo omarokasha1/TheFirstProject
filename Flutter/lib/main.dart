@@ -6,6 +6,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lms/modules/Auther/author_courses/author_courses_screen.dart';
 import 'package:lms/modules/Auther/author_profile/author_profile_cubit/cubit.dart';
 import 'package:lms/modules/Auther/author_profile/author_profile_screen.dart';
+import 'package:lms/modules/Auther/create_assigment/create_assignment.dart';
+import 'package:lms/modules/Auther/create_course/create_course_screen.dart';
+import 'package:lms/modules/Auther/create_module/cubit/cubit.dart';
 import 'package:lms/modules/Auther/dashboard/dashboard_auther.dart';
 import 'package:lms/modules/Auther/modules_library/modules_library.dart';
 import 'package:lms/modules/courses/cubit/cubit.dart';
@@ -24,12 +27,14 @@ import 'package:lms/shared/themes/light_theme.dart';
 
 import 'package:native_notify/native_notify.dart';
 
+import 'modules/Auther/create_module/create_module_screen.dart';
 import 'modules/dashboard/dashboard_screen.dart';
 
 import 'layout/layout.dart';
 
 import 'modules/profile/profile_cubit/cubit.dart';
 import 'modules/quiz/screens/welcome/welcome_screen.dart';
+import 'modules/test/test.dart';
 import 'shared/cubit For Internet/cubit.dart';
 
 void main() async {
@@ -104,6 +109,7 @@ class MyApp extends StatelessWidget {
           return CourseCubit();
         }),
         BlocProvider(create: (context) => AuthorProfileCubit()..getAuthorProfile()),
+        BlocProvider(create: (context) => CreateModuleCubit()),
       ],
       //ScreenUTil is A Package make application responsive.
       child: ScreenUtilInit(
@@ -127,7 +133,7 @@ class MyApp extends StatelessWidget {
           //home: Tracks(),
          //home:ZoomDrawerScreen(widget:DashboardAuthorScreen() ,) ,
           //home: ZoomDrawerScreen(widget: AuthorProfileScreen(),),
-          home: widget,
+          home: DashboardAuthorScreen(),
         // home: ZoomDrawerScreen(widget:DashboardAuthorScreen() ,),
         //  home:Layout(widget: ZoomDrawerScreen(widget:DashboardManagerScreen() ,)) ,
         ),

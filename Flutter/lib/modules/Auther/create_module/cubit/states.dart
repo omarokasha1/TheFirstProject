@@ -31,3 +31,4 @@ class GetNewModuleErrorState extends CreateModuleStates {
   final String error;
   GetNewModuleErrorState(this.error);
 }
+class ChangeActivityState extends CreateModuleStates {}
