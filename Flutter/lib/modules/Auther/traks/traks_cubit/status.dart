@@ -1,3 +1,4 @@
+import 'package:lms/models/course_model.dart';
 import 'package:lms/models/track_model.dart';
 
 abstract class TrackStates {}
@@ -17,3 +18,4 @@ class AllTrackErrorState extends TrackStates {
 
   AllTrackErrorState(this.error);
 }
+

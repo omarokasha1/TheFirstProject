@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lms/models/course_model.dart';
 import 'package:lms/modules/Auther/%20create_track%20/cubit/statues.dart';
+import 'package:lms/shared/component/constants.dart';
+import 'package:lms/shared/network/end_points.dart';
+import 'package:lms/shared/network/remote/dio-helper.dart';
 enum Sequences { ordered, unordered }
 
 class CreateTrackCubit extends Cubit<CreateTrackStates> {
@@ -18,25 +22,33 @@ class CreateTrackCubit extends Cubit<CreateTrackStates> {
       hasTrackName = true;
     }
   }
-  saveForm() {
-    var form = formKey.currentState!;
-    if (form.validate()) {
-      form.save();
-      myActivitiesResult = myActivities.toString();
-    }
-  }
   changeRadio (Sequences? value) {
     character = value;
   }
-
-  bool checkedValue = false;
+  AuthorCoursesTestModel? authorCoursesTestModel;
+  List? list = [];
   List? myActivities = [];
-  String myActivitiesResult = '';
+
+  void getAuthorCoursesData() {
+    emit(GetAuthorCoursesLoadingState());
+    DioHelper.getData(url: getAuthorCourses,token: userToken).then((value) {
+      print(value.data);
+      list = [];
+      authorCoursesTestModel = AuthorCoursesTestModel.fromJson(value.data);
+
+      authorCoursesTestModel!.courses!.forEach((element) {
+        list!.add({'display': element.title, 'value': element.sId});
+      });
+      print(authorCoursesTestModel!.courses.toString());
+      emit(GetAuthorCoursesSuccessState(authorCoursesTestModel));
+    }).catchError((error) {
+      emit(GetAuthorCoursesErrorState(error.toString()));
+      print(error.toString());
+    });
+  }
   void changeActivity(value)
   {
     myActivities=value;
     emit(ChangeActivityState());
   }
-
-
 }

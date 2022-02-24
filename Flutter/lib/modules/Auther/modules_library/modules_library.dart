@@ -65,7 +65,7 @@ class ModulesLibraryScreen extends StatelessWidget {
                           labelColor: primaryColor,
                           indicatorColor: primaryColor,
                           unselectedLabelColor: Colors.black,
-                          isScrollable: true,
+                          //isScrollable: true,
                           tabs: myTabs,
                           labelStyle: TextStyle(
                             fontSize: 16.sp,

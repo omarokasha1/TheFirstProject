@@ -575,14 +575,12 @@ Widget offline(child) {
   );
 }
 
-Widget selectMoreItem({
-  required String name,
-  required validate,
-  required  String myActivitiesResult,
-  required  List? myActivities ,
-  required  onSaved,
-
-}) {
+Widget selectMoreItem(
+    {required String name,
+      required validate,
+      required List? myActivities,
+      required onSaved,
+      required List? dataSource}) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: MultiSelectFormField(
@@ -591,7 +589,7 @@ Widget selectMoreItem({
       chipLabelStyle:
       TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
       dialogTextStyle: TextStyle(fontWeight: FontWeight.bold),
-    //  checkBoxActiveColor: Colors.blue,
+      //  checkBoxActiveColor: Colors.blue,
       checkBoxCheckColor: Colors.white,
       dialogShapeBorder: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(12.0))),
@@ -602,32 +600,17 @@ Widget selectMoreItem({
       validator: (value) {
         return validate(value);
       },
-      dataSource: [
-        {
-          "display": "Flutter",
-          "value": "Flutter",
-        },
-        {
-          "display": "Dart",
-          "value": "Dart",
-        },
-        {
-          "display": "C++",
-          "value": "C++",
-        },
-        {
-          "display": "Java",
-          "value": "Java",
-        },
-      ],
+      dataSource: dataSource,
       textField: 'display',
       valueField: 'value',
       okButtonLabel: 'OK',
       cancelButtonLabel: 'CANCEL',
       hintWidget: const Text('Please choose one or more Course'),
       initialValue: myActivities,
+
       onSaved: (value) {
-        return onSaved(value);
+        //print("skmdjsnhdbcshbcbshcnjsmccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc $value");
+        onSaved(value);
       },
     ),
   );

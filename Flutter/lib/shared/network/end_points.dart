@@ -12,8 +12,7 @@ const module = "api/course/newContent";
 
 const getTrack = 'api/course/authorTracks';
 const createTrack = 'api/course/newTrack';
-
-const asem = 'karem';
+const getAuthorCourses = 'api/course/authorCourses';
 
 
 

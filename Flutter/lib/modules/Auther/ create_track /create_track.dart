@@ -28,7 +28,7 @@ class CreateTrackScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext context) => CreateTrackCubit(),
+      create: (BuildContext context) => CreateTrackCubit()..getAuthorCoursesData(),
       child: BlocConsumer<CreateTrackCubit, CreateTrackStates>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -221,8 +221,6 @@ class CreateTrackScreen extends StatelessWidget {
                                       selectMoreItem(
                                         name: "My Courses",
                                         myActivities: cubit.myActivities,
-                                        myActivitiesResult: cubit
-                                            .myActivitiesResult,
                                         onSaved: (value) {
                                           if (value == null) return;
                                           // setState(() {
@@ -236,7 +234,7 @@ class CreateTrackScreen extends StatelessWidget {
                                             return 'Please select one or more Courses';
                                           }
                                           return null;
-                                        },
+                                        }, dataSource: cubit.list,
                                       ),
                                       const SizedBox(
                                         height: 20,

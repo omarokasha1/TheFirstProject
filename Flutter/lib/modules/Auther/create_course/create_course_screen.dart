@@ -165,8 +165,6 @@ class CreateCourseScreen extends StatelessWidget {
                                       selectMoreItem(
                                         name: "Content",
                                         myActivities: cubit.myActivities,
-                                        myActivitiesResult:
-                                            cubit.myActivitiesResult,
                                         onSaved: (value) {
                                           if (value == null) return;
                                           // setState(() {
@@ -180,7 +178,7 @@ class CreateCourseScreen extends StatelessWidget {
                                             return 'Please select one or more Courses';
                                           }
                                           return null;
-                                        },
+                                        }, dataSource: [],
                                       ),
                                       selectMoreItem(
                                         name: "Assignment",
@@ -188,15 +186,13 @@ class CreateCourseScreen extends StatelessWidget {
                                           return null;
                                         },
                                         myActivities: cubit.myActivities,
-                                        myActivitiesResult:
-                                            cubit.myActivitiesResult,
                                         onSaved: (value) {
                                           if (value == null) return;
                                           // setState(() {
                                           //   myActivities = value;
                                           // });
                                           cubit.changeActivity(value);
-                                        },
+                                        }, dataSource: [],
                                       ),
                                       selectMoreItem(
                                         name: "Quiz",
@@ -204,15 +200,13 @@ class CreateCourseScreen extends StatelessWidget {
                                           return null;
                                         },
                                         myActivities: cubit.myActivities,
-                                        myActivitiesResult:
-                                            cubit.myActivitiesResult,
                                         onSaved: (value) {
                                           if (value == null) return;
                                           // setState(() {
                                           //   myActivities = value;
                                           // });
                                           cubit.changeActivity(value);
-                                        },
+                                        }, dataSource: [],
                                       ),
                                     ],
                                   ),

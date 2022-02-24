@@ -7,6 +7,8 @@ import 'package:lms/models/track_model.dart';
 import 'package:lms/modules/Auther/author_courses/author_courses_screen.dart';
 import 'package:lms/modules/Auther/author_profile/author_profile_cubit/cubit.dart';
 import 'package:lms/modules/Auther/author_profile/author_profile_screen.dart';
+import 'package:lms/modules/Auther/create_course/cubit/cubit.dart';
+import 'package:lms/modules/Auther/create_module/cubit/cubit.dart';
 import 'package:lms/modules/Auther/dashboard/dashboard_auther.dart';
 import 'package:lms/modules/Auther/modules_library/modules_library.dart';
 import 'package:lms/modules/Auther/traks/traks_screen.dart';
@@ -107,6 +109,8 @@ class MyApp extends StatelessWidget {
           return CourseCubit();
         }),
         BlocProvider(create: (context) => AuthorProfileCubit()..getAuthorProfile()),
+
+        BlocProvider(create: (context) => CreateModuleCubit()),
       ],
       //ScreenUTil is A Package make application responsive.
       child: ScreenUtilInit(
