@@ -5,7 +5,7 @@ const QuizSchema = new mongoose.Schema({
     quizName:{type:String},
 
     questions:[{type:mongoose.Schema.Types.ObjectId,
-        ref:'Quiz'}],
+        ref:'Question'}],
    
     author:{
             type:mongoose.Schema.Types.ObjectId ,

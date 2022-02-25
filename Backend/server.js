@@ -26,37 +26,15 @@ mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTo
 //* copmresed requests
 app.use(compression())
 
-//* import register
-const usersRegister = require('./routes/register')
-app.use('/api/register', usersRegister)
 
-//* import login
-const usersLogin = require('./routes/login')
-app.use('/api/login', usersLogin)
+//* import user routes 
+const user = require('./routes/user')
+app.use('/api/user', user)
 
-//* import profile 
-const userProfile = require('./routes/profile')
-app.use('/api/profile', userProfile)
-
-//* import profile 
-const changePassword = require('./routes/changePassword')
-app.use('/api/changePassword', changePassword)
-const Course = require('./models/course')
-
-const newCourse = require('./routes/courses')
-app.use('/api/course', newCourse)
+const course = require('./routes/courses')
+app.use('/api/course', course)
 
 app.use('/uploads',express.static('./uploads'));
-
-app.get('/', async(req, res) => {
-    try {   
-        const blog = await Course.find()
-        res.json(blog)
-      } catch (err) {
-        res.status(500).json({ message: err.message })
-      }
-});
-app.use("/user", require("./routes/userRouter"));
 
 
 //* if write invalide url or end point send to user an error message
@@ -66,7 +44,8 @@ app.all('*', (req, res, next) => {
         message: 'Page not found !'
     })
 })
+
 //* listen on port 8080 local host
-app.listen( process.env.PORT, function(){
-    console.log("Expreass server listening on port 80801");
+app.listen( process.env.PORT || 8080, function(){
+    console.log("Expreass server listening on port 8080");
   });
