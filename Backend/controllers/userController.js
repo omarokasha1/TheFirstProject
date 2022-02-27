@@ -7,6 +7,10 @@ const JWT_SECRET = 'kdhakjdhwdhqwiu;hdl/akjd;lakhdulhdw$$@$#^324uoqdald'
 const router = express.Router()
 const _ = require('lodash')
 const { validateUserLogin } = require('../models/user')
+var fs = require('fs');
+var multer  = require('multer')
+const cloudinary = require('./cloudinary')
+const path = require('path');
 
 
 
@@ -114,29 +118,36 @@ const userCtrl = {
     console.log(user)
     const id = user.id
     console.log(id)
+
+        const imageUrl =req.body.imageUrl
+    const result = await cloudinary.uploader.upload(imageUrl, {
+  
+        public_id: `${user.id}_avatar${Date.now()}`,
+        folder: 'avatar', width: 1920, height: 1080, crop: "fill"
+      });
     await Users.updateOne(
         { _id: id },
         {
           $set: req.body
         }
      )
-    // if(req.file){
-    //   await User.updateOne(
-    //     { _id: id },
-    //     {
-    //       $set: {
-    //         imageUrl:req.file.filename
-    //       }
-    //     }
-    //   )
-    // }else{
-    //     await User.updateOne(
-    //   { _id: id },
-    //   {
-    //     $set: req.body
-    //   }
-    // )
-    // }
+     if(req.file){
+       await Users.updateOne(
+         { _id: id },
+         {
+           $set: {
+             imageUrl:req.body.imageUrl
+           }
+         }
+       )
+     }else{
+         await Users.updateOne(
+       { _id: id },
+       {
+         $set: req.body
+       }
+     )
+     }
 
   
 
@@ -201,7 +212,87 @@ const userCtrl = {
         console.log(error)
        return res.json({ status: 'false', message: error.message })
     }
+    },
+
+
+  uploadProfile : async (req, res) => {
+    
+  
+  const { user } = req;
+ // var ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress 
+ //console.log("Received file" + req.file.originalname);
+
+    if (!user)
+      return res
+        .status(401)
+        .json({ success: false, message: 'unauthorized access!' });
+       
+        const imageUrl = req.file
+    console.log(imageUrl)
+    try {
+      const result = await cloudinary.uploader.upload(imageUrl, {
+  
+        public_id: `${user.id}_avatar${Date.now()}`,
+        folder: 'avatar', width: 1920, height: 1080, crop: "fill"
+      });
+  console.log(result)
+      const updatedUser = await Users.findByIdAndUpdate(
+        user.id,
+        { imageUrl: result.url },
+        { new: true }   
+      );
+    return  res
+        .status(201)
+        .json({ success: true, message: 'Your profile has updated!' });
+    } catch (error) {
+      console.log('Error while uploading profile image', error);
+     return res
+        .status(500)
+        .json({ success: false, message: 'server error, try after some time' });
+     
     }
+  },
+
+  uploadImage:async(req,res)=>{
+    const file = req.file
+
+    try {
+        const { user } = req;
+
+        if (!user)
+      return res
+        .status(401)
+        .json({ success: false, message: 'unauthorized access!' });
+
+        if (!file) {
+            const error = new Error('Please upload a file')
+            error.httpStatusCode = 400
+            return res.status(400).json({status:false,message:error})
+          }
+            
+            
+           
+            const result = await cloudinary.uploader.upload(file.path, {
+        
+              public_id: `${user.id}_avatar${Date.now()}`,
+              folder: 'avatar', width: 1920, height: 1080, crop: "fill"
+            });
+      
+            const updatedUser = await Users.findByIdAndUpdate(
+                user.id,
+                { imageUrl: result.url },
+                { new: true }   
+              );
+            const savedimage= await updatedUser.save()
+            console.log(savedimage)
+            res.json(savedimage) 
+
+    } catch (error) {
+        res.json(error)
+        console.log(error)
+    }
+    
+  }
 
 };
 

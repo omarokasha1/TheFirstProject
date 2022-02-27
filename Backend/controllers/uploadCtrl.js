@@ -10,12 +10,12 @@ cloudinary.config({
 const uploadCtrl = {
     uploadAvatar: async (req, res) => { 
         try {
-            const file = req.files.file;
-            cloudinary.v2.uploader.upload(file.tempFilePath, {          
+            const imageUrl = req.body.imageUrl
+            cloudinary.v2.uploader.upload(imageUrl, {          
                    folder: 'avatar', width: 150, height: 150, crop: "fill"
         }, async(err, result) => {
             if(err) throw err;
-            removeTmp(file.tempFilePath)
+            removeTmp(imageUrl)
             
             res.json({url: result.secure_url})
     

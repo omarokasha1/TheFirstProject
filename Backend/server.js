@@ -6,10 +6,6 @@ const mongoose = require('mongoose')
 const logger = require('./config/logger')
 const app = express()
 const compression = require('compression')
-const fileUpoad = require("express-fileupload");
-const cors = require("cors");
-
-
 
 //app.use(cors());
 //app.use(fileUpoad({ useTempFiles: true ,parseNested:true}));
@@ -18,6 +14,7 @@ const cors = require("cors");
 //* initial start
 app.use(bodyParser.json())
 app.use(express.urlencoded({ extended: false }));
+app.use('/uploads', express.static(__dirname +'/uploads'));
 
 //* mongoose connection
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true, }).then(
@@ -33,9 +30,6 @@ app.use('/api/user', user)
 
 const course = require('./routes/courses')
 app.use('/api/course', course)
-
-app.use('/uploads',express.static('./uploads'));
-
 
 //* if write invalide url or end point send to user an error message
 app.all('*', (req, res, next) => {

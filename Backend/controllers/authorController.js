@@ -341,12 +341,7 @@ uploadCourse : async (req, res) => {
     console.log(id)
     // let index = 1
     // const result = await cloudinary.uploader.upload(fileUrl.path, {
-        
-    //   public_id: `${user.id}_course${Date.now()}`,
-    //   folder: 'course', width: 150, height: 150, crop: "fill"
-    // });
-    // console.log(index)
-    // console.log(result)
+      header
 
    const course = new Course({
      title:req.body.title,
@@ -458,10 +453,7 @@ let newTrack
    console.log(user)
    const id = user.id
    console.log(id)
-  //  const result = await cloudinary.uploader.upload(fileUrl.path, {
-  
-  //    public_id: `${user.id}_assignment`,
-  //    folder: 'assignment', width: 1920, height: 1080, crop: "fill"
+  //  const result = await cloudheaderdth: 1920, height: 1080, crop: "fill"
   //  });
 
    const assignment = new Assignment({

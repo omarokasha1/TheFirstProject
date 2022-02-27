@@ -16,8 +16,7 @@ const storage = multer.diskStorage({
   
     //add back the extension
     filename: function (request, file, callback) {
-      let ext = path.extname(file.originalname)
-      callback(null, Date.now() + ext);
+      callback(null, new Date().toISOString()+file.originalname)
     },
   });
   
@@ -28,6 +27,20 @@ const storage = multer.diskStorage({
       fieldSize: 1024 * 1024 * 3,
     },
   });
+
+  router.post(
+    '/upload-profile',
+    auth,
+    upload.single('profile'),
+    userCtrl.uploadProfile
+  );
+  
+  router.post(
+    '/upload',
+    auth,
+    upload.single('profile'),
+    userCtrl.uploadImage
+  );
 
 router.post('/register',userCtrl.register )
 
