@@ -14,7 +14,7 @@ import 'package:lms/modules/Auther/modules_library/modules_library.dart';
 import 'package:lms/modules/courses/cubit/cubit.dart';
 import 'package:lms/modules/dashboard/dashboard_screen.dart';
 import 'package:lms/modules/home_screen.dart';
-import 'package:lms/modules/manager/dashboard/dashboard_manager_screen.dart';
+import 'package:lms/modules/manager/dashboard_manager_screen.dart';
 import 'package:lms/modules/onboarding/onboarding_screen.dart';
 import 'package:lms/modules/quiz/cubit/cubit.dart';
 import 'package:lms/modules/splash_screen.dart';
@@ -139,7 +139,8 @@ class MyApp extends StatelessWidget {
 
          home: widget,
 
-        //  home:Layout(widget: ZoomDrawerScreen(widget:DashboardManagerScreen() ,)) ,
+         // home:Layout(widget: ZoomDrawerScreen(widget:DashboardManagerScreen() ,)) ,
+
         ),
       ),
     );

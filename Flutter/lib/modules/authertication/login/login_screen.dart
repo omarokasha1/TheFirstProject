@@ -7,7 +7,6 @@ import 'package:lms/modules/authertication/login/login_cubit/state.dart';
 import 'package:lms/modules/authertication/register/register_screen.dart';
 import 'package:lms/modules/courses/cubit/cubit.dart';
 import 'package:lms/modules/home_screen.dart';
-import 'package:lms/modules/manager/dashboard/dashboard_manager_screen.dart';
 import 'package:lms/modules/profile/profile_cubit/cubit.dart';
 import 'package:lms/shared/component/constants.dart';
 import 'package:lms/shared/component/zoomDrawer.dart';
@@ -24,12 +23,8 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   var emailController = TextEditingController();
-
   var passwordController = TextEditingController();
-
   var formKey = GlobalKey<FormState>();
-
-
 
 
   @override
@@ -39,7 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
       child: BlocConsumer<LoginCubit, LoginStates>(
         listener: (context, state) {
           if (state is LoginSuccessState) {
-            if (state.model.status == "ok") {
+            if (state.model.status == "ok"&&state.model.message!="Invalid email or password") {
               CacheHelper.put(key: "token",value: state.model.token);
               userToken=CacheHelper.get(key: "token");
               CourseCubit.get(context).getAllCoursesData();
@@ -227,9 +222,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                   // }else {
                                   //   return null;
                                   // }
-                                  CacheHelper.put(key: "token", value:cubit.model!.token);
-                                    navigatorAndRemove(
-                                        context, ZoomDrawerScreen(widget: HomePage(),));
+                                  // CacheHelper.put(key: "token", value:cubit.model!.token);
+                                  //   navigatorAndRemove(
+                                  //       context, ZoomDrawerScreen(widget: HomePage(),));
                                 }
                               }),
                           SizedBox(
