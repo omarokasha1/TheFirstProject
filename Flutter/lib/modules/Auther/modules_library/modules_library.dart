@@ -4,14 +4,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lms/layout/layout.dart';
 import 'package:lms/modules/Auther/create_module/create_module_screen.dart';
-
-import 'package:lms/shared/component/MyAppBar.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
-
 import '../../../models/module_model.dart';
 import '../create_module/cubit/cubit.dart';
 import '../create_module/cubit/states.dart';
+
 class ModulesLibraryScreen extends StatelessWidget {
   ModulesLibraryScreen({Key? key}) : super(key: key);
 
@@ -67,31 +65,35 @@ class ModulesLibraryScreen extends StatelessWidget {
                           labelColor: primaryColor,
                           indicatorColor: primaryColor,
                           unselectedLabelColor: Colors.black,
-                         // isScrollable: true,
                           tabs: myTabs,
                           labelStyle: TextStyle(
                             fontSize: 16.sp,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        SizedBox(height: 10,),
+                        SizedBox(
+                          height: 10,
+                        ),
                         Expanded(
                           child: TabBarView(
                             physics: BouncingScrollPhysics(),
                             children: [
                               ConditionalBuilder(
-                                condition: cubit.getModuleModel!=null,
-                                builder: (context)=> buildContentTab(cubit.getModuleModel!.contents!),
-                                fallback: (context)=>Center(child: CircularProgressIndicator(),),
-
+                                condition: cubit.getModuleModel != null,
+                                builder: (context) => buildContentTab(
+                                    cubit.getModuleModel!.contents!),
+                                fallback: (context) => Center(
+                                  child: CircularProgressIndicator(),
+                                ),
                               ),
                               ConditionalBuilder(
-                                condition: cubit.getModuleModel!=null,
-                                builder: (context)=> buildContentTab(cubit.getModuleModel!.contents!),
-                                fallback: (context)=>Center(child: CircularProgressIndicator(),),
-
+                                condition: cubit.getModuleModel != null,
+                                builder: (context) => buildContentTab(
+                                    cubit.getModuleModel!.contents!),
+                                fallback: (context) => Center(
+                                  child: CircularProgressIndicator(),
+                                ),
                               ),
-
                             ],
                           ),
                         ),
@@ -108,7 +110,7 @@ class ModulesLibraryScreen extends StatelessWidget {
   }
 
   //Build ModuleItem
-  Widget buildModuleItem(context,index,Contents model) {
+  Widget buildModuleItem(context, index, Contents model) {
     return Container(
       width: double.infinity,
       height: 100.0,
@@ -124,7 +126,7 @@ class ModulesLibraryScreen extends StatelessWidget {
           ),
           Expanded(
             child: Text(
-            //  "File name asd afew werg  iuejh iujh iuvjh iuwjhuijv iujhuijh iuwhji uhwuivh iuwhu wiuhf uiwh ifuhwiushviu hsdfubifh iuhfbiughr siih iuv iusb bs ",
+              //  "File name asd afew werg  iuejh iujh iuvjh iuwjhuijv iujhuijh iuwhji uhwuivh iuwhu wiuhf uiwh ifuhwiushviu hsdfubifh iuhfbiughr siih iuv iusb bs ",
               model.contentTitle!,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
@@ -177,7 +179,8 @@ class ModulesLibraryScreen extends StatelessWidget {
   Widget buildContentTab(List<Contents> content) {
     return ListView.separated(
       physics: BouncingScrollPhysics(),
-      itemBuilder: (context, index) => buildModuleItem(context,index,content[index]),
+      itemBuilder: (context, index) =>
+          buildModuleItem(context, index, content[index]),
       separatorBuilder: (context, index) => SizedBox(
         height: 10,
       ),

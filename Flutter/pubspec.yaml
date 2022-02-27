@@ -53,7 +53,7 @@ dependencies:
   lottie: ^1.2.1
   smooth_page_indicator: ^0.3.0-nullsafety.0
   animated_splash_screen: ^1.1.0
-  flutter_offline: "^2.1.0"
+  flutter_offline: ^2.1.0
   intl: ^0.17.0
   image_picker: ^0.8.4+9
   material_tag_editor: ^0.1.2
@@ -65,13 +65,13 @@ dependencies:
   flutter_speed_dial: ^5.0.0+1
   native_notify: ^0.0.3
   awesome_dialog: ^2.1.2
-
   file_picker: ^4.4.0
   multiselect_formfield: ^0.1.7
   flutter_picker: ^2.0.2
-
-
-
+  http_parser: ^4.0.0
+  http: ^0.13.4
+  dart_ipify: ^1.1.1
+  ftpconnect:
   flutter_rating_bar: ^4.0.0
   carousel_slider: ^4.0.0
   path_provider:

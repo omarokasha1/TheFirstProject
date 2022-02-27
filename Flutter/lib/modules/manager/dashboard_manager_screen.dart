@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -214,7 +213,7 @@ class DashboardManagerScreen extends StatelessWidget {
                         children: [
                           TextButton(
                               onPressed: () {
-                                navigator(context, Tracks());
+                                navigator(context, TracksScreen());
                               },
                               child: const Text("Views All ")),
                           Spacer(),

@@ -24,6 +24,7 @@ class ListCourseModel {
     return data;
   }
 }
+
 class CourseModel {
   String? sId;
   String? totalTime;
@@ -41,33 +42,33 @@ class CourseModel {
 
   CourseModel(
       {this.sId,
-        this.totalTime,
-        this.lastUpdate,
-        this.requiremnets,
-        this.title,
-        this.price,
-        this.discount,
-        this.language,
-        this.description,
-        this.review,
-        this.imageUrl,
-        this.author,
+      this.totalTime,
+      this.lastUpdate,
+      this.requiremnets,
+      this.title,
+      this.price,
+      this.discount,
+      this.language,
+      this.description,
+      this.review,
+      this.imageUrl,
+      this.author,
       this.contents});
 
   CourseModel.fromJson(Map<String, dynamic> json) {
-    sId = json['_id']?? '';
-    totalTime = json['totalTime']?? '';
-    lastUpdate = json['lastUpdate']?? '';
-    requiremnets = json['requiremnets']?? '';
-    title = json['title']?? '';
-    price = json['price']?? '';
-    discount = json['discount']?? '';
-    language = json['language']?? '';
-    description = json['description']?? '';
-    review = json['review']?? '';
-    imageUrl = json['imageUrl']?? '';
+    sId = json['_id'] ?? '';
+    totalTime = json['totalTime'] ?? '';
+    lastUpdate = json['lastUpdate'] ?? '';
+    requiremnets = json['requiremnets'] ?? '';
+    title = json['title'] ?? '';
+    price = json['price'] ?? '';
+    discount = json['discount'] ?? '';
+    language = json['language'] ?? '';
+    description = json['description'] ?? '';
+    review = json['review'] ?? '';
+    imageUrl = json['imageUrl'] ?? '';
     author =
-    json['author'] != null ? new Author.fromJson(json['author']) : null;
+        json['author'] != null ? new Author.fromJson(json['author']) : null;
     if (json['courses'] != null) {
       contents = <String>[];
       json['courses'].forEach((v) {
@@ -92,10 +93,9 @@ class CourseModel {
     if (this.author != null) {
       data['author'] = this.author!.toJson();
     }
-    if(this.contents!=null)
-      {
-        data['contents']=this.contents!.toList();
-      }
+    if (this.contents != null) {
+      data['contents'] = this.contents!.toList();
+    }
     return data;
   }
 }
@@ -118,18 +118,18 @@ class Author {
 
   Author(
       {this.sId,
-        this.userName,
-        this.email,
-        this.password,
-        this.isAdmin,
-        this.phone,
-        this.birthDay,
-        this.city,
-        this.country,
-        this.gender,
-        this.imageUrl,
-        this.userEducation,
-        this.bio});
+      this.userName,
+      this.email,
+      this.password,
+      this.isAdmin,
+      this.phone,
+      this.birthDay,
+      this.city,
+      this.country,
+      this.gender,
+      this.imageUrl,
+      this.userEducation,
+      this.bio});
 
   Author.fromJson(Map<String, dynamic> json) {
     sId = json['_id'] ?? '';
@@ -181,11 +181,11 @@ class UserEducation {
 
   UserEducation(
       {this.university,
-        this.major,
-        this.faculty,
-        this.grade,
-        this.experince,
-        this.interest});
+      this.major,
+      this.faculty,
+      this.grade,
+      this.experince,
+      this.interest});
 
   UserEducation.fromJson(Map<String, dynamic> json) {
     university = json['university'] ?? '';
@@ -204,6 +204,93 @@ class UserEducation {
     data['grade'] = this.grade;
     data['experince'] = this.experince;
     data['interest'] = this.interest;
+    return data;
+  }
+}
+
+class AuthorCoursesTestModel {
+  String? status;
+  List<Courses>? courses;
+
+  AuthorCoursesTestModel({this.status, this.courses});
+
+  AuthorCoursesTestModel.fromJson(Map<String, dynamic> json) {
+    status = json['status'];
+    if (json['courses'] != null) {
+      courses = <Courses>[];
+      json['courses'].forEach((v) {
+        courses!.add(new Courses.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['status'] = this.status;
+    if (this.courses != null) {
+      data['courses'] = this.courses!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class Courses {
+  String? sId;
+  String? totalTime;
+  String? lastUpdate;
+  String? title;
+  String? price;
+  String? discount;
+  String? language;
+  String? review;
+  String? imageUrl;
+  List<String>? contents;
+  String? author;
+  String? description;
+
+  Courses(
+      {this.sId,
+      this.totalTime,
+      this.lastUpdate,
+      this.title,
+      this.price,
+      this.discount,
+      this.language,
+      this.review,
+      this.imageUrl,
+      this.contents,
+      this.author,
+      this.description});
+
+  Courses.fromJson(Map<String, dynamic> json) {
+    sId = json['_id'];
+    totalTime = json['totalTime'];
+    lastUpdate = json['lastUpdate'];
+    title = json['title'];
+    price = json['price'];
+    discount = json['discount'];
+    language = json['language'];
+    review = json['review'];
+    imageUrl = json['imageUrl'];
+    contents = json['contents'].cast<String>();
+    author = json['author'];
+    description = json['description'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['_id'] = this.sId;
+    data['totalTime'] = this.totalTime;
+    data['lastUpdate'] = this.lastUpdate;
+    data['title'] = this.title;
+    data['price'] = this.price;
+    data['discount'] = this.discount;
+    data['language'] = this.language;
+    data['review'] = this.review;
+    data['imageUrl'] = this.imageUrl;
+    data['contents'] = this.contents;
+    data['author'] = this.author;
+    data['description'] = this.description;
     return data;
   }
 }

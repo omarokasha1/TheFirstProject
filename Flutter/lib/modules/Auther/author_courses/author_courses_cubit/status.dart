@@ -1,4 +1,7 @@
 
-abstract class AuthorCourseStates {}
+import 'package:lms/models/track_model.dart';
 
-class AuthorCourseInitialState extends AuthorCourseStates {}
+abstract class AuthorCoursesStates {}
+
+class AuthorCourseInitialState extends AuthorCoursesStates {}
+

@@ -1,21 +1,16 @@
 import 'dart:io';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:lms/layout/layout.dart';
-import 'package:lms/models/user.dart';
-import 'package:lms/modules/authertication/login/login_cubit/cubit.dart';
 import 'package:lms/modules/profile/profile_cubit/cubit.dart';
 import 'package:lms/modules/profile/profile_cubit/state.dart';
 import 'package:lms/modules/profile/profile_screen.dart';
-import 'package:lms/shared/component/MyAppBar.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
 import 'package:material_tag_editor/tag_editor.dart';
@@ -25,7 +20,8 @@ class EditProfileScreen extends StatelessWidget {
 
   var bioController = TextEditingController();
   var phoneController = TextEditingController();
-bool check =true;
+  bool check = true;
+
   //var genderController = TextEditingController();
   var cityController = TextEditingController();
   var countryController = TextEditingController();
@@ -36,8 +32,8 @@ bool check =true;
   var gradeController = TextEditingController();
   var experienceController = TextEditingController();
   var interestedController = TextEditingController();
-
-  List<String> items = ['Male', 'Female'];
+  bool rebuild = true;
+  List<String> items = ['male', 'female'];
   String? selectedItem;
 
   final List<Widget> myTabs = [
@@ -84,39 +80,44 @@ bool check =true;
               body: ConditionalBuilder(
                 condition: cubit.model != null && cubit.model!.profile != null,
                 builder: (context) {
-                  bioController.text = cubit.model!.profile!.bio!;
-                  phoneController.text = cubit.model!.profile!.phone!;
-                  //genderController.text = cubit.model!.profile!.gender!;
-                  selectedItem = cubit.model!.profile!.gender!;
-                  //print(selectedItem);
-                  cityController.text = cubit.model!.profile!.city!;
-                  countryController.text = cubit.model!.profile!.country!;
-                  birthdayController.text = cubit.model!.profile!.birthDay!;
-                  facultyController.text =
-                      cubit.model!.profile!.userEducation!.faculty!;
-                  universityController.text =
-                      cubit.model!.profile!.userEducation!.university!;
-                  majorController.text =
-                      cubit.model!.profile!.userEducation!.major!;
-                  for(int i=0;i<cubit.gradeItems.length&&check;i++)
-                    {
-                      if(cubit.model!.profile!.userEducation!.grade! == cubit.gradeItems[i]){
-                        cubit.selectedItemGrade = cubit.model!.profile!.userEducation!.grade!;
-                        check=false;
+                  if (rebuild) {
+                    rebuild = false;
+                    bioController.text = cubit.model!.profile!.bio!;
+                    phoneController.text = cubit.model!.profile!.phone!;
+                    //genderController.text = cubit.model!.profile!.gender!;
+                    selectedItem = cubit.model!.profile!.gender!;
+                    //print(selectedItem);
+                    cityController.text = cubit.model!.profile!.city!;
+                    countryController.text = cubit.model!.profile!.country!;
+                    birthdayController.text = cubit.model!.profile!.birthDay!;
+                    facultyController.text =
+                        cubit.model!.profile!.userEducation!.faculty!;
+                    universityController.text =
+                        cubit.model!.profile!.userEducation!.university!;
+                    majorController.text =
+                        cubit.model!.profile!.userEducation!.major!;
+                    for (int i = 0; i < cubit.gradeItems.length && check; i++) {
+                      if (cubit.model!.profile!.userEducation!.grade! ==
+                          cubit.gradeItems[i]) {
+                        cubit.selectedItemGrade =
+                            cubit.model!.profile!.userEducation!.grade!;
+                        check = false;
                         break;
                       }
                     }
-                  if(cubit.selectedItemGrade == null && check){
-                    cubit.changeSelectedItemGrade('GPA');
-                    gradeController.text =
-                    cubit.model!.profile!.userEducation!.grade!;
-                    check=false;
+                    if (cubit.selectedItemGrade == null && check) {
+                      cubit.changeSelectedItemGrade('GPA');
+                      gradeController.text =
+                          cubit.model!.profile!.userEducation!.grade!;
+                      check = false;
+                    }
+                    experienceController.text =
+                        cubit.model!.profile!.userEducation!.experince!;
+                    //interestedController.text = cubit.model!.profile!.userEducation!.interest!.join(" ");
+                    cubit.interestedItems =
+                        cubit.model!.profile!.userEducation!.interest;
                   }
-                  experienceController.text =
-                      cubit.model!.profile!.userEducation!.experince!;
-                  //interestedController.text = cubit.model!.profile!.userEducation!.interest!.join(" ");
-                  cubit.interestedItems =
-                      cubit.model!.profile!.userEducation!.interest;
+
                   return Column(
                     children: [
                       CircleAvatar(
@@ -139,18 +140,20 @@ bool check =true;
                                 color: Colors.white,
                                 iconSize: 15.0,
                                 onPressed: () async {
-                                  final pickedFile = await picker.pickImage(
-                                      source: ImageSource.gallery);
-                                  if (pickedFile != null) {
-                                    profileImage = File(pickedFile.path);
-                                  } else {
-                                    print('no image selected');
-                                  }
-                                  //image = await _picker.pickImage(source: ImageSource.gallery);
-                                  print(
-                                      'hereeeeee ${profileImage!.uri.toString()}');
-                                  print(
-                                      "Piiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiic");
+                                  // final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+                                  // if (pickedFile != null) {
+                                  //   profileImage = File(pickedFile.path);
+                                  //   // DioHelper.postData(url: uploadImageProfile, data: {
+                                  //   //   'profile': profileImage,
+                                  //   // });
+                                  //   DioHelper.uploadImage(profileImage!);
+                                  // } else {
+                                  //   print('no image selected');
+                                  // }
+                                  // //image = await _picker.pickImage(source: ImageSource.gallery);
+                                  // //print('hereeeeee ${profileImage!.uri.toString()}');
+                                  // print(
+                                  //     "Piiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiic");
                                 },
                               ),
                             ),
@@ -225,12 +228,14 @@ bool check =true;
                                       city: cityController.text,
                                       country: countryController.text,
                                       gender: selectedItem,
-                                      imageUrl:profileImage!.path,
+                                      //imageUrl: profileImage,
                                       bio: bioController.text,
                                       university: universityController.text,
                                       major: majorController.text,
                                       faculty: facultyController.text,
-                                      grade: cubit.selectedItemGrade == 'GPA' ? gradeController.text : cubit.selectedItemGrade,
+                                      grade: cubit.selectedItemGrade == 'GPA'
+                                          ? gradeController.text
+                                          : cubit.selectedItemGrade,
                                       experience: experienceController.text,
                                       // interest:
                                       //     interestedController.text.split(" "),
@@ -479,7 +484,8 @@ bool check =true;
               print('Grade change ${cubit.selectedItemGrade}');
             },
             itemHeight: 50,
-            items: cubit.gradeItems.map<DropdownMenuItem<String>>((String value) {
+            items:
+                cubit.gradeItems.map<DropdownMenuItem<String>>((String value) {
               return DropdownMenuItem<String>(
                 value: value,
                 child: Text(value),
@@ -487,26 +493,29 @@ bool check =true;
             }).toList(),
           ),
         ),
-        SizedBox(height: 20,),
-        cubit.selectedItemGrade != null && cubit.selectedItemGrade == 'GPA'?
-        customTextFormFieldWidget(
-          colorPerfix: true,
-          label: 'GPA',
-          controller: gradeController,
-          prefixIcon: Icons.grade_rounded,
-          type: TextInputType.number,
-          prefix: true,
-          validate: (value) {
-            if (value!.isEmpty) {
-              return "Please, Enter your GPA";
-            }
-            return null;
-          },
-          textInput: true,
-          textInputFormatter: FilteringTextInputFormatter.allow(
-            RegExp(r'^[1-4]|\.(\d?\d?)'),
-          ),
-        ) : Container(),
+        SizedBox(
+          height: 20,
+        ),
+        cubit.selectedItemGrade != null && cubit.selectedItemGrade == 'GPA'
+            ? customTextFormFieldWidget(
+                colorPerfix: true,
+                label: 'GPA',
+                controller: gradeController,
+                prefixIcon: Icons.grade_rounded,
+                type: TextInputType.number,
+                prefix: true,
+                validate: (value) {
+                  if (value!.isEmpty) {
+                    return "Please, Enter your GPA";
+                  }
+                  return null;
+                },
+                textInput: true,
+                textInputFormatter: FilteringTextInputFormatter.allow(
+                  RegExp(r'^[1-4]|\.(\d?\d?)'),
+                ),
+              )
+            : Container(),
         const SizedBox(
           height: 10.0,
         ),

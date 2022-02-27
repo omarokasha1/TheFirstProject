@@ -1,20 +1,14 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lms/modules/Auther/create_module/cubit/cubit.dart';
 import 'package:lms/modules/Auther/create_module/cubit/states.dart';
 import 'package:lms/modules/courses/cubit/cubit.dart';
-import 'package:multiselect_formfield/multiselect_formfield.dart';
-
 import '../../../shared/component/component.dart';
 import '../../../shared/component/constants.dart';
 import '../../courses/cubit/states.dart';
-import 'cubit/cubit.dart';
-import 'cubit/states.dart';
 
 class CreateCourseScreen extends StatelessWidget {
   CreateCourseScreen({Key? key}) : super(key: key);
@@ -156,7 +150,6 @@ class CreateCourseScreen extends StatelessWidget {
                                       type: TextInputType.text,
                                       prefix: true,
                                       prefixIcon: Icons.list,
-
                                     ),
                                     Padding(
                                       padding:
@@ -180,8 +173,7 @@ class CreateCourseScreen extends StatelessWidget {
                                             height: 25,
                                           ),
                                           selectMoreItem(
-                                            dataSource:
-                                            moduleCubit.list,
+                                            dataSource: moduleCubit.list,
                                             name: "Content",
                                             myActivities:
                                                 moduleCubit.myActivities,
@@ -325,27 +317,27 @@ class CreateCourseScreen extends StatelessWidget {
                               padding: const EdgeInsets.only(
                                   top: 20.0, left: 10, right: 10, bottom: 10),
                               child: defaultButton(
-                                  text: 'Save',
-                                  onPressed: () {
-                                    if (formKey.currentState!.validate()) {
-                                      if (courseImage == null) {
-                                        showToast(
-                                            message:
-                                                "Course Image Must be Not empty");
-                                      } else {
-                                        courseCubit.createNewCourse(
-                                          courseName: courseNameController.text,
-                                          description:
-                                              shortDescriptionController.text,
-                                          requirement:
-                                              requiermentController.text,
-                                          content: moduleCubit.myActivities!,
-                                          lang: courseCubit.selectedItem,
-                                          image: courseImage,
-                                        );
-                                      }
+                                text: 'Save',
+                                onPressed: () {
+                                  if (formKey.currentState!.validate()) {
+                                    if (courseImage == null) {
+                                      showToast(
+                                          message:
+                                              "Course Image Must be Not empty");
+                                    } else {
+                                      courseCubit.createNewCourse(
+                                        courseName: courseNameController.text,
+                                        description:
+                                            shortDescriptionController.text,
+                                        requirement: requiermentController.text,
+                                        content: moduleCubit.myActivities!,
+                                        lang: courseCubit.selectedItem,
+                                        image: courseImage,
+                                      );
                                     }
-                                  }),
+                                  }
+                                },
+                              ),
                             ),
                           ],
                         ),

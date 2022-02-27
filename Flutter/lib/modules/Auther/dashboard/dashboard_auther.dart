@@ -351,7 +351,7 @@ class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
                     Expanded(
                       child: InkWell(
                         onTap: () {
-                          navigator(context, Tracks());
+                          navigator(context, TracksScreen());
                         },
                         child: Column(
                           children: [

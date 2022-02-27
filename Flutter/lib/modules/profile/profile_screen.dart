@@ -1,15 +1,15 @@
+import 'dart:convert';
 import 'dart:io';
-
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:dio/dio.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lms/layout/layout.dart';
-import 'package:lms/modules/Auther/author_profile/author_profile_screen.dart';
-import 'package:lms/modules/Auther/dashboard/dashboard_auther.dart';
 import 'package:lms/modules/home_screen.dart';
 import 'package:lms/modules/profile/profile_cubit/cubit.dart';
 import 'package:lms/modules/profile/profile_cubit/state.dart';
@@ -17,6 +17,7 @@ import 'package:lms/modules/profile/edit_profile_screen.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
 import 'package:lms/shared/component/zoomDrawer.dart';
+import 'package:lms/shared/network/remote/dio-helper.dart';
 
 class ProfileScreen extends StatelessWidget {
   ProfileScreen({Key? key}) : super(key: key);
@@ -24,6 +25,8 @@ class ProfileScreen extends StatelessWidget {
   File? profileImage;
   var picker = ImagePicker();
   var formKey = GlobalKey<FormState>();
+
+  Dio dio = Dio();
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +47,9 @@ class ProfileScreen extends StatelessWidget {
                 onPressed: () {
                   navigatorAndRemove(
                     context,
-                    userAuthor?ZoomDrawerScreen(widget:DashboardAuthorScreen()): ZoomDrawerScreen(widget:HomePage()),
+                    ZoomDrawerScreen(
+                      widget: HomePage(),
+                    ),
                   );
                 },
               ),
@@ -93,16 +98,94 @@ class ProfileScreen extends StatelessWidget {
                                 color: Colors.white,
                                 iconSize: 15.0,
                                 onPressed: () async {
-                                  final pickedFile = await picker.pickImage(
-                                      source: ImageSource.gallery);
-                                  if (pickedFile != null) {
-                                    profileImage = File(pickedFile.path);
-                                  } else {
-                                    print('no image selected');
+                                  // File? image;
+                                  // var imagePicker = await ImagePicker.pickImage2(source: ImageSource.gallery);
+                                  // if(imagePicker != null){
+                                  //   //SetState
+                                  //   image = imagePicker as File;
+                                  // }
+                                  // try{
+                                  //   String fileName = image!.path.split('/').last;
+                                  //   FormData formData = FormData.fromMap({
+                                  //     'profile': await MultipartFile.fromFile(image.path, filename: fileName),
+                                  //     //contentType: MediaType('image', 'png')),
+                                  //   });
+                                  // }catch(e){
+                                  //   print(e);
+                                  // }
+                                  File? imageFile;
+                                  var base64Imageteam;
+                                  final GlobalKey<FormState> _formKey =
+                                      GlobalKey<FormState>();
+
+                                  /// Get from gallery
+                                  getFromGallery() async {
+                                    PickedFile? pickedFile =
+                                        await ImagePicker().getImage(
+                                      source: ImageSource.gallery,
+                                      //maxWidth: 1800,
+                                      //maxHeight: 1800,
+                                    );
+                                    if (pickedFile != null) {
+                                      //setState(() {
+                                      imageFile = File(pickedFile.path);
+                                      print(
+                                          "imageFile----------------------------->$imageFile");
+                                      List<int> imageBytes =
+                                          imageFile!.readAsBytesSync();
+                                      base64Imageteam =
+                                          base64Encode(imageBytes);
+
+                                      print(imageFile!.runtimeType);
+
+                                      // FTPConnect ftpConnect = FTPConnect('http://10.5.62.214/upload',port: 8080,user:'backend', pass:'backend123');
+                                      // File fileToUpload = imageFile!;
+                                      // await ftpConnect.connect();
+                                      // bool res = await ftpConnect.uploadFileWithRetry(fileToUpload, pRetryCount: 2);
+                                      // await ftpConnect.disconnect();
+                                      // print(res);
+
+                                      //print(base64Imageteam);
+                                      //DioHelper.postData(url: uploadImageProfile, data: {'profile':imageFile},token: userToken);
+                                      //DioHelper.upload(imageFile!, context);
+                                      DioHelper.uploadImage(imageFile!);
+                                      // updatimge(base64Image, id);
+                                      //});
+                                    }
                                   }
+
+                                  /// Get from File
+                                  getFromFile() async {
+                                    FilePickerResult? result =
+                                        await FilePicker.platform.pickFiles();
+                                    if (result != null) {
+                                      imageFile =
+                                          File(result.files.single.path!);
+
+                                      print(
+                                          "File----------------------------->$imageFile");
+                                      //DioHelper.uploadImage(imageFile!);
+                                      //List<int> fileBytes = imageFile!.readAsBytesSync();
+                                      //base64Imageteam = base64Encode(fileBytes);
+                                      //print(base64Imageteam);
+                                      //print(imageFile!.path);
+                                    } else {
+                                      // User canceled the picker
+                                    }
+                                  }
+
+                                  getFromGallery();
+                                  // final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+                                  // if (pickedFile != null) {
+                                  //   profileImage = File(pickedFile.path);
+                                  //   DioHelper.uploadImage(profileImage!);
+                                  //   cubit.getUserProfile();
+                                  //   //print(profileImage!.path.split('/').last);
+                                  // } else {
+                                  //   print('no image selected');
+                                  // }
                                   //image = await _picker.pickImage(source: ImageSource.gallery);
-                                  print(
-                                      "Piiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiic");
+                                  //print("Piiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiic");
                                 },
                               ),
                             ),
