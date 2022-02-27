@@ -156,6 +156,7 @@ class CreateCourseScreen extends StatelessWidget {
                                       type: TextInputType.text,
                                       prefix: true,
                                       prefixIcon: Icons.list,
+
                                     ),
                                     Padding(
                                       padding:

@@ -1,4 +1,4 @@
-import 'package:bloc/bloc.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lms/models/course_model.dart';
 import 'package:lms/modules/courses/cubit/states.dart';
@@ -6,7 +6,6 @@ import 'package:lms/modules/courses/cubit/states.dart';
 import '../../../shared/component/constants.dart';
 import '../../../shared/network/end_points.dart';
 import '../../../shared/network/remote/dio-helper.dart';
-
 class CourseCubit extends Cubit<CourseStates> {
   CourseCubit() : super(CourseInitialState());
 

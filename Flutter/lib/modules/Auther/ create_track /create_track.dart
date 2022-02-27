@@ -198,9 +198,8 @@ class CreateTrackScreen extends StatelessWidget {
                               const SizedBox(
                                 height: 10,
                               ),
-                              selectMoreItem(
+                              selectMoreItem(myActivities: [],
                                 name: "My Courses",
-                                myActivities: [{}],
                                 onSaved: (value) {
                                   if (value == null) return;
                                   // setState(() {

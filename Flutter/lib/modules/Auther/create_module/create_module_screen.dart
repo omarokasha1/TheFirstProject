@@ -262,7 +262,7 @@ class CreateModuleScreen extends StatelessWidget {
                                    print(cubit.formData!.files.single.runtimeType);
                                     cubit.createNewModule(moduleName: moduleNameController.text, description: shortDescriptionController.text, duration: durationController.text,content:cubit.formData);
 
-                                  //  navigator(context, ModulesLibraryScreen());
+
                                   }
                                 else
                                   {
