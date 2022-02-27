@@ -105,6 +105,8 @@ router.delete('/delete-course/:id', [auth, author],authorCtrl.deleteCourse)
 
 // Deleting content
 router.delete('/delete-content/:id', [auth, author],authorCtrl.deleteContent)
+router.delete('/delete-contents/:id', [auth, author],authorCtrl.deleteContents)
+
 
 // Deleting Track
 router.delete('/delete-track/:id', [auth, author],authorCtrl.deleteTrack)

@@ -397,6 +397,7 @@ uploadCourse : async (req, res) => {
     imageUrl:req.body.imageUrl,
     contentType:req.body.contentType,
     description:req.body.description,
+    courses:req.body.courses,
      author:id
    })
 
@@ -766,6 +767,22 @@ let newQuestion
       }
     },
 
+    deleteContents: async (req, res) => {
+      try {
+        const _id = req.params.id;
+         const content = await Content.findOne({ _id });
+          console.log(content)
+        await content.remove();
+          console.log(content.courses)
+       const course=  await Course.updateMany({ '_id': content.courses }, { $pull: { contents: content._id } });
+        console.log(course)
+  
+  
+      return  res.json({ message: "Deleted Success!" });
+      } catch (err) {
+        return res.status(500).json({ message: err.message });
+      }
+    },
 
     deleteContent: async (req, res) => {
       try {

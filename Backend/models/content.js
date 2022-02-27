@@ -12,7 +12,10 @@ const Content = new mongoose.Schema({
         author:{        
                 type:mongoose.Schema.Types.ObjectId ,
                 ref:'User'
-            }  
+            }  ,
+            courses:
+            [ {type:mongoose.Schema.Types.ObjectId,
+              ref:'Course'}] ,
 })
 
 module.exports = mongoose.model('Content',Content)
