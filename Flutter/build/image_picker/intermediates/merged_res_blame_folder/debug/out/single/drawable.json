@@ -1,5 +1,6 @@
 [
     {
+<<<<<<< HEAD
         "merged": "/home/odc2/ODC/TheFirstProject/Flutter/build/image_picker/intermediates/res/merged/debug/drawable/notification_bg.xml",
         "source": "/home/odc2/.gradle/caches/transforms-2/files-2.1/122df2e57d294d1a53db26bbc3b813c1/core-1.6.0/res/drawable/notification_bg.xml"
     },
@@ -14,5 +15,21 @@
     {
         "merged": "/home/odc2/ODC/TheFirstProject/Flutter/build/image_picker/intermediates/res/merged/debug/drawable/notification_icon_background.xml",
         "source": "/home/odc2/.gradle/caches/transforms-2/files-2.1/122df2e57d294d1a53db26bbc3b813c1/core-1.6.0/res/drawable/notification_icon_background.xml"
+=======
+        "merged": "/home/odc5/project/Flutter/build/image_picker/intermediates/res/merged/debug/drawable/notification_tile_bg.xml",
+        "source": "/home/odc5/.gradle/caches/transforms-2/files-2.1/122df2e57d294d1a53db26bbc3b813c1/core-1.6.0/res/drawable/notification_tile_bg.xml"
+    },
+    {
+        "merged": "/home/odc5/project/Flutter/build/image_picker/intermediates/res/merged/debug/drawable/notification_bg_low.xml",
+        "source": "/home/odc5/.gradle/caches/transforms-2/files-2.1/122df2e57d294d1a53db26bbc3b813c1/core-1.6.0/res/drawable/notification_bg_low.xml"
+    },
+    {
+        "merged": "/home/odc5/project/Flutter/build/image_picker/intermediates/res/merged/debug/drawable/notification_icon_background.xml",
+        "source": "/home/odc5/.gradle/caches/transforms-2/files-2.1/122df2e57d294d1a53db26bbc3b813c1/core-1.6.0/res/drawable/notification_icon_background.xml"
+    },
+    {
+        "merged": "/home/odc5/project/Flutter/build/image_picker/intermediates/res/merged/debug/drawable/notification_bg.xml",
+        "source": "/home/odc5/.gradle/caches/transforms-2/files-2.1/122df2e57d294d1a53db26bbc3b813c1/core-1.6.0/res/drawable/notification_bg.xml"
+>>>>>>> Flutter_Mariam
     }
 ]

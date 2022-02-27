@@ -183,11 +183,7 @@ class MyDrawer extends StatelessWidget {
                         size: 25,
                       ),
                       onTap: () {
-                        if(userToken == token) {
-                          navigator(context, DashboardAuthorScreen());
-                        }else {
-                          navigator(context, DashboardScreen());
-                        }
+
                       },
                     ),
                     if(!userAuthor)

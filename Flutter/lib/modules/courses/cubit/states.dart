@@ -5,6 +5,8 @@ abstract class CourseStates {}
 
 class CourseInitialState extends CourseStates {}
 
+class ChangeItemState extends CourseStates {}
+class ChangeActivityState extends CourseStates {}
 class CourseLoadingState extends CourseStates {}
 
 class CourseSuccessState extends CourseStates {
@@ -49,3 +51,4 @@ class CreateCourseErrorState extends CourseStates {
 
   CreateCourseErrorState(this.error);
 }
+

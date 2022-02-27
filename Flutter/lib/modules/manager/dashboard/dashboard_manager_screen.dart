@@ -102,7 +102,7 @@ class DashboardManagerScreen extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Container(
-                      height: 210.h,
+                    //  height: 210.h,
                       padding: EdgeInsets.all(20),
                       width: double.infinity,
                       decoration: BoxDecoration(
@@ -144,7 +144,7 @@ class DashboardManagerScreen extends StatelessWidget {
                     child: Container(
                       padding: EdgeInsets.symmetric(vertical: 20),
                       width: double.infinity,
-                      height: 210.h,
+                     // height: 210.h,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
                           color: Colors.grey[100]),

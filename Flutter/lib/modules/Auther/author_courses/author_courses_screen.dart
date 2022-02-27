@@ -71,7 +71,7 @@ class AuthorCourses extends StatelessWidget {
                       labelColor: primaryColor,
                       indicatorColor: primaryColor,
                       unselectedLabelColor: Colors.black,
-                      isScrollable: true,
+                     // isScrollable: true,
                       labelStyle: TextStyle(
                         fontSize: 16.sp,
                         fontWeight: FontWeight.bold,

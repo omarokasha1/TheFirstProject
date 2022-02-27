@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lms/modules/Auther/author_courses/author_courses_screen.dart';
+import 'package:lms/modules/Auther/create_assigment/create_assignment.dart';
 import 'package:lms/modules/Auther/create_course/create_course_screen.dart';
 import 'package:lms/modules/Auther/create_module/create_module_screen.dart';
 import 'package:lms/modules/Auther/create_quiz/create_quiz_screen.dart';
@@ -15,13 +16,10 @@ import 'package:lms/modules/search/search_screen.dart';
 import 'package:lms/shared/component/MyAppBar.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
-import 'package:lottie/lottie.dart';
 import 'package:number_slide_animation/number_slide_animation.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
-import 'package:timelines/timelines.dart';
 
 import '../ create_track /create_track.dart';
 
@@ -31,7 +29,8 @@ class _SalesData {
   final String year;
   final double views;
 }
-bool moveLeft =false;
+
+bool moveLeft = false;
 
 class DashboardAuthorScreen extends StatefulWidget {
   DashboardAuthorScreen({Key? key}) : super(key: key);
@@ -39,6 +38,7 @@ class DashboardAuthorScreen extends StatefulWidget {
   @override
   State<DashboardAuthorScreen> createState() => _DashboardAuthorScreenState();
 }
+
 var formKey = GlobalKey<FormState>();
 var quizController = TextEditingController();
 
@@ -55,16 +55,16 @@ class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
   void initState() {
     // TODO: implement initState
     setState(() {
-
       setState(() {
         moveLeft = !moveLeft;
       });
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton:  SpeedDial(
+      floatingActionButton: SpeedDial(
         animatedIcon: AnimatedIcons.menu_close,
         //   label: Text('Create',style: TextStyle(fontWeight: FontWeight.bold)),
         children: [
@@ -101,13 +101,13 @@ class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
                                   onPressed: () {
                                     if (formKey.currentState!.validate()) {
                                       Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  CreateQuizScreen(
-                                                      quizController.text)))
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      CreateQuizScreen(
+                                                          quizController.text)))
                                           .then(
-                                            (value) {
+                                        (value) {
                                           quizController.text = "";
                                           Navigator.pop(context);
                                         },
@@ -129,6 +129,12 @@ class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
                 ).show();
               },
               label: 'Add Quiz'),
+          SpeedDialChild(
+              child: Icon(Icons.add),
+              onTap: () {
+                navigator(context, CreateAssignmentScreen());
+              },
+              label: 'Add Assignment'),
           SpeedDialChild(
               child: Icon(Icons.play_circle_fill),
               onTap: () {
@@ -155,15 +161,14 @@ class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
-              Container( width: double.infinity,
+              Container(
+                width: double.infinity,
                 padding: EdgeInsets.all(20),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   gradient: newVv,
-
                 ),
                 child: Column(
-
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -173,8 +178,7 @@ class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
                         children: [
                           Row(
                             children: [
-                              Text(
-                                  "Hi, Name",
+                              Text("Hi, Name",
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontFamily: 'Poppins',
@@ -203,7 +207,9 @@ class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
                         ],
                       ),
                     ),
-                    SizedBox(height: 10,),
+                    SizedBox(
+                      height: 10,
+                    ),
                     SizedBox(
                       width: double.infinity,
                       height: 45.h,
@@ -213,22 +219,16 @@ class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
                           fillColor: Colors.white,
                           filled: true,
                           border: OutlineInputBorder(
-                            borderRadius:
-                            BorderRadius.circular(18.r),
-                            borderSide: const BorderSide(
-                                color: Colors.white),
+                            borderRadius: BorderRadius.circular(18.r),
+                            borderSide: const BorderSide(color: Colors.white),
                           ),
                           focusedBorder: OutlineInputBorder(
-                            borderRadius:
-                            BorderRadius.circular(18.r),
-                            borderSide: const BorderSide(
-                                color: secondaryColor),
+                            borderRadius: BorderRadius.circular(18.r),
+                            borderSide: const BorderSide(color: secondaryColor),
                           ),
                           enabledBorder: OutlineInputBorder(
-                            borderRadius:
-                            BorderRadius.circular(18.r),
-                            borderSide: const BorderSide(
-                                color: Colors.white),
+                            borderRadius: BorderRadius.circular(18.r),
+                            borderSide: const BorderSide(color: Colors.white),
                           ),
                           hintText: "Search Courses",
                           prefixIcon: const Icon(Icons.search),
@@ -241,7 +241,9 @@ class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
                   ],
                 ),
               ),
-              SizedBox(height: 10,),
+              SizedBox(
+                height: 10,
+              ),
               Container(
                 width: double.infinity,
                 padding: EdgeInsets.all(20),
@@ -500,17 +502,27 @@ class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(left: 120.0),
-                          child: const Text('Top Student',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,),),
+                          child: const Text(
+                            'Top Student',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
+                          ),
                         ),
                         Spacer(),
-                        IconButton(onPressed: (){
-                          setState(() {
-                            moveLeft = !moveLeft;
-                          });
-                        }, icon:Icon(Icons.refresh))
+                        IconButton(
+                            onPressed: () {
+                              setState(() {
+                                moveLeft = !moveLeft;
+                              });
+                            },
+                            icon: Icon(Icons.refresh))
                       ],
                     ),
-                    SizedBox(height: 20,),
+                    SizedBox(
+                      height: 20,
+                    ),
                     Row(
                       children: [
                         Container(
@@ -519,7 +531,7 @@ class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
                           child: Stack(
                             children: [
                               Positioned(
-                                top:24,
+                                top: 24,
                                 child: Container(
                                   height: 3,
                                   width: 800.w,
@@ -527,27 +539,30 @@ class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
                                 ),
                               ),
                               AnimatedPositioned(
-                                left:moveLeft? 200:250,
+                                left: moveLeft ? 200 : 250,
                                 duration: Duration(seconds: 3),
                                 child: CircleAvatar(
                                   radius: 25,
-                                  backgroundImage: NetworkImage('https://www.mnp.ca/-/media/foundation/integrations/personnel/2020/12/16/13/57/personnel-image-4483.jpg?h=800&w=600&hash=9D5E5FCBEE00EB562DCD8AC8FDA8433D'),
+                                  backgroundImage: NetworkImage(
+                                      'https://www.mnp.ca/-/media/foundation/integrations/personnel/2020/12/16/13/57/personnel-image-4483.jpg?h=800&w=600&hash=9D5E5FCBEE00EB562DCD8AC8FDA8433D'),
                                 ),
                               ),
                               AnimatedPositioned(
-                                left:moveLeft? 100:120,
+                                left: moveLeft ? 100 : 120,
                                 duration: Duration(seconds: 3),
                                 child: CircleAvatar(
                                   radius: 25,
-                                  backgroundImage: NetworkImage('https://www.mnp.ca/-/media/foundation/integrations/personnel/2020/12/16/13/57/personnel-image-4483.jpg?h=800&w=600&hash=9D5E5FCBEE00EB562DCD8AC8FDA8433D'),
+                                  backgroundImage: NetworkImage(
+                                      'https://www.mnp.ca/-/media/foundation/integrations/personnel/2020/12/16/13/57/personnel-image-4483.jpg?h=800&w=600&hash=9D5E5FCBEE00EB562DCD8AC8FDA8433D'),
                                 ),
                               ),
                               AnimatedPositioned(
-                                left:moveLeft ? 40 : 50,
+                                left: moveLeft ? 40 : 50,
                                 duration: Duration(seconds: 1),
                                 child: CircleAvatar(
                                   radius: 25,
-                                  backgroundImage: NetworkImage('https://www.mnp.ca/-/media/foundation/integrations/personnel/2020/12/16/13/57/personnel-image-4483.jpg?h=800&w=600&hash=9D5E5FCBEE00EB562DCD8AC8FDA8433D'),
+                                  backgroundImage: NetworkImage(
+                                      'https://www.mnp.ca/-/media/foundation/integrations/personnel/2020/12/16/13/57/personnel-image-4483.jpg?h=800&w=600&hash=9D5E5FCBEE00EB562DCD8AC8FDA8433D'),
                                 ),
                               ),
                             ],
@@ -574,7 +589,7 @@ class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
 
                     // Chart title
                     title:
-                    ChartTitle(text: 'Half yearly courses views analysis'),
+                        ChartTitle(text: 'Half yearly courses views analysis'),
                     // Enable legend
                     legend: Legend(isVisible: true),
                     // Enable tooltip

@@ -18,12 +18,12 @@ class ProfileCubit extends Cubit<ProfileStates> {
 
   var interestedItems;
 
-  void addInterestedItem(String value){
+  void addInterestedItem(String value) {
     interestedItems.add(value);
     emit(AddInterestedItemState());
   }
 
-  void deleteInterestedItem(int index){
+  void deleteInterestedItem(int index) {
     interestedItems.removeAt(index);
     emit(DeleteInterestedItemState());
   }
@@ -32,7 +32,7 @@ class ProfileCubit extends Cubit<ProfileStates> {
     emit(ProfileLoadingState());
     DioHelper.getData(
       url: profile,
-      token:userToken,
+      token: userToken,
     ).then((value) {
       model = User.fromJson(value.data);
       // print(model!.userName);
@@ -49,7 +49,7 @@ class ProfileCubit extends Cubit<ProfileStates> {
     required String? city,
     required String? country,
     required String? gender,
-    //required String? imageUrl,
+    required String?  imageUrl,
     required String? university,
     required String? major,
     required String? faculty,
@@ -61,13 +61,13 @@ class ProfileCubit extends Cubit<ProfileStates> {
   }) {
     emit(UpdadteProfileLoadingState());
 
-    DioHelper.putData(url: updateProfile, token:userToken, data: {
+    DioHelper.putData(url: updateProfile, token: userToken, data: {
       'phone': phone,
       'birthDay': birthday,
       'city': city,
       'country': country,
       'gender': gender,
-      //'imageUrl': imageUrl,
+      'imageUrl': imageUrl,
       'userEducation': {
         'university': university,
         'major': major,
@@ -89,10 +89,17 @@ class ProfileCubit extends Cubit<ProfileStates> {
     });
   }
 
-  List<String> gradeItems = ['Excellent', 'Very Good', 'Good', 'Satisfy', 'Pass', 'GPA',];
+  List<String> gradeItems = [
+    'Excellent',
+    'Very Good',
+    'Good',
+    'Satisfy',
+    'Pass',
+    'GPA',
+  ];
   String? selectedItemGrade;
-  
-  void changeSelectedItemGrade (String value){
+
+  void changeSelectedItemGrade(String value) {
     selectedItemGrade = value;
     emit(ChangeSelectedItemGradeState());
   }

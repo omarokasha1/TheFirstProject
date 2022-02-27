@@ -3,6 +3,10 @@
 3    package="io.github.ponnamkarthik.toast.fluttertoast" >
 4
 5    <uses-sdk android:minSdkVersion="16" />
+<<<<<<< HEAD
 5-->/home/odc2/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/fluttertoast-8.0.8/android/src/main/AndroidManifest.xml
+=======
+5-->/home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/fluttertoast-8.0.8/android/src/main/AndroidManifest.xml
+>>>>>>> Flutter_Mariam
 6
 7</manifest>

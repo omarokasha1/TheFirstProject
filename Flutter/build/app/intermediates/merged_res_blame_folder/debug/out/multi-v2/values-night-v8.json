@@ -1,10 +1,17 @@
 {
     "logs": [
         {
+<<<<<<< HEAD
             "outputFile": "/home/odc2/ODC/TheFirstProject/Flutter/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-night-v8/values-night-v8.xml",
             "map": [
                 {
                     "source": "/home/odc2/ODC/TheFirstProject/Flutter/android/app/src/main/res/values-night/styles.xml",
+=======
+            "outputFile": "/home/odc5/project/Flutter/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-night-v8/values-night-v8.xml",
+            "map": [
+                {
+                    "source": "/home/odc5/project/Flutter/android/app/src/main/res/values-night/styles.xml",
+>>>>>>> Flutter_Mariam
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",

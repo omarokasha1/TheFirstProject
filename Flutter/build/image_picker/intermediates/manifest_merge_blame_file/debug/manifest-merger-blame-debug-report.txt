@@ -3,6 +3,7 @@
 3    package="io.flutter.plugins.imagepicker" >
 4
 5    <uses-sdk android:minSdkVersion="16" />
+<<<<<<< HEAD
 5-->/home/odc2/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/image_picker-0.8.4+9/android/src/main/AndroidManifest.xml
 6
 7    <application>
@@ -23,6 +24,28 @@
 14-->/home/odc2/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/image_picker-0.8.4+9/android/src/main/AndroidManifest.xml:11:17-67
 15                android:resource="@xml/flutter_image_picker_file_paths" />
 15-->/home/odc2/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/image_picker-0.8.4+9/android/src/main/AndroidManifest.xml:12:17-72
+=======
+5-->/home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/image_picker-0.8.4+9/android/src/main/AndroidManifest.xml
+6
+7    <application>
+7-->/home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/image_picker-0.8.4+9/android/src/main/AndroidManifest.xml:4:5-14:19
+8        <provider
+8-->/home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/image_picker-0.8.4+9/android/src/main/AndroidManifest.xml:5:9-13:20
+9            android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
+9-->/home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/image_picker-0.8.4+9/android/src/main/AndroidManifest.xml:6:13-82
+10            android:authorities="${applicationId}.flutter.image_provider"
+10-->/home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/image_picker-0.8.4+9/android/src/main/AndroidManifest.xml:7:13-74
+11            android:exported="false"
+11-->/home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/image_picker-0.8.4+9/android/src/main/AndroidManifest.xml:8:13-37
+12            android:grantUriPermissions="true" >
+12-->/home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/image_picker-0.8.4+9/android/src/main/AndroidManifest.xml:9:13-47
+13            <meta-data
+13-->/home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/image_picker-0.8.4+9/android/src/main/AndroidManifest.xml:10:13-12:75
+14                android:name="android.support.FILE_PROVIDER_PATHS"
+14-->/home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/image_picker-0.8.4+9/android/src/main/AndroidManifest.xml:11:17-67
+15                android:resource="@xml/flutter_image_picker_file_paths" />
+15-->/home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/image_picker-0.8.4+9/android/src/main/AndroidManifest.xml:12:17-72
+>>>>>>> Flutter_Mariam
 16        </provider>
 17    </application>
 18

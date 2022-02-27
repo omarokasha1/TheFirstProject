@@ -1,11 +1,18 @@
 //End Points that's Used in API
 const login = "api/login";
 const register = "api/register";
-const profile = "api/profile";
-const updateProfile = "api/profile/update";
+const profile = "api/user/get-profile";
+//const updateProfile = "api/profile/update";
+const updateProfile = "api/user/update-profile";
 const changePassword = "api/changePassword";
-
 const courses = "api/course/allCourses";
 
 const module = "api/course/newContent";
+const getModule = "api/course/authorContents";
+const updateModule = "api/course/update-track";
+const deleteModule = "course/delete-content";
 
+const newAssignment = "api/course/newAssignment";
+const getAssignment = "api/course/authorAssignments";
+const updateAssignment = "api/course/update-assignment";
+const deleteAssignment = "api/course/delete-assignment";

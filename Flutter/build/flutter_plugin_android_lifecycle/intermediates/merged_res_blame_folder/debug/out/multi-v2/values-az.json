@@ -1,10 +1,17 @@
 {
     "logs": [
         {
+<<<<<<< HEAD
             "outputFile": "/home/odc2/ODC/TheFirstProject/Flutter/build/flutter_plugin_android_lifecycle/intermediates/incremental/mergeDebugResources/merged.dir/values-az/values-az.xml",
             "map": [
                 {
                     "source": "/home/odc2/.gradle/caches/transforms-2/files-2.1/122df2e57d294d1a53db26bbc3b813c1/core-1.6.0/res/values-az/values-az.xml",
+=======
+            "outputFile": "/home/odc5/project/Flutter/build/flutter_plugin_android_lifecycle/intermediates/res/merged/debug/values-az/values-az.xml",
+            "map": [
+                {
+                    "source": "/home/odc5/.gradle/caches/transforms-2/files-2.1/122df2e57d294d1a53db26bbc3b813c1/core-1.6.0/res/values-az/values-az.xml",
+>>>>>>> Flutter_Mariam
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -16,10 +23,17 @@
             ]
         },
         {
+<<<<<<< HEAD
             "outputFile": "/home/odc2/ODC/TheFirstProject/Flutter/build/flutter_plugin_android_lifecycle/intermediates/res/merged/debug/values-az/values-az.xml",
             "map": [
                 {
                     "source": "/home/odc2/.gradle/caches/transforms-2/files-2.1/122df2e57d294d1a53db26bbc3b813c1/core-1.6.0/res/values-az/values-az.xml",
+=======
+            "outputFile": "/home/odc5/project/Flutter/build/flutter_plugin_android_lifecycle/intermediates/incremental/mergeDebugResources/merged.dir/values-az/values-az.xml",
+            "map": [
+                {
+                    "source": "/home/odc5/.gradle/caches/transforms-2/files-2.1/122df2e57d294d1a53db26bbc3b813c1/core-1.6.0/res/values-az/values-az.xml",
+>>>>>>> Flutter_Mariam
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
