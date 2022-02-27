@@ -1,9 +1,11 @@
 import 'dart:io';
+import 'package:dart_ipify/dart_ipify.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lms/models/track_model.dart';
+import 'package:lms/modules/Auther/%20create_track%20/create_track.dart';
 import 'package:lms/modules/Auther/author_courses/author_courses_screen.dart';
 import 'package:lms/modules/Auther/author_profile/author_profile_cubit/cubit.dart';
 import 'package:lms/modules/Auther/author_profile/author_profile_screen.dart';
@@ -36,8 +38,18 @@ import 'layout/layout.dart';
 import 'modules/profile/profile_cubit/cubit.dart';
 import 'modules/quiz/screens/welcome/welcome_screen.dart';
 import 'shared/cubit For Internet/cubit.dart';
-
+class IpInfiApi{
+  static Future<String?> getIPAdress() async{
+    try{
+      final url = Uri.parse('https://api.ipify.org');
+    }catch(e){
+      return null;
+    }
+  }
+}
 void main() async {
+  final ipv4 = await Ipify.ipv4();
+  print(ipv4);
   //This to ensure that all Widget of Application is ready to run.
   WidgetsFlutterBinding.ensureInitialized();
   //This to set the Orientation of Screen portrait only.

@@ -5,9 +5,11 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:dio/dio.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ftpconnect/ftpconnect.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lms/layout/layout.dart';
 import 'package:lms/modules/home_screen.dart';
@@ -133,11 +135,36 @@ class ProfileScreen extends StatelessWidget {
                                         base64Imageteam = base64Encode(imageBytes);
 
                                         print(imageFile!.runtimeType);
+
+                                        // FTPConnect ftpConnect = FTPConnect('http://10.5.62.214/upload',port: 8080,user:'backend', pass:'backend123');
+                                        // File fileToUpload = imageFile!;
+                                        // await ftpConnect.connect();
+                                        // bool res = await ftpConnect.uploadFileWithRetry(fileToUpload, pRetryCount: 2);
+                                        // await ftpConnect.disconnect();
+                                        // print(res);
+
                                         //print(base64Imageteam);
                                         //DioHelper.postData(url: uploadImageProfile, data: {'profile':imageFile},token: userToken);
-                                      DioHelper.uploadImage(imageFile!);
+                                      //DioHelper.upload(imageFile!, context);
+                                        DioHelper.uploadImage(imageFile!);
                                         // updatimge(base64Image, id);
                                       //});
+                                    }
+                                  }
+                                  /// Get from File
+                                  getFromFile() async {
+                                    FilePickerResult? result = await FilePicker.platform.pickFiles();
+                                    if (result != null) {
+                                      imageFile = File(result.files.single.path!);
+
+                                      print("File----------------------------->$imageFile");
+                                      //DioHelper.uploadImage(imageFile!);
+                                      //List<int> fileBytes = imageFile!.readAsBytesSync();
+                                      //base64Imageteam = base64Encode(fileBytes);
+                                      //print(base64Imageteam);
+                                      //print(imageFile!.path);
+                                    } else {
+                                      // User canceled the picker
                                     }
                                   }
                                   getFromGallery();

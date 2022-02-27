@@ -29,7 +29,9 @@ class TrackCubit extends Cubit<TrackStates> {
     });
   }
 
-  // void updateUserProfile({
+
+
+  // void updateAuthorTrack({
   //   required String? phone,
   //   required String? birthday,
   //   required String? city,

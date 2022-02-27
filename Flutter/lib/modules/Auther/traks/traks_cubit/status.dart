@@ -19,3 +19,14 @@ class AllTrackErrorState extends TrackStates {
   AllTrackErrorState(this.error);
 }
 
+class UpdateTrackLoadingState extends TrackStates {}
+
+class UpdateTrackSuccessState extends TrackStates {
+
+}
+
+class UpdateTrackErrorState extends TrackStates {
+  final String error;
+  UpdateTrackErrorState(this.error);
+}
+

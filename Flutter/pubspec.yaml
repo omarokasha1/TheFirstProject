@@ -71,6 +71,9 @@ dependencies:
   flutter_picker: ^2.0.2
   http_parser: ^4.0.0
   path_provider:
+  http: ^0.13.4
+  dart_ipify: ^1.1.1
+  ftpconnect:
 
 
 
