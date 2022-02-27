@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/home/odc2/Downloads/MainProject/TheFirstProject/Flutter/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
+            "outputFile": "/home/odc2/Downloads/branch2/TheFirstProject/Flutter/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
             "map": [
                 {
                     "source": "/home/odc2/.gradle/caches/transforms-2/files-2.1/03c633e46d75bfb21f082f0417f55161/jetified-window-1.0.0-beta04/res/values/values.xml",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "/home/odc2/Downloads/MainProject/TheFirstProject/Flutter/android/app/src/main/res/values/styles.xml",
+                    "source": "/home/odc2/Downloads/branch2/TheFirstProject/Flutter/android/app/src/main/res/values/styles.xml",
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",
