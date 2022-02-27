@@ -10,7 +10,7 @@ import 'package:lms/modules/anmition.dart';
 import 'package:lms/modules/courses/cubit/cubit.dart';
 import 'package:lms/modules/dashboard/dashboard_screen.dart';
 import 'package:lms/modules/home_screen.dart';
-import 'package:lms/modules/manager/dashboard/dashboard_manager_screen.dart';
+import 'package:lms/modules/manager/dashboard_manager_screen.dart';
 import 'package:lms/modules/onboarding/onboarding_screen.dart';
 import 'package:lms/modules/profile/profile_screen.dart';
 import 'package:lms/modules/splash_screen.dart';
