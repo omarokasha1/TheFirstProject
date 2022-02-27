@@ -127,9 +127,9 @@ class MyApp extends StatelessWidget {
           //home: Tracks(),
          //home:ZoomDrawerScreen(widget:DashboardAuthorScreen() ,) ,
           //home: ZoomDrawerScreen(widget: AuthorProfileScreen(),),
-        //  home: widget,
+          home: widget,
          //home: ZoomDrawerScreen(widget:HomePage() ,),
-          home:Layout(widget: ZoomDrawerScreen(widget:DashboardAuthorScreen() ,)) ,
+         // home:Layout(widget: ZoomDrawerScreen(widget:DashboardAuthorScreen() ,)) ,
         ),
       ),
     );
