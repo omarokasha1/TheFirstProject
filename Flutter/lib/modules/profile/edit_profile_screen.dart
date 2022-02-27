@@ -225,7 +225,7 @@ bool check =true;
                                       city: cityController.text,
                                       country: countryController.text,
                                       gender: selectedItem,
-                                      //imageUrl: cubit.model!.profile!.imageUrl,
+                                      imageUrl:profileImage!.path,
                                       bio: bioController.text,
                                       university: universityController.text,
                                       major: majorController.text,

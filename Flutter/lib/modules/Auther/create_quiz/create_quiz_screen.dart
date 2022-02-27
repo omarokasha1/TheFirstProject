@@ -13,7 +13,6 @@ class CreateQuizScreen extends StatelessWidget {
 
   CreateQuizScreen(this.quizName, {Key? key}) : super(key: key);
 
-
   var scaffoldKey = GlobalKey<ScaffoldState>();
 
   var formKey = GlobalKey<FormState>();
@@ -36,7 +35,10 @@ class CreateQuizScreen extends StatelessWidget {
 
             return Scaffold(
               appBar: AppBar(
-                title: Text(quizName,style: const TextStyle(color: primaryColor,fontSize: 25),),
+                title: Text(
+                  quizName,
+                  style: const TextStyle(color: primaryColor, fontSize: 25),
+                ),
               ),
               key: scaffoldKey,
               floatingActionButton: FloatingActionButton(
@@ -44,27 +46,31 @@ class CreateQuizScreen extends StatelessWidget {
                   if (cubit.clickFloat) {
                     if (formKey.currentState!.validate()) {
                       if (cubit.val != -1) {
-                        cubit.addItemInList(
-                          Question(
-                            id: questionNumber,
-                            question: quistionController.text,
-                            answer: cubit.val,
-                            options: [
-                              for (TextEditingController j in controllerList)
-                                j.text
-                            ],
-                          ),
-                        );
+                        if (controllerList.length >= 2) {
+                          cubit.addItemInList(
+                            Question(
+                              id: questionNumber,
+                              question: quistionController.text,
+                              answer: cubit.val,
+                              options: [
+                                for (TextEditingController j in controllerList)
+                                  j.text
+                              ],
+                            ),
+                          );
 
-                        cubit.getItemInList(cubit.questions);
-                        questionNumber++;
-                        answerItems = 0;
-                        controllerList.clear();
-                        formKey.currentState!.reset();
-                        cubit.val = -1;
-                        Navigator.pop(context);
-                        print(cubit.questions[0].options[1].toString());
-                        quistionController.clear();
+                          cubit.getItemInList(cubit.questions);
+                          questionNumber++;
+                          answerItems = 0;
+                          controllerList.clear();
+                          formKey.currentState!.reset();
+                          cubit.val = -1;
+                          Navigator.pop(context);
+                          print(cubit.questions[0].options[1].toString());
+                          quistionController.clear();
+                        } else {
+                          showToast(message: "please add at least two answer");
+                        }
                       } else {
                         showToast(message: "Must choose the correct answer");
                       }
@@ -74,51 +80,51 @@ class CreateQuizScreen extends StatelessWidget {
                   } else {
                     scaffoldKey.currentState!
                         .showBottomSheet((context) {
-                      return BlocConsumer<QuizCubit, QuizStates>(
-                        listener: (context, state) {},
-                        builder: (context, state) => Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              //   border: Border.all(color: primaryColor),
-                              color: Colors.white10,
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(20.0),
-                              child: Form(
-                                key: formKey,
-                                child: SingleChildScrollView(
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      customTextFormFieldWidget(
-                                          type: TextInputType.text,
-                                          onChanged: (courseName) {
-                                            cubit.onCourseNameChanged(
-                                                courseName);
-                                          },
-                                          prefixIcon: Icons.quiz_sharp,
-                                          prefix: true,
-                                          label: "Quistion",
-                                          controller: quistionController,
-                                          validate: (value) {
-                                            if (value!.isEmpty) {
-                                              return 'Quistion Must Be Not Empty';
-                                            } else if (!cubit
-                                                .hasQuistionName) {
-                                              return 'please, enter a valid Quistion';
-                                            }
-                                            return null;
-                                          }),
-                                      Container(
-                                        height: 300,
-                                        child: ListView.builder(
-                                          itemCount: controllerList.length,
-                                          physics: BouncingScrollPhysics(),
-                                          // shrinkWrap: true,
-                                          //   physics: NeverScrollableScrollPhysics(),
-                                          itemBuilder: (context, index) =>
-                                              answer(
+                          return BlocConsumer<QuizCubit, QuizStates>(
+                            listener: (context, state) {},
+                            builder: (context, state) => Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  //   border: Border.all(color: primaryColor),
+                                  color: Colors.white10,
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(20.0),
+                                  child: Form(
+                                    key: formKey,
+                                    child: SingleChildScrollView(
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          customTextFormFieldWidget(
+                                              type: TextInputType.text,
+                                              onChanged: (courseName) {
+                                                cubit.onCourseNameChanged(
+                                                    courseName);
+                                              },
+                                              prefixIcon: Icons.quiz_sharp,
+                                              prefix: true,
+                                              label: "Quistion",
+                                              controller: quistionController,
+                                              validate: (value) {
+                                                if (value!.isEmpty) {
+                                                  return 'Quistion Must Be Not Empty';
+                                                } else if (!cubit
+                                                    .hasQuistionName) {
+                                                  return 'please, enter a valid Quistion';
+                                                }
+                                                return null;
+                                              }),
+                                          Container(
+                                            height: 300,
+                                            child: ListView.builder(
+                                              itemCount: controllerList.length,
+                                              physics: BouncingScrollPhysics(),
+                                              // shrinkWrap: true,
+                                              //   physics: NeverScrollableScrollPhysics(),
+                                              itemBuilder: (context, index) =>
+                                                  answer(
                                                 index: index,
                                                 onChange: (value) {
                                                   print(value);
@@ -127,46 +133,54 @@ class CreateQuizScreen extends StatelessWidget {
                                                 },
                                                 val: cubit.val,
                                                 controller:
-                                                controllerList[index],
+                                                    controllerList[index],
                                                 label: "Answer ${index + 1}",
                                               ),
-                                        ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                top: 20.0,
+                                                left: 10,
+                                                right: 10,
+                                                bottom: 10),
+                                            child: defaultButton(
+                                                text: 'Add Answer',
+                                                onPressed: () {
+                                                  if (controllerList.length <
+                                                      5) {
+                                                    controllerList.add(
+                                                        "answerController");
+                                                    controllerList[
+                                                            answerItems] =
+                                                        TextEditingController();
+                                                    answerItems++;
+                                                    cubit.addAnswerItem();
+                                                  } else {
+                                                    showToast(
+                                                        message:
+                                                            "max answers equal 5");
+                                                  }
+                                                }),
+                                          ),
+                                        ],
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 20.0,
-                                            left: 10,
-                                            right: 10,
-                                            bottom: 10),
-                                        child: defaultButton(
-                                            text: 'Add Answer',
-                                            onPressed: () {
-                                              controllerList
-                                                  .add("answerController");
-                                              controllerList[answerItems] =
-                                                  TextEditingController();
-                                              answerItems++;
-                                              cubit.addAnswerItem();
-                                            }),
-                                      ),
-                                    ],
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                        ),
-                      );
-                    })
+                          );
+                        })
                         .closed
                         .then((value) {
-                      cubit.val = -1;
-                      answerItems = 0;
-                      controllerList.clear();
-                      formKey.currentState!.reset();
-                      quistionController.clear();
-                      cubit.changeCurrentIndex(false);
-                    });
+                          cubit.val = -1;
+                          answerItems = 0;
+                          controllerList.clear();
+                          formKey.currentState!.reset();
+                          quistionController.clear();
+                          cubit.changeCurrentIndex(false);
+                        });
                   }
                   cubit.changeCurrentIndex(!(cubit.clickFloat));
                 },
@@ -179,26 +193,26 @@ class CreateQuizScreen extends StatelessWidget {
                 condition: cubit.questions.isNotEmpty,
                 builder: (context) =>
 
-                //     SingleChildScrollView(
-                //       child: Column(
-                //         children: [
-                //           ListView.builder(
-                //             shrinkWrap: true,
-                //   itemBuilder: (context, index) => quistionItem(context, index,cubit.questions[index]),
-                //   itemCount: cubit.questions.length,
-                // ),
-                //         ],
-                //       ),
-                //     ),
+                    //     SingleChildScrollView(
+                    //       child: Column(
+                    //         children: [
+                    //           ListView.builder(
+                    //             shrinkWrap: true,
+                    //   itemBuilder: (context, index) => quistionItem(context, index,cubit.questions[index]),
+                    //   itemCount: cubit.questions.length,
+                    // ),
+                    //         ],
+                    //       ),
+                    //     ),
 
-                GridView.count(
+                    GridView.count(
                   //   shrinkWrap: true,
 
                   crossAxisCount: 1,
                   childAspectRatio: 1 / 0.75,
                   children: List.generate(
                     cubit.questions.length,
-                        (index) =>
+                    (index) =>
                         quistionItem(context, index, cubit.questions[index]),
                   ),
                 ),
@@ -284,6 +298,8 @@ class CreateQuizScreen extends StatelessWidget {
                               itemBuilder: (context, index) => answerItem(
                                 "${index + 1}",
                                 question.options[index],
+                                question.answer,
+                                index,
                               ),
                               itemCount: question.options.length,
                             ),
@@ -313,12 +329,12 @@ class CreateQuizScreen extends StatelessWidget {
     );
   }
 
-  Widget answerItem(String ch, String answer) {
+  Widget answerItem(String ch, String answer,int correctAnswerIndex,int index) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 3.0),
       child: Container(
         decoration: BoxDecoration(
-          // color: Colors.grey[200],
+             color: correctAnswerIndex==index?primaryColor:null ,
 
             borderRadius: BorderRadius.circular(15),
             border: Border.all(color: primaryColor)),
@@ -331,7 +347,7 @@ class CreateQuizScreen extends StatelessWidget {
               ),
               Text(
                 ch,
-                style: TextStyle(fontSize: 20),
+                style: TextStyle(fontSize: 20,color: correctAnswerIndex==index?Colors.white:null),
               ),
               SizedBox(
                 width: 15,
@@ -340,7 +356,7 @@ class CreateQuizScreen extends StatelessWidget {
                 answer,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
-                style: TextStyle(fontSize: 15),
+                style: TextStyle(fontSize: 15,color: correctAnswerIndex==index?Colors.white:null),
               ),
             ],
           ),
@@ -351,10 +367,10 @@ class CreateQuizScreen extends StatelessWidget {
 
   Widget answer(
       {required int index,
-        required Function onChange,
-        required val,
-        required controller,
-        required label}) {
+      required Function onChange,
+      required val,
+      required controller,
+      required label}) {
     return ListTile(
       contentPadding: EdgeInsets.all(0),
       title: customTextFormFieldWidget(

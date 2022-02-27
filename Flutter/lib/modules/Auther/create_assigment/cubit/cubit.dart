@@ -1,10 +1,10 @@
 import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lms/modules/Auther/create_assigment/cubit/states.dart';
-
+import 'package:lms/modules/Auther/create_module/cubit/states.dart';
 import '../../../../models/module_model.dart';
+import '../../../../models/response_model.dart';
 import '../../../../shared/component/constants.dart';
 import '../../../../shared/network/end_points.dart';
 import '../../../../shared/network/remote/dio-helper.dart';
@@ -23,14 +23,6 @@ class CreateAssignmentCubit extends Cubit<CreateAssignmentStates> {
     }
   }
 
-  List<String> items = ['Content', 'Assignment'];
-  String selectedItem = "Content";
-
-  void changeItem(String value) {
-    selectedItem = value;
-    emit(ChangeItemStateAssignment());
-  }
-
   CreateContent? getModuleModel;
   Map<String, String>? content = {};
   List? list = [];
@@ -39,7 +31,7 @@ class CreateAssignmentCubit extends Cubit<CreateAssignmentStates> {
   void changeActivity(value) {
     myActivities = value;
     print(myActivities);
-    emit(ChangeActivityStateAssignment());
+    emit(ChangeAActivityState());
   }
 
   void getModulesData() {
@@ -81,7 +73,6 @@ class CreateAssignmentCubit extends Cubit<CreateAssignmentStates> {
     required String description,
     required String duration,
     required content,
-    required String moduleType,
   }) {
     emit(CreateNewAssignmentLoadingState());
 
@@ -91,7 +82,6 @@ class CreateAssignmentCubit extends Cubit<CreateAssignmentStates> {
         'description': description,
         'contentDuration': duration,
         'imageUrl': content,
-        'contentType': moduleType,
       },
       url: module,
       token: userToken,
@@ -114,8 +104,59 @@ class CreateAssignmentCubit extends Cubit<CreateAssignmentStates> {
         file.path,
       ),
     });
+    // FormData formData = new FormData.fromMap({
+    //   "name": hospitalNameEng,
+    //   "Services": servicejson,
+    //   "Image": {
+    //     "image": await MultipartFile.fromFile(file.path,
+    //         filename: file.path),
+    //     "type": "image/png"
+    //   },
+    // });
   }
 
+  ResponseModel? updateModel;
+  String? message;
 
+  void updateNewModule({
+    required String moduleId,
+    required String moduleName,
+    required String description,
+    required String duration,
+    required content,
+  }) {
+    emit(UpdateAssignmentLoadingState());
 
+    DioHelper.putData(
+      data: {
+        "id": moduleId,
+        'contentTitle': moduleName,
+        'description': description,
+        'contentDuration': duration,
+        'imageUrl': content,
+      },
+      url: updateModule,
+      token: userToken,
+    ).then((value) {
+      updateModel = ResponseModel.fromJson(value.data);
+
+      emit(UpdateAssignmentSuccssesState(updateModel!));
+    }).catchError((onError) {
+      print(onError.toString());
+      emit(UpdateAssignmentErrorState(onError.toString()));
+    });
+  }
+
+  ResponseModel? deleteModel;
+
+  void deleteAssignment({required String moduleId}) {
+    emit(DeleteAssignmentLoadingState());
+    DioHelper.deleteData(url: "$deleteModule/$moduleId").then((value) {
+      deleteModel = ResponseModel.fromJson(value.data);
+
+      emit(DeleteAssignmentSuccssesState(deleteModel!));
+    }).catchError((error) {
+      emit(DeleteAssignmentErrorState(error));
+    });
+  }
 }

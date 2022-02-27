@@ -11,7 +11,6 @@ import 'package:lms/modules/Auther/create_assigment/cubit/states.dart';
 import '../../../shared/component/component.dart';
 import '../../../shared/component/constants.dart';
 
-
 class CreateAssignmentScreen extends StatelessWidget {
   CreateAssignmentScreen({Key? key}) : super(key: key);
 
@@ -30,10 +29,11 @@ class CreateAssignmentScreen extends StatelessWidget {
   String? filePath;
   String dropdownValue = "City";
   File? file;
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context)=>CreateAssignmentCubit(),
+      create: (context) => CreateAssignmentCubit(),
       child: BlocConsumer<CreateAssignmentCubit, CreateAssignmentStates>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -144,8 +144,8 @@ class CreateAssignmentScreen extends StatelessWidget {
                                     prefixIcon: Icon(Icons.timer),
                                     labelText: "Duration",
                                     labelStyle: const TextStyle(
-                                      //  color: primaryColor,
-                                    ),
+                                        //  color: primaryColor,
+                                        ),
                                     focusedBorder: OutlineInputBorder(
                                       borderSide: const BorderSide(
                                         color: primaryColor,
@@ -184,20 +184,20 @@ class CreateAssignmentScreen extends StatelessWidget {
                                           inherit: false, color: primaryColor),
                                       title: const Text('Select duration'),
                                       selectedTextStyle:
-                                      TextStyle(color: primaryColor),
+                                          TextStyle(color: primaryColor),
                                       onConfirm:
                                           (Picker picker, List<int> value) {
                                         // You get your duration here
                                         duration = Duration(
                                             hours:
-                                            picker.getSelectedValues()[0],
+                                                picker.getSelectedValues()[0],
                                             minutes:
-                                            picker.getSelectedValues()[1]);
+                                                picker.getSelectedValues()[1]);
                                       },
                                     ).showDialog(context).then((value) {
                                       print(value);
                                       durationController.text =
-                                      '${duration!.inHours.toString()} Hours ${(duration!.inHours * 60 - duration!.inMinutes)} Minutes';
+                                          '${duration!.inHours.toString()} Hours ${(duration!.inHours * 60 - duration!.inMinutes)} Minutes';
                                     });
                                   },
                                   controller: durationController,
@@ -219,20 +219,24 @@ class CreateAssignmentScreen extends StatelessWidget {
                                             .pickFiles();
 
                                         if (result != null) {
-                                          file=
+                                          file =
                                               File(result!.files.single.path!);
                                           file!.openRead();
-                                          filePath=file!.path;
+                                          filePath = file!.path;
                                           cubit.uploadFile(file!);
                                         } else {
-                                          showToast(message: "upload file must be not empty");
+                                          showToast(
+                                              message:
+                                                  "upload file must be not empty");
                                         }
                                       },
-                                      child:  Padding(
+                                      child: Padding(
                                         padding: EdgeInsets.symmetric(
                                             horizontal: 22.0),
                                         child: Text(
-                                          filePath==null?"Upload":filePath!,
+                                          filePath == null
+                                              ? "Upload"
+                                              : filePath!,
                                           style: TextStyle(fontSize: 20),
                                         ),
                                       )),
@@ -270,9 +274,13 @@ class CreateAssignmentScreen extends StatelessWidget {
                                   //   {
                                   //
                                   //   }
-                                  cubit.createNewModule(moduleName: moduleNameController.text, description: shortDescriptionController.text, duration: durationController.text, moduleType: moduleTypeController.text,content:"https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg");
-
-
+                                  cubit.createNewModule(
+                                      moduleName: moduleNameController.text,
+                                      description:
+                                          shortDescriptionController.text,
+                                      duration: durationController.text,
+                                      content:
+                                          "https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg");
                                 }
                               }),
                         ),

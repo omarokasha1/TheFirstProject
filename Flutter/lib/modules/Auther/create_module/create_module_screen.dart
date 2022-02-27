@@ -249,26 +249,26 @@ class CreateModuleScreen extends StatelessWidget {
                             text: 'Save',
                             onPressed: () {
                               if (formKey.currentState!.validate()) {
-                                // if (result == null) {
-                                //   showToast(
-                                //       message: "content must be not empty");
-                                // }
-                                // if(filePath!=null)
-                                //   {
-                                //     // //var r = JSON.stringify();
-                                //     // print(filePath);
-                                //      print(file!.uri.data);
-                                //     // print(cubit.formData!.files.single.value);
-                                //   //  print(cubit.formData!.files.single.runtimeType);
-                                //     cubit.createNewModule(moduleName: moduleNameController.text, description: shortDescriptionController.text, duration: durationController.text, moduleType: moduleTypeController.text,content:"https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg");
-                                //
-                                //   //  navigator(context, ModulesLibraryScreen());
-                                //   }
-                                // else
-                                //   {
-                                //
-                                //   }
-                                cubit.createNewModule(moduleName: moduleNameController.text, description: shortDescriptionController.text, duration: durationController.text, moduleType: moduleTypeController.text,content:"https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg");
+                                if (result == null) {
+                                  showToast(
+                                      message: "content must be not empty");
+                                }
+                                if(filePath!=null)
+                                  {
+                                    // //var r = JSON.stringify();
+                                    // print(filePath);
+                                     print(file!.uri.data);
+                                    // print(cubit.formData!.files.single.value);
+                                   print(cubit.formData!.files.single.runtimeType);
+                                    cubit.createNewModule(moduleName: moduleNameController.text, description: shortDescriptionController.text, duration: durationController.text,content:cubit.formData);
+
+                                  //  navigator(context, ModulesLibraryScreen());
+                                  }
+                                else
+                                  {
+
+                                  }
+                        //        cubit.createNewModule(moduleName: moduleNameController.text, description: shortDescriptionController.text, duration: durationController.text, moduleType: moduleTypeController.text,content:"https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg");
 
 
                               }

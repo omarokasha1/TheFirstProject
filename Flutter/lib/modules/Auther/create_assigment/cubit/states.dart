@@ -1,11 +1,13 @@
 
 import '../../../../models/module_model.dart';
+import '../../../../models/response_model.dart';
 
 abstract class CreateAssignmentStates {}
 
 class InitCreateAssignmentState extends CreateAssignmentStates {}
 
-class ChangeItemStateAssignment extends CreateAssignmentStates {}
+class ChangeItemState extends CreateAssignmentStates {}
+class ChangeAActivityState extends CreateAssignmentStates {}
 
 class CreateNewAssignmentLoadingState extends CreateAssignmentStates {}
 
@@ -31,4 +33,28 @@ class GetNewAssignmentErrorState extends CreateAssignmentStates {
   final String error;
   GetNewAssignmentErrorState(this.error);
 }
-class ChangeActivityStateAssignment extends CreateAssignmentStates {}
+
+class UpdateAssignmentLoadingState extends CreateAssignmentStates {}
+
+class UpdateAssignmentSuccssesState extends CreateAssignmentStates {
+
+  final ResponseModel  responseModel;
+  UpdateAssignmentSuccssesState(this.responseModel);
+}
+
+class UpdateAssignmentErrorState extends CreateAssignmentStates {
+  final String error;
+  UpdateAssignmentErrorState(this.error);
+}
+class DeleteAssignmentLoadingState extends CreateAssignmentStates {}
+
+class DeleteAssignmentSuccssesState extends CreateAssignmentStates {
+
+  final ResponseModel responseModel;
+  DeleteAssignmentSuccssesState(this.responseModel);
+}
+
+class DeleteAssignmentErrorState extends CreateAssignmentStates {
+  final String error;
+  DeleteAssignmentErrorState(this.error);
+}

@@ -27,7 +27,10 @@ import 'package:lms/shared/themes/light_theme.dart';
 
 import 'package:native_notify/native_notify.dart';
 
+import 'modules/Auther/create_assigment/update_assignment.dart';
 import 'modules/Auther/create_module/create_module_screen.dart';
+import 'modules/Auther/create_module/update_module.dart';
+import 'modules/Auther/create_quiz/create_quiz_screen.dart';
 import 'modules/dashboard/dashboard_screen.dart';
 
 import 'layout/layout.dart';
@@ -133,7 +136,7 @@ class MyApp extends StatelessWidget {
           //home: Tracks(),
          //home:ZoomDrawerScreen(widget:DashboardAuthorScreen() ,) ,
           //home: ZoomDrawerScreen(widget: AuthorProfileScreen(),),
-          home: DashboardAuthorScreen(),
+          home: CreateQuizScreen("quiz"),
         // home: ZoomDrawerScreen(widget:DashboardAuthorScreen() ,),
         //  home:Layout(widget: ZoomDrawerScreen(widget:DashboardManagerScreen() ,)) ,
         ),

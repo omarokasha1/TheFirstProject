@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:lms/shared/component/constants.dart';
 
 //Dio Helper That's Connect and Talk to API.
 class DioHelper {
@@ -11,7 +12,7 @@ class DioHelper {
         //Here the URL of API.
 
         //baseUrl: "https://lms-ap.herokuapp.com/",
-       baseUrl: "http://10.5.62.214:8081/",
+       baseUrl: "http://10.5.62.214:8080/",
         // baseUrl: "https://lms-ap.herokuapp.com/",
         receiveDataWhenStatusError: true,
         //Here we Put The Headers Needed in The API.
@@ -66,4 +67,23 @@ class DioHelper {
       data: data,
     );
   }
+
+  static Future<Response> deleteData({
+    required String url,
+    Map<String, dynamic>? query,
+    String lang = 'en',
+  }) async {
+    dio.options.headers = {
+      'x-auth-token': userToken,
+      'Content-Type': 'application/json',
+    };
+    return dio
+        .delete(
+      url,
+    )
+        .catchError((error) {
+      print("DIO ERROR $error");
+    });
+  }
+
 }

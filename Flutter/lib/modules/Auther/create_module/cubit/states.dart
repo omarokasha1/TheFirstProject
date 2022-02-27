@@ -1,5 +1,6 @@
 
 import '../../../../models/module_model.dart';
+import '../../../../models/response_model.dart';
 
 abstract class CreateModuleStates {}
 
@@ -32,3 +33,28 @@ class GetNewModuleErrorState extends CreateModuleStates {
   GetNewModuleErrorState(this.error);
 }
 class ChangeActivityState extends CreateModuleStates {}
+
+class UpdateModuleLoadingState extends CreateModuleStates {}
+
+class UpdateModuleSuccssesState extends CreateModuleStates {
+
+  final ResponseModel  responseModel;
+  UpdateModuleSuccssesState(this.responseModel);
+}
+
+class UpdateModuleErrorState extends CreateModuleStates {
+  final String error;
+  UpdateModuleErrorState(this.error);
+}
+class DeleteModuleLoadingState extends CreateModuleStates {}
+
+class DeleteModuleSuccssesState extends CreateModuleStates {
+
+  final ResponseModel responseModel;
+  DeleteModuleSuccssesState(this.responseModel);
+}
+
+class DeleteModuleErrorState extends CreateModuleStates {
+  final String error;
+  DeleteModuleErrorState(this.error);
+}

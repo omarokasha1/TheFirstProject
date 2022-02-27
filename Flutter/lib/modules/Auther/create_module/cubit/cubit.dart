@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lms/modules/Auther/create_module/cubit/states.dart';
 
 import '../../../../models/module_model.dart';
+import '../../../../models/response_model.dart';
 import '../../../../shared/component/constants.dart';
 import '../../../../shared/network/end_points.dart';
 import '../../../../shared/network/remote/dio-helper.dart';
@@ -21,14 +22,6 @@ class CreateModuleCubit extends Cubit<CreateModuleStates> {
     if (name.length > 2) {
       hasModuleName = true;
     }
-  }
-
-  List<String> items = ['Content', 'Assignment'];
-  String selectedItem = "Content";
-
-  void changeItem(String value) {
-    selectedItem = value;
-    emit(ChangeItemState());
   }
 
   CreateContent? getModuleModel;
@@ -81,7 +74,6 @@ class CreateModuleCubit extends Cubit<CreateModuleStates> {
     required String description,
     required String duration,
     required content,
-    required String moduleType,
   }) {
     emit(CreateNewModuleLoadingState());
 
@@ -91,7 +83,6 @@ class CreateModuleCubit extends Cubit<CreateModuleStates> {
         'description': description,
         'contentDuration': duration,
         'imageUrl': content,
-        'contentType': moduleType,
       },
       url: module,
       token: userToken,
@@ -114,8 +105,61 @@ class CreateModuleCubit extends Cubit<CreateModuleStates> {
         file.path,
       ),
     });
+    // FormData formData = new FormData.fromMap({
+    //   "name": hospitalNameEng,
+    //   "Services": servicejson,
+    //   "Image": {
+    //     "image": await MultipartFile.fromFile(file.path,
+    //         filename: file.path),
+    //     "type": "image/png"
+    //   },
+    // });
   }
 
+  ResponseModel? updateModel;
+  String? message;
 
+  void updateNewModule({
+    required String moduleId,
+    required String moduleName,
+    required String description,
+    required String duration,
+    required content,
+    required String moduleType,
+  }) {
+    emit(UpdateModuleLoadingState());
 
+    DioHelper.putData(
+      data: {
+        "id": moduleId,
+        'contentTitle': moduleName,
+        'description': description,
+        'contentDuration': duration,
+        'imageUrl': content,
+        'contentType': moduleType,
+      },
+      url: updateModule,
+      token: userToken,
+    ).then((value) {
+      updateModel = ResponseModel.fromJson(value.data);
+
+      emit(UpdateModuleSuccssesState(updateModel!));
+    }).catchError((onError) {
+      print(onError.toString());
+      emit(UpdateModuleErrorState(onError.toString()));
+    });
+  }
+
+  ResponseModel? deleteModel;
+
+  void deleteModule({required String moduleId}) {
+    emit(DeleteModuleLoadingState());
+    DioHelper.deleteData(url: "$deleteModule/$moduleId").then((value) {
+      deleteModel = ResponseModel.fromJson(value.data);
+
+      emit(DeleteModuleSuccssesState(deleteModel!));
+    }).catchError((error) {
+      emit(DeleteModuleErrorState(error));
+    });
+  }
 }
