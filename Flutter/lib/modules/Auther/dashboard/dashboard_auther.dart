@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +8,9 @@ import 'package:lms/modules/Auther/create_course/create_course_screen.dart';
 import 'package:lms/modules/Auther/create_module/create_module_screen.dart';
 import 'package:lms/modules/Auther/create_quiz/create_quiz_screen.dart';
 import 'package:lms/modules/Auther/modules_library/modules_library.dart';
+import 'package:lms/modules/Auther/quiz/author_quiz_screen.dart';
 import 'package:lms/modules/Auther/traks/traks_screen.dart';
+import 'package:lms/modules/quiz/screens/quiz/quiz_screen.dart';
 import 'package:lms/modules/search/search_screen.dart';
 import 'package:lms/shared/component/MyAppBar.dart';
 import 'package:lms/shared/component/component.dart';
@@ -19,6 +22,8 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:timelines/timelines.dart';
+
+import '../ create_track /create_track.dart';
 
 class _SalesData {
   _SalesData(this.year, this.views);
@@ -34,7 +39,8 @@ class DashboardAuthorScreen extends StatefulWidget {
   @override
   State<DashboardAuthorScreen> createState() => _DashboardAuthorScreenState();
 }
-
+var formKey = GlobalKey<FormState>();
+var quizController = TextEditingController();
 
 class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
   List<_SalesData> data = [
@@ -58,14 +64,69 @@ class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: SpeedDial(
+      floatingActionButton:  SpeedDial(
         animatedIcon: AnimatedIcons.menu_close,
         //   label: Text('Create',style: TextStyle(fontWeight: FontWeight.bold)),
         children: [
           SpeedDialChild(
               child: Icon(Icons.post_add),
               onTap: () {
-                navigator(context, CreateQuizScreen());
+                AwesomeDialog(
+                  context: context,
+                  animType: AnimType.SCALE,
+                  dialogType: DialogType.QUESTION,
+                  body: Form(
+                    key: formKey,
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: Column(
+                          children: [
+                            customTextFormFieldWidget(
+                                type: TextInputType.text,
+                                prefixIcon: Icons.drive_file_rename_outline,
+                                prefix: true,
+                                label: "Quiz Name",
+                                controller: quizController,
+                                validate: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'Quiz Name Must Be Not Empty';
+                                  }
+                                  return null;
+                                }),
+                            Container(
+                              height: 40,
+                              child: defaultButton(
+                                  text: 'OK',
+                                  onPressed: () {
+                                    if (formKey.currentState!.validate()) {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  CreateQuizScreen(
+                                                      quizController.text)))
+                                          .then(
+                                            (value) {
+                                          quizController.text = "";
+                                          Navigator.pop(context);
+                                        },
+                                      );
+                                    }
+                                  }),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  title: 'This is Ignored',
+                  desc: 'This is also Ignored',
+
+                  // btnOkOnPress: () {
+                  //   navigator(context, CreateQuizScreen());
+                  // },
+                ).show();
               },
               label: 'Add Quiz'),
           SpeedDialChild(
@@ -80,6 +141,12 @@ class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
                 navigator(context, CreateCourseScreen());
               },
               label: 'Add Course'),
+          SpeedDialChild(
+              child: Icon(Icons.add),
+              onTap: () {
+                navigator(context, CreateTrackScreen());
+              },
+              label: 'Add Track'),
         ],
       ),
       appBar: myAppBar(context),
@@ -267,7 +334,7 @@ class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
                         child: Column(
                           children: [
                             Image.asset('assets/images/online-course.png',
-                                width: 60.w, height: 60.h),
+                                width: 50.w, height: 50.h),
                             const Text(
                               'Courses',
                               style: TextStyle(
@@ -287,8 +354,26 @@ class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
                         child: Column(
                           children: [
                             Image.asset('assets/images/pointer.png',
-                                width: 60.w, height: 60.h),
+                                width: 50.w, height: 50.h),
                             const Text('Tracks',
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                    color: primaryColor)),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: InkWell(
+                        onTap: () {
+                          navigator(context, AuthorQuizScreen());
+                        },
+                        child: Column(
+                          children: [
+                            Image.asset('assets/images/quiz.png',
+                          width: 50.w, height: 50.h),
+                            const Text('Quiz',
                                 style: TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.bold,
@@ -304,9 +389,9 @@ class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
                         },
                         child: Column(
                           children: [
-                            Image.asset('assets/images/quiz.png',
-                                width: 60.w, height: 60.h),
-                            const Text('Assignment',
+                            Image.asset('assets/images/modules.png',
+                                width: 50.w, height: 50.h),
+                            const Text('Module',
                                 style: TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.bold,
@@ -386,7 +471,7 @@ class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 17.0),
                             ),
-                             Text(
+                            Text(
                               "17 completed",
                               style: Theme.of(context).textTheme.caption,
                             ),
@@ -468,7 +553,7 @@ class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
                             ],
                           ),
                         ),
-                       //LottieBuilder.network('https://assets8.lottiefiles.com/packages/lf20_qtt2dv.json',width: 60.w,height: 60.h,),
+                        //LottieBuilder.network('https://assets8.lottiefiles.com/packages/lf20_qtt2dv.json',width: 60.w,height: 60.h,),
                       ],
                     ),
                   ],
@@ -489,7 +574,7 @@ class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
 
                     // Chart title
                     title:
-                        ChartTitle(text: 'Half yearly courses views analysis'),
+                    ChartTitle(text: 'Half yearly courses views analysis'),
                     // Enable legend
                     legend: Legend(isVisible: true),
                     // Enable tooltip

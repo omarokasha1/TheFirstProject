@@ -1,6 +1,0 @@
-io/flutter/plugins/GeneratedPluginRegistrant.java
- io.flutter.plugins.GeneratedPluginRegistrant
-com/example/lms/BuildConfig.java
- com.example.lms.BuildConfig
-com/example/lms/MainActivity.java
- com.example.lms.MainActivity

@@ -6,6 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lms/models/course_model.dart';
 import 'package:lms/modules/courses/course_overview_screen.dart';
 import 'package:lms/shared/component/constants.dart';
+import 'package:multiselect_formfield/multiselect_formfield.dart';
 
 import '../../modules/courses/course_details_screen.dart';
 
@@ -14,6 +15,7 @@ Widget defaultButton({
   required Function onPressed,
   required String text,
   bool color = true,
+  Widget? widget,
 }) =>
     Container(
       height: 50.h,
@@ -33,14 +35,16 @@ Widget defaultButton({
             width: double.infinity,
             height: double.infinity,
             child: Center(
-              child: Text(
-                text,
-                style: TextStyle(
-                  color: color ? Colors.white : primaryColor,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16.sp,
-                ),
-              ),
+              child: widget != null
+                  ? widget
+                  : Text(
+                      text,
+                      style: TextStyle(
+                        color: color ? Colors.white : primaryColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16.sp,
+                      ),
+                    ),
             ),
           ),
         ),
@@ -123,17 +127,25 @@ Widget customTextFormFieldWidget({
   Function? onChanged,
   IconData? prefixIcon,
   bool prefix = false,
+  bool? colorPerfix,
+  TextInputFormatter? textInputFormatter,
+  bool textInput = false,
+  Function? onTab,
 }) {
   return Padding(
-    padding: const EdgeInsets.only(bottom: 20.0),
+    padding: EdgeInsets.only(bottom: 20.0),
     child: TextFormField(
 
+
+      onChanged: (value) {
+        onChanged!=null?   onChanged(value):null;
+      },
       controller: controller,
       keyboardType: type,
       decoration: InputDecoration(
         labelText: label,
-        labelStyle: const TextStyle(
-        //  color: primaryColor,
+        labelStyle: TextStyle(
+          color: colorPerfix != null ? primaryColor : null,
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: const BorderSide(
@@ -143,17 +155,23 @@ Widget customTextFormFieldWidget({
         ),
         prefixIcon: prefix
             ? Icon(
-          prefixIcon,
-         // color: Colors.grey,
-          size: 20.h,
-        )
+                prefixIcon,
+                color: colorPerfix != null ? primaryColor : null,
+                size: 20.h,
+              )
             : null,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),
         ),
       ),
+      inputFormatters: <TextInputFormatter>[
+        if (textInput) textInputFormatter!,
+      ],
       validator: (value) {
         return validate(value);
+      },
+      onTap: () {
+        onTab != null ? onTab() : null;
       },
     ),
   );
@@ -554,5 +572,63 @@ Widget offline(child) {
         ),
       ),
     ],
+  );
+}
+
+Widget selectMoreItem({
+  required String name,
+  required validate,
+  required  String myActivitiesResult,
+  required  List? myActivities ,
+  required  onSaved,
+
+}) {
+  return Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: MultiSelectFormField(
+      autovalidate: AutovalidateMode.disabled,
+      chipBackGroundColor: secondaryColor,
+      chipLabelStyle:
+      TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+      dialogTextStyle: TextStyle(fontWeight: FontWeight.bold),
+    //  checkBoxActiveColor: Colors.blue,
+      checkBoxCheckColor: Colors.white,
+      dialogShapeBorder: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(12.0))),
+      title: Text(
+        name,
+        style: TextStyle(fontSize: 16),
+      ),
+      validator: (value) {
+        return validate(value);
+      },
+      dataSource: [
+        {
+          "display": "Flutter",
+          "value": "Flutter",
+        },
+        {
+          "display": "Dart",
+          "value": "Dart",
+        },
+        {
+          "display": "C++",
+          "value": "C++",
+        },
+        {
+          "display": "Java",
+          "value": "Java",
+        },
+      ],
+      textField: 'display',
+      valueField: 'value',
+      okButtonLabel: 'OK',
+      cancelButtonLabel: 'CANCEL',
+      hintWidget: const Text('Please choose one or more Course'),
+      initialValue: myActivities,
+      onSaved: (value) {
+        return onSaved(value);
+      },
+    ),
   );
 }

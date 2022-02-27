@@ -33,6 +33,8 @@ class UpdadteProfileErrorState extends ProfileStates {
   UpdadteProfileErrorState(this.error);
 }
 
-class AddInterestedItem extends ProfileStates {}
+class AddInterestedItemState extends ProfileStates {}
 
-class DeleteInterestedItem extends ProfileStates {}
+class DeleteInterestedItemState extends ProfileStates {}
+
+class ChangeSelectedItemGradeState extends ProfileStates {}

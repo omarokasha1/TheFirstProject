@@ -4,6 +4,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:lms/modules/Auther/author_courses/author_courses_screen.dart';
+import 'package:lms/modules/Auther/author_profile/author_profile_cubit/cubit.dart';
+import 'package:lms/modules/Auther/author_profile/author_profile_screen.dart';
+import 'package:lms/modules/Auther/dashboard/dashboard_auther.dart';
+import 'package:lms/modules/Auther/modules_library/modules_library.dart';
+import 'package:lms/modules/Auther/traks/traks_screen.dart';
 import 'package:lms/modules/authertication/change%20password/change_password_screen.dart';
 import 'package:lms/modules/authertication/login/login_screen.dart';
 import 'package:lms/modules/dashboard/dashboard_screen.dart';
@@ -70,7 +75,9 @@ class MyDrawer extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    ListTile(
+
+                    if(!userAuthor)
+                        ListTile(
                       title: const Text(
                         "Home",
                         style: TextStyle(
@@ -87,7 +94,82 @@ class MyDrawer extends StatelessWidget {
                         ZoomDrawer.of(context)!.toggle();
                       },
                     ),
-                    ListTile(
+                    if(userAuthor)
+                      ListTile(
+                        title: const Text(
+                          "Dashboard",
+                          style: TextStyle(
+                            color: textColorDrawer,
+                            fontSize: 16,
+                          ),
+                        ),
+                        leading: const Icon(
+                          Icons.home,
+                          color: iconColorDrawer,
+                          size: 25,
+                        ),
+                        onTap: () {
+                          ZoomDrawer.of(context)!.toggle();
+                        },
+                      ),
+
+                    if(userAuthor)
+                      ListTile(
+                      title: const Text(
+                        "Tracks",
+                        style: TextStyle(
+                          color: textColorDrawer,
+                          fontSize: 16,
+                        ),
+                      ),
+                      leading: const Icon(
+                        Icons.folder,
+                        color: iconColorDrawer,
+                        size: 25,
+                      ),
+                      onTap: () {
+                        navigator(context, Tracks());
+                      },
+                    ),
+                    if(userAuthor)
+                      ListTile(
+                        title: const Text(
+                          "Courses",
+                          style: TextStyle(
+                            color: textColorDrawer,
+                            fontSize: 16,
+                          ),
+                        ),
+                        leading: const Icon(
+                          Icons.play_circle_fill,
+                          color: iconColorDrawer,
+                          size: 25,
+                        ),
+                        onTap: () {
+                          navigator(context, AuthorCourses());
+                        },
+                      ),
+                    if(userAuthor)
+                      ListTile(
+                        title: const Text(
+                          "Modules",
+                          style: TextStyle(
+                            color: textColorDrawer,
+                            fontSize: 16,
+                          ),
+                        ),
+                        leading: const Icon(
+                          Icons.file_copy,
+                          color: iconColorDrawer,
+                          size: 25,
+                        ),
+                        onTap: () {
+                          navigator(context, ModulesLibraryScreen());
+                        },
+                      ),
+
+                    if(!userAuthor)
+                      ListTile(
                       title: const Text(
                         "Dashboard",
                         style: TextStyle(
@@ -101,10 +183,15 @@ class MyDrawer extends StatelessWidget {
                         size: 25,
                       ),
                       onTap: () {
-                        navigator(context,DashboardScreen());
+                        if(userToken == token) {
+                          navigator(context, DashboardAuthorScreen());
+                        }else {
+                          navigator(context, DashboardScreen());
+                        }
                       },
                     ),
-                    ListTile(
+                    if(!userAuthor)
+                      ListTile(
                       title: const Text(
                         "My Learning",
                         style: TextStyle(
@@ -121,38 +208,7 @@ class MyDrawer extends StatelessWidget {
                         navigator(context, MyLearning());
                       },
                     ),
-                    ListTile(
-                      title: const Text(
-                        "Certificates",
-                        style: TextStyle(
-                          color: textColorDrawer,
-                          fontSize: 16,
-                        ),
-                      ),
-                      leading: const Icon(
-                        TablerIcons.certificate,
-                        color: iconColorDrawer,
-                        size: 25,
-                      ),
-                      onTap: () {
-                        navigator(context, ZoomDrawerScreen(widget: AuthorCourses(),));
-                      },
-                    ),
-                    ListTile(
-                      title: const Text(
-                        "Cart",
-                        style: TextStyle(
-                          color: textColorDrawer,
-                          fontSize: 16,
-                        ),
-                      ),
-                      leading: const Icon(
-                        Icons.shopping_cart_outlined,
-                        color: iconColorDrawer,
-                        size: 25,
-                      ),
-                      onTap: () {},
-                    ),
+
                     ListTile(
                       title: const Text(
                         "Change Password",
@@ -169,21 +225,6 @@ class MyDrawer extends StatelessWidget {
                       onTap: () {
                         navigator(context, ChangePasswordScreen());
                       },
-                    ),
-                    ListTile(
-                      title: const Text(
-                        "About Us",
-                        style: TextStyle(
-                          color: textColorDrawer,
-                          fontSize: 16,
-                        ),
-                      ),
-                      leading: const Icon(
-                        Icons.settings,
-                        color: iconColorDrawer,
-                        size: 25,
-                      ),
-                      onTap: () {},
                     ),
                   ],
                 ),

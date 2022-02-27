@@ -18,8 +18,7 @@ class DashboardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-      ),
+      appBar: AppBar(),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         //
@@ -179,7 +178,7 @@ class DashboardScreen extends StatelessWidget {
                                 ConnectorStyle.solidLine,
                             indicatorStyleBuilder: (context, index) =>
                                 IndicatorStyle.dot,
-                            itemCount: 4,
+                            itemCount: 3,
                           ),
                         ),
                         LottieBuilder.network(

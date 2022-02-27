@@ -19,9 +19,9 @@ class AuthorCourses extends StatelessWidget {
   AuthorCourses({Key? key}) : super(key: key);
 
   final List<Widget> myTabs = [
-    Tab(text: 'Published'),
-    Tab(text: 'Pendding'),
     Tab(text: 'Drafts'),
+    Tab(text: 'Pendding'),
+    Tab(text: 'Published'),
   ];
 
   @override

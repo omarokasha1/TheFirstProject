@@ -1,23 +1,21 @@
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_picker/Picker.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../shared/component/component.dart';
 import '../../../shared/component/constants.dart';
-import '../create_quiz/create_quiz_screen.dart';
 import 'cubit/cubit.dart';
 import 'cubit/states.dart';
 
-class CreateModuleScreen extends StatefulWidget {
+class CreateModuleScreen extends StatelessWidget {
   CreateModuleScreen({Key? key}) : super(key: key);
 
-  @override
-  State<CreateModuleScreen> createState() => _CreateModuleScreenState();
-}
+  Duration? duration;
 
-class _CreateModuleScreenState extends State<CreateModuleScreen> {
-  List<String> items = ['Content', 'Assignment', 'Quiz'];
-  String selectedItem = "Content";
+  FilePickerResult? result;
   TextEditingController moduleNameController = TextEditingController();
 
   TextEditingController shortDescriptionController = TextEditingController();
@@ -70,7 +68,18 @@ class _CreateModuleScreenState extends State<CreateModuleScreen> {
                             ),
                           ),
                         ),
-                      )
+                      ),
+                      SafeArea(
+                        child: Align(
+                          alignment: Alignment.topLeft,
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 40, top: 100),
+                            child: Text("Create Modules",
+                                style: TextStyle(
+                                    fontSize: 30, color: Colors.white)),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                   Padding(
@@ -85,24 +94,17 @@ class _CreateModuleScreenState extends State<CreateModuleScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 const SizedBox(
-                                  height: 60,
+                                  height: 30,
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 8.0),
-                                  child: Text("Create Module",
-                                      style: TextStyle(
-                                          fontSize: 25,
-                                          color: Colors.grey[600])),
-                                ),
-                                const SizedBox(
-                                  height: 25,
-                                ),
+                                // const SizedBox(
+                                //   height: 25,
+                                // ),
                                 customTextFormFieldWidget(
                                   onChanged: (moduleName) {
+                                    print(moduleName);
                                     cubit.onModuleNameChanged(moduleName);
                                   },
                                   controller: moduleNameController,
-//error: "User Name Must Be Not Empty",
                                   validate: (value) {
                                     if (value!.isEmpty) {
                                       return 'Module Name Must Be Not Empty';
@@ -121,7 +123,6 @@ class _CreateModuleScreenState extends State<CreateModuleScreen> {
                                     cubit.onModuleNameChanged(moduleName);
                                   },
                                   controller: shortDescriptionController,
-//error: "User Name Must Be Not Empty",
                                   validate: (value) {
                                     if (value!.isEmpty) {
                                       return 'Description Must Be Not Empty';
@@ -135,21 +136,69 @@ class _CreateModuleScreenState extends State<CreateModuleScreen> {
                                   prefix: true,
                                   prefixIcon: Icons.description_outlined,
                                 ),
-                                customTextFormFieldWidget(
-// onChanged: (moduleName) {
-//   cubit.onModuleNameChanged(moduleName);
-// },
-                                  controller: durationController,
-                                  validate: (value) {
-                                    if (value!.isEmpty) {
-                                      return 'Duration Must Be Not Empty';
-                                    }
-                                    return null;
+                                TextFormField(
+                                  keyboardType: TextInputType.none,
+                                  decoration: InputDecoration(
+                                    prefixIcon: Icon(Icons.timer),
+                                    labelText: "Duration",
+                                    labelStyle: const TextStyle(
+                                        //  color: primaryColor,
+                                        ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: const BorderSide(
+                                        color: primaryColor,
+                                      ),
+                                      borderRadius: BorderRadius.circular(10.0),
+                                    ),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                  ),
+                                  onTap: () {
+                                    Picker(
+                                      adapter: NumberPickerAdapter(
+                                          data: <NumberPickerColumn>[
+                                            const NumberPickerColumn(
+                                                begin: 0,
+                                                end: 100,
+                                                suffix: Text(' hr')),
+                                            const NumberPickerColumn(
+                                                begin: 0,
+                                                end: 59,
+                                                suffix: Text(' min')),
+                                          ]),
+                                      delimiter: <PickerDelimiter>[
+                                        PickerDelimiter(
+                                          child: Container(
+                                            width: 20.0,
+                                            alignment: Alignment.center,
+                                            child: Icon(Icons.more_vert),
+                                          ),
+                                        )
+                                      ],
+                                      hideHeader: true,
+                                      confirmText: 'OK',
+                                      confirmTextStyle: TextStyle(
+                                          inherit: false, color: primaryColor),
+                                      title: const Text('Select duration'),
+                                      selectedTextStyle:
+                                          TextStyle(color: primaryColor),
+                                      onConfirm:
+                                          (Picker picker, List<int> value) {
+                                        // You get your duration here
+                                        duration = Duration(
+                                            hours:
+                                                picker.getSelectedValues()[0],
+                                            minutes:
+                                                picker.getSelectedValues()[1]);
+                                      },
+                                    ).showDialog(context).then((value) {
+                                      print(value);
+                                      durationController.text =
+                                          '${duration!.inHours.toString()} Hours ${(duration!.inHours * 60 - duration!.inMinutes)} Minutes';
+                                    });
                                   },
-                                  label: "Duration",
-                                  type: TextInputType.text,
-                                  prefix: true,
-                                  prefixIcon: Icons.access_time,
+                                  controller: durationController,
                                 ),
                                 const SizedBox(
                                   height: 20,
@@ -163,7 +212,15 @@ class _CreateModuleScreenState extends State<CreateModuleScreen> {
                                 ),
                                 Center(
                                   child: TextButton(
-                                      onPressed: () {},
+                                      onPressed: () async {
+                                        result = await FilePicker.platform
+                                            .pickFiles();
+
+                                        if (result != null) {
+                                          File file =
+                                              File(result!.files.single.path!);
+                                        } else {}
+                                      },
                                       child: const Padding(
                                         padding: EdgeInsets.symmetric(
                                             horizontal: 22.0),
@@ -198,15 +255,16 @@ class _CreateModuleScreenState extends State<CreateModuleScreen> {
                                         borderRadius: BorderRadius.circular(20),
                                       ),
                                     ),
-                                    value: selectedItem,
+                                    value: cubit.selectedItem,
                                     elevation: 16,
                                     onChanged: (newValue) {
-                                      setState(() {
-                                        selectedItem = newValue!;
-                                      });
+                                      // setState(() {
+                                      //   selectedItem = newValue!;
+                                      // });
+                                      cubit.changeItem(newValue!);
                                     },
                                     itemHeight: 50,
-                                    items: items.map<DropdownMenuItem<String>>(
+                                    items: cubit.items.map<DropdownMenuItem<String>>(
                                         (String value) {
                                       return DropdownMenuItem<String>(
                                         value: value,
@@ -218,40 +276,23 @@ class _CreateModuleScreenState extends State<CreateModuleScreen> {
                                 const SizedBox(
                                   height: 20,
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 8.0),
-                                  child: Text("Quiz",
-                                      style: TextStyle(
-                                          fontSize: 25,
-                                          color: Colors.grey[600])),
-                                ),
-                                Center(
-                                  child: TextButton(
-                                      onPressed: () {
-                                        navigator(context, CreateQuizScreen());
-                                      },
-                                      child: const Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 22.0),
-                                        child: Text(
-                                          "Create Quiz",
-                                          style: TextStyle(fontSize: 20),
-                                        ),
-                                      )),
-                                ),
                               ],
                             ),
                           ),
                         ),
-
-        
                         Padding(
                           padding: const EdgeInsets.only(
                               top: 20.0, left: 10, right: 10, bottom: 10),
                           child: defaultButton(
                               text: 'Save',
                               onPressed: () {
-                                if (formKey.currentState!.validate()) {}
+                                if (formKey.currentState!.validate()) {
+                                  // if (result == null) {
+                                  //   showToast(
+                                  //       message: "content must be not empty");
+                                  // }
+                                  cubit.createNewModule(moduleName: moduleNameController.text, description: shortDescriptionController.text, duration: durationController.text, moduleType: moduleTypeController.text);
+                                }
                               }),
                         ),
                       ],
