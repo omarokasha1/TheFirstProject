@@ -74,8 +74,9 @@ dependencies:
   ftpconnect:
   flutter_rating_bar: ^4.0.0
   carousel_slider: ^4.0.0
-  path_provider:
 
+  path_provider:
+  open_file:
 dev_dependencies:
   flutter_test:
     sdk: flutter

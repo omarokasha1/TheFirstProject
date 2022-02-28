@@ -162,4 +162,8 @@ class CreateModuleCubit extends Cubit<CreateModuleStates> {
       emit(DeleteModuleErrorState(error));
     });
   }
+  void selectImage()
+  {
+    emit(SelectImageState());
+  }
 }

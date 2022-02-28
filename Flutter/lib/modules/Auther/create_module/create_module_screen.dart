@@ -1,14 +1,13 @@
 import 'dart:io';
-
-import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_picker/Picker.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:open_file/open_file.dart';
 import '../../../shared/component/component.dart';
 import '../../../shared/component/constants.dart';
-import '../modules_library/modules_library.dart';
 import 'cubit/cubit.dart';
 import 'cubit/states.dart';
 
@@ -27,9 +26,10 @@ class CreateModuleScreen extends StatelessWidget {
   TextEditingController moduleTypeController = TextEditingController();
 
   var formKey = GlobalKey<FormState>();
-  String? filePath;
+  dynamic filePath;
   String dropdownValue = "City";
   File? file;
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<CreateModuleCubit, CreateModuleStates>(
@@ -75,8 +75,8 @@ class CreateModuleScreen extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.only(left: 40, top: 100),
                           child: Text("Create Modules",
-                              style: TextStyle(
-                                  fontSize: 30, color: Colors.white)),
+                              style:
+                                  TextStyle(fontSize: 30, color: Colors.white)),
                         ),
                       ),
                     ),
@@ -142,8 +142,8 @@ class CreateModuleScreen extends StatelessWidget {
                                   prefixIcon: Icon(Icons.timer),
                                   labelText: "Duration",
                                   labelStyle: const TextStyle(
-                                    //  color: primaryColor,
-                                  ),
+                                      //  color: primaryColor,
+                                      ),
                                   focusedBorder: OutlineInputBorder(
                                     borderSide: const BorderSide(
                                       color: primaryColor,
@@ -182,20 +182,19 @@ class CreateModuleScreen extends StatelessWidget {
                                         inherit: false, color: primaryColor),
                                     title: const Text('Select duration'),
                                     selectedTextStyle:
-                                    TextStyle(color: primaryColor),
+                                        TextStyle(color: primaryColor),
                                     onConfirm:
                                         (Picker picker, List<int> value) {
                                       // You get your duration here
                                       duration = Duration(
-                                          hours:
-                                          picker.getSelectedValues()[0],
+                                          hours: picker.getSelectedValues()[0],
                                           minutes:
-                                          picker.getSelectedValues()[1]);
+                                              picker.getSelectedValues()[1]);
                                     },
                                   ).showDialog(context).then((value) {
                                     print(value);
                                     durationController.text =
-                                    '${duration!.inHours.toString()} Hours ${(duration!.inHours * 60 - duration!.inMinutes)} Minutes';
+                                        '${duration!.inHours.toString()} Hours ${(duration!.inHours * 60 - duration!.inMinutes)} Minutes';
                                   });
                                 },
                                 controller: durationController,
@@ -207,32 +206,72 @@ class CreateModuleScreen extends StatelessWidget {
                                 padding: const EdgeInsets.only(left: 8.0),
                                 child: Text("Content",
                                     style: TextStyle(
-                                        fontSize: 25,
-                                        color: Colors.grey[600])),
+                                        fontSize: 25, color: Colors.grey[600])),
                               ),
                               Center(
                                 child: TextButton(
                                     onPressed: () async {
-                                      result = await FilePicker.platform
-                                          .pickFiles();
+                                      result =
+                                          await FilePicker.platform.pickFiles();
 
                                       if (result != null) {
-                                        file=
-                                            File(result!.files.single.path!);
-                                        file!.openRead();
-                                        filePath=file!.path;
+                                        file = File(result!.files.single.path!);
+                                        filePath = result!.files.first;
+
                                         cubit.uploadFile(file!);
                                       } else {
-                                        showToast(message: "upload file must be not empty");
+                                        showToast(
+                                            message:
+                                                "upload file must be not empty");
                                       }
+                                      cubit.selectImage();
                                     },
-                                    child:  Padding(
+                                    child: Padding(
                                       padding: EdgeInsets.symmetric(
                                           horizontal: 22.0),
-                                      child: Text(
-                                        filePath==null?"Upload":filePath!,
-                                        style: TextStyle(fontSize: 20),
-                                      ),
+                                      child: filePath == null
+                                          ? Text(
+                                              "Upload",
+                                              style: TextStyle(fontSize: 20),
+                                            )
+                                          : Stack(
+                                              children: [
+                                                Container(
+                                                  padding: EdgeInsets.all(12),
+                                                  child: buildFile(filePath,
+                                                      onTap: () {
+                                                    openFile(filePath);
+                                                  }),
+                                                ),
+                                                Positioned(
+                                                  top: 0,
+                                                  right: 0,
+                                                  child: CircleAvatar(
+                                                    backgroundColor:
+                                                        secondaryColor,
+                                                    radius: 20.0,
+                                                    child: IconButton(
+                                                      icon: const Icon(
+                                                        Icons.edit,
+                                                      ),
+                                                      color: Colors.white,
+                                                      iconSize: 20.0,
+                                                      onPressed: () async {
+                                                        result =
+                                                        await FilePicker.platform.pickFiles();
+
+                                                        if (result != null) {
+                                                          file = File(result!.files.single.path!);
+                                                          filePath = result!.files.first;
+
+                                                          cubit.selectImage();
+                                                        }
+                                                      },
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
                                     )),
                               ),
                               const SizedBox(
@@ -253,23 +292,21 @@ class CreateModuleScreen extends StatelessWidget {
                                   showToast(
                                       message: "content must be not empty");
                                 }
-                                if(filePath!=null)
-                                  {
-                                    // //var r = JSON.stringify();
-                                    // print(filePath);
-                                     print(file!.uri.data);
-                                    // print(cubit.formData!.files.single.value);
-                                   print(cubit.formData!.files.single.runtimeType);
-                                    cubit.createNewModule(moduleName: moduleNameController.text, description: shortDescriptionController.text, duration: durationController.text,content:cubit.formData);
-
-
-                                  }
-                                else
-                                  {
-
-                                  }
-                        //        cubit.createNewModule(moduleName: moduleNameController.text, description: shortDescriptionController.text, duration: durationController.text, moduleType: moduleTypeController.text,content:"https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg");
-
+                                if (filePath != null) {
+                                  // //var r = JSON.stringify();
+                                  // print(filePath);
+                                  print(file!.uri.data);
+                                  // print(cubit.formData!.files.single.value);
+                                  print(
+                                      cubit.formData!.files.single.runtimeType);
+                                  cubit.createNewModule(
+                                      moduleName: moduleNameController.text,
+                                      description:
+                                          shortDescriptionController.text,
+                                      duration: durationController.text,
+                                      content: cubit.formData);
+                                } else {}
+                                //        cubit.createNewModule(moduleName: moduleNameController.text, description: shortDescriptionController.text, duration: durationController.text, moduleType: moduleTypeController.text,content:"https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg");
 
                               }
                             }),
@@ -282,6 +319,69 @@ class CreateModuleScreen extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+
+  void openFile(PlatformFile file) {
+    OpenFile.open(file.path);
+  }
+
+  Widget buildFile(
+    PlatformFile file, {
+    required String? Function() onTap,
+  }) {
+    final kb = file.size / 1024;
+    final mb = kb / 1024;
+    final fileSize =
+        mb > 1 ? "${mb.toStringAsFixed(2)} MB" : "${kb.toStringAsFixed(2)} Kb";
+    final extension = file.extension ?? "none";
+
+    return InkWell(
+      onTap: () {
+        onTap();
+      },
+      child: Container(
+        padding: EdgeInsets.all(8),
+        decoration: BoxDecoration(
+            // color: secondaryColor,
+            borderRadius: BorderRadius.all(Radius.circular(15)),
+            border: Border.all(
+              color: primaryColor,
+            )),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              file.name,
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                  overflow: TextOverflow.ellipsis),
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  ".${file.extension}",
+                  style: TextStyle(
+                    fontSize: 20,
+                  ),
+                ),
+                const SizedBox(
+                  width: 5,
+                ),
+                Text(
+                  "/ $fileSize",
+                  style: TextStyle(fontSize: 20),
+                )
+              ],
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
