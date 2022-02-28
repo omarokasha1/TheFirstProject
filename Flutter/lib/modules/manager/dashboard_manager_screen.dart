@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lms/modules/Auther/%20create_track%20/create_track.dart';
+import 'package:lms/modules/Auther/create_track/create_track.dart';
 import 'package:lms/modules/Auther/traks/traks_screen.dart';
 import 'package:lms/modules/manager/requests_screen.dart';
 import 'package:lms/shared/component/MyAppBar.dart';
