@@ -102,6 +102,8 @@ router.put('/update-Question',[ auth,author,authorCtrl.updateQuestion])
 
 // Deleting course
 router.delete('/delete-course/:id', [auth, author],authorCtrl.deleteCourse)
+router.delete('/delete-courses/:id', [auth, author],authorCtrl.deleteCourses)
+
 
 // Deleting content
 router.delete('/delete-content/:id', [auth, author],authorCtrl.deleteContent)

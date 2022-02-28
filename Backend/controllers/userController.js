@@ -57,9 +57,9 @@ const userCtrl = {
  
          //* send his token in header and his data in body
         // return res.header('x-auth-token', token).json(_.pick(user, ['_id', 'userName', 'email','phone','token']),token)
-        return res.json({status:"ok",id:user._id,userName:user.userName,email:user.email,phone:user.phone,token:token})
+        return res.json({status:"ok",message:'Register Success',id:user._id,userName:user.userName,email:user.email,phone:user.phone,token:token})
      } catch (error) {
-         return res.json({error:error.message})
+         return res.json({status:"false",error:error.message})
      }
     },
 
@@ -70,7 +70,7 @@ const userCtrl = {
 
     //* if validate error just send to user an error message
     if (validateError.error) {
-        return res.json({ message: validateError.error.details[0].message })
+        return res.json({status:"false", message: validateError.error.details[0].message })
     }
 
     //* check in database by email
@@ -94,7 +94,7 @@ const userCtrl = {
         const token = jwt.sign({ id: user._id, isAdmin: user.isAdmin, isAuthor:user.isAuthor }, 'privateKey')
 
         console.log(token)
-        return res.json({ status: 'ok', token: token })
+        return res.json({ status: 'ok',message:'Login Success', token: token })
     } catch (error) {
        
           return res.json({ status: 'false', message: error.message })
@@ -103,11 +103,17 @@ const userCtrl = {
     },
 
     profile:async(req,res)=>{
-         //* find the user info by his id and not show the password at response
+      try {
+                //* find the user info by his id and not show the password at response
   const profile = await Users.findById(req.user.id).select('-password -__v -isAdmin -isAuthor')
   console.log(req.params.id)
   console.log(profile)
-    return res.json({ profile })
+    return res.status(200).json({status:'ok',message:'Profile', profile })
+      } catch (error) {
+        console.log(error)
+        return res.status(500).json({status:'false',message:error.message})
+      }
+ 
     },
 
     updateProfile:async(req,res)=>{
@@ -119,41 +125,18 @@ const userCtrl = {
     const id = user.id
     console.log(id)
 
-        const imageUrl =req.body.imageUrl
-    const result = await cloudinary.uploader.upload(imageUrl, {
+       
   
-        public_id: `${user.id}_avatar${Date.now()}`,
-        folder: 'avatar', width: 1920, height: 1080, crop: "fill"
-      });
     await Users.updateOne(
         { _id: id },
         {
           $set: req.body
         }
      )
-     if(req.file){
-       await Users.updateOne(
-         { _id: id },
-         {
-           $set: {
-             imageUrl:req.body.imageUrl
-           }
-         }
-       )
-     }else{
-         await Users.updateOne(
-       { _id: id },
-       {
-         $set: req.body
-       }
-     )
-     }
-
-  
 
     res.json({ status: 'ok', message: ' changed', })
   } catch (error) {
-    return res.json({ status: 'false', message: error.message})
+    return res.status(500).json({ status: 'false', message: error.message})
   }
     },
 
@@ -162,7 +145,7 @@ const userCtrl = {
             const users = await Users.find().select('-__v')
             return res.status(200).json({status : "ok",message:"get users",users})
           } catch (err) {
-          return  res.status(500).json({ message: err.message })
+          return  res.status(500).json({status:'false', message: err.message })
           }
     },
 
@@ -243,12 +226,12 @@ const userCtrl = {
       );
     return  res
         .status(201)
-        .json({ success: true, message: 'Your profile has updated!' });
+        .json({ status: 'ok', message: 'Your profile has updated!' });
     } catch (error) {
       console.log('Error while uploading profile image', error);
      return res
         .status(500)
-        .json({ success: false, message: 'server error, try after some time' });
+        .json({ status: 'flase', message: 'server error, try after some time' });
      
     }
   },
@@ -262,12 +245,12 @@ const userCtrl = {
         if (!user)
       return res
         .status(401)
-        .json({ success: false, message: 'unauthorized access!' });
+        .json({ staus: 'false', message: 'unauthorized access!' });
 
         if (!file) {
             const error = new Error('Please upload a file')
             error.httpStatusCode = 400
-            return res.status(400).json({status:false,message:error})
+            return res.status(400).json({status:"false",message:error.message})
           }
             
             
@@ -285,11 +268,12 @@ const userCtrl = {
               );
             const savedimage= await updatedUser.save()
             console.log(savedimage)
-            res.json(savedimage) 
+            res.json({status:'ok',message:'Uploaded',savedimage}) 
 
     } catch (error) {
-        res.json(error)
-        console.log(error)
+      console.log(error)
+       return res.status(500).json({status:"false",message:error.message})
+      
     }
     
   }

@@ -125,9 +125,9 @@ uploadCourse : async (req, res) => {
         return res.status(200).json({ status: 'false', message: 'Cannot find courses' })
       }
      
-     return res.status(200).json({status : "ok",courses:course})
+     return res.status(200).json({status : "ok",message:'get Courses success',courses:course})
     } catch (err) {
-      return res.status(500).json({ message: err.message })
+      return res.status(500).json({status:"false", message: err.message })
     }
   
    
@@ -149,10 +149,10 @@ uploadCourse : async (req, res) => {
       if (!content) {
         return res.status(200).json({ status: 'false', message: 'Cannot find contents' })
       }
-      res.status(200).json({status : "ok",contents:content})
+      res.status(200).json({status : "ok",message:'get Author Content Success',contents:content})
     } catch (err) {
       console.log(err)
-      return res.status(500).json({ message: err })
+      return res.status(500).json({status:'false', message: err.message })
     }
   
   // return res.status(200).json({status : "ok",contents:res.content})
@@ -175,10 +175,10 @@ uploadCourse : async (req, res) => {
       if (!course) {
         return res.status(200).json({ status: 'false', message: 'Cannot find courses' })
       }
-      return res.status(200).json({status : "ok",courses:course})
+      return res.status(200).json({status : "ok",message:'get Author Courses Success',courses:course})
     } catch (err) {
       console.log(err)
-      return res.status(500).json({ message: err.message })
+      return res.status(500).json({status:'false', message: err.message })
     }
   
   
@@ -200,10 +200,10 @@ uploadCourse : async (req, res) => {
       if (!track) {
         return res.status(200).json({ status: 'false', message: 'Cannot find tracks' })
       }
-   return   res.status(200).json({status : "ok",tracks:track})
+   return   res.status(200).json({status : "ok",message:'get Author Tracks Success',tracks:track})
     } catch (err) {
       console.log(err)
-      return res.status(500).json({ message: err.message })
+      return res.status(500).json({status:'false', message: err.message })
     }
   
    },
@@ -227,10 +227,10 @@ uploadCourse : async (req, res) => {
         return res.status(200).json({ status: 'false', message: 'Cannot find tracks' })
       }
       console.log(track)
-    return  res.status(200).json({status : "ok",tracks:track})
+    return  res.status(200).json({status : "ok",message:'get Author Tracks Published Success',tracks:track})
     } catch (err) {
       console.log(err)
-      return res.status(500).json({ message: err })
+      return res.status(500).json({status:'false', message: err.message })
     }
    },
 
@@ -250,10 +250,10 @@ uploadCourse : async (req, res) => {
       if (!assignment) {
         return res.status(200).json({ status: 'false', message: 'Cannot find tracks' })
       }
-     return   res.status(200).json({status : "ok",assignments:assignment})
+     return   res.status(200).json({status : "ok",message:'get Author Assignment Success',assignments:assignment})
     } catch (err) {
       console.log(err)
-      return res.status(500).json({ message: err })
+      return res.status(500).json({status:'false', message: err.message })
     }
   
    },
@@ -276,10 +276,10 @@ uploadCourse : async (req, res) => {
       if (!quiz) {
         return res.status(200).json({ status: 'false', message: 'Cannot find quiz' })
       }
-     return res.status(200).json({status : "ok",quizes:quiz})
+     return res.status(200).json({status : "ok",message:'get Author Quiz Success',quizes:quiz})
     } catch (err) {
       console.log(err)
-      return res.status(500).json({ message: err.message })
+      return res.status(500).json({status:'false', message: err.message })
     }
 
    },
@@ -302,10 +302,10 @@ uploadCourse : async (req, res) => {
       if (!question) {
         return res.status(200).json({ status: 'false', message: 'Cannot find question' })
       }
-      return res.status(200).json({status : "ok",questions:question})
+      return res.status(200).json({status : "ok",message:'get Author Questions Success',questions:question})
     } catch (err) {
       console.log(err)
-      return res.status(500).json({ message: err.message })
+      return res.status(500).json({status:'false', message: err.message })
     }
   
    },
@@ -341,7 +341,7 @@ uploadCourse : async (req, res) => {
     console.log(id)
     // let index = 1
     // const result = await cloudinary.uploader.upload(fileUrl.path, {
-      header
+      
 
    const course = new Course({
      title:req.body.title,
@@ -360,13 +360,13 @@ uploadCourse : async (req, res) => {
 
      newCourse = await course.save()
     // res.newCourse = newCourse
-   return res.status(201).json(newCourse)
+   return res.status(201).json({status:'ok',message:'Course Created',course:newCourse})
   } catch (err) {
     console.log(err)
-    return res.status(400).json({ message: err })
+    return res.status(400).json({status:'false', message: err })
   }
   //res.newCourse = newCourse
-  return res.status(201).json(newCourse)
+  //return res.status(201).json(newCourse)
    
   },
 
@@ -402,45 +402,55 @@ uploadCourse : async (req, res) => {
    })
 
     newContent = await content.save()
-  return res.status(201).json(newContent)
+  return res.status(201).json({status:'ok',message:'Content Created Success',content:newContent})
  } catch (err) {
    console.log(err)
- return  res.status(400).json({ message: err })
+ return  res.status(400).json({status:'false', message: err.message })
  }
   },
 
   createTrack:async(req,res)=>{
 let newTrack
-  //const {trackName,description,duration,courses} = req.body
- 
-  //const fileUrl = req.file
+  const {trackName,description,check,duration,courses} = req.body
+
  const token = req.header('x-auth-token')
+ const file = req.file
  try {
+  
+  console.log(file)
    const user = jwt.verify(token, 'privateKey')
    console.log(user)
    const id = user.id
    console.log(id)
-  //  const result = await cloudinary.uploader.upload(fileUrl.path, {
-  
-  //   public_id: `${user.id}_track${Date.now()}`,
-  //   folder: 'track', width: 1920, height: 1080, crop: "fill"
-  // });
+   /* if (!file) {
+    const error = new Error('Please upload a file')
+    error.httpStatusCode = 400
+    return res.status(400).json({status:"false",message:error.message})
+  } */
+    
+    
+   
+    const result = await cloudinary.uploader.upload(file.path, {
 
+      public_id: `${user.id}_track${Date.now()}`,
+      folder: 'track', width: 1920, height: 1080, crop: "fill"
+    });
+    console.log(result.url)
   const track = new Track({
     trackName:req.body.trackName,
     description:req.body.description, 
     duration:req.body.duration,
     check:req.body.check,
-   imageUrl:req.body.imageUrl,
+   imageUrl:result.url,
     author:id,
     courses:req.body.courses,
   })
   console.log(track)
     newTrack = await track.save()
-  return res.status(201).json(newTrack)
+  return res.status(201).json({status:'ok',message:'Track Created Success',track:newTrack})
  } catch (err) {
    console.log(err)
-  return res.status(400).json({ message: err })
+  return res.status(400).json({status:'false', message: err.message })
  }
   },
 
@@ -466,10 +476,10 @@ let newTrack
    })
 
     newAssignment = await assignment.save()
-  return res.status(201).json(newAssignment)
+  return res.status(201).json({status:'ok',message:'Assignment Created Success',assignment:newAssignment})
  } catch (err) {
    console.log(err)
-  return res.status(400).json({ message: err })
+  return res.status(400).json({status:'false', message: err.message })
  }
   },
 
@@ -494,10 +504,10 @@ let newQuestion
    })
 
     newQuestion = await question.save()
-  return res.status(201).json(newQuestion)
+  return res.status(201).json({status:'ok',message:'Question Created Success',question:newQuestion})
  } catch (err) {
    console.log(err)
-  return res.status(400).json({ message: err.message })
+  return res.status(400).json({status:'false', message: err.message })
  }
   },
 
@@ -522,10 +532,10 @@ let newQuestion
     })
  
      newQuiz = await quiz.save()
-  return  res.status(201).json(newQuiz)
+  return  res.status(201).json({status:'ok',message:'Quiz Created Success',quiz:newQuiz})
   } catch (err) {
     console.log(err)
-  return  res.status(400).json({ message: err.message })
+  return  res.status(400).json({status:'false', message: err.message })
   }
   },
 
@@ -633,23 +643,23 @@ let newQuestion
           $set: req.body
         }
      )
-    // if(req.file){
-    //   await User.updateOne(
-    //     { _id: id },
-    //     {
-    //       $set: {
-    //         imageUrl:req.file.filename
-    //       }
-    //     }
-    //   )
-    // }else{
-    //     await User.updateOne(
-    //   { _id: id },
-    //   {
-    //     $set: req.body
-    //   }
-    // )
-    // }
+    if(req.file){
+      await User.updateOne(
+        { _id: id },
+        {
+          $set: {
+            imageUrl:req.file.filename
+          }
+        }
+      )
+    }else{
+        await User.updateOne(
+      { _id: id },
+      {
+        $set: req.body
+      }
+    )
+    }
 
   
 
@@ -761,12 +771,28 @@ let newQuestion
       try {
         await Course.findByIdAndDelete(req.params.id);
   
-      return  res.json({ message: "Deleted Success!" });
+      return  res.json({ status:'ok', message: "Deleted Success!" });
       } catch (err) {
-        return res.status(500).json({ message: err.message });
+        return res.status(500).json({status:'false', message: err.message });
       }
     },
 
+    deleteCourses: async (req, res) => {
+      try {
+        const _id = req.params.id;
+         const course = await Course.findOne({ _id });
+          console.log(course)
+        await course.remove();
+          console.log(course.contents)
+       const content=  await Content.updateMany({ '_id': course.contents }, { $pull: { courses: course._id } });
+        console.log(content)
+  
+  
+      return  res.json({status:'ok', message: "Deleted Success!" });
+      } catch (err) {
+        return res.status(500).json({status:'false', message: err.message });
+      }
+    },
     deleteContents: async (req, res) => {
       try {
         const _id = req.params.id;
@@ -778,9 +804,9 @@ let newQuestion
         console.log(course)
   
   
-      return  res.json({ message: "Deleted Success!" });
+      return  res.json({status:'ok', message: "Deleted Success!" });
       } catch (err) {
-        return res.status(500).json({ message: err.message });
+        return res.status(500).json({status:'false', message: err.message });
       }
     },
 
@@ -788,9 +814,9 @@ let newQuestion
       try {
         await Content.findByIdAndDelete(req.params.id);
   
-      return  res.json({ message: "Deleted Success!" });
+      return  res.json({status:'ok', message: "Deleted Success!" });
       } catch (err) {
-        return res.status(500).json({ message: err.message });
+        return res.status(500).json({status:'false', message: err.message });
       }
     },
 
@@ -799,9 +825,9 @@ let newQuestion
       try {
         await Track.findByIdAndDelete(req.params.id);
   
-      return  res.json({ message: "Deleted Success!" });
+      return  res.json({status:'ok', message: "Deleted Success!" });
       } catch (err) {
-        return res.status(500).json({ message: err.message });
+        return res.status(500).json({status:'false', message: err.message });
       }
     },
 
@@ -810,9 +836,9 @@ let newQuestion
       try {
         await Assignment.findByIdAndDelete(req.params.id);
   
-      return  res.json({ message: "Deleted Success!" });
+      return  res.json({status:'ok', message: "Deleted Success!" });
       } catch (err) {
-        return res.status(500).json({ message: err.message });
+        return res.status(500).json({status:'false', message: err.message });
       }
     },
 
@@ -821,9 +847,9 @@ let newQuestion
         console.log(req.params.id)
         await Quiz.findByIdAndDelete(req.params.id);
         
-      return  res.json({ message: "Deleted Success!" });
+      return  res.json({status:'ok', message: "Deleted Success!" });
       } catch (err) {
-        return res.status(500).json({ message: err.message });
+        return res.status(500).json({status:'false', message: err.message });
       }
     },
 
@@ -831,9 +857,9 @@ let newQuestion
       try {
         await Question.findByIdAndDelete(req.params.id);
   
-      return  res.json({ message: "Deleted Success!" });
+      return  res.json({status:'ok', message: "Deleted Success!" });
       } catch (err) {
-        return res.status(500).json({ message: err.message });
+        return res.status(500).json({status:'false', message: err.message });
       }
     },
 }

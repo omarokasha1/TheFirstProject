@@ -16,8 +16,11 @@ const CourseSchema = new mongoose.Schema({
     imageUrl: { type: String,  },
     contents:
         [ {type:mongoose.Schema.Types.ObjectId,
-          ref:'Content'}]
+            required:true,
+          ref:'Content',
+          }]
     ,
+  
     author:{
         
         type:mongoose.Schema.Types.ObjectId ,
