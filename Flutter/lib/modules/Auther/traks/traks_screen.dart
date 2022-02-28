@@ -6,9 +6,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lms/layout/layout.dart';
 import 'package:lms/models/track_model.dart';
 import 'package:lms/modules/Auther/create_track/create_track.dart';
+import 'package:lms/modules/Auther/create_track/cubit/cubit.dart';
+import 'package:lms/modules/Auther/create_track/cubit/statues.dart';
 import 'package:lms/modules/Auther/traks/traks_cubit/cubit.dart';
 import 'package:lms/modules/Auther/traks/traks_cubit/status.dart';
-import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
 
 class TracksScreen extends StatelessWidget {
@@ -22,86 +23,92 @@ class TracksScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => TrackCubit()..getAllTracks(),
-      child: BlocConsumer<TrackCubit, TrackStates>(
-        listener: (context, state) {},
-        builder: (context, state) {
-          var cubit = TrackCubit.get(context);
-          return Layout(
-            widget: DefaultTabController(
-              length: myTabs.length,
-              child: Scaffold(
-                appBar: AppBar(),
-                body: ConditionalBuilder(
-                  condition: cubit.trackModel != null,
-                  builder: (context) => Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            left: 20.0, right: 20.0, top: 10),
-                        child: Row(
-                          children: [
-                            Text(
-                              'Tracks',
-                              style: TextStyle(
-                                fontSize: 20.sp,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
-                              ),
-                            ),
-                            Spacer(),
-                            ElevatedButton(
-                              onPressed: () {
-                                navigator(context, CreateTrackScreen());
-                              },
-                              child: Text(
-                                'New Track',
+    return BlocProvider.value(
+      value: BlocProvider.of<CreateTrackCubit>(context)..getAllTracks(),
+      child:  BlocConsumer<CreateTrackCubit, CreateTrackStates>(
+          listener: (context, state) {},
+          builder: (context, state) {
+            var cubit = CreateTrackCubit.get(context);
+            return Layout(
+              widget: DefaultTabController(
+                length: myTabs.length,
+                child: Scaffold(
+                  appBar: AppBar(),
+                  body: ConditionalBuilder(
+                    condition: cubit.trackModel != null,
+                    builder: (context) => Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              left: 20.0, right: 20.0, top: 10),
+                          child: Row(
+                            children: [
+                              Text(
+                                'Tracks',
                                 style: TextStyle(
-                                  fontSize: 16.sp,
+                                  fontSize: 20.sp,
                                   fontWeight: FontWeight.bold,
+                                  color: Colors.black,
                                 ),
                               ),
-                            ),
-                          ],
+                              Spacer(),
+                              ElevatedButton(
+                                onPressed: () {
+                                  //navigator(context, CreateTrackScreen());
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              CreateTrackScreen())).then((value) {
+                                  });
+                                },
+                                child: Text(
+                                  'New Track',
+                                  style: TextStyle(
+                                    fontSize: 16.sp,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      TabBar(
-                        labelColor: primaryColor,
-                        indicatorColor: primaryColor,
-                        unselectedLabelColor: Colors.black,
-                        // isScrollable: true,
-                        tabs: myTabs,
-                        labelStyle: TextStyle(
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.bold,
+                        TabBar(
+                          labelColor: primaryColor,
+                          indicatorColor: primaryColor,
+                          unselectedLabelColor: Colors.black,
+                          // isScrollable: true,
+                          tabs: myTabs,
+                          labelStyle: TextStyle(
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                      Expanded(
-                        child: TabBarView(
-                          children: [
-                            publishedCourses(cubit),
-                            penddingCourses(cubit),
-                            draftsCourses(cubit),
-                          ],
+                        Expanded(
+                          child: TabBarView(
+                            children: [
+                              publishedCourses(cubit),
+                              penddingCourses(cubit),
+                              draftsCourses(cubit),
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  fallback: (context) => Center(
-                    child: CircularProgressIndicator(),
+                      ],
+                    ),
+                    fallback: (context) => Center(
+                      child: CircularProgressIndicator(),
+                    ),
                   ),
                 ),
               ),
-            ),
-          );
-        },
-      ),
+            );
+          },
+        ),
     );
   }
 
   //Published Courses PageView
-  Widget publishedCourses(TrackCubit cubit) {
+  Widget publishedCourses(CreateTrackCubit cubit) {
     return ListView.builder(
         physics: BouncingScrollPhysics(),
         itemBuilder: (context, index) {
@@ -111,7 +118,7 @@ class TracksScreen extends StatelessWidget {
   }
 
   //Pending Courses PageView
-  Widget penddingCourses(TrackCubit cubit) {
+  Widget penddingCourses(CreateTrackCubit cubit) {
     return ListView.builder(
         physics: BouncingScrollPhysics(),
         itemBuilder: (context, index) {
@@ -121,7 +128,7 @@ class TracksScreen extends StatelessWidget {
   }
 
   //Drafts Courses PageView
-  Widget draftsCourses(TrackCubit cubit) {
+  Widget draftsCourses(CreateTrackCubit cubit) {
     return ListView.builder(
         physics: BouncingScrollPhysics(),
         itemBuilder: (context, index) {

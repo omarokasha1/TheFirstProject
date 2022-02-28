@@ -14,7 +14,7 @@ class SearchScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[100],
-      appBar: myAppBar(context),
+      appBar: myAppBar(context,),
       body: Layout(
         widget: Padding(
           padding: EdgeInsets.all(10.0.w),

@@ -1,0 +1,8 @@
+dev/fluttercommunity/plus/network_info/NetworkInfo.java
+ dev.fluttercommunity.plus.network_info.NetworkInfo
+dev/fluttercommunity/plus/network_info/NetworkInfoPlusPlugin.java
+ dev.fluttercommunity.plus.network_info.NetworkInfoPlusPlugin
+dev/fluttercommunity/plus/network_info/BuildConfig.java
+ dev.fluttercommunity.plus.network_info.BuildConfig
+dev/fluttercommunity/plus/network_info/NetworkInfoMethodChannelHandler.java
+ dev.fluttercommunity.plus.network_info.NetworkInfoMethodChannelHandler

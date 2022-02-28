@@ -1,5 +1,6 @@
 
 import 'package:lms/models/course_model.dart';
+import 'package:lms/models/track_model.dart';
 
 abstract class CreateTrackStates {}
 
@@ -17,3 +18,27 @@ class GetAuthorCoursesErrorState extends CreateTrackStates{
   GetAuthorCoursesErrorState(this.error);
 }
 class ChangeActivityState extends CreateTrackStates{}
+
+class CreateTrackLoadingState extends CreateTrackStates{}
+class CreateTrackSuccessState extends CreateTrackStates{
+  final TrackModel? trackModel;
+  CreateTrackSuccessState(this.trackModel);
+}
+class CreateTrackErrorState extends CreateTrackStates{
+  final String error;
+  CreateTrackErrorState(this.error);
+}
+
+class AllTrackLoadingState extends CreateTrackStates {}
+
+class AllTrackSuccessState extends CreateTrackStates {
+  final TrackModel? tracksModel;
+
+  AllTrackSuccessState(this.tracksModel);
+}
+
+class AllTrackErrorState extends CreateTrackStates {
+  final String error;
+
+  AllTrackErrorState(this.error);
+}

@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lms/modules/Auther/author_profile/author_profile_cubit/cubit.dart';
 import 'package:lms/modules/Auther/create_module/cubit/cubit.dart';
+import 'package:lms/modules/Auther/create_track/cubit/cubit.dart';
 import 'package:lms/modules/courses/cubit/cubit.dart';
 import 'package:lms/modules/onboarding/onboarding_screen.dart';
 import 'package:lms/modules/quiz/cubit/cubit.dart';
@@ -77,6 +78,8 @@ class MyApp extends StatelessWidget {
         //Bloc of Internet Cubit.
         BlocProvider(create: (context) => InternetCubit()),
         BlocProvider(create: (context) => QuizCubit()),
+        BlocProvider(create: (context) => CreateTrackCubit()),
+
         //Bloc of Profile Cubit (Data of User).
         BlocProvider(create: (context) {
           if (userToken != null) {
@@ -85,12 +88,14 @@ class MyApp extends StatelessWidget {
           return ProfileCubit();
         }),
         //Bloc of Course Cubit.
-        BlocProvider(create: (context) {
-          if (userToken != null) {
-            return CourseCubit()..getAllCoursesData();
-          }
-          return CourseCubit();
-        }),
+        BlocProvider(
+          create: (context) {
+            if (userToken != null) {
+              return CourseCubit()..getAllCoursesData();
+            }
+            return CourseCubit();
+          },
+        ),
         BlocProvider(
             create: (context) => AuthorProfileCubit()..getAuthorProfile()),
         BlocProvider(create: (context) => CreateModuleCubit()),

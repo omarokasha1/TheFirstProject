@@ -1,9 +1,11 @@
 import 'dart:io';
 import 'package:dio/dio.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_picker/Picker.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../../shared/component/component.dart';
 import '../../../shared/component/constants.dart';
@@ -13,22 +15,23 @@ import 'cubit/statues.dart';
 class CreateTrackScreen extends StatelessWidget {
   CreateTrackScreen({Key? key}) : super(key: key);
 
-  Dio? dio;
+  File? file;
+  FilePickerResult? result;
+  String? filePath;
 
   TextEditingController trackNameController = TextEditingController();
   TextEditingController shortDescriptionController = TextEditingController();
   TextEditingController durationController = TextEditingController();
   Duration? duration;
 
-  File? courseImage;
+  File? trackImage;
   var picker = ImagePicker();
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (BuildContext context) =>
-          CreateTrackCubit()..getAuthorCoursesData(),
-      child: BlocConsumer<CreateTrackCubit, CreateTrackStates>(
+    return BlocProvider.value(
+      value: BlocProvider.of<CreateTrackCubit>(context)..getAuthorCoursesData(),
+      child:  BlocConsumer<CreateTrackCubit, CreateTrackStates>(
         listener: (context, state) {},
         builder: (context, state) {
           var cubit = CreateTrackCubit.get(context);
@@ -233,37 +236,13 @@ class CreateTrackScreen extends StatelessWidget {
                                             await picker.pickImage(
                                                 source: ImageSource.gallery);
                                         if (pickedFile != null) {
-                                          courseImage = File(pickedFile.path);
-                                          //var respose = await ImageService.upl
+                                          trackImage = File(pickedFile.path);
+                                          print(trackImage!);
+                                          print(
+                                              "Piiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiic");
                                         } else {
                                           print('no image selected');
                                         }
-                                        try {
-                                          String fileName =
-                                              courseImage!.path.split('/').last;
-                                          FormData formData = FormData.fromMap({
-                                            'imageUrl':
-                                                await MultipartFile.fromFile(
-                                                    courseImage!.path,
-                                                    filename: fileName)
-                                          });
-                                          // Response response = await dio!
-                                          //     .post(
-                                          //     "path", data: formData,
-                                          //     options: Options(
-                                          //       headers:
-                                          //     ))
-
-                                        } catch (error) {}
-                                        //image = await _picker.pickImage(source: ImageSource.gallery);
-                                        // FormData formData = FormData.from({
-                                        //   "name": "wendux",
-                                        //   "file1": UploadFileInfo(new File("./upload.jpg"), "upload1.jpg")
-                                        // });
-                                        // var response = await dio.post("/info", data: formData)
-
-                                        print(
-                                            "Piiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiic");
                                       },
                                       child: const Padding(
                                         padding: EdgeInsets.symmetric(
@@ -294,9 +273,36 @@ class CreateTrackScreen extends StatelessWidget {
                                       bottom: 10),
                                   child: defaultButton(
                                     text: 'Save',
-                                    onPressed: () {
+                                    onPressed: () async {
+                                      //print(trackImage);
                                       if (cubit.formKey.currentState!
-                                          .validate()) {}
+                                          .validate()) {
+                                        if (trackImage == null) {
+                                          showToast(
+                                              message: "No Image Selected",
+                                              color: Colors.red);
+                                        } else {
+                                          await cubit
+                                              .createNewTrack(
+                                                trackName:
+                                                    trackNameController.text,
+                                                shortDescription:
+                                                    shortDescriptionController
+                                                        .text,
+                                                duration:
+                                                    durationController.text,
+                                                courses: cubit.myActivities,
+                                                trackImage: trackImage,
+                                              )
+                                              .then(
+                                                (value) {
+                                                  cubit.myActivities=[];
+                                                  Navigator.pop(context);
+                                                }
+                                                    ,
+                                              );
+                                        }
+                                      }
                                     },
                                   ),
                                 ),

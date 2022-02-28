@@ -17,6 +17,7 @@ import 'package:lms/modules/search/search_screen.dart';
 import 'package:lms/shared/component/MyAppBar.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
+import 'package:lms/shared/component/zoomDrawer.dart';
 import 'package:number_slide_animation/number_slide_animation.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -213,6 +214,7 @@ class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
                       width: double.infinity,
                       height: 45.h,
                       child: TextField(
+                        keyboardType: TextInputType.none,
                         cursorColor: primaryColor,
                         decoration: InputDecoration(
                           fillColor: Colors.white,
@@ -233,7 +235,7 @@ class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
                           prefixIcon: const Icon(Icons.search),
                         ),
                         onTap: () {
-                          navigator(context, SearchScreen());
+                          navigator(context, ZoomDrawerScreen(widget: SearchScreen(),));
                         },
                       ),
                     ),
