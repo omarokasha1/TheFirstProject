@@ -3,14 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lms/layout/layout.dart';
 import 'package:lms/modules/Auther/author_profile/author_profile_cubit/cubit.dart';
 import 'package:lms/modules/Auther/create_module/cubit/cubit.dart';
+import 'package:lms/modules/admin/dashboard_admin/admin_dashboard_screen.dart';
 import 'package:lms/modules/courses/cubit/cubit.dart';
+import 'package:lms/modules/manager/dashboard_manager_screen.dart';
 import 'package:lms/modules/onboarding/onboarding_screen.dart';
 import 'package:lms/modules/quiz/cubit/cubit.dart';
 import 'package:lms/modules/splash_screen.dart';
 import 'package:lms/shared/component/constants.dart';
 import 'package:lms/shared/component/observer.dart';
+import 'package:lms/shared/component/zoomDrawer.dart';
 import 'package:lms/shared/network/local/cache_helper.dart';
 import 'package:lms/shared/network/remote/dio-helper.dart';
 import 'package:lms/shared/themes/light_theme.dart';
@@ -119,9 +123,9 @@ class MyApp extends StatelessWidget {
           //home: ZoomDrawerScreen(widget: AuthorProfileScreen(),),
           // home:Layout(widget: ZoomDrawerScreen(widget:DashboardManagerScreen() ,)) ,
           //home: TracksScreen(),
-          home: widget,
+          //home: widget,
           // home: ZoomDrawerScreen(widget:DashboardAuthorScreen() ,),
-          //  home:Layout(widget: ZoomDrawerScreen(widget:DashboardManagerScreen() ,)) ,
+           home:Layout(widget: ZoomDrawerScreen(widget:AdminDashboardScreen() ,)) ,
         ),
       ),
     );
