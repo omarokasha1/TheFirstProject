@@ -107,8 +107,8 @@ class MyApp extends StatelessWidget {
           theme: lightTheme(context),
           //Here The Theme.
           themeMode: ThemeMode.light,
-          home: AddManager(),
-         //home:ZoomDrawerScreen(widget:DashboardAuthorScreen() ,) ,
+        //  home: AddManager(),
+         home:ZoomDrawerScreen(widget:DashboardAuthorScreen() ,) ,
         ),
       ),
     );
