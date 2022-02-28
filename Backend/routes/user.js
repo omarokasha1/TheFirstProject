@@ -28,12 +28,12 @@ const storage = multer.diskStorage({
     },
   });
 
-  router.post(
+/*   router.post(
     '/upload-profile',
     auth,
     upload.single('profile'),
     userCtrl.uploadProfile
-  );
+  ); */
   
   router.post(
     '/upload',

@@ -4,6 +4,7 @@ const Course = require('../models/course')
 
 const router = express.Router()
 const auth = require('../middleware/auth')
+const manager = require('../middleware//manager')
 const author = require('../middleware/author')
 const admin = require('../middleware/admin')
 
@@ -61,6 +62,9 @@ router.get('/authorQuizes', authorCtrl.getAuthorQuiz)
 // Getting Author question
 router.get('/authorQuestions', authorCtrl.getAuthorQuestion)
 
+// Getting Promot Requests
+router.get('/promotRequest',[auth,manager,authorCtrl.getPromotRequest] )
+
 //* ________________________________CREATE_________________________________________
 // Creating one Course
 router.post('/newCourse', [auth,author,upload.single('imageUrl'),authorCtrl.createCourse])
@@ -77,6 +81,9 @@ router.post('/newAssignment', [auth,author,upload.single('fileUrl'),authorCtrl.c
 router.post('/newQuestion', [auth,author,authorCtrl.createQuestion])
 // Creating quiz
 router.post('/newQuiz', [auth,author,authorCtrl.createQuiz])
+
+// Creating promot request
+router.post('/promot-request', [auth,authorCtrl.authorPromot])
 
 
 //? _____________________________________UPDATE____________________________________________
@@ -97,11 +104,17 @@ router.put('/update-Quiz',[ auth,author,authorCtrl.updateQuiz])
 // Updating One Question
 router.put('/update-Question',[ auth,author,authorCtrl.updateQuestion])
 
+// Updating user role
+router.put('/accept-promot',[ auth,manager,authorCtrl.acceptPromotRequest])
+
+
 
 //! _____________________________________________DELETE_____________________________________
 
 // Deleting course
 router.delete('/delete-course/:id', [auth, author],authorCtrl.deleteCourse)
+router.delete('/delete-courses/:id', [auth, author],authorCtrl.deleteCourses)
+
 
 // Deleting content
 router.delete('/delete-content/:id', [auth, author],authorCtrl.deleteContent)

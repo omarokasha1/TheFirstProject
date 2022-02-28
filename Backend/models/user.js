@@ -20,6 +20,7 @@ const UserSchema = new mongoose.Schema({
     bio: { type: String },
     isAdmin: { type: Boolean },
     isAuthor:{type:Boolean},
+    isManager:{type:Boolean},
     myCourses: [ {type:mongoose.Schema.Types.ObjectId,
         ref:'Courses'}],
     userEducation:  {
