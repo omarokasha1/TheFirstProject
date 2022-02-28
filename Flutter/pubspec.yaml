@@ -66,6 +66,7 @@ dependencies:
   flutter_speed_dial: ^5.0.0+1
   multiselect_formfield: ^0.1.7
   flutter_picker: ^2.0.2
+  awesome_dialog: ^2.1.2
 
 
 
