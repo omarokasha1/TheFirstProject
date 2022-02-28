@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lms/layout/layout.dart';
 import 'package:lms/models/track_model.dart';
-import 'package:lms/modules/Auther/%20create_track%20/create_track.dart';
+import 'package:lms/modules/Auther/create_track/create_track.dart';
 import 'package:lms/modules/Auther/traks/traks_cubit/cubit.dart';
 import 'package:lms/modules/Auther/traks/traks_cubit/status.dart';
 import 'package:lms/shared/component/component.dart';

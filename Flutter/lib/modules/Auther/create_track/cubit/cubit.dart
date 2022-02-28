@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lms/models/course_model.dart';
-import 'package:lms/modules/Auther/%20create_track%20/cubit/statues.dart';
+import 'package:lms/modules/Auther/create_track/cubit/statues.dart';
 import 'package:lms/shared/component/constants.dart';
 import 'package:lms/shared/network/end_points.dart';
 import 'package:lms/shared/network/remote/dio-helper.dart';
