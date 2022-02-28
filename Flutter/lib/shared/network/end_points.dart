@@ -17,4 +17,6 @@ const updateAssignment = "api/course/update-assignment";
 const deleteAssignment = "api/course/delete-assignment";
 const getTrack = 'api/course/authorTracks';
 const createTrack = 'api/course/newTrack';
+const updateTrack = 'api/course/update-track';
+const deleteTrackData = 'api/course/delete-track';
 const getAuthorCourses = 'api/course/authorCourses';
