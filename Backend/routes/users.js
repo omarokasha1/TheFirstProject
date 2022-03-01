@@ -1,5 +1,6 @@
 const express = require('express')
 const userCtrl =require('../controllers/userController')
+const managerCtrl =require('../controllers/managerController')
 const router = express.Router()
 const auth = require('../middleware/auth')
 const multer = require('multer');
@@ -54,6 +55,16 @@ router.put('/update-profile',[ upload.single('imageUrl'),auth,userCtrl.updatePro
 
 // change password
 router.post('/change-password',[auth,userCtrl.changePassword] )
+
+
+// Creating promot request
+router.post('/promot-request', [auth,userCtrl.authorPromot])
+
+// Creating promot request
+router.put('/enrollCourse', [auth,userCtrl.enrollCourse])
+
+// Creating enroll course request
+router.post('/enroll-request', [auth,userCtrl.enrollCourseRequest])
 
 // Getting all
 router.get('/allUsers',userCtrl.allUsers )

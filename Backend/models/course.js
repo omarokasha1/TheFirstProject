@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 const CourseSchema = new mongoose.Schema({
     totalTime: { type: String, },
     lastUpdate: { type: String,},
-    requiremnets: { type: String,  },
+    requirements: { type: String,  },
     title: { type: String,  },
     price: { type: String,  },
     discount: { type: String,  },
@@ -14,10 +14,17 @@ const CourseSchema = new mongoose.Schema({
     description: { type: String,  },
     review: { type: String,  },
     imageUrl: { type: String,  },
+    ispublished:{type:Boolean,default:false},
     contents:
         [ {type:mongoose.Schema.Types.ObjectId,
             required:true,
           ref:'Content',
+          }]
+    ,
+    learner:
+        [ {type:mongoose.Schema.Types.ObjectId,
+            required:true,
+          ref:'User',
           }]
     ,
   

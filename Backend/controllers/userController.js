@@ -1,6 +1,7 @@
 const express = require('express')
 const bcrypt = require('bcryptjs')
 const Users = require('../models/user');
+const {RequestToManager,courseRequest,enrollRequest} = require('../models/manager')
 const jwt = require('jsonwebtoken')
 const { validateUser } = require('../models/user')
 const JWT_SECRET = 'kdhakjdhwdhqwiu;hdl/akjd;lakhdulhdw$$@$#^324uoqdald'
@@ -11,6 +12,8 @@ var fs = require('fs');
 var multer  = require('multer')
 const cloudinary = require('./cloudinary')
 const path = require('path');
+const mongoose =require('mongoose')
+const ObjectId = mongoose.Types.ObjectId; 
 
 
 
@@ -276,7 +279,89 @@ const userCtrl = {
       
     }
     
+  },
+
+  authorPromot:async(req,res)=>{
+
+    let newRequest
+    let promotRequested
+  const token = req.header('x-auth-token')
+  try {
+    const user = jwt.verify(token, 'privateKey')
+    console.log(user)
+    const authorPromoted = user.id
+    console.log(authorPromoted)
+
+ promotRequested = await RequestToManager.findOne({authorPromoted:ObjectId(authorPromoted)})
+ console.log('here' + promotRequested)
+
+      if (promotRequested) {
+        return res.status(200).json({ status: 'false', message: 'you are already requested' })
+      }
+   const request = new RequestToManager({
+    authorPromoted:authorPromoted
+   })
+ 
+   newRequest = await request.save()
+  return  res.status(201).json({status:'ok',message:'Request Created Success',id:newRequest._id,authorPromoted:newRequest.authorPromoted})
+  } catch (err) {
+    console.log(err)
+  return  res.status(400).json({status:'false', message: err.message })
   }
+  },
+
+  enrollCourse :async(req,res)=>{
+    const courseId = req.body.courseId
+     console.log(courseId)
+     const token = req.header('x-auth-token')
+
+ try{
+  const user = jwt.verify(token, 'privateKey')
+  console.log(user)
+  const id = user.id
+  console.log(id)
+
+   const course=  await Users.updateOne({_id:id} , { $push: { myCourses:ObjectId(courseId) } } ,{
+    upsert: true,
+    runValidators: true
+  });
+   console.log(course)
+   res.json({ status: 'ok', message: ' Enroll Success', })
+ } catch (error) {
+   console.log(error)
+   return res.status(500).json({ status: 'false', message: error.message})
+ }
+   },
+
+   enrollCourseRequest:async(req,res)=>{
+
+    let newRequest
+    let enrollCourse
+  const token = req.header('x-auth-token')
+  try {
+    const user = jwt.verify(token, 'privateKey')
+    console.log(user)
+    const enrollRequestId = user.id
+    console.log(enrollRequestId)
+
+    enrollCourse = await enrollRequest.findOne({userEnrolled:ObjectId(enrollRequestId)})
+ console.log('here' + enrollCourse)
+
+      if (enrollCourse) {
+        return res.status(200).json({ status: 'false', message: 'you are already requested' })
+      }
+   const request = new enrollRequest({
+    userId:enrollRequestId,
+    courseId:req.body.courseId
+   })
+ 
+   newRequest = await request.save()
+  return  res.status(201).json({status:'ok',message:'Request Created Success',id:newRequest._id,userEnrolled:newRequest})
+  } catch (err) {
+    console.log(err)
+  return  res.status(400).json({status:'false', message: err.message })
+  }
+  },
 
 };
 

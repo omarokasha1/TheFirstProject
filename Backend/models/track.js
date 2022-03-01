@@ -5,7 +5,6 @@ const TrackSchema = new mongoose.Schema({
     
     trackName:{type : String,required:true},
     description:{type:String},
-    duration:{type:String},
     imageUrl:{type:String},
     check:{type:String},
     author:{

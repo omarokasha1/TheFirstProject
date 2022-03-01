@@ -4,10 +4,32 @@ const mongoose = require('mongoose')
 const ManagerSchema = new mongoose.Schema({
     
        // _id:{type : mongoose.Schema.ObjectId,ref:'User'},
-        userEnrolled:[{ type:mongoose.Schema.Types.ObjectId , ref:'User'} ] ,
+        userEnrolled:{ type:mongoose.Schema.Types.ObjectId , ref:'User'}  ,
         trackPublished:{ type:mongoose.Schema.Types.ObjectId , ref:'Track'}  ,            
         authorPromoted:{ type:mongoose.Schema.Types.ObjectId , ref:'User' }  ,
-        coursePublished:[ {type:mongoose.Schema.Types.ObjectId,ref:'Course'}],               
+        coursePublished: {type:mongoose.Schema.Types.ObjectId,ref:'Course'},               
 })
 
-module.exports = mongoose.model('Manager',ManagerSchema)
+const CourseRequest = new mongoose.Schema({
+    
+         authorId:{ type:mongoose.Schema.Types.ObjectId , ref:'User'}  ,
+         courseId: {type:mongoose.Schema.Types.ObjectId,ref:'Course'},               
+ })
+
+ const EnrollRequest = new mongoose.Schema({
+    
+        userId:{ type:mongoose.Schema.Types.ObjectId , ref:'User'}  ,
+        courseId: {type:mongoose.Schema.Types.ObjectId,ref:'Course'},               
+})
+
+
+ 
+const managerSchema = mongoose.model('Manager',ManagerSchema)
+const courseRequest= mongoose.model('CourseRequest',CourseRequest)
+const enrollRequest = mongoose.model('EnrollRequest',EnrollRequest)
+
+module.exports = {
+        RequestToManager: managerSchema,
+        courseRequest: courseRequest,
+        enrollRequest:enrollRequest
+      }

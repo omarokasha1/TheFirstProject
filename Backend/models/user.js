@@ -8,7 +8,7 @@ const { type } = require('express/lib/response');
 // *schema like model of user
 const UserSchema = new mongoose.Schema({
     userName: { type: String, lowercase: true, minlength: 3, maxlength: 44 },
-    email: { type: String,  required: true, maxlength: 254 },
+    email: { type: String,  required: true, maxlength: 1024 },
     password: { type: String, required: true, minlength: 8, maxlength: 1024 },
     phone: { type: String, minlength: 11, maxlength: 11, },
     gender: { type: String, enum: ['male', 'female'] },
@@ -20,7 +20,6 @@ const UserSchema = new mongoose.Schema({
     bio: { type: String },
     isAdmin: { type: Boolean },
     isAuthor:{type:Boolean},
-    isManager:{type:Boolean},
     myCourses: [ {type:mongoose.Schema.Types.ObjectId,
         ref:'Courses'}],
     userEducation:  {
@@ -42,7 +41,7 @@ function validateUser(user) {
 
         userName: Joi.string().min(3).max(44).regex(/[a-zA-Z]/).lowercase(),
 
-        email: Joi.string().email().max(254).required(),
+        email: Joi.string().email().max(1024).required(),
 
         password: Joi.string().min(8).max(512).required(),
 

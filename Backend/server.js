@@ -25,11 +25,14 @@ app.use(compression())
 
 
 //* import user routes 
-const user = require('./routes/user')
+const user = require('./routes/users')
 app.use('/api/user', user)
 
 const course = require('./routes/courses')
 app.use('/api/course', course)
+
+const manager = require('./routes/manager')
+app.use('/api/manager', manager)
 
 //* if write invalide url or end point send to user an error message
 app.all('*', (req, res, next) => {
@@ -40,6 +43,6 @@ app.all('*', (req, res, next) => {
 })
 
 //* listen on port 8080 local host
-app.listen( process.env.PORT || 8080, function(){
-    console.log("Expreass server listening on port 8080");
+app.listen( process.env.PORT || 8081, function(){
+    console.log("Expreass server listening on port 8081");
   });

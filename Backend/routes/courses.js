@@ -9,6 +9,7 @@ const author = require('../middleware/author')
 const admin = require('../middleware/admin')
 
 const authorCtrl = require('../controllers/authorController')
+const managerCtrl=require('../controllers/managerController')
 
 const multer = require('multer');
 const path = require('path')
@@ -62,8 +63,7 @@ router.get('/authorQuizes', authorCtrl.getAuthorQuiz)
 // Getting Author question
 router.get('/authorQuestions', authorCtrl.getAuthorQuestion)
 
-// Getting Promot Requests
-router.get('/promotRequest',[auth,manager,authorCtrl.getPromotRequest] )
+
 
 //* ________________________________CREATE_________________________________________
 // Creating one Course
@@ -82,30 +82,30 @@ router.post('/newQuestion', [auth,author,authorCtrl.createQuestion])
 // Creating quiz
 router.post('/newQuiz', [auth,author,authorCtrl.createQuiz])
 
-// Creating promot request
-router.post('/promot-request', [auth,authorCtrl.authorPromot])
+// Creating course Request
+router.post('/courseRequest', [auth,author,authorCtrl.courseRequest])
 
 
-//? _____________________________________UPDATE____________________________________________
+
+//? ____________________________________UPDATE____________________________________________
 // Updating One Course
-router.put('/update-Course',[auth,author, upload.single('imageUrl'),authorCtrl.updateCourse])
+router.put('/update-course',[auth,author, upload.single('imageUrl'),authorCtrl.updateCourse])
 
 // Updating One Content
-router.put('/update-Content',[auth,author, upload.single('imageUrl'),authorCtrl.updateContent])
+router.put('/update-tontent',[auth,author, upload.single('imageUrl'),authorCtrl.updateContent])
 
 // Updating One Track
-router.put('/update-Track',[auth,author, upload.single('imageUrl'),authorCtrl.updateTrack])
+router.put('/update-track',[auth,author, upload.single('imageUrl'),authorCtrl.updateTrack])
 // Updating One Assignment
-router.put('/update-Assignment',[ auth,author,upload.single('imageUrl'),authorCtrl.updateAssignment])
+router.put('/update-assignment',[ auth,author,upload.single('imageUrl'),authorCtrl.updateAssignment])
 
 // Updating One Quiz
-router.put('/update-Quiz',[ auth,author,authorCtrl.updateQuiz])
+router.put('/update-quiz',[ auth,author,authorCtrl.updateQuiz])
 
 // Updating One Question
-router.put('/update-Question',[ auth,author,authorCtrl.updateQuestion])
+router.put('/update-question',[ auth,author,authorCtrl.updateQuestion])
 
-// Updating user role
-router.put('/accept-promot',[ auth,manager,authorCtrl.acceptPromotRequest])
+
 
 
 
@@ -133,6 +133,9 @@ router.delete('/delete-quiz/:id', [auth, author],authorCtrl.deleteQuiz)
 
 // Deleting assignment
 router.delete('/delete-question/:id', [auth, author],authorCtrl.deleteQuestion)
+
+
+
 
 // Deleting One
 router.delete('/:id', [auth, admin],authorCtrl.getUsers, async (req, res) => {
