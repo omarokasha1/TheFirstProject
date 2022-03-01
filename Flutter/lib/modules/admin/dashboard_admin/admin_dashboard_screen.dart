@@ -10,12 +10,14 @@ import 'package:lms/shared/component/constants.dart';
 import 'package:number_slide_animation/number_slide_animation.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+
 class _SalesData {
   _SalesData(this.year, this.views);
 
   final String year;
   final double views;
 }
+
 class AdminDashboardScreen extends StatelessWidget {
   AdminDashboardScreen({Key? key}) : super(key: key);
 
@@ -28,11 +30,12 @@ class AdminDashboardScreen extends StatelessWidget {
     _SalesData('Jun', 50),
     _SalesData('Jul', 60),
     _SalesData('Aug', 20),
-    _SalesData('Sept',80),
+    _SalesData('Sept', 80),
     _SalesData('Oct', 40),
     _SalesData('Nov', 20),
     _SalesData('Dec', 40),
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -128,12 +131,12 @@ class AdminDashboardScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Dally OverView ',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: primaryColor
-                    ),
+                    const Text(
+                      'Daily OverView ',
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: primaryColor),
                     ),
                     SizedBox(
                       height: 14,
@@ -143,12 +146,10 @@ class AdminDashboardScreen extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         color: Colors.white,
-                        boxShadow: [
+                        boxShadow: const [
                           BoxShadow(
                             color: Colors.grey,
-
                             offset: Offset(0.0, 1.0), //(x,y)
-
                             blurRadius: 6.0,
                           ),
                         ],
@@ -160,7 +161,10 @@ class AdminDashboardScreen extends StatelessWidget {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text('5,000',style: TextStyle(color: Colors.black),),
+                                  Text(
+                                    '5,000',
+                                    style: TextStyle(color: Colors.black),
+                                  ),
                                   Text('Users Today'),
                                 ],
                               ),
@@ -168,7 +172,10 @@ class AdminDashboardScreen extends StatelessWidget {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: const [
-                                  Text('8,000',style: TextStyle(color: Colors.black),),
+                                  Text(
+                                    '8,000',
+                                    style: TextStyle(color: Colors.black),
+                                  ),
                                   Text('Expected Users'),
                                 ],
                               ),
@@ -184,7 +191,7 @@ class AdminDashboardScreen extends StatelessWidget {
                                   animation: true,
                                   lineHeight: 4.0,
                                   percent: 0.6,
-                               //   linearStrokeCap: LinearStrokeCap.roundAll,
+                                  //   linearStrokeCap: LinearStrokeCap.roundAll,
                                   progressColor: primaryColor,
                                 ),
                               ),
@@ -195,9 +202,18 @@ class AdminDashboardScreen extends StatelessWidget {
                           ),
                           Row(
                             children: const [
-                              Icon(Icons.arrow_upward,color: Colors.green,size: 17,),
-                              Text('25%',style: TextStyle(color: Colors.green),),
-                              SizedBox(width: 15,),
+                              Icon(
+                                Icons.arrow_upward,
+                                color: Colors.green,
+                                size: 17,
+                              ),
+                              Text(
+                                '25%',
+                                style: TextStyle(color: Colors.green),
+                              ),
+                              SizedBox(
+                                width: 15,
+                              ),
                               Text("Since Yesterday"),
                               Spacer(),
                               Text(
@@ -247,7 +263,8 @@ class AdminDashboardScreen extends StatelessWidget {
                                 curve: Curves.fastOutSlowIn,
                                 //animation form
                                 textStyle: const TextStyle(
-                                    fontSize: 20.0, fontWeight: FontWeight.bold),
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.bold),
                               ),
                             ],
                           ),
@@ -265,7 +282,8 @@ class AdminDashboardScreen extends StatelessWidget {
                                 duration: const Duration(seconds: 4),
                                 curve: Curves.fastOutSlowIn,
                                 textStyle: const TextStyle(
-                                    fontSize: 20.0, fontWeight: FontWeight.bold),
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.bold),
                               ),
                             ],
                           ),
@@ -283,14 +301,17 @@ class AdminDashboardScreen extends StatelessWidget {
                                 duration: const Duration(seconds: 4),
                                 curve: Curves.fastOutSlowIn,
                                 textStyle: const TextStyle(
-                                    fontSize: 20.0, fontWeight: FontWeight.bold),
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.bold),
                               ),
                             ],
                           ),
                         ),
                       ],
                     ),
-                    SizedBox(height: 10,),
+                    SizedBox(
+                      height: 10,
+                    ),
                     Row(
                       children: [
                         Expanded(
@@ -312,7 +333,8 @@ class AdminDashboardScreen extends StatelessWidget {
                                 curve: Curves.fastOutSlowIn,
                                 //animation form
                                 textStyle: const TextStyle(
-                                    fontSize: 20.0, fontWeight: FontWeight.bold),
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.bold),
                               ),
                             ],
                           ),
@@ -330,12 +352,12 @@ class AdminDashboardScreen extends StatelessWidget {
                                 duration: const Duration(seconds: 4),
                                 curve: Curves.fastOutSlowIn,
                                 textStyle: const TextStyle(
-                                    fontSize: 20.0, fontWeight: FontWeight.bold),
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.bold),
                               ),
                             ],
                           ),
                         ),
-
                       ],
                     ),
                   ],
@@ -358,7 +380,9 @@ class AdminDashboardScreen extends StatelessWidget {
                         children: [
                           Text(
                             'Active Users',
-                            style: TextStyle(fontWeight: FontWeight.bold,color: primaryColor),
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: primaryColor),
                           ),
                           SizedBox(
                             height: 15,
@@ -366,30 +390,30 @@ class AdminDashboardScreen extends StatelessWidget {
                           ListView.separated(
                               shrinkWrap: true,
                               itemBuilder: (context, index) => Row(
-                                children: [
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  const CircleAvatar(
-                                    backgroundImage: NetworkImage(
-                                        'https://www.mnp.ca/-/media/foundation/integrations/personnel/2020/12/16/13/57/personnel-image-4483.jpg?h=800&w=600&hash=9D5E5FCBEE00EB562DCD8AC8FDA8433D'),
-                                  ),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Column(
-                                    children: const [
-                                      Text('Name Name'),
-                                      SizedBox(
-                                        height: 2,
+                                    children: [
+                                      const SizedBox(
+                                        width: 10,
                                       ),
-                                      Text('+12.8%',
-                                          style: TextStyle(
-                                              color: Colors.green)),
+                                      const CircleAvatar(
+                                        backgroundImage: NetworkImage(
+                                            'https://www.mnp.ca/-/media/foundation/integrations/personnel/2020/12/16/13/57/personnel-image-4483.jpg?h=800&w=600&hash=9D5E5FCBEE00EB562DCD8AC8FDA8433D'),
+                                      ),
+                                      const SizedBox(
+                                        width: 10,
+                                      ),
+                                      Column(
+                                        children: const [
+                                          Text('Name Name'),
+                                          SizedBox(
+                                            height: 2,
+                                          ),
+                                          Text('+12.8%',
+                                              style: TextStyle(
+                                                  color: Colors.green)),
+                                        ],
+                                      ),
                                     ],
                                   ),
-                                ],
-                              ),
                               separatorBuilder: (context, index) => Divider(),
                               itemCount: 3)
                         ],
@@ -411,39 +435,41 @@ class AdminDashboardScreen extends StatelessWidget {
                         children: [
                           Text(
                             'Active Author',
-                            style: TextStyle(fontWeight: FontWeight.bold,color: primaryColor),
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: primaryColor),
                           ),
                           SizedBox(
                             height: 15,
                           ),
                           ListView.separated(
-                            physics: NeverScrollableScrollPhysics(),
+                              physics: NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
                               itemBuilder: (context, index) => Row(
-                                children: [
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  CircleAvatar(
-                                    backgroundImage: NetworkImage(
-                                        'https://www.mnp.ca/-/media/foundation/integrations/personnel/2020/12/16/13/57/personnel-image-4483.jpg?h=800&w=600&hash=9D5E5FCBEE00EB562DCD8AC8FDA8433D'),
-                                  ),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  Column(
                                     children: [
-                                      Text('Name Name'),
                                       SizedBox(
-                                        height: 2,
+                                        width: 10,
                                       ),
-                                      Text('+12.8%',
-                                          style: TextStyle(
-                                              color: Colors.green)),
+                                      CircleAvatar(
+                                        backgroundImage: NetworkImage(
+                                            'https://www.mnp.ca/-/media/foundation/integrations/personnel/2020/12/16/13/57/personnel-image-4483.jpg?h=800&w=600&hash=9D5E5FCBEE00EB562DCD8AC8FDA8433D'),
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Column(
+                                        children: [
+                                          Text('Name Name'),
+                                          SizedBox(
+                                            height: 2,
+                                          ),
+                                          Text('+12.8%',
+                                              style: TextStyle(
+                                                  color: Colors.green)),
+                                        ],
+                                      ),
                                     ],
                                   ),
-                                ],
-                              ),
                               separatorBuilder: (context, index) => Divider(),
                               itemCount: 3)
                         ],
@@ -466,11 +492,14 @@ class AdminDashboardScreen extends StatelessWidget {
                   children: [
                     const Text(
                       'Yearly users number analysis',
-                      style: TextStyle(    fontSize: 17,
+                      style: TextStyle(
+                          fontSize: 17,
                           fontWeight: FontWeight.bold,
                           color: primaryColor),
                     ),
-                    SizedBox(height: 10,),
+                    SizedBox(
+                      height: 10,
+                    ),
                     SfCartesianChart(
                         primaryXAxis: CategoryAxis(),
                         // Enable legend
@@ -481,15 +510,16 @@ class AdminDashboardScreen extends StatelessWidget {
                           LineSeries<_SalesData, String>(
                               dataSource: data,
                               xValueMapper: (_SalesData views, _) => views.year,
-                              yValueMapper: (_SalesData views, _) => views.views,
-                             name: 'Users',
+                              yValueMapper: (_SalesData views, _) =>
+                                  views.views,
+                              name: 'Users',
                               // Enable data label
-                              dataLabelSettings: DataLabelSettings(isVisible: true))
+                              dataLabelSettings:
+                                  DataLabelSettings(isVisible: true))
                         ]),
                   ],
                 ),
               ),
-
             ],
           ),
         ),
