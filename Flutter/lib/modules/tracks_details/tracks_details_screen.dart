@@ -38,7 +38,7 @@ class TracksDetailsScreen extends StatelessWidget {
                 style: TextStyle(
                     //color: Colors.black,
                     fontWeight: FontWeight.bold,
-                    fontSize: 22),
+                    fontSize: 18),
               ),
               const SizedBox(
                 height: 10,
@@ -50,7 +50,7 @@ class TracksDetailsScreen extends StatelessWidget {
                   children: [
                     Text(
                       'Track OverView :',
-                      style: TextStyle(fontSize: 18,fontWeight: FontWeight.w700),
+                      style: TextStyle(fontSize: 16,fontWeight: FontWeight.w700),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(10.0),
@@ -80,13 +80,13 @@ class TracksDetailsScreen extends StatelessWidget {
                         Text(
                           'Content',
                           style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.w700),
+                              fontSize: 15, fontWeight: FontWeight.w700),
                         ),
                         Spacer(),
                         Text(
                           '6 Courses',
                           style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.w700),
+                              fontSize: 15, fontWeight: FontWeight.w700),
                         ),
                       ],
                     ),
@@ -130,7 +130,7 @@ Widget builtTrackContant(context) {
           Row(
             children: [
               Expanded(
-                flex: 1,
+                flex: 2,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8),
                   child: Image.network(
@@ -145,7 +145,7 @@ Widget builtTrackContant(context) {
                 width: 10,
               ),
               Expanded(
-                flex: 2,
+                flex: 3,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
