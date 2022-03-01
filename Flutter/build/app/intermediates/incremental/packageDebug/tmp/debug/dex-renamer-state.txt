@@ -1,4 +1,4 @@
-#Mon Feb 28 17:33:48 EET 2022
+#Tue Mar 01 16:05:38 EET 2022
 path.4=classes_2.dex
 path.3=classes_1.dex
 path.2=classes_0.dex
@@ -8,6 +8,7 @@ renamed.8=classes9.dex
 path.8=classes_6.dex
 path.7=classes_5.dex
 path.6=classes_4.dex
+renamed.12=classes13.dex
 path.5=classes_3.dex
 renamed.11=classes12.dex
 renamed.10=classes11.dex
@@ -18,6 +19,7 @@ base.2=/home/odc4/Main Project/TheFirstProject/Flutter/build/app/intermediates/d
 base.1=/home/odc4/Main Project/TheFirstProject/Flutter/build/app/intermediates/dex/debug/mergeProjectDexDebug/classes.dex
 base.0=/home/odc4/Main Project/TheFirstProject/Flutter/build/app/intermediates/dex/debug/mergeExtDexDebug/classes.dex
 renamed.3=classes4.dex
+path.12=classes_10.dex
 renamed.2=classes3.dex
 renamed.1=classes2.dex
 path.10=classes_8.dex
@@ -33,5 +35,6 @@ renamed.5=classes6.dex
 base.6=/home/odc4/Main Project/TheFirstProject/Flutter/build/app/intermediates/dex/debug/mergeLibDexDebug/classes_4.dex
 renamed.4=classes5.dex
 base.5=/home/odc4/Main Project/TheFirstProject/Flutter/build/app/intermediates/dex/debug/mergeLibDexDebug/classes_3.dex
+base.12=/home/odc4/Main Project/TheFirstProject/Flutter/build/app/intermediates/dex/debug/mergeLibDexDebug/classes_10.dex
 base.11=/home/odc4/Main Project/TheFirstProject/Flutter/build/app/intermediates/dex/debug/mergeLibDexDebug/classes_9.dex
 base.10=/home/odc4/Main Project/TheFirstProject/Flutter/build/app/intermediates/dex/debug/mergeLibDexDebug/classes_8.dex

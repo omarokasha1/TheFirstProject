@@ -5,11 +5,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lms/layout/layout.dart';
 import 'package:lms/models/track_model.dart';
+import 'package:lms/modules/Auther/create_track/Update_track.dart';
 import 'package:lms/modules/Auther/create_track/create_track.dart';
 import 'package:lms/modules/Auther/create_track/cubit/cubit.dart';
 import 'package:lms/modules/Auther/create_track/cubit/statues.dart';
-import 'package:lms/modules/Auther/traks/traks_cubit/cubit.dart';
-import 'package:lms/modules/Auther/traks/traks_cubit/status.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
 
@@ -17,7 +16,7 @@ class TracksScreen extends StatelessWidget {
   TracksScreen({Key? key}) : super(key: key);
 
   final List<Widget> myTabs = [
-    Tab(text: 'Drafts'),
+    //Tab(text: 'Drafts'),
     Tab(text: 'Pendding'),
     Tab(text: 'Published'),
   ];
@@ -110,17 +109,17 @@ class TracksScreen extends StatelessWidget {
                                     context: context);
                               },
                             ),
-                            ConditionalBuilder(
-                              condition: cubit.trackModel!.tracks!.length != 0,
-                              builder: (context) {
-                                return draftsCourses(cubit);
-                              },
-                              fallback: (context) {
-                                return emptyPage(
-                                    text: "No Tracks Added Yet",
-                                    context: context);
-                              },
-                            ),
+                            // ConditionalBuilder(
+                            //   condition: cubit.trackModel!.tracks!.length != 0,
+                            //   builder: (context) {
+                            //     return draftsCourses(cubit);
+                            //   },
+                            //   fallback: (context) {
+                            //     return emptyPage(
+                            //         text: "No Tracks Added Yet",
+                            //         context: context);
+                            //   },
+                            // ),
                           ],
                         ),
                       ),
@@ -143,7 +142,7 @@ class TracksScreen extends StatelessWidget {
     return ListView.builder(
         physics: BouncingScrollPhysics(),
         itemBuilder: (context, index) {
-          return BuildAuthorCourse(cubit.trackModel!.tracks![index], cubit);
+          return BuildAuthorCourse(context, cubit.trackModel!.tracks![index], cubit);
         },
         itemCount: cubit.trackModel!.tracks!.length);
   }
@@ -153,26 +152,27 @@ class TracksScreen extends StatelessWidget {
     return ListView.builder(
         physics: BouncingScrollPhysics(),
         itemBuilder: (context, index) {
-          return BuildAuthorCourse(cubit.trackModel!.tracks![index], cubit);
+          return BuildAuthorCourse(context, cubit.trackModel!.tracks![index], cubit);
         },
         itemCount: cubit.trackModel!.tracks!.length);
   }
 
   //Drafts Courses PageView
-  Widget draftsCourses(CreateTrackCubit cubit) {
-    return ListView.builder(
-        physics: BouncingScrollPhysics(),
-        itemBuilder: (context, index) {
-          return BuildAuthorCourse(cubit.trackModel!.tracks![index], cubit);
-        },
-        itemCount: cubit.trackModel!.tracks!.length);
-  }
+  // Widget draftsCourses(CreateTrackCubit cubit) {
+  //   return ListView.builder(
+  //       physics: BouncingScrollPhysics(),
+  //       itemBuilder: (context, index) {
+  //         return BuildAuthorCourse(context, cubit.trackModel!.tracks![index], cubit);
+  //       },
+  //       itemCount: cubit.trackModel!.tracks!.length);
+  // }
 
   //Course Widget
-  Widget BuildAuthorCourse(Tracks modelTrack, CreateTrackCubit cubit) {
+  Widget BuildAuthorCourse(context, Tracks modelTrack, CreateTrackCubit cubit) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
+        height: 120.h,
         padding: EdgeInsets.all(10),
         width: double.infinity,
         decoration: BoxDecoration(
@@ -200,8 +200,8 @@ class TracksScreen extends StatelessWidget {
               child: Image.network(
                 //'https://media.gettyimages.com/vectors/-vector-id960988454',
                 '${modelTrack.imageUrl}',
-                height: 150.w,
-                width: 140.h,
+                height: 150.h,
+                width: 140.w,
                 fit: BoxFit.cover,
               ),
             ),
@@ -225,7 +225,7 @@ class TracksScreen extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                       overflow: TextOverflow.ellipsis,
-                      maxLines: 2,
+                      maxLines: 1,
                     ),
                   ),
                   SizedBox(
@@ -238,7 +238,9 @@ class TracksScreen extends StatelessWidget {
                         backgroundColor: primaryColor,
                         radius: 18.r,
                         child: IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            navigator(context, UpdateTrackScreen(modelTrack));
+                          },
                           icon: Icon(
                             Icons.edit,
                             color: Colors.white,
@@ -268,12 +270,12 @@ class TracksScreen extends StatelessWidget {
                         width: 10.w,
                       ),
                       CircleAvatar(
-                        backgroundColor: Colors.blueGrey,
+                        backgroundColor: Colors.greenAccent[400],
                         radius: 18.r,
                         child: IconButton(
                           onPressed: () {},
                           icon: Icon(
-                            Icons.drafts,
+                            Icons.send_rounded,
                             color: Colors.white,
                             size: 18,
                           ),

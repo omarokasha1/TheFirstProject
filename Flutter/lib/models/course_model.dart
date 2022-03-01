@@ -82,7 +82,7 @@ class CourseModel {
     data['_id'] = this.sId;
     data['totalTime'] = this.totalTime;
     data['lastUpdate'] = this.lastUpdate;
-    data['requiremnets'] = this.requiremnets;
+    data['requirements'] = this.requiremnets;
     data['title'] = this.title;
     data['price'] = this.price;
     data['discount'] = this.discount;

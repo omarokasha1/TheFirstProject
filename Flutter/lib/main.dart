@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lms/modules/Auther/author_courses/author_courses_cubit/cubit.dart';
 import 'package:lms/modules/Auther/author_profile/author_profile_cubit/cubit.dart';
 import 'package:lms/modules/Auther/create_module/cubit/cubit.dart';
 import 'package:lms/modules/Auther/create_track/cubit/cubit.dart';
@@ -79,6 +80,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => InternetCubit()),
         BlocProvider(create: (context) => QuizCubit()),
         BlocProvider(create: (context) => CreateTrackCubit()),
+        BlocProvider(create: (context) => AuthorCoursesCubit()),
 
         //Bloc of Profile Cubit (Data of User).
         BlocProvider(create: (context) {

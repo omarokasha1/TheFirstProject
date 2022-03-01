@@ -5,6 +5,7 @@ import 'package:http_parser/http_parser.dart';
 import 'package:lms/models/course_model.dart';
 import 'package:lms/models/module_model.dart';
 import 'package:lms/models/track_model.dart';
+import 'package:lms/modules/Auther/create_module/update_module.dart';
 import 'package:lms/modules/Auther/create_track/cubit/statues.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
@@ -80,10 +81,9 @@ class CreateTrackCubit extends Cubit<CreateTrackStates> {
         'trackName': trackName,
         'description': shortDescription,
         'duration': duration,
-        //'imageUrl': trackImage,
+        'imageUrl': await fileUpload(trackImage),
         'courses': courses,
         'check': 'drafts',
-        'imageUrl': await fileUpload(trackImage),
       },
       url: createTrack,
       token: userToken,
@@ -98,11 +98,50 @@ class CreateTrackCubit extends Cubit<CreateTrackStates> {
     });
   }
 
+  ResponseModel? updateModel;
+  String? message;
+
+  Future<void> updateNewTrack({
+    required String trackName,
+    required String shortDescription,
+    required String duration,
+    required courses,
+    required trackImage,
+    required sID,
+  }) async {
+    emit(UpdateTrackLoadingState());
+    DioHelper.putData(
+      files: true,
+      data: {
+        'trackName': trackName,
+        'description': shortDescription,
+        'duration': duration,
+        'imageUrl': await fileUpload(trackImage),
+        'courses': courses,
+        'check': 'drafts',
+        'id': sID,
+      },
+      url: updateTrack,
+      token: userToken,
+    ).then((value) async {
+      //  trackModel = TrackModel.fromJson(value.data);
+      updateModel = ResponseModel.fromJson(value.data);
+      showToast(message: '${updateModel!.message}',color: Colors.green);
+      print('Hereeeeeee : ${value.data}');
+      await getAllTracks();
+      emit(UpdateTrackSuccessState());
+    }).catchError((onError) {
+      print(onError.toString());
+      emit(UpdateTrackErrorState(onError.toString()));
+    });
+  }
+
+
   Future<void> getAllTracks() async {
     emit(AllTrackLoadingState());
-    await DioHelper.getData(url: getTrack, token: userToken).then((value) {
+    await DioHelper.getData(url: getAuthorTrack, token: userToken).then((value) {
+      //trackModel!.tracks = [];
       trackModel = TrackModel.fromJson(value.data);
-      //print(value.data);
       emit(AllTrackSuccessState(trackModel));
     }).catchError((error) {
       emit(AllTrackErrorState(error.toString()));
@@ -110,52 +149,49 @@ class CreateTrackCubit extends Cubit<CreateTrackStates> {
     });
   }
 
-  ResponseModel? updateModel;
-  String? message;
-
-  void updateTrack({
-    required String trackId,
-    required String trackName,
-    required String shortDescription,
-    required String duration,
-    required courses,
-    required trackImage,
-  }) async {
-    emit(UpdateModuleLoadingState());
-
-    DioHelper.putData(
-      data: {
-        "id": trackId,
-        'trackName': trackName,
-        'description': shortDescription,
-        'duration': duration,
-        //'imageUrl': trackImage,
-        'courses': courses,
-        'check': 'drafts',
-        'imageUrl': await fileUpload(trackImage),
-      },
-      url: updateModule,
-      token: userToken,
-    ).then((value) {
-      updateModel = ResponseModel.fromJson(value.data);
-      emit(UpdateModuleSuccssesState(updateModel!));
-    }).catchError((onError) {
-      print(onError.toString());
-      emit(UpdateModuleErrorState(onError.toString()));
-    });
-  }
+  // void updateTrack({
+  //   required String trackId,
+  //   required String trackName,
+  //   required String shortDescription,
+  //   required String duration,
+  //   required courses,
+  //   required trackImage,
+  // }) async {
+  //   emit(UpdateModuleLoadingState());
+  //
+  //   DioHelper.putData(
+  //     data: {
+  //       "id": trackId,
+  //       'trackName': trackName,
+  //       'description': shortDescription,
+  //       'duration': duration,
+  //       //'imageUrl': trackImage,
+  //       'courses': courses,
+  //       'check': 'drafts',
+  //       'imageUrl': await fileUpload(trackImage),
+  //     },
+  //     url: updateModule,
+  //     token: userToken,
+  //   ).then((value) {
+  //     updateModel = ResponseModel.fromJson(value.data);
+  //     emit(UpdateModuleSuccssesState(updateModel!));
+  //   }).catchError((onError) {
+  //     print(onError.toString());
+  //     emit(UpdateModuleErrorState(onError.toString()));
+  //   });
+  // }
 
   ResponseModel? deleteModel;
 
   void deleteTrack({required String trackId}) {
-    emit(DeleteModuleLoadingState());
+    emit(DeleteTrackLoadingState());
     DioHelper.deleteData(url:'$deleteTrackData/$trackId',).then((value) {
       print(value.data);
       deleteModel = ResponseModel.fromJson(value.data);
       getAllTracks();
-      emit(DeleteModuleSuccssesState(deleteModel!));
+      emit(DeleteTrackSuccessState(deleteModel!));
     }).catchError((error) {
-      emit(DeleteModuleErrorState(error));
+      emit(DeleteTrackErrorState(error));
     });
   }
 }

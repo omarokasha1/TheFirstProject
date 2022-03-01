@@ -44,27 +44,28 @@ class AllTrackErrorState extends CreateTrackStates {
 
   AllTrackErrorState(this.error);
 }
-class UpdateModuleLoadingState extends CreateTrackStates {}
+class UpdateTrackLoadingState extends CreateTrackStates {}
 
-class UpdateModuleSuccssesState extends CreateTrackStates {
+class UpdateTrackSuccessState extends CreateTrackStates {
 
-  final ResponseModel  responseModel;
-  UpdateModuleSuccssesState(this.responseModel);
+  //final ResponseModel  responseModel;
+  UpdateTrackSuccessState();
 }
 
-class UpdateModuleErrorState extends CreateTrackStates {
+class UpdateTrackErrorState extends CreateTrackStates {
   final String error;
-  UpdateModuleErrorState(this.error);
+  UpdateTrackErrorState(this.error);
 }
-class DeleteModuleLoadingState extends CreateTrackStates {}
 
-class DeleteModuleSuccssesState extends CreateTrackStates {
+class DeleteTrackLoadingState extends CreateTrackStates {}
+
+class DeleteTrackSuccessState extends CreateTrackStates {
 
   final ResponseModel responseModel;
-  DeleteModuleSuccssesState(this.responseModel);
+  DeleteTrackSuccessState(this.responseModel);
 }
 
-class DeleteModuleErrorState extends CreateTrackStates {
+class DeleteTrackErrorState extends CreateTrackStates {
   final String error;
-  DeleteModuleErrorState(this.error);
+  DeleteTrackErrorState(this.error);
 }

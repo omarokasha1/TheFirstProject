@@ -25,7 +25,8 @@
     </queries>
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.VIBRATE" /> <!-- for android -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" /> <!-- for android -->
     <!-- <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS"/> -->
     <!-- <uses-permission android:name="com.android.launcher.permission.WRITE_SETTINGS"/> -->
     <!-- <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" /> -->
@@ -121,6 +122,16 @@
                 <action android:name="android.app.action.SCHEDULE_EXACT_ALARM_PERMISSION_STATE_CHANGED" />
             </intent-filter>
         </receiver>
+
+        <provider
+            android:name="com.crazecoder.openfile.FileProvider"
+            android:authorities="com.example.lms.fileProvider.com.crazecoder.openfile"
+            android:exported="false"
+            android:grantUriPermissions="true" >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths" />
+        </provider>
 
         <uses-library
             android:name="androidx.window.extensions"
