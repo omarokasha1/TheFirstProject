@@ -14,7 +14,9 @@ const CourseSchema = new mongoose.Schema({
     description: { type: String,  },
     review: { type: String,  },
     imageUrl: { type: String,  },
-    ispublished:{type:Boolean,default:false},
+    isWish:{type:Boolean,default:false},
+    isFavorite:{type:Boolean,default:false},
+    isPublished:{type:Boolean,default:false},
     contents:
         [ {type:mongoose.Schema.Types.ObjectId,
             required:true,

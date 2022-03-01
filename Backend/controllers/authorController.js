@@ -6,7 +6,7 @@ const Assignment = require("../models/assignment");
 const Quiz = require("../models/quiz");
 const Question = require("../models/question")
 const User = require('../models/user')
-const {RequestToManager,courseRequest,enrollRequest} = require('../models/manager')
+const {RequestToManager,courseRequest,enrollRequest,trackRequest} = require('../models/manager')
 
 const cloudinary = require('./cloudinary')
 const jwt = require('jsonwebtoken')
@@ -384,7 +384,7 @@ uploadCourse : async (req, res) => {
     req.headers['content-type'] = 'application/json';
   const uploadType=req.body.enumType
   console.log(uploadType)
-  //const fileUrl = req.file
+  const fileUrl = req.file
   console.log("hhhhhhhhhhhhhhhhhhhhhhh")
   //console.log(fileUrl)
  const token = req.header('x-auth-token')
@@ -393,16 +393,16 @@ uploadCourse : async (req, res) => {
    console.log(user)
    const id = user.id
    console.log(id)
-  //  const result = await cloudinary.uploader.upload(fileUrl.path, {
+   const result = await cloudinary.uploader.upload(fileUrl.path, {
   
-  //    public_id: `${user.id}_content${Date.now()}`,
-  //    folder: 'content', width: 1920, height: 1080, crop: "fill"
-  //  });
+     public_id: `${user.id}_content${Date.now()}`,
+     folder: 'content', width: 1920, height: 1080, crop: "fill"
+   });
 
    const content = new Content({
     contentTitle:req.body.contentTitle,
     contentDuration:req.body.contentDuration,
-    imageUrl:req.body.imageUrl,
+    imageUrl:result.url,
     contentType:req.body.contentType,
     description:req.body.description,
     courses:req.body.courses,
@@ -578,6 +578,36 @@ let newQuestion
   }
   },
 
+  trackRequest:async(req,res)=>{
+
+    let newRequest
+    let trackRequeted
+  const token = req.header('x-auth-token')
+  try {
+    const user = jwt.verify(token, 'privateKey')
+    console.log(user)
+    const authorRequestId = user.id
+    console.log(authorRequestId)
+
+    trackRequeted = await trackRequest.findOne({userEnrolled:ObjectId(authorRequestId)})
+ console.log('here' + trackRequeted)
+
+      if (trackRequeted) {
+        return res.status(200).json({ status: 'false', message: 'you are already requested' })
+      }
+   const request = new trackRequest({
+    authorId:authorRequestId,
+    trackId:req.body.trackId
+   })
+   console.log(request)
+ 
+   newRequest = await request.save()
+  return  res.status(201).json({status:'ok',message:'Request Created Success',trackRequest:newRequest})
+  } catch (err) {
+    console.log(err)
+  return  res.status(400).json({status:'false', message: err.message })
+  }
+  },
  
 
   //? ______________________________________UPDATE FUNCTION_____________________________
@@ -649,8 +679,8 @@ let newQuestion
           $set: req.body
         }
      )
-         await User.updateOne(
-        { _id: id },
+         await Content.updateOne(
+        { _id: req.body.id },
         {
           $set: {
             imageUrl:result.url

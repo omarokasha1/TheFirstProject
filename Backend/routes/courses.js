@@ -16,7 +16,7 @@ const path = require('path')
 
 
 
-//define storage for the images
+//* define storage for the images
 const storage = multer.diskStorage({
   //destination for files
   destination: function (request, file, callback) {
@@ -30,7 +30,7 @@ const storage = multer.diskStorage({
   },
 });
 
-//upload parameters for multer
+//* upload parameters for multer
 const upload = multer({
   storage: storage,
   limits: {
@@ -38,10 +38,11 @@ const upload = multer({
   },
 });
 
-//* ____________________________GETTING_________________________________
+// ____________________________GETTING_________________________________
 
-//* get courses middleware
+// get courses middleware
 router.get('/allCourses',authorCtrl.getCourses)
+
 // Getting Author Contents
 router.get('/authorContents',authorCtrl.getAuthorContents)
 
@@ -66,6 +67,7 @@ router.get('/authorQuestions', authorCtrl.getAuthorQuestion)
 
 
 //* ________________________________CREATE_________________________________________
+
 // Creating one Course
 router.post('/newCourse', [auth,author,upload.single('imageUrl'),authorCtrl.createCourse])
 // Creating content
@@ -85,24 +87,29 @@ router.post('/newQuiz', [auth,author,authorCtrl.createQuiz])
 // Creating course Request
 router.post('/courseRequest', [auth,author,authorCtrl.courseRequest])
 
+// Creating track Request
+router.post('/trackRequest', [auth,author,authorCtrl.trackRequest])
+
 
 
 //? ____________________________________UPDATE____________________________________________
-// Updating One Course
+
+//? Updating One Course
 router.put('/update-course',[auth,author, upload.single('imageUrl'),authorCtrl.updateCourse])
 
-// Updating One Content
+//? Updating One Content
 router.put('/update-tontent',[auth,author, upload.single('imageUrl'),authorCtrl.updateContent])
 
-// Updating One Track
+//? Updating One Track
 router.put('/update-track',[auth,author, upload.single('imageUrl'),authorCtrl.updateTrack])
-// Updating One Assignment
+
+//? Updating One Assignment
 router.put('/update-assignment',[ auth,author,upload.single('imageUrl'),authorCtrl.updateAssignment])
 
-// Updating One Quiz
+//? Updating One Quiz
 router.put('/update-quiz',[ auth,author,authorCtrl.updateQuiz])
 
-// Updating One Question
+//? Updating One Question
 router.put('/update-question',[ auth,author,authorCtrl.updateQuestion])
 
 
@@ -111,33 +118,33 @@ router.put('/update-question',[ auth,author,authorCtrl.updateQuestion])
 
 //! _____________________________________________DELETE_____________________________________
 
-// Deleting course
+//! Deleting course
 router.delete('/delete-course/:id', [auth, author],authorCtrl.deleteCourse)
 router.delete('/delete-courses/:id', [auth, author],authorCtrl.deleteCourses)
 
 
-// Deleting content
+//! Deleting content
 router.delete('/delete-content/:id', [auth, author],authorCtrl.deleteContent)
 router.delete('/delete-contents/:id', [auth, author],authorCtrl.deleteContents)
 
 
-// Deleting Track
+//! Deleting Track
 router.delete('/delete-track/:id', [auth, author],authorCtrl.deleteTrack)
 
 
-// Deleting assignment
+//! Deleting assignment
 router.delete('/delete-assignment/:id', [auth, author],authorCtrl.deleteAssignment)
 
-// Deleting assignment
+//! Deleting assignment
 router.delete('/delete-quiz/:id', [auth, author],authorCtrl.deleteQuiz)
 
-// Deleting assignment
+//! Deleting assignment
 router.delete('/delete-question/:id', [auth, author],authorCtrl.deleteQuestion)
 
 
 
 
-// Deleting One
+//! Deleting One
 router.delete('/:id', [auth, admin],authorCtrl.getUsers, async (req, res) => {
   try {
     await res.user.remove()
@@ -147,21 +154,5 @@ router.delete('/:id', [auth, admin],authorCtrl.getUsers, async (req, res) => {
   }
 })
 
-async function getCourse(req, res, next) {
-  let course
- 
-  try {
-    course = await Course.find({title:req.params.title}).populate('author').select('-__v')
-    if (!course) {
-      return res.status(200).json({ status: 'false', message: 'Cannot find course' })
-    }
-    res.course = course
-  } catch (err) {
-    return res.status(500).json({ message: err.message })
-  }
-
-  res.course = course
-  next()
-}
 
 module.exports = router

@@ -23,6 +23,7 @@ router.get('/enrollRequest',[auth,manager,managerCtrl.getEnrollRequest] )
 
 router.get('/courseRequest',[auth,manager,managerCtrl.getCourseRequest] )
 
+router.get('/trackRequest',[auth,manager,managerCtrl.getTarckRequest] )
 
 
 
@@ -37,6 +38,9 @@ router.put('/accept-enroll',[ auth,manager,managerCtrl.acceptEnrollRequest])
 //? Updating user enroll request
 router.put('/accept-course',[ auth,manager,managerCtrl.acceptCourseRequest])
 
+//? Updating user enroll request
+router.put('/accept-track',[ auth,manager,managerCtrl.acceptTrackRequest])
+
 //!_________________________________________________________DELETE REQUEST_______________________________
 
 //! Delete request
@@ -44,5 +48,11 @@ router.delete('/delete-request', [auth, manager],managerCtrl.deleteRequest)
 
 //! Delete request
 router.delete('/delete-enroll', [auth, manager],managerCtrl.deleteEnrollRequest)
+
+//! Delete Course request
+router.delete('/delete-course', [auth, manager],managerCtrl.deleteCourseRequest)
+
+//! Delete Course request
+router.delete('/delete-track', [auth, manager],managerCtrl.deleteTrackRequest)
 
 module.exports = router

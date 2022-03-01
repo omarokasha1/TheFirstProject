@@ -5,12 +5,13 @@ const Assignment = require("../models/assignment");
 const Quiz = require("../models/quiz");
 const Question = require("../models/question")
 const User = require('../models/user')
-const {RequestToManager,courseRequest,enrollRequest} = require('../models/manager')
+const {RequestToManager,courseRequest,enrollRequest,trackRequest} = require('../models/manager')
 
 const cloudinary = require('./cloudinary')
 const jwt = require('jsonwebtoken')
 const mongoose =require('mongoose');
 const manager = require("../middleware/manager");
+const course = require("../models/course");
 const ObjectId = mongoose.Types.ObjectId;
 
 
@@ -80,6 +81,27 @@ const managerCtrl={
       
        },
 
+       getTarckRequest:async(req, res, next) =>{
+        let trackRequests
+        const token = req.header('x-auth-token')
+      
+        try {
+          const user = jwt.verify(token, 'privateKey')
+         console.log(user)
+         const id = user.id
+         console.log(id)
+         trackRequests = await trackRequest.find().select(' -__v ')
+          if (!trackRequests) {
+            return res.status(200).json({ status: 'false', message: 'Cannot find track Requests' })
+          }
+          return res.status(200).json({status : "ok",message:'Get Track Requests Success',trackRequests:trackRequests})
+        } catch (err) {
+          console.log(err)
+          return res.status(500).json({status:'false', message: err.message })
+        }
+      
+       },
+
 
     //* _______________________________________CREATE REQUEST______________________________
     
@@ -101,7 +123,7 @@ const managerCtrl={
           }
        )
        await promotRequested.remove()
-      res.json({ status: 'ok', message: ' changed', })
+      res.json({ status: 'ok', message: ' Congrats You Are Author', })
     } catch (error) {
       return res.status(500).json({ status: 'false', message: error.message})
     }
@@ -124,7 +146,7 @@ const managerCtrl={
            }
         )
         await enrollRequested.remove()
-       res.json({ status: 'ok', message: ' changed', })
+       res.json({ status: 'ok', message: ' You Enrolled Now ', })
      } catch (error) {
          console.log(error)
        return res.status(500).json({ status: 'false', message: error.message})
@@ -135,22 +157,41 @@ const managerCtrl={
         const authorId = req.body.authorId
         const courseId = req.body.courseId
          let courseRequested
-         console.log(authorId)
-         console.log(courseId)
      try{
         courseRequested = await courseRequest.findOne({userId:authorId})
-       console.log('here' + courseRequested)
-       console.log('here' + courseRequested.id)
-
-     
-         await Course.updateOne(
-           { _id: courseId },
+   
+      const newc =   await Course.updateOne(
+           { _id:courseId },
            {
-             $set: {isPublished:true}
+             $set: { isPublished : true }
            }
         )
-        await courseRequested.remove()
-       res.json({ status: 'ok', message: ' changed', })
+        console.log(newc)
+         await courseRequested.remove()
+       res.json({ status: 'ok', message: ' Course Accepted', })
+     } catch (error) {
+         console.log(error)
+       return res.status(500).json({ status: 'false', message: error.message})
+     }
+       },
+
+       acceptTrackRequest:async(req,res)=>{
+        const authorId = req.body.authorId
+        const trackId = req.body.trackId
+        console.log(trackId)
+         let trackRequested
+     try{
+      trackRequested = await trackRequest.findOne({userId:authorId})
+   console.log(trackRequested)
+      const newc =   await Track.updateOne(
+           { _id:trackId },
+           {
+             $set: { isPublished : true }
+           }
+        )
+        console.log(newc)
+         await trackRequested.remove()
+       res.json({ status: 'ok', message: ' Track Accepted', })
      } catch (error) {
          console.log(error)
        return res.status(500).json({ status: 'false', message: error.message})
@@ -183,6 +224,34 @@ const managerCtrl={
           await enrollRequest.findByIdAndDelete(enrollRequested);
     
         return  res.json({status:'ok', message: "Deleted Success!" });
+        } catch (err) {
+          return res.status(500).json({status:'false', message: err.message });
+        }
+      },
+
+      deleteCourseRequest : async (req, res) => {
+        const courseId = req.body.courseId
+        let courseRequested
+        try {
+          courseRequested = await courseRequest.findOne({courseId:ObjectId(courseId)})
+          console.log(courseRequested)
+          await courseRequest.findByIdAndDelete(courseRequested);
+    
+        return  res.json({status:'ok', message: "Deleted Success!" });
+        } catch (err) {
+          return res.status(500).json({status:'false', message: err.message });
+        }
+      },
+
+      deleteTrackRequest : async (req, res) => {
+        const trackId = req.body.trackId
+        let trackRequested
+        try {
+          trackRequested = await trackRequest.findOne({courseId:ObjectId(trackId)})
+          console.log(trackRequested)
+          await trackRequest.findByIdAndDelete(trackRequested);
+    
+        return  res.json({status:'ok', message: "Track Deleted Successfuly!" });
         } catch (err) {
           return res.status(500).json({status:'false', message: err.message });
         }

@@ -7,7 +7,7 @@ const multer = require('multer');
 const path = require('path');
 
 
-//define storage for the images
+//* define storage for the images
 
 const storage = multer.diskStorage({
     //destination for files
@@ -21,7 +21,7 @@ const storage = multer.diskStorage({
     },
   });
   
-  //upload parameters for multer
+  //* upload parameters for multer
   const upload = multer({
     storage: storage,
     limits: {
@@ -29,44 +29,43 @@ const storage = multer.diskStorage({
     },
   });
 
-/*   router.post(
-    '/upload-profile',
-    auth,
-    upload.single('profile'),
-    userCtrl.uploadProfile
-  ); */
-  
-  router.post(
-    '/upload',
-    auth,
-    upload.single('profile'),
-    userCtrl.uploadImage
-  );
 
-router.post('/register',userCtrl.register )
-
-router.post('/login', userCtrl.login)
+// ____________________________________________GETTIG_____________________________
 
 //* middleware auth check first if user loged in and have a token 
 router.get('/get-profile', auth, userCtrl.profile)
 
+// Getting all
+router.get('/allUsers',userCtrl.allUsers )
+
+//* ____________________________________________CREATING_______________________________
+
+/*   router.post('/upload-profile',auth,upload.single('profile'),userCtrl.uploadProfile); */
+    
+router.post('/register',userCtrl.register )
+
+router.post('/login', userCtrl.login)
+
+router.post('/upload',auth,upload.single('profile'),userCtrl.uploadImage);
+    
+  // change password
+router.post('/change-password',[auth,userCtrl.changePassword] )
+  
+// Creating promot request
+router.post('/promot-request', [auth,userCtrl.authorPromot])    
+    
+// Creating enroll course request
+router.post('/enroll-request', [auth,userCtrl.enrollCourseRequest])    
+    
+  
+//? ______________________________________UPDATE________________________________________
+
 // Updating One
 router.put('/update-profile',[ upload.single('imageUrl'),auth,userCtrl.updateProfile])
 
-// change password
-router.post('/change-password',[auth,userCtrl.changePassword] )
-
-
-// Creating promot request
-router.post('/promot-request', [auth,userCtrl.authorPromot])
 
 // Creating promot request
 router.put('/enrollCourse', [auth,userCtrl.enrollCourse])
 
-// Creating enroll course request
-router.post('/enroll-request', [auth,userCtrl.enrollCourseRequest])
-
-// Getting all
-router.get('/allUsers',userCtrl.allUsers )
 
 module.exports = router

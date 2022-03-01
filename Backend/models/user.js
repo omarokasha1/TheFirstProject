@@ -20,6 +20,10 @@ const UserSchema = new mongoose.Schema({
     bio: { type: String },
     isAdmin: { type: Boolean },
     isAuthor:{type:Boolean},
+    wishList:[{type:mongoose.Schema.Types.ObjectId,
+        ref:'Courses'}],
+        favoriteList:[{type:mongoose.Schema.Types.ObjectId,
+            ref:'Courses'}],
     myCourses: [ {type:mongoose.Schema.Types.ObjectId,
         ref:'Courses'}],
     userEducation:  {
