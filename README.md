@@ -81,7 +81,7 @@ $ cd ~/workspace
 - add those lines in `package.js` file
 ```sh
  "scripts": {
-    "start": "nodemon server.js"
+    "start": "node server.js"
   },
 ```
 run npm start which will start the local server.
