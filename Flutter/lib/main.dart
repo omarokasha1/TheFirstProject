@@ -3,11 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lms/modules/Admin/add_manager.dart';
-import 'package:lms/modules/Auther/dashboard/dashboard_auther.dart';
-import 'package:lms/modules/Manager/author_request.dart';
+import 'package:lms/layout/layout.dart';
+import 'package:lms/modules/Auther/author_courses/course_view.dart';
+import 'package:lms/modules/Auther/modules_library/module_view.dart';
 import 'package:lms/modules/courses/cubit/cubit.dart';
-import 'package:lms/modules/my_learning/mylearning.dart';
 import 'package:lms/modules/onboarding/onboarding_screen.dart';
 import 'package:lms/modules/splash_screen.dart';
 import 'package:lms/shared/component/constants.dart';
@@ -107,8 +106,11 @@ class MyApp extends StatelessWidget {
           theme: lightTheme(context),
           //Here The Theme.
           themeMode: ThemeMode.light,
-        //  home: AddManager(),
-         home:ZoomDrawerScreen(widget:DashboardAuthorScreen() ,) ,
+         // home: widget,
+
+          home:Layout(widget: ZoomDrawerScreen(widget:ModuleDetailsScreen() ,)) ,
+
+         // home:ZoomDrawerScreen(widget:DashboardAuthorScreen() ,) ,
         ),
       ),
     );

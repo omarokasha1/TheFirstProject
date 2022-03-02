@@ -6,7 +6,6 @@ import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:lms/modules/Admin/add_manager.dart';
 import 'package:lms/modules/Auther/author_courses/author_courses_screen.dart';
 import 'package:lms/modules/Auther/modules_library/modules_library.dart';
-import 'package:lms/modules/Auther/traks/traks_screen.dart';
 import 'package:lms/modules/authertication/change%20password/change_password_screen.dart';
 import 'package:lms/modules/authertication/login/login_screen.dart';
 import 'package:lms/modules/my_learning/mylearning.dart';
