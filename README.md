@@ -86,7 +86,7 @@ $ cd ~/workspace
 ```
 run npm start which will start the local server.
 ```sh
-$ npm start
+$ npm run start
 ```
 # License
 - Open-source software
