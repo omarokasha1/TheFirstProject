@@ -8,7 +8,7 @@ const { type } = require('express/lib/response');
 // *schema like model of user
 const UserSchema = new mongoose.Schema({
     userName: { type: String, lowercase: true, minlength: 3, maxlength: 44 },
-    email: { type: String,  required: true, maxlength: 1024 },
+    email: { type: String,lowercase:true,  required: true, maxlength: 1024 },
     password: { type: String, required: true, minlength: 8, maxlength: 1024 },
     phone: { type: String, minlength: 11, maxlength: 11, },
     gender: { type: String, enum: ['male', 'female'] },
@@ -20,24 +20,21 @@ const UserSchema = new mongoose.Schema({
     bio: { type: String },
     isAdmin: { type: Boolean },
     isAuthor:{type:Boolean},
-    wishList:[{type:mongoose.Schema.Types.ObjectId,
-        ref:'Courses'}],
-        favoriteList:[{type:mongoose.Schema.Types.ObjectId,
-            ref:'Courses'}],
-    myCourses: [ {type:mongoose.Schema.Types.ObjectId,
-        ref:'Courses'}],
+    wishList:[{type:mongoose.Schema.Types.ObjectId,ref:'Courses'}],
+        
+    myCourses: [ {type:mongoose.Schema.Types.ObjectId,ref:'Courses'}],
+        
     userEducation:  {
         university: { type: String, },
         major: { type: String, },
         faculty: { type: String, },
         experince: { type: String, },
         grade: { type: String, },
-        interest: 
-            [{type:String}]
+        interest: [{type:String}]
+        },
+})     
         
-    } ,
-})
-
+    
 
 //*validation on user inputs register
 function validateUser(user) {

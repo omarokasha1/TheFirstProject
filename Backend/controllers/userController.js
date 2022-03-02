@@ -1,6 +1,7 @@
 const express = require('express')
 const bcrypt = require('bcryptjs')
 const Users = require('../models/user');
+const Course = require('../models/course');
 const {RequestToManager,courseRequest,enrollRequest} = require('../models/manager')
 const jwt = require('jsonwebtoken')
 const { validateUser } = require('../models/user')
@@ -237,7 +238,7 @@ const userCtrl = {
         .json({ status: 'flase', message: 'server error, try after some time' });
      
     }
-  },
+    },
 
   uploadImage:async(req,res)=>{
     const file = req.file
@@ -279,7 +280,7 @@ const userCtrl = {
       
     }
     
-  },
+    },
 
   authorPromot:async(req,res)=>{
 
@@ -308,7 +309,7 @@ const userCtrl = {
     console.log(err)
   return  res.status(400).json({status:'false', message: err.message })
   }
-  },
+   },
 
   enrollCourse :async(req,res)=>{
     const courseId = req.body.courseId
@@ -337,7 +338,7 @@ const userCtrl = {
 
     let newRequest
     let enrollCourse
-  const token = req.header('x-auth-token')
+    const token = req.header('x-auth-token')
   try {
     const user = jwt.verify(token, 'privateKey')
     console.log(user)
@@ -345,23 +346,56 @@ const userCtrl = {
     console.log(enrollRequestId)
 
     enrollCourse = await enrollRequest.findOne({userEnrolled:ObjectId(enrollRequestId)})
- console.log('here' + enrollCourse)
+  console.log('here' + enrollCourse)
 
       if (enrollCourse) {
         return res.status(200).json({ status: 'false', message: 'you are already requested' })
       }
-   const request = new enrollRequest({
+   const request = await new enrollRequest({
     userId:enrollRequestId,
     courseId:req.body.courseId
-   })
+   }).save()
  
-   newRequest = await request.save()
-  return  res.status(201).json({status:'ok',message:'Request Created Success',id:newRequest._id,userEnrolled:newRequest})
+   //newRequest = await request.save()
+  return  res.status(201).json({status:'ok',message:'Request Created Success',userEnrolled:request})
   } catch (err) {
     console.log(err)
   return  res.status(400).json({status:'false', message: err.message })
   }
-  },
+    },
+
+   wishListCourse :async(req,res)=>{
+    const courseId = req.body.courseId
+     console.log(courseId)
+     const token = req.header('x-auth-token')
+    let wishList
+   try{
+    const user = jwt.verify(token, 'privateKey')
+    console.log(user)
+    const id = user.id
+    console.log(id)
+
+  let check = await Users.findOne({_id:id,wishList:ObjectId(courseId)})
+      console.log("check "+check)
+  if(check){
+  wishList=  await  Users.updateMany({ '_id': id}, { $pull: { wishList: courseId } });
+
+   console.log("remove "+wishList)
+   return res.status(200).json({ status: 'ok', message: ' Removed From WishList Success', })
+    }else{
+  wishList=  await  Users.updateMany({ '_id': id}, { $push: { wishList: courseId } });
+  let addWishToCourse=  await  Course.updateMany({ '_id': courseId}, { $push: { wishers: id } });
+  console.log("add "+wishList)
+  console.log("add "+addWishToCourse)
+
+  return res.status(200).json({ status: 'ok', message: ' Add From WishList Success', })
+    }
+   
+ } catch (error) {
+   console.log(error)
+   return res.status(500).json({ status: 'false', message: error.message})
+ }
+   },
 
 };
 

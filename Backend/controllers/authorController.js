@@ -858,8 +858,10 @@ let newQuestion
          console.log(course.contents)
       const content=  await Content.updateMany({ '_id': course.contents }, { $pull: { courses: course._id } });
       const user=  await User.updateMany({ '_id': course.learner }, { $pull: { myCourses: course._id } });
+      const wisher = await User.updateMany({ '_id': course.wishers }, { $pull: { wishList: course._id } })
        console.log(content)
        console.log(user)
+       console.log(wisher)
   
       return  res.json({status:'ok', message: "Deleted Success!" });
       } catch (err) {

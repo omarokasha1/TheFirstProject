@@ -67,5 +67,8 @@ router.put('/update-profile',[ upload.single('imageUrl'),auth,userCtrl.updatePro
 // Creating promot request
 router.put('/enrollCourse', [auth,userCtrl.enrollCourse])
 
+// Updating wishList request
+router.put('/wishList', [auth,userCtrl.wishListCourse])
+
 
 module.exports = router

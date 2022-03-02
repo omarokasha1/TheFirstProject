@@ -1,10 +1,8 @@
 const mongoose = require('mongoose')
-const Joi = require('joi')
-const jwt = require('jsonwebtoken');
 
 
 const CourseSchema = new mongoose.Schema({
-    totalTime: { type: String, },
+    totalTime: {type:String },
     lastUpdate: { type: String,},
     requirements: { type: String,  },
     title: { type: String,  },
@@ -14,28 +12,16 @@ const CourseSchema = new mongoose.Schema({
     description: { type: String,  },
     review: { type: String,  },
     imageUrl: { type: String,  },
-    isWish:{type:Boolean,default:false},
-    isFavorite:{type:Boolean,default:false},
+    wishers:[{type:mongoose.Schema.Types.ObjectId, ref:'User'}],
     isPublished:{type:Boolean,default:false},
-    contents:
-        [ {type:mongoose.Schema.Types.ObjectId,
-            required:true,
-          ref:'Content',
-          }]
-    ,
-    learner:
-        [ {type:mongoose.Schema.Types.ObjectId,
-            required:true,
-          ref:'User',
-          }]
-    ,
-  
-    author:{
+    contents:[ {type:mongoose.Schema.Types.ObjectId,required:true, ref:'Content',}],
+    learner:[ {type:mongoose.Schema.Types.ObjectId,required:true,  ref:'User',}],    
+    author:{   type:mongoose.Schema.Types.ObjectId ,               ref:'User' },        
+         
+          
+     })
+    
         
-        type:mongoose.Schema.Types.ObjectId ,
-        ref:'User'
-    }
-    ,})
-
+            
 
     module.exports = mongoose.model('Course', CourseSchema)
