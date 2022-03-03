@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Joi = require('joi')
 const jwt = require('jsonwebtoken');
 const { type } = require('express/lib/response');
-
+const { joiPassword } = require('joi-password');
 
 
 // *schema like model of user
@@ -42,11 +42,17 @@ function validateUser(user) {
 
         userName: Joi.string().min(3).max(44).regex(/[a-zA-Z]/).lowercase(),
 
-        email: Joi.string().email().max(1024).required(),
+        email: Joi.string().email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } },).max(1024).required(),
 
-        password: Joi.string().min(8).max(512).required(),
+        password: joiPassword.string()
+        .minOfSpecialCharacters(1)
+        .minOfLowercase(5)
+        .minOfUppercase(1)
+        .minOfNumeric(1)
+        .noWhiteSpaces()
+        .required(),
 
-        phone: Joi.string().min(11).max(11),
+        phone: Joi.string().min(11).max(11).pattern(/^[0-9]+$/),
 
         gender: Joi.string(),
 
@@ -70,9 +76,11 @@ function validateUser(user) {
 function validateUserLogin(user) {
     const JoiSchema = Joi.object({
 
-        email: Joi.string().email().min(3).max(256).required(),
+        email: Joi.string().email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }).min(3).max(256).required(),
 
-        password: Joi.string().min(8).max(512).required()
+        password: joiPassword.string()
+        .noWhiteSpaces()
+        .required(),
 
     }).options({ abortEarly: false });
 
@@ -80,7 +88,6 @@ function validateUserLogin(user) {
 }
 
 //*export to use this scehma or function in different files
-//module.exports = mongoose.model('omar', UserEducation)
 module.exports = mongoose.model('User', UserSchema)
 
 

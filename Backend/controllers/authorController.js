@@ -194,11 +194,8 @@ uploadCourse : async (req, res) => {
      console.log(user)
      const id = user.id
      console.log(id)
-     track = await Track.aggregate([
-        {
-          $match: { author: ObjectId(id) }
-        }
-      ])
+     
+      let track = await Track.find({author:ObjectId(id),isPublished:false}).populate('courses','-__v').select('-__v')
       if (!track) {
         return res.status(200).json({ status: 'false', message: 'Cannot find tracks' })
       }
@@ -220,11 +217,8 @@ uploadCourse : async (req, res) => {
      const id = user.id 
      console.log(id)
      console.log(check)
-     track = await Track.aggregate([
-        {
-          $match: { author: ObjectId(id),check:check }
-        }
-      ])
+ 
+      let track = await Track.find({author:ObjectId(id),isPublished:true}).populate('courses','-__v',).select('-__v')
       if (!track) {
         return res.status(200).json({ status: 'false', message: 'Cannot find tracks' })
       }
