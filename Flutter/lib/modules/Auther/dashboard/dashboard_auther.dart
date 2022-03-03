@@ -131,7 +131,7 @@ class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
               },
               label: 'Add Quiz'),
           SpeedDialChild(
-              child: Icon(Icons.add),
+              child: Icon(Icons.description ),
               onTap: () {
                 navigator(context, CreateAssignmentScreen());
               },
@@ -149,7 +149,7 @@ class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
               },
               label: 'Add Course'),
           SpeedDialChild(
-              child: Icon(Icons.add),
+              child: Icon(Icons.location_on_outlined),
               onTap: () {
                 navigator(context, CreateTrackScreen());
               },

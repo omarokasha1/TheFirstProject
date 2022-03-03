@@ -28,7 +28,6 @@ class Tracks {
   String? sId;
   String? trackName;
   String? description;
-  String? duration;
   String? imageUrl;
   String? author;
   List<String>? courses;
@@ -37,7 +36,6 @@ class Tracks {
     this.sId,
     this.trackName,
     this.description,
-    this.duration,
     this.imageUrl,
     this.author,
     this.courses,
@@ -47,7 +45,6 @@ class Tracks {
     sId = json['_id'];
     trackName = json['trackName'];
     description = json['description'];
-    duration = json['duration'];
     imageUrl = json['imageUrl'];
     author = json['author'];
     courses = json['courses'].cast<String>();
@@ -58,7 +55,6 @@ class Tracks {
     data['_id'] = this.sId;
     data['trackName'] = this.trackName;
     data['description'] = this.description;
-    data['duration'] = this.duration;
     data['imageUrl'] = this.imageUrl;
     data['author'] = this.author;
     data['courses'] = this.courses;
