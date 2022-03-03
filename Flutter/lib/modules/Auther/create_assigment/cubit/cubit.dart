@@ -151,9 +151,8 @@ class CreateAssignmentCubit extends Cubit<CreateAssignmentStates> {
 
   void deleteAssignment({required String moduleId}) {
     emit(DeleteAssignmentLoadingState());
-    DioHelper.deleteData(url: "$deleteModule/$moduleId").then((value) {
+    DioHelper.deleteData(url: "$deleteOneModule/$moduleId").then((value) {
       deleteModel = ResponseModel.fromJson(value.data);
-
       emit(DeleteAssignmentSuccssesState(deleteModel!));
     }).catchError((error) {
       emit(DeleteAssignmentErrorState(error));

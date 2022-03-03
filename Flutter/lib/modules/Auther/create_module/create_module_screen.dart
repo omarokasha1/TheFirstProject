@@ -218,7 +218,7 @@ class CreateModuleScreen extends StatelessWidget {
                                         file = File(result!.files.single.path!);
                                         filePath = result!.files.first;
 
-                                        cubit.uploadFile(file!);
+                                        //   cubit.uploadFile(file!);
                                       } else {
                                         showToast(
                                             message:
@@ -234,44 +234,7 @@ class CreateModuleScreen extends StatelessWidget {
                                               "Upload",
                                               style: TextStyle(fontSize: 20),
                                             )
-                                          : Stack(
-                                              children: [
-                                                Container(
-                                                  padding: EdgeInsets.all(12),
-                                                  child: buildFile(filePath,
-                                                      onTap: () {
-                                                    openFile(filePath);
-                                                  }),
-                                                ),
-                                                Positioned(
-                                                  top: 0,
-                                                  right: 0,
-                                                  child: CircleAvatar(
-                                                    backgroundColor:
-                                                        secondaryColor,
-                                                    radius: 20.0,
-                                                    child: IconButton(
-                                                      icon: const Icon(
-                                                        Icons.edit,
-                                                      ),
-                                                      color: Colors.white,
-                                                      iconSize: 20.0,
-                                                      onPressed: () async {
-                                                        result =
-                                                        await FilePicker.platform.pickFiles();
-
-                                                        if (result != null) {
-                                                          file = File(result!.files.single.path!);
-                                                          filePath = result!.files.first;
-
-                                                          cubit.selectImage();
-                                                        }
-                                                      },
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
+                                          : viewFileDetails(cubit),
                                     )),
                               ),
                               const SizedBox(
@@ -291,23 +254,16 @@ class CreateModuleScreen extends StatelessWidget {
                                 if (result == null) {
                                   showToast(
                                       message: "content must be not empty");
+                                } else {
+                                  cubit
+                                      .createNewModule(
+                                          moduleName: moduleNameController.text,
+                                          description:
+                                              shortDescriptionController.text,
+                                          duration: durationController.text,
+                                          content: file!)
+                                      .then((value) => Navigator.pop(context));
                                 }
-                                if (filePath != null) {
-                                  // //var r = JSON.stringify();
-                                  // print(filePath);
-                                  print(file!.uri.data);
-                                  // print(cubit.formData!.files.single.value);
-                                  print(
-                                      cubit.formData!.files.single.runtimeType);
-                                  cubit.createNewModule(
-                                      moduleName: moduleNameController.text,
-                                      description:
-                                          shortDescriptionController.text,
-                                      duration: durationController.text,
-                                      content: cubit.formData);
-                                } else {}
-                                //        cubit.createNewModule(moduleName: moduleNameController.text, description: shortDescriptionController.text, duration: durationController.text, moduleType: moduleTypeController.text,content:"https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg");
-
                               }
                             }),
                       ),
@@ -322,66 +278,91 @@ class CreateModuleScreen extends StatelessWidget {
     );
   }
 
-  void openFile(PlatformFile file) {
-    OpenFile.open(file.path);
-  }
-
-  Widget buildFile(
-    PlatformFile file, {
-    required String? Function() onTap,
-  }) {
-    final kb = file.size / 1024;
+  Widget viewFileDetails(cubit) {
+    final kb = filePath.size / 1024;
     final mb = kb / 1024;
     final fileSize =
         mb > 1 ? "${mb.toStringAsFixed(2)} MB" : "${kb.toStringAsFixed(2)} Kb";
-    final extension = file.extension ?? "none";
+    final extension = filePath.extension ?? "none";
 
-    return InkWell(
-      onTap: () {
-        onTap();
-      },
-      child: Container(
-        padding: EdgeInsets.all(8),
-        decoration: BoxDecoration(
-            // color: secondaryColor,
-            borderRadius: BorderRadius.all(Radius.circular(15)),
-            border: Border.all(
-              color: primaryColor,
-            )),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-              file.name,
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                  overflow: TextOverflow.ellipsis),
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  ".${file.extension}",
-                  style: TextStyle(
-                    fontSize: 20,
+    return Stack(
+      children: [
+        Container(
+          padding: EdgeInsets.all(12),
+          child: InkWell(
+            onTap: () {
+              OpenFile.open(filePath.path);
+            },
+            child: Container(
+              padding: EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                  // color: secondaryColor,
+                  borderRadius: BorderRadius.all(Radius.circular(15)),
+                  border: Border.all(
+                    color: primaryColor,
+                  )),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    filePath.name,
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                        overflow: TextOverflow.ellipsis),
                   ),
-                ),
-                const SizedBox(
-                  width: 5,
-                ),
-                Text(
-                  "/ $fileSize",
-                  style: TextStyle(fontSize: 20),
-                )
-              ],
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        ".${filePath.extension}",
+                        style: TextStyle(
+                          fontSize: 20,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Text(
+                        "/ $fileSize",
+                        style: TextStyle(fontSize: 20),
+                      )
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ],
+          ),
         ),
-      ),
+        Positioned(
+          top: 0,
+          right: 0,
+          child: CircleAvatar(
+            backgroundColor: secondaryColor,
+            radius: 20.0,
+            child: IconButton(
+              icon: const Icon(
+                Icons.edit,
+              ),
+              color: Colors.white,
+              iconSize: 20.0,
+              onPressed: () async {
+                result = await FilePicker.platform.pickFiles();
+
+                if (result != null) {
+                  file = File(result!.files.single.path!);
+                  filePath = result!.files.first;
+
+                  cubit.selectImage();
+                }
+              },
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

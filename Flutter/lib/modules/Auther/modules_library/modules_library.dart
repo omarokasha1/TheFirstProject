@@ -14,14 +14,14 @@ class ModulesLibraryScreen extends StatelessWidget {
   ModulesLibraryScreen({Key? key}) : super(key: key);
 
   final List<Widget> myTabs = [
-    Tab(text: 'Content'),
-    Tab(text: 'Assignment'),
+    const Tab(text: 'Content'),
+    const Tab(text: 'Assignment'),
   ];
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => CreateModuleCubit()..getModulesData(),
+    return BlocProvider.value(
+      value: BlocProvider.of<CreateModuleCubit>(context)..getModulesData(),
       child: BlocConsumer<CreateModuleCubit, CreateModuleStates>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -80,8 +80,17 @@ class ModulesLibraryScreen extends StatelessWidget {
                             children: [
                               ConditionalBuilder(
                                 condition: cubit.getModuleModel != null,
-                                builder: (context) => buildContentTab(
-                                    cubit.getModuleModel!.contents!),
+                                builder: (context) => ConditionalBuilder(
+                                  condition: cubit
+                                      .getModuleModel!.contents!.isNotEmpty,
+                                  builder: (context) => buildContentTab(
+                                      cubit.getModuleModel!.contents!, cubit),
+                                  fallback: (context) => Center(
+                                    child: emptyPage(
+                                        context: context,
+                                        text: "no Modules Yet"),
+                                  ),
+                                ),
                                 fallback: (context) => Center(
                                   child: CircularProgressIndicator(),
                                 ),
@@ -89,7 +98,7 @@ class ModulesLibraryScreen extends StatelessWidget {
                               ConditionalBuilder(
                                 condition: cubit.getModuleModel != null,
                                 builder: (context) => buildContentTab(
-                                    cubit.getModuleModel!.contents!),
+                                    cubit.getModuleModel!.contents!, cubit),
                                 fallback: (context) => Center(
                                   child: CircularProgressIndicator(),
                                 ),
@@ -110,7 +119,8 @@ class ModulesLibraryScreen extends StatelessWidget {
   }
 
   //Build ModuleItem
-  Widget buildModuleItem(context, index, Contents model) {
+  Widget buildModuleItem(
+      context, index, Contents model, CreateModuleCubit cubit) {
     return Container(
       width: double.infinity,
       height: 100.0,
@@ -160,7 +170,9 @@ class ModulesLibraryScreen extends StatelessWidget {
             backgroundColor: Colors.red,
             radius: 22.r,
             child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                cubit.deleteModule(moduleId: model.sId!);
+              },
               icon: Icon(
                 Icons.delete_rounded,
                 color: Colors.white,
@@ -176,11 +188,11 @@ class ModulesLibraryScreen extends StatelessWidget {
     );
   }
 
-  Widget buildContentTab(List<Contents> content) {
+  Widget buildContentTab(List<Contents> content, cubit) {
     return ListView.separated(
       physics: BouncingScrollPhysics(),
       itemBuilder: (context, index) =>
-          buildModuleItem(context, index, content[index]),
+          buildModuleItem(context, index, content[index], cubit),
       separatorBuilder: (context, index) => SizedBox(
         height: 10,
       ),

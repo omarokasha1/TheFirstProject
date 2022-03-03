@@ -18,8 +18,8 @@ class DioHelper {
     dio = Dio(
       BaseOptions(
         //Here the URL of API.
-        //baseUrl: "https://lms-ap.herokuapp.com/",
-        baseUrl: "http://10.5.62.214:8080/",
+   //     baseUrl: "https://lms-ap.herokuapp.com/",
+       baseUrl: "http://10.5.62.214:8081/",
         // baseUrl: "https://lms-ap.herokuapp.com/",
         //baseUrl: "https://wikitoexcelapi.herokuapp.com/",
         receiveDataWhenStatusError: true,
@@ -110,15 +110,25 @@ class DioHelper {
   static Future<Response> postData({
     required String url,
     required Map<String, dynamic> data,
+    bool files = false,
     String? token,
   }) async {
     dio.options.headers = {
       'x-auth-token': token ?? '',
       //'Content-Type': 'multipart/form-data',
+      'accept': '*/*',
+      //'Content-Type': 'multipart/form-data',
     };
-
-    return await dio.post(url, data: data);
+    if(files){
+      FormData formData = FormData.fromMap(
+        data,
+      );
+      return await dio.post(url, data: formData);
+    }else{
+      return await dio.post(url, data: data);
+    }
   }
+
 
   //This Function That's Used to Update Some Date based on URL(End Points) and Send what's you need to Update as Map.
   static Future<Response> putData({

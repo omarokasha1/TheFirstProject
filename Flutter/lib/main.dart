@@ -96,6 +96,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(
             create: (context) => AuthorProfileCubit()..getAuthorProfile()),
         BlocProvider(create: (context) => CreateModuleCubit()),
+    BlocProvider(
+    create: (context) => CreateModuleCubit()),
       ],
       //ScreenUTil is A Package make application responsive.
       child: ScreenUtilInit(
@@ -122,7 +124,8 @@ class MyApp extends StatelessWidget {
           // home:Layout(widget: ZoomDrawerScreen(widget:DashboardManagerScreen() ,)) ,
           //home: TracksScreen(),
           //home: widget,
-           home: ZoomDrawerScreen(widget:DashboardAuthorScreen() ,),
+           //home: ZoomDrawerScreen(widget:DashboardAuthorScreen() ,),
+          home: widget,
           //  home:Layout(widget: ZoomDrawerScreen(widget:DashboardManagerScreen() ,)) ,
         ),
       ),
