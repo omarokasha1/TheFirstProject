@@ -12,6 +12,7 @@ const cloudinary = require('./cloudinary')
 const jwt = require('jsonwebtoken')
 const mongoose =require('mongoose');
 const { file } = require("googleapis/build/src/apis/file");
+const author = require("../middleware/author");
 const ObjectId = mongoose.Types.ObjectId;
 
 const authorCtr ={
@@ -199,10 +200,14 @@ uploadCourse : async (req, res) => {
           $match: { author: ObjectId(id) }
         }
       ])
+      const test = await Track.find({author:ObjectId(id)}).populate('courses','-__v').select('-__v')
       if (!track) {
         return res.status(200).json({ status: 'false', message: 'Cannot find tracks' })
       }
-   return   res.status(200).json({status : "ok",message:'get Author Tracks Success',tracks:track})
+      const asd = await Content.find({_id:test.contents._id})
+      console.log(asd)
+   return   res.status(200).json({status : "ok",message:'get Author Tracks Success',tracks:track,allTracks : test,asd:asd})
+//return   res.status(200).json({status : "ok",message:'get Author Tracks Success',tracks:track})
     } catch (err) {
       console.log(err)
       return res.status(500).json({status:'false', message: err.message })
@@ -354,6 +359,7 @@ uploadCourse : async (req, res) => {
    const course = new Course({
      title:req.body.title,
      description:req.body.description,
+     requirements:req.body.requirements,
      price:req.body.price,
      discount:req.body.discount,
      lastUpdate:req.body.lastUpdate,
@@ -419,7 +425,7 @@ uploadCourse : async (req, res) => {
 
   createTrack:async(req,res)=>{
 let newTrack
-  const {trackName,description,check,duration,courses} = req.body
+  const {trackName,description,check,courses} = req.body
 
  const token = req.header('x-auth-token')
  const file = req.file
@@ -614,7 +620,7 @@ let newQuestion
 
   updateCourse:async(req,res)=>{
 
-    const {id, title, description, price,discount,lastUpdate,totalTime,language,review ,contents} = req.body
+    const {id, title, description, price,discount,lastUpdate,totalTime,language,review ,contents, requirements} = req.body
     const file = req.file
   const token = req.header('x-auth-token')
   try {
@@ -700,7 +706,7 @@ let newQuestion
   },
 
   updateTrack:async(req,res)=>{
-    const {id, trackName, description, duration,check,courses} = req.body
+    const {id, trackName, description,check,courses} = req.body
     const file = req.file
   const token = req.header('x-auth-token')
   try {
