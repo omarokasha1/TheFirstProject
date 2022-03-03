@@ -9,6 +9,7 @@ import 'package:lms/layout/layout.dart';
 import 'package:lms/models/course_model.dart';
 import 'package:lms/modules/Auther/author_courses/author_courses_cubit/cubit.dart';
 import 'package:lms/modules/Auther/create_course/create_course_screen.dart';
+import 'package:lms/modules/Auther/create_course/update_course_screen.dart';
 
 import 'package:lms/shared/component/MyAppBar.dart';
 import 'package:lms/shared/component/component.dart';
@@ -28,10 +29,8 @@ class AuthorCourses extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) =>
-      AuthorCoursesCubit()
-        ..getAuthorCoursesData(),
+    return BlocProvider.value(
+      value: BlocProvider.of<AuthorCoursesCubit>(context)..getAuthorCoursesData(),
       child: BlocConsumer<AuthorCoursesCubit, AuthorCoursesStates>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -89,10 +88,28 @@ class AuthorCourses extends StatelessWidget {
                         Expanded(
                           child: TabBarView(
                             children: [
-                              publishedCourses(
-                                  cubit, cubit.authorCoursesTestModel!),
-                              penddingCourses(
-                                  cubit, cubit.authorCoursesTestModel!),
+                              ConditionalBuilder(
+                                condition: cubit.authorCoursesTestModel!.courses!.length != 0,
+                                builder: (context) {
+                                  return publishedCourses(cubit);
+                                },
+                                fallback: (context) {
+                                  return emptyPage(
+                                      text: "No Tracks Added Yet",
+                                      context: context);
+                                },
+                              ),
+                              ConditionalBuilder(
+                                condition: cubit.authorCoursesTestModel!.courses!.length != 0,
+                                builder: (context) {
+                                  return publishedCourses(cubit);
+                                },
+                                fallback: (context) {
+                                  return emptyPage(
+                                      text: "No Tracks Added Yet",
+                                      context: context);
+                                },
+                              ),
                               //draftsCourses(),
                             ],
                           ),
@@ -115,25 +132,23 @@ class AuthorCourses extends StatelessWidget {
   }
 
   //Published Courses PageView
-  Widget publishedCourses(AuthorCoursesCubit cubit,
-      AuthorCoursesTestModel authorCoursesTestModel) {
+  Widget publishedCourses(AuthorCoursesCubit cubit,) {
     return ListView.builder(
         physics: BouncingScrollPhysics(),
         itemBuilder: (context, index) {
-          return BuildAuthorCourse(authorCoursesTestModel.courses![index], cubit);
+          return BuildAuthorCourse(context, cubit.authorCoursesTestModel!.courses![index], cubit);
         },
-        itemCount: authorCoursesTestModel.courses!.length);
+        itemCount: cubit.authorCoursesTestModel!.courses!.length);
   }
 
   //Pending Courses PageView
-  Widget penddingCourses(AuthorCoursesCubit cubit,
-      AuthorCoursesTestModel authorCoursesTestModel) {
+  Widget penddingCourses(AuthorCoursesCubit cubit) {
     return ListView.builder(
         physics: BouncingScrollPhysics(),
         itemBuilder: (context, index) {
-          return BuildAuthorCourse(authorCoursesTestModel.courses![index], cubit);
+          return BuildAuthorCourse(context, cubit.authorCoursesTestModel!.courses![index], cubit);
         },
-        itemCount: authorCoursesTestModel.courses!.length);
+        itemCount: cubit.authorCoursesTestModel!.courses!.length);
   }
 
 //Drafts Courses PageView
@@ -147,7 +162,7 @@ class AuthorCourses extends StatelessWidget {
 // }
 
   //Course Widget
-  Widget BuildAuthorCourse(Courses course, AuthorCoursesCubit cubit) {
+  Widget BuildAuthorCourse(context, Courses course, AuthorCoursesCubit cubit) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
@@ -176,9 +191,9 @@ class AuthorCourses extends StatelessWidget {
             // ),
             ClipRRect(
               borderRadius: BorderRadius.circular(30),
-              child: Image.network(
+              child: imageFromNetwork(
                 //'https://media.gettyimages.com/vectors/-vector-id960988454',
-                '${course.imageUrl}',
+                url: '${course.imageUrl}',
                 height: 150.h,
                 width: 140.w,
                 fit: BoxFit.cover,
@@ -218,7 +233,7 @@ class AuthorCourses extends StatelessWidget {
                         radius: 18.r,
                         child: IconButton(
                           onPressed: () {
-                            //navigator(context, UpdateTrackScreen(modelTrack));
+                            navigator(context, UpdateCourseScreen(course));
                           },
                           icon: Icon(
                             Icons.edit,

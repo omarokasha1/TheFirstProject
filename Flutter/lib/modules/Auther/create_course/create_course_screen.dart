@@ -33,9 +33,9 @@ class CreateCourseScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider.value(
       value: BlocProvider.of<CreateModuleCubit>(context)..getModulesData()..myActivities=[],
-      child: BlocConsumer<CreateModuleCubit, CreateModuleStates>(
+      child: BlocConsumer<AuthorCoursesCubit, AuthorCoursesStates>(
         listener: (context, state) {},
-        builder: (context, state) => BlocConsumer<AuthorCoursesCubit, AuthorCoursesStates>(
+        builder: (context, state) => BlocConsumer<CreateModuleCubit, CreateModuleStates>(
           listener: (context, state) {},
           builder: (context, state) {
             var courseCubit = AuthorCoursesCubit.get(context);
@@ -327,9 +327,10 @@ class CreateCourseScreen extends StatelessWidget {
                                       if (courseImage == null) {
                                         showToast(
                                             message:
-                                            "Course Image Must be Not empty");
+                                            "Course Image Must be Not empty",
+                                        color: Colors.red);
                                       } else {
-                                        await courseCubit.createNewCourse(
+                                        courseCubit.createNewCourse(
                                           courseName: courseNameController.text,
                                           shortDescription: shortDescriptionController.text,
                                           requirements: requiermentController.text,
