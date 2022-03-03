@@ -9,6 +9,7 @@ import 'package:lms/modules/Auther/create_assigment/create_assignment.dart';
 import 'package:lms/modules/Auther/create_course/create_course_screen.dart';
 import 'package:lms/modules/Auther/create_module/create_module_screen.dart';
 import 'package:lms/modules/Auther/create_quiz/create_quiz_screen.dart';
+import 'package:lms/modules/Auther/create_track/create_track.dart';
 import 'package:lms/modules/Auther/modules_library/modules_library.dart';
 import 'package:lms/modules/Auther/quiz/author_quiz_screen.dart';
 import 'package:lms/modules/Auther/traks/traks_screen.dart';
@@ -17,12 +18,11 @@ import 'package:lms/modules/search/search_screen.dart';
 import 'package:lms/shared/component/MyAppBar.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
+import 'package:lms/shared/component/zoomDrawer.dart';
 import 'package:number_slide_animation/number_slide_animation.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
-
-import '../ create_track /create_track.dart';
 
 class _SalesData {
   _SalesData(this.year, this.views);
@@ -215,6 +215,7 @@ class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
                       width: double.infinity,
                       height: 45.h,
                       child: TextField(
+                        keyboardType: TextInputType.none,
                         cursorColor: primaryColor,
                         decoration: InputDecoration(
                           fillColor: Colors.white,
@@ -235,7 +236,7 @@ class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
                           prefixIcon: const Icon(Icons.search),
                         ),
                         onTap: () {
-                          navigator(context, SearchScreen());
+                          navigator(context, ZoomDrawerScreen(widget: SearchScreen(),));
                         },
                       ),
                     ),

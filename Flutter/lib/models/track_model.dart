@@ -1,6 +1,6 @@
 class TrackModel {
-  String? status;
-  List<Tracks>? tracks;
+  String? status = '';
+  List<Tracks>? tracks = [];
 
   TrackModel({this.status, this.tracks});
 

@@ -3,19 +3,21 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lms/models/track_model.dart';
 import 'package:lms/shared/component/MyAppBar.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
 import 'package:readmore/readmore.dart';
 
 class TracksDetailsScreen extends StatelessWidget {
-  const TracksDetailsScreen({Key? key}) : super(key: key);
+  final Tracks track;
+  const TracksDetailsScreen(this.track, {Key? key}) : super(key: key);
 
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: myAppBar(context),
+      appBar: AppBar(),
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         child: Padding(
@@ -27,14 +29,15 @@ class TracksDetailsScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15),
                 child: imageFromNetwork(
                     url:
-                        'https://www.drjimtaylor.com/4.0/wp-content/uploads/2019/12/Online-courses.jpg',
+                        '${track.imageUrl}',
+                   // fit: BoxFit.contain,
                     height: 180.h),
               ),
               const SizedBox(
                 height: 10,
               ),
-              const Text(
-                'Tracks of Name Tracks of Name  Tracks of Name Tracks of Name Tracks of Name Tracks of Name Tracks of Name Tracks of Name  ',maxLines: 2,overflow: TextOverflow.ellipsis,
+               Text(
+                '${track.trackName}',maxLines: 2,overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                     //color: Colors.black,
                     fontWeight: FontWeight.bold,
@@ -55,7 +58,7 @@ class TracksDetailsScreen extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: ReadMoreText(
-                        'I’m excited to announce the launch of my updated and improved Prime Sport and Prime Ski Racing online courses for athletes (ski racers), coaches, and parents. These courses offer the same information that I use with the professional and Olympic athletes, coaches, and parents I work with all over the world in a structured, engaging, and affordable format.',
+                        '${track.description}',
                         trimLines: 3,
                         colorClickableText: Colors.black,
                         trimMode: TrimMode.Line,
@@ -76,15 +79,15 @@ class TracksDetailsScreen extends StatelessWidget {
                       height: 15,
                     ),
                     Row(
-                      children: const [
-                        Text(
+                      children:  [
+                        const Text(
                           'Content',
                           style: TextStyle(
                               fontSize: 15, fontWeight: FontWeight.w700),
                         ),
-                        Spacer(),
+                        const Spacer(),
                         Text(
-                          '6 Courses',
+                          '${track.courses!.length}  Courses',
                           style: TextStyle(
                               fontSize: 15, fontWeight: FontWeight.w700),
                         ),
@@ -96,7 +99,7 @@ class TracksDetailsScreen extends StatelessWidget {
               ListView.builder(
                   shrinkWrap: true,
                   physics: BouncingScrollPhysics(),
-                  itemBuilder: (context, index) => builtTrackContant(context),
+                  itemBuilder: (context, index) => builtTrackContant(context,track),
                   itemCount: 6),
             ],
           ),
@@ -106,7 +109,7 @@ class TracksDetailsScreen extends StatelessWidget {
   }
 }
 
-Widget builtTrackContant(context) {
+Widget builtTrackContant(context,Tracks track) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: Container(
@@ -150,7 +153,7 @@ Widget builtTrackContant(context) {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Excited to announce the launch of my updated and improved Prime Sport ',
+                      '${track.courses}',
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 15.sp,

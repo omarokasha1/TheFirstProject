@@ -5,9 +5,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lms/layout/layout.dart';
 import 'package:lms/models/track_model.dart';
-import 'package:lms/modules/Auther/%20create_track%20/create_track.dart';
-import 'package:lms/modules/Auther/traks/traks_cubit/cubit.dart';
-import 'package:lms/modules/Auther/traks/traks_cubit/status.dart';
+import 'package:lms/modules/Auther/create_track/Update_track.dart';
+import 'package:lms/modules/Auther/create_track/create_track.dart';
+import 'package:lms/modules/Auther/create_track/cubit/cubit.dart';
+import 'package:lms/modules/Auther/create_track/cubit/statues.dart';
+import 'package:lms/modules/tracks_details/tracks_details_screen.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
 
@@ -15,19 +17,19 @@ class TracksScreen extends StatelessWidget {
   TracksScreen({Key? key}) : super(key: key);
 
   final List<Widget> myTabs = [
-    Tab(text: 'Drafts'),
+    //Tab(text: 'Drafts'),
     Tab(text: 'Pendding'),
     Tab(text: 'Published'),
   ];
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => TrackCubit()..getAllTracks(),
-      child: BlocConsumer<TrackCubit, TrackStates>(
+    return BlocProvider.value(
+      value: BlocProvider.of<CreateTrackCubit>(context)..getAllTracks(),
+      child: BlocConsumer<CreateTrackCubit, CreateTrackStates>(
         listener: (context, state) {},
         builder: (context, state) {
-          var cubit = TrackCubit.get(context);
+          var cubit = CreateTrackCubit.get(context);
           return Layout(
             widget: DefaultTabController(
               length: myTabs.length,
@@ -53,7 +55,13 @@ class TracksScreen extends StatelessWidget {
                             Spacer(),
                             ElevatedButton(
                               onPressed: () {
-                                navigator(context, CreateTrackScreen());
+                                //navigator(context, CreateTrackScreen());
+                                Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                CreateTrackScreen()))
+                                    .then((value) {});
                               },
                               child: Text(
                                 'New Track',
@@ -80,9 +88,39 @@ class TracksScreen extends StatelessWidget {
                       Expanded(
                         child: TabBarView(
                           children: [
-                            publishedCourses(cubit),
-                            penddingCourses(cubit),
-                            draftsCourses(cubit),
+                            ConditionalBuilder(
+                              condition: cubit.trackModel!.tracks!.length != 0,
+                              builder: (context) {
+                                return publishedCourses(cubit);
+                              },
+                              fallback: (context) {
+                                return emptyPage(
+                                    text: "No Tracks Added Yet",
+                                    context: context);
+                              },
+                            ),
+                            ConditionalBuilder(
+                              condition: cubit.trackModel!.tracks!.length != 0,
+                              builder: (context) {
+                                return penddingCourses(cubit);
+                              },
+                              fallback: (context) {
+                                return emptyPage(
+                                    text: "No Tracks Added Yet",
+                                    context: context);
+                              },
+                            ),
+                            // ConditionalBuilder(
+                            //   condition: cubit.trackModel!.tracks!.length != 0,
+                            //   builder: (context) {
+                            //     return draftsCourses(cubit);
+                            //   },
+                            //   fallback: (context) {
+                            //     return emptyPage(
+                            //         text: "No Tracks Added Yet",
+                            //         context: context);
+                            //   },
+                            // ),
                           ],
                         ),
                       ),
@@ -101,155 +139,166 @@ class TracksScreen extends StatelessWidget {
   }
 
   //Published Courses PageView
-  Widget publishedCourses(TrackCubit cubit) {
+  Widget publishedCourses(CreateTrackCubit cubit) {
     return ListView.builder(
         physics: BouncingScrollPhysics(),
         itemBuilder: (context, index) {
-          return BuildAuthorCourse(cubit.trackModel!.tracks![index]);
+          return BuildAuthorCourse(context, cubit.trackModel!.tracks![index], cubit);
         },
         itemCount: cubit.trackModel!.tracks!.length);
   }
 
   //Pending Courses PageView
-  Widget penddingCourses(TrackCubit cubit) {
+  Widget penddingCourses(CreateTrackCubit cubit) {
     return ListView.builder(
         physics: BouncingScrollPhysics(),
         itemBuilder: (context, index) {
-          return BuildAuthorCourse(cubit.trackModel!.tracks![index]);
+          return BuildAuthorCourse(context, cubit.trackModel!.tracks![index], cubit);
         },
         itemCount: cubit.trackModel!.tracks!.length);
   }
 
   //Drafts Courses PageView
-  Widget draftsCourses(TrackCubit cubit) {
-    return ListView.builder(
-        physics: BouncingScrollPhysics(),
-        itemBuilder: (context, index) {
-          return BuildAuthorCourse(cubit.trackModel!.tracks![index]);
-        },
-        itemCount: cubit.trackModel!.tracks!.length);
-  }
+  // Widget draftsCourses(CreateTrackCubit cubit) {
+  //   return ListView.builder(
+  //       physics: BouncingScrollPhysics(),
+  //       itemBuilder: (context, index) {
+  //         return BuildAuthorCourse(context, cubit.trackModel!.tracks![index], cubit);
+  //       },
+  //       itemCount: cubit.trackModel!.tracks!.length);
+  // }
 
   //Course Widget
-  Widget BuildAuthorCourse(Tracks modelTrack) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        padding: EdgeInsets.all(10),
-        width: double.infinity,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(30.0),
-          color: Colors.grey[100],
-        ),
-        clipBehavior: Clip.antiAliasWithSaveLayer,
-        child: Row(
-          children: [
-            // Container(
-            //   clipBehavior: Clip.antiAliasWithSaveLayer,
-            //   decoration: BoxDecoration(
-            //     borderRadius: BorderRadius.circular(30.0),
-            //     color: Colors.white,
-            //   ),
-            //   child: Image.network(
-            //     'https://media.gettyimages.com/vectors/-vector-id960988454',
-            //     height: 150.h,
-            //     width: 140.w,
-            //     fit: BoxFit.cover,
-            //   ),
-            // ),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(30),
-              child: Image.network(
-                //'https://media.gettyimages.com/vectors/-vector-id960988454',
-                '${modelTrack.imageUrl}',
-                height: 150.w,
-                width: 140.h,
-                fit: BoxFit.cover,
+  Widget BuildAuthorCourse(context, Tracks modelTrack, CreateTrackCubit cubit) {
+    return InkWell(
+      onTap: (){
+        navigator(context, TracksDetailsScreen(modelTrack));
+      },
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
+          height: 120.h,
+          padding: EdgeInsets.all(10),
+          width: double.infinity,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(30.0),
+            color: Colors.grey[100],
+          ),
+          clipBehavior: Clip.antiAliasWithSaveLayer,
+          child: Row(
+            children: [
+              // Container(
+              //   clipBehavior: Clip.antiAliasWithSaveLayer,
+              //   decoration: BoxDecoration(
+              //     borderRadius: BorderRadius.circular(30.0),
+              //     color: Colors.white,
+              //   ),
+              //   child: Image.network(
+              //     'https://media.gettyimages.com/vectors/-vector-id960988454',
+              //     height: 150.h,
+              //     width: 140.w,
+              //     fit: BoxFit.cover,
+              //   ),
+              // ),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(30),
+                child: Image.network(
+                  //'https://media.gettyimages.com/vectors/-vector-id960988454',
+                  '${modelTrack.imageUrl}',
+                  height: 150.h,
+                  width: 140.w,
+                  fit: BoxFit.cover,
+                ),
               ),
-            ),
-            SizedBox(
-              width: 10.w,
-            ),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  Container(
-                    child: Text(
-                      //'Track Name',
-                      '${modelTrack.trackName}',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20.sp,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 2,
+              SizedBox(
+                width: 10.w,
+              ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: 10.h,
                     ),
-                  ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      CircleAvatar(
-                        backgroundColor: primaryColor,
-                        radius: 18.r,
-                        child: IconButton(
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.edit,
-                            color: Colors.white,
-                            size: 18,
+                    Container(
+                      child: Text(
+                        //'Track Name',
+                        '${modelTrack.trackName}',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: primaryColor,
+                          radius: 18.r,
+                          child: IconButton(
+                            onPressed: () {
+                              navigator(context, UpdateTrackScreen(modelTrack));
+                            },
+                            icon: Icon(
+                              Icons.edit,
+                              color: Colors.white,
+                              size: 18,
+                            ),
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        width: 10.w,
-                      ),
-                      CircleAvatar(
-                        backgroundColor: Colors.red,
-                        radius: 18.r,
-                        child: IconButton(
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.delete_rounded,
-                            color: Colors.white,
-                            size: 18,
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                        CircleAvatar(
+                          backgroundColor: Colors.red,
+                          radius: 18.r,
+                          child: IconButton(
+                            onPressed: () {
+                              print(modelTrack.sId!);
+                              cubit.deleteTrack(trackId: modelTrack.sId!);
+                            },
+                            icon: Icon(
+                              Icons.delete_rounded,
+                              color: Colors.white,
+                              size: 18,
+                            ),
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        width: 10.w,
-                      ),
-                      CircleAvatar(
-                        backgroundColor: Colors.blueGrey,
-                        radius: 18.r,
-                        child: IconButton(
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.drafts,
-                            color: Colors.white,
-                            size: 18,
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                        CircleAvatar(
+                          backgroundColor: Colors.greenAccent[400],
+                          radius: 18.r,
+                          child: IconButton(
+                            onPressed: () {},
+                            icon: Icon(
+                              Icons.send_rounded,
+                              color: Colors.white,
+                              size: 18,
+                            ),
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        width: 10.w,
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                ],
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

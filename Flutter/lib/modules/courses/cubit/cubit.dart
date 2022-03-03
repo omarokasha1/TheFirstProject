@@ -13,28 +13,10 @@ class CourseCubit extends Cubit<CourseStates> {
 
   List<CourseModel?> coursesModel = [];
 
-  bool hasCourseName = false;
-
-  onCourseNameChanged(String name) {
-    hasCourseName = false;
-    if (name.length > 2) {
-      hasCourseName = true;
-    }
-  }
 
 
 
-  bool checkedValue = false;
 
-
-  List<String> items = ['English', 'Arabic'];
-  String selectedItem = "English";
-
-  void changeItem(String value)
-  {
-    selectedItem=value;
-    emit(ChangeItemState());
-  }
   void getAllCoursesData() {
     emit(AllCoursesLoadingState());
     DioHelper.getData(url: courses).then((value) {
@@ -62,33 +44,33 @@ class CourseCubit extends Cubit<CourseStates> {
     });
   }
 
-  CourseModel? createCourseModel;
-
-  void createNewCourse({
-    required String courseName,
-    required String description,
-    required String requirement,
-    required List<dynamic> content,
-    required String lang,
-    required image,
-  }) {
-    emit(CreateCourseLoadingState());
-    DioHelper.postData(
-      data: {
-        'title': courseName,
-        'description': description,
-        'requiremnets': requirement,
-        'language': lang,
-        'imageUrl': image
-      },
-      url: module,
-      token: userToken,
-    ).then((value) {
-      createCourseModel = CourseModel.fromJson(value.data);
-      emit(CreateCourseSuccessState(createCourseModel!));
-    }).catchError((onError) {
-      print(onError.toString());
-      emit(CreateCourseErrorState(onError.toString()));
-    });
-  }
+  // CourseModel? createCourseModel;
+  //
+  // void createNewCourse({
+  //   required String courseName,
+  //   required String description,
+  //   required String requirement,
+  //   required List<dynamic> content,
+  //   required String lang,
+  //   required image,
+  // }) {
+  //   emit(CreateCourseLoadingState());
+  //   DioHelper.postData(
+  //     data: {
+  //       'title': courseName,
+  //       'description': description,
+  //       'requirements': requirement,
+  //       'language': lang,
+  //       'imageUrl': image
+  //     },
+  //     url: module,
+  //     token: userToken,
+  //   ).then((value) {
+  //     createCourseModel = CourseModel.fromJson(value.data);
+  //     emit(CreateCourseSuccessState(createCourseModel!));
+  //   }).catchError((onError) {
+  //     print(onError.toString());
+  //     emit(CreateCourseErrorState(onError.toString()));
+  //   });
+  // }
 }

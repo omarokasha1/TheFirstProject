@@ -20,7 +20,6 @@ AppBar myAppBar(context, {Color color=Colors.white,Color iconColor=primaryColor}
     leading: InkWell(
       //this used to switch between home screen  and drawer
       onTap: () {
-
         ZoomDrawer.of(context)!.toggle();
       },
       child:  Padding(

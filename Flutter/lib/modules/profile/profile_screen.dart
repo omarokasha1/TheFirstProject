@@ -149,6 +149,7 @@ class ProfileScreen extends StatelessWidget {
                                       //DioHelper.postData(url: uploadImageProfile, data: {'profile':imageFile},token: userToken);
                                       //DioHelper.upload(imageFile!, context);
                                       DioHelper.uploadImage(imageFile!);
+
                                       // updatimge(base64Image, id);
                                       //});
                                     }
@@ -174,7 +175,8 @@ class ProfileScreen extends StatelessWidget {
                                     }
                                   }
 
-                                  getFromGallery();
+                                  await getFromGallery();
+                                  cubit.getUserProfile();
                                   // final pickedFile = await picker.pickImage(source: ImageSource.gallery);
                                   // if (pickedFile != null) {
                                   //   profileImage = File(pickedFile.path);

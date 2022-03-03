@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,7 +7,6 @@ import 'package:flutter_picker/Picker.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../shared/component/component.dart';
 import '../../../shared/component/constants.dart';
-import '../modules_library/modules_library.dart';
 import 'cubit/cubit.dart';
 import 'cubit/states.dart';
 

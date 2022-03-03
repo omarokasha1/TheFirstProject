@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:dio/dio.dart';
+import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
 import 'package:http_parser/http_parser.dart';
 import 'package:lms/modules/profile/profile_cubit/cubit.dart';
@@ -19,7 +20,7 @@ class DioHelper {
       BaseOptions(
         //Here the URL of API.
         //baseUrl: "https://lms-ap.herokuapp.com/",
-        baseUrl: "http://10.5.62.214:8080/",
+        baseUrl: "http://10.5.62.214:8081/",
         // baseUrl: "https://lms-ap.herokuapp.com/",
         //baseUrl: "https://wikitoexcelapi.herokuapp.com/",
         receiveDataWhenStatusError: true,
@@ -73,9 +74,9 @@ class DioHelper {
           contentType: MediaType("image", fileName.split(".").last))
     });
     await DioHelper.postData(
-            url: uploadImageProfile2,
-            data: formData as Map<String, dynamic>,
-            token: userToken)
+            url: uploadImageProfile2, data: {
+      'profile' : await fileUpload(file)
+    } ,files: true, token: userToken)
         .then((value) => print('value ${value}'))
         .catchError((onError) {
       print('error ${onError}');
@@ -110,14 +111,23 @@ class DioHelper {
   static Future<Response> postData({
     required String url,
     required Map<String, dynamic> data,
+    bool files = false,
     String? token,
   }) async {
     dio.options.headers = {
       'x-auth-token': token ?? '',
       //'Content-Type': 'multipart/form-data',
+      'accept': '*/*',
+      //'Content-Type': 'multipart/form-data',
     };
-
-    return await dio.post(url, data: data);
+    if(files){
+      FormData formData = FormData.fromMap(
+          data,
+      );
+      return await dio.post(url, data: formData);
+    }else{
+      return await dio.post(url, data: data);
+    }
   }
 
   //This Function That's Used to Update Some Date based on URL(End Points) and Send what's you need to Update as Map.
@@ -125,15 +135,26 @@ class DioHelper {
     required String url,
     required Map<String, dynamic> data,
     String? token,
+    bool files = false,
   }) async {
     dio.options.headers = {
       'x-auth-token': token ?? '',
-      'Content-Type': 'application/json',
+      //'Content-Type': 'application/json',
     };
-    return await dio.put(
-      url,
-      data: data,
-    );
+    if(files){
+      FormData formData = FormData.fromMap(
+        data,
+      );
+      return await dio.put(
+        url,
+        data: formData,
+      );
+    }else{
+      return await dio.put(
+        url,
+        data: data,
+      );
+    }
   }
 
   static Future<Response> deleteData({
