@@ -170,11 +170,12 @@ uploadCourse : async (req, res) => {
      console.log(user)
      const id = user.id
      console.log(id)
-      course = await Course.aggregate([
-        {
-          $match: { author: ObjectId(id) }
-        }
-      ])
+      // course = await Course.aggregate([
+      //   {
+      //     $match: { author: ObjectId(id) }
+      //   }
+      // ])
+      const course = await Course.find({author:ObjectId(id)}).populate('contents','-__v').select('-__v')
       if (!course) {
         return res.status(200).json({ status: 'false', message: 'Cannot find courses' })
       }
@@ -195,17 +196,13 @@ uploadCourse : async (req, res) => {
      console.log(user)
      const id = user.id
      console.log(id)
-     track = await Track.aggregate([
-        {
-          $match: { author: ObjectId(id) }
-        }
-      ])
-      const test = await Track.find({author:ObjectId(id)}).populate('courses','-__v').select('-__v')
+
+      track = await Track.find({author:ObjectId(id)}).populate('courses','-__v').select('-__v')
       if (!track) {
         return res.status(200).json({ status: 'false', message: 'Cannot find tracks' })
       }
-      console.log(asd)
-   return   res.status(200).json({status : "ok",message:'get Author Tracks Success',tracks:track,allTracks : test})
+      //console.log(asd)
+   return   res.status(200).json({status : "ok",message:'get Author Tracks Success',tracks:track})
 //return   res.status(200).json({status : "ok",message:'get Author Tracks Success',tracks:track})
     } catch (err) {
       console.log(err)
