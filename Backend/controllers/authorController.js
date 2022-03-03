@@ -204,9 +204,8 @@ uploadCourse : async (req, res) => {
       if (!track) {
         return res.status(200).json({ status: 'false', message: 'Cannot find tracks' })
       }
-      const asd = await Content.find({_id:test.contents._id})
       console.log(asd)
-   return   res.status(200).json({status : "ok",message:'get Author Tracks Success',tracks:track,allTracks : test,asd:asd})
+   return   res.status(200).json({status : "ok",message:'get Author Tracks Success',tracks:track,allTracks : test})
 //return   res.status(200).json({status : "ok",message:'get Author Tracks Success',tracks:track})
     } catch (err) {
       console.log(err)
