@@ -16,9 +16,7 @@ class CoursesOverViewScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[100],
       appBar: AppBar(
-        backgroundColor: Colors.grey[200],
       ),
       // create two button in bottomNavigationBar
       bottomNavigationBar: Container(
@@ -49,7 +47,7 @@ class CoursesOverViewScreen extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(20.0),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -57,6 +55,7 @@ class CoursesOverViewScreen extends StatelessWidget {
 
               // Widget display course image in border radius
               ClipRRect(
+
                 borderRadius: BorderRadius.circular(15),
                 child: imageFromNetwork(
                     url: '${courseModel.imageUrl}', height: 200.h),

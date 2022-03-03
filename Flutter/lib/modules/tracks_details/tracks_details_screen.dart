@@ -99,8 +99,8 @@ class TracksDetailsScreen extends StatelessWidget {
               ListView.builder(
                   shrinkWrap: true,
                   physics: BouncingScrollPhysics(),
-                  itemBuilder: (context, index) => builtTrackContant(context,track),
-                  itemCount: 6),
+                  itemBuilder: (context, index) => builtTrackContant(context,track.courses![index]),
+                  itemCount: track.courses!.length),
             ],
           ),
         ),
@@ -109,7 +109,7 @@ class TracksDetailsScreen extends StatelessWidget {
   }
 }
 
-Widget builtTrackContant(context,Tracks track) {
+Widget builtTrackContant(context,Courses course) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: Container(
@@ -137,7 +137,8 @@ Widget builtTrackContant(context,Tracks track) {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8),
                   child: Image.network(
-                    'https://www.incimages.com/uploaded_files/image/1920x1080/getty_933383882_2000133420009280345_410292.jpg',
+                    "${course.imageUrl}",
+                    // 'https://www.incimages.com/uploaded_files/image/1920x1080/getty_933383882_2000133420009280345_410292.jpg',
                     width:double.infinity,
                     height: 100.h,
                     fit: BoxFit.cover,
@@ -153,7 +154,7 @@ Widget builtTrackContant(context,Tracks track) {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      '${track.courses}',
+                      '${course.title}',
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 15.sp,
@@ -161,16 +162,17 @@ Widget builtTrackContant(context,Tracks track) {
                       ),
                       maxLines: 2,
                     ),
+                    // Text(
+                    //   'Create by : Name ',
+                    //   style: TextStyle(
+                    //     fontSize: 14.sp,
+                    //     fontWeight: FontWeight.w500,
+                    //   ),
+                    //   maxLines: 1,
+                    // ),
                     Text(
-                      'Create by : Name ',
-                      style: TextStyle(
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w500,
-                      ),
-                      maxLines: 1,
-                    ),
-                    Text(
-                      '120 Video ',
+                      //'120 Video ',
+                      '${course.contents!.length} Modules',
                       style: TextStyle(
                         color: primaryColor,
                         fontSize: 14.sp,

@@ -22,7 +22,7 @@ class CreateTrackScreen extends StatelessWidget {
 
   TextEditingController trackNameController = TextEditingController();
   TextEditingController shortDescriptionController = TextEditingController();
-  TextEditingController durationController = TextEditingController();
+  //TextEditingController durationController = TextEditingController();
   Duration? duration;
 
   File? trackImage;
@@ -304,8 +304,7 @@ class CreateTrackScreen extends StatelessWidget {
                                                 shortDescription:
                                                     shortDescriptionController
                                                         .text,
-                                                duration:
-                                                    durationController.text,
+                                                //duration: durationController.text,
                                                 courses: cubit.myActivities,
                                                 trackImage: trackImage,
                                               )
