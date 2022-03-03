@@ -27,11 +27,11 @@ class AuthorCourses extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AuthorCourseCubit(),
-      child: BlocConsumer<AuthorCourseCubit, AuthorCourseStates>(
+      create: (context) => AuthorCoursesCubit(),
+      child: BlocConsumer<AuthorCoursesCubit, AuthorCoursesStates>(
         listener: (context, state) {},
         builder: (context, state) {
-          var cubit = AuthorCourseCubit.get(context);
+          var cubit = AuthorCoursesCubit.get(context);
           return Layout(
             widget: DefaultTabController(
               length: myTabs.length,
@@ -99,111 +99,116 @@ class AuthorCourses extends StatelessWidget {
 
   //Course Widget
   Widget BuildAuthorCourse() {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        padding: EdgeInsets.all(10),
-        width: double.infinity,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(30.0),
-          color: Colors.grey[100],
-        ),
-        clipBehavior: Clip.antiAliasWithSaveLayer,
-        child: Row(
-          children: [
-            // Container(
-            //   clipBehavior: Clip.antiAliasWithSaveLayer,
-            //   decoration: BoxDecoration(
-            //     borderRadius: BorderRadius.circular(30.0),
-            //     color: Colors.white,
-            //   ),
-            //   child: Image.network(
-            //     'https://media.gettyimages.com/vectors/-vector-id960988454',
-            //     height: 150.h,
-            //     width: 150.w,
-            //     fit: BoxFit.cover,
-            //   ),
-            // ),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(30),
-              child: Image.network(
-                'https://media.gettyimages.com/vectors/-vector-id960988454',
-                height: 150.w,
-                width: 140.h,
-                fit: BoxFit.cover,
-              ),
-            ),
-            SizedBox(
-              width: 10.w,
-            ),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+    return InkWell(
+      onTap: (){
 
-                children: [
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  Container(
-                    child: Text(
-                      'Course Name',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20.sp,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 2,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      CircleAvatar(
-                        backgroundColor: primaryColor,
-                        radius: 18.r,
-                        child: IconButton(
-                          onPressed: (){},
-                          icon: Icon(Icons.edit, color: Colors.white,size: 18,),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 10.w,
-                      ),
-                      CircleAvatar(
-                        backgroundColor: Colors.red,
-                        radius: 18.r,
-                        child: IconButton(
-                          onPressed: (){},
-                          icon: Icon(Icons.delete_rounded, color: Colors.white,size: 18,),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 10.w,
-                      ),
-                      CircleAvatar(
-                        backgroundColor: Colors.blueGrey,
-                        radius: 18.r,
-                        child: IconButton(
-                          onPressed: (){},
-                          icon: Icon(Icons.drafts, color: Colors.white,size: 18,),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 10.w,
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                ],
+      },
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
+          padding: EdgeInsets.all(10),
+          width: double.infinity,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(30.0),
+            color: Colors.grey[100],
+          ),
+          clipBehavior: Clip.antiAliasWithSaveLayer,
+          child: Row(
+            children: [
+              // Container(
+              //   clipBehavior: Clip.antiAliasWithSaveLayer,
+              //   decoration: BoxDecoration(
+              //     borderRadius: BorderRadius.circular(30.0),
+              //     color: Colors.white,
+              //   ),
+              //   child: Image.network(
+              //     'https://media.gettyimages.com/vectors/-vector-id960988454',
+              //     height: 150.h,
+              //     width: 150.w,
+              //     fit: BoxFit.cover,
+              //   ),
+              // ),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(30),
+                child: Image.network(
+                  'https://media.gettyimages.com/vectors/-vector-id960988454',
+                  height: 150.w,
+                  width: 140.h,
+                  fit: BoxFit.cover,
+                ),
               ),
-            ),
-          ],
+              SizedBox(
+                width: 10.w,
+              ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+
+                  children: [
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    Container(
+                      child: Text(
+                        'Course Name',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: primaryColor,
+                          radius: 18.r,
+                          child: IconButton(
+                            onPressed: (){},
+                            icon: Icon(Icons.edit, color: Colors.white,size: 18,),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                        CircleAvatar(
+                          backgroundColor: Colors.red,
+                          radius: 18.r,
+                          child: IconButton(
+                            onPressed: (){},
+                            icon: Icon(Icons.delete_rounded, color: Colors.white,size: 18,),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                        CircleAvatar(
+                          backgroundColor: Colors.blueGrey,
+                          radius: 18.r,
+                          child: IconButton(
+                            onPressed: (){},
+                            icon: Icon(Icons.drafts, color: Colors.white,size: 18,),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

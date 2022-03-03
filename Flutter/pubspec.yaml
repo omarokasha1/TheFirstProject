@@ -67,7 +67,11 @@ dependencies:
   multiselect_formfield: ^0.1.7
   flutter_picker: ^2.0.2
   awesome_dialog: ^2.1.2
-  readmore: ^2.1.0
+  readmore:
+  path_provider:
+  open_file: ^3.2.1
+  file_picker:
+  http_parser: ^4.0.0
 
 
 

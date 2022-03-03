@@ -1,9 +1,85 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lms/models/course_model.dart';
+import 'package:lms/models/response_model.dart';
 import 'package:lms/modules/Auther/author_courses/author_courses_cubit/status.dart';
+import 'package:lms/shared/component/component.dart';
+import 'package:lms/shared/component/constants.dart';
+import 'package:lms/shared/network/end_points.dart';
+import 'package:lms/shared/network/remote/dio-helper.dart';
 
-class AuthorCourseCubit extends Cubit<AuthorCourseStates> {
-  AuthorCourseCubit() : super(AuthorCourseInitialState());
+class AuthorCoursesCubit extends Cubit<AuthorCoursesStates> {
+  AuthorCoursesCubit() : super(AuthorCourseInitialState());
 
-  static AuthorCourseCubit get(context) => BlocProvider.of(context);
+  static AuthorCoursesCubit get(context) => BlocProvider.of(context);
+
+  bool hasCourseName = false;
+
+  onCourseNameChanged(String name) {
+    hasCourseName = false;
+    if (name.length > 2) {
+      hasCourseName = true;
+    }
+  }
+
+
+
+  bool checkedValue = false;
+
+  List<String> items = ['English', 'Arabic'];
+  String selectedItem = "English";
+
+  void changeItem(String value)
+  {
+    selectedItem=value;
+    emit(ChangeItemState());
+  }
+
+  AuthorCoursesTestModel? authorCoursesTestModel;
+
+  Future<void> getAuthorCoursesData() async {
+    emit(GetAuthorCoursesLoadingState());
+    await DioHelper.getData(url: getAuthorCourses, token: userToken).then((value) {
+      print(value.data);
+      authorCoursesTestModel = AuthorCoursesTestModel.fromJson(value.data);
+      //print(authorCoursesTestModel!.courses.toString());
+      emit(GetAuthorCoursesSuccessState(authorCoursesTestModel));
+    }).catchError((error) {
+      emit(GetAuthorCoursesErrorState(error.toString()));
+      print(error.toString());
+    });
+  }
+
+  Future<void> createNewCourse({
+    required String courseName,
+    required String shortDescription,
+    required String requirements,
+    required contents,
+    required language,
+    required courseImage,
+  }) async {
+    emit(CreateCourseLoadingState());
+    DioHelper.postData(
+      files: true,
+      data: {
+        'title': courseName,
+        'description': shortDescription,
+        'requirements' : requirements,
+        'contents': contents,
+        'language': language,
+        'imageUrl': await fileUpload(courseImage),
+      },
+      url: createAuthorCourse,
+      token: userToken,
+    ).then((value) async {
+      print('Hereeeeeee : ${value.data}');
+      await getAuthorCoursesData();
+      emit(CreateCourseSuccessState());
+    }).catchError((onError) {
+      print(onError.toString());
+      emit(CreateCourseErrorState(onError.toString()));
+    });
+  }
+  ResponseModel? deleteModel;
+
 }

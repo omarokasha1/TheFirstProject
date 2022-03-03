@@ -6,6 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lms/layout/layout.dart';
 import 'package:lms/modules/Auther/author_courses/author_courses_cubit/cubit.dart';
+import 'package:lms/modules/Auther/traks/traks_cubit/cubit.dart';
+import 'package:lms/modules/Auther/traks/traks_cubit/status.dart';
 
 import 'package:lms/shared/component/MyAppBar.dart';
 import 'package:lms/shared/component/constants.dart';
@@ -24,11 +26,11 @@ class Tracks extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AuthorCourseCubit(),
-      child: BlocConsumer<AuthorCourseCubit, AuthorCourseStates>(
+      create: (context) => AuthorTrackCubit(),
+      child: BlocConsumer<AuthorTrackCubit, AuthorTrackStates>(
         listener: (context, state) {},
         builder: (context, state) {
-          var cubit = AuthorCourseCubit.get(context);
+          var cubit = AuthorTrackCubit.get(context);
           return Layout(
             widget: DefaultTabController(
               length: myTabs.length,

@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,7 +9,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lms/models/course_model.dart';
 import 'package:lms/modules/courses/course_overview_screen.dart';
 import 'package:lms/shared/component/constants.dart';
-
+import 'package:http_parser/http_parser.dart';
 import '../../modules/courses/course_details_screen.dart';
 
 // Widget for Buttons
@@ -554,5 +557,13 @@ Widget offline(child) {
         ),
       ),
     ],
+  );
+}
+dynamic fileUpload(File file) async {
+  String fileName = file.path.split('/').last;
+  return await MultipartFile.fromFile(
+    file.path,
+    filename: fileName,
+    contentType: MediaType("image", fileName.split(".").last),
   );
 }

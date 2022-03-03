@@ -1,4 +1,4 @@
 
-abstract class TrackStates {}
+abstract class AuthorTrackStates {}
 
-class TrackInitialState extends TrackStates {}
+class AuthorTrackInitialState extends AuthorTrackStates {}
