@@ -196,14 +196,12 @@ uploadCourse : async (req, res) => {
      console.log(user)
      const id = user.id
      console.log(id)
-
       track = await Track.find({author:ObjectId(id)}).populate('courses','-__v').select('-__v')
+
       if (!track) {
         return res.status(200).json({ status: 'false', message: 'Cannot find tracks' })
       }
-      //console.log(asd)
    return   res.status(200).json({status : "ok",message:'get Author Tracks Success',tracks:track})
-//return   res.status(200).json({status : "ok",message:'get Author Tracks Success',tracks:track})
     } catch (err) {
       console.log(err)
       return res.status(500).json({status:'false', message: err.message })
@@ -221,11 +219,8 @@ uploadCourse : async (req, res) => {
      const id = user.id 
      console.log(id)
      console.log(check)
-     track = await Track.aggregate([
-        {
-          $match: { author: ObjectId(id),check:check }
-        }
-      ])
+ 
+      let track = await Track.find({author:ObjectId(id),isPublished:true}).populate('courses','-__v',).select('-__v')
       if (!track) {
         return res.status(200).json({ status: 'false', message: 'Cannot find tracks' })
       }
