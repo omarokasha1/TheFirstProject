@@ -6,13 +6,15 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lms/layout/layout.dart';
-import 'package:lms/models/course_model.dart';
 import 'package:lms/modules/Auther/author_courses/author_courses_cubit/cubit.dart';
 import 'package:lms/modules/Auther/author_courses/author_courses_cubit/status.dart';
-import 'package:lms/modules/home_screen.dart';
+import 'package:lms/modules/home/home_screen.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
 import 'package:readmore/readmore.dart';
+
+import '../../../models/author_courses.dart';
+
 
 class CourseDetailsScreen extends StatelessWidget {
   final Courses course;
@@ -102,7 +104,7 @@ class CourseDetailsScreen extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: ReadMoreText(
-                              'I’m excited to announce the launch of my updated and improved Prime Sport and Prime Ski Racing online courses for athletes (ski racers), coaches, and parents. These courses offer the same information that I use with the professional and Olympic athletes, coaches, and parents I work with all over the world in a structured, engaging, and affordable format.',
+                              "${course.requirements}",
                               trimLines: 3,
                               colorClickableText: Colors.black,
                               trimMode: TrimMode.Line,
@@ -159,20 +161,20 @@ class CourseDetailsScreen extends StatelessWidget {
                                     shrinkWrap: true,
                                     //   physics: NeverScrollableScrollPhysics(),
                                     itemBuilder: (context, index) =>
-                                        builtCourseContant(context),
-                                    itemCount: 12),
+                                        builtCourseContant(context, course.contents![index]),
+                                    itemCount: course.contents!.length),
                                 ListView.builder(
                                     shrinkWrap: true,
                                     //    physics: NeverScrollableScrollPhysics(),
                                     itemBuilder: (context, index) =>
-                                        builtCourseAssignment(context),
+                                        builtCourseAssignment(context,),
                                     itemCount: 12),
                                 ListView.builder(
                                     shrinkWrap: true,
                                     //  physics: NeverScrollableScrollPhysics(),
                                     itemBuilder: (context, index) =>
-                                        builtCourseContant(context),
-                                    itemCount: 10),
+                                        builtCourseContant(context, course.contents![index]),
+                                    itemCount: course.contents!.length),
                               ],
                             ),
                           ),
@@ -188,7 +190,7 @@ class CourseDetailsScreen extends StatelessWidget {
   }
 }
 
-Widget builtCourseContant(context) {
+Widget builtCourseContant(context, Contents content) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: Container(
@@ -223,7 +225,8 @@ Widget builtCourseContant(context) {
                       Container(
                         width: 100.w,
                         child: Text(
-                          'File Name File Name File Name File Name ',
+                          //'File Name File Name File Name File Name ',
+                          '${content.contentTitle}',
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 15.sp,
@@ -237,7 +240,8 @@ Widget builtCourseContant(context) {
                         width: 10.w,
                       ),
                       Text(
-                        '3 min ',
+                        //'3 min ',
+                        '${content.contentDuration ?? ''}',
                         style: TextStyle(
                           color: primaryColor,
                           fontSize: 14.sp,
@@ -248,7 +252,8 @@ Widget builtCourseContant(context) {
                     ],
                   ),
                   Text(
-                    'short description ',
+                    //'short description ',
+                    '${content.description ?? ''}',
                     style: TextStyle(
                       fontSize: 14.sp,
                       fontWeight: FontWeight.w500,
@@ -266,7 +271,7 @@ Widget builtCourseContant(context) {
   );
 }
 
-Widget builtCourseAssignment(context) {
+Widget builtCourseAssignment(context,) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: Container(

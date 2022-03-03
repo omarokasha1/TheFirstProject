@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
-import 'package:lms/modules/home_screen.dart';
+import 'package:lms/modules/home/home_screen.dart';
 import '../../layout/layout.dart';
 import 'myDrawer.dart';
 

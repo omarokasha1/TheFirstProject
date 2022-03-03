@@ -105,7 +105,7 @@ class CreateTrackCubit extends Cubit<CreateTrackStates> {
   ResponseModel? updateModel;
   String? message;
 
-  Future<void> updateNewTrack({
+  Future<void> updateTrackData({
     required String trackName,
     required String shortDescription,
     required String duration,

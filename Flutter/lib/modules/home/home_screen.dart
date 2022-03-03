@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lms/layout/layout.dart';
 import 'package:lms/modules/courses/cubit/cubit.dart';
 import 'package:lms/modules/courses/cubit/states.dart';
+import 'package:lms/modules/home/view_all_courses_screen.dart';
 import 'package:lms/modules/profile/profile_cubit/cubit.dart';
 import 'package:lms/modules/profile/profile_cubit/state.dart';
 import 'package:lms/modules/search/search_screen.dart';
@@ -13,7 +14,7 @@ import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
 import 'package:lms/shared/component/zoomDrawer.dart';
 
-import 'my_learning/mylearning.dart';
+import '../my_learning/mylearning.dart';
 
 class TransparentBehavior extends ScrollBehavior {
   @override
@@ -140,15 +141,25 @@ class HomePage extends StatelessWidget {
                                 padding: EdgeInsets.all(8.0.w),
                                 child: Row(
                                   children: [
-                                    const Text('Top Courses'),
+                                    const Text('All Courses'),
                                     const Spacer(),
-                                    const Text(
-                                      'View all',
-                                    ),
-                                    Icon(
-                                      Icons.arrow_forward_outlined,
-                                      size: 20.w,
-                                      color: primaryColor,
+
+                                    InkWell(
+                                      onTap: (){
+                                        navigator(context, ViewAllCoursesScreen());
+                                      },
+                                      child: Row(
+                                        children: [
+                                          const Text(
+                                            'View all',
+                                          ),
+                                          Icon(
+                                            Icons.arrow_forward_outlined,
+                                            size: 20.w,
+                                            color: primaryColor,
+                                          ),
+                                        ],
+                                      ),
                                     )
                                   ],
                                 ),

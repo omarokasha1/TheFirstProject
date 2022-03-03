@@ -9,30 +9,34 @@ import 'package:lms/modules/Auther/author_courses/author_courses_cubit/status.da
 import 'package:lms/modules/Auther/create_module/cubit/cubit.dart';
 import 'package:lms/modules/Auther/create_module/cubit/states.dart';
 import 'package:lms/modules/courses/cubit/cubit.dart';
+import '../../../models/author_courses.dart';
 import '../../../shared/component/component.dart';
 import '../../../shared/component/constants.dart';
 import '../../courses/cubit/states.dart';
 
-class CreateCourseScreen extends StatelessWidget {
-  CreateCourseScreen({Key? key}) : super(key: key);
+class UpdateCourseScreen extends StatelessWidget {
+  final Courses courseModel;
+  UpdateCourseScreen(this.courseModel, {Key? key}) : super(key: key);
 
   File? courseImage;
   var picker = ImagePicker();
 
   TextEditingController courseNameController = TextEditingController();
-
   TextEditingController shortDescriptionController = TextEditingController();
-
-  TextEditingController requiermentController = TextEditingController();
-
+  TextEditingController requirementController = TextEditingController();
   TextEditingController moduleTypeController = TextEditingController();
 
   var formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
+    courseNameController.text = courseModel.title ?? '';
+    shortDescriptionController.text = courseModel.description ?? '';
+    requirementController.text = courseModel.requirements ?? '';
+    CreateModuleCubit.get(context).myActivities = courseModel.contents;
+
     return BlocProvider.value(
-      value: BlocProvider.of<CreateModuleCubit>(context)..getModulesData()..myActivities=[],
+      value: BlocProvider.of<CreateModuleCubit>(context)..getModulesData(),
       child: BlocConsumer<AuthorCoursesCubit, AuthorCoursesStates>(
         listener: (context, state) {},
         builder: (context, state) => BlocConsumer<CreateModuleCubit, CreateModuleStates>(
@@ -84,7 +88,7 @@ class CreateCourseScreen extends StatelessWidget {
                                 child: Padding(
                                   padding:
                                   const EdgeInsets.only(left: 40, top: 100),
-                                  child: Text("Create Course",
+                                  child: Text("Update Course",
                                       style: TextStyle(
                                           fontSize: 30, color: Colors.white)),
                                 ),
@@ -146,7 +150,7 @@ class CreateCourseScreen extends StatelessWidget {
                                         prefixIcon: Icons.description_outlined,
                                       ),
                                       customTextFormFieldWidget(
-                                        controller: requiermentController,
+                                        controller: requirementController,
                                         validate: (value) {
                                           return null;
                                         },
@@ -199,14 +203,14 @@ class CreateCourseScreen extends StatelessWidget {
                                               validate: (value) {
                                                 return null;
                                               },
-                                              myActivities:
-                                              moduleCubit.myActivities,
+                                              myActivities: [],
+                                              //moduleCubit.myActivities,
                                               onSaved: (value) {
                                                 if (value == null) return;
                                                 // setState(() {
                                                 //   myActivities = value;
                                                 // });
-                                                moduleCubit.changeActivity(value);
+                                                //moduleCubit.changeActivity(value);
                                               },
                                               dataSource: [],
                                             ),
@@ -215,14 +219,14 @@ class CreateCourseScreen extends StatelessWidget {
                                               validate: (value) {
                                                 return null;
                                               },
-                                              myActivities:
-                                              moduleCubit.myActivities,
+                                              myActivities: [],
+                                              //moduleCubit.myActivities,
                                               onSaved: (value) {
                                                 if (value == null) return;
                                                 // setState(() {
                                                 //   myActivities = value;
                                                 // });
-                                                moduleCubit.changeActivity(value);
+                                                //moduleCubit.changeActivity(value);
                                               },
                                               dataSource: [],
                                             ),
@@ -321,7 +325,7 @@ class CreateCourseScreen extends StatelessWidget {
                                 padding: const EdgeInsets.only(
                                     top: 20.0, left: 10, right: 10, bottom: 10),
                                 child: defaultButton(
-                                  text: 'Save',
+                                  text: 'Update',
                                   onPressed: () async {
                                     if (formKey.currentState!.validate()) {
                                       if (courseImage == null) {
@@ -330,14 +334,18 @@ class CreateCourseScreen extends StatelessWidget {
                                             "Course Image Must be Not empty",
                                         color: Colors.red);
                                       } else {
-                                        courseCubit.createNewCourse(
+                                        courseCubit.updateCourse(
                                           courseName: courseNameController.text,
                                           shortDescription: shortDescriptionController.text,
-                                          requirements: requiermentController.text,
+                                          requirements: requirementController.text,
                                           contents: moduleCubit.myActivities!,
                                           language: courseCubit.selectedItem,
                                           courseImage: courseImage,
-                                        ).then((value) => Navigator.pop(context));
+                                          sID : courseModel.sId,
+                                        ).then((value) {
+                                          moduleCubit.myActivities = [];
+                                          Navigator.pop(context);
+                                        });
                                       }
                                     }
                                   },

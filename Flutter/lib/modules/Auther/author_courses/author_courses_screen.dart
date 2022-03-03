@@ -1,14 +1,14 @@
-import 'dart:ui';
-
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lms/layout/layout.dart';
-import 'package:lms/models/course_model.dart';
+import 'package:lms/models/author_courses.dart';
 import 'package:lms/modules/Auther/author_courses/author_courses_cubit/cubit.dart';
+import 'package:lms/modules/Auther/author_courses/course_view.dart';
 import 'package:lms/modules/Auther/create_course/create_course_screen.dart';
+import 'package:lms/modules/Auther/create_course/update_course_screen.dart';
 
 import 'package:lms/shared/component/MyAppBar.dart';
 import 'package:lms/shared/component/component.dart';
@@ -28,11 +28,8 @@ class AuthorCourses extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) =>
-      AuthorCoursesCubit()
-        ..getAuthorCoursesData(),
-
+    return BlocProvider.value(
+      value: BlocProvider.of<AuthorCoursesCubit>(context)..getAuthorCoursesData(),
       child: BlocConsumer<AuthorCoursesCubit, AuthorCoursesStates>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -90,10 +87,28 @@ class AuthorCourses extends StatelessWidget {
                         Expanded(
                           child: TabBarView(
                             children: [
-                              publishedCourses(
-                                  cubit, cubit.authorCoursesTestModel!),
-                              penddingCourses(
-                                  cubit, cubit.authorCoursesTestModel!),
+                              ConditionalBuilder(
+                                condition: cubit.authorCoursesTestModel!.courses!.length != 0,
+                                builder: (context) {
+                                  return publishedCourses(cubit);
+                                },
+                                fallback: (context) {
+                                  return emptyPage(
+                                      text: "No Tracks Added Yet",
+                                      context: context);
+                                },
+                              ),
+                              ConditionalBuilder(
+                                condition: cubit.authorCoursesTestModel!.courses!.length != 0,
+                                builder: (context) {
+                                  return publishedCourses(cubit);
+                                },
+                                fallback: (context) {
+                                  return emptyPage(
+                                      text: "No Tracks Added Yet",
+                                      context: context);
+                                },
+                              ),
                               //draftsCourses(),
                             ],
                           ),
@@ -116,25 +131,23 @@ class AuthorCourses extends StatelessWidget {
   }
 
   //Published Courses PageView
-  Widget publishedCourses(AuthorCoursesCubit cubit,
-      AuthorCoursesTestModel authorCoursesTestModel) {
+  Widget publishedCourses(AuthorCoursesCubit cubit,) {
     return ListView.builder(
         physics: BouncingScrollPhysics(),
         itemBuilder: (context, index) {
-          return BuildAuthorCourse(authorCoursesTestModel.courses![index], cubit);
+          return BuildAuthorCourse(context, cubit.authorCoursesTestModel!.courses![index], cubit);
         },
-        itemCount: authorCoursesTestModel.courses!.length);
+        itemCount: cubit.authorCoursesTestModel!.courses!.length);
   }
 
   //Pending Courses PageView
-  Widget penddingCourses(AuthorCoursesCubit cubit,
-      AuthorCoursesTestModel authorCoursesTestModel) {
+  Widget penddingCourses(AuthorCoursesCubit cubit) {
     return ListView.builder(
         physics: BouncingScrollPhysics(),
         itemBuilder: (context, index) {
-          return BuildAuthorCourse(authorCoursesTestModel.courses![index], cubit);
+          return BuildAuthorCourse(context, cubit.authorCoursesTestModel!.courses![index], cubit);
         },
-        itemCount: authorCoursesTestModel.courses!.length);
+        itemCount: cubit.authorCoursesTestModel!.courses!.length);
   }
 
 //Drafts Courses PageView
@@ -148,133 +161,138 @@ class AuthorCourses extends StatelessWidget {
 // }
 
   //Course Widget
-  Widget BuildAuthorCourse(Courses course, AuthorCoursesCubit cubit) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        height: 120.h,
-        padding: EdgeInsets.all(10),
-        width: double.infinity,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(30.0),
-          color: Colors.grey[100],
-        ),
-        clipBehavior: Clip.antiAliasWithSaveLayer,
-        child: Row(
-          children: [
-            // Container(
-            //   clipBehavior: Clip.antiAliasWithSaveLayer,
-            //   decoration: BoxDecoration(
-            //     borderRadius: BorderRadius.circular(30.0),
-            //     color: Colors.white,
-            //   ),
-            //   child: Image.network(
-            //     'https://media.gettyimages.com/vectors/-vector-id960988454',
-            //     height: 150.h,
-            //     width: 140.w,
-            //     fit: BoxFit.cover,
-            //   ),
-            // ),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(30),
-              child: Image.network(
-                //'https://media.gettyimages.com/vectors/-vector-id960988454',
-                '${course.imageUrl}',
-                height: 150.h,
-                width: 140.w,
-                fit: BoxFit.cover,
-              ),
-            ),
-            SizedBox(
-              width: 10.w,
-            ),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  Container(
-                    child: Text(
-                      //'Track Name',
-                      '${course.title}',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20.sp,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      CircleAvatar(
-                        backgroundColor: primaryColor,
-                        radius: 18.r,
-                        child: IconButton(
-                          onPressed: () {
-                            //navigator(context, UpdateTrackScreen(modelTrack));
-                          },
-                          icon: Icon(
-                            Icons.edit,
-                            color: Colors.white,
-                            size: 18,
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 10.w,
-                      ),
-                      CircleAvatar(
-                        backgroundColor: Colors.red,
-                        radius: 18.r,
-                        child: IconButton(
-                          onPressed: () {
-                            print(course.sId);
-                            cubit.deleteCourse(courseId: course.sId!);
-                          },
-                          icon: Icon(
-                            Icons.delete_rounded,
-                            color: Colors.white,
-                            size: 18,
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 10.w,
-                      ),
-                      // CircleAvatar(
-                      //   backgroundColor: Colors.greenAccent[400],
-                      //   radius: 18.r,
-                      //   child: IconButton(
-                      //     onPressed: () {},
-                      //     icon: Icon(
-                      //       Icons.send_rounded,
-                      //       color: Colors.white,
-                      //       size: 18,
-                      //     ),
-                      //   ),
-                      // ),
-                      // SizedBox(
-                      //   width: 10.w,
-                      // ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                ],
-              ),
-              ),
-            ],
+  Widget BuildAuthorCourse(context, Courses course, AuthorCoursesCubit cubit) {
+    return InkWell(
+      onTap: (){
+        navigator(context, CourseDetailsScreen(course));
+      },
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
+          height: 120.h,
+          padding: EdgeInsets.all(10),
+          width: double.infinity,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(30.0),
+            color: Colors.grey[100],
           ),
-        ),
+          clipBehavior: Clip.antiAliasWithSaveLayer,
+          child: Row(
+            children: [
+              // Container(
+              //   clipBehavior: Clip.antiAliasWithSaveLayer,
+              //   decoration: BoxDecoration(
+              //     borderRadius: BorderRadius.circular(30.0),
+              //     color: Colors.white,
+              //   ),
+              //   child: Image.network(
+              //     'https://media.gettyimages.com/vectors/-vector-id960988454',
+              //     height: 150.h,
+              //     width: 140.w,
+              //     fit: BoxFit.cover,
+              //   ),
+              // ),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(30),
+                child: imageFromNetwork(
+                  //'https://media.gettyimages.com/vectors/-vector-id960988454',
+                  url: '${course.imageUrl}',
+                  height: 150.h,
+                  width: 140.w,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              SizedBox(
+                width: 10.w,
+              ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    Container(
+                      child: Text(
+                        //'Track Name',
+                        '${course.title}',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: primaryColor,
+                          radius: 18.r,
+                          child: IconButton(
+                            onPressed: () {
+                              navigator(context, UpdateCourseScreen(course));
+                            },
+                            icon: Icon(
+                              Icons.edit,
+                              color: Colors.white,
+                              size: 18,
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                        CircleAvatar(
+                          backgroundColor: Colors.red,
+                          radius: 18.r,
+                          child: IconButton(
+                            onPressed: () {
+                              print(course.sId);
+                              cubit.deleteCourse(courseId: course.sId!);
+                            },
+                            icon: Icon(
+                              Icons.delete_rounded,
+                              color: Colors.white,
+                              size: 18,
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                        // CircleAvatar(
+                        //   backgroundColor: Colors.greenAccent[400],
+                        //   radius: 18.r,
+                        //   child: IconButton(
+                        //     onPressed: () {},
+                        //     icon: Icon(
+                        //       Icons.send_rounded,
+                        //       color: Colors.white,
+                        //       size: 18,
+                        //     ),
+                        //   ),
+                        // ),
+                        // SizedBox(
+                        //   width: 10.w,
+                        // ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                  ],
+                ),
+                ),
+              ],
+            ),
+          ),
+      ),
     );
   }
 }

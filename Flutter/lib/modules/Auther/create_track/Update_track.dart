@@ -16,12 +16,8 @@ import 'cubit/statues.dart';
 
 class UpdateTrackScreen extends StatelessWidget {
   final Tracks modelTrack;
-
   UpdateTrackScreen(this.modelTrack, {Key? key}) : super(key: key);
 
-  File? file;
-  FilePickerResult? result;
-  String? filePath;
 
   TextEditingController trackNameController = TextEditingController();
   TextEditingController shortDescriptionController = TextEditingController();
@@ -295,7 +291,7 @@ class UpdateTrackScreen extends StatelessWidget {
                                                   color: Colors.red);
                                             } else {
                                               await cubit
-                                                  .updateNewTrack(
+                                                  .updateTrackData(
                                                   trackName:
                                                   trackNameController.text,
                                                   shortDescription:

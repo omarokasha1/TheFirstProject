@@ -212,7 +212,7 @@ class UserEducation {
 
 class AuthorCoursesTestModel {
   String? status;
-  List<Courses>? courses;
+  List<Courses>? courses = [];
 
   AuthorCoursesTestModel({this.status, this.courses});
 
@@ -238,6 +238,7 @@ class AuthorCoursesTestModel {
 
 class Courses {
   String? sId;
+  String? requirements;
   String? totalTime;
   String? lastUpdate;
   String? title;
@@ -252,20 +253,22 @@ class Courses {
 
   Courses(
       {this.sId,
-        this.totalTime,
-        this.lastUpdate,
-        this.title,
-        this.price,
-        this.discount,
-        this.language,
-        this.review,
-        this.imageUrl,
-        this.contents,
-        this.author,
-        this.description});
+      this.totalTime,
+      this.lastUpdate,
+      this.title,
+      this.price,
+      this.discount,
+      this.language,
+      this.review,
+      this.imageUrl,
+      this.contents,
+      this.author,
+      this.requirements,
+      this.description});
 
   Courses.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
+    requirements = json['requirements'] ?? '';
     totalTime = json['totalTime'];
     lastUpdate = json['lastUpdate'];
     title = json['title'];
