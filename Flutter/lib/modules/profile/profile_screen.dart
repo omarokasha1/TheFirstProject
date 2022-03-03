@@ -1,7 +1,10 @@
+import 'dart:convert';
 import 'dart:io';
-
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:dio/dio.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,12 +17,16 @@ import 'package:lms/modules/profile/edit_profile_screen.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
 import 'package:lms/shared/component/zoomDrawer.dart';
+import 'package:lms/shared/network/remote/dio-helper.dart';
 
 class ProfileScreen extends StatelessWidget {
   ProfileScreen({Key? key}) : super(key: key);
 
   File? profileImage;
   var picker = ImagePicker();
+  var formKey = GlobalKey<FormState>();
+
+  Dio dio = Dio();
 
   @override
   Widget build(BuildContext context) {
@@ -27,26 +34,10 @@ class ProfileScreen extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         var cubit = ProfileCubit.get(context);
-
         return Layout(
           widget: Scaffold(
             backgroundColor: primaryColor,
-            appBar: AppBar(
-              backgroundColor: primaryColor,
-              leading: IconButton(
-                icon: Icon(
-                  Icons.arrow_back,
-                  color: Colors.white,
-                ),
-                onPressed: () {
-                  navigatorAndRemove(
-                      context,
-                      ZoomDrawerScreen(
-                        widget: HomePage(),
-                      ));
-                },
-              ),
-            ),
+            appBar: AppBar(backgroundColor: primaryColor,iconTheme: IconThemeData(color: Colors.white),),
             floatingActionButton: IconButton(
               iconSize: 50.0,
               onPressed: () {
@@ -74,7 +65,7 @@ class ProfileScreen extends StatelessWidget {
                       CircleAvatar(
                         radius: 45.0,
                         backgroundImage: CachedNetworkImageProvider(
-                          '${imageUrl}${cubit.model!.profile!.imageUrl}',
+                          '${cubit.model!.profile!.imageUrl}',
                         ),
                         child: Align(
                           alignment: AlignmentDirectional.bottomEnd,
@@ -91,16 +82,96 @@ class ProfileScreen extends StatelessWidget {
                                 color: Colors.white,
                                 iconSize: 15.0,
                                 onPressed: () async {
-                                  final pickedFile = await picker.pickImage(
-                                      source: ImageSource.gallery);
-                                  if (pickedFile != null) {
-                                    profileImage = File(pickedFile.path);
-                                  } else {
-                                    print('no image selected');
+                                  // File? image;
+                                  // var imagePicker = await ImagePicker.pickImage2(source: ImageSource.gallery);
+                                  // if(imagePicker != null){
+                                  //   //SetState
+                                  //   image = imagePicker as File;
+                                  // }
+                                  // try{
+                                  //   String fileName = image!.path.split('/').last;
+                                  //   FormData formData = FormData.fromMap({
+                                  //     'profile': await MultipartFile.fromFile(image.path, filename: fileName),
+                                  //     //contentType: MediaType('image', 'png')),
+                                  //   });
+                                  // }catch(e){
+                                  //   print(e);
+                                  // }
+                                  File? imageFile;
+                                  var base64Imageteam;
+                                  final GlobalKey<FormState> _formKey =
+                                      GlobalKey<FormState>();
+
+                                  /// Get from gallery
+                                  getFromGallery() async {
+                                    PickedFile? pickedFile =
+                                        await ImagePicker().getImage(
+                                      source: ImageSource.gallery,
+                                      //maxWidth: 1800,
+                                      //maxHeight: 1800,
+                                    );
+                                    if (pickedFile != null) {
+                                      //setState(() {
+                                      imageFile = File(pickedFile.path);
+                                      print(
+                                          "imageFile----------------------------->$imageFile");
+                                      List<int> imageBytes =
+                                          imageFile!.readAsBytesSync();
+                                      base64Imageteam =
+                                          base64Encode(imageBytes);
+
+                                      print(imageFile!.runtimeType);
+
+                                      // FTPConnect ftpConnect = FTPConnect('http://10.5.62.214/upload',port: 8080,user:'backend', pass:'backend123');
+                                      // File fileToUpload = imageFile!;
+                                      // await ftpConnect.connect();
+                                      // bool res = await ftpConnect.uploadFileWithRetry(fileToUpload, pRetryCount: 2);
+                                      // await ftpConnect.disconnect();
+                                      // print(res);
+
+                                      //print(base64Imageteam);
+                                      //DioHelper.postData(url: uploadImageProfile, data: {'profile':imageFile},token: userToken);
+                                      //DioHelper.upload(imageFile!, context);
+                                      DioHelper.uploadImage(imageFile!);
+
+                                      // updatimge(base64Image, id);
+                                      //});
+                                    }
                                   }
+
+                                  /// Get from File
+                                  getFromFile() async {
+                                    FilePickerResult? result =
+                                        await FilePicker.platform.pickFiles();
+                                    if (result != null) {
+                                      imageFile =
+                                          File(result.files.single.path!);
+
+                                      print(
+                                          "File----------------------------->$imageFile");
+                                      //DioHelper.uploadImage(imageFile!);
+                                      //List<int> fileBytes = imageFile!.readAsBytesSync();
+                                      //base64Imageteam = base64Encode(fileBytes);
+                                      //print(base64Imageteam);
+                                      //print(imageFile!.path);
+                                    } else {
+                                      // User canceled the picker
+                                    }
+                                  }
+
+                                  await getFromGallery();
+                                  cubit.getUserProfile();
+                                  // final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+                                  // if (pickedFile != null) {
+                                  //   profileImage = File(pickedFile.path);
+                                  //   DioHelper.uploadImage(profileImage!);
+                                  //   cubit.getUserProfile();
+                                  //   //print(profileImage!.path.split('/').last);
+                                  // } else {
+                                  //   print('no image selected');
+                                  // }
                                   //image = await _picker.pickImage(source: ImageSource.gallery);
-                                  print(
-                                      "Piiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiic");
+                                  //print("Piiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiic");
                                 },
                               ),
                             ),
@@ -121,11 +192,60 @@ class ProfileScreen extends StatelessWidget {
                       SizedBox(
                         height: 2.0,
                       ),
-                      Text(
-                        "${cubit.model!.profile!.bio}",
-                        style: TextStyle(
-                          fontSize: 16.0,
-                          color: Colors.grey[300],
+                      // Text(
+                      //   "${cubit.model!.profile!.bio}",
+                      //   style: TextStyle(
+                      //     fontSize: 16.0,
+                      //     color: Colors.grey[300],
+                      //   ),
+                      // ),
+                      TextButton(
+                        onPressed: () {
+                          AwesomeDialog(
+                            context: context,
+                            animType: AnimType.SCALE,
+                            dialogType: DialogType.QUESTION,
+                            body: Center(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Form(
+                                  key: formKey,
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        'Are you sure want be become a Author ?',
+                                        style: TextStyle(
+                                            fontStyle: FontStyle.italic),
+                                      ),
+                                      SizedBox(
+                                        height: 30,
+                                      ),
+                                      Container(
+                                        height: 40,
+                                        child: defaultButton(
+                                          text: 'OK',
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                            title: 'This is Ignored',
+                            desc: 'This is also Ignored',
+                            //   btnOkOnPress: () {},
+                          ).show();
+                        },
+                        child: Text(
+                          "Become an Author",
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            color: Colors.grey[300],
+                            decoration: TextDecoration.underline,
+                          ),
                         ),
                       ),
                       SizedBox(
@@ -135,7 +255,7 @@ class ProfileScreen extends StatelessWidget {
                         width: double.infinity,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.vertical(
-                            top: Radius.circular(50.0),
+                            top: Radius.circular(25.0),
                           ),
                           color: Colors.white,
                         ),
@@ -147,6 +267,8 @@ class ProfileScreen extends StatelessWidget {
                             textBaseline: TextBaseline.alphabetic,
                             children: [
                               ListTile(
+                                contentPadding: EdgeInsets.all(0),
+                                horizontalTitleGap: 0,
                                 leading: Icon(
                                   Icons.person,
                                   color: primaryColor,
@@ -246,6 +368,8 @@ class ProfileScreen extends StatelessWidget {
                                 height: 10.0,
                               ),
                               ListTile(
+                                contentPadding: EdgeInsets.all(0),
+                                horizontalTitleGap: 0,
                                 leading: Icon(
                                   Icons.science_rounded,
                                   color: primaryColor,
@@ -328,6 +452,8 @@ class ProfileScreen extends StatelessWidget {
                                 height: 10.0,
                               ),
                               ListTile(
+                                contentPadding: EdgeInsets.all(0),
+                                horizontalTitleGap: 0,
                                 leading: Icon(
                                   Icons.work_outline_rounded,
                                   color: primaryColor,
@@ -368,6 +494,8 @@ class ProfileScreen extends StatelessWidget {
                                 height: 10.0,
                               ),
                               ListTile(
+                                contentPadding: EdgeInsets.all(0),
+                                horizontalTitleGap: 0,
                                 leading: Icon(
                                   Icons.import_contacts_rounded,
                                   color: primaryColor,

@@ -5,130 +5,432 @@
 5    android:versionName="1.0.0" >
 6
 7    <uses-sdk
-8        android:minSdkVersion="16"
+8        android:minSdkVersion="21"
 9        android:targetSdkVersion="31" />
 10    <!--
 11         Flutter needs it to communicate with the running application
 12         to allow setting breakpoints, to provide hot reload, etc.
 13    -->
 14    <uses-permission android:name="android.permission.INTERNET" />
-14-->/home/odc2/TheFirstProject/Flutter/android/app/src/debug/AndroidManifest.xml:6:5-66
-14-->/home/odc2/TheFirstProject/Flutter/android/app/src/debug/AndroidManifest.xml:6:22-64
-15    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-15-->[:network_info_plus] /home/odc2/TheFirstProject/Flutter/build/network_info_plus/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-79
-15-->[:network_info_plus] /home/odc2/TheFirstProject/Flutter/build/network_info_plus/intermediates/library_manifest/debug/AndroidManifest.xml:7:22-76
-16    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-16-->[:network_info_plus] /home/odc2/TheFirstProject/Flutter/build/network_info_plus/intermediates/library_manifest/debug/AndroidManifest.xml:8:5-76
-16-->[:network_info_plus] /home/odc2/TheFirstProject/Flutter/build/network_info_plus/intermediates/library_manifest/debug/AndroidManifest.xml:8:22-73
-17    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-17-->[:file_picker] /home/odc2/TheFirstProject/Flutter/build/file_picker/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-80
-17-->[:file_picker] /home/odc2/TheFirstProject/Flutter/build/file_picker/intermediates/library_manifest/debug/AndroidManifest.xml:7:22-77
-18
-19    <queries>
-19-->[:file_picker] /home/odc2/TheFirstProject/Flutter/build/file_picker/intermediates/library_manifest/debug/AndroidManifest.xml:9:5-15:15
-20        <intent>
-20-->[:file_picker] /home/odc2/TheFirstProject/Flutter/build/file_picker/intermediates/library_manifest/debug/AndroidManifest.xml:10:9-14:18
-21            <action android:name="android.intent.action.GET_CONTENT" />
-21-->[:file_picker] /home/odc2/TheFirstProject/Flutter/build/file_picker/intermediates/library_manifest/debug/AndroidManifest.xml:11:13-72
-21-->[:file_picker] /home/odc2/TheFirstProject/Flutter/build/file_picker/intermediates/library_manifest/debug/AndroidManifest.xml:11:21-69
-22
-23            <data android:mimeType="*/*" />
-23-->[:file_picker] /home/odc2/TheFirstProject/Flutter/build/file_picker/intermediates/library_manifest/debug/AndroidManifest.xml:13:13-44
-23-->[:file_picker] /home/odc2/TheFirstProject/Flutter/build/file_picker/intermediates/library_manifest/debug/AndroidManifest.xml:13:19-41
-24        </intent>
-25    </queries>
-26
-27    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
-27-->[:open_file] /home/odc2/TheFirstProject/Flutter/build/open_file/intermediates/library_manifest/debug/AndroidManifest.xml:8:5-83
-27-->[:open_file] /home/odc2/TheFirstProject/Flutter/build/open_file/intermediates/library_manifest/debug/AndroidManifest.xml:8:22-80
-28
-29    <application
-30        android:name="android.app.Application"
-31        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-31-->[androidx.core:core:1.6.0] /home/odc2/.gradle/caches/transforms-2/files-2.1/122df2e57d294d1a53db26bbc3b813c1/core-1.6.0/AndroidManifest.xml:24:18-86
-32        android:debuggable="true"
-33        android:icon="@mipmap/ic_launcher"
-34        android:label="lms" >
-35        <activity
-36            android:name="com.example.lms.MainActivity"
-37            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
-38            android:exported="true"
-39            android:hardwareAccelerated="true"
-40            android:launchMode="singleTop"
-41            android:theme="@style/LaunchTheme"
-42            android:windowSoftInputMode="adjustResize" >
-43
-44            <!--
-45                 Specifies an Android theme to apply to this Activity as soon as
-46                 the Android process has started. This theme is visible to the user
-47                 while the Flutter UI initializes. After that, this theme continues
-48                 to determine the Window background behind the Flutter UI.
-49            -->
-50            <meta-data
-51                android:name="io.flutter.embedding.android.NormalTheme"
-52                android:resource="@style/NormalTheme" />
+14-->/home/odc2/TheFirstProject/Flutter/android/app/src/main/AndroidManifest.xml:3:5-66
+14-->/home/odc2/TheFirstProject/Flutter/android/app/src/main/AndroidManifest.xml:3:22-64
+15    <uses-permission android:name="android.permission.WAKE_LOCK" />
+15-->[:firebase_messaging] /home/odc2/TheFirstProject/Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:8:5-68
+15-->[:firebase_messaging] /home/odc2/TheFirstProject/Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:8:22-65
+16    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+16-->[:firebase_messaging] /home/odc2/TheFirstProject/Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:9:5-79
+16-->[:firebase_messaging] /home/odc2/TheFirstProject/Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:9:22-76
+17    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+17-->[:network_info_plus] /home/odc2/TheFirstProject/Flutter/build/network_info_plus/intermediates/library_manifest/debug/AndroidManifest.xml:8:5-76
+17-->[:network_info_plus] /home/odc2/TheFirstProject/Flutter/build/network_info_plus/intermediates/library_manifest/debug/AndroidManifest.xml:8:22-73
+18    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+18-->[:file_picker] /home/odc2/TheFirstProject/Flutter/build/file_picker/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-80
+18-->[:file_picker] /home/odc2/TheFirstProject/Flutter/build/file_picker/intermediates/library_manifest/debug/AndroidManifest.xml:7:22-77
+19
+20    <queries>
+20-->[:file_picker] /home/odc2/TheFirstProject/Flutter/build/file_picker/intermediates/library_manifest/debug/AndroidManifest.xml:9:5-15:15
+21        <intent>
+21-->[:file_picker] /home/odc2/TheFirstProject/Flutter/build/file_picker/intermediates/library_manifest/debug/AndroidManifest.xml:10:9-14:18
+22            <action android:name="android.intent.action.GET_CONTENT" />
+22-->[:file_picker] /home/odc2/TheFirstProject/Flutter/build/file_picker/intermediates/library_manifest/debug/AndroidManifest.xml:11:13-72
+22-->[:file_picker] /home/odc2/TheFirstProject/Flutter/build/file_picker/intermediates/library_manifest/debug/AndroidManifest.xml:11:21-69
+23
+24            <data android:mimeType="*/*" />
+24-->[:file_picker] /home/odc2/TheFirstProject/Flutter/build/file_picker/intermediates/library_manifest/debug/AndroidManifest.xml:13:13-44
+24-->[:file_picker] /home/odc2/TheFirstProject/Flutter/build/file_picker/intermediates/library_manifest/debug/AndroidManifest.xml:13:19-41
+25        </intent>
+26    </queries>
+27
+28    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+28-->[:awesome_notifications] /home/odc2/TheFirstProject/Flutter/build/awesome_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-81
+28-->[:awesome_notifications] /home/odc2/TheFirstProject/Flutter/build/awesome_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:7:22-78
+29    <uses-permission android:name="android.permission.VIBRATE" />
+29-->[:awesome_notifications] /home/odc2/TheFirstProject/Flutter/build/awesome_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:8:5-66
+29-->[:awesome_notifications] /home/odc2/TheFirstProject/Flutter/build/awesome_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:8:22-63
+30    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" /> <!-- Required by older versions of Google Play services to create IID tokens -->
+30-->[:open_file] /home/odc2/TheFirstProject/Flutter/build/open_file/intermediates/library_manifest/debug/AndroidManifest.xml:8:5-83
+30-->[:open_file] /home/odc2/TheFirstProject/Flutter/build/open_file/intermediates/library_manifest/debug/AndroidManifest.xml:8:22-80
+31    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" /> <!-- for android -->
+31-->[com.google.firebase:firebase-messaging:23.0.0] /home/odc2/.gradle/caches/transforms-2/files-2.1/d5f5bb923ef231125221909ffa1de444/jetified-firebase-messaging-23.0.0/AndroidManifest.xml:25:5-82
+31-->[com.google.firebase:firebase-messaging:23.0.0] /home/odc2/.gradle/caches/transforms-2/files-2.1/d5f5bb923ef231125221909ffa1de444/jetified-firebase-messaging-23.0.0/AndroidManifest.xml:25:22-79
+32    <!-- <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS"/> -->
+33    <!-- <uses-permission android:name="com.android.launcher.permission.WRITE_SETTINGS"/> -->
+34    <!-- <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" /> -->
+35    <!-- <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT" /> -->
+36    <!-- for Samsung -->
+37    <uses-permission android:name="com.sec.android.provider.badge.permission.READ" />
+37-->[me.leolin:ShortcutBadger:1.1.22] /home/odc2/.gradle/caches/transforms-2/files-2.1/644c21982e4e9db8623e39519462506e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:19:5-86
+37-->[me.leolin:ShortcutBadger:1.1.22] /home/odc2/.gradle/caches/transforms-2/files-2.1/644c21982e4e9db8623e39519462506e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:19:22-83
+38    <uses-permission android:name="com.sec.android.provider.badge.permission.WRITE" /> <!-- for htc -->
+38-->[me.leolin:ShortcutBadger:1.1.22] /home/odc2/.gradle/caches/transforms-2/files-2.1/644c21982e4e9db8623e39519462506e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:20:5-87
+38-->[me.leolin:ShortcutBadger:1.1.22] /home/odc2/.gradle/caches/transforms-2/files-2.1/644c21982e4e9db8623e39519462506e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:20:22-84
+39    <uses-permission android:name="com.htc.launcher.permission.READ_SETTINGS" />
+39-->[me.leolin:ShortcutBadger:1.1.22] /home/odc2/.gradle/caches/transforms-2/files-2.1/644c21982e4e9db8623e39519462506e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:23:5-81
+39-->[me.leolin:ShortcutBadger:1.1.22] /home/odc2/.gradle/caches/transforms-2/files-2.1/644c21982e4e9db8623e39519462506e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:23:22-78
+40    <uses-permission android:name="com.htc.launcher.permission.UPDATE_SHORTCUT" /> <!-- for sony -->
+40-->[me.leolin:ShortcutBadger:1.1.22] /home/odc2/.gradle/caches/transforms-2/files-2.1/644c21982e4e9db8623e39519462506e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:24:5-83
+40-->[me.leolin:ShortcutBadger:1.1.22] /home/odc2/.gradle/caches/transforms-2/files-2.1/644c21982e4e9db8623e39519462506e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:24:22-80
+41    <uses-permission android:name="com.sonyericsson.home.permission.BROADCAST_BADGE" />
+41-->[me.leolin:ShortcutBadger:1.1.22] /home/odc2/.gradle/caches/transforms-2/files-2.1/644c21982e4e9db8623e39519462506e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:27:5-88
+41-->[me.leolin:ShortcutBadger:1.1.22] /home/odc2/.gradle/caches/transforms-2/files-2.1/644c21982e4e9db8623e39519462506e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:27:22-85
+42    <uses-permission android:name="com.sonymobile.home.permission.PROVIDER_INSERT_BADGE" /> <!-- for apex -->
+42-->[me.leolin:ShortcutBadger:1.1.22] /home/odc2/.gradle/caches/transforms-2/files-2.1/644c21982e4e9db8623e39519462506e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:28:5-92
+42-->[me.leolin:ShortcutBadger:1.1.22] /home/odc2/.gradle/caches/transforms-2/files-2.1/644c21982e4e9db8623e39519462506e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:28:22-89
+43    <uses-permission android:name="com.anddoes.launcher.permission.UPDATE_COUNT" /> <!-- for solid -->
+43-->[me.leolin:ShortcutBadger:1.1.22] /home/odc2/.gradle/caches/transforms-2/files-2.1/644c21982e4e9db8623e39519462506e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:31:5-84
+43-->[me.leolin:ShortcutBadger:1.1.22] /home/odc2/.gradle/caches/transforms-2/files-2.1/644c21982e4e9db8623e39519462506e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:31:22-81
+44    <uses-permission android:name="com.majeur.launcher.permission.UPDATE_BADGE" /> <!-- for huawei -->
+44-->[me.leolin:ShortcutBadger:1.1.22] /home/odc2/.gradle/caches/transforms-2/files-2.1/644c21982e4e9db8623e39519462506e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:34:5-83
+44-->[me.leolin:ShortcutBadger:1.1.22] /home/odc2/.gradle/caches/transforms-2/files-2.1/644c21982e4e9db8623e39519462506e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:34:22-80
+45    <uses-permission android:name="com.huawei.android.launcher.permission.CHANGE_BADGE" />
+45-->[me.leolin:ShortcutBadger:1.1.22] /home/odc2/.gradle/caches/transforms-2/files-2.1/644c21982e4e9db8623e39519462506e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:37:5-91
+45-->[me.leolin:ShortcutBadger:1.1.22] /home/odc2/.gradle/caches/transforms-2/files-2.1/644c21982e4e9db8623e39519462506e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:37:22-88
+46    <uses-permission android:name="com.huawei.android.launcher.permission.READ_SETTINGS" />
+46-->[me.leolin:ShortcutBadger:1.1.22] /home/odc2/.gradle/caches/transforms-2/files-2.1/644c21982e4e9db8623e39519462506e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:38:5-92
+46-->[me.leolin:ShortcutBadger:1.1.22] /home/odc2/.gradle/caches/transforms-2/files-2.1/644c21982e4e9db8623e39519462506e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:38:22-89
+47    <uses-permission android:name="com.huawei.android.launcher.permission.WRITE_SETTINGS" /> <!-- for ZUK -->
+47-->[me.leolin:ShortcutBadger:1.1.22] /home/odc2/.gradle/caches/transforms-2/files-2.1/644c21982e4e9db8623e39519462506e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:39:5-93
+47-->[me.leolin:ShortcutBadger:1.1.22] /home/odc2/.gradle/caches/transforms-2/files-2.1/644c21982e4e9db8623e39519462506e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:39:22-90
+48    <uses-permission android:name="android.permission.READ_APP_BADGE" /> <!-- for OPPO -->
+48-->[me.leolin:ShortcutBadger:1.1.22] /home/odc2/.gradle/caches/transforms-2/files-2.1/644c21982e4e9db8623e39519462506e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:42:5-73
+48-->[me.leolin:ShortcutBadger:1.1.22] /home/odc2/.gradle/caches/transforms-2/files-2.1/644c21982e4e9db8623e39519462506e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:42:22-70
+49    <uses-permission android:name="com.oppo.launcher.permission.READ_SETTINGS" />
+49-->[me.leolin:ShortcutBadger:1.1.22] /home/odc2/.gradle/caches/transforms-2/files-2.1/644c21982e4e9db8623e39519462506e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:45:5-82
+49-->[me.leolin:ShortcutBadger:1.1.22] /home/odc2/.gradle/caches/transforms-2/files-2.1/644c21982e4e9db8623e39519462506e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:45:22-79
+50    <uses-permission android:name="com.oppo.launcher.permission.WRITE_SETTINGS" /> <!-- for EvMe -->
+50-->[me.leolin:ShortcutBadger:1.1.22] /home/odc2/.gradle/caches/transforms-2/files-2.1/644c21982e4e9db8623e39519462506e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:46:5-83
+50-->[me.leolin:ShortcutBadger:1.1.22] /home/odc2/.gradle/caches/transforms-2/files-2.1/644c21982e4e9db8623e39519462506e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:46:22-80
+51    <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_READ" />
+51-->[me.leolin:ShortcutBadger:1.1.22] /home/odc2/.gradle/caches/transforms-2/files-2.1/644c21982e4e9db8623e39519462506e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:49:5-88
+51-->[me.leolin:ShortcutBadger:1.1.22] /home/odc2/.gradle/caches/transforms-2/files-2.1/644c21982e4e9db8623e39519462506e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:49:22-85
+52    <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_WRITE" />
+52-->[me.leolin:ShortcutBadger:1.1.22] /home/odc2/.gradle/caches/transforms-2/files-2.1/644c21982e4e9db8623e39519462506e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:50:5-89
+52-->[me.leolin:ShortcutBadger:1.1.22] /home/odc2/.gradle/caches/transforms-2/files-2.1/644c21982e4e9db8623e39519462506e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:50:22-86
 53
-54            <intent-filter>
-55                <action android:name="android.intent.action.MAIN" />
-56
-57                <category android:name="android.intent.category.LAUNCHER" />
-58            </intent-filter>
-59        </activity>
-60        <!--
-61             Don't delete the meta-data below.
-62             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
-63        -->
-64        <meta-data
-65            android:name="flutterEmbedding"
-66            android:value="2" />
-67
-68        <provider
-68-->[:image_picker] /home/odc2/TheFirstProject/Flutter/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:8:9-16:20
-69            android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
-69-->[:image_picker] /home/odc2/TheFirstProject/Flutter/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-82
-70            android:authorities="com.example.lms.flutter.image_provider"
-70-->[:image_picker] /home/odc2/TheFirstProject/Flutter/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:10:13-74
-71            android:exported="false"
-71-->[:image_picker] /home/odc2/TheFirstProject/Flutter/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:11:13-37
-72            android:grantUriPermissions="true" >
-72-->[:image_picker] /home/odc2/TheFirstProject/Flutter/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:12:13-47
-73            <meta-data
-73-->[:image_picker] /home/odc2/TheFirstProject/Flutter/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:13:13-15:75
-74                android:name="android.support.FILE_PROVIDER_PATHS"
-74-->[:image_picker] /home/odc2/TheFirstProject/Flutter/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:14:17-67
-75                android:resource="@xml/flutter_image_picker_file_paths" />
-75-->[:image_picker] /home/odc2/TheFirstProject/Flutter/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:15:17-72
-76        </provider>
-77        <provider
-77-->[:open_file] /home/odc2/TheFirstProject/Flutter/build/open_file/intermediates/library_manifest/debug/AndroidManifest.xml:12:9-21:20
-78            android:name="com.crazecoder.openfile.FileProvider"
-78-->[:open_file] /home/odc2/TheFirstProject/Flutter/build/open_file/intermediates/library_manifest/debug/AndroidManifest.xml:13:13-64
-79            android:authorities="com.example.lms.fileProvider.com.crazecoder.openfile"
-79-->[:open_file] /home/odc2/TheFirstProject/Flutter/build/open_file/intermediates/library_manifest/debug/AndroidManifest.xml:14:13-88
-80            android:exported="false"
-80-->[:open_file] /home/odc2/TheFirstProject/Flutter/build/open_file/intermediates/library_manifest/debug/AndroidManifest.xml:15:13-37
-81            android:grantUriPermissions="true" >
-81-->[:open_file] /home/odc2/TheFirstProject/Flutter/build/open_file/intermediates/library_manifest/debug/AndroidManifest.xml:16:13-47
-82            <meta-data
-82-->[:image_picker] /home/odc2/TheFirstProject/Flutter/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:13:13-15:75
-83                android:name="android.support.FILE_PROVIDER_PATHS"
-83-->[:image_picker] /home/odc2/TheFirstProject/Flutter/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:14:17-67
-84                android:resource="@xml/filepaths" />
-84-->[:image_picker] /home/odc2/TheFirstProject/Flutter/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:15:17-72
-85        </provider>
-86
-87        <uses-library
-87-->[androidx.window:window:1.0.0-beta04] /home/odc2/.gradle/caches/transforms-2/files-2.1/03c633e46d75bfb21f082f0417f55161/jetified-window-1.0.0-beta04/AndroidManifest.xml:25:9-27:40
-88            android:name="androidx.window.extensions"
-88-->[androidx.window:window:1.0.0-beta04] /home/odc2/.gradle/caches/transforms-2/files-2.1/03c633e46d75bfb21f082f0417f55161/jetified-window-1.0.0-beta04/AndroidManifest.xml:26:13-54
-89            android:required="false" />
-89-->[androidx.window:window:1.0.0-beta04] /home/odc2/.gradle/caches/transforms-2/files-2.1/03c633e46d75bfb21f082f0417f55161/jetified-window-1.0.0-beta04/AndroidManifest.xml:27:13-37
-90        <uses-library
-90-->[androidx.window:window:1.0.0-beta04] /home/odc2/.gradle/caches/transforms-2/files-2.1/03c633e46d75bfb21f082f0417f55161/jetified-window-1.0.0-beta04/AndroidManifest.xml:28:9-30:40
-91            android:name="androidx.window.sidecar"
-91-->[androidx.window:window:1.0.0-beta04] /home/odc2/.gradle/caches/transforms-2/files-2.1/03c633e46d75bfb21f082f0417f55161/jetified-window-1.0.0-beta04/AndroidManifest.xml:29:13-51
-92            android:required="false" />
-92-->[androidx.window:window:1.0.0-beta04] /home/odc2/.gradle/caches/transforms-2/files-2.1/03c633e46d75bfb21f082f0417f55161/jetified-window-1.0.0-beta04/AndroidManifest.xml:30:13-37
-93    </application>
-94
-95</manifest>
+54    <application
+55        android:name="android.app.Application"
+56        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+56-->[androidx.core:core:1.7.0] /home/odc2/.gradle/caches/transforms-2/files-2.1/b9a960218f5163997c0fdfa3d3078c0e/core-1.7.0/AndroidManifest.xml:24:18-86
+57        android:debuggable="true"
+58        android:icon="@mipmap/ic_launcher"
+59        android:label="lms"
+60        android:requestLegacyExternalStorage="true" >
+61        <activity
+62            android:name="com.example.lms.MainActivity"
+63            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+64            android:exported="true"
+65            android:hardwareAccelerated="true"
+66            android:launchMode="singleTop"
+67            android:theme="@style/LaunchTheme"
+68            android:windowSoftInputMode="adjustResize" >
+69
+70            <!--
+71                 Specifies an Android theme to apply to this Activity as soon as
+72                 the Android process has started. This theme is visible to the user
+73                 while the Flutter UI initializes. After that, this theme continues
+74                 to determine the Window background behind the Flutter UI.
+75            -->
+76            <meta-data
+77                android:name="io.flutter.embedding.android.NormalTheme"
+78                android:resource="@style/NormalTheme" />
+79
+80            <intent-filter>
+81                <action android:name="android.intent.action.MAIN" />
+82
+83                <category android:name="android.intent.category.LAUNCHER" />
+84            </intent-filter>
+85        </activity>
+86        <!--
+87             Don't delete the meta-data below.
+88             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+89        -->
+90        <meta-data
+91            android:name="flutterEmbedding"
+92            android:value="2" />
+93
+94        <service
+94-->[:firebase_messaging] /home/odc2/TheFirstProject/Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:12:9-15:72
+95            android:name="io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingBackgroundService"
+95-->[:firebase_messaging] /home/odc2/TheFirstProject/Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:13:13-107
+96            android:exported="false"
+96-->[:firebase_messaging] /home/odc2/TheFirstProject/Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:14:13-37
+97            android:permission="android.permission.BIND_JOB_SERVICE" />
+97-->[:firebase_messaging] /home/odc2/TheFirstProject/Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:15:13-69
+98        <service
+98-->[:firebase_messaging] /home/odc2/TheFirstProject/Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:16:9-22:19
+99            android:name="io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingService"
+99-->[:firebase_messaging] /home/odc2/TheFirstProject/Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:17:13-97
+100            android:exported="false" >
+100-->[:firebase_messaging] /home/odc2/TheFirstProject/Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:18:13-37
+101            <intent-filter>
+101-->[:firebase_messaging] /home/odc2/TheFirstProject/Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:19:13-21:29
+102                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+102-->[:firebase_messaging] /home/odc2/TheFirstProject/Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:20:17-78
+102-->[:firebase_messaging] /home/odc2/TheFirstProject/Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:20:25-75
+103            </intent-filter>
+104        </service>
+105
+106        <receiver
+106-->[:firebase_messaging] /home/odc2/TheFirstProject/Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:24:9-31:20
+107            android:name="io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingReceiver"
+107-->[:firebase_messaging] /home/odc2/TheFirstProject/Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:25:13-98
+108            android:exported="true"
+108-->[:firebase_messaging] /home/odc2/TheFirstProject/Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:26:13-36
+109            android:permission="com.google.android.c2dm.permission.SEND" >
+109-->[:firebase_messaging] /home/odc2/TheFirstProject/Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:27:13-73
+110            <intent-filter>
+110-->[:firebase_messaging] /home/odc2/TheFirstProject/Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:28:13-30:29
+111                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+111-->[:firebase_messaging] /home/odc2/TheFirstProject/Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:29:17-81
+111-->[:firebase_messaging] /home/odc2/TheFirstProject/Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:29:25-78
+112            </intent-filter>
+113        </receiver>
+114
+115        <service
+115-->[:firebase_messaging] /home/odc2/TheFirstProject/Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:33:9-37:19
+116            android:name="com.google.firebase.components.ComponentDiscoveryService"
+116-->[:firebase_messaging] /home/odc2/TheFirstProject/Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:33:18-89
+117            android:directBootAware="true"
+117-->[com.google.firebase:firebase-common:20.0.0] /home/odc2/.gradle/caches/transforms-2/files-2.1/3660c810531840b7362e70bfaa69e2c8/jetified-firebase-common-20.0.0/AndroidManifest.xml:35:13-43
+118            android:exported="false" >
+118-->[com.google.firebase:firebase-messaging:23.0.0] /home/odc2/.gradle/caches/transforms-2/files-2.1/d5f5bb923ef231125221909ffa1de444/jetified-firebase-messaging-23.0.0/AndroidManifest.xml:51:13-37
+119            <meta-data
+119-->[:firebase_messaging] /home/odc2/TheFirstProject/Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:34:13-36:85
+120                android:name="com.google.firebase.components:io.flutter.plugins.firebase.messaging.FlutterFirebaseAppRegistrar"
+120-->[:firebase_messaging] /home/odc2/TheFirstProject/Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:35:17-128
+121                android:value="com.google.firebase.components.ComponentRegistrar" />
+121-->[:firebase_messaging] /home/odc2/TheFirstProject/Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:36:17-82
+122            <meta-data
+122-->[:firebase_core] /home/odc2/TheFirstProject/Flutter/build/firebase_core/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-11:85
+123                android:name="com.google.firebase.components:io.flutter.plugins.firebase.core.FlutterFirebaseCoreRegistrar"
+123-->[:firebase_core] /home/odc2/TheFirstProject/Flutter/build/firebase_core/intermediates/library_manifest/debug/AndroidManifest.xml:10:17-124
+124                android:value="com.google.firebase.components.ComponentRegistrar" />
+124-->[:firebase_core] /home/odc2/TheFirstProject/Flutter/build/firebase_core/intermediates/library_manifest/debug/AndroidManifest.xml:11:17-82
+125            <meta-data
+125-->[com.google.firebase:firebase-messaging:23.0.0] /home/odc2/.gradle/caches/transforms-2/files-2.1/d5f5bb923ef231125221909ffa1de444/jetified-firebase-messaging-23.0.0/AndroidManifest.xml:52:13-54:85
+126                android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingRegistrar"
+126-->[com.google.firebase:firebase-messaging:23.0.0] /home/odc2/.gradle/caches/transforms-2/files-2.1/d5f5bb923ef231125221909ffa1de444/jetified-firebase-messaging-23.0.0/AndroidManifest.xml:53:17-119
+127                android:value="com.google.firebase.components.ComponentRegistrar" />
+127-->[com.google.firebase:firebase-messaging:23.0.0] /home/odc2/.gradle/caches/transforms-2/files-2.1/d5f5bb923ef231125221909ffa1de444/jetified-firebase-messaging-23.0.0/AndroidManifest.xml:54:17-82
+128            <meta-data
+128-->[com.google.firebase:firebase-datatransport:18.0.0] /home/odc2/.gradle/caches/transforms-2/files-2.1/a054f23e173260ed2ee183f0aa3f0ef1/jetified-firebase-datatransport-18.0.0/AndroidManifest.xml:28:13-30:85
+129                android:name="com.google.firebase.components:com.google.firebase.datatransport.TransportRegistrar"
+129-->[com.google.firebase:firebase-datatransport:18.0.0] /home/odc2/.gradle/caches/transforms-2/files-2.1/a054f23e173260ed2ee183f0aa3f0ef1/jetified-firebase-datatransport-18.0.0/AndroidManifest.xml:29:17-115
+130                android:value="com.google.firebase.components.ComponentRegistrar" />
+130-->[com.google.firebase:firebase-datatransport:18.0.0] /home/odc2/.gradle/caches/transforms-2/files-2.1/a054f23e173260ed2ee183f0aa3f0ef1/jetified-firebase-datatransport-18.0.0/AndroidManifest.xml:30:17-82
+131            <meta-data
+131-->[com.google.firebase:firebase-installations:17.0.0] /home/odc2/.gradle/caches/transforms-2/files-2.1/b87bb1cad51e9267e95279b4dd0cc2eb/jetified-firebase-installations-17.0.0/AndroidManifest.xml:18:13-20:85
+132                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
+132-->[com.google.firebase:firebase-installations:17.0.0] /home/odc2/.gradle/caches/transforms-2/files-2.1/b87bb1cad51e9267e95279b4dd0cc2eb/jetified-firebase-installations-17.0.0/AndroidManifest.xml:19:17-127
+133                android:value="com.google.firebase.components.ComponentRegistrar" />
+133-->[com.google.firebase:firebase-installations:17.0.0] /home/odc2/.gradle/caches/transforms-2/files-2.1/b87bb1cad51e9267e95279b4dd0cc2eb/jetified-firebase-installations-17.0.0/AndroidManifest.xml:20:17-82
+134        </service>
+135
+136        <provider
+136-->[:firebase_messaging] /home/odc2/TheFirstProject/Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:39:9-43:38
+137            android:name="io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingInitProvider"
+137-->[:firebase_messaging] /home/odc2/TheFirstProject/Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:40:13-102
+138            android:authorities="com.example.lms.flutterfirebasemessaginginitprovider"
+138-->[:firebase_messaging] /home/odc2/TheFirstProject/Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:41:13-88
+139            android:exported="false"
+139-->[:firebase_messaging] /home/odc2/TheFirstProject/Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:42:13-37
+140            android:initOrder="99" />
+140-->[:firebase_messaging] /home/odc2/TheFirstProject/Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:43:13-35
+141        <provider
+141-->[:image_picker] /home/odc2/TheFirstProject/Flutter/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:8:9-16:20
+142            android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
+142-->[:image_picker] /home/odc2/TheFirstProject/Flutter/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-82
+143            android:authorities="com.example.lms.flutter.image_provider"
+143-->[:image_picker] /home/odc2/TheFirstProject/Flutter/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:10:13-74
+144            android:exported="false"
+144-->[:image_picker] /home/odc2/TheFirstProject/Flutter/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:11:13-37
+145            android:grantUriPermissions="true" >
+145-->[:image_picker] /home/odc2/TheFirstProject/Flutter/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:12:13-47
+146            <meta-data
+146-->[:image_picker] /home/odc2/TheFirstProject/Flutter/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:13:13-15:75
+147                android:name="android.support.FILE_PROVIDER_PATHS"
+147-->[:image_picker] /home/odc2/TheFirstProject/Flutter/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:14:17-67
+148                android:resource="@xml/flutter_image_picker_file_paths" />
+148-->[:image_picker] /home/odc2/TheFirstProject/Flutter/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:15:17-72
+149        </provider>
+150
+151        <receiver
+151-->[:awesome_notifications] /home/odc2/TheFirstProject/Flutter/build/awesome_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:11:9-13:40
+152            android:name="me.carda.awesome_notifications.notifications.broadcastReceivers.DismissedNotificationReceiver"
+152-->[:awesome_notifications] /home/odc2/TheFirstProject/Flutter/build/awesome_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:12:13-121
+153            android:exported="false" />
+153-->[:awesome_notifications] /home/odc2/TheFirstProject/Flutter/build/awesome_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:13:13-37
+154        <receiver
+154-->[:awesome_notifications] /home/odc2/TheFirstProject/Flutter/build/awesome_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:14:9-16:40
+155            android:name="me.carda.awesome_notifications.notifications.broadcastReceivers.ScheduledNotificationReceiver"
+155-->[:awesome_notifications] /home/odc2/TheFirstProject/Flutter/build/awesome_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:15:13-121
+156            android:exported="false" />
+156-->[:awesome_notifications] /home/odc2/TheFirstProject/Flutter/build/awesome_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:16:13-37
+157        <receiver
+157-->[:awesome_notifications] /home/odc2/TheFirstProject/Flutter/build/awesome_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:17:9-19:40
+158            android:name="me.carda.awesome_notifications.notifications.broadcastReceivers.KeepOnTopActionReceiver"
+158-->[:awesome_notifications] /home/odc2/TheFirstProject/Flutter/build/awesome_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:18:13-115
+159            android:exported="false" />
+159-->[:awesome_notifications] /home/odc2/TheFirstProject/Flutter/build/awesome_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:19:13-37
+160        <receiver
+160-->[:awesome_notifications] /home/odc2/TheFirstProject/Flutter/build/awesome_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:20:9-33:20
+161            android:name="me.carda.awesome_notifications.notifications.broadcastReceivers.RefreshSchedulesReceiver"
+161-->[:awesome_notifications] /home/odc2/TheFirstProject/Flutter/build/awesome_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:21:13-116
+162            android:exported="false" >
+162-->[:awesome_notifications] /home/odc2/TheFirstProject/Flutter/build/awesome_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:22:13-37
+163            <intent-filter>
+163-->[:awesome_notifications] /home/odc2/TheFirstProject/Flutter/build/awesome_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:23:13-32:29
+164                <category android:name="android.intent.category.DEFAULT" />
+164-->[:awesome_notifications] /home/odc2/TheFirstProject/Flutter/build/awesome_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:24:17-76
+164-->[:awesome_notifications] /home/odc2/TheFirstProject/Flutter/build/awesome_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:24:27-73
+165
+166                <action android:name="android.intent.action.BOOT_COMPLETED" />
+166-->[:awesome_notifications] /home/odc2/TheFirstProject/Flutter/build/awesome_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:26:17-79
+166-->[:awesome_notifications] /home/odc2/TheFirstProject/Flutter/build/awesome_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:26:25-76
+167                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
+167-->[:awesome_notifications] /home/odc2/TheFirstProject/Flutter/build/awesome_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:27:17-86
+167-->[:awesome_notifications] /home/odc2/TheFirstProject/Flutter/build/awesome_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:27:25-83
+168                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+168-->[:awesome_notifications] /home/odc2/TheFirstProject/Flutter/build/awesome_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:28:17-84
+168-->[:awesome_notifications] /home/odc2/TheFirstProject/Flutter/build/awesome_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:28:25-81
+169                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+169-->[:awesome_notifications] /home/odc2/TheFirstProject/Flutter/build/awesome_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:29:17-82
+169-->[:awesome_notifications] /home/odc2/TheFirstProject/Flutter/build/awesome_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:29:25-79
+170                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON" />
+170-->[:awesome_notifications] /home/odc2/TheFirstProject/Flutter/build/awesome_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:30:17-82
+170-->[:awesome_notifications] /home/odc2/TheFirstProject/Flutter/build/awesome_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:30:25-79
+171                <action android:name="android.app.action.SCHEDULE_EXACT_ALARM_PERMISSION_STATE_CHANGED" />
+171-->[:awesome_notifications] /home/odc2/TheFirstProject/Flutter/build/awesome_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:31:17-107
+171-->[:awesome_notifications] /home/odc2/TheFirstProject/Flutter/build/awesome_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:31:25-104
+172            </intent-filter>
+173        </receiver>
+174
+175        <provider
+175-->[:open_file] /home/odc2/TheFirstProject/Flutter/build/open_file/intermediates/library_manifest/debug/AndroidManifest.xml:12:9-21:20
+176            android:name="com.crazecoder.openfile.FileProvider"
+176-->[:open_file] /home/odc2/TheFirstProject/Flutter/build/open_file/intermediates/library_manifest/debug/AndroidManifest.xml:13:13-64
+177            android:authorities="com.example.lms.fileProvider.com.crazecoder.openfile"
+177-->[:open_file] /home/odc2/TheFirstProject/Flutter/build/open_file/intermediates/library_manifest/debug/AndroidManifest.xml:14:13-88
+178            android:exported="false"
+178-->[:open_file] /home/odc2/TheFirstProject/Flutter/build/open_file/intermediates/library_manifest/debug/AndroidManifest.xml:15:13-37
+179            android:grantUriPermissions="true" >
+179-->[:open_file] /home/odc2/TheFirstProject/Flutter/build/open_file/intermediates/library_manifest/debug/AndroidManifest.xml:16:13-47
+180            <meta-data
+180-->[:image_picker] /home/odc2/TheFirstProject/Flutter/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:13:13-15:75
+181                android:name="android.support.FILE_PROVIDER_PATHS"
+181-->[:image_picker] /home/odc2/TheFirstProject/Flutter/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:14:17-67
+182                android:resource="@xml/filepaths" />
+182-->[:image_picker] /home/odc2/TheFirstProject/Flutter/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:15:17-72
+183        </provider>
+184
+185        <uses-library
+185-->[androidx.window:window:1.0.0-beta04] /home/odc2/.gradle/caches/transforms-2/files-2.1/03c633e46d75bfb21f082f0417f55161/jetified-window-1.0.0-beta04/AndroidManifest.xml:25:9-27:40
+186            android:name="androidx.window.extensions"
+186-->[androidx.window:window:1.0.0-beta04] /home/odc2/.gradle/caches/transforms-2/files-2.1/03c633e46d75bfb21f082f0417f55161/jetified-window-1.0.0-beta04/AndroidManifest.xml:26:13-54
+187            android:required="false" />
+187-->[androidx.window:window:1.0.0-beta04] /home/odc2/.gradle/caches/transforms-2/files-2.1/03c633e46d75bfb21f082f0417f55161/jetified-window-1.0.0-beta04/AndroidManifest.xml:27:13-37
+188        <uses-library
+188-->[androidx.window:window:1.0.0-beta04] /home/odc2/.gradle/caches/transforms-2/files-2.1/03c633e46d75bfb21f082f0417f55161/jetified-window-1.0.0-beta04/AndroidManifest.xml:28:9-30:40
+189            android:name="androidx.window.sidecar"
+189-->[androidx.window:window:1.0.0-beta04] /home/odc2/.gradle/caches/transforms-2/files-2.1/03c633e46d75bfb21f082f0417f55161/jetified-window-1.0.0-beta04/AndroidManifest.xml:29:13-51
+190            android:required="false" />
+190-->[androidx.window:window:1.0.0-beta04] /home/odc2/.gradle/caches/transforms-2/files-2.1/03c633e46d75bfb21f082f0417f55161/jetified-window-1.0.0-beta04/AndroidManifest.xml:30:13-37
+191
+192        <receiver
+192-->[com.google.firebase:firebase-messaging:23.0.0] /home/odc2/.gradle/caches/transforms-2/files-2.1/d5f5bb923ef231125221909ffa1de444/jetified-firebase-messaging-23.0.0/AndroidManifest.xml:28:9-35:20
+193            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
+193-->[com.google.firebase:firebase-messaging:23.0.0] /home/odc2/.gradle/caches/transforms-2/files-2.1/d5f5bb923ef231125221909ffa1de444/jetified-firebase-messaging-23.0.0/AndroidManifest.xml:29:13-78
+194            android:exported="true"
+194-->[com.google.firebase:firebase-messaging:23.0.0] /home/odc2/.gradle/caches/transforms-2/files-2.1/d5f5bb923ef231125221909ffa1de444/jetified-firebase-messaging-23.0.0/AndroidManifest.xml:30:13-36
+195            android:permission="com.google.android.c2dm.permission.SEND" >
+195-->[com.google.firebase:firebase-messaging:23.0.0] /home/odc2/.gradle/caches/transforms-2/files-2.1/d5f5bb923ef231125221909ffa1de444/jetified-firebase-messaging-23.0.0/AndroidManifest.xml:31:13-73
+196            <intent-filter>
+196-->[:firebase_messaging] /home/odc2/TheFirstProject/Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:28:13-30:29
+197                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+197-->[:firebase_messaging] /home/odc2/TheFirstProject/Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:29:17-81
+197-->[:firebase_messaging] /home/odc2/TheFirstProject/Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:29:25-78
+198            </intent-filter>
+199        </receiver>
+200        <!--
+201             FirebaseMessagingService performs security checks at runtime,
+202             but set to not exported to explicitly avoid allowing another app to call it.
+203        -->
+204        <service
+204-->[com.google.firebase:firebase-messaging:23.0.0] /home/odc2/.gradle/caches/transforms-2/files-2.1/d5f5bb923ef231125221909ffa1de444/jetified-firebase-messaging-23.0.0/AndroidManifest.xml:41:9-48:19
+205            android:name="com.google.firebase.messaging.FirebaseMessagingService"
+205-->[com.google.firebase:firebase-messaging:23.0.0] /home/odc2/.gradle/caches/transforms-2/files-2.1/d5f5bb923ef231125221909ffa1de444/jetified-firebase-messaging-23.0.0/AndroidManifest.xml:42:13-82
+206            android:directBootAware="true"
+206-->[com.google.firebase:firebase-messaging:23.0.0] /home/odc2/.gradle/caches/transforms-2/files-2.1/d5f5bb923ef231125221909ffa1de444/jetified-firebase-messaging-23.0.0/AndroidManifest.xml:43:13-43
+207            android:exported="false" >
+207-->[com.google.firebase:firebase-messaging:23.0.0] /home/odc2/.gradle/caches/transforms-2/files-2.1/d5f5bb923ef231125221909ffa1de444/jetified-firebase-messaging-23.0.0/AndroidManifest.xml:44:13-37
+208            <intent-filter android:priority="-500" >
+208-->[:firebase_messaging] /home/odc2/TheFirstProject/Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:19:13-21:29
+209                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+209-->[:firebase_messaging] /home/odc2/TheFirstProject/Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:20:17-78
+209-->[:firebase_messaging] /home/odc2/TheFirstProject/Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:20:25-75
+210            </intent-filter>
+211        </service>
+212
+213        <provider
+213-->[com.google.firebase:firebase-common:20.0.0] /home/odc2/.gradle/caches/transforms-2/files-2.1/3660c810531840b7362e70bfaa69e2c8/jetified-firebase-common-20.0.0/AndroidManifest.xml:26:9-31:39
+214            android:name="com.google.firebase.provider.FirebaseInitProvider"
+214-->[com.google.firebase:firebase-common:20.0.0] /home/odc2/.gradle/caches/transforms-2/files-2.1/3660c810531840b7362e70bfaa69e2c8/jetified-firebase-common-20.0.0/AndroidManifest.xml:27:13-77
+215            android:authorities="com.example.lms.firebaseinitprovider"
+215-->[com.google.firebase:firebase-common:20.0.0] /home/odc2/.gradle/caches/transforms-2/files-2.1/3660c810531840b7362e70bfaa69e2c8/jetified-firebase-common-20.0.0/AndroidManifest.xml:28:13-72
+216            android:directBootAware="true"
+216-->[com.google.firebase:firebase-common:20.0.0] /home/odc2/.gradle/caches/transforms-2/files-2.1/3660c810531840b7362e70bfaa69e2c8/jetified-firebase-common-20.0.0/AndroidManifest.xml:29:13-43
+217            android:exported="false"
+217-->[com.google.firebase:firebase-common:20.0.0] /home/odc2/.gradle/caches/transforms-2/files-2.1/3660c810531840b7362e70bfaa69e2c8/jetified-firebase-common-20.0.0/AndroidManifest.xml:30:13-37
+218            android:initOrder="100" />
+218-->[com.google.firebase:firebase-common:20.0.0] /home/odc2/.gradle/caches/transforms-2/files-2.1/3660c810531840b7362e70bfaa69e2c8/jetified-firebase-common-20.0.0/AndroidManifest.xml:31:13-36
+219
+220        <meta-data
+220-->[com.google.android.gms:play-services-basement:17.0.0] /home/odc2/.gradle/caches/transforms-2/files-2.1/a7975ba3cb0c3630bd14453686890431/jetified-play-services-basement-17.0.0/AndroidManifest.xml:23:9-25:69
+221            android:name="com.google.android.gms.version"
+221-->[com.google.android.gms:play-services-basement:17.0.0] /home/odc2/.gradle/caches/transforms-2/files-2.1/a7975ba3cb0c3630bd14453686890431/jetified-play-services-basement-17.0.0/AndroidManifest.xml:24:13-58
+222            android:value="@integer/google_play_services_version" />
+222-->[com.google.android.gms:play-services-basement:17.0.0] /home/odc2/.gradle/caches/transforms-2/files-2.1/a7975ba3cb0c3630bd14453686890431/jetified-play-services-basement-17.0.0/AndroidManifest.xml:25:13-66
+223
+224        <provider
+224-->[androidx.lifecycle:lifecycle-process:2.2.0] /home/odc2/.gradle/caches/transforms-2/files-2.1/5b28ea65995a10537a2c988d76489f89/jetified-lifecycle-process-2.2.0/AndroidManifest.xml:25:9-29:43
+225            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
+225-->[androidx.lifecycle:lifecycle-process:2.2.0] /home/odc2/.gradle/caches/transforms-2/files-2.1/5b28ea65995a10537a2c988d76489f89/jetified-lifecycle-process-2.2.0/AndroidManifest.xml:26:13-79
+226            android:authorities="com.example.lms.lifecycle-process"
+226-->[androidx.lifecycle:lifecycle-process:2.2.0] /home/odc2/.gradle/caches/transforms-2/files-2.1/5b28ea65995a10537a2c988d76489f89/jetified-lifecycle-process-2.2.0/AndroidManifest.xml:27:13-69
+227            android:exported="false"
+227-->[androidx.lifecycle:lifecycle-process:2.2.0] /home/odc2/.gradle/caches/transforms-2/files-2.1/5b28ea65995a10537a2c988d76489f89/jetified-lifecycle-process-2.2.0/AndroidManifest.xml:28:13-37
+228            android:multiprocess="true" />
+228-->[androidx.lifecycle:lifecycle-process:2.2.0] /home/odc2/.gradle/caches/transforms-2/files-2.1/5b28ea65995a10537a2c988d76489f89/jetified-lifecycle-process-2.2.0/AndroidManifest.xml:29:13-40
+229
+230        <service
+230-->[com.google.android.datatransport:transport-backend-cct:3.0.0] /home/odc2/.gradle/caches/transforms-2/files-2.1/56bc395c90366e88fb92a4b31fd2152e/jetified-transport-backend-cct-3.0.0/AndroidManifest.xml:29:9-35:19
+231            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
+231-->[com.google.android.datatransport:transport-backend-cct:3.0.0] /home/odc2/.gradle/caches/transforms-2/files-2.1/56bc395c90366e88fb92a4b31fd2152e/jetified-transport-backend-cct-3.0.0/AndroidManifest.xml:30:13-103
+232            android:exported="false" >
+232-->[com.google.android.datatransport:transport-backend-cct:3.0.0] /home/odc2/.gradle/caches/transforms-2/files-2.1/56bc395c90366e88fb92a4b31fd2152e/jetified-transport-backend-cct-3.0.0/AndroidManifest.xml:31:13-37
+233            <meta-data
+233-->[com.google.android.datatransport:transport-backend-cct:3.0.0] /home/odc2/.gradle/caches/transforms-2/files-2.1/56bc395c90366e88fb92a4b31fd2152e/jetified-transport-backend-cct-3.0.0/AndroidManifest.xml:32:13-34:39
+234                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
+234-->[com.google.android.datatransport:transport-backend-cct:3.0.0] /home/odc2/.gradle/caches/transforms-2/files-2.1/56bc395c90366e88fb92a4b31fd2152e/jetified-transport-backend-cct-3.0.0/AndroidManifest.xml:33:17-94
+235                android:value="cct" />
+235-->[com.google.android.datatransport:transport-backend-cct:3.0.0] /home/odc2/.gradle/caches/transforms-2/files-2.1/56bc395c90366e88fb92a4b31fd2152e/jetified-transport-backend-cct-3.0.0/AndroidManifest.xml:34:17-36
+236        </service>
+237        <service
+237-->[com.google.android.datatransport:transport-runtime:3.0.0] /home/odc2/.gradle/caches/transforms-2/files-2.1/8ce73474f999750db788ab1011eb9a5f/jetified-transport-runtime-3.0.0/AndroidManifest.xml:26:9-30:19
+238            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
+238-->[com.google.android.datatransport:transport-runtime:3.0.0] /home/odc2/.gradle/caches/transforms-2/files-2.1/8ce73474f999750db788ab1011eb9a5f/jetified-transport-runtime-3.0.0/AndroidManifest.xml:27:13-117
+239            android:exported="false"
+239-->[com.google.android.datatransport:transport-runtime:3.0.0] /home/odc2/.gradle/caches/transforms-2/files-2.1/8ce73474f999750db788ab1011eb9a5f/jetified-transport-runtime-3.0.0/AndroidManifest.xml:28:13-37
+240            android:permission="android.permission.BIND_JOB_SERVICE" >
+240-->[com.google.android.datatransport:transport-runtime:3.0.0] /home/odc2/.gradle/caches/transforms-2/files-2.1/8ce73474f999750db788ab1011eb9a5f/jetified-transport-runtime-3.0.0/AndroidManifest.xml:29:13-69
+241        </service>
+242
+243        <receiver
+243-->[com.google.android.datatransport:transport-runtime:3.0.0] /home/odc2/.gradle/caches/transforms-2/files-2.1/8ce73474f999750db788ab1011eb9a5f/jetified-transport-runtime-3.0.0/AndroidManifest.xml:32:9-34:40
+244            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
+244-->[com.google.android.datatransport:transport-runtime:3.0.0] /home/odc2/.gradle/caches/transforms-2/files-2.1/8ce73474f999750db788ab1011eb9a5f/jetified-transport-runtime-3.0.0/AndroidManifest.xml:33:13-132
+245            android:exported="false" />
+245-->[com.google.android.datatransport:transport-runtime:3.0.0] /home/odc2/.gradle/caches/transforms-2/files-2.1/8ce73474f999750db788ab1011eb9a5f/jetified-transport-runtime-3.0.0/AndroidManifest.xml:34:13-37
+246    </application>
+247
+248</manifest>

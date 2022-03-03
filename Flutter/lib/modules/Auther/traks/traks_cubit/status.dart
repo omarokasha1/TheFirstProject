@@ -1,4 +1,20 @@
+import 'package:lms/models/course_model.dart';
+import 'package:lms/models/track_model.dart';
 
-abstract class AuthorTrackStates {}
+abstract class TrackStates {}
 
-class AuthorTrackInitialState extends AuthorTrackStates {}
+class TrackInitialState extends TrackStates {}
+
+
+
+class UpdateTrackLoadingState extends TrackStates {}
+
+class UpdateTrackSuccessState extends TrackStates {
+
+}
+
+class UpdateTrackErrorState extends TrackStates {
+  final String error;
+  UpdateTrackErrorState(this.error);
+}
+

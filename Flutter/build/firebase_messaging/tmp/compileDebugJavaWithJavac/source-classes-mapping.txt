@@ -1,0 +1,40 @@
+io/flutter/plugins/firebase/messaging/FlutterFirebaseAppRegistrar.java
+ io.flutter.plugins.firebase.messaging.FlutterFirebaseAppRegistrar
+io/flutter/plugins/firebase/messaging/FlutterFirebaseMessagingService.java
+ io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingService
+io/flutter/plugins/firebase/messaging/FlutterFirebaseMessagingBackgroundService.java
+ io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingBackgroundService
+io/flutter/plugins/firebase/messaging/ContextHolder.java
+ io.flutter.plugins.firebase.messaging.ContextHolder
+io/flutter/plugins/firebase/messaging/FlutterFirebaseMessagingUtils.java
+ io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingUtils
+io/flutter/plugins/firebase/messaging/FlutterFirebaseMessagingPlugin.java
+ io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingPlugin
+ io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingPlugin$1
+ io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingPlugin$2
+io/flutter/plugins/firebase/messaging/JobIntentService.java
+ io.flutter.plugins.firebase.messaging.JobIntentService
+ io.flutter.plugins.firebase.messaging.JobIntentService$CommandProcessor
+ io.flutter.plugins.firebase.messaging.JobIntentService$CompatJobEngine
+ io.flutter.plugins.firebase.messaging.JobIntentService$CompatWorkEnqueuer
+ io.flutter.plugins.firebase.messaging.JobIntentService$CompatWorkItem
+ io.flutter.plugins.firebase.messaging.JobIntentService$ComponentNameWithWakeful
+ io.flutter.plugins.firebase.messaging.JobIntentService$GenericWorkItem
+ io.flutter.plugins.firebase.messaging.JobIntentService$JobServiceEngineImpl
+ io.flutter.plugins.firebase.messaging.JobIntentService$JobServiceEngineImpl$WrapperWorkItem
+ io.flutter.plugins.firebase.messaging.JobIntentService$JobWorkEnqueuer
+ io.flutter.plugins.firebase.messaging.JobIntentService$WorkEnqueuer
+io/flutter/plugins/firebase/messaging/FlutterFirebaseMessagingReceiver.java
+ io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingReceiver
+io/flutter/plugins/firebase/messaging/FlutterFirebaseMessagingStore.java
+ io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingStore
+io/flutter/plugins/firebase/messaging/FlutterFirebaseMessagingInitProvider.java
+ io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingInitProvider
+io/flutter/plugins/firebase/messaging/PluginRegistrantException.java
+ io.flutter.plugins.firebase.messaging.PluginRegistrantException
+io/flutter/plugins/firebase/messaging/FlutterFirebaseMessagingBackgroundExecutor.java
+ io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingBackgroundExecutor
+ io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingBackgroundExecutor$1
+ io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingBackgroundExecutor$2
+io/flutter/plugins/firebase/messaging/BuildConfig.java
+ io.flutter.plugins.firebase.messaging.BuildConfig

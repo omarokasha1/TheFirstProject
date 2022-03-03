@@ -55,6 +55,7 @@ class CourseModel {
         this.author,
         this.contents});
 
+
   CourseModel.fromJson(Map<String, dynamic> json) {
     sId = json['_id'] ?? '';
     totalTime = json['totalTime'] ?? '';
@@ -69,6 +70,7 @@ class CourseModel {
     imageUrl = json['imageUrl'] ?? '';
     author =
     json['author'] != null ? new Author.fromJson(json['author']) : null;
+
     if (json['courses'] != null) {
       contents = <String>[];
       json['courses'].forEach((v) {
@@ -118,18 +120,18 @@ class Author {
 
   Author(
       {this.sId,
-        this.userName,
-        this.email,
-        this.password,
-        this.isAdmin,
-        this.phone,
-        this.birthDay,
-        this.city,
-        this.country,
-        this.gender,
-        this.imageUrl,
-        this.userEducation,
-        this.bio});
+      this.userName,
+      this.email,
+      this.password,
+      this.isAdmin,
+      this.phone,
+      this.birthDay,
+      this.city,
+      this.country,
+      this.gender,
+      this.imageUrl,
+      this.userEducation,
+      this.bio});
 
   Author.fromJson(Map<String, dynamic> json) {
     sId = json['_id'] ?? '';
@@ -181,11 +183,11 @@ class UserEducation {
 
   UserEducation(
       {this.university,
-        this.major,
-        this.faculty,
-        this.grade,
-        this.experince,
-        this.interest});
+      this.major,
+      this.faculty,
+      this.grade,
+      this.experince,
+      this.interest});
 
   UserEducation.fromJson(Map<String, dynamic> json) {
     university = json['university'] ?? '';
@@ -294,3 +296,4 @@ class Courses {
     return data;
   }
 }
+

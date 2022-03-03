@@ -19,6 +19,7 @@ attr fontStyle
 attr fontVariationSettings
 attr fontWeight
 attr keylines
+attr lStar
 attr layout_anchor
 attr layout_anchorGravity
 attr layout_behavior
@@ -148,6 +149,10 @@ id icon
 id icon_group
 id info
 id italic
+id item1
+id item2
+id item3
+id item4
 id left
 id line1
 id line3
@@ -183,7 +188,9 @@ id text2
 id time
 id title
 id top
+id view_tree_lifecycle_owner
 integer cancel_button_image_alpha
+integer google_play_services_version
 integer status_bar_notification_info_maxnum
 layout custom_dialog
 layout notification_action
@@ -202,7 +209,11 @@ layout notification_template_media_custom
 layout notification_template_part_chronometer
 layout notification_template_part_time
 layout toast_custom
+menu example_menu
+menu example_menu2
 mipmap ic_launcher
+string common_google_play_services_unknown_issue
+string fcm_fallback_notification_channel_label
 string status_bar_notification_info_overflow
 style LaunchTheme
 style NormalTheme
@@ -222,7 +233,7 @@ style Widget_Support_CoordinatorLayout
 styleable ActivityFilter activityAction activityName
 styleable ActivityRule alwaysExpand
 styleable Capability queryPatterns shortcutMatchRequired
-styleable ColorStateListItem android_color android_alpha alpha
+styleable ColorStateListItem android_color android_alpha android_lStar alpha lStar
 styleable CoordinatorLayout keylines statusBarBackground
 styleable CoordinatorLayout_Layout android_layout_gravity layout_anchor layout_anchorGravity layout_behavior layout_dodgeInsetEdges layout_insetEdge layout_keyline
 styleable FontFamily fontProviderAuthority fontProviderCerts fontProviderFetchStrategy fontProviderFetchTimeout fontProviderPackage fontProviderQuery fontProviderSystemFontFamily

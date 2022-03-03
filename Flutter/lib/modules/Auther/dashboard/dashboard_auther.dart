@@ -1,23 +1,27 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lms/modules/Auther/author_courses/author_courses_screen.dart';
+import 'package:lms/modules/Auther/create_assigment/create_assignment.dart';
 import 'package:lms/modules/Auther/create_course/create_course_screen.dart';
 import 'package:lms/modules/Auther/create_module/create_module_screen.dart';
 import 'package:lms/modules/Auther/create_quiz/create_quiz_screen.dart';
+import 'package:lms/modules/Auther/create_track/create_track.dart';
 import 'package:lms/modules/Auther/modules_library/modules_library.dart';
+import 'package:lms/modules/Auther/quiz/author_quiz_screen.dart';
 import 'package:lms/modules/Auther/traks/traks_screen.dart';
+import 'package:lms/modules/quiz/screens/quiz/quiz_screen.dart';
+import 'package:lms/modules/search/search_screen.dart';
 import 'package:lms/shared/component/MyAppBar.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
-import 'package:lottie/lottie.dart';
+import 'package:lms/shared/component/zoomDrawer.dart';
 import 'package:number_slide_animation/number_slide_animation.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
-import 'package:timelines/timelines.dart';
 
 class _SalesData {
   _SalesData(this.year, this.views);
@@ -26,9 +30,19 @@ class _SalesData {
   final double views;
 }
 
-class DashboardAuthorScreen extends StatelessWidget {
+bool moveLeft = false;
+
+class DashboardAuthorScreen extends StatefulWidget {
   DashboardAuthorScreen({Key? key}) : super(key: key);
 
+  @override
+  State<DashboardAuthorScreen> createState() => _DashboardAuthorScreenState();
+}
+
+var formKey = GlobalKey<FormState>();
+var quizController = TextEditingController();
+
+class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
   List<_SalesData> data = [
     _SalesData('Jan', 35),
     _SalesData('Feb', 28),
@@ -36,6 +50,16 @@ class DashboardAuthorScreen extends StatelessWidget {
     _SalesData('Apr', 32),
     _SalesData('May', 40),
   ];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    setState(() {
+      setState(() {
+        moveLeft = !moveLeft;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,9 +71,70 @@ class DashboardAuthorScreen extends StatelessWidget {
           SpeedDialChild(
               child: Icon(Icons.post_add),
               onTap: () {
-                navigator(context, CreateQuizScreen());
+                AwesomeDialog(
+                  context: context,
+                  animType: AnimType.SCALE,
+                  dialogType: DialogType.QUESTION,
+                  body: Form(
+                    key: formKey,
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: Column(
+                          children: [
+                            customTextFormFieldWidget(
+                                type: TextInputType.text,
+                                prefixIcon: Icons.drive_file_rename_outline,
+                                prefix: true,
+                                label: "Quiz Name",
+                                controller: quizController,
+                                validate: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'Quiz Name Must Be Not Empty';
+                                  }
+                                  return null;
+                                }),
+                            Container(
+                              height: 40,
+                              child: defaultButton(
+                                  text: 'OK',
+                                  onPressed: () {
+                                    if (formKey.currentState!.validate()) {
+                                      Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      CreateQuizScreen(
+                                                          quizController.text)))
+                                          .then(
+                                        (value) {
+                                          quizController.text = "";
+                                          Navigator.pop(context);
+                                        },
+                                      );
+                                    }
+                                  }),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  title: 'This is Ignored',
+                  desc: 'This is also Ignored',
+
+                  // btnOkOnPress: () {
+                  //   navigator(context, CreateQuizScreen());
+                  // },
+                ).show();
               },
               label: 'Add Quiz'),
+          SpeedDialChild(
+              child: Icon(Icons.add),
+              onTap: () {
+                navigator(context, CreateAssignmentScreen());
+              },
+              label: 'Add Assignment'),
           SpeedDialChild(
               child: Icon(Icons.play_circle_fill),
               onTap: () {
@@ -62,6 +147,12 @@ class DashboardAuthorScreen extends StatelessWidget {
                 navigator(context, CreateCourseScreen());
               },
               label: 'Add Course'),
+          SpeedDialChild(
+              child: Icon(Icons.add),
+              onTap: () {
+                navigator(context, CreateTrackScreen());
+              },
+              label: 'Add Track'),
         ],
       ),
       appBar: myAppBar(context),
@@ -70,6 +161,90 @@ class DashboardAuthorScreen extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
+              Container(
+                width: double.infinity,
+                padding: EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  gradient: newVv,
+                ),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Text("Hi, Name",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: 'Poppins',
+                                      fontWeight: FontWeight.w800,
+                                      fontSize: 28.0.sp)),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Image.asset(
+                                'assets/images/hand.png',
+                                width: 34.w,
+                                height: 34.h,
+                              )
+                            ],
+                          ),
+                          SizedBox(
+                            height: 8.h,
+                          ),
+                          Text(
+                            "Lets start teaching!",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: 'Poppins',
+                                fontSize: 25.0.sp),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    SizedBox(
+                      width: double.infinity,
+                      height: 45.h,
+                      child: TextField(
+                        keyboardType: TextInputType.none,
+                        cursorColor: primaryColor,
+                        decoration: InputDecoration(
+                          fillColor: Colors.white,
+                          filled: true,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(18.r),
+                            borderSide: const BorderSide(color: Colors.white),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(18.r),
+                            borderSide: const BorderSide(color: secondaryColor),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(18.r),
+                            borderSide: const BorderSide(color: Colors.white),
+                          ),
+                          hintText: "Search Courses",
+                          prefixIcon: const Icon(Icons.search),
+                        ),
+                        onTap: () {
+                          navigator(context, ZoomDrawerScreen(widget: SearchScreen(),));
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
               Container(
                 width: double.infinity,
                 padding: EdgeInsets.all(20),
@@ -162,7 +337,7 @@ class DashboardAuthorScreen extends StatelessWidget {
                         child: Column(
                           children: [
                             Image.asset('assets/images/online-course.png',
-                                width: 60.w, height: 60.h),
+                                width: 50.w, height: 50.h),
                             const Text(
                               'Courses',
                               style: TextStyle(
@@ -177,13 +352,31 @@ class DashboardAuthorScreen extends StatelessWidget {
                     Expanded(
                       child: InkWell(
                         onTap: () {
-                          navigator(context, Tracks());
+                          navigator(context, TracksScreen());
                         },
                         child: Column(
                           children: [
                             Image.asset('assets/images/pointer.png',
-                                width: 60.w, height: 60.h),
+                                width: 50.w, height: 50.h),
                             const Text('Tracks',
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                    color: primaryColor)),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: InkWell(
+                        onTap: () {
+                          navigator(context, AuthorQuizScreen());
+                        },
+                        child: Column(
+                          children: [
+                            Image.asset('assets/images/quiz.png',
+                          width: 50.w, height: 50.h),
+                            const Text('Quiz',
                                 style: TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.bold,
@@ -199,9 +392,9 @@ class DashboardAuthorScreen extends StatelessWidget {
                         },
                         child: Column(
                           children: [
-                            Image.asset('assets/images/quiz.png',
-                                width: 60.w, height: 60.h),
-                            const Text('Assignment',
+                            Image.asset('assets/images/modules.png',
+                                width: 50.w, height: 50.h),
+                            const Text('Module',
                                 style: TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.bold,
@@ -281,7 +474,7 @@ class DashboardAuthorScreen extends StatelessWidget {
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 17.0),
                             ),
-                             Text(
+                            Text(
                               "17 completed",
                               style: Theme.of(context).textTheme.caption,
                             ),
@@ -306,38 +499,77 @@ class DashboardAuthorScreen extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    const Text('Top Student',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,),),
-                    SizedBox(height: 4,),
                     Row(
                       children: [
-                        Container(
-
-                          height: 100.h,
-                          child: FixedTimeline.tileBuilder(
-                            direction: Axis.horizontal,
-                            builder: TimelineTileBuilder.connectedFromStyle(
-                              contentsAlign: ContentsAlign.alternating,
-                              oppositeContentsBuilder: (context, index) =>
-                              const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Text('Any name'),
-                              ),
-                              contentsBuilder: (context, index) =>
-                              const CircleAvatar(
-                                backgroundColor: Color(0xff067B85),
-                                backgroundImage: CachedNetworkImageProvider(
-                                    "https://cdn.lifehack.org/wp-content/uploads/2014/03/shutterstock_97566446.jpg"),
-                              ),
-                              connectorStyleBuilder: (context, index) =>
-                              ConnectorStyle.solidLine,
-                              indicatorStyleBuilder: (context, index) =>
-                              IndicatorStyle.dot,
-                              itemCount: 3,
+                        Padding(
+                          padding: const EdgeInsets.only(left: 120.0),
+                          child: const Text(
+                            'Top Student',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
                             ),
                           ),
                         ),
-                        LottieBuilder.network('https://assets8.lottiefiles.com/packages/lf20_qtt2dv.json',width: 60.w,height: 60.h,),
-
+                        Spacer(),
+                        IconButton(
+                            onPressed: () {
+                              setState(() {
+                                moveLeft = !moveLeft;
+                              });
+                            },
+                            icon: Icon(Icons.refresh))
+                      ],
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      children: [
+                        Container(
+                          height: 80,
+                          width: 300,
+                          child: Stack(
+                            children: [
+                              Positioned(
+                                top: 24,
+                                child: Container(
+                                  height: 3,
+                                  width: 800.w,
+                                  color: primaryColor,
+                                ),
+                              ),
+                              AnimatedPositioned(
+                                left: moveLeft ? 200 : 250,
+                                duration: Duration(seconds: 3),
+                                child: CircleAvatar(
+                                  radius: 25,
+                                  backgroundImage: NetworkImage(
+                                      'https://www.mnp.ca/-/media/foundation/integrations/personnel/2020/12/16/13/57/personnel-image-4483.jpg?h=800&w=600&hash=9D5E5FCBEE00EB562DCD8AC8FDA8433D'),
+                                ),
+                              ),
+                              AnimatedPositioned(
+                                left: moveLeft ? 100 : 120,
+                                duration: Duration(seconds: 3),
+                                child: CircleAvatar(
+                                  radius: 25,
+                                  backgroundImage: NetworkImage(
+                                      'https://www.mnp.ca/-/media/foundation/integrations/personnel/2020/12/16/13/57/personnel-image-4483.jpg?h=800&w=600&hash=9D5E5FCBEE00EB562DCD8AC8FDA8433D'),
+                                ),
+                              ),
+                              AnimatedPositioned(
+                                left: moveLeft ? 40 : 50,
+                                duration: Duration(seconds: 1),
+                                child: CircleAvatar(
+                                  radius: 25,
+                                  backgroundImage: NetworkImage(
+                                      'https://www.mnp.ca/-/media/foundation/integrations/personnel/2020/12/16/13/57/personnel-image-4483.jpg?h=800&w=600&hash=9D5E5FCBEE00EB562DCD8AC8FDA8433D'),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        //LottieBuilder.network('https://assets8.lottiefiles.com/packages/lf20_qtt2dv.json',width: 60.w,height: 60.h,),
                       ],
                     ),
                   ],
@@ -373,7 +605,6 @@ class DashboardAuthorScreen extends StatelessWidget {
                           dataLabelSettings: DataLabelSettings(isVisible: true))
                     ]),
               ),
-
             ],
           ),
         ),

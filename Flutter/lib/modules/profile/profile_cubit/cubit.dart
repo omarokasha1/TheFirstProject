@@ -1,9 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lms/models/login_model.dart';
 import 'package:lms/models/user.dart';
 import 'package:lms/modules/profile/profile_cubit/state.dart';
 import 'package:lms/shared/network/end_points.dart';
+import 'package:lms/shared/network/local/cache_helper.dart';
 import 'package:lms/shared/network/remote/dio-helper.dart';
 
 import '../../../shared/component/constants.dart';
@@ -17,21 +20,21 @@ class ProfileCubit extends Cubit<ProfileStates> {
 
   var interestedItems;
 
-  void addInterestedItem(String value){
+  void addInterestedItem(String value) {
     interestedItems.add(value);
-    emit(AddInterestedItem());
+    emit(AddInterestedItemState());
   }
 
-  void deleteInterestedItem(int index){
+  void deleteInterestedItem(int index) {
     interestedItems.removeAt(index);
-    emit(DeleteInterestedItem());
+    emit(DeleteInterestedItemState());
   }
 
   void getUserProfile() {
     emit(ProfileLoadingState());
     DioHelper.getData(
       url: profile,
-      token:userToken,
+      token: userToken,
     ).then((value) {
       model = User.fromJson(value.data);
       // print(model!.userName);
@@ -48,7 +51,7 @@ class ProfileCubit extends Cubit<ProfileStates> {
     required String? city,
     required String? country,
     required String? gender,
-    //required String? imageUrl,
+    //required File? imageUrl,
     required String? university,
     required String? major,
     required String? faculty,
@@ -56,10 +59,11 @@ class ProfileCubit extends Cubit<ProfileStates> {
     required String? experience,
     required List<String>? interest,
     required String? bio,
+
   }) {
     emit(UpdadteProfileLoadingState());
 
-    DioHelper.putData(url: updateProfile, token:userToken, data: {
+    DioHelper.putData(url: updateProfile, token: userToken, data: {
       'phone': phone,
       'birthDay': birthday,
       'city': city,
@@ -85,5 +89,20 @@ class ProfileCubit extends Cubit<ProfileStates> {
       print(onError.toString());
       emit(UpdadteProfileErrorState(onError.toString()));
     });
+  }
+
+  List<String> gradeItems = [
+    'Excellent',
+    'Very Good',
+    'Good',
+    'Satisfy',
+    'Pass',
+    'GPA',
+  ];
+  String? selectedItemGrade;
+
+  void changeSelectedItemGrade(String value) {
+    selectedItemGrade = value;
+    emit(ChangeSelectedItemGradeState());
   }
 }

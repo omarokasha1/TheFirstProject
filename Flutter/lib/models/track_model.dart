@@ -64,4 +64,5 @@ class Tracks {
     data['courses'] = this.courses;
     return data;
   }
+
 }

@@ -29,3 +29,4 @@ class DeleteCourseErrorState extends AuthorCoursesStates{
   final String error;
   DeleteCourseErrorState(this.error);
 }
+

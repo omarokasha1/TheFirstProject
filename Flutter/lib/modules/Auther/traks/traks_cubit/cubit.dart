@@ -4,8 +4,9 @@ import 'package:lms/modules/Auther/traks/traks_cubit/status.dart';
 
 import '../../author_courses/author_courses_cubit/status.dart';
 
-class AuthorTrackCubit extends Cubit<AuthorTrackStates> {
-  AuthorTrackCubit() : super(AuthorTrackInitialState());
+class TrackCubit extends Cubit<TrackStates> {
+  TrackCubit() : super(TrackInitialState());
 
-  static AuthorTrackCubit get(context) => BlocProvider.of(context);
+  static TrackCubit get(context) => BlocProvider.of(context);
+
 }

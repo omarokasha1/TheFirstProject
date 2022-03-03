@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lms/models/course_model.dart';
 import 'package:lms/models/response_model.dart';
+import 'package:lms/models/track_model.dart';
 import 'package:lms/modules/Auther/author_courses/author_courses_cubit/status.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
@@ -82,4 +83,17 @@ class AuthorCoursesCubit extends Cubit<AuthorCoursesStates> {
   }
   ResponseModel? deleteModel;
 
+
+
+  void deleteCourse({required String courseId}) {
+    emit(DeleteCourseLoadingState());
+    DioHelper.deleteData(url:'$deleteAuthorCourse/$courseId',).then((value) async {
+      print(value.data);
+      deleteModel = ResponseModel.fromJson(value.data);
+      await getAuthorCoursesData();
+      emit(DeleteCourseSuccessState());
+    }).catchError((error) {
+      emit(DeleteCourseErrorState(error));
+    });
+  }
 }

@@ -21,4 +21,6 @@ const updateTrack = 'api/course/update-track';
 const deleteTrackData = 'api/course/delete-track';
 const getAuthorCourses = 'api/course/authorCourses';
 const createAuthorCourse = 'api/course/newCourse';
+
 const deleteAuthorCourse = 'api/course/delete-courses';
+
