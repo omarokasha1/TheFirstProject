@@ -13,10 +13,6 @@ class CourseCubit extends Cubit<CourseStates> {
 
   List<CourseModel?> coursesModel = [];
 
-
-
-
-
   void getAllCoursesData() {
     emit(AllCoursesLoadingState());
     DioHelper.getData(url: courses).then((value) {
@@ -41,6 +37,17 @@ class CourseCubit extends Cubit<CourseStates> {
     }).catchError((error) {
       emit(CourseErrorState(error.toString()));
       print(error.toString());
+    });
+  }
+
+  void enrollCourse({required courseId}){
+    emit(EnrollCourseLoadingState());
+    DioHelper.putData(url: enrollUserToCourse, data: {
+      '_id':courseId,
+    },token: userToken).then((value) {
+      emit(EnrollCourseSuccessState());
+    }).catchError((error){
+      emit(EnrollCourseErrorState(error));
     });
   }
 

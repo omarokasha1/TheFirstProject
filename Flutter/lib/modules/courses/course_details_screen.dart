@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lms/models/course_model.dart';
+import 'package:lms/shared/component/MyAppBar.dart';
 import '../../shared/component/component.dart';
 import '../../shared/component/constants.dart';
 
@@ -30,11 +31,7 @@ class _CoursesDetailsScreenState extends State<CoursesDetailsScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[200],
-      appBar: AppBar(
-
-        backgroundColor: Colors.grey[200],
-
-      ),
+      appBar: myAppBar(context),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
         child: SingleChildScrollView(
