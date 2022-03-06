@@ -4,10 +4,12 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lms/layout/layout.dart';
+import 'package:lms/models/track_model.dart';
 import 'package:lms/modules/Auther/author_profile/author_profile_cubit/cubit.dart';
 import 'package:lms/modules/Auther/create_module/cubit/cubit.dart';
 import 'package:lms/modules/Auther/author_courses/author_courses_cubit/cubit.dart';
 import 'package:lms/modules/Auther/create_track/cubit/cubit.dart';
+import 'package:lms/modules/admin/dashboard_admin/admin_dashboard_screen.dart';
 import 'package:lms/modules/courses/cubit/cubit.dart';
 import 'package:lms/modules/onboarding/onboarding_screen.dart';
 import 'package:lms/modules/quiz/cubit/cubit.dart';
@@ -131,8 +133,8 @@ class MyApp extends StatelessWidget {
           //home: TracksScreen(),
           //home: widget,
           // home: ZoomDrawerScreen(widget:DashboardAuthorScreen() ,),
-           //home:Layout(widget: ZoomDrawerScreen(widget:TracksDetailsScreen() ,)) ,
-          home: widget,
+          home:Layout(widget: ZoomDrawerScreen(widget: AdminDashboardScreen() ,)) ,
+         // home: widget,
         ),
       ),
     );

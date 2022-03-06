@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -221,7 +222,7 @@ Widget buildCourseItem(context, bool enroll, CourseModel courseModel) =>
           decoration: BoxDecoration(
             boxShadow:  [
               BoxShadow(
-                color: Colors.grey[200]!,
+                color: Colors.grey[300]!,
                 offset: Offset(0.0, 1.0), //(x,y)
                 blurRadius: 6.0,
               ),
@@ -314,9 +315,9 @@ Widget buildCourseItem(context, bool enroll, CourseModel courseModel) =>
                             ),
                             child: Row(
                               children: [
-                                const Icon(
-                                  Icons.star,
-                                  color: Colors.yellow,
+                                 const ImageIcon(
+                                   AssetImage('assets/images/star.png'),
+                                   color: Colors.yellow,
                                 ),
                                 SizedBox(
                                   width: 5.w,

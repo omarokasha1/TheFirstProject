@@ -74,7 +74,7 @@ dependencies:
   ftpconnect:
   flutter_rating_bar: ^4.0.0
   carousel_slider: ^4.0.0
-  readmore: ^2.1.0
+  readmore:
   path_provider:
   open_file: ^3.2.1
 
