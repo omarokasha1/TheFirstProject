@@ -18,11 +18,8 @@ class UpdateAssignment extends StatelessWidget {
 
   FilePickerResult? result;
   TextEditingController moduleNameController = TextEditingController();
-
   TextEditingController shortDescriptionController = TextEditingController();
-
   TextEditingController durationController = TextEditingController();
-
   TextEditingController moduleTypeController = TextEditingController();
 
   var formKey = GlobalKey<FormState>();

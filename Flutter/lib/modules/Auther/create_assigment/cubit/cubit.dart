@@ -38,7 +38,7 @@ class CreateAssignmentCubit extends Cubit<CreateAssignmentStates> {
     print(userToken);
     emit(GetNewAssignmentLoadingState());
 
-    DioHelper.getData(url: getModule, token: userToken).then((value) {
+    DioHelper.getData(url: getAssignment, token: userToken).then((value) {
       //print(value.data);
       list = [];
       getModuleModel = CreateContent.fromJson(value.data);
@@ -83,7 +83,7 @@ class CreateAssignmentCubit extends Cubit<CreateAssignmentStates> {
         'contentDuration': duration,
         'imageUrl': content,
       },
-      url: module,
+      url: newAssignment,
       token: userToken,
     ).then((value) {
       createContentModel = CreateContent.fromJson(value.data);
@@ -135,7 +135,7 @@ class CreateAssignmentCubit extends Cubit<CreateAssignmentStates> {
         'contentDuration': duration,
         'imageUrl': content,
       },
-      url: updateModule,
+      url: updateAssignment,
       token: userToken,
     ).then((value) {
       updateModel = ResponseModel.fromJson(value.data);
@@ -151,7 +151,7 @@ class CreateAssignmentCubit extends Cubit<CreateAssignmentStates> {
 
   void deleteAssignment({required String moduleId}) {
     emit(DeleteAssignmentLoadingState());
-    DioHelper.deleteData(url: "$deleteOneModule/$moduleId").then((value) {
+    DioHelper.deleteData(url: "$deleteDataAssignment/$moduleId").then((value) {
       deleteModel = ResponseModel.fromJson(value.data);
       emit(DeleteAssignmentSuccssesState(deleteModel!));
     }).catchError((error) {

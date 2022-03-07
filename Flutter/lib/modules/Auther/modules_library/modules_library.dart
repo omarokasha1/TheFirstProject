@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:lms/layout/layout.dart';
+import 'package:lms/modules/Auther/create_assigment/assignment_screen.dart';
 import 'package:lms/modules/Auther/create_assigment/create_assignment.dart';
 import 'package:lms/modules/Auther/create_module/create_module_screen.dart';
 import 'package:lms/modules/Auther/create_module/update_module.dart';
@@ -115,7 +116,7 @@ class ModulesLibraryScreen extends StatelessWidget {
                               ),
                               ConditionalBuilder(
                                 condition: cubit.getModuleModel != null,
-                                builder: (context) => buildContentTab(cubit.getModuleModel!.contents!, cubit),
+                                builder: (context) => AssignmentScreen(cubit.getModuleModel!.contents!, cubit),
                                 fallback: (context) => Center(child: CircularProgressIndicator(),),
                               ),
                             ],
@@ -208,80 +209,6 @@ class ModulesLibraryScreen extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
-  }
-
-
-  Widget buildAssignmentItem(
-      context,
-      index,
-      Contents model,
-      CreateModuleCubit cubit,
-      ) {
-    return Container(
-      width: double.infinity,
-      height: 100.0,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(30.0),
-        color: Colors.grey[100],
-      ),
-      clipBehavior: Clip.antiAliasWithSaveLayer,
-      child: Row(
-        children: [
-          SizedBox(
-            width: 20.0,
-          ),
-          Expanded(
-            child: Text(
-              //  "File name asd afew werg  iuejh iujh iuvjh iuwjhuijv iujhuijh iuwhji uhwuivh iuwhu wiuhf uiwh ifuhwiushviu hsdfubifh iuhfbiughr siih iuv iusb bs ",
-              model.contentTitle!,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                fontSize: 20.sp,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          SizedBox(
-            width: 20.0,
-          ),
-          CircleAvatar(
-            backgroundColor: primaryColor,
-            radius: 22.r,
-            child: IconButton(
-              onPressed: () {
-                navigator(context, UpdateModule(model));
-              },
-              icon: Icon(
-                Icons.edit,
-                color: Colors.white,
-                size: 26,
-              ),
-            ),
-          ),
-          SizedBox(
-            width: 10.w,
-          ),
-          CircleAvatar(
-            backgroundColor: Colors.red,
-            radius: 22.r,
-            child: IconButton(
-              onPressed: () {
-                cubit.deleteModule(moduleId: model.sId!);
-              },
-              icon: Icon(
-                Icons.delete_rounded,
-                color: Colors.white,
-                size: 26,
-              ),
-            ),
-          ),
-          SizedBox(
-            width: 10.w,
-          ),
-        ],
       ),
     );
   }
