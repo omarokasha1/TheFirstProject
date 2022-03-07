@@ -18,11 +18,8 @@ class CreateAssignmentScreen extends StatelessWidget {
 
   FilePickerResult? result;
   TextEditingController moduleNameController = TextEditingController();
-
   TextEditingController shortDescriptionController = TextEditingController();
-
   TextEditingController durationController = TextEditingController();
-
   TextEditingController moduleTypeController = TextEditingController();
 
   var formKey = GlobalKey<FormState>();
@@ -44,7 +41,10 @@ class CreateAssignmentScreen extends StatelessWidget {
                 Stack(
                   children: [
                     Container(
-                      height: MediaQuery.of(context).size.height / 10 + 150,
+                      height: MediaQuery
+                          .of(context)
+                          .size
+                          .height / 10 + 150,
                       decoration: const BoxDecoration(
                           color: primaryColor,
                           borderRadius: BorderRadius.only(
@@ -142,8 +142,8 @@ class CreateAssignmentScreen extends StatelessWidget {
                                   prefixIcon: Icon(Icons.timer),
                                   labelText: "Duration",
                                   labelStyle: const TextStyle(
-                                      //  color: primaryColor,
-                                      ),
+                                    //  color: primaryColor,
+                                  ),
                                   focusedBorder: OutlineInputBorder(
                                     borderSide: const BorderSide(
                                       color: primaryColor,
@@ -182,20 +182,23 @@ class CreateAssignmentScreen extends StatelessWidget {
                                         inherit: false, color: primaryColor),
                                     title: const Text('Select duration'),
                                     selectedTextStyle:
-                                        TextStyle(color: primaryColor),
+                                    TextStyle(color: primaryColor),
                                     onConfirm:
                                         (Picker picker, List<int> value) {
                                       // You get your duration here
                                       duration = Duration(
                                           hours:
-                                              picker.getSelectedValues()[0],
+                                          picker.getSelectedValues()[0],
                                           minutes:
-                                              picker.getSelectedValues()[1]);
+                                          picker.getSelectedValues()[1]);
                                     },
                                   ).showDialog(context).then((value) {
                                     print(value);
                                     durationController.text =
-                                        '${duration!.inHours.toString()} Hours ${(duration!.inHours * 60 - duration!.inMinutes)} Minutes';
+                                    '${duration!.inHours
+                                        .toString()} Hours ${(duration!
+                                        .inHours * 60 -
+                                        duration!.inMinutes)} Minutes';
                                   });
                                 },
                                 controller: durationController,
@@ -225,7 +228,7 @@ class CreateAssignmentScreen extends StatelessWidget {
                                       } else {
                                         showToast(
                                             message:
-                                                "upload file must be not empty");
+                                            "upload file must be not empty");
                                       }
                                     },
                                     child: Padding(
@@ -252,14 +255,35 @@ class CreateAssignmentScreen extends StatelessWidget {
                         child: defaultButton(
                             text: 'Save',
                             onPressed: () {
+                              // if (formKey.currentState!.validate()) {
+                              //   cubit.createNewAssignment(
+                              //       moduleName: moduleNameController.text,
+                              //       description: shortDescriptionController.text,
+                              //       duration: durationController.text,
+                              //       content: file!
+                              //   );
+                              //   //   cubit.createNewModule(
+                              //   //       moduleName: moduleNameController.text,
+                              //   //       description: shortDescriptionController.text,
+                              //   //       duration: durationController.text,
+                              //   //       content: "https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg");
+                              //   // }
+                              // }
                               if (formKey.currentState!.validate()) {
+                                if (result == null) {
+                                  showToast(
+                                      message: "content must be not empty");
+                                } else {
+                                  cubit.createNewAssignment(
+                                      moduleName: moduleNameController.text,
+                                      description: shortDescriptionController.text,
+                                      duration: durationController.text,
+                                      content: file!);
+                                  Navigator.pop(context);
 
-                                cubit.createNewModule(
-                                    moduleName: moduleNameController.text,
-                                    description: shortDescriptionController.text,
-                                    duration: durationController.text,
-                                    content: "https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg");
+                                }
                               }
+
                             }),
                       ),
                     ],

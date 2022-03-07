@@ -47,8 +47,7 @@ class CreateAssignmentCubit extends Cubit<CreateAssignmentStates> {
       getModuleModel!.assignments!.forEach((element) {
         list!.add({'display': element.assignmentTitle, 'value': element.sId});
       });
-      print(
-          "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh${list.toString()}");
+      print("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh${list.toString()}");
       //print(content!);
       // value.data['contents'].forEach((element) {
       //
@@ -67,9 +66,9 @@ class CreateAssignmentCubit extends Cubit<CreateAssignmentStates> {
     });
   }
 
-  CreateContent? createContentModel;
+  assignmentsModel? createAssignmentsModel;
 
-  void createNewModule({
+  void createNewAssignment({
     required String moduleName,
     required String description,
     required String duration,
@@ -87,8 +86,8 @@ class CreateAssignmentCubit extends Cubit<CreateAssignmentStates> {
       url: newAssignment,
       token: userToken,
     ).then((value) {
-      createContentModel = CreateContent.fromJson(value.data);
-      emit(CreateNewAssignmentSuccssesState(createContentModel!));
+      createAssignmentsModel = assignmentsModel.fromJson(value.data);
+      emit(CreateNewAssignmentSuccssesState(createAssignmentsModel!));
     }).catchError((onError) {
       print(onError.toString());
       emit(CreateNewAssignmentErrorState(onError.toString()));
@@ -119,7 +118,7 @@ class CreateAssignmentCubit extends Cubit<CreateAssignmentStates> {
   ResponseModel? updateModel;
   String? message;
 
-  void updateNewModule({
+  void updateNewAssignment({
     required String moduleId,
     required String moduleName,
     required String description,

@@ -263,7 +263,7 @@ class UpdateModule extends StatelessWidget {
                                   //print(cubit.formData!.files.single.runtimeType);
                                   // cubit.createNewModule(moduleName: moduleNameController.text, description: shortDescriptionController.text, duration: durationController.text,content:cubit.formData);
                                   cubit.updateNewModule(
-                                    moduleId: contentModel.sId.toString(),
+                                    moduleId: contentModel.sId,
                                     moduleName: moduleNameController.text,
                                     description: shortDescriptionController.text,
                                     duration: durationController.text,

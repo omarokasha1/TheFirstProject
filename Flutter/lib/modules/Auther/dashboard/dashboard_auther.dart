@@ -420,8 +420,8 @@ class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
                           borderRadius: BorderRadius.circular(12),
                           color: Colors.grey[100]),
                       child: CircularPercentIndicator(
-                        radius: 80.0,
-                        lineWidth: 18.0,
+                        radius: 68.0,
+                        lineWidth: 12.0,
                         animation: true,
                         percent: 0.7,
                         center: const Text(
@@ -459,8 +459,8 @@ class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
                           color: Colors.grey[100]),
                       // Package to display percentage inside a circle
                       child: CircularPercentIndicator(
-                        radius: 80.0,
-                        lineWidth: 18.0,
+                        radius: 68.0,
+                        lineWidth: 12.0,
                         animation: true,
                         percent: 0.4,
                         center: const Text(
