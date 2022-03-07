@@ -42,7 +42,7 @@ function validateUser(user) {
 
         userName: Joi.string().min(3).max(44).regex(/[a-zA-Z]/).lowercase(),
 
-        email: Joi.string().email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } },).max(1024).required(),
+        email: Joi.string().email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } },).max(1024).required().trim(),
 
         password: joiPassword.string()
         .minOfSpecialCharacters(1)
@@ -52,19 +52,19 @@ function validateUser(user) {
         .noWhiteSpaces()
         .required(),
 
-        phone: Joi.string().min(11).max(11).pattern(/^[0-9]+$/),
+        phone: Joi.string().min(11).max(11).pattern(/^[0-9]+$/).trim(),
 
-        gender: Joi.string(),
+        gender: Joi.string().trim(),
 
-        imageUrl: Joi.string(),
+        imageUrl: Joi.string().trim(),
 
-        birthDay: Joi.string(),
+        birthDay: Joi.string().trim(),
 
-        country: Joi.string(),
+        country: Joi.string().trim(),
 
-        city: Joi.string(),
+        city: Joi.string().trim(),
 
-        bio: Joi.string(),
+        bio: Joi.string().trim(),
 
 
     }).options({ abortEarly: false });
@@ -76,7 +76,7 @@ function validateUser(user) {
 function validateUserLogin(user) {
     const JoiSchema = Joi.object({
 
-        email: Joi.string().email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }).min(3).max(256).required(),
+        email: Joi.string().email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }).min(3).max(256).required().trim(),
 
         password: joiPassword.string()
         .noWhiteSpaces()

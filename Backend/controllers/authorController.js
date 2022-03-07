@@ -170,11 +170,39 @@ uploadCourse : async (req, res) => {
      console.log(user)
      const id = user.id
      console.log(id)
-      course = await Course.aggregate([
+      course = await Course.find({author:ObjectId(id),isPublished:false}).populate('contents','-__v').select('-__v')
+
+    /*   course = await Course.aggregate([
         {
           $match: { author: ObjectId(id) }
         }
-      ])
+      ]) */
+      if (!course) {
+        return res.status(200).json({ status: 'false', message: 'Cannot find courses' })
+      }
+      return res.status(200).json({status : "ok",message:'get Author Courses Success',courses:course})
+    } catch (err) {
+      console.log(err)
+      return res.status(500).json({status:'false', message: err.message })
+    }
+  
+  
+   },
+   getAuthorPublishedCourses:async(req, res, next)=> {
+    let course
+    const token = req.header('x-auth-token')
+    try {
+      const user = jwt.verify(token, 'privateKey')
+     console.log(user)
+     const id = user.id
+     console.log(id)
+      course = await Course.find({author:ObjectId(id),isPublished:true}).populate('contents','-__v').select('-__v')
+
+    /*   course = await Course.aggregate([
+        {
+          $match: { author: ObjectId(id) }
+        }
+      ]) */
       if (!course) {
         return res.status(200).json({ status: 'false', message: 'Cannot find courses' })
       }
@@ -188,29 +216,19 @@ uploadCourse : async (req, res) => {
    },
 
   getAuthorTracks:async(req, res, next) =>{
-    let track
     const token = req.header('x-auth-token')
     try {
       const user = jwt.verify(token, 'privateKey')
      console.log(user)
      const id = user.id
      console.log(id)
-<<<<<<< HEAD
      
       let track = await Track.find({author:ObjectId(id),isPublished:false}).populate('courses','-__v').select('-__v')
-=======
-     track = await Track.aggregate([
-        {
-          $match: { author: ObjectId(id) }
-        }
-      ])
-      const test = await Track.find({author:ObjectId(id)}).populate('courses','-__v').select('-__v')
->>>>>>> aa0e52a7b04964dd6a9508a43bb674ed6f97be12
       if (!track) {
         return res.status(200).json({ status: 'false', message: 'Cannot find tracks' })
       }
-      console.log(asd)
-   return   res.status(200).json({status : "ok",message:'get Author Tracks Success',tracks:track,allTracks : test})
+     
+   return   res.status(200).json({status : "ok",message:'get Author Tracks Success',tracks:track})
 //return   res.status(200).json({status : "ok",message:'get Author Tracks Success',tracks:track})
     } catch (err) {
       console.log(err)
@@ -256,7 +274,7 @@ uploadCourse : async (req, res) => {
         }
       ])
       if (!assignment) {
-        return res.status(200).json({ status: 'false', message: 'Cannot find tracks' })
+        return res.status(200).json({ status: 'false', message: 'Cannot find assignments' })
       }
      return   res.status(200).json({status : "ok",message:'get Author Assignment Success',assignments:assignment})
     } catch (err) {

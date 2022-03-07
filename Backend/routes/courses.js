@@ -49,10 +49,13 @@ router.get('/authorContents',authorCtrl.getAuthorContents)
 // Getting Author Courses
 router.get('/authorCourses',authorCtrl.getAuthorCourses)
 
+// Getting Author published Courses
+router.get('/authorCoursesPublished',authorCtrl.getAuthorPublishedCourses)
+
 // Getting Author tracks
 router.get('/authorTracks', authorCtrl.getAuthorTracks)
 
-// Getting Author tracks
+// Getting Author published tracks
 router.get('/authorTracksPublished', authorCtrl.getAuthorTracksPublished)
 
 // Getting Author assignment

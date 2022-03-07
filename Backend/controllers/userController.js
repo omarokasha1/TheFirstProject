@@ -155,7 +155,7 @@ const userCtrl = {
 
     changePassword:async(req,res)=>{
         //! take the password from user and validate it
-    const { password: plainTextPassword } = req.body
+    const { oldPassword:oldPassword,password: plainTextPassword } = req.body
 
     //? take the token from header
     const token = req.header('x-auth-token')
@@ -180,6 +180,18 @@ const userCtrl = {
         //* get user id 
         const id = user.id
         console.log(id)
+
+         //* check in database by email
+    let userCheck = await Users.findOne({ id }).lean()
+    console.log(userCheck)
+      //* compare between password and crypted password of user 
+      const checkPassword = await bcrypt.compare(req.body.oldPassword, userCheck.password)
+        console.log(checkPassword)
+      //* if password doesnt match return to user an error message 
+      if (!checkPassword) {
+          return res.status(200).json({ status: 'false', message: 'Invalid password' })
+      }
+      
 
         //* incrypt new password
         const newPassword = await bcrypt.hash(plainTextPassword, 10)
