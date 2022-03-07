@@ -1,4 +1,6 @@
 
+import 'package:lms/models/assignment_model.dart';
+
 import '../../../../models/module_model.dart';
 import '../../../../models/response_model.dart';
 
@@ -25,7 +27,7 @@ class GetNewAssignmentLoadingState extends CreateAssignmentStates {}
 
 class GetNewAssignmentSuccssesState extends CreateAssignmentStates {
 
-  final CreateContent createContentModel;
+  final assignmentsModel createContentModel;
   GetNewAssignmentSuccssesState(this.createContentModel);
 }
 

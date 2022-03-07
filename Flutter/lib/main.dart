@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lms/layout/layout.dart';
 import 'package:lms/modules/Auther/author_profile/author_profile_cubit/cubit.dart';
+import 'package:lms/modules/Auther/create_assigment/cubit/cubit.dart';
 import 'package:lms/modules/Auther/create_module/cubit/cubit.dart';
 import 'package:lms/modules/Auther/modules_library/module_view.dart';
 import 'package:lms/modules/courses/cubit/cubit.dart';
@@ -98,8 +99,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(
             create: (context) => AuthorProfileCubit()..getAuthorProfile()),
         BlocProvider(create: (context) => CreateModuleCubit()),
-    BlocProvider(
-    create: (context) => CreateModuleCubit()),
+        BlocProvider(create: (context) => CreateModuleCubit()),
+        BlocProvider(create: (context)=> CreateAssignmentCubit()..getModulesData()..myActivities=[]),
       ],
       //ScreenUTil is A Package make application responsive.
       child: ScreenUtilInit(

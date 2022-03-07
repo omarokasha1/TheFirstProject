@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lms/models/assignment_model.dart';
 import 'package:lms/modules/Auther/create_assigment/cubit/states.dart';
 import 'package:lms/modules/Auther/create_module/cubit/states.dart';
 import '../../../../models/module_model.dart';
@@ -23,7 +24,7 @@ class CreateAssignmentCubit extends Cubit<CreateAssignmentStates> {
     }
   }
 
-  CreateContent? getModuleModel;
+  assignmentsModel? getModuleModel;
   Map<String, String>? content = {};
   List? list = [];
   List? myActivities = [];
@@ -41,10 +42,10 @@ class CreateAssignmentCubit extends Cubit<CreateAssignmentStates> {
     DioHelper.getData(url: getAssignment, token: userToken).then((value) {
       //print(value.data);
       list = [];
-      getModuleModel = CreateContent.fromJson(value.data);
+      getModuleModel = assignmentsModel.fromJson(value.data);
 
-      getModuleModel!.contents!.forEach((element) {
-        list!.add({'display': element.contentTitle, 'value': element.sId});
+      getModuleModel!.assignments!.forEach((element) {
+        list!.add({'display': element.assignmentTitle, 'value': element.sId});
       });
       print(
           "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh${list.toString()}");
