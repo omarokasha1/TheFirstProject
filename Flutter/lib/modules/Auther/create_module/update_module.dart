@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_picker/Picker.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lms/models/module_model.dart';
 import '../../../shared/component/component.dart';
 import '../../../shared/component/constants.dart';
 import '../modules_library/modules_library.dart';
@@ -13,17 +14,16 @@ import 'cubit/cubit.dart';
 import 'cubit/states.dart';
 
 class UpdateModule extends StatelessWidget {
-  UpdateModule({Key? key}) : super(key: key);
+
+  final Contents contentModel;
+  UpdateModule(this.contentModel, {Key? key}) : super(key: key);
 
   Duration? duration;
 
   FilePickerResult? result;
   TextEditingController moduleNameController = TextEditingController();
-
   TextEditingController shortDescriptionController = TextEditingController();
-
   TextEditingController durationController = TextEditingController();
-
   TextEditingController moduleTypeController = TextEditingController();
 
   var formKey = GlobalKey<FormState>();
@@ -32,6 +32,10 @@ class UpdateModule extends StatelessWidget {
   File? file;
   @override
   Widget build(BuildContext context) {
+    moduleNameController.text = contentModel.contentTitle?? '';
+    shortDescriptionController.text = contentModel.description ?? '';
+    durationController.text = contentModel.contentDuration ?? '';
+    moduleTypeController.text = contentModel.enumType ?? '';
     return BlocConsumer<CreateModuleCubit, CreateModuleStates>(
       listener: (context, state) {},
       builder: (context, state) {
@@ -221,7 +225,7 @@ class UpdateModule extends StatelessWidget {
                                             File(result!.files.single.path!);
                                         file!.openRead();
                                         filePath=file!.path;
-                                        cubit.uploadFile(file!);
+                                      //  cubit.uploadFile(file!);
                                       } else {
                                         showToast(message: "upload file must be not empty");
                                       }

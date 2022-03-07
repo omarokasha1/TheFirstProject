@@ -75,9 +75,9 @@ dependencies:
   flutter_rating_bar: ^4.0.0
   carousel_slider: ^4.0.0
   readmore:
-  path_provider:
-  open_file: ^3.2.1
 
+  path_provider:
+  open_file:
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -107,7 +107,6 @@ flutter:
   assets:
     - assets/images/
     - assets/no internet.json
-    - assets/empty.json
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

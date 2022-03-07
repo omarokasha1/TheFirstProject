@@ -58,3 +58,6 @@ class DeleteModuleErrorState extends CreateModuleStates {
   final String error;
   DeleteModuleErrorState(this.error);
 }
+
+
+class SelectImageState extends CreateModuleStates {}

@@ -24,8 +24,9 @@ class TracksScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider.value(
-      value: BlocProvider.of<CreateTrackCubit>(context)..getAllTracks(),
+    return BlocProvider(
+     // value: BlocProvider.of<CreateTrackCubit>(context)..getAllTracks(),
+      create: (BuildContext context)=> CreateTrackCubit()..getAllTracks(),
       child: BlocConsumer<CreateTrackCubit, CreateTrackStates>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -56,12 +57,9 @@ class TracksScreen extends StatelessWidget {
                             ElevatedButton(
                               onPressed: () {
                                 //navigator(context, CreateTrackScreen());
-                                Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
+                                Navigator.push(context, MaterialPageRoute(
                                             builder: (context) =>
-                                                CreateTrackScreen()))
-                                    .then((value) {});
+                                                CreateTrackScreen())).then((value) {});
                               },
                               child: Text(
                                 'New Track',

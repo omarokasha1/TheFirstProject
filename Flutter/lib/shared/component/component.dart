@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -220,10 +219,12 @@ Widget buildCourseItem(context, bool enroll, CourseModel courseModel) =>
         child: Container(
           width: 300.w,
           decoration: BoxDecoration(
-            boxShadow:  [
+            boxShadow: const [
               BoxShadow(
-                color: Colors.grey[300]!,
+                color: Colors.grey,
+
                 offset: Offset(0.0, 1.0), //(x,y)
+
                 blurRadius: 6.0,
               ),
             ],
@@ -234,7 +235,6 @@ Widget buildCourseItem(context, bool enroll, CourseModel courseModel) =>
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Expanded(
-                flex: 2,
                 child: Stack(
                   alignment: AlignmentDirectional.bottomStart,
                   children: [
@@ -247,7 +247,10 @@ Widget buildCourseItem(context, bool enroll, CourseModel courseModel) =>
                           borderRadius: BorderRadius.circular(15.r),
                         ),
                         child: imageFromNetwork(
-                            url:'${courseModel.imageUrl}',fit: BoxFit.cover),
+                            url:
+
+                                //'https://img-c.udemycdn.com/course/240x135/3446572_346e_2.jpg'
+                                '${courseModel.imageUrl}'),
                       ),
                     ),
                     Padding(
@@ -273,63 +276,63 @@ Widget buildCourseItem(context, bool enroll, CourseModel courseModel) =>
                   ],
                 ),
               ),
-              Expanded(
-                flex: 1,
-                child: Padding(
-                  padding:
-                      EdgeInsets.all(10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                       //'Complete Instagram Marketing CourseComplete Instagram Marketing Course Complete Instagram Marketing Course' ,
-                       '${courseModel.title}',
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: Theme.of(context).textTheme.subtitle2,
-                      ),
-                      SizedBox(height: 10.h),
-                      Row(
-                        children: [
-                          CircleAvatar(
-                            backgroundImage: CachedNetworkImageProvider(
+              Padding(
+                padding:
+                    EdgeInsets.symmetric(horizontal: 8.0.w, vertical: 20.h),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      //'Complete Instagram Marketing Course'
+                      '${courseModel.title}',
 
-                                //'https://img-c.udemycdn.com/user/200_H/317821_3cb5_10.jpg'
-                                '${courseModel.author!.imageUrl}'),
-                            radius: 16.r,
+                      maxLines: 1,
+
+                      overflow: TextOverflow.ellipsis,
+
+                      style: Theme.of(context).textTheme.subtitle2,
+                    ),
+                    SizedBox(height: 14.h),
+                    Row(
+                      children: [
+                        CircleAvatar(
+                          backgroundImage: CachedNetworkImageProvider(
+
+                              //'https://img-c.udemycdn.com/user/200_H/317821_3cb5_10.jpg'
+                              '${courseModel.author!.imageUrl}'),
+                          radius: 16.r,
+                        ),
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                        Text(
+                          'Created by ${courseModel.author!.userName}',
+                        ),
+                        const Spacer(),
+                        Container(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 10.0.w, vertical: 3.h),
+                          decoration: BoxDecoration(
+                            border:
+                                Border.all(color: Colors.grey[300]!, width: 1),
+                            borderRadius: BorderRadius.circular(50.r),
                           ),
-                          SizedBox(
-                            width: 10.w,
+                          child: Row(
+                            children: [
+                              const Icon(
+                                Icons.star,
+                                color: Colors.yellow,
+                              ),
+                              SizedBox(
+                                width: 5.w,
+                              ),
+                              Text('${courseModel.review}'),
+                            ],
                           ),
-                          Text(
-                            'Created by ${courseModel.author!.userName}',
-                          ),
-                          const Spacer(),
-                          Container(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 10.0.w, vertical: 3.h),
-                            decoration: BoxDecoration(
-                              border:
-                                  Border.all(color: Colors.grey[300]!, width: 1),
-                              borderRadius: BorderRadius.circular(50.r),
-                            ),
-                            child: Row(
-                              children: [
-                                 const ImageIcon(
-                                   AssetImage('assets/images/star.png'),
-                                   color: Colors.yellow,
-                                ),
-                                SizedBox(
-                                  width: 5.w,
-                                ),
-                                Text('${courseModel.review}'),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
             ],
@@ -632,7 +635,7 @@ Widget emptyPage({required String text,required context})
         children: [
           Lottie.asset('assets/empty.json',
               width: MediaQuery.of(context).size.width / 1),
-           Text(
+          Text(
             "$text",
             style: TextStyle(fontSize: 20),
           ),

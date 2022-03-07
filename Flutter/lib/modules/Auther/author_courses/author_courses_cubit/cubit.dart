@@ -96,7 +96,6 @@ class AuthorCoursesCubit extends Cubit<AuthorCoursesStates> {
   }) async {
     emit(UpdateCourseLoadingState());
     DioHelper.putData(
-      files: true,
       data: {
         'title': courseName,
         'description': shortDescription,

@@ -110,7 +110,6 @@ class CreateTrackCubit extends Cubit<CreateTrackStates> {
   }) async {
     emit(UpdateTrackLoadingState());
     DioHelper.putData(
-      files: true,
       data: {
         'trackName': trackName,
         'description': shortDescription,

@@ -297,19 +297,14 @@ class CreateTrackScreen extends StatelessWidget {
                                                   message: "No Image Selected",
                                                   color: Colors.red);
                                             } else {
-                                              await cubit
-                                                  .createNewTrack(
-                                                trackName:
-                                                    trackNameController.text,
-                                                shortDescription:
-                                                    shortDescriptionController
-                                                        .text,
+                                              await cubit.createNewTrack(
+                                                trackName: trackNameController.text,
+                                                shortDescription: shortDescriptionController.text,
                                                 //duration: durationController.text,
                                                 courses: cubit.myActivities,
                                                 trackImage: trackImage,
                                               )
-                                                  .then(
-                                                (value) {
+                                                  .then((value) {
                                                   cubit.myActivities = [];
                                                   Navigator.pop(context);
                                                 },

@@ -2,8 +2,11 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:lms/layout/layout.dart';
+import 'package:lms/modules/Auther/create_assigment/create_assignment.dart';
 import 'package:lms/modules/Auther/create_module/create_module_screen.dart';
+import 'package:lms/modules/Auther/create_module/update_module.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
 import '../../../models/module_model.dart';
@@ -14,14 +17,16 @@ class ModulesLibraryScreen extends StatelessWidget {
   ModulesLibraryScreen({Key? key}) : super(key: key);
 
   final List<Widget> myTabs = [
-    Tab(text: 'Content'),
-    Tab(text: 'Assignment'),
+    const Tab(text: 'Content'),
+    const Tab(text: 'Assignment'),
   ];
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => CreateModuleCubit()..getModulesData(),
+    return BlocProvider.value(
+      value: BlocProvider.of<CreateModuleCubit>(context)
+        ..getModulesData()
+        ..list,
       child: BlocConsumer<CreateModuleCubit, CreateModuleStates>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -30,6 +35,23 @@ class ModulesLibraryScreen extends StatelessWidget {
             widget: DefaultTabController(
               length: myTabs.length,
               child: Scaffold(
+                floatingActionButton: SpeedDial(
+                  icon: Icons.add,
+                  children: [
+                    SpeedDialChild(
+                        child: Icon(Icons.post_add),
+                        label: 'Add Assignment',
+                        onTap: () {
+                          navigator(context, CreateAssignmentScreen());
+                        }),
+                    SpeedDialChild(
+                        child: Icon(Icons.play_circle_fill),
+                        label: 'Add Modules',
+                        onTap: () {
+                          navigator(context, CreateModuleScreen());
+                        }),
+                  ],
+                ),
                 appBar: AppBar(),
                 body: Container(
                   child: Padding(
@@ -80,19 +102,20 @@ class ModulesLibraryScreen extends StatelessWidget {
                             children: [
                               ConditionalBuilder(
                                 condition: cubit.getModuleModel != null,
-                                builder: (context) => buildContentTab(
-                                    cubit.getModuleModel!.contents!),
+                                builder: (context) => ConditionalBuilder(
+                                  condition: cubit.getModuleModel!.contents!.isNotEmpty,
+                                  builder: (context) => buildContentTab(cubit.getModuleModel!.contents!, cubit),
+                                  fallback: (context) => Center(child: emptyPage(context: context, text: "no Modules Yet"),
+                                  ),
+                                ),
                                 fallback: (context) => Center(
                                   child: CircularProgressIndicator(),
                                 ),
                               ),
                               ConditionalBuilder(
                                 condition: cubit.getModuleModel != null,
-                                builder: (context) => buildContentTab(
-                                    cubit.getModuleModel!.contents!),
-                                fallback: (context) => Center(
-                                  child: CircularProgressIndicator(),
-                                ),
+                                builder: (context) => buildContentTab(cubit.getModuleModel!.contents!, cubit),
+                                fallback: (context) => Center(child: CircularProgressIndicator(),),
                               ),
                             ],
                           ),
@@ -110,7 +133,12 @@ class ModulesLibraryScreen extends StatelessWidget {
   }
 
   //Build ModuleItem
-  Widget buildModuleItem(context, index, Contents model) {
+  Widget buildModuleItem(
+    context,
+    index,
+    Contents model,
+    CreateModuleCubit cubit,
+  ) {
     return Container(
       width: double.infinity,
       height: 100.0,
@@ -144,7 +172,7 @@ class ModulesLibraryScreen extends StatelessWidget {
             radius: 22.r,
             child: IconButton(
               onPressed: () {
-                navigator(context, CreateModuleScreen());
+                navigator(context, UpdateModule(model));
               },
               icon: Icon(
                 Icons.edit,
@@ -160,7 +188,9 @@ class ModulesLibraryScreen extends StatelessWidget {
             backgroundColor: Colors.red,
             radius: 22.r,
             child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                cubit.deleteModule(moduleId: model.sId!);
+              },
               icon: Icon(
                 Icons.delete_rounded,
                 color: Colors.white,
@@ -176,14 +206,85 @@ class ModulesLibraryScreen extends StatelessWidget {
     );
   }
 
-  Widget buildContentTab(List<Contents> content) {
-    return ListView.separated(
-      physics: BouncingScrollPhysics(),
-      itemBuilder: (context, index) =>
-          buildModuleItem(context, index, content[index]),
-      separatorBuilder: (context, index) => SizedBox(
-        height: 10,
+
+  Widget buildAssignmentItem(
+      context,
+      index,
+      Contents model,
+      CreateModuleCubit cubit,
+      ) {
+    return Container(
+      width: double.infinity,
+      height: 100.0,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(30.0),
+        color: Colors.grey[100],
       ),
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      child: Row(
+        children: [
+          SizedBox(
+            width: 20.0,
+          ),
+          Expanded(
+            child: Text(
+              //  "File name asd afew werg  iuejh iujh iuvjh iuwjhuijv iujhuijh iuwhji uhwuivh iuwhu wiuhf uiwh ifuhwiushviu hsdfubifh iuhfbiughr siih iuv iusb bs ",
+              model.contentTitle!,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                fontSize: 20.sp,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          SizedBox(
+            width: 20.0,
+          ),
+          CircleAvatar(
+            backgroundColor: primaryColor,
+            radius: 22.r,
+            child: IconButton(
+              onPressed: () {
+                navigator(context, UpdateModule(model));
+              },
+              icon: Icon(
+                Icons.edit,
+                color: Colors.white,
+                size: 26,
+              ),
+            ),
+          ),
+          SizedBox(
+            width: 10.w,
+          ),
+          CircleAvatar(
+            backgroundColor: Colors.red,
+            radius: 22.r,
+            child: IconButton(
+              onPressed: () {
+                cubit.deleteModule(moduleId: model.sId!);
+              },
+              icon: Icon(
+                Icons.delete_rounded,
+                color: Colors.white,
+                size: 26,
+              ),
+            ),
+          ),
+          SizedBox(
+            width: 10.w,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildContentTab(List<Contents> content, cubit) {
+    return ListView.separated(
+      physics: const BouncingScrollPhysics(),
+      itemBuilder: (context, index) => buildModuleItem(context, index, content[index], cubit),
+      separatorBuilder: (context, index) => const SizedBox(height: 10,),
       shrinkWrap: true,
       itemCount: content.length,
     );
