@@ -3,6 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lms/models/track_model.dart';
 import 'package:lms/modules/Auther/author_courses/author_courses_screen.dart';
 import 'package:lms/modules/Auther/create_assigment/create_assignment.dart';
 import 'package:lms/modules/Auther/create_course/create_course_screen.dart';
@@ -130,7 +131,7 @@ class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
               },
               label: 'Add Quiz'),
           SpeedDialChild(
-              child: Icon(Icons.add),
+              child: Icon(Icons.description ),
               onTap: () {
                 navigator(context, CreateAssignmentScreen());
               },
@@ -148,7 +149,7 @@ class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
               },
               label: 'Add Course'),
           SpeedDialChild(
-              child: Icon(Icons.add),
+              child: Icon(Icons.location_on_outlined),
               onTap: () {
                 navigator(context, CreateTrackScreen());
               },

@@ -74,7 +74,7 @@ class CreateTrackCubit extends Cubit<CreateTrackStates> {
   Future<void> createNewTrack({
     required String trackName,
     required String shortDescription,
-    required String duration,
+    //required String duration,
     required courses,
     required trackImage,
   }) async {
@@ -84,7 +84,7 @@ class CreateTrackCubit extends Cubit<CreateTrackStates> {
       data: {
         'trackName': trackName,
         'description': shortDescription,
-        'duration': duration,
+        //'duration': duration,
         'imageUrl': await fileUpload(trackImage),
         'courses': courses,
         'check': 'drafts',
@@ -108,7 +108,6 @@ class CreateTrackCubit extends Cubit<CreateTrackStates> {
   Future<void> updateTrackData({
     required String trackName,
     required String shortDescription,
-    required String duration,
     required courses,
     required trackImage,
     required sID,
@@ -119,7 +118,6 @@ class CreateTrackCubit extends Cubit<CreateTrackStates> {
       data: {
         'trackName': trackName,
         'description': shortDescription,
-        'duration': duration,
         'imageUrl': await fileUpload(trackImage),
         'courses': courses,
         'check': 'drafts',

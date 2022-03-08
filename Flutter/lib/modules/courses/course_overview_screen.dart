@@ -9,7 +9,6 @@ import 'package:lms/modules/courses/cubit/cubit.dart';
 import 'package:lms/modules/courses/cubit/states.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/zoomDrawer.dart';
-
 import '../../models/course_model.dart';
 import '../../shared/component/constants.dart';
 
@@ -64,6 +63,204 @@ class CoursesOverViewScreen extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+// =======
+//     return Scaffold(
+//       appBar: AppBar(
+//       ),
+//       // create two button in bottomNavigationBar
+//       bottomNavigationBar: Container(
+//         child: Row(
+//           children: [
+//             Expanded(
+//               flex: 3,
+//               child: Padding(
+//                 padding: const EdgeInsets.all(8),
+//                 // object from defaultButton on component.dart file
+//                 child: defaultButton(
+//                     onPressed: () {}, text: 'Start Course',),
+//               ),
+//             ),
+//             Expanded(
+//               child: Padding(
+//
+//                 padding: const EdgeInsets.all(8),
+//
+//                 // object from defaultButton on component.dart file
+//                 child: defaultButton(onPressed: () {
+//                   print("asdasdas");
+//                   Fluttertoast.showToast(msg: "Added To Your wishlist");
+//                 }, text: 'Add WatchList', widget: Icon(Icons.favorite_rounded, color: primaryColor,), color: false),
+//               ),
+//             ),
+//           ],
+//         ),
+//       ),
+//       body: Padding(
+//         padding: const EdgeInsets.all(20.0),
+//         child: SingleChildScrollView(
+//           child: Column(
+//             crossAxisAlignment: CrossAxisAlignment.start,
+//             children: [
+//
+//               // Widget display course image in border radius
+//               ClipRRect(
+//
+//                 borderRadius: BorderRadius.circular(15),
+//                 child: imageFromNetwork(
+//                     url: '${courseModel.imageUrl}', height: 200.h),
+//               ),
+//               const SizedBox(
+//                 height: 10,
+//               ),
+//
+//               // course title
+//               Text(
+//                 '${courseModel.title}',
+//                 style: Theme.of(context).textTheme.headline5,
+//               ),
+//               const SizedBox(
+//                 height: 10,
+//               ),
+//
+//               // course description
+//
+//               Text(
+//                 '${courseModel.description}',
+//                 style: Theme.of(context).textTheme.bodyText2,
+//               ),
+//               const SizedBox(
+//                 height: 20,
+//               ),
+//               // What the course includes
+//
+//               // Row Inside tow Column
+//
+//               Row(
+//                 children: [
+//                   Expanded(
+//
+//                     // Column inside text, icon, last update
+//                   child: Column(
+//                       crossAxisAlignment: CrossAxisAlignment.start,
+//                       children: [
+//                         const Text('Last Updated'),
+//                         SizedBox(
+//                           height: 10,
+//                         ),
+//                         Row(
+//                           children: [
+//                             Icon(
+//                               Icons.date_range,
+//                               color: primaryColor,
+//                             ),
+//                             const SizedBox(
+//                               width: 10,
+//                             ),
+//                             Text('${courseModel.lastUpdate}')
+//                           ],
+//                         ),
+//                       ],
+//                     ),
+//                   ),
+//                   Expanded(
+//                     // Column inside text, icon, language
+//
+//                   child: Column(
+//                       crossAxisAlignment: CrossAxisAlignment.start,
+//                       children: [
+//                         const Text('Language'),
+//                         const SizedBox(
+//                           height: 10,
+//                         ),
+//                         Row(
+//                           children: [
+//                             Icon(
+//                               Icons.language,
+//                               color: primaryColor,
+//                             ),
+//                             const SizedBox(
+//                               width: 10,
+//                             ),
+//                             Text('${courseModel.language}')
+//                           ],
+//                         ),
+//                       ],
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//               const SizedBox(
+//                 height: 30,
+//               ),
+//
+//               // Row Inside tow Column
+//               Row(
+//                 children: [
+//                   Expanded(
+//                     // Column inside text, icon, Total Time
+//
+//                   child: Column(
+//                       crossAxisAlignment: CrossAxisAlignment.start,
+//                       children: [
+//                         Text('Total Time'),
+//                         const SizedBox(
+//                           height: 10,
+//                         ),
+//                         Row(
+//                           children: [
+//                             Icon(
+//                               Icons.play_circle_outline,
+//                               color: primaryColor,
+//                             ),
+//                             const SizedBox(
+//                               width: 10,
+//                             ),
+//                             Text('${courseModel.totalTime}')
+//                           ],
+//                         ),
+//                       ],
+//                     ),
+//                   ),
+//                   Expanded(
+//                     // Column inside text, icon, Learners number
+//                   child: Column(
+//                       crossAxisAlignment: CrossAxisAlignment.start,
+//                       children: [
+//                         Text('Learners'),
+//                         SizedBox(
+//                           height: 10,
+//                         ),
+//                         Row(
+//                           children: const [
+//                             Icon(
+//                               Icons.person,
+//                               color: primaryColor,
+//                             ),
+//                             const SizedBox(
+//                               width: 10,
+//                             ),
+//                             Text('700')
+//                           ],
+//                         ),
+//                       ],
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//
+//               const SizedBox(
+//                 height: 20,
+//               ),
+//               const Text(
+//                 'Created by ',
+//                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+//               ),
+//               const SizedBox(
+//                 height: 10,
+//               ),
+//
+//               Row(
+// >>>>>>> origin/Flutter_Youssef
                 children: [
 
                   // Widget display course image in border radius

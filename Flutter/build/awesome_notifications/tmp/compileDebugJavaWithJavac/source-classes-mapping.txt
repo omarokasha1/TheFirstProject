@@ -1,7 +1,7 @@
-me/carda/awesome_notifications/notifications/managers/DisplayedManager.java
- me.carda.awesome_notifications.notifications.managers.DisplayedManager
 me/carda/awesome_notifications/services/AutoCancelService.java
  me.carda.awesome_notifications.services.AutoCancelService
+me/carda/awesome_notifications/notifications/managers/DisplayedManager.java
+ me.carda.awesome_notifications.notifications.managers.DisplayedManager
 me/carda/awesome_notifications/notifications/managers/ChannelManager.java
  me.carda.awesome_notifications.notifications.managers.ChannelManager
  me.carda.awesome_notifications.notifications.managers.ChannelManager$1
@@ -9,10 +9,10 @@ me/carda/awesome_notifications/notifications/models/NotificationButtonModel.java
  me.carda.awesome_notifications.notifications.models.NotificationButtonModel
 me/carda/awesome_notifications/notifications/enumerators/GroupAlertBehaviour.java
  me.carda.awesome_notifications.notifications.enumerators.GroupAlertBehaviour
-me/carda/awesome_notifications/notifications/managers/CreatedManager.java
- me.carda.awesome_notifications.notifications.managers.CreatedManager
 me/carda/awesome_notifications/utils/DateUtils.java
  me.carda.awesome_notifications.utils.DateUtils
+me/carda/awesome_notifications/notifications/managers/CreatedManager.java
+ me.carda.awesome_notifications.notifications.managers.CreatedManager
 me/carda/awesome_notifications/notifications/NotificationSender.java
  me.carda.awesome_notifications.notifications.NotificationSender
 me/carda/awesome_notifications/notifications/NotificationScheduler.java
@@ -22,16 +22,19 @@ me/carda/awesome_notifications/Definitions.java
  me.carda.awesome_notifications.Definitions$1
 me/carda/awesome_notifications/notifications/models/NotificationCrontabModel.java
  me.carda.awesome_notifications.notifications.models.NotificationCrontabModel
-me/carda/awesome_notifications/notifications/enumerators/NotificationSource.java
- me.carda.awesome_notifications.notifications.enumerators.NotificationSource
 me/carda/awesome_notifications/utils/CronUtils.java
  me.carda.awesome_notifications.utils.CronUtils
+me/carda/awesome_notifications/notifications/enumerators/NotificationSource.java
+ me.carda.awesome_notifications.notifications.enumerators.NotificationSource
 me/carda/awesome_notifications/notifications/managers/DismissedManager.java
  me.carda.awesome_notifications.notifications.managers.DismissedManager
+me/carda/awesome_notifications/utils/ListUtils.java
+ me.carda.awesome_notifications.utils.ListUtils
 me/carda/awesome_notifications/notifications/enumerators/NotificationCategory.java
  me.carda.awesome_notifications.notifications.enumerators.NotificationCategory
 me/carda/awesome_notifications/notifications/managers/BadgeManager.java
  me.carda.awesome_notifications.notifications.managers.BadgeManager
+<<<<<<< HEAD
 me/carda/awesome_notifications/notifications/managers/ScheduleManager.java
  me.carda.awesome_notifications.notifications.managers.ScheduleManager
 me/carda/awesome_notifications/notifications/managers/StatusBarManager.java
@@ -39,25 +42,39 @@ me/carda/awesome_notifications/notifications/managers/StatusBarManager.java
  me.carda.awesome_notifications.notifications.managers.StatusBarManager$1
 me/carda/awesome_notifications/utils/ListUtils.java
  me.carda.awesome_notifications.utils.ListUtils
+=======
+me/carda/awesome_notifications/notifications/managers/StatusBarManager.java
+ me.carda.awesome_notifications.notifications.managers.StatusBarManager
+ me.carda.awesome_notifications.notifications.managers.StatusBarManager$1
+me/carda/awesome_notifications/notifications/managers/ScheduleManager.java
+ me.carda.awesome_notifications.notifications.managers.ScheduleManager
+>>>>>>> origin/Flutter_Youssef
 me/carda/awesome_notifications/notifications/enumerators/NotificationPermission.java
  me.carda.awesome_notifications.notifications.enumerators.NotificationPermission
 me/carda/awesome_notifications/notifications/broadcastReceivers/AwesomeMediaButtonReceiver.java
  me.carda.awesome_notifications.notifications.broadcastReceivers.AwesomeMediaButtonReceiver
+<<<<<<< HEAD
 me/carda/awesome_notifications/notifications/enumerators/MediaSource.java
  me.carda.awesome_notifications.notifications.enumerators.MediaSource
 me/carda/awesome_notifications/notifications/models/NotificationIntervalModel.java
  me.carda.awesome_notifications.notifications.models.NotificationIntervalModel
+=======
+>>>>>>> origin/Flutter_Youssef
 me/carda/awesome_notifications/utils/MediaUtils.java
  me.carda.awesome_notifications.utils.MediaUtils
+me/carda/awesome_notifications/notifications/enumerators/MediaSource.java
+ me.carda.awesome_notifications.notifications.enumerators.MediaSource
+me/carda/awesome_notifications/notifications/models/NotificationIntervalModel.java
+ me.carda.awesome_notifications.notifications.models.NotificationIntervalModel
 me/carda/awesome_notifications/externalLibs/CronExpression.java
  me.carda.awesome_notifications.externalLibs.CronExpression
  me.carda.awesome_notifications.externalLibs.ValueSet
-me/carda/awesome_notifications/notifications/enumerators/NotificationImportance.java
- me.carda.awesome_notifications.notifications.enumerators.NotificationImportance
- me.carda.awesome_notifications.notifications.enumerators.NotificationImportance$1
 me/carda/awesome_notifications/utils/JsonUtils.java
  me.carda.awesome_notifications.utils.JsonUtils
  me.carda.awesome_notifications.utils.JsonUtils$1
+me/carda/awesome_notifications/notifications/enumerators/NotificationImportance.java
+ me.carda.awesome_notifications.notifications.enumerators.NotificationImportance
+ me.carda.awesome_notifications.notifications.enumerators.NotificationImportance$1
 me/carda/awesome_notifications/notifications/enumerators/GroupSort.java
  me.carda.awesome_notifications.notifications.enumerators.GroupSort
 me/carda/awesome_notifications/notifications/handlers/ActivityCompletionHandler.java
@@ -67,11 +84,11 @@ me/carda/awesome_notifications/externalLibs/RuntimeTypeAdapterFactory.java
  me.carda.awesome_notifications.externalLibs.RuntimeTypeAdapterFactory$1
 me/carda/awesome_notifications/notifications/managers/CancellationManager.java
  me.carda.awesome_notifications.notifications.managers.CancellationManager
+me/carda/awesome_notifications/utils/BooleanUtils.java
+ me.carda.awesome_notifications.utils.BooleanUtils
 me/carda/awesome_notifications/notifications/models/NotificationContentModel.java
  me.carda.awesome_notifications.notifications.models.NotificationContentModel
  me.carda.awesome_notifications.notifications.models.NotificationContentModel$1
-me/carda/awesome_notifications/utils/BooleanUtils.java
- me.carda.awesome_notifications.utils.BooleanUtils
 me/carda/awesome_notifications/notifications/models/AbstractModel.java
  me.carda.awesome_notifications.notifications.models.AbstractModel
 me/carda/awesome_notifications/notifications/models/returnedData/ActionReceived.java
@@ -87,17 +104,26 @@ me/carda/awesome_notifications/notifications/managers/PermissionManager.java
  me.carda.awesome_notifications.notifications.managers.PermissionManager$7
  me.carda.awesome_notifications.notifications.managers.PermissionManager$8
  me.carda.awesome_notifications.notifications.managers.PermissionManager$9
-me/carda/awesome_notifications/notifications/models/NotificationMessageModel.java
- me.carda.awesome_notifications.notifications.models.NotificationMessageModel
 me/carda/awesome_notifications/utils/AudioUtils.java
  me.carda.awesome_notifications.utils.AudioUtils
  me.carda.awesome_notifications.utils.AudioUtils$1
+<<<<<<< HEAD
 me/carda/awesome_notifications/notifications/broadcastReceivers/DismissedNotificationReceiver.java
  me.carda.awesome_notifications.notifications.broadcastReceivers.DismissedNotificationReceiver
 me/carda/awesome_notifications/notifications/broadcastReceivers/KeepOnTopActionReceiver.java
  me.carda.awesome_notifications.notifications.broadcastReceivers.KeepOnTopActionReceiver
 me/carda/awesome_notifications/notifications/enumerators/DefaultRingtoneType.java
  me.carda.awesome_notifications.notifications.enumerators.DefaultRingtoneType
+=======
+me/carda/awesome_notifications/notifications/models/NotificationMessageModel.java
+ me.carda.awesome_notifications.notifications.models.NotificationMessageModel
+me/carda/awesome_notifications/notifications/enumerators/DefaultRingtoneType.java
+ me.carda.awesome_notifications.notifications.enumerators.DefaultRingtoneType
+me/carda/awesome_notifications/notifications/broadcastReceivers/KeepOnTopActionReceiver.java
+ me.carda.awesome_notifications.notifications.broadcastReceivers.KeepOnTopActionReceiver
+me/carda/awesome_notifications/notifications/broadcastReceivers/DismissedNotificationReceiver.java
+ me.carda.awesome_notifications.notifications.broadcastReceivers.DismissedNotificationReceiver
+>>>>>>> origin/Flutter_Youssef
 me/carda/awesome_notifications/AwesomeNotificationsPlugin.java
  me.carda.awesome_notifications.AwesomeNotificationsPlugin
  me.carda.awesome_notifications.AwesomeNotificationsPlugin$1
@@ -118,6 +144,7 @@ me/carda/awesome_notifications/BuildConfig.java
  me.carda.awesome_notifications.BuildConfig
 me/carda/awesome_notifications/notifications/broadcastReceivers/ScheduledNotificationReceiver.java
  me.carda.awesome_notifications.notifications.broadcastReceivers.ScheduledNotificationReceiver
+<<<<<<< HEAD
 me/carda/awesome_notifications/notifications/BitmapResourceDecoder.java
  me.carda.awesome_notifications.notifications.BitmapResourceDecoder
 me/carda/awesome_notifications/notifications/managers/ChannelGroupManager.java
@@ -128,8 +155,20 @@ me/carda/awesome_notifications/notifications/enumerators/NotificationLayout.java
  me.carda.awesome_notifications.notifications.enumerators.NotificationLayout
 me/carda/awesome_notifications/notifications/models/NotificationModel.java
  me.carda.awesome_notifications.notifications.models.NotificationModel
+=======
+me/carda/awesome_notifications/utils/StringUtils.java
+ me.carda.awesome_notifications.utils.StringUtils
+me/carda/awesome_notifications/notifications/managers/ChannelGroupManager.java
+ me.carda.awesome_notifications.notifications.managers.ChannelGroupManager
+me/carda/awesome_notifications/notifications/BitmapResourceDecoder.java
+ me.carda.awesome_notifications.notifications.BitmapResourceDecoder
+>>>>>>> origin/Flutter_Youssef
 me/carda/awesome_notifications/utils/IntegerUtils.java
  me.carda.awesome_notifications.utils.IntegerUtils
+me/carda/awesome_notifications/notifications/enumerators/NotificationLayout.java
+ me.carda.awesome_notifications.notifications.enumerators.NotificationLayout
+me/carda/awesome_notifications/notifications/models/NotificationModel.java
+ me.carda.awesome_notifications.notifications.models.NotificationModel
 me/carda/awesome_notifications/utils/MapUtils.java
  me.carda.awesome_notifications.utils.MapUtils
 me/carda/awesome_notifications/notifications/exceptions/AwesomeNotificationException.java

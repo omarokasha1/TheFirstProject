@@ -38,6 +38,7 @@ class HomePage extends StatelessWidget {
           builder: (context, state) {
             var courseCubit = CourseCubit.get(context);
             return Scaffold(
+              backgroundColor: Colors.white,
               appBar: myAppBar(context,color: primaryColor,iconColor: Colors.white),
               body: Layout(
                   widget: ScrollConfiguration(
@@ -165,7 +166,7 @@ class HomePage extends StatelessWidget {
                                 ),
                               ),
                               SizedBox(
-                                height: 300.h,
+                                height: MediaQuery.of(context).size.height/3,
                                 child: ListView.builder(
                                   physics: const BouncingScrollPhysics(),
                                   scrollDirection: Axis.horizontal,
@@ -201,7 +202,7 @@ class HomePage extends StatelessWidget {
                                 ),
                               ),
                               SizedBox(
-                                height: 330.h,
+                                height: MediaQuery.of(context).size.height/3,
                                 child: ListView.builder(
                                   physics: const BouncingScrollPhysics(),
                                   scrollDirection: Axis.horizontal,
@@ -242,7 +243,7 @@ class HomePage extends StatelessWidget {
                                 ),
                               ),
                               SizedBox(
-                                height: 300.h,
+                                height: MediaQuery.of(context).size.height/3,
                                 child: ListView.builder(
                                   physics: const BouncingScrollPhysics(),
                                   scrollDirection: Axis.horizontal,

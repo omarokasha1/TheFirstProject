@@ -9,6 +9,7 @@ import 'package:lms/modules/Auther/create_track/Update_track.dart';
 import 'package:lms/modules/Auther/create_track/create_track.dart';
 import 'package:lms/modules/Auther/create_track/cubit/cubit.dart';
 import 'package:lms/modules/Auther/create_track/cubit/statues.dart';
+import 'package:lms/modules/tracks_details/tracks_details_screen.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
 
@@ -169,130 +170,135 @@ class TracksScreen extends StatelessWidget {
 
   //Course Widget
   Widget BuildAuthorCourse(context, Tracks modelTrack, CreateTrackCubit cubit) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        height: 120.h,
-        padding: EdgeInsets.all(10),
-        width: double.infinity,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(30.0),
-          color: Colors.grey[100],
-        ),
-        clipBehavior: Clip.antiAliasWithSaveLayer,
-        child: Row(
-          children: [
-            // Container(
-            //   clipBehavior: Clip.antiAliasWithSaveLayer,
-            //   decoration: BoxDecoration(
-            //     borderRadius: BorderRadius.circular(30.0),
-            //     color: Colors.white,
-            //   ),
-            //   child: Image.network(
-            //     'https://media.gettyimages.com/vectors/-vector-id960988454',
-            //     height: 150.h,
-            //     width: 140.w,
-            //     fit: BoxFit.cover,
-            //   ),
-            // ),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(30),
-              child: Image.network(
-                //'https://media.gettyimages.com/vectors/-vector-id960988454',
-                '${modelTrack.imageUrl}',
-                height: 150.h,
-                width: 140.w,
-                fit: BoxFit.cover,
+    return InkWell(
+      onTap: (){
+        navigator(context, TracksDetailsScreen(modelTrack));
+      },
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
+          height: 120.h,
+          padding: EdgeInsets.all(10),
+          width: double.infinity,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(30.0),
+            color: Colors.grey[100],
+          ),
+          clipBehavior: Clip.antiAliasWithSaveLayer,
+          child: Row(
+            children: [
+              // Container(
+              //   clipBehavior: Clip.antiAliasWithSaveLayer,
+              //   decoration: BoxDecoration(
+              //     borderRadius: BorderRadius.circular(30.0),
+              //     color: Colors.white,
+              //   ),
+              //   child: Image.network(
+              //     'https://media.gettyimages.com/vectors/-vector-id960988454',
+              //     height: 150.h,
+              //     width: 140.w,
+              //     fit: BoxFit.cover,
+              //   ),
+              // ),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(30),
+                child: Image.network(
+                  //'https://media.gettyimages.com/vectors/-vector-id960988454',
+                  '${modelTrack.imageUrl}',
+                  height: 150.h,
+                  width: 140.w,
+                  fit: BoxFit.cover,
+                ),
               ),
-            ),
-            SizedBox(
-              width: 10.w,
-            ),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  Container(
-                    child: Text(
-                      //'Track Name',
-                      '${modelTrack.trackName}',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20.sp,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
+              SizedBox(
+                width: 10.w,
+              ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: 10.h,
                     ),
-                  ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      CircleAvatar(
-                        backgroundColor: primaryColor,
-                        radius: 18.r,
-                        child: IconButton(
-                          onPressed: () {
-                            navigator(context, UpdateTrackScreen(modelTrack));
-                          },
-                          icon: Icon(
-                            Icons.edit,
-                            color: Colors.white,
-                            size: 18,
+                    Container(
+                      child: Text(
+                        //'Track Name',
+                        '${modelTrack.trackName}',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: primaryColor,
+                          radius: 18.r,
+                          child: IconButton(
+                            onPressed: () {
+                              navigator(context, UpdateTrackScreen(modelTrack));
+                            },
+                            icon: Icon(
+                              Icons.edit,
+                              color: Colors.white,
+                              size: 18,
+                            ),
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        width: 10.w,
-                      ),
-                      CircleAvatar(
-                        backgroundColor: Colors.red,
-                        radius: 18.r,
-                        child: IconButton(
-                          onPressed: () {
-                            print(modelTrack.sId!);
-                            cubit.deleteTrack(trackId: modelTrack.sId!);
-                          },
-                          icon: Icon(
-                            Icons.delete_rounded,
-                            color: Colors.white,
-                            size: 18,
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                        CircleAvatar(
+                          backgroundColor: Colors.red,
+                          radius: 18.r,
+                          child: IconButton(
+                            onPressed: () {
+                              print(modelTrack.sId!);
+                              cubit.deleteTrack(trackId: modelTrack.sId!);
+                            },
+                            icon: Icon(
+                              Icons.delete_rounded,
+                              color: Colors.white,
+                              size: 18,
+                            ),
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        width: 10.w,
-                      ),
-                      CircleAvatar(
-                        backgroundColor: Colors.greenAccent[400],
-                        radius: 18.r,
-                        child: IconButton(
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.send_rounded,
-                            color: Colors.white,
-                            size: 18,
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                        CircleAvatar(
+                          backgroundColor: Colors.greenAccent[400],
+                          radius: 18.r,
+                          child: IconButton(
+                            onPressed: () {},
+                            icon: Icon(
+                              Icons.send_rounded,
+                              color: Colors.white,
+                              size: 18,
+                            ),
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        width: 10.w,
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                ],
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
