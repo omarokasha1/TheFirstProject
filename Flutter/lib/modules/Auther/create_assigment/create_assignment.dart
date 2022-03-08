@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_picker/Picker.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 import 'package:lms/modules/Auther/create_assigment/cubit/cubit.dart';
 import 'package:lms/modules/Auther/create_assigment/cubit/states.dart';
 import '../../../shared/component/component.dart';
@@ -136,6 +137,7 @@ class CreateAssignmentScreen extends StatelessWidget {
                                 prefix: true,
                                 prefixIcon: Icons.description_outlined,
                               ),
+
                               TextFormField(
                                 keyboardType: TextInputType.none,
                                 decoration: InputDecoration(

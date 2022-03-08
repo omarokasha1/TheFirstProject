@@ -244,6 +244,7 @@ class ModulesLibraryScreen extends StatelessWidget {
 
       },
       child: Container(
+        padding: const EdgeInsets.all(10),
         width: double.infinity,
         height: 100.0,
         decoration: BoxDecoration(
@@ -253,18 +254,47 @@ class ModulesLibraryScreen extends StatelessWidget {
         clipBehavior: Clip.antiAliasWithSaveLayer,
         child: Row(
           children: [
+            Image.network('https://cdn-icons-png.flaticon.com/512/337/337946.png',width: 55,height: 55,),
             SizedBox(
-              width: 20.0,
+              width: 10.w,
             ),
-            Expanded(
-              child: Text(
-                //  "File name asd afew werg  iuejh iujh iuvjh iuwjhuijv iujhuijh iuwhji uhwuivh iuwhu wiuhf uiwh ifuhwiushviu hsdfubifh iuhfbiughr siih iuv iusb bs ",
-                '${model.assignmentTitle}',
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  fontSize: 20.sp,
-                  fontWeight: FontWeight.bold,
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      //  "File name asd afew werg  iuejh iujh iuvjh iuwjhuijv iujhuijh iuwhji uhwuivh iuwhu wiuhf uiwh ifuhwiushviu hsdfubifh iuhfbiughr siih iuv iusb bs ",
+                      '${model.assignmentTitle}',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontSize: 18.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      //  "File name asd afew werg  iuejh iujh iuvjh iuwjhuijv iujhuijh iuwhji uhwuivh iuwhu wiuhf uiwh ifuhwiushviu hsdfubifh iuhfbiughr siih iuv iusb bs ",
+                      '${model.assignmentDuration}',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      //  "File name asd afew werg  iuejh iujh iuvjh iuwjhuijv iujhuijh iuwhji uhwuivh iuwhu wiuhf uiwh ifuhwiushviu hsdfubifh iuhfbiughr siih iuv iusb bs ",
+                      '15 MB',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -273,7 +303,7 @@ class ModulesLibraryScreen extends StatelessWidget {
             ),
             CircleAvatar(
               backgroundColor: primaryColor,
-              radius: 22.r,
+              radius: 18.r,
               child: IconButton(
                 onPressed: () {
                   navigator(context, UpdateAssignment(model));
@@ -281,7 +311,7 @@ class ModulesLibraryScreen extends StatelessWidget {
                 icon: Icon(
                   Icons.edit,
                   color: Colors.white,
-                  size: 26,
+                  size: 18,
                 ),
               ),
             ),
@@ -290,7 +320,7 @@ class ModulesLibraryScreen extends StatelessWidget {
             ),
             CircleAvatar(
               backgroundColor: Colors.red,
-              radius: 22.r,
+              radius: 18.r,
               child: IconButton(
                 onPressed: () {
                   cubit.deleteAssignment(moduleId: model.sId!);
@@ -298,7 +328,7 @@ class ModulesLibraryScreen extends StatelessWidget {
                 icon: Icon(
                   Icons.delete_rounded,
                   color: Colors.white,
-                  size: 26,
+                  size: 18,
                 ),
               ),
             ),
