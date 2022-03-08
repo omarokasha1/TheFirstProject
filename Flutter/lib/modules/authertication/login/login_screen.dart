@@ -41,9 +41,10 @@ class _LoginScreenState extends State<LoginScreen> {
               userToken=CacheHelper.get(key: "token");
               CourseCubit.get(context).getAllCoursesData();
               ProfileCubit.get(context).getUserProfile();
+
               navigatorAndRemove(
                 context,
-               userAuthor?ZoomDrawerScreen(widget:DashboardAuthorScreen()): ZoomDrawerScreen(),
+               isAuthor?ZoomDrawerScreen(widget:DashboardAuthorScreen()): ZoomDrawerScreen(),
               );
             } else {
               print(" jsadjbasjdnj ${state.model.status}");

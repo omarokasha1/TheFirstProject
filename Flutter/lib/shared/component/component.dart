@@ -219,12 +219,10 @@ Widget buildCourseItem(context, bool enroll, CourseModel courseModel) =>
         child: Container(
           width: 300.w,
           decoration: BoxDecoration(
-            boxShadow: const [
+            boxShadow:  [
               BoxShadow(
-                color: Colors.grey,
-
-                offset: Offset(0.0, 1.0), //(x,y)
-
+                color: Colors.black12,
+                offset: Offset(0.6, 1.2), //(x,y)
                 blurRadius: 6.0,
               ),
             ],
@@ -278,18 +276,15 @@ Widget buildCourseItem(context, bool enroll, CourseModel courseModel) =>
               ),
               Padding(
                 padding:
-                    EdgeInsets.symmetric(horizontal: 8.0.w, vertical: 20.h),
+                    EdgeInsets.symmetric(horizontal: 8.0.w, vertical: 10.h),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       //'Complete Instagram Marketing Course'
                       '${courseModel.title}',
-
                       maxLines: 1,
-
                       overflow: TextOverflow.ellipsis,
-
                       style: Theme.of(context).textTheme.subtitle2,
                     ),
                     SizedBox(height: 14.h),
@@ -319,14 +314,12 @@ Widget buildCourseItem(context, bool enroll, CourseModel courseModel) =>
                           ),
                           child: Row(
                             children: [
-                              const Icon(
-                                Icons.star,
-                                color: Colors.yellow,
-                              ),
+                              Image.asset('assets/images/star.png',width: 20,height: 20,),
                               SizedBox(
                                 width: 5.w,
                               ),
-                              Text('${courseModel.review}'),
+                              //Text('${courseModel.review}'),
+                              const Text('4.5',style: TextStyle(fontWeight: FontWeight.bold),),
                             ],
                           ),
                         ),
