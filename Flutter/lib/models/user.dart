@@ -31,6 +31,9 @@ class Profile {
   String? imageUrl = '';
   UserEducation? userEducation;
   String? bio = '';
+  bool? isAdmin ;
+  bool? isAuthor ;
+  bool? isManager ;
 
   Profile(
       {this.sId,
@@ -44,6 +47,9 @@ class Profile {
         this.imageUrl,
         this.userEducation,
         this.bio,
+        this.isAdmin,
+        this.isAuthor,
+        this.isManager,
       });
 
   Profile.fromJson(Map<String, dynamic> json) {
@@ -60,6 +66,9 @@ class Profile {
         ? new UserEducation.fromJson(json['userEducation'])
         : UserEducation();
     bio = json['bio'] ?? '';
+    isAdmin = json['isAdmin'] ;
+    isAuthor = json['isAuthor'] ;
+    isManager = json['isManager'] ;
   }
 
   Map<String, dynamic> toJson() {
@@ -77,6 +86,9 @@ class Profile {
       data['userEducation'] = this.userEducation!.toJson();
     }
     data['bio'] = this.bio;
+    data['isAdmin'] = this.isAdmin;
+    data['isAuthor'] = this.isAuthor;
+    data['isManager'] = this.isManager;
     return data;
   }
 }
