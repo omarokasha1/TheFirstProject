@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lms/models/author_courses.dart';
 import 'package:lms/models/course_model.dart';
 import 'package:lms/models/response_model.dart';
 import 'package:lms/models/track_model.dart';
@@ -34,7 +35,7 @@ class AuthorCoursesCubit extends Cubit<AuthorCoursesStates> {
     emit(ChangeItemState());
   }
 
-  AuthorCoursesTestModel? authorCoursesTestModel;
+  AuthorCourses? authorCoursesTestModel;
 
   Future<void> getAuthorCoursesData() async {
     emit(GetAuthorCoursesLoadingState());
@@ -42,7 +43,7 @@ class AuthorCoursesCubit extends Cubit<AuthorCoursesStates> {
     await DioHelper.getData(url: getAuthorCourses, token: userToken).then((value) {
       //print(value.data);
       //authorCoursesTestModel!.courses=[];
-      authorCoursesTestModel = AuthorCoursesTestModel.fromJson(value.data);
+      authorCoursesTestModel = AuthorCourses.fromJson(value.data);
       //print(authorCoursesTestModel!.courses.toString());
       emit(GetAuthorCoursesSuccessState(authorCoursesTestModel));
     }).catchError((error) {
@@ -122,6 +123,8 @@ class AuthorCoursesCubit extends Cubit<AuthorCoursesStates> {
   }
 
   ResponseModel? deleteModel;
+
+
 
   void deleteCourse({required String courseId}) {
     emit(DeleteCourseLoadingState());

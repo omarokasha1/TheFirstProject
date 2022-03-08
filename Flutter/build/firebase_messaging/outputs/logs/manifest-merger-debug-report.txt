@@ -1,0 +1,87 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\firebase_messaging-11.2.8\android\src\main\AndroidManifest.xml:1:1-35:12
+INJECTED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\firebase_messaging-11.2.8\android\src\main\AndroidManifest.xml:1:1-35:12
+INJECTED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\firebase_messaging-11.2.8\android\src\main\AndroidManifest.xml:1:1-35:12
+	package
+		ADDED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\firebase_messaging-11.2.8\android\src\main\AndroidManifest.xml:2:3-50
+		INJECTED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\firebase_messaging-11.2.8\android\src\main\AndroidManifest.xml
+		INJECTED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\firebase_messaging-11.2.8\android\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\firebase_messaging-11.2.8\android\src\main\AndroidManifest.xml:1:11-69
+uses-permission#android.permission.INTERNET
+ADDED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\firebase_messaging-11.2.8\android\src\main\AndroidManifest.xml:3:3-64
+	android:name
+		ADDED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\firebase_messaging-11.2.8\android\src\main\AndroidManifest.xml:3:20-62
+uses-permission#android.permission.WAKE_LOCK
+ADDED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\firebase_messaging-11.2.8\android\src\main\AndroidManifest.xml:4:3-65
+	android:name
+		ADDED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\firebase_messaging-11.2.8\android\src\main\AndroidManifest.xml:4:20-63
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\firebase_messaging-11.2.8\android\src\main\AndroidManifest.xml:5:3-76
+	android:name
+		ADDED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\firebase_messaging-11.2.8\android\src\main\AndroidManifest.xml:5:20-74
+application
+ADDED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\firebase_messaging-11.2.8\android\src\main\AndroidManifest.xml:6:3-34:17
+service#io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingBackgroundService
+ADDED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\firebase_messaging-11.2.8\android\src\main\AndroidManifest.xml:7:5-10:33
+	android:exported
+		ADDED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\firebase_messaging-11.2.8\android\src\main\AndroidManifest.xml:10:7-31
+	android:permission
+		ADDED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\firebase_messaging-11.2.8\android\src\main\AndroidManifest.xml:9:7-63
+	android:name
+		ADDED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\firebase_messaging-11.2.8\android\src\main\AndroidManifest.xml:8:7-64
+service#io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingService
+ADDED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\firebase_messaging-11.2.8\android\src\main\AndroidManifest.xml:11:5-16:15
+	android:exported
+		ADDED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\firebase_messaging-11.2.8\android\src\main\AndroidManifest.xml:12:7-31
+	android:name
+		ADDED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\firebase_messaging-11.2.8\android\src\main\AndroidManifest.xml:11:14-61
+intent-filter#action:name:com.google.firebase.MESSAGING_EVENT
+ADDED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\firebase_messaging-11.2.8\android\src\main\AndroidManifest.xml:13:7-15:23
+action#com.google.firebase.MESSAGING_EVENT
+ADDED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\firebase_messaging-11.2.8\android\src\main\AndroidManifest.xml:14:9-69
+	android:name
+		ADDED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\firebase_messaging-11.2.8\android\src\main\AndroidManifest.xml:14:17-67
+receiver#io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingReceiver
+ADDED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\firebase_messaging-11.2.8\android\src\main\AndroidManifest.xml:17:5-24:16
+	android:exported
+		ADDED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\firebase_messaging-11.2.8\android\src\main\AndroidManifest.xml:19:7-30
+	android:permission
+		ADDED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\firebase_messaging-11.2.8\android\src\main\AndroidManifest.xml:20:7-67
+	android:name
+		ADDED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\firebase_messaging-11.2.8\android\src\main\AndroidManifest.xml:18:7-55
+intent-filter#action:name:com.google.android.c2dm.intent.RECEIVE
+ADDED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\firebase_messaging-11.2.8\android\src\main\AndroidManifest.xml:21:7-23:23
+action#com.google.android.c2dm.intent.RECEIVE
+ADDED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\firebase_messaging-11.2.8\android\src\main\AndroidManifest.xml:22:9-73
+	android:name
+		ADDED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\firebase_messaging-11.2.8\android\src\main\AndroidManifest.xml:22:17-70
+service#com.google.firebase.components.ComponentDiscoveryService
+ADDED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\firebase_messaging-11.2.8\android\src\main\AndroidManifest.xml:25:5-28:15
+	android:name
+		ADDED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\firebase_messaging-11.2.8\android\src\main\AndroidManifest.xml:25:14-85
+meta-data#com.google.firebase.components:io.flutter.plugins.firebase.messaging.FlutterFirebaseAppRegistrar
+ADDED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\firebase_messaging-11.2.8\android\src\main\AndroidManifest.xml:26:7-27:86
+	android:value
+		ADDED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\firebase_messaging-11.2.8\android\src\main\AndroidManifest.xml:27:18-83
+	android:name
+		ADDED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\firebase_messaging-11.2.8\android\src\main\AndroidManifest.xml:26:18-129
+provider#io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingInitProvider
+ADDED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\firebase_messaging-11.2.8\android\src\main\AndroidManifest.xml:29:5-33:32
+	android:authorities
+		ADDED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\firebase_messaging-11.2.8\android\src\main\AndroidManifest.xml:31:7-82
+	android:exported
+		ADDED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\firebase_messaging-11.2.8\android\src\main\AndroidManifest.xml:32:7-31
+	android:initOrder
+		ADDED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\firebase_messaging-11.2.8\android\src\main\AndroidManifest.xml:33:7-29
+	android:name
+		ADDED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\firebase_messaging-11.2.8\android\src\main\AndroidManifest.xml:30:7-59
+uses-sdk
+INJECTED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\firebase_messaging-11.2.8\android\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\firebase_messaging-11.2.8\android\src\main\AndroidManifest.xml
+INJECTED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\firebase_messaging-11.2.8\android\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\firebase_messaging-11.2.8\android\src\main\AndroidManifest.xml
+		ADDED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\firebase_messaging-11.2.8\android\src\main\AndroidManifest.xml
+		INJECTED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\firebase_messaging-11.2.8\android\src\main\AndroidManifest.xml

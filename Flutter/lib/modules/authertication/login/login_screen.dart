@@ -8,7 +8,7 @@ import 'package:lms/modules/authertication/forget%20password/forget_Password_scr
 import 'package:lms/modules/authertication/login/login_cubit/state.dart';
 import 'package:lms/modules/authertication/register/register_screen.dart';
 import 'package:lms/modules/courses/cubit/cubit.dart';
-import 'package:lms/modules/home_screen.dart';
+import 'package:lms/modules/home/home_screen.dart';
 import 'package:lms/modules/profile/profile_cubit/cubit.dart';
 import 'package:lms/shared/component/constants.dart';
 import 'package:lms/shared/component/zoomDrawer.dart';

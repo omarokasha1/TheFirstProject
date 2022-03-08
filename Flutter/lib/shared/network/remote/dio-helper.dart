@@ -19,8 +19,8 @@ class DioHelper {
     dio = Dio(
       BaseOptions(
         //Here the URL of API.
-        //baseUrl: "https://lms-ap.herokuapp.com/",
-        baseUrl: "http://10.5.62.214:8081/",
+        baseUrl: "https://lms-ap.herokuapp.com/",
+        //baseUrl: "http://10.5.62.214:8081/",
         // baseUrl: "https://lms-ap.herokuapp.com/",
         //baseUrl: "https://wikitoexcelapi.herokuapp.com/",
         receiveDataWhenStatusError: true,

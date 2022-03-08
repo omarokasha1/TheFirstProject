@@ -1,13 +1,12 @@
-import 'dart:ui';
-
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lms/layout/layout.dart';
-import 'package:lms/models/course_model.dart';
+import 'package:lms/models/author_courses.dart';
 import 'package:lms/modules/Auther/author_courses/author_courses_cubit/cubit.dart';
+import 'package:lms/modules/Auther/author_courses/course_view.dart';
 import 'package:lms/modules/Auther/create_course/create_course_screen.dart';
 import 'package:lms/modules/Auther/create_course/update_course_screen.dart';
 
@@ -24,7 +23,7 @@ class AuthorCourses extends StatelessWidget {
   final List<Widget> myTabs = [
     //Tab(text: 'Drafts'),
     Tab(text: 'Pendding'),
-    Tab(text: 'Published'),
+    Tab(text: 'Published')
   ];
 
   @override
@@ -163,131 +162,136 @@ class AuthorCourses extends StatelessWidget {
 
   //Course Widget
   Widget BuildAuthorCourse(context, Courses course, AuthorCoursesCubit cubit) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        height: 120.h,
-        padding: EdgeInsets.all(10),
-        width: double.infinity,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(30.0),
-          color: Colors.grey[100],
-        ),
-        clipBehavior: Clip.antiAliasWithSaveLayer,
-        child: Row(
-          children: [
-            // Container(
-            //   clipBehavior: Clip.antiAliasWithSaveLayer,
-            //   decoration: BoxDecoration(
-            //     borderRadius: BorderRadius.circular(30.0),
-            //     color: Colors.white,
-            //   ),
-            //   child: Image.network(
-            //     'https://media.gettyimages.com/vectors/-vector-id960988454',
-            //     height: 150.h,
-            //     width: 140.w,
-            //     fit: BoxFit.cover,
-            //   ),
-            // ),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(30),
-              child: imageFromNetwork(
-                //'https://media.gettyimages.com/vectors/-vector-id960988454',
-                url: '${course.imageUrl}',
-                height: 150.h,
-                width: 140.w,
-                fit: BoxFit.cover,
+    return InkWell(
+      onTap: (){
+        navigator(context, CourseDetailsScreen(course));
+      },
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
+          height: 120.h,
+          padding: EdgeInsets.all(10),
+          width: double.infinity,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(30.0),
+            color: Colors.grey[100],
+          ),
+          clipBehavior: Clip.antiAliasWithSaveLayer,
+          child: Row(
+            children: [
+              // Container(
+              //   clipBehavior: Clip.antiAliasWithSaveLayer,
+              //   decoration: BoxDecoration(
+              //     borderRadius: BorderRadius.circular(30.0),
+              //     color: Colors.white,
+              //   ),
+              //   child: Image.network(
+              //     'https://media.gettyimages.com/vectors/-vector-id960988454',
+              //     height: 150.h,
+              //     width: 140.w,
+              //     fit: BoxFit.cover,
+              //   ),
+              // ),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(30),
+                child: imageFromNetwork(
+                  //'https://media.gettyimages.com/vectors/-vector-id960988454',
+                  url: '${course.imageUrl}',
+                  height: 150.h,
+                  width: 140.w,
+                  fit: BoxFit.cover,
+                ),
               ),
-            ),
-            SizedBox(
-              width: 10.w,
-            ),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  Container(
-                    child: Text(
-                      //'Track Name',
-                      '${course.title}',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20.sp,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
+              SizedBox(
+                width: 10.w,
+              ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: 10.h,
                     ),
-                  ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      CircleAvatar(
-                        backgroundColor: primaryColor,
-                        radius: 18.r,
-                        child: IconButton(
-                          onPressed: () {
-                            navigator(context, UpdateCourseScreen(course));
-                          },
-                          icon: Icon(
-                            Icons.edit,
-                            color: Colors.white,
-                            size: 18,
+                    Container(
+                      child: Text(
+                        //'Track Name',
+                        '${course.title}',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: primaryColor,
+                          radius: 18.r,
+                          child: IconButton(
+                            onPressed: () {
+                              navigator(context, UpdateCourseScreen(course));
+                            },
+                            icon: Icon(
+                              Icons.edit,
+                              color: Colors.white,
+                              size: 18,
+                            ),
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        width: 10.w,
-                      ),
-                      CircleAvatar(
-                        backgroundColor: Colors.red,
-                        radius: 18.r,
-                        child: IconButton(
-                          onPressed: () {
-                            print(course.sId);
-                            cubit.deleteCourse(courseId: course.sId!);
-                          },
-                          icon: Icon(
-                            Icons.delete_rounded,
-                            color: Colors.white,
-                            size: 18,
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                        CircleAvatar(
+                          backgroundColor: Colors.red,
+                          radius: 18.r,
+                          child: IconButton(
+                            onPressed: () {
+                              print(course.sId);
+                              cubit.deleteCourse(courseId: course.sId!);
+                            },
+                            icon: Icon(
+                              Icons.delete_rounded,
+                              color: Colors.white,
+                              size: 18,
+                            ),
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        width: 10.w,
-                      ),
-                      // CircleAvatar(
-                      //   backgroundColor: Colors.greenAccent[400],
-                      //   radius: 18.r,
-                      //   child: IconButton(
-                      //     onPressed: () {},
-                      //     icon: Icon(
-                      //       Icons.send_rounded,
-                      //       color: Colors.white,
-                      //       size: 18,
-                      //     ),
-                      //   ),
-                      // ),
-                      // SizedBox(
-                      //   width: 10.w,
-                      // ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                ],
-              ),
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                        // CircleAvatar(
+                        //   backgroundColor: Colors.greenAccent[400],
+                        //   radius: 18.r,
+                        //   child: IconButton(
+                        //     onPressed: () {},
+                        //     icon: Icon(
+                        //       Icons.send_rounded,
+                        //       color: Colors.white,
+                        //       size: 18,
+                        //     ),
+                        //   ),
+                        // ),
+                        // SizedBox(
+                        //   width: 10.w,
+                        // ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                  ],
+                ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
       ),
     );
   }

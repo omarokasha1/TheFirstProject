@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lms/modules/quiz/cubit/cubit.dart';
-import '../../../../../shared/component/constants.dart';
+import 'package:lms/shared/component/constants.dart';
 import '../../../cubit/states.dart';
 
 class Option extends StatefulWidget {

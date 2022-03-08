@@ -12,6 +12,7 @@ import 'package:lms/modules/courses/course_overview_screen.dart';
 import 'package:lms/shared/component/constants.dart';
 import 'package:lottie/lottie.dart';
 import 'package:multiselect_formfield/multiselect_formfield.dart';
+
 import '../../modules/courses/course_details_screen.dart';
 
 // Widget for Buttons
@@ -618,6 +619,7 @@ Widget selectMoreItem(
     ),
   );
 }
+
 dynamic fileUpload(File file) async {
   String fileName = file.path.split('/').last;
   return await MultipartFile.fromFile(
@@ -626,6 +628,7 @@ dynamic fileUpload(File file) async {
     contentType: MediaType("image", fileName.split(".").last),
   );
 }
+
 Widget emptyPage({required String text,required context})
 {
   return Center(
@@ -644,3 +647,4 @@ Widget emptyPage({required String text,required context})
     ),
   );
 }
+

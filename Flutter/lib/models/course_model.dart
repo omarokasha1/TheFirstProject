@@ -42,18 +42,19 @@ class CourseModel {
 
   CourseModel(
       {this.sId,
-      this.totalTime,
-      this.lastUpdate,
-      this.requiremnets,
-      this.title,
-      this.price,
-      this.discount,
-      this.language,
-      this.description,
-      this.review,
-      this.imageUrl,
-      this.author,
-      this.contents});
+        this.totalTime,
+        this.lastUpdate,
+        this.requiremnets,
+        this.title,
+        this.price,
+        this.discount,
+        this.language,
+        this.description,
+        this.review,
+        this.imageUrl,
+        this.author,
+        this.contents});
+
 
   CourseModel.fromJson(Map<String, dynamic> json) {
     sId = json['_id'] ?? '';
@@ -68,7 +69,8 @@ class CourseModel {
     review = json['review'] ?? '';
     imageUrl = json['imageUrl'] ?? '';
     author =
-        json['author'] != null ? new Author.fromJson(json['author']) : null;
+    json['author'] != null ? new Author.fromJson(json['author']) : null;
+
     if (json['courses'] != null) {
       contents = <String>[];
       json['courses'].forEach((v) {
@@ -297,3 +299,4 @@ class Courses {
     return data;
   }
 }
+

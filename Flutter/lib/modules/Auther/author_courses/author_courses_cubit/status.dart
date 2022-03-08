@@ -1,3 +1,4 @@
+import 'package:lms/models/author_courses.dart';
 import 'package:lms/models/course_model.dart';
 
 abstract class AuthorCoursesStates {}
@@ -9,7 +10,7 @@ class ChangeItemState extends AuthorCoursesStates {}
 class GetAuthorCoursesLoadingState extends AuthorCoursesStates {}
 
 class GetAuthorCoursesSuccessState extends AuthorCoursesStates {
-  final AuthorCoursesTestModel? authorCoursesTestModel;
+  final AuthorCourses? authorCoursesTestModel;
 
   GetAuthorCoursesSuccessState(this.authorCoursesTestModel);
 }
