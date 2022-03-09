@@ -68,10 +68,10 @@ class AuthorCoursesCubit extends Cubit<AuthorCoursesStates> {
     });
   }
 
-  Future<void> sendCourseRequestData({
+  Future<void> sendNewCourseRequest({
     required courseId,
   }) async {
-    emit(CreateCourseLoadingState());
+    emit(SendCourseRequestLoadingState());
     DioHelper.postData(
       files: true,
       data: {
@@ -80,11 +80,12 @@ class AuthorCoursesCubit extends Cubit<AuthorCoursesStates> {
       url: sendCourseRequest,
       token: userToken,
     ).then((value) async {
-      emit(CreateCourseSuccessState());
+      emit(SendCourseRequestSuccessState());
+      //showToast(message: '${updateModel!.message}',color: Colors.green);
       getAuthorCoursesData();
     }).catchError((onError) {
       print(onError.toString());
-      emit(CreateCourseErrorState(onError.toString()));
+      emit(SendCourseRequestErrorState(onError.toString()));
     });
   }
 

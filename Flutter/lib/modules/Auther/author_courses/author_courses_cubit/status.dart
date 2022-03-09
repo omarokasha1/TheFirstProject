@@ -43,6 +43,16 @@ class CreateCourseErrorState extends AuthorCoursesStates {
   CreateCourseErrorState(this.error);
 }
 
+class SendCourseRequestLoadingState extends AuthorCoursesStates {}
+
+class SendCourseRequestSuccessState extends AuthorCoursesStates {}
+
+class SendCourseRequestErrorState extends AuthorCoursesStates {
+  final String error;
+
+  SendCourseRequestErrorState(this.error);
+}
+
 class UpdateCourseLoadingState extends AuthorCoursesStates {}
 
 class UpdateCourseSuccessState extends AuthorCoursesStates {

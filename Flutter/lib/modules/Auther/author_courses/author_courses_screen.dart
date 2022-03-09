@@ -28,6 +28,8 @@ class AuthorCourses extends StatelessWidget {
     Tab(text: 'Published'),
   ];
 
+  var icon=Icons.send;
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AuthorCoursesCubit, AuthorCoursesStates>(
@@ -256,10 +258,12 @@ class AuthorCourses extends StatelessWidget {
                         radius: 18.r,
                         child: IconButton(
                           onPressed: () {
+                            cubit.sendNewCourseRequest(courseId: course.sId);
+                            showToast(message: 'The request has been sent');
 
                           },
                           icon: Icon(
-                            Icons.send_rounded,
+                            icon,
                             color: Colors.white,
                             size: 18,
                           ),
