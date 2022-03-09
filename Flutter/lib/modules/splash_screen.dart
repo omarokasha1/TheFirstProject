@@ -28,7 +28,7 @@ class SplashScreen extends StatelessWidget {
       //Or go to LoginScreen
       nextScreen: userToken == null
           ? LoginScreen()
-          : userAuthor
+          : userType == 'author'
               ? ZoomDrawerScreen(
                   widget: DashboardAuthorScreen(),
                 )

@@ -3,23 +3,23 @@
 3    package="com.mr.flutter.plugin.filepicker" >
 4
 5    <uses-sdk android:minSdkVersion="16" />
-5-->C:\Users\karem\AppData\Local\Pub\Cache\hosted\pub.dartlang.org\file_picker-4.5.0\android\src\main\AndroidManifest.xml
+5-->C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\file_picker-4.5.0\android\src\main\AndroidManifest.xml
 6
 7    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-7-->C:\Users\karem\AppData\Local\Pub\Cache\hosted\pub.dartlang.org\file_picker-4.5.0\android\src\main\AndroidManifest.xml:3:5-79
-7-->C:\Users\karem\AppData\Local\Pub\Cache\hosted\pub.dartlang.org\file_picker-4.5.0\android\src\main\AndroidManifest.xml:3:22-77
+7-->C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\file_picker-4.5.0\android\src\main\AndroidManifest.xml:3:5-79
+7-->C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\file_picker-4.5.0\android\src\main\AndroidManifest.xml:3:22-77
 8
 9    <queries>
-9-->C:\Users\karem\AppData\Local\Pub\Cache\hosted\pub.dartlang.org\file_picker-4.5.0\android\src\main\AndroidManifest.xml:4:5-9:15
+9-->C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\file_picker-4.5.0\android\src\main\AndroidManifest.xml:4:5-9:15
 10        <intent>
-10-->C:\Users\karem\AppData\Local\Pub\Cache\hosted\pub.dartlang.org\file_picker-4.5.0\android\src\main\AndroidManifest.xml:5:6-8:14
+10-->C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\file_picker-4.5.0\android\src\main\AndroidManifest.xml:5:6-8:14
 11            <action android:name="android.intent.action.GET_CONTENT" />
-11-->C:\Users\karem\AppData\Local\Pub\Cache\hosted\pub.dartlang.org\file_picker-4.5.0\android\src\main\AndroidManifest.xml:6:9-68
-11-->C:\Users\karem\AppData\Local\Pub\Cache\hosted\pub.dartlang.org\file_picker-4.5.0\android\src\main\AndroidManifest.xml:6:17-65
+11-->C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\file_picker-4.5.0\android\src\main\AndroidManifest.xml:6:9-68
+11-->C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\file_picker-4.5.0\android\src\main\AndroidManifest.xml:6:17-65
 12
 13            <data android:mimeType="*/*" />
-13-->C:\Users\karem\AppData\Local\Pub\Cache\hosted\pub.dartlang.org\file_picker-4.5.0\android\src\main\AndroidManifest.xml:7:9-39
-13-->C:\Users\karem\AppData\Local\Pub\Cache\hosted\pub.dartlang.org\file_picker-4.5.0\android\src\main\AndroidManifest.xml:7:15-37
+13-->C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\file_picker-4.5.0\android\src\main\AndroidManifest.xml:7:9-39
+13-->C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\file_picker-4.5.0\android\src\main\AndroidManifest.xml:7:15-37
 14        </intent>
 15    </queries>
 16

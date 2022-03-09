@@ -8,14 +8,13 @@ const iconColorDrawer = Colors.white;
 const shadowColor = Color.fromRGBO(143, 148, 251, .2);
 
 String? userToken = CacheHelper.get(key: "token");
+String? userType = CacheHelper.get(key: "userType");
 
 LinearGradient gradientColor({required Color one, required Color two}) {
   return LinearGradient(
     colors: [one, two],
   );
 }
-
-bool userAuthor= true;
 
 
 const gray = Color(0xfffafafa);

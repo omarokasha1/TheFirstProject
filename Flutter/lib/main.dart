@@ -100,6 +100,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(
             create: (context) => AuthorProfileCubit()..getAuthorProfile()),
         BlocProvider(create: (context) => CreateModuleCubit()),
+    BlocProvider(
+    create: (context) => CreateModuleCubit()),
       ],
       //ScreenUTil is A Package make application responsive.
       child: ScreenUtilInit(

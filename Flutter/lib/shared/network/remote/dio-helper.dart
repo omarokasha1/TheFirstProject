@@ -122,13 +122,14 @@ class DioHelper {
     };
     if(files){
       FormData formData = FormData.fromMap(
-          data,
+        data,
       );
       return await dio.post(url, data: formData);
     }else{
       return await dio.post(url, data: data);
     }
   }
+
 
   //This Function That's Used to Update Some Date based on URL(End Points) and Send what's you need to Update as Map.
   static Future<Response> putData({

@@ -37,7 +37,10 @@ class ProfileScreen extends StatelessWidget {
         return Layout(
           widget: Scaffold(
             backgroundColor: primaryColor,
-            appBar: AppBar(backgroundColor: primaryColor,iconTheme: IconThemeData(color: Colors.white),),
+            appBar: AppBar(
+              backgroundColor: primaryColor,
+              iconTheme: IconThemeData(color: Colors.white),
+            ),
             floatingActionButton: IconButton(
               iconSize: 50.0,
               onPressed: () {
@@ -199,55 +202,70 @@ class ProfileScreen extends StatelessWidget {
                       //     color: Colors.grey[300],
                       //   ),
                       // ),
-                      TextButton(
-                        onPressed: () {
-                          AwesomeDialog(
-                            context: context,
-                            animType: AnimType.SCALE,
-                            dialogType: DialogType.QUESTION,
-                            body: Center(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Form(
-                                  key: formKey,
-                                  child: Column(
-                                    children: [
-                                      Text(
-                                        'Are you sure want be become a Author ?',
-                                        style: TextStyle(
-                                            fontStyle: FontStyle.italic),
-                                      ),
-                                      SizedBox(
-                                        height: 30,
-                                      ),
-                                      Container(
-                                        height: 40,
-                                        child: defaultButton(
-                                          text: 'OK',
-                                          onPressed: () {
-                                            Navigator.pop(context);
-                                          },
+                      if (userType == 'user')
+                        TextButton(
+                          onPressed: () {
+                            AwesomeDialog(
+                              context: context,
+                              animType: AnimType.SCALE,
+                              dialogType: DialogType.QUESTION,
+                              body: Center(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Form(
+                                    key: formKey,
+                                    child: Column(
+                                      children: [
+                                        Text(
+                                          'Are you sure want be become a Author ?',
+                                          style: TextStyle(
+                                              fontStyle: FontStyle.italic),
                                         ),
-                                      ),
-                                    ],
+                                        SizedBox(
+                                          height: 30,
+                                        ),
+                                        Container(
+                                          height: 40,
+                                          child: defaultButton(
+                                            text: 'Yes, I\'m Agree',
+                                            onPressed: () {
+                                              cubit.becomeAuthorRequest();
+                                              Navigator.pop(context);
+                                            },
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 15,
+                                        ),
+                                        Container(
+                                          height: 40,
+                                          child: defaultButton(
+                                            color: false,
+                                            text: 'No',
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
+                              title: 'This is Ignored',
+                              desc: 'This is also Ignored',
+                              //   btnOkOnPress: () {},
+                            ).show();
+                          },
+                          child: Text(
+                            "Become an Author",
+                            style: TextStyle(
+                              fontSize: 16.0,
+                              color: Colors.grey[300],
+                              decoration: TextDecoration.underline,
                             ),
-                            title: 'This is Ignored',
-                            desc: 'This is also Ignored',
-                            //   btnOkOnPress: () {},
-                          ).show();
-                        },
-                        child: Text(
-                          "Become an Author",
-                          style: TextStyle(
-                            fontSize: 16.0,
-                            color: Colors.grey[300],
-                            decoration: TextDecoration.underline,
                           ),
                         ),
-                      ),
                       SizedBox(
                         height: 15.0,
                       ),

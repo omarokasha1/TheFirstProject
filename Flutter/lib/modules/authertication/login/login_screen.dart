@@ -39,11 +39,22 @@ class _LoginScreenState extends State<LoginScreen> {
             if (state.model.status == "ok") {
               CacheHelper.put(key: "token",value: state.model.token);
               userToken=CacheHelper.get(key: "token");
+              if(LoginCubit.get(context).model!.isAdmin!){
+                CacheHelper.put(key: "userType",value: "admin");
+              }else if(LoginCubit.get(context).model!.isManager!){
+                CacheHelper.put(key: "userType",value: "manager");
+              }
+              else if(LoginCubit.get(context).model!.isAuthor!){
+                CacheHelper.put(key: "userType",value: "author");
+              }else{
+                CacheHelper.put(key: "userType",value: "user");
+              }
+              userType=CacheHelper.get(key: "userType");
               CourseCubit.get(context).getAllCoursesData();
               ProfileCubit.get(context).getUserProfile();
               navigatorAndRemove(
                 context,
-               userAuthor?ZoomDrawerScreen(widget:DashboardAuthorScreen()): ZoomDrawerScreen(),
+                userType == 'author' ?ZoomDrawerScreen(widget:DashboardAuthorScreen()): ZoomDrawerScreen(),
               );
             } else {
               print(" jsadjbasjdnj ${state.model.status}");

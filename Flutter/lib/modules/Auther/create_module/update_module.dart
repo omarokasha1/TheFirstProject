@@ -221,7 +221,7 @@ class UpdateModule extends StatelessWidget {
                                             File(result!.files.single.path!);
                                         file!.openRead();
                                         filePath=file!.path;
-                                        cubit.uploadFile(file!);
+                                      //  cubit.uploadFile(file!);
                                       } else {
                                         showToast(message: "upload file must be not empty");
                                       }

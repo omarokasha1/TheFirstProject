@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
-import 'package:lms/modules/Admin/add_manager.dart';
 import 'package:lms/modules/Auther/author_courses/author_courses_screen.dart';
 import 'package:lms/modules/Auther/modules_library/modules_library.dart';
 import 'package:lms/modules/Auther/traks/traks_screen.dart';
@@ -84,7 +83,7 @@ class MyDrawer extends StatelessWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          if (!userAuthor)
+                          if (userType == 'user')
                             ListTile(
                               title: const Text(
                                 "Home",
@@ -103,7 +102,7 @@ class MyDrawer extends StatelessWidget {
                                 ZoomDrawer.of(context)!.toggle();
                               },
                             ),
-                          if (userAuthor)
+                          if (userType == 'author')
                             ListTile(
                               title: const Text(
                                 "Dashboard",
@@ -122,7 +121,7 @@ class MyDrawer extends StatelessWidget {
                                 ZoomDrawer.of(context)!.toggle();
                               },
                             ),
-                          if (userAuthor)
+                          if (userType == 'author')
                             ListTile(
                               title: const Text(
                                 "Tracks",
@@ -140,7 +139,7 @@ class MyDrawer extends StatelessWidget {
                                 navigator(context, TracksScreen());
                               },
                             ),
-                          if (userAuthor)
+                          if (userType == 'author')
                             ListTile(
                               title: const Text(
                                 "Courses",
@@ -158,7 +157,7 @@ class MyDrawer extends StatelessWidget {
                                 navigator(context, AuthorCourses());
                               },
                             ),
-                          if (userAuthor)
+                          if (userType == 'author')
                             ListTile(
                               title: const Text(
                                 "Modules",
@@ -176,7 +175,7 @@ class MyDrawer extends StatelessWidget {
                                 navigator(context, ModulesLibraryScreen());
                               },
                             ),
-                          if (!userAuthor)
+                          if (userType == 'user')
                             ListTile(
                               title: const Text(
                                 "Dashboard",
@@ -192,7 +191,7 @@ class MyDrawer extends StatelessWidget {
                               ),
                               onTap: () {},
                             ),
-                          if (!userAuthor)
+                          if (userType == 'user')
                             ListTile(
                               title: const Text(
                                 "My Learning",

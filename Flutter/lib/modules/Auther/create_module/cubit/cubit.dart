@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lms/modules/Auther/create_module/cubit/states.dart';
+import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/network/remote/dio-helper.dart';
 
 import '../../../../models/module_model.dart';
@@ -48,17 +49,7 @@ class CreateModuleCubit extends Cubit<CreateModuleStates> {
       });
       print(
           "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh${list.toString()}");
-      //print(content!);
-      // value.data['contents'].forEach((element) {
-      //
-      //   content!.addAll({element.sId!: element.contentTitle!});
-      // });
 
-      // cartModel = GetCartModel.fromJson(json.data);
-      // cartModel.data.cartItems.forEach((element) {
-      //   productCartIds[element.product.id] = element.id;
-      //   productsQuantity[element.product.id] = element.quantity;
-      // });
       emit(GetNewModuleSuccssesState(getModuleModel!));
     }).catchError((error) {
       emit(GetNewModuleErrorState(error.toString()));
@@ -68,25 +59,27 @@ class CreateModuleCubit extends Cubit<CreateModuleStates> {
 
   CreateContent? createContentModel;
 
-  void createNewModule({
+  Future<void> createNewModule({
     required String moduleName,
     required String description,
     required String duration,
     required content,
-  }) {
+  })async  {
     emit(CreateNewModuleLoadingState());
 
     DioHelper.postData(
+      files: true,
       data: {
         'contentTitle': moduleName,
         'description': description,
         'contentDuration': duration,
-        'imageUrl': content,
+        'imageUrl':await fileUpload(content),
       },
       url: module,
       token: userToken,
     ).then((value) {
       createContentModel = CreateContent.fromJson(value.data);
+      getModulesData();
       emit(CreateNewModuleSuccssesState(createContentModel!));
     }).catchError((onError) {
       print(onError.toString());
@@ -97,23 +90,23 @@ class CreateModuleCubit extends Cubit<CreateModuleStates> {
   Response? response;
   FormData? formData;
 
-  void uploadFile(File file) async {
-    String fileName = file.path.split('/').last;
-    formData = FormData.fromMap({
-      "imageUrl": await MultipartFile.fromFile(
-        file.path,
-      ),
-    });
-    // FormData formData = new FormData.fromMap({
-    //   "name": hospitalNameEng,
-    //   "Services": servicejson,
-    //   "Image": {
-    //     "image": await MultipartFile.fromFile(file.path,
-    //         filename: file.path),
-    //     "type": "image/png"
-    //   },
-    // });
-  }
+  // void uploadFile(File file) async {
+  //   String fileName = file.path.split('/').last;
+  //   formData = FormData.fromMap({
+  //     "imageUrl": await MultipartFile.fromFile(
+  //       file.path,
+  //     ),
+  //   });
+  //   // FormData formData = new FormData.fromMap({
+  //   //   "name": hospitalNameEng,
+  //   //   "Services": servicejson,
+  //   //   "Image": {
+  //   //     "image": await MultipartFile.fromFile(file.path,
+  //   //         filename: file.path),
+  //   //     "type": "image/png"
+  //   //   },
+  //   // });
+  // }
 
   ResponseModel? updateModel;
   String? message;
@@ -153,12 +146,16 @@ class CreateModuleCubit extends Cubit<CreateModuleStates> {
 
   void deleteModule({required String moduleId}) {
     emit(DeleteModuleLoadingState());
-    DioHelper.deleteData(url: "$deleteModule/$moduleId").then((value) {
+    DioHelper.deleteData(url: "$deleteOneModule/$moduleId").then((value) {
       deleteModel = ResponseModel.fromJson(value.data);
-
+      getModulesData();
       emit(DeleteModuleSuccssesState(deleteModel!));
     }).catchError((error) {
       emit(DeleteModuleErrorState(error));
     });
+  }
+  void selectImage()
+  {
+    emit(SelectImageState());
   }
 }
