@@ -98,7 +98,7 @@ router.post('/trackRequest', [auth,author,authorCtrl.trackRequest])
 //? ____________________________________UPDATE____________________________________________
 
 //? Updating One Course
-router.put('/updagte-course',[auth,author, upload.single('imageUrl'),authorCtrl.updateCourse])
+router.put('/update-course',[auth,author, upload.single('imageUrl'),authorCtrl.updateCourse])
 
 //? Updating One Content
 router.put('/update-tontent',[auth,author, upload.single('imageUrl'),authorCtrl.updateContent])
