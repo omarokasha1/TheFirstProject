@@ -23,3 +23,5 @@ const getAuthorCourses = 'api/course/authorCourses';
 const createAuthorCourse = 'api/course/newCourse';
 const updateAuthorCourse = 'api/course/update-course';
 const deleteAuthorCourse = 'api/course/delete-courses';
+const getAuthorCoursesPublished = 'api/course/authorCoursesPublished';
+const sendCourseRequest = 'api/course/courseRequest';

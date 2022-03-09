@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:lms/models/author_courses_published_model.dart';
 import 'package:lms/models/course_model.dart';
 import 'package:lms/models/course_model.dart';
 import 'package:lms/modules/Auther/author_courses/author_courses_cubit/cubit.dart';

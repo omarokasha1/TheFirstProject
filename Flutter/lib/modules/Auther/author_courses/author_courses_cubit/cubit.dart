@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lms/models/author_courses_published_model.dart';
 import 'package:lms/models/course_model.dart';
 import 'package:lms/models/response_model.dart';
 import 'package:lms/models/track_model.dart';
@@ -48,6 +49,42 @@ class AuthorCoursesCubit extends Cubit<AuthorCoursesStates> {
     }).catchError((error) {
       emit(GetAuthorCoursesErrorState(error.toString()));
       print(error.toString());
+    });
+  }
+  authorCoursesPublishedModel? authorCoursesModel;
+
+  Future<void> getAuthorCoursesPublishedData() async {
+    emit(GetAuthorCoursesPublishLoadingState());
+
+    await DioHelper.getData(url: getAuthorCoursesPublished, token: userToken).then((value) {
+      //print(value.data);
+      //authorCoursesTestModel!.courses=[];
+      authorCoursesModel = authorCoursesPublishedModel.fromJson(value.data);
+      //print(authorCoursesTestModel!.courses.toString());
+      emit(GetAuthorCoursesPublishSuccessState(authorCoursesModel));
+    }).catchError((error) {
+      emit(GetAuthorCoursesPublishErrorState(error.toString()));
+      print(error.toString());
+    });
+  }
+
+  Future<void> sendCourseRequestData({
+    required courseId,
+  }) async {
+    emit(CreateCourseLoadingState());
+    DioHelper.postData(
+      files: true,
+      data: {
+        'courseId': courseId,
+      },
+      url: sendCourseRequest,
+      token: userToken,
+    ).then((value) async {
+      emit(CreateCourseSuccessState());
+      getAuthorCoursesData();
+    }).catchError((onError) {
+      print(onError.toString());
+      emit(CreateCourseErrorState(onError.toString()));
     });
   }
 

@@ -30,11 +30,13 @@ class ModulesLibraryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<CreateAssignmentCubit,CreateAssignmentStates>(
+    return BlocConsumer<CreateAssignmentCubit, CreateAssignmentStates>(
       listener: (context, state) {},
       builder: (context, state) {
         return BlocProvider.value(
-          value: BlocProvider.of<CreateModuleCubit>(context)..getModulesData()..list,
+          value: BlocProvider.of<CreateModuleCubit>(context)
+            ..getModulesData()
+            ..list,
           child: BlocConsumer<CreateModuleCubit, CreateModuleStates>(
             listener: (context, state) {},
             builder: (context, state) {
@@ -62,11 +64,11 @@ class ModulesLibraryScreen extends StatelessWidget {
                     ),
                     appBar: AppBar(),
                     body: Container(
-                      child: Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Column(
-                          children: [
-                            Row(
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 5),
+                            child: Row(
                               children: [
                                 Text(
                                   'Modules Library',
@@ -91,45 +93,60 @@ class ModulesLibraryScreen extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            TabBar(
-                              labelColor: primaryColor,
-                              indicatorColor: primaryColor,
-                              unselectedLabelColor: Colors.black,
-                              tabs: myTabs,
-                              labelStyle: TextStyle(
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.bold,
-                              ),
+                          ),
+                          TabBar(
+                            labelColor: primaryColor,
+                            indicatorColor: primaryColor,
+                            unselectedLabelColor: Colors.black,
+                            tabs: myTabs,
+                            labelStyle: TextStyle(
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.bold,
                             ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Expanded(
-                              child: TabBarView(
-                                physics: BouncingScrollPhysics(),
-                                children: [
-                                  ConditionalBuilder(
-                                    condition: cubit.getModuleModel != null,
-                                    builder: (context) => ConditionalBuilder(
-                                      condition: cubit.getModuleModel!.contents!.isNotEmpty,
-                                      builder: (context) => buildContentTab(cubit.getModuleModel!.contents!, cubit),
-                                      fallback: (context) => Center(child: emptyPage(context: context, text: "no Modules Yet"),
-                                      ),
-                                    ),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Expanded(
+                            child: TabBarView(
+                              physics: BouncingScrollPhysics(),
+                              children: [
+                                ConditionalBuilder(
+                                  condition: cubit.getModuleModel != null,
+                                  builder: (context) => ConditionalBuilder(
+                                    condition: cubit
+                                        .getModuleModel!.contents!.isNotEmpty,
+                                    builder: (context) => buildContentTab(
+                                        cubit.getModuleModel!.contents!,
+                                        cubit),
                                     fallback: (context) => Center(
-                                      child: CircularProgressIndicator(),
+                                      child: emptyPage(
+                                          context: context,
+                                          text: "no Modules Yet"),
                                     ),
                                   ),
-                                  ConditionalBuilder(
-                                    condition: CreateAssignmentCubit.get(context).getModuleModel != null,
-                                    builder: (context) => buildAssignmentTab(CreateAssignmentCubit.get(context).getModuleModel!.assignments!, CreateAssignmentCubit.get(context)),
-                                    fallback: (context) => Center(child: CircularProgressIndicator(),),
+                                  fallback: (context) => Center(
+                                    child: CircularProgressIndicator(),
                                   ),
-                                ],
-                              ),
+                                ),
+                                ConditionalBuilder(
+                                  condition:
+                                      CreateAssignmentCubit.get(context)
+                                              .getModuleModel !=
+                                          null,
+                                  builder: (context) => buildAssignmentTab(
+                                      CreateAssignmentCubit.get(context)
+                                          .getModuleModel!
+                                          .assignments!,
+                                      CreateAssignmentCubit.get(context)),
+                                  fallback: (context) => Center(
+                                    child: CircularProgressIndicator(),
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
@@ -139,7 +156,6 @@ class ModulesLibraryScreen extends StatelessWidget {
           ),
         );
       },
-
     );
   }
 
@@ -151,14 +167,14 @@ class ModulesLibraryScreen extends StatelessWidget {
     CreateModuleCubit cubit,
   ) {
     return InkWell(
-     onTap: (){
-       navigator(context,ModuleDetailsScreen(model));
-     },
+      onTap: () {
+        navigator(context, ModuleDetailsScreen(model));
+      },
       child: Container(
         width: double.infinity,
-        height: 100.0,
+        height: 90.0,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(30.0),
+          borderRadius: BorderRadius.circular(15.0),
           color: Colors.grey[100],
         ),
         clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -184,7 +200,7 @@ class ModulesLibraryScreen extends StatelessWidget {
             ),
             CircleAvatar(
               backgroundColor: primaryColor,
-              radius: 22.r,
+              radius: 18.r,
               child: IconButton(
                 onPressed: () {
                   navigator(context, UpdateModule(model));
@@ -192,7 +208,7 @@ class ModulesLibraryScreen extends StatelessWidget {
                 icon: Icon(
                   Icons.edit,
                   color: Colors.white,
-                  size: 26,
+                  size: 18,
                 ),
               ),
             ),
@@ -201,7 +217,7 @@ class ModulesLibraryScreen extends StatelessWidget {
             ),
             CircleAvatar(
               backgroundColor: Colors.red,
-              radius: 22.r,
+              radius: 18.r,
               child: IconButton(
                 onPressed: () {
                   cubit.deleteModule(moduleId: model.sId!);
@@ -209,7 +225,7 @@ class ModulesLibraryScreen extends StatelessWidget {
                 icon: Icon(
                   Icons.delete_rounded,
                   color: Colors.white,
-                  size: 26,
+                  size: 18,
                 ),
               ),
             ),
@@ -221,45 +237,60 @@ class ModulesLibraryScreen extends StatelessWidget {
       ),
     );
   }
+
   Widget buildContentTab(List<Contents> content, cubit) {
     return ListView.separated(
       physics: const BouncingScrollPhysics(),
-      itemBuilder: (context, index) => buildModuleItem(context, index, content[index], cubit),
-      separatorBuilder: (context, index) => const SizedBox(height: 10,),
+      itemBuilder: (context, index) =>
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0,vertical: 5),
+            child: buildModuleItem(context, index, content[index], cubit),
+          ),
+      separatorBuilder: (context, index) => const SizedBox(
+        height: 0,
+      ),
       shrinkWrap: true,
       itemCount: content.length,
     );
   }
 
   Widget buildAssignmentItem(
-      context,
-      index,
-      Assignments model,
-      CreateAssignmentCubit cubit,
-      ) {
+    context,
+    index,
+    Assignments model,
+    CreateAssignmentCubit cubit,
+  ) {
     return InkWell(
-      onTap: ()
-      {
-        navigator(context,AssignmentDetailsScreen(model));
-
+      onTap: () {
+        navigator(context, AssignmentDetailsScreen(model));
       },
       child: Container(
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(5),
         width: double.infinity,
-        height: 100.0,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(30.0),
-          color: Colors.grey[100],
+          borderRadius: BorderRadius.circular(15.0),
+          boxShadow:  [
+            BoxShadow(
+              color: Colors.grey[300]!,
+              offset: Offset(0.6, 1.2), //(x,y)
+              blurRadius: 6.0,
+            ),
+          ],
+        color: Colors.white,
         ),
         clipBehavior: Clip.antiAliasWithSaveLayer,
         child: Row(
           children: [
-            Image.network('https://cdn-icons-png.flaticon.com/512/337/337946.png',width: 55,height: 55,),
+            Image.network(
+              'https://cdn-icons-png.flaticon.com/512/337/337946.png',
+              width: 55,
+              height: 55,
+            ),
             SizedBox(
               width: 10.w,
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              padding: const EdgeInsets.symmetric(vertical: 15.0),
               child: Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -276,78 +307,93 @@ class ModulesLibraryScreen extends StatelessWidget {
                     ),
                     Text(
                       //  "File name asd afew werg  iuejh iujh iuvjh iuwjhuijv iujhuijh iuwhji uhwuivh iuwhu wiuhf uiwh ifuhwiushviu hsdfubifh iuhfbiughr siih iuv iusb bs ",
-                      '${model.assignmentDuration}',
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Text(
-                      //  "File name asd afew werg  iuejh iujh iuvjh iuwjhuijv iujhuijh iuwhji uhwuivh iuwhu wiuhf uiwh ifuhwiushviu hsdfubifh iuhfbiughr siih iuv iusb bs ",
                       '15 MB',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.bold,
-                      ),
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey),
                     ),
                   ],
                 ),
               ),
             ),
-            SizedBox(
-              width: 20.0,
-            ),
-            CircleAvatar(
-              backgroundColor: primaryColor,
-              radius: 18.r,
-              child: IconButton(
-                onPressed: () {
+            Spacer(),
+          PopupMenuButton(
+            elevation: 1,
+            itemBuilder: (BuildContext context) => [
+              PopupMenuItem(
+                child: TextButton.icon(onPressed: (){
                   navigator(context, UpdateAssignment(model));
-                },
-                icon: Icon(
-                  Icons.edit,
-                  color: Colors.white,
-                  size: 18,
-                ),
+                }, icon:Icon(Icons.edit) , label: Text('Edit')),
+                value: 1,
               ),
-            ),
-            SizedBox(
-              width: 10.w,
-            ),
-            CircleAvatar(
-              backgroundColor: Colors.red,
-              radius: 18.r,
-              child: IconButton(
-                onPressed: () {
+              PopupMenuItem(
+                child: TextButton.icon(onPressed: (){
                   cubit.deleteAssignment(moduleId: model.sId!);
-                },
-                icon: Icon(
-                  Icons.delete_rounded,
-                  color: Colors.white,
-                  size: 18,
-                ),
+                }, icon:Icon(Icons.delete) , label: Text('Delete')),
+                value: 2,
               ),
-            ),
-            SizedBox(
-              width: 10.w,
-            ),
+              PopupMenuItem(
+                child: TextButton.icon(onPressed: (){}, icon:Icon(Icons.download) , label: Text('Download')),
+                value: 3,
+              ),
+            ],
+          ),
+            // CircleAvatar(
+            //   backgroundColor: primaryColor,
+            //   radius: 18.r,
+            //   child: IconButton(
+            //     onPressed: () {
+            //       navigator(context, UpdateAssignment(model));
+            //     },
+            //     icon: Icon(
+            //       Icons.edit,
+            //       color: Colors.white,
+            //       size: 18,
+            //     ),
+            //   ),
+            // ),
+            // SizedBox(
+            //   width: 10.w,
+            // ),
+            // CircleAvatar(
+            //   backgroundColor: Colors.red,
+            //   radius: 18.r,
+            //   child: IconButton(
+            //     onPressed: () {
+            //       cubit.deleteAssignment(moduleId: model.sId!);
+            //     },
+            //     icon: Icon(
+            //       Icons.delete_rounded,
+            //       color: Colors.white,
+            //       size: 18,
+            //     ),
+            //   ),
+            // ),
+            // SizedBox(
+            //   width: 10.w,
+            // ),
           ],
         ),
       ),
     );
   }
+
   Widget buildAssignmentTab(List<Assignments> assignment, cubit) {
     return ListView.separated(
       physics: const BouncingScrollPhysics(),
-      itemBuilder: (context, index) => buildAssignmentItem(context, index, assignment[index], cubit),
-      separatorBuilder: (context, index) => const SizedBox(height: 10,),
+      itemBuilder: (context, index) =>
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0,vertical: 5),
+            child: buildAssignmentItem(context, index, assignment[index], cubit),
+          ),
+      separatorBuilder: (context, index) => const SizedBox(
+        height: 0,
+      ),
       shrinkWrap: true,
       itemCount: assignment.length,
     );
   }
-
 }
