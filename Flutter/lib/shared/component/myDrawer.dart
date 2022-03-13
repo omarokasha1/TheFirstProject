@@ -10,6 +10,7 @@ import 'package:lms/modules/Auther/modules_library/modules_library.dart';
 import 'package:lms/modules/Auther/traks/traks_screen.dart';
 import 'package:lms/modules/authertication/change%20password/change_password_screen.dart';
 import 'package:lms/modules/authertication/login/login_screen.dart';
+import 'package:lms/modules/dashboard/dashboard_screen.dart';
 import 'package:lms/modules/home_screen.dart';
 import 'package:lms/modules/my_learning/mylearning.dart';
 import 'package:lms/modules/profile/profile_cubit/cubit.dart';
@@ -197,7 +198,9 @@ class MyDrawer extends StatelessWidget {
                             color: iconColorDrawer,
                             size: 25,
                           ),
-                          onTap: () {},
+                          onTap: () {
+                            navigator(context, DashboardScreen());
+                          },
                         ),
                         if(!isAuthor && !isManager && !isAdmin)
                         ListTile(

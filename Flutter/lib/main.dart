@@ -97,8 +97,7 @@ class MyApp extends StatelessWidget {
           }
           return CourseCubit();
         }),
-        BlocProvider(
-            create: (context) => AuthorProfileCubit()..getAuthorProfile()),
+        BlocProvider(create: (context) => AuthorProfileCubit()..getAuthorProfile()),
         BlocProvider(create: (context) => CreateModuleCubit()),
         BlocProvider(create: (context) => CreateModuleCubit()),
         BlocProvider(create: (context)=> CreateAssignmentCubit()..getModulesData()..myActivities=[]),

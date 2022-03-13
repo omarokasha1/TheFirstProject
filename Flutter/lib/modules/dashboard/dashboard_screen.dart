@@ -55,93 +55,6 @@ class DashboardScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              // Container(
-              //   decoration: BoxDecoration(
-              //     gradient: newVv,
-              //     borderRadius: BorderRadius.circular(12)
-              //   ),
-              //   height: 220.h,
-              //   child: Padding(
-              //     padding: EdgeInsets.all(35.0.h),
-              //     child: Column(
-              //       mainAxisAlignment: MainAxisAlignment.end,
-              //       children: [
-              //         Column(
-              //           mainAxisAlignment: MainAxisAlignment.start,
-              //           crossAxisAlignment: CrossAxisAlignment.start,
-              //           children: [
-              //             Row(
-              //               children: [
-              //                 Text(
-              //                     "Hi, Name",
-              //                     style: TextStyle(
-              //                         color: Colors.white,
-              //                         fontFamily: 'Poppins',
-              //                         fontWeight: FontWeight.w800,
-              //                         fontSize: 28.0.sp)),
-              //                 const SizedBox(
-              //                   width: 10,
-              //                 ),
-              //                 Image.asset(
-              //                   'assets/images/hand.png',
-              //                   width: 34.w,
-              //                   height: 34.h,
-              //                 )
-              //               ],
-              //             ),
-              //             SizedBox(
-              //               height: 8.h,
-              //             ),
-              //             Text(
-              //               "Lets start learning!",
-              //               style: TextStyle(
-              //                   color: Colors.white,
-              //                   fontFamily: 'Poppins',
-              //                   fontSize: 25.0.sp),
-              //             ),
-              //           ],
-              //         ),
-              //         SizedBox(
-              //           height: 20.h,
-              //         ),
-              //         SizedBox(
-              //           width: double.infinity,
-              //           height: 45.h,
-              //           child: TextField(
-              //             cursorColor: primaryColor,
-              //             decoration: InputDecoration(
-              //               fillColor: Colors.white,
-              //               filled: true,
-              //               border: OutlineInputBorder(
-              //                 borderRadius:
-              //                 BorderRadius.circular(18.r),
-              //                 borderSide: const BorderSide(
-              //                     color: Colors.white),
-              //               ),
-              //               focusedBorder: OutlineInputBorder(
-              //                 borderRadius:
-              //                 BorderRadius.circular(18.r),
-              //                 borderSide: const BorderSide(
-              //                     color: secondaryColor),
-              //               ),
-              //               enabledBorder: OutlineInputBorder(
-              //                 borderRadius:
-              //                 BorderRadius.circular(18.r),
-              //                 borderSide: const BorderSide(
-              //                     color: Colors.white),
-              //               ),
-              //               hintText: "Search Courses",
-              //               prefixIcon: const Icon(Icons.search),
-              //             ),
-              //             onTap: () {
-              //               navigator(context, SearchScreen());
-              //             },
-              //           ),
-              //         )
-              //       ],
-              //     ),
-              //   ),
-              // ),
               const SizedBox(
                 height: 10,
               ),
@@ -202,8 +115,8 @@ class DashboardScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(12),
                           color: Colors.grey[100]),
                       child: CircularPercentIndicator(
-                        radius: 80.0,
-                        lineWidth: 18.0,
+                        radius: 70.0,
+                        lineWidth: 14.0,
                         animation: true,
                         percent: 0.7,
                         center: const Text(
@@ -211,10 +124,18 @@ class DashboardScreen extends StatelessWidget {
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 20.0),
                         ),
-                        footer: const Text(
-                          "Rate completed assignment",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 17.0),
+                        footer: Column(
+                          children: [
+                            const Text(
+                              "Courses",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 17.0),
+                            ),
+                            Text(
+                              "22 submitted",
+                              style: Theme.of(context).textTheme.caption,
+                            ),
+                          ],
                         ),
                         circularStrokeCap: CircularStrokeCap.round,
                         progressColor: primaryColor,
@@ -232,8 +153,8 @@ class DashboardScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(12),
                           color: Colors.grey[100]),
                       child: CircularPercentIndicator(
-                        radius: 80.0,
-                        lineWidth: 18.0,
+                        radius: 70.0,
+                        lineWidth: 14.0,
                         animation: true,
                         percent: 0.7,
                         center: const Text(
@@ -241,10 +162,18 @@ class DashboardScreen extends StatelessWidget {
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 20.0),
                         ),
-                        footer: const Text(
-                          "Rate completed assignment",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 17.0),
+                        footer: Column(
+                          children: [
+                            const Text(
+                              "Assignments",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 17.0),
+                            ),
+                            Text(
+                              "17 completed",
+                              style: Theme.of(context).textTheme.caption,
+                            ),
+                          ],
                         ),
                         circularStrokeCap: CircularStrokeCap.round,
                         progressColor: primaryColor,

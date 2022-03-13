@@ -327,16 +327,20 @@ class ModulesLibraryScreen extends StatelessWidget {
                 child: TextButton.icon(onPressed: (){
                   navigator(context, UpdateAssignment(model));
                 }, icon:Icon(Icons.edit) , label: Text('Edit')),
+                onTap: (){
+                  navigator(context, UpdateAssignment(model));
+                },
                 value: 1,
               ),
               PopupMenuItem(
                 child: TextButton.icon(onPressed: (){
                   cubit.deleteAssignment(moduleId: model.sId!);
-                }, icon:Icon(Icons.delete) , label: Text('Delete')),
+                }, icon:Icon(Icons.delete,color: Colors.red,) , label: Text('Delete',style: TextStyle(color: Colors.red),)),
                 value: 2,
+
               ),
               PopupMenuItem(
-                child: TextButton.icon(onPressed: (){}, icon:Icon(Icons.download) , label: Text('Download')),
+                child: TextButton.icon(onPressed: (){}, icon:Icon(Icons.download,color: Colors.green,) , label: Text('Download',style: TextStyle(color: Colors.green),)),
                 value: 3,
               ),
             ],

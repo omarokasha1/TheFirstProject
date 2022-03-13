@@ -252,6 +252,7 @@ class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   color: Colors.grey[100],
+
                 ),
                 child: Row(
                   children: [
