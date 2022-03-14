@@ -38,3 +38,12 @@ class AddInterestedItemState extends ProfileStates {}
 class DeleteInterestedItemState extends ProfileStates {}
 
 class ChangeSelectedItemGradeState extends ProfileStates {}
+
+class BecomeAuthorRequestLoadingState extends ProfileStates{}
+class BecomeAuthorRequestSuccessState extends ProfileStates{
+
+}
+class BecomeAuthorRequestErrorState extends ProfileStates{
+  final String error;
+  BecomeAuthorRequestErrorState(this.error);
+}

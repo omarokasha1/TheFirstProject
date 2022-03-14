@@ -7,7 +7,6 @@ import '../../../../models/response_model.dart';
 abstract class CreateTrackStates {}
 
 class InitCreateTrackState extends CreateTrackStates {}
-
 class GetAuthorCoursesLoadingState extends CreateTrackStates{}
 class GetAuthorCoursesSuccessState extends CreateTrackStates{
   final AuthorCoursesTestModel? authorCoursesTestModel;
@@ -69,3 +68,4 @@ class DeleteTrackErrorState extends CreateTrackStates {
   final String error;
   DeleteTrackErrorState(this.error);
 }
+

@@ -1,6 +1,7 @@
 
-import '../../../../models/module_model.dart';
-import '../../../../models/response_model.dart';
+
+import 'package:lms/models/module_model.dart';
+import 'package:lms/models/response_model.dart';
 
 abstract class CreateModuleStates {}
 

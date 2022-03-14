@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lms/models/login_model.dart';
 import 'package:lms/models/user.dart';
 import 'package:lms/modules/profile/profile_cubit/state.dart';
+import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/network/end_points.dart';
 import 'package:lms/shared/network/local/cache_helper.dart';
 import 'package:lms/shared/network/remote/dio-helper.dart';
@@ -37,6 +38,17 @@ class ProfileCubit extends Cubit<ProfileStates> {
       token: userToken,
     ).then((value) {
       model = User.fromJson(value.data);
+      if(model!.profile!.isAdmin!){
+        CacheHelper.put(key: "userType",value: "admin");
+      }else if(model!.profile!.isManager!){
+        CacheHelper.put(key: "userType",value: "manager");
+      }
+      else if(model!.profile!.isAuthor!){
+        CacheHelper.put(key: "userType",value: "author");
+      }else{
+        CacheHelper.put(key: "userType",value: "user");
+      }
+      userType=CacheHelper.get(key: "userType");
       // print(model!.userName);
       emit(ProfileSuccessState(model!));
     }).catchError((onError) {
@@ -104,5 +116,17 @@ class ProfileCubit extends Cubit<ProfileStates> {
   void changeSelectedItemGrade(String value) {
     selectedItemGrade = value;
     emit(ChangeSelectedItemGradeState());
+  }
+
+  void becomeAuthorRequest(){
+    emit(BecomeAuthorRequestLoadingState());
+    DioHelper.postData(url: authorRequest, token: userToken,data: {}).then((value) {
+      print(value.data);
+      showToast(message: value.data['message'],color: Colors.grey);
+      emit(BecomeAuthorRequestSuccessState());
+    }).catchError((onError){
+      print(onError);
+      emit(BecomeAuthorRequestErrorState(onError));
+    });
   }
 }

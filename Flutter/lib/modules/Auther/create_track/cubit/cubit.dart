@@ -22,6 +22,9 @@ class CreateTrackCubit extends Cubit<CreateTrackStates> {
 
   static CreateTrackCubit get(context) => BlocProvider.of(context);
 
+  List? myActivities = [];
+  String myActivitiesResult = '';
+
   bool hasTrackName = false;
   var formKey = GlobalKey<FormState>();
 
@@ -34,13 +37,14 @@ class CreateTrackCubit extends Cubit<CreateTrackStates> {
     }
   }
 
+
   changeRadio(Sequences? value) {
     character = value;
   }
 
   AuthorCoursesTestModel? authorCoursesTestModel;
   List? list = [];
-  List? myActivities = [];
+
 
   void getAuthorCoursesData() {
     emit(GetAuthorCoursesLoadingState());

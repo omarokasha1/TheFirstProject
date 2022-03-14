@@ -189,7 +189,8 @@ int id title 0x7f050063
 int id top 0x7f050064
 int id view_tree_lifecycle_owner 0x7f050065
 int integer cancel_button_image_alpha 0x7f060000
-int integer status_bar_notification_info_maxnum 0x7f060001
+int integer google_play_services_version 0x7f060001
+int integer status_bar_notification_info_maxnum 0x7f060002
 int layout custom_dialog 0x7f070000
 int layout notification_action 0x7f070001
 int layout notification_action_tombstone 0x7f070002
@@ -210,7 +211,9 @@ int layout toast_custom 0x7f070010
 int menu example_menu 0x7f080000
 int menu example_menu2 0x7f080001
 int mipmap ic_launcher 0x7f090000
-int string status_bar_notification_info_overflow 0x7f0a0000
+int string common_google_play_services_unknown_issue 0x7f0a0000
+int string fcm_fallback_notification_channel_label 0x7f0a0001
+int string status_bar_notification_info_overflow 0x7f0a0002
 int style LaunchTheme 0x7f0b0000
 int style NormalTheme 0x7f0b0001
 int style TextAppearance_Compat_Notification 0x7f0b0002

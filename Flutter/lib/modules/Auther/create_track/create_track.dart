@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:dio/dio.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_picker/Picker.dart';
@@ -17,7 +16,6 @@ class CreateTrackScreen extends StatelessWidget {
   CreateTrackScreen({Key? key}) : super(key: key);
 
   File? file;
-  FilePickerResult? result;
   String? filePath;
 
   TextEditingController trackNameController = TextEditingController();
@@ -32,6 +30,7 @@ class CreateTrackScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider.value(
       value: BlocProvider.of<CreateTrackCubit>(context)..getAuthorCoursesData()..myActivities=[],
+
       child: BlocConsumer<CreateTrackCubit, CreateTrackStates>(
         listener: (context, state) {},
         builder: (context, state) {
