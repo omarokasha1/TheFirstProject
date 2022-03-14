@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "G:\\ODSS\\TheFirstProject\\Flutter\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-lv\\values-lv.xml",
+            "outputFile": "/home/odc6/ODC/TheFirstProject/Flutter/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-lv/values-lv.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\youss\\.gradle\\caches\\transforms-2\\files-2.1\\b9a960218f5163997c0fdfa3d3078c0e\\core-1.7.0\\res\\values-lv\\values-lv.xml",
+                    "source": "/home/odc6/.gradle/caches/transforms-2/files-2.1/b9a960218f5163997c0fdfa3d3078c0e/core-1.7.0/res/values-lv/values-lv.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

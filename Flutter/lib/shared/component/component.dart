@@ -218,6 +218,7 @@ Widget buildCourseItem(context, bool enroll, CourseModel courseModel) =>
         padding: EdgeInsets.all(8.0.w),
         child: Container(
           width: 300.w,
+          height: 300.h,
           decoration: BoxDecoration(
             boxShadow:  [
               BoxShadow(

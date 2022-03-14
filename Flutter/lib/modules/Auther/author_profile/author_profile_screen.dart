@@ -10,7 +10,7 @@ import 'package:lms/layout/layout.dart';
 import 'package:lms/modules/Auther/author_profile/author_profile_cubit/cubit.dart';
 import 'package:lms/modules/Auther/author_profile/author_profile_cubit/state.dart';
 import 'package:lms/modules/courses/cubit/cubit.dart';
-import 'package:lms/modules/home_screen.dart';
+import 'package:lms/modules/home/home_screen.dart';
 import 'package:lms/modules/profile/profile_cubit/cubit.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';

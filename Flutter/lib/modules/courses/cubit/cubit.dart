@@ -19,9 +19,11 @@ class CourseCubit extends Cubit<CourseStates> {
 
   void getAllCoursesData() {
     emit(AllCoursesLoadingState());
+    print("url $courses");
     DioHelper.getData(url: courses).then((value) {
       value.data['courses'].forEach((element) {
         coursesModel.add(CourseModel.fromJson(element));
+        print("element$element");
       });
       emit(AllCoursesSuccessState(coursesModel));
     }).catchError((error) {

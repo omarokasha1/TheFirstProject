@@ -271,8 +271,8 @@ class MyLearning extends StatelessWidget {
                   child:  Image(
                     fit: BoxFit.cover,
                     image: NetworkImage(
-                      '${model}'
-                      //'https://img-c.udemycdn.com/course/240x135/3446572_346e_2.jpg',
+                      //'${model}'
+                      'https://img-c.udemycdn.com/course/240x135/3446572_346e_2.jpg',
                     ),
                   ),
                 ),

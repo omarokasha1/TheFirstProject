@@ -75,6 +75,7 @@ dependencies:
   flutter_rating_bar: ^4.0.0
   carousel_slider: ^4.0.0
   readmore:
+  video_player: ^2.3.0
 
   path_provider:
   open_file:

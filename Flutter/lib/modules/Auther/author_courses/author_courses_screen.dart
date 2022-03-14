@@ -205,8 +205,8 @@ class AuthorCourses extends StatelessWidget {
                     height:0 ,
                   ),
                   Text(
-                    'The Complete 2022 Web Development Bootcamp',
-                  // '${course.title}',
+
+                   '${course.title}',
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 15.sp,

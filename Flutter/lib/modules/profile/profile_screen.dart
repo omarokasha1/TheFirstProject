@@ -10,7 +10,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lms/layout/layout.dart';
-import 'package:lms/modules/home_screen.dart';
+import 'package:lms/modules/home/home_screen.dart';
 import 'package:lms/modules/profile/profile_cubit/cubit.dart';
 import 'package:lms/modules/profile/profile_cubit/state.dart';
 import 'package:lms/modules/profile/edit_profile_screen.dart';

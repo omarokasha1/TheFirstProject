@@ -95,6 +95,7 @@ class AssignmentDetailsScreen extends StatelessWidget {
                 onTap: (){
                   OpenFile.open(model.fileUrl.toString(),);
                 },
+
                 child: Text(
                   model.fileUrl.toString(),
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
