@@ -14,8 +14,10 @@ const mongoose =require('mongoose');
 const { file } = require("googleapis/build/src/apis/file");
 const author = require("../middleware/author");
 const ObjectId = mongoose.Types.ObjectId;
+const path = require('path');
 
 const authorCtr ={
+
 
 uploadCourse : async (req, res) => {
     const { user } = req;
@@ -69,6 +71,9 @@ uploadCourse : async (req, res) => {
     }},
 
   //* _________________________________GET FUNCTION_____________________________________________
+
+
+
   uploadCourse : async (req, res) => {
     const { user } = req;
     if (!user)
@@ -418,7 +423,7 @@ uploadCourse : async (req, res) => {
    const id = user.id
    console.log(id)
    const result = await cloudinary.uploader.upload(fileUrl.path, {
-  
+    resource_type: "auto",
      public_id: `${user.id}_content${Date.now()}`,
      folder: 'content', width: 1920, height: 1080, crop: "fill"
    });
@@ -429,7 +434,7 @@ uploadCourse : async (req, res) => {
     imageUrl:result.url,
     contentType:req.body.contentType,
     description:req.body.description,
-    courses:req.body.courses,
+    courses:req.body.courses, 
      author:id
    })
 
@@ -489,20 +494,23 @@ let newTrack
   createAssignment:async(req,res)=>{
 
     let newAssignment
-  //const fileUrl = req.file
+  const file = req.file
  const token = req.header('x-auth-token')
  try {
    const user = jwt.verify(token, 'privateKey')
    console.log(user)
    const id = user.id
    console.log(id)
-  //  const result = await cloudheaderdth: 1920, height: 1080, crop: "fill"
-  //  });
+   const result = await cloudinary.uploader.upload(file.path, {
+
+    public_id: `${user.id}_assignment${Date.now()}`,
+    folder: 'assignment', width: 1920, height: 1080, crop: "fill"
+  });
 
    const assignment = new Assignment({
     assignmentTitle:req.body.assignmentTitle,
     assignmentDuration:req.body.assignmentDuration,
-    fileUrl:req.body.fileUrl,
+    fileUrl:result.url,
     description:req.body.description,
      author:id
    })
@@ -771,40 +779,38 @@ let newQuestion
   updateAssignment:async(req,res)=>{
     const token = req.header('x-auth-token')
     const {id, assignmentTitle, assignmentDuration, fileUrl,createdAt,description} = req.body
-    const file = req.file
+    //const file = req.file
    
    try {
      const user = jwt.verify(token, 'privateKey')
      console.log(user)
      const id = user.id
      console.log(id)
-     const result = await cloudinary.uploader.upload(file.path, {
+    //  const result = await cloudinary.uploader.upload(file.path, {
 
-      public_id: `${user.id}_track${Date.now()}`,
-      folder: 'track', width: 1920, height: 1080, crop: "fill"
-    });
-      console.log(result.url)
+    //   public_id: `${user.id}_assignemnt${Date.now()}`,
+    //   folder: 'assignemnt', width: 1920, height: 1080, crop: "fill"
+    // });
+   
       console.log(req.body.id)
-
-     await Assignment.updateOne(
+     
+        await Assignment.updateOne(
          { _id: req.body.id },
          {
            $set: req.body
          }
       )
-     await User.updateOne(
+        /* await Assignment.updateOne(
          { _id: req.body.id },
          {
            $set: {
-             imageUrl:result.url
+            fileUrl:result.url
            }
          }
-       )
- 
-   
- 
+       ) */
     return res.json({ status: 'ok', message: ' changed', })
    } catch (error) {
+     console.log(error)
      if (error.code === 11000) {
        return res.json({ status: 'false', message: 'in use' })
      }

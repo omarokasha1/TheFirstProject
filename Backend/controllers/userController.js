@@ -20,6 +20,21 @@ const ObjectId = mongoose.Types.ObjectId;
 
 const userCtrl = {
 
+  getUser:async(req,res)=>{
+    try {
+              //* find the user info by his id and not show the password at response
+              
+const user = await Users.findById(req.params.id).populate('myCourses')
+//console.log(req.params.id)
+console.log(user)
+  return res.status(200).json({status:'ok',message:'get user success', profile:user })
+    } catch (error) {
+      console.log(error)
+      return res.status(500).json({status:'false',message:error.message})
+    }
+
+  },
+
     register:async(req,res)=>{
 
          //* take the inputs from user and validate them
@@ -98,7 +113,7 @@ const userCtrl = {
         const token = jwt.sign({ id: user._id, isAdmin: user.isAdmin, isAuthor:user.isAuthor,isManager:user.isManager }, 'privateKey')
 
         console.log(token)
-        return res.json({ status: 'ok',message:'Login Success', token: token })
+        return res.json({ status: 'ok',message:'Login Success', token: token ,isAdmin:user.isAdmin,isManager:user.isManager,isAuthor:user.isAuthor})
     } catch (error) {
        
           return res.json({ status: 'false', message: error.message })
@@ -109,7 +124,7 @@ const userCtrl = {
     profile:async(req,res)=>{
       try {
                 //* find the user info by his id and not show the password at response
-  const profile = await Users.findById(req.user.id).select('-password -__v -isAdmin -isAuthor')
+  const profile = await Users.findById(req.user.id).select('-password -__v ')
   console.log(req.params.id)
   console.log(profile)
     return res.status(200).json({status:'ok',message:'Profile', profile })
@@ -182,11 +197,11 @@ const userCtrl = {
         console.log(id)
 
          //* check in database by email
-    let userCheck = await Users.findOne({ id }).lean()
-    console.log(userCheck)
+       let userCheck = await Users.findOne({ id }).lean()
+   
       //* compare between password and crypted password of user 
       const checkPassword = await bcrypt.compare(req.body.oldPassword, userCheck.password)
-        console.log(checkPassword)
+      
       //* if password doesnt match return to user an error message 
       if (!checkPassword) {
           return res.status(200).json({ status: 'false', message: 'Invalid password' })
@@ -345,6 +360,45 @@ const userCtrl = {
    return res.status(500).json({ status: 'false', message: error.message})
  }
    },
+
+   getEnrollCourse :async(req,res)=>{
+   
+     const token = req.header('x-auth-token')
+
+ try{
+  const user = jwt.verify(token, 'privateKey')
+  console.log(user)
+  const id = user.id
+  console.log(id)
+
+   let course=  await Users.findOne({_id:ObjectId(id)}).populate('myCourses')
+   console.log(course.myCourses)
+   res.json({ status: 'ok', message: ' Enroll Success',myCourses:course.myCourses })
+ } catch (error) {
+   console.log(error)
+   return res.status(500).json({ status: 'false', message: error.message})
+ }
+   },
+
+   getWishCourses :async(req,res)=>{
+   
+    const token = req.header('x-auth-token')
+
+try{
+ const user = jwt.verify(token, 'privateKey')
+ console.log(user)
+ const id = user.id
+ console.log(id)
+
+  let course=  await Users.findOne({_id:ObjectId(id)}).populate('wishList')
+  console.log(course.wishList)
+  res.json({ status: 'ok', message: ' Getting WishList Success',wishList:course.wishList })
+} catch (error) {
+  console.log(error)
+  return res.status(500).json({ status: 'false', message: error.message})
+}
+  },
+
 
    enrollCourseRequest:async(req,res)=>{
 
