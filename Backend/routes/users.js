@@ -35,8 +35,17 @@ const storage = multer.diskStorage({
 //* middleware auth check first if user loged in and have a token 
 router.get('/get-profile', auth, userCtrl.profile)
 
+// Getting Author Contents
+router.get('/profile/:id',userCtrl.getUser)
+
 // Getting all
 router.get('/allUsers',userCtrl.allUsers )
+
+// Getting enrolled courses
+router.get('/enrollCourses',userCtrl.getEnrollCourse )
+
+// Getting wishList
+router.get('/wishList',userCtrl.getWishCourses )
 
 //* ____________________________________________CREATING_______________________________
 

@@ -18,11 +18,12 @@ const UserSchema = new mongoose.Schema({
     country: { type: String },
     city: { type: String },
     bio: { type: String },
-    isAdmin: { type: Boolean },
-    isAuthor:{type:Boolean},
-    wishList:[{type:mongoose.Schema.Types.ObjectId,ref:'Courses'}],
+    isAdmin: { type: Boolean,default:false },
+    isAuthor:{type:Boolean,default:false},
+    isManager:{type:Boolean,default:false},
+    wishList:[{type:mongoose.Schema.Types.ObjectId,ref:'Course'}],
         
-    myCourses: [ {type:mongoose.Schema.Types.ObjectId,ref:'Courses'}],
+    myCourses: [ {type:mongoose.Schema.Types.ObjectId,ref:'Course'}],
         
     userEducation:  {
         university: { type: String, },

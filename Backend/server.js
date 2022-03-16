@@ -34,6 +34,9 @@ app.use('/api/course', course)
 const manager = require('./routes/manager')
 app.use('/api/manager', manager)
 
+const admin = require('./routes/admin')
+app.use('/api/admin', admin)
+
 //* if write invalide url or end point send to user an error message
 app.all('*', (req, res, next) => {
     res.status(404).json({
@@ -44,5 +47,5 @@ app.all('*', (req, res, next) => {
 
 //* listen on port 8080 local host
 app.listen( process.env.PORT || 8080, function(){
-    console.log("Expreass server listening on port 8081");
+    console.log("Expreass server listening on port 8080");
   });

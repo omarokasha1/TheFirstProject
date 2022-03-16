@@ -34,17 +34,20 @@ const storage = multer.diskStorage({
 const upload = multer({
   storage: storage,
   limits: {
-    fieldSize: 1024 * 1024 * 2,
+    fieldSize: 1024 * 1024 * 5,
   },
 });
 
 // ____________________________GETTING_________________________________
+
+
 
 // get courses middleware
 router.get('/allCourses',authorCtrl.getCourses)
 
 // Getting Author Contents
 router.get('/authorContents',authorCtrl.getAuthorContents)
+
 
 // Getting Author Courses
 router.get('/authorCourses',authorCtrl.getAuthorCourses)
@@ -58,11 +61,14 @@ router.get('/authorTracks', authorCtrl.getAuthorTracks)
 // Getting Author published tracks
 router.get('/authorTracksPublished', authorCtrl.getAuthorTracksPublished)
 
+// Getting Author published tracks
+router.get('/allTracksPublished', authorCtrl.getAllTracksPublished)
+
 // Getting Author assignment
 router.get('/authorAssignments', authorCtrl.getAuthorAssignment)
 
 // Getting Author quiz
-router.get('/authorQuizes', authorCtrl.getAuthorQuiz)
+router.get('/authorQuizzes', authorCtrl.getAuthorQuiz)
 
 // Getting Author question
 router.get('/authorQuestions', authorCtrl.getAuthorQuestion)
@@ -101,13 +107,13 @@ router.post('/trackRequest', [auth,author,authorCtrl.trackRequest])
 router.put('/update-course',[auth,author, upload.single('imageUrl'),authorCtrl.updateCourse])
 
 //? Updating One Content
-router.put('/update-tontent',[auth,author, upload.single('imageUrl'),authorCtrl.updateContent])
+router.put('/update-content',[auth,author, upload.single('imageUrl'),authorCtrl.updateContent])
 
 //? Updating One Track
 router.put('/update-track',[auth,author, upload.single('imageUrl'),authorCtrl.updateTrack])
 
 //? Updating One Assignment
-router.put('/update-assignment',[ auth,author,upload.single('imageUrl'),authorCtrl.updateAssignment])
+router.put('/update-assignment',[ auth,author,upload.single('fileUrl'),authorCtrl.updateAssignment])
 
 //? Updating One Quiz
 router.put('/update-quiz',[ auth,author,authorCtrl.updateQuiz])
