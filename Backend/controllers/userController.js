@@ -103,7 +103,7 @@ console.log(user)
     try {
         //* compare between password and crypted password of user 
         const checkPassword = await bcrypt.compare(req.body.password, user.password)
-
+        console.log(checkPassword)
         //* if password doesnt match return to user an error message 
         if (!checkPassword) {
             return res.status(200).json({ status: 'false', message: 'Invalid email or password' })
@@ -177,7 +177,7 @@ console.log(user)
     
     //! validate the password if not string
     if (!plainTextPassword || typeof plainTextPassword !== 'string') {
-        return res.status(200).json({ status: 'false', message: 'Invalid password' })
+        return res.status(200).json({ status: 'false', message: 'Invalid password1' })
     }
     //! validate the password if less than 8 char
     if (plainTextPassword.length < 8) {
@@ -190,21 +190,28 @@ console.log(user)
     try {
         //* decode the token to get user data
         const user = jwt.verify(token, 'privateKey')
-        console.log(user)
+       /*  console.log(user) */
 
         //* get user id 
-        const id = user.id
-        console.log(id)
+        const userId = user.id
+        console.log(userId)
 
          //* check in database by email
-       let userCheck = await Users.findOne({ id }).lean()
-   
+         let userCheck = await Users.findById(ObjectId(userId)).lean()
+         console.log(userCheck._id)
+
+         console.log(userCheck.password)
+
       //* compare between password and crypted password of user 
-      const checkPassword = await bcrypt.compare(req.body.oldPassword, userCheck.password)
-      
+      const checkPassword = await bcrypt.compare(oldPassword, userCheck.password)
+
+      console.log(checkPassword)
+      console.log(oldPassword)
+      console.log(userCheck.password)
+
       //* if password doesnt match return to user an error message 
       if (!checkPassword) {
-          return res.status(200).json({ status: 'false', message: 'Invalid password' })
+          return res.status(200).json({ status: 'false', message: 'Invalid password2' })
       }
       
 
@@ -213,12 +220,12 @@ console.log(user)
 
         //* find the user by id and change the password
         await Users.updateOne(
-            { _id: id },
+            { _id: userId },
             {
                 $set: { password: newPassword }
             }
         )
-        console.log(id)
+        console.log(userId)
         console.log(newPassword)
 
        return res.status(200).json({ status: 'ok', message: 'password changed' })

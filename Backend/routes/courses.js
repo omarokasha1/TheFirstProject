@@ -61,11 +61,14 @@ router.get('/authorTracks', authorCtrl.getAuthorTracks)
 // Getting Author published tracks
 router.get('/authorTracksPublished', authorCtrl.getAuthorTracksPublished)
 
+// Getting Author published tracks
+router.get('/allTracksPublished', authorCtrl.getAllTracksPublished)
+
 // Getting Author assignment
 router.get('/authorAssignments', authorCtrl.getAuthorAssignment)
 
 // Getting Author quiz
-router.get('/authorQuizes', authorCtrl.getAuthorQuiz)
+router.get('/authorQuizzes', authorCtrl.getAuthorQuiz)
 
 // Getting Author question
 router.get('/authorQuestions', authorCtrl.getAuthorQuestion)

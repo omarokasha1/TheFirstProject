@@ -227,7 +227,7 @@ uploadCourse : async (req, res) => {
      const id = user.id
      console.log(id)
      
-      let track = await Track.find({author:ObjectId(id),isPublished:false}).populate('courses','-__v').select('-__v')
+      let track = await Track.find({author:ObjectId(id),isPublished:false}).populate('courses author','-__v').select('-__v')
       if (!track) {
         return res.status(200).json({ status: 'false', message: 'Cannot find tracks' })
       }
@@ -244,15 +244,31 @@ uploadCourse : async (req, res) => {
   getAuthorTracksPublished:async(req, res, next) =>{
     let track
     const token = req.header('x-auth-token')
-    const check = req.body.check
+    //const check = req.body.check
     try {
       const user = jwt.verify(token, 'privateKey')
      console.log(user)
      const id = user.id 
      console.log(id)
-     console.log(check)
+     //console.log(check)
  
-      let track = await Track.find({author:ObjectId(id),isPublished:true}).populate('courses','-__v',).select('-__v')
+      let track = await Track.find({author:ObjectId(id),isPublished:true}).populate('courses author','-__v').select('-__v')
+      if (!track) {
+        return res.status(200).json({ status: 'false', message: 'Cannot find tracks' })
+      }
+      console.log(track)
+    return  res.status(200).json({status : "ok",message:'get Author Tracks Published Success',tracks:track})
+    } catch (err) {
+      console.log(err)
+      return res.status(500).json({status:'false', message: err.message })
+    }
+   },
+
+   getAllTracksPublished:async(req, res, next) =>{
+    let track
+   
+ try{
+       track = await Track.find({isPublished:true}).populate('courses author','-__v',).select('-__v')
       if (!track) {
         return res.status(200).json({ status: 'false', message: 'Cannot find tracks' })
       }
