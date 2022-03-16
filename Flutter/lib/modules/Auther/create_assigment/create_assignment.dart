@@ -280,7 +280,8 @@ class CreateAssignmentScreen extends StatelessWidget {
                                       moduleName: moduleNameController.text,
                                       description: shortDescriptionController.text,
                                       duration: durationController.text,
-                                      content: file!);
+                                      content: file!
+                                  );
                                   Navigator.pop(context);
 
                                 }

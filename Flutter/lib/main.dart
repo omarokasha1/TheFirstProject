@@ -8,11 +8,13 @@ import 'package:lms/modules/Auther/author_courses/author_courses_cubit/cubit.dar
 import 'package:lms/modules/Auther/author_profile/author_profile_cubit/cubit.dart';
 import 'package:lms/modules/Auther/create_assigment/cubit/cubit.dart';
 import 'package:lms/modules/Auther/create_module/cubit/cubit.dart';
+import 'package:lms/modules/Auther/create_track/cubit/cubit.dart';
 import 'package:lms/modules/Auther/modules_library/module_view.dart';
 import 'package:lms/modules/courses/cubit/cubit.dart';
 import 'package:lms/modules/onboarding/onboarding_screen.dart';
 import 'package:lms/modules/quiz/cubit/cubit.dart';
 import 'package:lms/modules/splash_screen.dart';
+import 'package:lms/modules/user_tracks/cubit/cubit.dart';
 import 'package:lms/shared/component/constants.dart';
 import 'package:lms/shared/component/observer.dart';
 import 'package:lms/shared/component/zoomDrawer.dart';
@@ -100,8 +102,10 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => AuthorProfileCubit()..getAuthorProfile()),
         BlocProvider(create: (context) => CreateModuleCubit()),
         BlocProvider(create: (context) => CreateModuleCubit()),
-        BlocProvider(create: (context)=> CreateAssignmentCubit()..getModulesData()..myActivities=[]),
+        BlocProvider(create: (context)=> CreateAssignmentCubit()..getAssignmentData()..myActivities=[]),
         BlocProvider(create: (context)=> AuthorCoursesCubit()..getAuthorCoursesData()..getAuthorCoursesPublishedData()),
+        BlocProvider(create: (context)=>CreateTrackCubit()..getAuthorCoursesData()),
+        BlocProvider(create: (context)=>TrackCubit()..getAllTracksData()),
       ],
       //ScreenUTil is A Package make application responsive.
       child: ScreenUtilInit(

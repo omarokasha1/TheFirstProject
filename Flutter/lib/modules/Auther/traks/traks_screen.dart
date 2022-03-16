@@ -9,9 +9,10 @@ import 'package:lms/modules/Auther/create_track/Update_track.dart';
 import 'package:lms/modules/Auther/create_track/create_track.dart';
 import 'package:lms/modules/Auther/create_track/cubit/cubit.dart';
 import 'package:lms/modules/Auther/create_track/cubit/statues.dart';
-import 'package:lms/modules/tracks_details/tracks_details_screen.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
+
+import '../tracks_details/tracks_details_screen.dart';
 
 class TracksScreen extends StatelessWidget {
   TracksScreen({Key? key}) : super(key: key);

@@ -61,7 +61,7 @@ class MyDrawer extends StatelessWidget {
                     ),
                     currentAccountPicture: InkWell(
                       onTap: () {
-                        navigator(context, ProfileScreen());
+                        // navigator(context, ProfileScreen());
                       },
                       child: CircleAvatar(
                         backgroundColor: Color(0xff067B85),

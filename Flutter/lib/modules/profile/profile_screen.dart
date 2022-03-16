@@ -124,14 +124,12 @@ class ProfileScreen extends StatelessWidget {
                                           base64Encode(imageBytes);
 
                                       print(imageFile!.runtimeType);
-
                                       // FTPConnect ftpConnect = FTPConnect('http://10.5.62.214/upload',port: 8080,user:'backend', pass:'backend123');
                                       // File fileToUpload = imageFile!;
                                       // await ftpConnect.connect();
                                       // bool res = await ftpConnect.uploadFileWithRetry(fileToUpload, pRetryCount: 2);
                                       // await ftpConnect.disconnect();
                                       // print(res);
-
                                       //print(base64Imageteam);
                                       //DioHelper.postData(url: uploadImageProfile, data: {'profile':imageFile},token: userToken);
                                       //DioHelper.upload(imageFile!, context);
@@ -143,6 +141,7 @@ class ProfileScreen extends StatelessWidget {
                                   }
 
                                   /// Get from File
+
                                   getFromFile() async {
                                     FilePickerResult? result =
                                         await FilePicker.platform.pickFiles();
@@ -202,7 +201,7 @@ class ProfileScreen extends StatelessWidget {
                       //     color: Colors.grey[300],
                       //   ),
                       // ),
-                      if (userType == 'user')
+                //      if (userType == 'user')
                         TextButton(
                           onPressed: () {
                             AwesomeDialog(
@@ -229,7 +228,7 @@ class ProfileScreen extends StatelessWidget {
                                           child: defaultButton(
                                             text: 'Yes, I\'m Agree',
                                             onPressed: () {
-                                              cubit.becomeAuthorRequest();
+                                             // cubit.becomeAuthorRequest();
                                               Navigator.pop(context);
                                             },
                                           ),

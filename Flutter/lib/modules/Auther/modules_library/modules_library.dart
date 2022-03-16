@@ -183,16 +183,14 @@ class ModulesLibraryScreen extends StatelessWidget {
             SizedBox(
               width: 20.0,
             ),
-            Expanded(
-              child: Text(
-                //  "File name asd afew werg  iuejh iujh iuvjh iuwjhuijv iujhuijh iuwhji uhwuivh iuwhu wiuhf uiwh ifuhwiushviu hsdfubifh iuhfbiughr siih iuv iusb bs ",
-                model.contentTitle!,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  fontSize: 20.sp,
-                  fontWeight: FontWeight.bold,
-                ),
+            Text(
+              //  "File name asd afew werg  iuejh iujh iuvjh iuwjhuijv iujhuijh iuwhji uhwuivh iuwhu wiuhf uiwh ifuhwiushviu hsdfubifh iuhfbiughr siih iuv iusb bs ",
+              model.contentTitle!,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                fontSize: 20.sp,
+                fontWeight: FontWeight.bold,
               ),
             ),
             SizedBox(
@@ -281,104 +279,102 @@ class ModulesLibraryScreen extends StatelessWidget {
         clipBehavior: Clip.antiAliasWithSaveLayer,
         child: Row(
           children: [
-            Image.network(
-              'https://cdn-icons-png.flaticon.com/512/337/337946.png',
-              width: 55,
-              height: 55,
-            ),
+            // Image.network(
+            //   'https://cdn-icons-png.flaticon.com/512/337/337946.png',
+            //   width: 55,
+            //   height: 55,
+            // ),
             SizedBox(
               width: 10.w,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 15.0),
-              child: Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      //  "File name asd afew werg  iuejh iujh iuvjh iuwjhuijv iujhuijh iuwhji uhwuivh iuwhu wiuhf uiwh ifuhwiushviu hsdfubifh iuhfbiughr siih iuv iusb bs ",
-                      '${model.assignmentTitle}',
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontSize: 18.sp,
-                        fontWeight: FontWeight.bold,
-                      ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    //  "File name asd afew werg  iuejh iujh iuvjh iuwjhuijv iujhuijh iuwhji uhwuivh iuwhu wiuhf uiwh ifuhwiushviu hsdfubifh iuhfbiughr siih iuv iusb bs ",
+                    '${model.assignmentTitle}',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.bold,
                     ),
-                    Text(
-                      //  "File name asd afew werg  iuejh iujh iuvjh iuwjhuijv iujhuijh iuwhji uhwuivh iuwhu wiuhf uiwh ifuhwiushviu hsdfubifh iuhfbiughr siih iuv iusb bs ",
-                      '15 MB',
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey),
-                    ),
-                  ],
-                ),
+                  ),
+                  // Text(
+                  //   //  "File name asd afew werg  iuejh iujh iuvjh iuwjhuijv iujhuijh iuwhji uhwuivh iuwhu wiuhf uiwh ifuhwiushviu hsdfubifh iuhfbiughr siih iuv iusb bs ",
+                  //   '15 MB',
+                  //   maxLines: 1,
+                  //   overflow: TextOverflow.ellipsis,
+                  //   style: TextStyle(
+                  //       fontSize: 14.sp,
+                  //       fontWeight: FontWeight.bold,
+                  //       color: Colors.grey),
+                  // ),
+                ],
               ),
             ),
             Spacer(),
-          PopupMenuButton(
-            elevation: 1,
-            itemBuilder: (BuildContext context) => [
-              PopupMenuItem(
-                child: TextButton.icon(onPressed: (){
-                  navigator(context, UpdateAssignment(model));
-                }, icon:Icon(Icons.edit) , label: Text('Edit')),
-                onTap: (){
+          // PopupMenuButton(
+          //   elevation: 1,
+          //   itemBuilder: (BuildContext context) => [
+          //     PopupMenuItem(
+          //       child: TextButton.icon(onPressed: (){
+          //         navigator(context, UpdateAssignment(model));
+          //       }, icon:Icon(Icons.edit) , label: Text('Edit')),
+          //       onTap: (){
+          //         navigator(context, UpdateAssignment(model));
+          //       },
+          //       value: 1,
+          //     ),
+          //     PopupMenuItem(
+          //       child: TextButton.icon(onPressed: (){
+          //         cubit.deleteAssignment(moduleId: model.sId!);
+          //       }, icon:Icon(Icons.delete,color: Colors.red,) , label: Text('Delete',style: TextStyle(color: Colors.red),)),
+          //       value: 2,
+          //
+          //     ),
+          //     PopupMenuItem(
+          //       child: TextButton.icon(onPressed: (){}, icon:Icon(Icons.download,color: Colors.green,) , label: Text('Download',style: TextStyle(color: Colors.green),)),
+          //       value: 3,
+          //     ),
+          //   ],
+          // ),
+            CircleAvatar(
+              backgroundColor: primaryColor,
+              radius: 18.r,
+              child: IconButton(
+                onPressed: () {
                   navigator(context, UpdateAssignment(model));
                 },
-                value: 1,
+                icon: Icon(
+                  Icons.edit,
+                  color: Colors.white,
+                  size: 18,
+                ),
               ),
-              PopupMenuItem(
-                child: TextButton.icon(onPressed: (){
+            ),
+            SizedBox(
+              width: 10.w,
+            ),
+            CircleAvatar(
+              backgroundColor: Colors.red,
+              radius: 18.r,
+              child: IconButton(
+                onPressed: () {
                   cubit.deleteAssignment(moduleId: model.sId!);
-                }, icon:Icon(Icons.delete,color: Colors.red,) , label: Text('Delete',style: TextStyle(color: Colors.red),)),
-                value: 2,
-
+                },
+                icon: Icon(
+                  Icons.delete_rounded,
+                  color: Colors.white,
+                  size: 18,
+                ),
               ),
-              PopupMenuItem(
-                child: TextButton.icon(onPressed: (){}, icon:Icon(Icons.download,color: Colors.green,) , label: Text('Download',style: TextStyle(color: Colors.green),)),
-                value: 3,
-              ),
-            ],
-          ),
-            // CircleAvatar(
-            //   backgroundColor: primaryColor,
-            //   radius: 18.r,
-            //   child: IconButton(
-            //     onPressed: () {
-            //       navigator(context, UpdateAssignment(model));
-            //     },
-            //     icon: Icon(
-            //       Icons.edit,
-            //       color: Colors.white,
-            //       size: 18,
-            //     ),
-            //   ),
-            // ),
-            // SizedBox(
-            //   width: 10.w,
-            // ),
-            // CircleAvatar(
-            //   backgroundColor: Colors.red,
-            //   radius: 18.r,
-            //   child: IconButton(
-            //     onPressed: () {
-            //       cubit.deleteAssignment(moduleId: model.sId!);
-            //     },
-            //     icon: Icon(
-            //       Icons.delete_rounded,
-            //       color: Colors.white,
-            //       size: 18,
-            //     ),
-            //   ),
-            // ),
-            // SizedBox(
-            //   width: 10.w,
-            // ),
+            ),
+            SizedBox(
+              width: 10.w,
+            ),
           ],
         ),
       ),

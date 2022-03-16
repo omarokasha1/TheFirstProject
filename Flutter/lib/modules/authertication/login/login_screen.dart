@@ -39,7 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
             if (state.model.status == "ok") {
               CacheHelper.put(key: "token",value: state.model.token);
               userToken=CacheHelper.get(key: "token");
-             // CourseCubit.get(context).getAllCoursesData();
+              // CourseCubit.get(context).getAllCoursesData();
               ProfileCubit.get(context).getUserProfile();
               // if(ProfileCubit.get(context).model!.profile!.isAdmin!)
               // {

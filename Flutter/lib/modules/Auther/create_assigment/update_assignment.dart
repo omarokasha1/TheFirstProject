@@ -212,35 +212,32 @@ class UpdateAssignment extends StatelessWidget {
                                         fontSize: 25,
                                         color: Colors.grey[600])),
                               ),
-                              Center(
-                                child: TextButton(
-                                    onPressed: () async {
-                                      result = await FilePicker.platform
-                                          .pickFiles();
-
-                                      if (result != null) {
-                                        file =
-                                            File(result!.files.single.path!);
-                                        file!.openRead();
-                                        filePath = file!.path;
-                                        cubit.uploadFile(file!);
-                                      } else {
-                                        showToast(
-                                            message:
-                                            "upload file must be not empty");
-                                      }
-                                    },
-                                    child: Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 22.0),
-                                      child: Text(
-                                        filePath == null
-                                            ? "Upload"
-                                            : filePath!,
-                                        style: TextStyle(fontSize: 20),
-                                      ),
-                                    )),
-                              ),
+                              // Center(
+                              //   child: TextButton(
+                              //       onPressed: () async {
+                              //         result = await FilePicker.platform.pickFiles();
+                              //         file = File(result!.files.single.path!);
+                              //         file!.openRead();
+                              //         filePath = file!.path;
+                              //         cubit.uploadFile(file!);
+                              //       //   if (result != null) {
+                              //       //   } else {
+                              //       //     showToast(
+                              //       //         message:
+                              //       //         "upload file must be not empty");
+                              //       //   }
+                              //        },
+                              //       child: Padding(
+                              //         padding: EdgeInsets.symmetric(
+                              //             horizontal: 22.0),
+                              //         child: Text(
+                              //           filePath == null
+                              //               ? "Upload"
+                              //               : filePath!,
+                              //           style: TextStyle(fontSize: 20),
+                              //         ),
+                              //       )),
+                              // ),
                               const SizedBox(
                                 height: 20,
                               ),
@@ -278,10 +275,10 @@ class UpdateAssignment extends StatelessWidget {
                                     moduleName: moduleNameController.text,
                                     description: shortDescriptionController.text,
                                     duration: durationController.text,
-                                    content:file!,
+                                    // content:file!,
                                     moduleId: model.sId!,
-
                                 );
+                                Navigator.pop(context);
                               }
                             }),
                       ),

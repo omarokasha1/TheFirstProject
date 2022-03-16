@@ -34,7 +34,7 @@ class ProfileCubit extends Cubit<ProfileStates> {
   void getUserProfile() {
     emit(ProfileLoadingState());
     DioHelper.getData(
-      url: profile,
+      url: getProfile,
       token: userToken,
     ).then((value) {
       model = User.fromJson(value.data);

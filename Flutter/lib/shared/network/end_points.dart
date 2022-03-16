@@ -1,27 +1,63 @@
 //End Points that's Used in API
+
+
+//--------------------------------------user----------------------------------
+
+           //<<<<<<<<<<<<<<<<<<<<<<<Get>>>>>>>>>>>>>>>>>>>>
+const getProfile = "api/user/get-profile";
+const profileID = "api/user/profile";
+const enrollUserToCourse = 'api/user/enrollCourse';
+const allUsers = "api/user/allUsers";
+const getWishList = "api/user/wishList";
+          //<<<<<<<<<<<<<<<<<<<<<<<Create>>>>>>>>>>>>>>>>>>>>
 const login = "api/user/login";
 const register = "api/user/register";
-const profile = "api/user/get-profile";
-const updateProfile = "api/user/update-profile";
 const changePassword = "api/user/changePassword";
-const uploadImageProfile = "api/user/upload-profile";
+const authorRequest = 'api/user/promot-request';
 const uploadImageProfile2 = 'api/user/upload';
+const enrollRequest = 'api/user/enroll-request';
+         //<<<<<<<<<<<<<<<<<<<<<<<Update>>>>>>>>>>>>>>>>>>>>
+const enrollFreeCourse = 'api/user/enrollCourse';
+const updateProfile = "api/user/update-profile";
+const wishList = "api/user/wishList";
+
+//-----------------------------Get----------------------------
 const courses = "api/course/allCourses";
-const module = "api/course/newContent";
 const getModule = "api/course/authorContents";
-const updateModule = "api/course/update-track";
-const deleteOneModule = "api/course/delete-content";
-const newAssignment = "api/course/newAssignment";
-const getAssignment = "api/course/authorAssignments";
-const updateAssignment = "api/course/update-assignment";
-const deleteDataAssignment = "api/course/delete-assignment";
-const getAuthorTrack = 'api/course/authorTracks';
-const createTrack = 'api/course/newTrack';
-const updateTrack = 'api/course/update-track';
-const deleteTrackData = 'api/course/delete-track';
 const getAuthorCourses = 'api/course/authorCourses';
-const createAuthorCourse = 'api/course/newCourse';
-const updateAuthorCourse = 'api/course/update-course';
-const deleteAuthorCourse = 'api/course/delete-courses';
 const getAuthorCoursesPublished = 'api/course/authorCoursesPublished';
+const getAuthorTrack = 'api/course/authorTracks';
+const getAuthorTrackPublished = 'api/course/authorTracksPublished';
+const getAllTrackPublished = 'api/course/allTracksPublished';
+const getAssignment = "api/course/authorAssignments";
+const getAuthorQuizzes = "api/course/authorQuizzes";
+const getAuthorQuestions = "api/course/authorQuestions";
+
+
+//-----------------------------Create----------------------------
+const createAuthorCourse = 'api/course/newCourse';
+const module = "api/course/newContent";
+const createTrack = 'api/course/newTrack';
+const newAssignment = "api/course/newAssignment";
 const sendCourseRequest = 'api/course/courseRequest';
+const sendTrackRequest = 'api/course/trackRequest';
+const createAuthorQuizzes = "api/course/newQuizzes";
+const createAuthorQuestions = "api/course/newQuestions";
+
+//-----------------------------Update----------------------------
+const updateModule = "api/course/update-content";
+const updateAssignment = "api/course/update-assignment";
+const updateTrack = 'api/course/update-track';
+const updateAuthorCourse = 'api/course/update-course';
+const updateAuthorQuizzes = "api/course/update-quizzes";
+const updateAuthorQuestions = "api/course/update-questions";
+
+//-----------------------------delete----------------------------
+const deleteOneModule = "api/course/delete-contents";
+const deleteDataAssignment = "api/course/delete-assignment";
+const deleteTrackData = 'api/course/delete-track';
+const deleteAuthorCourse = 'api/course/delete-courses';
+const deleteAuthorQuizzes = "api/course/delete-quizzes";
+const deleteAuthorQuestions = "api/course/delete-questions";
+
+
