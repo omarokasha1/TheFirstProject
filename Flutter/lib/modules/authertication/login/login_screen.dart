@@ -41,15 +41,20 @@ class _LoginScreenState extends State<LoginScreen> {
               userToken=CacheHelper.get(key: "token");
               if(LoginCubit.get(context).model!.isAdmin!){
                 CacheHelper.put(key: "userType",value: "admin");
+                CacheHelper.put(key: "userView",value: "admin");
               }else if(LoginCubit.get(context).model!.isManager!){
                 CacheHelper.put(key: "userType",value: "manager");
+                CacheHelper.put(key: "userView",value: "manager");
               }
               else if(LoginCubit.get(context).model!.isAuthor!){
                 CacheHelper.put(key: "userType",value: "author");
+                CacheHelper.put(key: "userView",value: "author");
               }else{
                 CacheHelper.put(key: "userType",value: "user");
+                CacheHelper.put(key: "userView",value: "user");
               }
               userType=CacheHelper.get(key: "userType");
+              userView = CacheHelper.get(key: 'userView');
               CourseCubit.get(context).getAllCoursesData();
               ProfileCubit.get(context).getUserProfile();
               navigatorAndRemove(

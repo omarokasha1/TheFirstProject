@@ -83,7 +83,7 @@ class MyDrawer extends StatelessWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          if (userType == 'user')
+                          if (userView == 'user')
                             ListTile(
                               title: const Text(
                                 "Home",
@@ -102,7 +102,7 @@ class MyDrawer extends StatelessWidget {
                                 ZoomDrawer.of(context)!.toggle();
                               },
                             ),
-                          if (userType == 'author')
+                          if (userView == 'author')
                             ListTile(
                               title: const Text(
                                 "Dashboard",
@@ -121,7 +121,7 @@ class MyDrawer extends StatelessWidget {
                                 ZoomDrawer.of(context)!.toggle();
                               },
                             ),
-                          if (userType == 'author')
+                          if (userView == 'author')
                             ListTile(
                               title: const Text(
                                 "Tracks",
@@ -139,7 +139,7 @@ class MyDrawer extends StatelessWidget {
                                 navigator(context, TracksScreen());
                               },
                             ),
-                          if (userType == 'author')
+                          if (userView == 'author')
                             ListTile(
                               title: const Text(
                                 "Courses",
@@ -157,7 +157,7 @@ class MyDrawer extends StatelessWidget {
                                 navigator(context, AuthorCourses());
                               },
                             ),
-                          if (userType == 'author')
+                          if (userView == 'author')
                             ListTile(
                               title: const Text(
                                 "Modules",
@@ -175,7 +175,7 @@ class MyDrawer extends StatelessWidget {
                                 navigator(context, ModulesLibraryScreen());
                               },
                             ),
-                          if (userType == 'user')
+                          if (userView == 'user')
                             ListTile(
                               title: const Text(
                                 "Dashboard",
@@ -191,7 +191,7 @@ class MyDrawer extends StatelessWidget {
                               ),
                               onTap: () {},
                             ),
-                          if (userType == 'user')
+                          if (userView == 'user')
                             ListTile(
                               title: const Text(
                                 "My Learning",

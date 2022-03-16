@@ -15,6 +15,7 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     // get token already saved in cache helper before go to screens
     userToken = CacheHelper.get(key: "token");
+    userView = CacheHelper.get(key: 'userView');
     print(userToken);
     // AnimatedSplashScreen You appear to the user for a while, and after that you go to the next
     return AnimatedSplashScreen(
@@ -28,7 +29,7 @@ class SplashScreen extends StatelessWidget {
       //Or go to LoginScreen
       nextScreen: userToken == null
           ? LoginScreen()
-          : userType == 'author'
+          : userView == 'author'
               ? ZoomDrawerScreen(
                   widget: DashboardAuthorScreen(),
                 )

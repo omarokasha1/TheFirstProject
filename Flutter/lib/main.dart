@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lms/modules/Admin/add_manager.dart';
 import 'package:lms/modules/courses/cubit/cubit.dart';
+import 'package:lms/modules/manager/requests_screen.dart';
 import 'package:lms/modules/onboarding/onboarding_screen.dart';
 import 'package:lms/modules/Auther/author_courses/author_courses_cubit/cubit.dart';
 import 'package:lms/modules/Auther/author_profile/author_profile_cubit/cubit.dart';
@@ -121,7 +123,8 @@ class MyApp extends StatelessWidget {
           theme: lightTheme(context),
           //Here The Theme.
           themeMode: ThemeMode.light,
-          home: widget,
+         // home: widget,
+          home:AddManager()
         ),
       ),
     );

@@ -29,7 +29,7 @@ class AuthorRequest extends StatelessWidget {
               length: myTabs.length,
               child: Scaffold(
                 appBar: AppBar(
-                  title:              Text(
+                  title: Text(
                     'Requests',
                     style: TextStyle(
                       fontSize: 20.sp,
@@ -51,19 +51,21 @@ class AuthorRequest extends StatelessWidget {
                       ),
                     ),
                     Expanded(
-                      child:TabBarView(
+                      child: TabBarView(
                         children: [
                           ListView.builder(
                               physics: BouncingScrollPhysics(),
-                              itemBuilder: (context, index) => acceptsAuthorCard(),
+                              itemBuilder: (context, index) =>
+                                  acceptsAuthorCard(),
                               itemCount: 10),
                           ListView.builder(
                               physics: BouncingScrollPhysics(),
-                              itemBuilder: (context, index)=> userCourseCard(),
+                              itemBuilder: (context, index) => userCourseCard(),
                               itemCount: 10),
                           ListView.builder(
                               physics: BouncingScrollPhysics(),
-                              itemBuilder: (context, index)=> AuthorTrackCard(),
+                              itemBuilder: (context, index) =>
+                                  AuthorTrackCard(),
                               itemCount: 10),
                         ],
                       ),
@@ -92,7 +94,6 @@ class AuthorRequest extends StatelessWidget {
         clipBehavior: Clip.antiAliasWithSaveLayer,
         child: Row(
           children: [
-
             SizedBox(
               width: 10.w,
             ),
@@ -113,37 +114,43 @@ class AuthorRequest extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                   ),
-                  Row(children: [
-                    CircleAvatar(
-                      backgroundImage: NetworkImage(
-                          'https://img-c.udemycdn.com/user/200_H/317821_3cb5_10.jpg'),
-                      radius: 18,
-                    ),
-                    SizedBox(
-                      width: 10,),
-                    Container(
-                      width: 100.w,
-                      child: Text(
-                        'authorName authorName',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 15.sp,
-                        ),
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
+                  Row(
+                    children: [
+                      CircleAvatar(
+                        backgroundImage: NetworkImage(
+                            'https://img-c.udemycdn.com/user/200_H/317821_3cb5_10.jpg'),
+                        radius: 18,
                       ),
-                    ),
-                    Spacer(),
-                    TextButton(onPressed: (){}, child: Text('Accept')),
-                    TextButton(onPressed: (){}, child: Text('Decline',style: TextStyle(color: Colors.red),)),
-                    // ElevatedButton(style:ElevatedButton.styleFrom(primary: Colors.green,) ,onPressed: (){}, child: Text("Accept"),),
-                    // SizedBox(
-                    //   width: 10.w,
-                    // ),
-                    // ElevatedButton(style:ElevatedButton.styleFrom(primary: Colors.red, ) ,onPressed: (){}, child: const Text("Decline")),
-
-                  ],),
-
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Container(
+                        width: 100.w,
+                        child: Text(
+                          'authorName authorName',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 15.sp,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                        ),
+                      ),
+                      Spacer(),
+                      TextButton(onPressed: () {}, child: Text('Accept')),
+                      TextButton(
+                          onPressed: () {},
+                          child: Text(
+                            'Decline',
+                            style: TextStyle(color: Colors.red),
+                          )),
+                      // ElevatedButton(style:ElevatedButton.styleFrom(primary: Colors.green,) ,onPressed: (){}, child: Text("Accept"),),
+                      // SizedBox(
+                      //   width: 10.w,
+                      // ),
+                      // ElevatedButton(style:ElevatedButton.styleFrom(primary: Colors.red, ) ,onPressed: (){}, child: const Text("Decline")),
+                    ],
+                  ),
                 ],
               ),
             ),
@@ -152,6 +159,7 @@ class AuthorRequest extends StatelessWidget {
       ),
     );
   }
+
   Widget AuthorTrackCard() {
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -170,11 +178,13 @@ class AuthorRequest extends StatelessWidget {
               children: [
                 CircleAvatar(
                   backgroundImage: NetworkImage(
-                      'https://img-c.udemycdn.com/user/200_H/317821_3cb5_10.jpg'),
+                    'https://img-c.udemycdn.com/user/200_H/317821_3cb5_10.jpg',
+                  ),
                   radius: 18,
                 ),
                 SizedBox(
-                  width: 10,),
+                  width: 10,
+                ),
                 Text(
                   'Author Name ',
                   style: TextStyle(
@@ -186,55 +196,59 @@ class AuthorRequest extends StatelessWidget {
                 ),
               ],
             ),
-            Row(children: [
-              Text(
-                'Web Development Full stack Track ',
-                style: TextStyle(
-                 // color: Colors.black,
-                //  fontSize: 17.sp,
-                  fontWeight: FontWeight.bold,
+            Row(
+              children: [
+                Text(
+                  'Web Development Full stack Track ',
+                  style: TextStyle(
+                    // color: Colors.black,
+                    //  fontSize: 17.sp,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
                 ),
-                overflow: TextOverflow.ellipsis,
-                maxLines: 1,
-              ),
-
-              Spacer(),
-              TextButton(onPressed: (){}, child: Text('Accept')),
-              TextButton(onPressed: (){}, child: Text('Decline',style: TextStyle(color: Colors.red),)),
-              // ElevatedButton(style:ElevatedButton.styleFrom(primary: Colors.green,) ,onPressed: (){}, child: Text("Accept"),),
-              // SizedBox(
-              //   width: 10.w,
-              // ),
-              // ElevatedButton(style:ElevatedButton.styleFrom(primary: Colors.red, ) ,onPressed: (){}, child: const Text("Decline")),
-              // SizedBox(
-              //   width: 10.w,
-              // ),
-              // SizedBox(height: 8.h,),
-
-            ],),
+                Spacer(),
+                TextButton(onPressed: () {}, child: Text('Accept')),
+                TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      'Decline',
+                      style: TextStyle(color: Colors.red),
+                    )),
+                // ElevatedButton(style:ElevatedButton.styleFrom(primary: Colors.green,) ,onPressed: (){}, child: Text("Accept"),),
+                // SizedBox(
+                //   width: 10.w,
+                // ),
+                // ElevatedButton(style:ElevatedButton.styleFrom(primary: Colors.red, ) ,onPressed: (){}, child: const Text("Decline")),
+                // SizedBox(
+                //   width: 10.w,
+                // ),
+                // SizedBox(height: 8.h,),
+              ],
+            ),
           ],
         ),
       ),
     );
   }
+
   Widget acceptsAuthorCard() {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-
         padding: EdgeInsets.all(10),
         width: double.infinity,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8.0),
           color: Colors.white,
-          boxShadow: [BoxShadow(
-            color: Colors.black12,
-
-            offset: Offset(0.0, 1.0), //(x,y)
-
-            blurRadius: 6.0,
-          ),],
-
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black12,
+              offset: Offset(0.0, 1.0), //(x,y)
+              blurRadius: 6.0,
+            ),
+          ],
         ),
         clipBehavior: Clip.antiAliasWithSaveLayer,
         child: Column(
@@ -244,11 +258,13 @@ class AuthorRequest extends StatelessWidget {
               children: [
                 const CircleAvatar(
                   backgroundImage: NetworkImage(
-                      'https://img-c.udemycdn.com/user/200_H/317821_3cb5_10.jpg'),
+                    'https://img-c.udemycdn.com/user/200_H/317821_3cb5_10.jpg',
+                  ),
                   radius: 20,
                 ),
                 SizedBox(
-                  width: 10,),
+                  width: 10,
+                ),
                 Text(
                   'Author Name ',
                   style: TextStyle(
@@ -259,9 +275,19 @@ class AuthorRequest extends StatelessWidget {
                   maxLines: 1,
                 ),
                 Spacer(),
-                TextButton(onPressed: (){}, child: Text('Accept')),
-                TextButton(onPressed: (){}, child: Text('Decline',style: TextStyle(color: Colors.red),)),
-
+                TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    'Accept',
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    'Decline',
+                    style: TextStyle(color: Colors.red),
+                  ),
+                ),
               ],
             ),
             // Row(children: [
@@ -292,5 +318,4 @@ class AuthorRequest extends StatelessWidget {
       ),
     );
   }
-
 }
