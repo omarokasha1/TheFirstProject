@@ -567,7 +567,7 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
               fallback: (context) => Center(
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator.adaptive(),
               ),
             ),
           ),

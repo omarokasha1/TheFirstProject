@@ -13,12 +13,14 @@ class AuthorProfileCubit extends Cubit<AuthorProfileStates> {
 
   User? model;
 
-  void getAuthorProfile() {
+  void getAuthorProfile(
+      String id,
+      ) {
     emit(AuthorProfileLoadingState());
     //Remove this in Integration
     userToken = CacheHelper.get(key: 'token');
     DioHelper.getData(
-      url: profile,
+      url: '$getUserProfile/$id',
       token: userToken,
     ).then((value) {
       model = User.fromJson(value.data);

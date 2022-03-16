@@ -2,6 +2,7 @@
 const login = "api/user/login";
 const register = "api/user/register";
 const profile = "api/user/get-profile";
+const getUserProfile = "api/user/profile";
 const updateProfile = "api/user/update-profile";
 const changePassword = "api/user/changePassword";
 const uploadImageProfile = "api/user/upload-profile";

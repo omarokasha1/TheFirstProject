@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:lms/modules/Auther/author_profile/author_profile_screen.dart';
 import 'package:lms/modules/courses/course_details_screen.dart';
 import 'package:lms/modules/courses/cubit/cubit.dart';
 import 'package:lms/modules/courses/cubit/states.dart';
@@ -262,7 +263,6 @@ class CoursesOverViewScreen extends StatelessWidget {
 //               Row(
 // >>>>>>> origin/Flutter_Youssef
                 children: [
-
                   // Widget display course image in border radius
                   ClipRRect(
                     borderRadius: BorderRadius.circular(15),
@@ -423,11 +423,16 @@ class CoursesOverViewScreen extends StatelessWidget {
                     children: [
 
                       // author image in a circular shape
-                      CircleAvatar(
-                        backgroundImage: CachedNetworkImageProvider(
-                          '${courseModel.author!.imageUrl}',
+                      InkWell(
+                        onTap: (){
+                          navigator(context, AuthorProfileScreen(courseModel.author!.sId!));
+                        },
+                        child: CircleAvatar(
+                          backgroundImage: CachedNetworkImageProvider(
+                            '${courseModel.author!.imageUrl}',
+                          ),
+                          radius: 25,
                         ),
-                        radius: 25,
                       ),
                       const SizedBox(
                         width: 10,

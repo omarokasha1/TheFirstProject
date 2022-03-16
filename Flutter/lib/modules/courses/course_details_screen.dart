@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lms/models/course_model.dart';
+import 'package:lms/modules/Auther/author_profile/author_profile_screen.dart';
 import 'package:lms/shared/component/MyAppBar.dart';
 import '../../shared/component/component.dart';
 import '../../shared/component/constants.dart';
@@ -84,14 +85,19 @@ class _CoursesDetailsScreenState extends State<CoursesDetailsScreen>
               ),
               Row(
                 children: [
-                   CircleAvatar(
-                    backgroundImage:
-                    CachedNetworkImageProvider(
-                      '${courseModel.author!.imageUrl}',
+                   InkWell(
+                     onTap: (){
+                       navigator(context,AuthorProfileScreen(courseModel.author!.sId!));
+                     },
+                     child: CircleAvatar(
+                      backgroundImage:
+                      CachedNetworkImageProvider(
+                        '${courseModel.author!.imageUrl}',
 
-                    ),
-                     radius: 25,
+                      ),
+                       radius: 25,
                   ),
+                   ),
                   //   NetworkImage(
                   //       'https://img-c.udemycdn.com/user/200_H/317821_3cb5_10.jpg'),
                   //   radius: 24,
