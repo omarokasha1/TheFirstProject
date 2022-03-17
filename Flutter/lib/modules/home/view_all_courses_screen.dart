@@ -11,24 +11,27 @@ class ViewAllCoursesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider.value(
-      value: BlocProvider.of(context),
-      child: BlocConsumer<CourseCubit, CourseStates>(
-        listener: (context, state) {},
-        builder: (context, state) {
-          return Scaffold(
-              body: Expanded(
-                child: ListView.separated(
-                    shrinkWrap: true,
-                    itemBuilder: (context, index) => buildCourseItem(context, true,
-                        CourseCubit.get(context).coursesModel[index]!),
-                    separatorBuilder: (context, index) => SizedBox(
-                          height: 10,
-                        ),
-                    itemCount: 10),
-              ));
-        },
-      ),
+    return BlocConsumer<CourseCubit, CourseStates>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        return Scaffold(
+          appBar: AppBar(),
+            body:ListView.builder(
+                 itemCount: CourseCubit.get(context).coursesModel.length,
+                itemBuilder: (context, index) => buildCourseItem(context, true,
+                  CourseCubit.get(context).coursesModel[index]!))
+
+          // ListView.separated(
+          //     shrinkWrap: true,
+          //     itemBuilder: (context, index) => buildCourseItem(context, true,
+          //         CourseCubit.get(context).coursesModel[index]!),
+          //     separatorBuilder: (context, index) =>  SizedBox(
+          //       height: 10,
+          //     ),
+          //     itemCount: 10)
+
+        );
+      },
     );
   }
 }

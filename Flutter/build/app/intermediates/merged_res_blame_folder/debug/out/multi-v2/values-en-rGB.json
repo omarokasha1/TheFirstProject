@@ -4,23 +4,6 @@
             "outputFile": "/home/odc5/MainProject/TheFirstProject/Flutter/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-en-rGB/values-en-rGB.xml",
             "map": [
                 {
-                    "source": "/home/odc5/.gradle/caches/transforms-2/files-2.1/a7975ba3cb0c3630bd14453686890431/jetified-play-services-basement-17.0.0/res/values-en-rGB/values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "251",
-                        "endColumns": "196",
-                        "endOffsets": "447"
-                    },
-                    "to": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "105",
-                        "endColumns": "196",
-                        "endOffsets": "297"
-                    }
-                },
-                {
                     "source": "/home/odc5/.gradle/caches/transforms-2/files-2.1/b9a960218f5163997c0fdfa3d3078c0e/core-1.7.0/res/values-en-rGB/values-en-rGB.xml",
                     "from": {
                         "startLines": "2",
@@ -28,30 +11,6 @@
                         "startOffsets": "55",
                         "endColumns": "100",
                         "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "4",
-                        "startColumns": "4",
-                        "startOffsets": "384",
-                        "endColumns": "100",
-                        "endOffsets": "480"
-                    }
-                },
-                {
-                    "source": "/home/odc5/.gradle/caches/transforms-2/files-2.1/d5f5bb923ef231125221909ffa1de444/jetified-firebase-messaging-23.0.0/res/values-en-rGB/values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "211",
-                        "endColumns": "77",
-                        "endOffsets": "288"
-                    },
-                    "to": {
-                        "startLines": "3",
-                        "startColumns": "4",
-                        "startOffsets": "302",
-                        "endColumns": "81",
-                        "endOffsets": "379"
                     }
                 }
             ]

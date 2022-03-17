@@ -57,9 +57,19 @@ class _LoginScreenState extends State<LoginScreen> {
               userView = CacheHelper.get(key: 'userView');
               CourseCubit.get(context).getAllCoursesData();
               ProfileCubit.get(context).getUserProfile();
+              // if(ProfileCubit.get(context).model!.profile!.isAdmin!)
+              // {
+              //   isAdmin=true;
+              //   isManager =false;
+              //   isAuthor =false;
+              // }else if(ProfileCubit.get(context).model!.profile!.isManager!){
+              //   isManager =true; isAuthor =false; isAdmin=false;
+              // }else if(ProfileCubit.get(context).model!.profile!.isAuthor!){
+              //   isManager =false; isAuthor =true; isAdmin=false;
+              // }else{isManager =false; isAuthor =false; isAdmin=false;}
               navigatorAndRemove(
                 context,
-                userType == 'author' ?ZoomDrawerScreen(widget:DashboardAuthorScreen()): ZoomDrawerScreen(),
+               isAuthor?ZoomDrawerScreen(widget:DashboardAuthorScreen()): ZoomDrawerScreen(),
               );
             } else {
               print(" jsadjbasjdnj ${state.model.status}");

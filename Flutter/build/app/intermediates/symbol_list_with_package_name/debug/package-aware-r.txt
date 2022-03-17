@@ -190,7 +190,6 @@ id title
 id top
 id view_tree_lifecycle_owner
 integer cancel_button_image_alpha
-integer google_play_services_version
 integer status_bar_notification_info_maxnum
 layout custom_dialog
 layout notification_action
@@ -212,8 +211,6 @@ layout toast_custom
 menu example_menu
 menu example_menu2
 mipmap ic_launcher
-string common_google_play_services_unknown_issue
-string fcm_fallback_notification_channel_label
 string status_bar_notification_info_overflow
 style LaunchTheme
 style NormalTheme

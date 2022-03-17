@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lms/models/author_courses.dart';
+import 'package:lms/models/author_courses_published_model.dart';
 import 'package:lms/models/course_model.dart';
 import 'package:lms/models/response_model.dart';
 import 'package:lms/models/track_model.dart';
@@ -35,7 +35,7 @@ class AuthorCoursesCubit extends Cubit<AuthorCoursesStates> {
     emit(ChangeItemState());
   }
 
-  AuthorCourses? authorCoursesTestModel;
+  AuthorCoursesTestModel? authorCoursesTestModel;
 
   Future<void> getAuthorCoursesData() async {
     emit(GetAuthorCoursesLoadingState());
@@ -43,12 +43,50 @@ class AuthorCoursesCubit extends Cubit<AuthorCoursesStates> {
     await DioHelper.getData(url: getAuthorCourses, token: userToken).then((value) {
       //print(value.data);
       //authorCoursesTestModel!.courses=[];
-      authorCoursesTestModel = AuthorCourses.fromJson(value.data);
+      authorCoursesTestModel = AuthorCoursesTestModel.fromJson(value.data);
       //print(authorCoursesTestModel!.courses.toString());
       emit(GetAuthorCoursesSuccessState(authorCoursesTestModel));
     }).catchError((error) {
       emit(GetAuthorCoursesErrorState(error.toString()));
       print(error.toString());
+    });
+  }
+  authorCoursesPublishedModel? authorCoursesModel;
+
+  Future<void> getAuthorCoursesPublishedData() async {
+    emit(GetAuthorCoursesPublishLoadingState());
+
+    await DioHelper.getData(url: getAuthorCoursesPublished, token: userToken).then((value) {
+      //print(value.data);
+      //authorCoursesTestModel!.courses=[];
+      authorCoursesModel = authorCoursesPublishedModel.fromJson(value.data);
+      //print(authorCoursesTestModel!.courses.toString());
+      emit(GetAuthorCoursesPublishSuccessState(authorCoursesModel));
+    }).catchError((error) {
+      emit(GetAuthorCoursesPublishErrorState(error.toString()));
+      print(error.toString());
+    });
+  }
+
+  Future<void> sendNewCourseRequest({
+    required courseId,
+  }) async {
+    emit(SendCourseRequestLoadingState());
+    DioHelper.postData(
+      files: true,
+      data: {
+        'courseId': courseId,
+        'token':userToken,
+      },
+      url: sendCourseRequest,
+      token: userToken,
+    ).then((value) async {
+      emit(SendCourseRequestSuccessState());
+      //showToast(message: '${updateModel!.message}',color: Colors.green);
+      getAuthorCoursesData();
+    }).catchError((onError) {
+      print(onError.toString());
+      emit(SendCourseRequestErrorState(onError.toString()));
     });
   }
 
@@ -97,7 +135,6 @@ class AuthorCoursesCubit extends Cubit<AuthorCoursesStates> {
   }) async {
     emit(UpdateCourseLoadingState());
     DioHelper.putData(
-      files: true,
       data: {
         'title': courseName,
         'description': shortDescription,
@@ -123,8 +160,6 @@ class AuthorCoursesCubit extends Cubit<AuthorCoursesStates> {
   }
 
   ResponseModel? deleteModel;
-
-
 
   void deleteCourse({required String courseId}) {
     emit(DeleteCourseLoadingState());

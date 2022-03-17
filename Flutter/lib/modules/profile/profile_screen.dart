@@ -108,7 +108,6 @@ class ProfileScreen extends StatelessWidget {
                                     var base64Imageteam;
                                     final GlobalKey<FormState> _formKey =
                                         GlobalKey<FormState>();
-
                                     /// Get from gallery
                                     getFromGallery() async {
                                       PickedFile? pickedFile =
@@ -135,7 +134,6 @@ class ProfileScreen extends StatelessWidget {
                                         // bool res = await ftpConnect.uploadFileWithRetry(fileToUpload, pRetryCount: 2);
                                         // await ftpConnect.disconnect();
                                         // print(res);
-
                                         //print(base64Imageteam);
                                         //DioHelper.postData(url: uploadImageProfile, data: {'profile':imageFile},token: userToken);
                                         //DioHelper.upload(imageFile!, context);
@@ -145,7 +143,6 @@ class ProfileScreen extends StatelessWidget {
                                         //});
                                       }
                                     }
-
                                     /// Get from File
                                     getFromFile() async {
                                       FilePickerResult? result =
@@ -153,7 +150,6 @@ class ProfileScreen extends StatelessWidget {
                                       if (result != null) {
                                         imageFile =
                                             File(result.files.single.path!);
-
                                         print(
                                             "File----------------------------->$imageFile");
                                         //DioHelper.uploadImage(imageFile!);

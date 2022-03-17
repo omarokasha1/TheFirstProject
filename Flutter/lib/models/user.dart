@@ -49,9 +49,8 @@ class Profile {
         this.userEducation,
         this.bio,
         this.isAdmin,
-        this.isManager,
         this.isAuthor,
-        //this.myCourses,
+        this.isManager,
       });
 
   Profile.fromJson(Map<String, dynamic> json) {
@@ -69,9 +68,9 @@ class Profile {
         : UserEducation();
     //myCourses = json['myCourses'] != null ? MyCourses.fromJson(json['myCourses']):MyCourses();
     bio = json['bio'] ?? '';
-    isAdmin = json['isAdmin'];
-    isManager = json['isManager'];
-    isAuthor = json['isAuthor'];
+    isAdmin = json['isAdmin'] ;
+    isAuthor = json['isAuthor'] ;
+    isManager = json['isManager'] ;
   }
 
   Map<String, dynamic> toJson() {
@@ -89,6 +88,9 @@ class Profile {
       data['userEducation'] = this.userEducation!.toJson();
     }
     data['bio'] = this.bio;
+    data['isAdmin'] = this.isAdmin;
+    data['isAuthor'] = this.isAuthor;
+    data['isManager'] = this.isManager;
     return data;
   }
 }

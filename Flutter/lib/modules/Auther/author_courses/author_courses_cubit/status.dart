@@ -1,4 +1,4 @@
-import 'package:lms/models/author_courses.dart';
+import 'package:lms/models/author_courses_published_model.dart';
 import 'package:lms/models/course_model.dart';
 
 abstract class AuthorCoursesStates {}
@@ -10,7 +10,7 @@ class ChangeItemState extends AuthorCoursesStates {}
 class GetAuthorCoursesLoadingState extends AuthorCoursesStates {}
 
 class GetAuthorCoursesSuccessState extends AuthorCoursesStates {
-  final AuthorCourses? authorCoursesTestModel;
+  final AuthorCoursesTestModel? authorCoursesTestModel;
 
   GetAuthorCoursesSuccessState(this.authorCoursesTestModel);
 }
@@ -21,6 +21,18 @@ class GetAuthorCoursesErrorState extends AuthorCoursesStates {
   GetAuthorCoursesErrorState(this.error);
 }
 
+class GetAuthorCoursesPublishLoadingState extends AuthorCoursesStates {}
+class GetAuthorCoursesPublishSuccessState extends AuthorCoursesStates {
+  final authorCoursesPublishedModel? authorCoursesTestModel;
+
+  GetAuthorCoursesPublishSuccessState(this.authorCoursesTestModel);
+}
+class GetAuthorCoursesPublishErrorState extends AuthorCoursesStates {
+  final String error;
+
+  GetAuthorCoursesPublishErrorState(this.error);
+}
+
 class CreateCourseLoadingState extends AuthorCoursesStates {}
 
 class CreateCourseSuccessState extends AuthorCoursesStates {}
@@ -29,6 +41,16 @@ class CreateCourseErrorState extends AuthorCoursesStates {
   final String error;
 
   CreateCourseErrorState(this.error);
+}
+
+class SendCourseRequestLoadingState extends AuthorCoursesStates {}
+
+class SendCourseRequestSuccessState extends AuthorCoursesStates {}
+
+class SendCourseRequestErrorState extends AuthorCoursesStates {
+  final String error;
+
+  SendCourseRequestErrorState(this.error);
 }
 
 class UpdateCourseLoadingState extends AuthorCoursesStates {}

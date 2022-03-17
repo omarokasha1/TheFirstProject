@@ -1,7 +1,9 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:lms/modules/Auther/dashboard/dashboard_auther.dart';
+import 'package:lms/modules/admin/dashboard_admin/admin_dashboard_screen.dart';
 import 'package:lms/modules/authertication/login/login_screen.dart';
+import 'package:lms/modules/manager/dashboard_manager_screen.dart';
 import 'package:lms/shared/component/zoomDrawer.dart';
 
 import '../shared/component/constants.dart';
@@ -34,6 +36,7 @@ class SplashScreen extends StatelessWidget {
                   widget: DashboardAuthorScreen(),
                 )
               : ZoomDrawerScreen(),
+
       duration: 1,
       splashTransition: SplashTransition.fadeTransition,
       backgroundColor: Colors.white,

@@ -2,8 +2,18 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:lms/layout/layout.dart';
+import 'package:lms/models/assignment_model.dart';
+import 'package:lms/modules/Auther/create_assigment/assignment_screen.dart';
+import 'package:lms/modules/Auther/create_assigment/create_assignment.dart';
+import 'package:lms/modules/Auther/create_assigment/cubit/cubit.dart';
+import 'package:lms/modules/Auther/create_assigment/cubit/states.dart';
+import 'package:lms/modules/Auther/create_assigment/update_assignment.dart';
 import 'package:lms/modules/Auther/create_module/create_module_screen.dart';
+import 'package:lms/modules/Auther/create_module/update_module.dart';
+import 'package:lms/modules/Auther/modules_library/assignment_view.dart';
+import 'package:lms/modules/Auther/modules_library/module_view.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
 import '../../../models/module_model.dart';
@@ -20,122 +30,160 @@ class ModulesLibraryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider.value(
-      value: BlocProvider.of<CreateModuleCubit>(context)..getModulesData(),
-      child: BlocConsumer<CreateModuleCubit, CreateModuleStates>(
-        listener: (context, state) {},
-        builder: (context, state) {
-          var cubit = CreateModuleCubit.get(context);
-          return Layout(
-            widget: DefaultTabController(
-              length: myTabs.length,
-              child: Scaffold(
-                appBar: AppBar(),
-                body: Container(
-                  child: Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Column(
+    return BlocConsumer<CreateAssignmentCubit, CreateAssignmentStates>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        return BlocProvider.value(
+          value: BlocProvider.of<CreateModuleCubit>(context)
+            ..getModulesData()
+            ..list,
+          child: BlocConsumer<CreateModuleCubit, CreateModuleStates>(
+            listener: (context, state) {},
+            builder: (context, state) {
+              var cubit = CreateModuleCubit.get(context);
+              return Layout(
+                widget: DefaultTabController(
+                  length: myTabs.length,
+                  child: Scaffold(
+                    floatingActionButton: SpeedDial(
+                      icon: Icons.add,
                       children: [
-                        Row(
-                          children: [
-                            Text(
-                              'Modules Library',
-                              style: TextStyle(
-                                fontSize: 20.sp,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
-                              ),
-                            ),
-                            Spacer(),
-                            ElevatedButton(
-                              onPressed: () {
-                                navigator(context, CreateModuleScreen());
-                              },
-                              child: Text(
-                                'New Module',
-                                style: TextStyle(
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        TabBar(
-                          labelColor: primaryColor,
-                          indicatorColor: primaryColor,
-                          unselectedLabelColor: Colors.black,
-                          tabs: myTabs,
-                          labelStyle: TextStyle(
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Expanded(
-                          child: TabBarView(
-                            physics: BouncingScrollPhysics(),
-                            children: [
-                              ConditionalBuilder(
-                                condition: cubit.getModuleModel != null,
-                                builder: (context) => ConditionalBuilder(
-                                  condition: cubit
-                                      .getModuleModel!.contents!.isNotEmpty,
-                                  builder: (context) => buildContentTab(
-                                      cubit.getModuleModel!.contents!, cubit),
-                                  fallback: (context) => Center(
-                                    child: emptyPage(
-                                        context: context,
-                                        text: "no Modules Yet"),
+                        SpeedDialChild(
+                            child: Icon(Icons.post_add),
+                            label: 'Add Assignment',
+                            onTap: () {
+                              navigator(context, CreateAssignmentScreen());
+                            }),
+                        SpeedDialChild(
+                            child: Icon(Icons.play_circle_fill),
+                            label: 'Add Modules',
+                            onTap: () {
+                              navigator(context, CreateModuleScreen());
+                            }),
+                      ],
+                    ),
+                    appBar: AppBar(),
+                    body: Container(
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 5),
+                            child: Row(
+                              children: [
+                                Text(
+                                  'Modules Library',
+                                  style: TextStyle(
+                                    fontSize: 20.sp,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
                                   ),
                                 ),
-                                fallback: (context) => Center(
-                                  child: CircularProgressIndicator(),
+                                Spacer(),
+                                ElevatedButton(
+                                  onPressed: () {
+                                    navigator(context, CreateModuleScreen());
+                                  },
+                                  child: Text(
+                                    'New Module',
+                                    style: TextStyle(
+                                      fontSize: 16.sp,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
                                 ),
-                              ),
-                              ConditionalBuilder(
-                                condition: cubit.getModuleModel != null,
-                                builder: (context) => buildContentTab(
-                                    cubit.getModuleModel!.contents!, cubit),
-                                fallback: (context) => Center(
-                                  child: CircularProgressIndicator(),
-                                ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
+                          TabBar(
+                            labelColor: primaryColor,
+                            indicatorColor: primaryColor,
+                            unselectedLabelColor: Colors.black,
+                            tabs: myTabs,
+                            labelStyle: TextStyle(
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Expanded(
+                            child: TabBarView(
+                              physics: BouncingScrollPhysics(),
+                              children: [
+                                ConditionalBuilder(
+                                  condition: cubit.getModuleModel != null,
+                                  builder: (context) => ConditionalBuilder(
+                                    condition: cubit
+                                        .getModuleModel!.contents!.isNotEmpty,
+                                    builder: (context) => buildContentTab(
+                                        cubit.getModuleModel!.contents!,
+                                        cubit),
+                                    fallback: (context) => Center(
+                                      child: emptyPage(
+                                          context: context,
+                                          text: "no Modules Yet"),
+                                    ),
+                                  ),
+                                  fallback: (context) => Center(
+                                    child: CircularProgressIndicator(),
+                                  ),
+                                ),
+                                ConditionalBuilder(
+                                  condition:
+                                      CreateAssignmentCubit.get(context)
+                                              .getModuleModel !=
+                                          null,
+                                  builder: (context) => buildAssignmentTab(
+                                      CreateAssignmentCubit.get(context)
+                                          .getModuleModel!
+                                          .assignments!,
+                                      CreateAssignmentCubit.get(context)),
+                                  fallback: (context) => Center(
+                                    child: CircularProgressIndicator(),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ),
-          );
-        },
-      ),
+              );
+            },
+          ),
+        );
+      },
     );
   }
 
   //Build ModuleItem
   Widget buildModuleItem(
-      context, index, Contents model, CreateModuleCubit cubit) {
-    return Container(
-      width: double.infinity,
-      height: 100.0,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(30.0),
-        color: Colors.grey[100],
-      ),
-      clipBehavior: Clip.antiAliasWithSaveLayer,
-      child: Row(
-        children: [
-          SizedBox(
-            width: 20.0,
-          ),
-          Expanded(
-            child: Text(
+    context,
+    index,
+    Contents model,
+    CreateModuleCubit cubit,
+  ) {
+    return InkWell(
+      onTap: () {
+        navigator(context, ModuleDetailsScreen(model));
+      },
+      child: Container(
+        width: double.infinity,
+        height: 90.0,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15.0),
+          color: Colors.grey[100],
+        ),
+        clipBehavior: Clip.antiAliasWithSaveLayer,
+        child: Row(
+          children: [
+            SizedBox(
+              width: 20.0,
+            ),
+            Text(
               //  "File name asd afew werg  iuejh iujh iuvjh iuwjhuijv iujhuijh iuwhji uhwuivh iuwhu wiuhf uiwh ifuhwiushviu hsdfubifh iuhfbiughr siih iuv iusb bs ",
               model.contentTitle!,
               maxLines: 1,
@@ -145,59 +193,207 @@ class ModulesLibraryScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-          ),
-          SizedBox(
-            width: 20.0,
-          ),
-          CircleAvatar(
-            backgroundColor: primaryColor,
-            radius: 22.r,
-            child: IconButton(
-              onPressed: () {
-                navigator(context, CreateModuleScreen());
-              },
-              icon: Icon(
-                Icons.edit,
-                color: Colors.white,
-                size: 26,
+            SizedBox(
+              width: 20.0,
+            ),
+            CircleAvatar(
+              backgroundColor: primaryColor,
+              radius: 18.r,
+              child: IconButton(
+                onPressed: () {
+                  navigator(context, UpdateModule(model));
+                },
+                icon: Icon(
+                  Icons.edit,
+                  color: Colors.white,
+                  size: 18,
+                ),
               ),
             ),
-          ),
-          SizedBox(
-            width: 10.w,
-          ),
-          CircleAvatar(
-            backgroundColor: Colors.red,
-            radius: 22.r,
-            child: IconButton(
-              onPressed: () {
-                cubit.deleteModule(moduleId: model.sId!);
-              },
-              icon: Icon(
-                Icons.delete_rounded,
-                color: Colors.white,
-                size: 26,
+            SizedBox(
+              width: 10.w,
+            ),
+            CircleAvatar(
+              backgroundColor: Colors.red,
+              radius: 18.r,
+              child: IconButton(
+                onPressed: () {
+                  cubit.deleteModule(moduleId: model.sId!);
+                },
+                icon: Icon(
+                  Icons.delete_rounded,
+                  color: Colors.white,
+                  size: 18,
+                ),
               ),
             ),
-          ),
-          SizedBox(
-            width: 10.w,
-          ),
-        ],
+            SizedBox(
+              width: 10.w,
+            ),
+          ],
+        ),
       ),
     );
   }
 
   Widget buildContentTab(List<Contents> content, cubit) {
     return ListView.separated(
-      physics: BouncingScrollPhysics(),
+      physics: const BouncingScrollPhysics(),
       itemBuilder: (context, index) =>
-          buildModuleItem(context, index, content[index], cubit),
-      separatorBuilder: (context, index) => SizedBox(
-        height: 10,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0,vertical: 5),
+            child: buildModuleItem(context, index, content[index], cubit),
+          ),
+      separatorBuilder: (context, index) => const SizedBox(
+        height: 0,
       ),
       shrinkWrap: true,
       itemCount: content.length,
+    );
+  }
+
+  Widget buildAssignmentItem(
+    context,
+    index,
+    Assignments model,
+    CreateAssignmentCubit cubit,
+  ) {
+    return InkWell(
+      onTap: () {
+        navigator(context, AssignmentDetailsScreen(model));
+      },
+      child: Container(
+        padding: const EdgeInsets.all(5),
+        width: double.infinity,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15.0),
+          boxShadow:  [
+            BoxShadow(
+              color: Colors.grey[300]!,
+              offset: Offset(0.6, 1.2), //(x,y)
+              blurRadius: 6.0,
+            ),
+          ],
+        color: Colors.white,
+        ),
+        clipBehavior: Clip.antiAliasWithSaveLayer,
+        child: Row(
+          children: [
+            // Image.network(
+            //   'https://cdn-icons-png.flaticon.com/512/337/337946.png',
+            //   width: 55,
+            //   height: 55,
+            // ),
+            SizedBox(
+              width: 10.w,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 15.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    //  "File name asd afew werg  iuejh iujh iuvjh iuwjhuijv iujhuijh iuwhji uhwuivh iuwhu wiuhf uiwh ifuhwiushviu hsdfubifh iuhfbiughr siih iuv iusb bs ",
+                    '${model.assignmentTitle}',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  // Text(
+                  //   //  "File name asd afew werg  iuejh iujh iuvjh iuwjhuijv iujhuijh iuwhji uhwuivh iuwhu wiuhf uiwh ifuhwiushviu hsdfubifh iuhfbiughr siih iuv iusb bs ",
+                  //   '15 MB',
+                  //   maxLines: 1,
+                  //   overflow: TextOverflow.ellipsis,
+                  //   style: TextStyle(
+                  //       fontSize: 14.sp,
+                  //       fontWeight: FontWeight.bold,
+                  //       color: Colors.grey),
+                  // ),
+                ],
+              ),
+            ),
+            Spacer(),
+          // PopupMenuButton(
+          //   elevation: 1,
+          //   itemBuilder: (BuildContext context) => [
+          //     PopupMenuItem(
+          //       child: TextButton.icon(onPressed: (){
+          //         navigator(context, UpdateAssignment(model));
+          //       }, icon:Icon(Icons.edit) , label: Text('Edit')),
+          //       onTap: (){
+          //         navigator(context, UpdateAssignment(model));
+          //       },
+          //       value: 1,
+          //     ),
+          //     PopupMenuItem(
+          //       child: TextButton.icon(onPressed: (){
+          //         cubit.deleteAssignment(moduleId: model.sId!);
+          //       }, icon:Icon(Icons.delete,color: Colors.red,) , label: Text('Delete',style: TextStyle(color: Colors.red),)),
+          //       value: 2,
+          //
+          //     ),
+          //     PopupMenuItem(
+          //       child: TextButton.icon(onPressed: (){}, icon:Icon(Icons.download,color: Colors.green,) , label: Text('Download',style: TextStyle(color: Colors.green),)),
+          //       value: 3,
+          //     ),
+          //   ],
+          // ),
+            CircleAvatar(
+              backgroundColor: primaryColor,
+              radius: 18.r,
+              child: IconButton(
+                onPressed: () {
+                  navigator(context, UpdateAssignment(model));
+                },
+                icon: Icon(
+                  Icons.edit,
+                  color: Colors.white,
+                  size: 18,
+                ),
+              ),
+            ),
+            SizedBox(
+              width: 10.w,
+            ),
+            CircleAvatar(
+              backgroundColor: Colors.red,
+              radius: 18.r,
+              child: IconButton(
+                onPressed: () {
+                  cubit.deleteAssignment(moduleId: model.sId!);
+                },
+                icon: Icon(
+                  Icons.delete_rounded,
+                  color: Colors.white,
+                  size: 18,
+                ),
+              ),
+            ),
+            SizedBox(
+              width: 10.w,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget buildAssignmentTab(List<Assignments> assignment, cubit) {
+    return ListView.separated(
+      physics: const BouncingScrollPhysics(),
+      itemBuilder: (context, index) =>
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0,vertical: 5),
+            child: buildAssignmentItem(context, index, assignment[index], cubit),
+          ),
+      separatorBuilder: (context, index) => const SizedBox(
+        height: 0,
+      ),
+      shrinkWrap: true,
+      itemCount: assignment.length,
     );
   }
 }

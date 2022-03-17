@@ -52,10 +52,15 @@ class CreateCourseErrorState extends CourseStates {
   CreateCourseErrorState(this.error);
 }
 
-class EnrollCourseLoadingState extends CourseStates{}
-class EnrollCourseSuccessState extends CourseStates{}
-class EnrollCourseErrorState extends CourseStates{
+
+class EnrollCourseLoadingState extends CourseStates {}
+
+class EnrollCourseSuccessState extends CourseStates {}
+
+class EnrollCourseErrorState extends CourseStates {
   final String error;
+
   EnrollCourseErrorState(this.error);
 }
+
 

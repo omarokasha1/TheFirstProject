@@ -17,8 +17,12 @@ LinearGradient gradientColor({required Color one, required Color two}) {
   );
 }
 
+bool isAdmin =false;
+bool isAuthor=false;
+bool isManager=true;
 
 const gray = Color(0xfffafafa);
+
 const grayText = Color(0xff9F9D9B);
 
 const MaterialColor color = MaterialColor(

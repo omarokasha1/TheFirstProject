@@ -20,8 +20,7 @@ class MyLearning extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => MyLearningCubit(),
+    return BlocProvider(create: (context) => MyLearningCubit()..getAllCoursesData(),
       child: BlocConsumer<MyLearningCubit, MyLearningStates>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -68,8 +67,7 @@ class MyLearning extends StatelessWidget {
                               //NeverScrollableScrollPhysics:Creates scroll physics that does not let the user scroll.
                               physics: BouncingScrollPhysics(),
                               //repeated widget
-                              itemBuilder: (context, index) =>
-                                  buildCoursItem(context, index),
+                              itemBuilder: (context, index) => buildCourseItem(context, index),
                               //number of repeats
                               itemCount: 10,
                             ),
@@ -87,7 +85,7 @@ class MyLearning extends StatelessWidget {
                               physics: BouncingScrollPhysics(),
                               //repeated widget
                               itemBuilder: (context, index) =>
-                                  buildCoursItem(context, index),
+                                  buildCourseItem(context, index),
                               //number of repeats
                               itemCount: 3,
                             ),
@@ -245,7 +243,7 @@ class MyLearning extends StatelessWidget {
 //   }
 // }
 // widget design of one course
-  Widget buildCoursItem(context, model) => Padding(
+  Widget buildCourseItem(context, model) => Padding(
     padding: const EdgeInsets.all(8.0),
     child: Container(
       width: MediaQuery.of(context).size.width / 1.2,
@@ -270,9 +268,10 @@ class MyLearning extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
                   ),
-                  child: const Image(
+                  child:  Image(
                     fit: BoxFit.cover,
                     image: NetworkImage(
+                      //'${model}'
                       'https://img-c.udemycdn.com/course/240x135/3446572_346e_2.jpg',
                     ),
                   ),

@@ -63,21 +63,22 @@ dependencies:
   syncfusion_flutter_charts: ^19.4.52
   percent_indicator: ^4.0.0
   flutter_speed_dial: ^5.0.0+1
+  native_notify: ^0.0.3
+  awesome_dialog: ^2.1.2
+  file_picker: ^4.4.0
   multiselect_formfield: ^0.1.7
   flutter_picker: ^2.0.2
-  awesome_dialog: ^2.1.2
-  path_provider:
-  open_file: ^3.2.1
-  file_picker: ^4.5.0
   http_parser: ^4.0.0
-  native_notify: ^0.0.3
   http: ^0.13.4
   dart_ipify: ^1.1.1
   ftpconnect:
   flutter_rating_bar: ^4.0.0
   carousel_slider: ^4.0.0
-  readmore: ^2.1.0
+  readmore:
+  video_player: ^2.3.0
 
+  path_provider:
+  open_file:
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -107,7 +108,6 @@ flutter:
   assets:
     - assets/images/
     - assets/no internet.json
-    - assets/empty.json
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

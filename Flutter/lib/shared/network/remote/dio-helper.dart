@@ -74,7 +74,7 @@ class DioHelper {
           contentType: MediaType("image", fileName.split(".").last))
     });
     await DioHelper.postData(
-            url: uploadImageProfile2, data: {
+        url: uploadImageProfile2, data: {
       'profile' : await fileUpload(file)
     } ,files: true, token: userToken)
         .then((value) => print('value ${value}'))

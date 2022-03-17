@@ -1,8 +1,6 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lms/models/login_model.dart';
 import 'package:lms/models/user.dart';
 import 'package:lms/modules/profile/profile_cubit/state.dart';
 import 'package:lms/shared/component/component.dart';
@@ -34,7 +32,7 @@ class ProfileCubit extends Cubit<ProfileStates> {
   void getUserProfile() {
     emit(ProfileLoadingState());
     DioHelper.getData(
-      url: profile,
+      url: getProfile,
       token: userToken,
     ).then((value) {
       model = User.fromJson(value.data);
@@ -73,23 +71,28 @@ class ProfileCubit extends Cubit<ProfileStates> {
   }) {
     emit(UpdadteProfileLoadingState());
 
-    DioHelper.putData(url: updateProfile, token: userToken, data: {
-      'phone': phone,
-      'birthDay': birthday,
-      'city': city,
-      'country': country,
-      'gender': gender,
-      //'imageUrl': imageUrl,
-      'userEducation': {
-        'university': university,
-        'major': major,
-        'faculty': faculty,
-        'grade': grade,
-        'experince': experience,
-        'interest': interest,
-      },
-      'bio': bio,
-    },files: true).then((value) {
+    DioHelper.putData(
+            url: updateProfile,
+            token: userToken,
+            data: {
+              'phone': phone,
+              'birthDay': birthday,
+              'city': city,
+              'country': country,
+              'gender': gender,
+              //'imageUrl': imageUrl,
+              'userEducation': {
+                'university': university,
+                'major': major,
+                'faculty': faculty,
+                'grade': grade,
+                'experince': experience,
+                'interest': interest,
+              },
+              'bio': bio,
+            },
+            files: true)
+        .then((value) {
       print(value.toString());
       //model = User.fromJson(value.data);
       getUserProfile();
@@ -105,7 +108,7 @@ class ProfileCubit extends Cubit<ProfileStates> {
     required File? imageUrl,
   }) async {
     emit(UpdadteProfileImageLoadingState());
-    DioHelper.postData (
+    DioHelper.postData(
       url: uploadImageProfile2,
       token: userToken,
       data: {

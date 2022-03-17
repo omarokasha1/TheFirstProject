@@ -18,8 +18,8 @@ class _SalesData {
   final double views;
 }
 
-class AdminDashboardScreen extends StatelessWidget {
-  AdminDashboardScreen({Key? key}) : super(key: key);
+class DashboardAdminScreen extends StatelessWidget {
+  DashboardAdminScreen({Key? key}) : super(key: key);
 
   List<_SalesData> data = [
     _SalesData('Jan', 35),
@@ -148,7 +148,7 @@ class AdminDashboardScreen extends StatelessWidget {
                         color: Colors.white,
                         boxShadow: const [
                           BoxShadow(
-                            color: Colors.grey,
+                            color: Colors.black12,
                             offset: Offset(0.0, 1.0), //(x,y)
                             blurRadius: 6.0,
                           ),

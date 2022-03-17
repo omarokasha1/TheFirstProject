@@ -32,253 +32,253 @@ class MyDrawer extends StatelessWidget {
       builder: (context, state) {
         var cubit = ProfileCubit.get(context);
         return Scaffold(
-            backgroundColor: primaryColor,
-            // or drawer
-            body: ConditionalBuilder(
-              condition: cubit.model!=null,
-              builder: (context)=>ListView(
-                physics: const BouncingScrollPhysics(),
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(
-                        bottom: MediaQuery.of(context).size.height / 20, top: 20),
-                    //user info (image-name-gmail)
-                    child: UserAccountsDrawerHeader(
-                      accountEmail: Text(
-                        "${cubit.model!.profile!.email}",
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.grey,
-                        ),
-                      ),
-                      accountName: Text(
-                        "${cubit.model!.profile!.userName}",
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.white,
-                        ),
-                      ),
-                      currentAccountPicture: InkWell(
-                        onTap: () {
-                          navigator(context, ProfileScreen());
-                        },
-                        child: CircleAvatar(
-                          backgroundColor: Color(0xff067B85),
-                          backgroundImage: CachedNetworkImageProvider(
-                            //"https://cdn.lifehack.org/wp-content/uploads/2014/03/shutterstock_97566446.jpg",
-                            "${cubit.model!.profile!.imageUrl}",
-                          ),
-                        ),
-                      ),
-                      decoration: BoxDecoration(
-                        color: primaryColor,
+          backgroundColor: primaryColor,
+          // or drawer
+          body: ConditionalBuilder(
+            condition: cubit.model!=null,
+            builder: (context)=>ListView(
+              physics: const BouncingScrollPhysics(),
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).size.height / 20, top: 20),
+                  //user info (image-name-gmail)
+                  child: UserAccountsDrawerHeader(
+                    accountEmail: Text(
+                      "${cubit.model!.profile!.email}",
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Colors.grey,
                       ),
                     ),
+                    accountName: Text(
+                      "${cubit.model!.profile!.userName}",
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.white,
+                      ),
+                    ),
+                    currentAccountPicture: InkWell(
+                      onTap: () {
+                        navigator(context, ProfileScreen());
+                      },
+                      child: CircleAvatar(
+                        backgroundColor: Color(0xff067B85),
+                        backgroundImage: CachedNetworkImageProvider(
+                          //"https://cdn.lifehack.org/wp-content/uploads/2014/03/shutterstock_97566446.jpg",
+                          "${cubit.model!.profile!.imageUrl}",
+                        ),
+                      ),
+                    ),
+                    decoration: BoxDecoration(
+                      color: primaryColor,
+                    ),
                   ),
-                  //this is all items in drawer
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height / 2,
-                    child: SingleChildScrollView(
-                      physics: const BouncingScrollPhysics(),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          if (userView == 'user')
-                            ListTile(
-                              title: const Text(
-                                "Home",
-                                style: TextStyle(
-                                  color: textColorDrawer,
-                                  fontSize: 16,
-                                ),
-                              ),
-                              leading: const Icon(
-                                Icons.home,
-                                color: iconColorDrawer,
-                                size: 25,
-                              ),
-                              onTap: () {
-                                navigator(context, ZoomDrawerScreen(widget: HomePage(),));
-                                ZoomDrawer.of(context)!.toggle();
-                              },
-                            ),
-                          if (userView == 'author')
-                            ListTile(
-                              title: const Text(
-                                "Dashboard",
-                                style: TextStyle(
-                                  color: textColorDrawer,
-                                  fontSize: 16,
-                                ),
-                              ),
-                              leading: const Icon(
-                                Icons.home,
-                                color: iconColorDrawer,
-                                size: 25,
-                              ),
-                              onTap: () {
-                                navigator(context, ZoomDrawerScreen(widget: DashboardAuthorScreen(),));
-                                ZoomDrawer.of(context)!.toggle();
-                              },
-                            ),
-                          if (userView == 'author')
-                            ListTile(
-                              title: const Text(
-                                "Tracks",
-                                style: TextStyle(
-                                  color: textColorDrawer,
-                                  fontSize: 16,
-                                ),
-                              ),
-                              leading: const Icon(
-                                Icons.folder,
-                                color: iconColorDrawer,
-                                size: 25,
-                              ),
-                              onTap: () {
-                                navigator(context, TracksScreen());
-                              },
-                            ),
-                          if (userView == 'author')
-                            ListTile(
-                              title: const Text(
-                                "Courses",
-                                style: TextStyle(
-                                  color: textColorDrawer,
-                                  fontSize: 16,
-                                ),
-                              ),
-                              leading: const Icon(
-                                Icons.play_circle_fill,
-                                color: iconColorDrawer,
-                                size: 25,
-                              ),
-                              onTap: () {
-                                navigator(context, AuthorCourses());
-                              },
-                            ),
-                          if (userView == 'author')
-                            ListTile(
-                              title: const Text(
-                                "Modules",
-                                style: TextStyle(
-                                  color: textColorDrawer,
-                                  fontSize: 16,
-                                ),
-                              ),
-                              leading: const Icon(
-                                Icons.file_copy,
-                                color: iconColorDrawer,
-                                size: 25,
-                              ),
-                              onTap: () {
-                                navigator(context, ModulesLibraryScreen());
-                              },
-                            ),
-                          if (userView == 'user')
-                            ListTile(
-                              title: const Text(
-                                "Dashboard",
-                                style: TextStyle(
-                                  color: textColorDrawer,
-                                  fontSize: 16,
-                                ),
-                              ),
-                              leading: const Icon(
-                                Icons.dashboard,
-                                color: iconColorDrawer,
-                                size: 25,
-                              ),
-                              onTap: () {},
-                            ),
-                          if (userView == 'user')
-                            ListTile(
-                              title: const Text(
-                                "My Learning",
-                                style: TextStyle(
-                                  color: textColorDrawer,
-                                  fontSize: 16,
-                                ),
-                              ),
-                              leading: const Icon(
-                                TablerIcons.table,
-                                color: iconColorDrawer,
-                                size: 25,
-                              ),
-                              onTap: () {
-                                navigator(context, MyLearning());
-                              },
-                            ),
+                ),
+                //this is all items in drawer
+                SizedBox(
+                  height: MediaQuery.of(context).size.height / 2,
+                  child: SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        if (userView == 'user')
                           ListTile(
                             title: const Text(
-                              "Change Password",
+                              "Home",
                               style: TextStyle(
                                 color: textColorDrawer,
                                 fontSize: 16,
                               ),
                             ),
                             leading: const Icon(
-                              Icons.lock,
+                              Icons.home,
                               color: iconColorDrawer,
                               size: 25,
                             ),
                             onTap: () {
-                              navigator(context, ChangePasswordScreen());
+                              navigator(context, ZoomDrawerScreen(widget: HomePage(),));
+                              ZoomDrawer.of(context)!.toggle();
                             },
                           ),
-                        ],
-                      ),
+                        if (userView == 'author')
+                          ListTile(
+                            title: const Text(
+                              "Dashboard",
+                              style: TextStyle(
+                                color: textColorDrawer,
+                                fontSize: 16,
+                              ),
+                            ),
+                            leading: const Icon(
+                              Icons.home,
+                              color: iconColorDrawer,
+                              size: 25,
+                            ),
+                            onTap: () {
+                              navigator(context, ZoomDrawerScreen(widget: DashboardAuthorScreen(),));
+                              ZoomDrawer.of(context)!.toggle();
+                            },
+                          ),
+                        if (userView == 'author')
+                          ListTile(
+                            title: const Text(
+                              "Tracks",
+                              style: TextStyle(
+                                color: textColorDrawer,
+                                fontSize: 16,
+                              ),
+                            ),
+                            leading: const Icon(
+                              Icons.folder,
+                              color: iconColorDrawer,
+                              size: 25,
+                            ),
+                            onTap: () {
+                              navigator(context, TracksScreen());
+                            },
+                          ),
+                        if (userView == 'author')
+                          ListTile(
+                            title: const Text(
+                              "Courses",
+                              style: TextStyle(
+                                color: textColorDrawer,
+                                fontSize: 16,
+                              ),
+                            ),
+                            leading: const Icon(
+                              Icons.play_circle_fill,
+                              color: iconColorDrawer,
+                              size: 25,
+                            ),
+                            onTap: () {
+                              navigator(context, AuthorCourses());
+                            },
+                          ),
+                        if (userView == 'author')
+                          ListTile(
+                            title: const Text(
+                              "Modules",
+                              style: TextStyle(
+                                color: textColorDrawer,
+                                fontSize: 16,
+                              ),
+                            ),
+                            leading: const Icon(
+                              Icons.file_copy,
+                              color: iconColorDrawer,
+                              size: 25,
+                            ),
+                            onTap: () {
+                              navigator(context, ModulesLibraryScreen());
+                            },
+                          ),
+                        if (userView == 'user')
+                          ListTile(
+                            title: const Text(
+                              "Dashboard",
+                              style: TextStyle(
+                                color: textColorDrawer,
+                                fontSize: 16,
+                              ),
+                            ),
+                            leading: const Icon(
+                              Icons.dashboard,
+                              color: iconColorDrawer,
+                              size: 25,
+                            ),
+                            onTap: () {},
+                          ),
+                        if (userView == 'user')
+                          ListTile(
+                            title: const Text(
+                              "My Learning",
+                              style: TextStyle(
+                                color: textColorDrawer,
+                                fontSize: 16,
+                              ),
+                            ),
+                            leading: const Icon(
+                              TablerIcons.table,
+                              color: iconColorDrawer,
+                              size: 25,
+                            ),
+                            onTap: () {
+                              navigator(context, MyLearning());
+                            },
+                          ),
+                        ListTile(
+                          title: const Text(
+                            "Change Password",
+                            style: TextStyle(
+                              color: textColorDrawer,
+                              fontSize: 16,
+                            ),
+                          ),
+                          leading: const Icon(
+                            Icons.lock,
+                            color: iconColorDrawer,
+                            size: 25,
+                          ),
+                          onTap: () {
+                            navigator(context, ChangePasswordScreen());
+                          },
+                        ),
+                      ],
                     ),
                   ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height / 20,
-                  ),
-                  //log out button
-                  Padding(
-                    padding: EdgeInsets.only(left: 10.0.w, right: 100.w),
-                    child: Container(
-                      width: 50.w,
-                      height: 40.h,
-                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(25),
-                        color: Colors.white,
-                      ),
-                      child: Center(
-                        child: InkWell(
-                          onTap: () {
-                            CacheHelper.removeData(key: "token");
-                            navigatorAndRemove(context, LoginScreen());
-                          },
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              const Icon(
-                                Icons.exit_to_app,
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height / 20,
+                ),
+                //log out button
+                Padding(
+                  padding: EdgeInsets.only(left: 10.0.w, right: 100.w),
+                  child: Container(
+                    width: 50.w,
+                    height: 40.h,
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(25),
+                      color: Colors.white,
+                    ),
+                    child: Center(
+                      child: InkWell(
+                        onTap: () {
+                          CacheHelper.removeData(key: "token");
+                          navigatorAndRemove(context, LoginScreen());
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const Icon(
+                              Icons.exit_to_app,
+                              color: primaryColor,
+                              size: 25,
+                            ),
+                            SizedBox(
+                              width: 3.w,
+                            ),
+                            Text(
+                              "Log Out",
+                              style: TextStyle(
                                 color: primaryColor,
-                                size: 25,
+                                fontSize: 18.sp,
                               ),
-                              SizedBox(
-                                width: 3.w,
-                              ),
-                              Text(
-                                "Log Out",
-                                style: TextStyle(
-                                  color: primaryColor,
-                                  fontSize: 18.sp,
-                                ),
-                              ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
                   ),
-                ],
-              ),
-              fallback: (context)=>Center(child: CircularProgressIndicator(),),
+                ),
+              ],
             ),
+            fallback: (context)=>Center(child: CircularProgressIndicator(),),
+          ),
         );
       },
     );

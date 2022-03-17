@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lms/modules/Auther/create_module/cubit/states.dart';
 import 'package:lms/shared/component/component.dart';
@@ -49,7 +50,6 @@ class CreateModuleCubit extends Cubit<CreateModuleStates> {
       });
       print(
           "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh${list.toString()}");
-
       emit(GetNewModuleSuccssesState(getModuleModel!));
     }).catchError((error) {
       emit(GetNewModuleErrorState(error.toString()));
@@ -57,6 +57,17 @@ class CreateModuleCubit extends Cubit<CreateModuleStates> {
     });
   }
 
+  // Future<void> getAllModules() async {
+  //   emit(AllModulesLoadingState());
+  //   await DioHelper.getData(url: getAuthorTrack, token: userToken).then((value) {
+  //     //trackModel!.tracks = [];
+  //     trackModel = TrackModel.fromJson(value.data);
+  //     emit(AllTrackSuccessState(trackModel));
+  //   }).catchError((error) {
+  //     emit(AllTrackErrorState(error.toString()));
+  //     print(error.toString());
+  //   });
+  // }
   CreateContent? createContentModel;
 
   Future<void> createNewModule({
@@ -111,14 +122,14 @@ class CreateModuleCubit extends Cubit<CreateModuleStates> {
   ResponseModel? updateModel;
   String? message;
 
-  void updateNewModule({
-    required String moduleId,
+  Future <void> updateNewModule({
+    required moduleId,
     required String moduleName,
     required String description,
     required String duration,
     required content,
     required String moduleType,
-  }) {
+  }) async {
     emit(UpdateModuleLoadingState());
 
     DioHelper.putData(
@@ -134,7 +145,7 @@ class CreateModuleCubit extends Cubit<CreateModuleStates> {
       token: userToken,
     ).then((value) {
       updateModel = ResponseModel.fromJson(value.data);
-
+      showToast(message: '${updateModel!.message}',color: Colors.green);
       emit(UpdateModuleSuccssesState(updateModel!));
     }).catchError((onError) {
       print(onError.toString());
