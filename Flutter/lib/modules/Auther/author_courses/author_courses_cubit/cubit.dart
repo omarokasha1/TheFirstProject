@@ -76,6 +76,7 @@ class AuthorCoursesCubit extends Cubit<AuthorCoursesStates> {
       files: true,
       data: {
         'courseId': courseId,
+        'token':userToken,
       },
       url: sendCourseRequest,
       token: userToken,

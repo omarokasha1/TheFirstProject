@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -216,7 +217,7 @@ class HomePage extends StatelessWidget {
                                           physics: const BouncingScrollPhysics(),
                                           scrollDirection: Axis.horizontal,
                                           shrinkWrap: true,
-                                          itemBuilder: (context, index) =>buildUserTracksItem(context, false,TrackCubit.get(context).tracksModel[index]!),
+                                          itemBuilder: (context, index) =>buildUserTracksItem(context, true,TrackCubit.get(context).tracksModel[index]!),
                                           itemCount: TrackCubit.get(context).tracksModel.length,
                                         ),
                                       ),
@@ -287,7 +288,7 @@ Widget buildUserTracksItem(context, bool enroll,Tracks tracksModel ) =>
         navigator(
             context,
             enroll
-                ? UserTracksEnrollScreen()
+                ? UserTracksEnrollScreen(tracksModel)
                 : UserTracksOverViewScreen(tracksModel));
       },
       child: Padding(
@@ -368,15 +369,20 @@ Widget buildUserTracksItem(context, bool enroll,Tracks tracksModel ) =>
                         CircleAvatar(
                           backgroundImage: CachedNetworkImageProvider(
 
-                            'https://img-c.udemycdn.com/user/200_H/317821_3cb5_10.jpg',),
-                          //  '${courseModel.author!.imageUrl}'),
+                          //  'https://img-c.udemycdn.com/user/200_H/317821_3cb5_10.jpg',),
+                          '${tracksModel.author!.imageUrl}'),
                           radius: 16.r,
                         ),
                         SizedBox(
                           width: 10.w,
                         ),
-                        Text(
-                          'Created by ',
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Created by : ${tracksModel.author!.userName}',
+                            ),
+                          ],
                         ),
                         const Spacer(),
                         Container(

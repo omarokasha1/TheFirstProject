@@ -18,7 +18,7 @@ LinearGradient gradientColor({required Color one, required Color two}) {
 
 bool isAdmin =false;
 bool isAuthor=false;
-bool isManager=false;
+bool isManager=true;
 
 const gray = Color(0xfffafafa);
 
