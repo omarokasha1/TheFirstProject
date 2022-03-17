@@ -28,7 +28,7 @@ class UpdateTrackScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     trackNameController.text = modelTrack.trackName ?? '';
     shortDescriptionController.text = modelTrack.description ?? '';
-    CreateTrackCubit.get(context).myActivities=modelTrack.courses;
+    //CreateTrackCubit.get(context).myActivities=modelTrack.courses;
 
     return BlocProvider.value(
       value: BlocProvider.of<CreateTrackCubit>(context)..getAuthorCoursesData(),

@@ -123,8 +123,8 @@ class MyApp extends StatelessWidget {
           theme: lightTheme(context),
           //Here The Theme.
           themeMode: ThemeMode.light,
-         // home: widget,
-          home:AddManager()
+          home: widget,
+          //home:AddManager()
         ),
       ),
     );

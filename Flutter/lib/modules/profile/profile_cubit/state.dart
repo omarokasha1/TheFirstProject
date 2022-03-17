@@ -32,6 +32,15 @@ class UpdadteProfileErrorState extends ProfileStates {
 
   UpdadteProfileErrorState(this.error);
 }
+class UpdadteProfileImageLoadingState extends ProfileStates {}
+
+class UpdadteProfileImageSuccessState extends ProfileStates {}
+
+class UpdadteProfileImageErrorState extends ProfileStates {
+  final String error;
+
+  UpdadteProfileImageErrorState(this.error);
+}
 
 class AddInterestedItemState extends ProfileStates {}
 

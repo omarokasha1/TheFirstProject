@@ -38,17 +38,16 @@ class ProfileCubit extends Cubit<ProfileStates> {
       token: userToken,
     ).then((value) {
       model = User.fromJson(value.data);
-      if(model!.profile!.isAdmin!){
-        CacheHelper.put(key: "userType",value: "admin");
-      }else if(model!.profile!.isManager!){
-        CacheHelper.put(key: "userType",value: "manager");
+      if (model!.profile!.isAdmin!) {
+        CacheHelper.put(key: "userType", value: "admin");
+      } else if (model!.profile!.isManager!) {
+        CacheHelper.put(key: "userType", value: "manager");
+      } else if (model!.profile!.isAuthor!) {
+        CacheHelper.put(key: "userType", value: "author");
+      } else {
+        CacheHelper.put(key: "userType", value: "user");
       }
-      else if(model!.profile!.isAuthor!){
-        CacheHelper.put(key: "userType",value: "author");
-      }else{
-        CacheHelper.put(key: "userType",value: "user");
-      }
-      userType=CacheHelper.get(key: "userType");
+      userType = CacheHelper.get(key: "userType");
       // print(model!.userName);
       emit(ProfileSuccessState(model!));
     }).catchError((onError) {
@@ -71,7 +70,6 @@ class ProfileCubit extends Cubit<ProfileStates> {
     required String? experience,
     required List<String>? interest,
     required String? bio,
-
   }) {
     emit(UpdadteProfileLoadingState());
 
@@ -91,15 +89,37 @@ class ProfileCubit extends Cubit<ProfileStates> {
         'interest': interest,
       },
       'bio': bio,
-    }).then((value) {
+    },files: true).then((value) {
       print(value.toString());
-      model = User.fromJson(value.data);
+      //model = User.fromJson(value.data);
       getUserProfile();
       //print(model!.profile!.userName);
       emit(UpdadteProfileSuccessState(model!));
     }).catchError((onError) {
       print(onError.toString());
       emit(UpdadteProfileErrorState(onError.toString()));
+    });
+  }
+
+  void updateUserProfileImage({
+    required File? imageUrl,
+  }) async {
+    emit(UpdadteProfileImageLoadingState());
+    DioHelper.postData (
+      url: uploadImageProfile2,
+      token: userToken,
+      data: {
+        'profile': await fileUpload(imageUrl!),
+      },
+      files: true,
+    ).then((value) {
+      print(value.toString());
+      emit(UpdadteProfileImageSuccessState());
+      getUserProfile();
+      //print(model!.profile!.userName);
+    }).catchError((onError) {
+      print(onError.toString());
+      emit(UpdadteProfileImageErrorState(onError.toString()));
     });
   }
 
@@ -118,13 +138,14 @@ class ProfileCubit extends Cubit<ProfileStates> {
     emit(ChangeSelectedItemGradeState());
   }
 
-  void becomeAuthorRequest(){
+  void becomeAuthorRequest() {
     emit(BecomeAuthorRequestLoadingState());
-    DioHelper.postData(url: authorRequest, token: userToken,data: {}).then((value) {
+    DioHelper.postData(url: authorRequest, token: userToken, data: {})
+        .then((value) {
       print(value.data);
-      showToast(message: value.data['message'],color: Colors.grey);
+      showToast(message: value.data['message'], color: Colors.grey);
       emit(BecomeAuthorRequestSuccessState());
-    }).catchError((onError){
+    }).catchError((onError) {
       print(onError);
       emit(BecomeAuthorRequestErrorState(onError));
     });
