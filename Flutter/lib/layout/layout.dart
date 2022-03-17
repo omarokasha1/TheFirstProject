@@ -1,5 +1,6 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_offline/flutter_offline.dart';
 import '../shared/component/constants.dart';
@@ -31,6 +32,7 @@ class Layout extends StatelessWidget {
             // if internet lost show container with the text no connection
             return SafeArea(
               child: Scaffold(
+
                 body: Stack(
                   fit: StackFit.expand,
                   children: [

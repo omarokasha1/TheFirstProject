@@ -9,5 +9,4 @@ class ResponseModel {
     message = json['message'];
   }
 
-
 }

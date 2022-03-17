@@ -111,8 +111,8 @@ class DashboardManagerScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(12),
                           color: Colors.grey[100]),
                       child: CircularPercentIndicator(
-                        radius: 80.0.r,
-                        lineWidth: 18.0,
+                        radius: 70.0.r,
+                        lineWidth: 14.0,
                         animationDuration: 250,
                         animation: true,
                         percent: 0.7,

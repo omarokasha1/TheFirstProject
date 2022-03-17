@@ -55,7 +55,7 @@ class EditProfileScreen extends StatelessWidget {
     return BlocConsumer<ProfileCubit, ProfileStates>(
       listener: (context, state) {
         if (state is UpdadteProfileSuccessState) {
-          navigatorAndRemove(context, ProfileScreen());
+          Navigator.pop(context);
         }
       },
       builder: (context, state) {
@@ -85,7 +85,7 @@ class EditProfileScreen extends StatelessWidget {
                     bioController.text = cubit.model!.profile!.bio!;
                     phoneController.text = cubit.model!.profile!.phone!;
                     //genderController.text = cubit.model!.profile!.gender!;
-                    selectedItem = cubit.model!.profile!.gender!;
+                    selectedItem = cubit.model!.profile!.gender ?? 'male';
                     //print(selectedItem);
                     cityController.text = cubit.model!.profile!.city!;
                     countryController.text = cubit.model!.profile!.country!;
@@ -120,49 +120,49 @@ class EditProfileScreen extends StatelessWidget {
 
                   return Column(
                     children: [
-                      CircleAvatar(
-                        radius: 45.0,
-                        backgroundImage: CachedNetworkImageProvider(
-                          '${cubit.model!.profile!.imageUrl}',
-                        ),
-                        child: Align(
-                          alignment: AlignmentDirectional.bottomEnd,
-                          child: CircleAvatar(
-                            radius: 16.0,
-                            backgroundColor: Colors.white,
-                            child: CircleAvatar(
-                              backgroundColor: primaryColor,
-                              radius: 15.0,
-                              child: IconButton(
-                                icon: const Icon(
-                                  Icons.camera_alt_outlined,
-                                ),
-                                color: Colors.white,
-                                iconSize: 15.0,
-                                onPressed: () async {
-                                  // final pickedFile = await picker.pickImage(source: ImageSource.gallery);
-                                  // if (pickedFile != null) {
-                                  //   profileImage = File(pickedFile.path);
-                                  //   // DioHelper.postData(url: uploadImageProfile, data: {
-                                  //   //   'profile': profileImage,
-                                  //   // });
-                                  //   DioHelper.uploadImage(profileImage!);
-                                  // } else {
-                                  //   print('no image selected');
-                                  // }
-                                  // //image = await _picker.pickImage(source: ImageSource.gallery);
-                                  // //print('hereeeeee ${profileImage!.uri.toString()}');
-                                  // print(
-                                  //     "Piiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiic");
-                                },
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 10.0,
-                      ),
+                      // CircleAvatar(
+                      //   radius: 45.0,
+                      //   backgroundImage: CachedNetworkImageProvider(
+                      //     '${cubit.model!.profile!.imageUrl}',
+                      //   ),
+                      //   // child: Align(
+                      //   //   alignment: AlignmentDirectional.bottomEnd,
+                      //   //   child: CircleAvatar(
+                      //   //     radius: 16.0,
+                      //   //     backgroundColor: Colors.white,
+                      //   //     child: CircleAvatar(
+                      //   //       backgroundColor: primaryColor,
+                      //   //       radius: 15.0,
+                      //   //       child: IconButton(
+                      //   //         icon: const Icon(
+                      //   //           Icons.camera_alt_outlined,
+                      //   //         ),
+                      //   //         color: Colors.white,
+                      //   //         iconSize: 15.0,
+                      //   //         onPressed: () async {
+                      //   //           // final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+                      //   //           // if (pickedFile != null) {
+                      //   //           //   profileImage = File(pickedFile.path);
+                      //   //           //   // DioHelper.postData(url: uploadImageProfile, data: {
+                      //   //           //   //   'profile': profileImage,
+                      //   //           //   // });
+                      //   //           //   DioHelper.uploadImage(profileImage!);
+                      //   //           // } else {
+                      //   //           //   print('no image selected');
+                      //   //           // }
+                      //   //           // //image = await _picker.pickImage(source: ImageSource.gallery);
+                      //   //           // //print('hereeeeee ${profileImage!.uri.toString()}');
+                      //   //           // print(
+                      //   //           //     "Piiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiic");
+                      //   //         },
+                      //   //       ),
+                      //   //     ),
+                      //   //   ),
+                      //   // ),
+                      // ),
+                      // const SizedBox(
+                      //   height: 10.0,
+                      // ),
                       Text(
                         //"Kareem Ahmed Helmy",
                         "${cubit.model!.profile!.userName}",
@@ -327,7 +327,7 @@ class EditProfileScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10.0),
               ),
             ),
-            value: selectedItem,
+            value: selectedItem ?? 'male',
             elevation: 16,
             onChanged: (newValue) {
               selectedItem = newValue!;

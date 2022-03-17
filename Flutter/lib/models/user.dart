@@ -31,6 +31,10 @@ class Profile {
   String? imageUrl = '';
   UserEducation? userEducation;
   String? bio = '';
+  bool? isAdmin = false;
+  bool? isManager = false;
+  bool? isAuthor = false;
+  //MyCourses? myCourses;
 
   Profile(
       {this.sId,
@@ -44,6 +48,9 @@ class Profile {
         this.imageUrl,
         this.userEducation,
         this.bio,
+        this.isAdmin,
+        this.isAuthor,
+        this.isManager,
       });
 
   Profile.fromJson(Map<String, dynamic> json) {
@@ -57,9 +64,13 @@ class Profile {
     gender = json['gender'] ?? 'Male';
     imageUrl = json['imageUrl'] ?? '';
     userEducation = json['userEducation'] != null
-        ? new UserEducation.fromJson(json['userEducation'])
+        ? UserEducation.fromJson(json['userEducation'])
         : UserEducation();
+    //myCourses = json['myCourses'] != null ? MyCourses.fromJson(json['myCourses']):MyCourses();
     bio = json['bio'] ?? '';
+    isAdmin = json['isAdmin'] ;
+    isAuthor = json['isAuthor'] ;
+    isManager = json['isManager'] ;
   }
 
   Map<String, dynamic> toJson() {
@@ -77,10 +88,19 @@ class Profile {
       data['userEducation'] = this.userEducation!.toJson();
     }
     data['bio'] = this.bio;
+    data['isAdmin'] = this.isAdmin;
+    data['isAuthor'] = this.isAuthor;
+    data['isManager'] = this.isManager;
     return data;
   }
 }
-
+// class MyCourses{
+//   List<String>? myCourses = [];
+//   MyCourses({this.myCourses});
+//   MyCourses.fromJson(Map<String, dynamic> json){
+//     myCourses = json['myCourses'].cast<String>() ?? '';
+//   }
+// }
 //This User Education Model To Fetch Data From API
 class UserEducation {
   String? university;

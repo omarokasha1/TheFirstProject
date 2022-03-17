@@ -1,6 +1,7 @@
 
-import '../../../../models/module_model.dart';
-import '../../../../models/response_model.dart';
+
+import 'package:lms/models/module_model.dart';
+import 'package:lms/models/response_model.dart';
 
 abstract class CreateModuleStates {}
 
@@ -58,3 +59,6 @@ class DeleteModuleErrorState extends CreateModuleStates {
   final String error;
   DeleteModuleErrorState(this.error);
 }
+
+
+class SelectImageState extends CreateModuleStates {}

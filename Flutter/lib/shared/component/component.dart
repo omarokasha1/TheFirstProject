@@ -1,11 +1,16 @@
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:http_parser/http_parser.dart';
 import 'package:lms/models/course_model.dart';
 import 'package:lms/modules/courses/course_overview_screen.dart';
 import 'package:lms/shared/component/constants.dart';
+import 'package:lottie/lottie.dart';
 import 'package:multiselect_formfield/multiselect_formfield.dart';
 import '../../modules/courses/course_details_screen.dart';
 
@@ -213,13 +218,12 @@ Widget buildCourseItem(context, bool enroll, CourseModel courseModel) =>
         padding: EdgeInsets.all(8.0.w),
         child: Container(
           width: 300.w,
+          height: 300.h,
           decoration: BoxDecoration(
-            boxShadow: const [
+            boxShadow:  [
               BoxShadow(
-                color: Colors.grey,
-
-                offset: Offset(0.0, 1.0), //(x,y)
-
+                color: Colors.black12,
+                offset: Offset(0.6, 1.2), //(x,y)
                 blurRadius: 6.0,
               ),
             ],
@@ -273,18 +277,15 @@ Widget buildCourseItem(context, bool enroll, CourseModel courseModel) =>
               ),
               Padding(
                 padding:
-                    EdgeInsets.symmetric(horizontal: 8.0.w, vertical: 20.h),
+                    EdgeInsets.symmetric(horizontal: 8.0.w, vertical: 10.h),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       //'Complete Instagram Marketing Course'
                       '${courseModel.title}',
-
                       maxLines: 1,
-
                       overflow: TextOverflow.ellipsis,
-
                       style: Theme.of(context).textTheme.subtitle2,
                     ),
                     SizedBox(height: 14.h),
@@ -314,14 +315,12 @@ Widget buildCourseItem(context, bool enroll, CourseModel courseModel) =>
                           ),
                           child: Row(
                             children: [
-                              const Icon(
-                                Icons.star,
-                                color: Colors.yellow,
-                              ),
+                              Image.asset('assets/images/star.png',width: 20,height: 20,),
                               SizedBox(
                                 width: 5.w,
                               ),
-                              Text('${courseModel.review}'),
+                              //Text('${courseModel.review}'),
+                              const Text('4.5',style: TextStyle(fontWeight: FontWeight.bold),),
                             ],
                           ),
                         ),
@@ -610,6 +609,32 @@ Widget selectMoreItem(
 
         onSaved(value);
       },
+    ),
+  );
+}
+dynamic fileUpload(File file) async {
+  String fileName = file.path.split('/').last;
+  return await MultipartFile.fromFile(
+    file.path,
+    filename: fileName,
+    contentType: MediaType("image", fileName.split(".").last),
+  );
+}
+Widget emptyPage({required String text,required context})
+{
+  return Center(
+    child: SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Lottie.asset('assets/empty.json',
+              width: MediaQuery.of(context).size.width / 1),
+          Text(
+            "$text",
+            style: TextStyle(fontSize: 20),
+          ),
+        ],
+      ),
     ),
   );
 }

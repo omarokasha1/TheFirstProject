@@ -2,6 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lms/models/course_model.dart';
+import 'package:lms/modules/Auther/author_profile/author_profile_screen.dart';
+import 'package:lms/shared/component/MyAppBar.dart';
 import '../../shared/component/component.dart';
 import '../../shared/component/constants.dart';
 
@@ -30,11 +32,7 @@ class _CoursesDetailsScreenState extends State<CoursesDetailsScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[200],
-      appBar: AppBar(
-
-        backgroundColor: Colors.grey[200],
-
-      ),
+      appBar: myAppBar(context),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
         child: SingleChildScrollView(
@@ -87,13 +85,18 @@ class _CoursesDetailsScreenState extends State<CoursesDetailsScreen>
               ),
               Row(
                 children: [
-                   CircleAvatar(
-                    backgroundImage:
-                    CachedNetworkImageProvider(
-                      '${courseModel.author!.imageUrl}',
+                  InkWell(
+                    onTap: (){
+                      navigator(context,AuthorProfileScreen(courseModel.author!.sId!));
+                    },
+                    child: CircleAvatar(
+                      backgroundImage:
+                      CachedNetworkImageProvider(
+                        '${courseModel.author!.imageUrl}',
 
+                      ),
+                      radius: 25,
                     ),
-                     radius: 25,
                   ),
                   //   NetworkImage(
                   //       'https://img-c.udemycdn.com/user/200_H/317821_3cb5_10.jpg'),
@@ -102,7 +105,7 @@ class _CoursesDetailsScreenState extends State<CoursesDetailsScreen>
                   const SizedBox(
                     width: 10,
                   ),
-                   Text('${courseModel.author!.userName}'),
+                  Text('${courseModel.author!.userName}'),
                   const Spacer(),
                   //course rate
                   Container(
@@ -140,7 +143,7 @@ class _CoursesDetailsScreenState extends State<CoursesDetailsScreen>
                     unselectedLabelColor: Colors.black,
                     indicatorColor: primaryColor,
                     labelPadding: const EdgeInsets.only(left: 20, right: 20),
-                 //tab name
+                    //tab name
                     tabs: const [
                       Tab(text: 'Course Content'),
                       Tab(text: 'OverView'),
@@ -211,57 +214,57 @@ class _CoursesDetailsScreenState extends State<CoursesDetailsScreen>
 }
 // Widget include design course Content card
 Widget builtCourseContent() => Padding(
-      padding: const EdgeInsets.all(5.0),
-      child: Container(
-        padding: EdgeInsets.all(10),
-        width: double.infinity,
-        height: 120,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          color: Colors.white,
+  padding: const EdgeInsets.all(5.0),
+  child: Container(
+    padding: EdgeInsets.all(10),
+    width: double.infinity,
+    height: 120,
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(20),
+      color: Colors.white,
+    ),
+    child: Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        //image
+        ClipRRect(
+          borderRadius: BorderRadius.circular(15),
+          child: Image.network(
+            'https://www.incimages.com/uploaded_files/image/1920x1080/getty_933383882_2000133420009280345_410292.jpg',
+            width: 100,
+            height: 100,
+            fit: BoxFit.cover,
+          ),
         ),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            //image
-            ClipRRect(
-              borderRadius: BorderRadius.circular(15),
-              child: Image.network(
-                'https://www.incimages.com/uploaded_files/image/1920x1080/getty_933383882_2000133420009280345_410292.jpg',
-                width: 100,
-                height: 100,
-                fit: BoxFit.cover,
-              ),
-            ),
-            const SizedBox(
-              width: 10,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 30.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text('Welcome To The Course'),
-                  const SizedBox(
-                    height: 2,
-                  ),
-                  Text(
-                    '10 Minutes',
-                    style: TextStyle(color: Colors.grey[500]),
-                  ),
-                ],
-              ),
-            ),
-            const Spacer(),
-            const CircleAvatar(
-              backgroundColor: primaryColor,
-              radius: 16,
-              child: Icon(
-                Icons.play_arrow,
-                color: Colors.white,
-              ),
-            )
-          ],
+        const SizedBox(
+          width: 10,
         ),
-      ),
-    );
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 30.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text('Welcome To The Course'),
+              const SizedBox(
+                height: 2,
+              ),
+              Text(
+                '10 Minutes',
+                style: TextStyle(color: Colors.grey[500]),
+              ),
+            ],
+          ),
+        ),
+        const Spacer(),
+        const CircleAvatar(
+          backgroundColor: primaryColor,
+          radius: 16,
+          child: Icon(
+            Icons.play_arrow,
+            color: Colors.white,
+          ),
+        )
+      ],
+    ),
+  ),
+);

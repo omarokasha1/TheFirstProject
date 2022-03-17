@@ -3,18 +3,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lms/modules/Auther/author_courses/author_courses_cubit/cubit.dart';
 import 'package:lms/modules/Auther/author_profile/author_profile_cubit/cubit.dart';
+import 'package:lms/modules/Auther/create_assigment/cubit/cubit.dart';
 import 'package:lms/modules/Auther/create_module/cubit/cubit.dart';
+import 'package:lms/modules/Auther/create_track/cubit/cubit.dart';
+import 'package:lms/modules/Auther/modules_library/module_view.dart';
 import 'package:lms/modules/courses/cubit/cubit.dart';
 import 'package:lms/modules/onboarding/onboarding_screen.dart';
 import 'package:lms/modules/quiz/cubit/cubit.dart';
 import 'package:lms/modules/splash_screen.dart';
+import 'package:lms/modules/user_tracks/cubit/cubit.dart';
 import 'package:lms/shared/component/constants.dart';
 import 'package:lms/shared/component/observer.dart';
+import 'package:lms/shared/component/zoomDrawer.dart';
 import 'package:lms/shared/network/local/cache_helper.dart';
 import 'package:lms/shared/network/remote/dio-helper.dart';
 import 'package:lms/shared/themes/light_theme.dart';
 import 'package:native_notify/native_notify.dart';
+import 'modules/Auther/dashboard/dashboard_auther.dart';
 import 'modules/profile/profile_cubit/cubit.dart';
 import 'shared/cubit For Internet/cubit.dart';
 
@@ -24,7 +31,7 @@ void main() async {
   //This to set the Orientation of Screen portrait only.
 
   //This Code About Notification
-  NativeNotify.initialize(84, 'sdaDWQPTDJjDtClGb1bEM7');
+  //NativeNotify.initialize(84, 'sdaDWQPTDJjDtClGb1bEM7');
 
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
@@ -85,15 +92,20 @@ class MyApp extends StatelessWidget {
           return ProfileCubit();
         }),
         //Bloc of Course Cubit.
-        BlocProvider(create: (context) {
-          if (userToken != null) {
-            return CourseCubit()..getAllCoursesData();
-          }
-          return CourseCubit();
-        }),
         BlocProvider(
-            create: (context) => AuthorProfileCubit()..getAuthorProfile()),
+          create: (context) {
+            if (userToken != null) {
+              return CourseCubit()..getAllCoursesData();
+            }
+            return CourseCubit();
+          },
+        ),
+        BlocProvider(create: (context) => AuthorProfileCubit()),
         BlocProvider(create: (context) => CreateModuleCubit()),
+        BlocProvider(create: (context)=> CreateAssignmentCubit()..getAssignmentData()..myActivities=[]),
+        BlocProvider(create: (context)=> AuthorCoursesCubit()..getAuthorCoursesData()..getAuthorCoursesPublishedData()),
+        BlocProvider(create: (context)=>CreateTrackCubit()..getAuthorCoursesData()),
+        BlocProvider(create: (context)=>TrackCubit()..getAllTracksData()),
       ],
       //ScreenUTil is A Package make application responsive.
       child: ScreenUtilInit(
@@ -114,14 +126,8 @@ class MyApp extends StatelessWidget {
           theme: lightTheme(context),
           //Here The Theme.
           themeMode: ThemeMode.light,
-          //home: Tracks(),
-          //home:ZoomDrawerScreen(widget:DashboardAuthorScreen() ,) ,
-          //home: ZoomDrawerScreen(widget: AuthorProfileScreen(),),
-          // home:Layout(widget: ZoomDrawerScreen(widget:DashboardManagerScreen() ,)) ,
-          //home: TracksScreen(),
           home: widget,
-          // home: ZoomDrawerScreen(widget:DashboardAuthorScreen() ,),
-          //  home:Layout(widget: ZoomDrawerScreen(widget:DashboardManagerScreen() ,)) ,
+          //home:AddManager()
         ),
       ),
     );
