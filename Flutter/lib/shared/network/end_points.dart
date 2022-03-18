@@ -56,3 +56,13 @@ const deleteTrackData = 'api/course/delete-track';
 const deleteAuthorCourse = 'api/course/delete-courses';
 const deleteAuthorQuizzes = "api/course/delete-quizzes";
 const deleteAuthorQuestions = "api/course/delete-questions";
+
+//--------------------------------------Manager----------------------------------
+//-----------------------------Get----------------------------
+const getAuthorRequest = "api/manager/promotRequest";
+
+//-----------------------------Update----------------------------
+const updateUserRoleAuthor = "api/manager/accept-promot";
+
+//-----------------------------delete----------------------------
+const deleteUserRequest = "api/manager/delete-request";

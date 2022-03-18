@@ -11,6 +11,7 @@ import 'package:lms/modules/Auther/traks/traks_screen.dart';
 import 'package:lms/modules/authertication/change%20password/change_password_screen.dart';
 import 'package:lms/modules/authertication/login/login_screen.dart';
 import 'package:lms/modules/home/home_screen.dart';
+import 'package:lms/modules/manager/requests_screen.dart';
 import 'package:lms/modules/my_learning/mylearning.dart';
 import 'package:lms/modules/profile/profile_cubit/cubit.dart';
 import 'package:lms/modules/profile/profile_cubit/state.dart';
@@ -99,6 +100,24 @@ class MyDrawer extends StatelessWidget {
                             ),
                             onTap: () {
                               navigator(context, ZoomDrawerScreen(widget: HomePage(),));
+                              ZoomDrawer.of(context)!.toggle();
+                            },
+                          ),
+                        ListTile(
+                            title: const Text(
+                              "Author Requests",
+                              style: TextStyle(
+                                color: textColorDrawer,
+                                fontSize: 16,
+                              ),
+                            ),
+                            leading: const Icon(
+                              Icons.add,
+                              color: iconColorDrawer,
+                              size: 25,
+                            ),
+                            onTap: () {
+                              navigator(context, ZoomDrawerScreen(widget: AuthorRequest(),));
                               ZoomDrawer.of(context)!.toggle();
                             },
                           ),

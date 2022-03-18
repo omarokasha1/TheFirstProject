@@ -1,19 +1,19 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/video_player_android-2.3.0/android/src/main/AndroidManifest.xml:1:1-3:12
-INJECTED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/video_player_android-2.3.0/android/src/main/AndroidManifest.xml:1:1-3:12
-INJECTED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/video_player_android-2.3.0/android/src/main/AndroidManifest.xml:1:1-3:12
+ADDED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\video_player_android-2.3.0\android\src\main\AndroidManifest.xml:1:1-3:12
+INJECTED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\video_player_android-2.3.0\android\src\main\AndroidManifest.xml:1:1-3:12
+INJECTED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\video_player_android-2.3.0\android\src\main\AndroidManifest.xml:1:1-3:12
 	package
-		ADDED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/video_player_android-2.3.0/android/src/main/AndroidManifest.xml:2:3-43
-		INJECTED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/video_player_android-2.3.0/android/src/main/AndroidManifest.xml
-		INJECTED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/video_player_android-2.3.0/android/src/main/AndroidManifest.xml
+		ADDED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\video_player_android-2.3.0\android\src\main\AndroidManifest.xml:2:3-43
+		INJECTED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\video_player_android-2.3.0\android\src\main\AndroidManifest.xml
+		INJECTED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\video_player_android-2.3.0\android\src\main\AndroidManifest.xml
 	xmlns:android
-		ADDED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/video_player_android-2.3.0/android/src/main/AndroidManifest.xml:1:11-69
+		ADDED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\video_player_android-2.3.0\android\src\main\AndroidManifest.xml:1:11-69
 uses-sdk
-INJECTED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/video_player_android-2.3.0/android/src/main/AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/video_player_android-2.3.0/android/src/main/AndroidManifest.xml
-INJECTED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/video_player_android-2.3.0/android/src/main/AndroidManifest.xml
+INJECTED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\video_player_android-2.3.0\android\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\video_player_android-2.3.0\android\src\main\AndroidManifest.xml
+INJECTED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\video_player_android-2.3.0\android\src\main\AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/video_player_android-2.3.0/android/src/main/AndroidManifest.xml
-		ADDED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/video_player_android-2.3.0/android/src/main/AndroidManifest.xml
-		INJECTED from /home/odc5/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/video_player_android-2.3.0/android/src/main/AndroidManifest.xml
+		INJECTED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\video_player_android-2.3.0\android\src\main\AndroidManifest.xml
+		ADDED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\video_player_android-2.3.0\android\src\main\AndroidManifest.xml
+		INJECTED from C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\video_player_android-2.3.0\android\src\main\AndroidManifest.xml

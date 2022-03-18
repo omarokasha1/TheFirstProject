@@ -74,9 +74,10 @@ class DioHelper {
           contentType: MediaType("image", fileName.split(".").last))
     });
     await DioHelper.postData(
-        url: uploadImageProfile2, data: {
-      'profile' : await fileUpload(file)
-    } ,files: true, token: userToken)
+            url: uploadImageProfile2,
+            data: {'profile': await fileUpload(file)},
+            files: true,
+            token: userToken)
         .then((value) => print('value ${value}'))
         .catchError((onError) {
       print('error ${onError}');
@@ -120,16 +121,15 @@ class DioHelper {
       'accept': '*/*',
       //'Content-Type': 'multipart/form-data',
     };
-    if(files){
+    if (files) {
       FormData formData = FormData.fromMap(
         data,
       );
       return await dio.post(url, data: formData);
-    }else{
+    } else {
       return await dio.post(url, data: data);
     }
   }
-
 
   //This Function That's Used to Update Some Date based on URL(End Points) and Send what's you need to Update as Map.
   static Future<Response> putData({
@@ -142,7 +142,7 @@ class DioHelper {
       'x-auth-token': token ?? '',
       //'Content-Type': 'application/json',
     };
-    if(files){
+    if (files) {
       FormData formData = FormData.fromMap(
         data,
       );
@@ -150,7 +150,7 @@ class DioHelper {
         url,
         data: formData,
       );
-    }else{
+    } else {
       return await dio.put(
         url,
         data: data,
@@ -160,18 +160,14 @@ class DioHelper {
 
   static Future<Response> deleteData({
     required String url,
-    Map<String, dynamic>? query,
+    Map<String, dynamic>? data,
     String lang = 'en',
   }) async {
     dio.options.headers = {
       'x-auth-token': userToken,
       'Content-Type': 'application/json',
     };
-    return dio
-        .delete(
-      url,
-    )
-        .catchError((error) {
+    return await dio.delete(url, data: data ?? '').catchError((error) {
       print("DIO ERROR $error");
     });
   }

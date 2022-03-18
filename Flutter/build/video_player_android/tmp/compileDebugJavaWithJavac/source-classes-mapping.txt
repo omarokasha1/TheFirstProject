@@ -1,19 +1,19 @@
+io/flutter/plugins/videoplayer/VideoPlayer.java
+ io.flutter.plugins.videoplayer.VideoPlayer
+ io.flutter.plugins.videoplayer.VideoPlayer$1
+ io.flutter.plugins.videoplayer.VideoPlayer$2
 io/flutter/plugins/videoplayer/VideoPlayerPlugin.java
  io.flutter.plugins.videoplayer.VideoPlayerPlugin
  io.flutter.plugins.videoplayer.VideoPlayerPlugin$FlutterState
  io.flutter.plugins.videoplayer.VideoPlayerPlugin$KeyForAssetAndPackageName
  io.flutter.plugins.videoplayer.VideoPlayerPlugin$KeyForAssetFn
-io/flutter/plugins/videoplayer/VideoPlayer.java
- io.flutter.plugins.videoplayer.VideoPlayer
- io.flutter.plugins.videoplayer.VideoPlayer$1
- io.flutter.plugins.videoplayer.VideoPlayer$2
-io/flutter/plugins/videoplayer/VideoPlayerOptions.java
- io.flutter.plugins.videoplayer.VideoPlayerOptions
 io/flutter/plugins/videoplayer/QueuingEventSink.java
  io.flutter.plugins.videoplayer.QueuingEventSink
  io.flutter.plugins.videoplayer.QueuingEventSink$1
  io.flutter.plugins.videoplayer.QueuingEventSink$EndOfStreamEvent
  io.flutter.plugins.videoplayer.QueuingEventSink$ErrorEvent
+io/flutter/plugins/videoplayer/VideoPlayerOptions.java
+ io.flutter.plugins.videoplayer.VideoPlayerOptions
 io/flutter/plugins/videoplayer/BuildConfig.java
  io.flutter.plugins.videoplayer.BuildConfig
 io/flutter/plugins/videoplayer/CustomSSLSocketFactory.java
