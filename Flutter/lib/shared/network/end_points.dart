@@ -66,3 +66,9 @@ const updateUserRoleAuthor = "api/manager/accept-promot";
 
 //-----------------------------delete----------------------------
 const deleteUserRequest = "api/manager/delete-request";
+
+//--------------------------------------Manager----------------------------------
+//-----------------------------Get----------------------------
+const getAllAuthors = "api/admin/allAuthors";
+//-----------------------------Update----------------------------
+const makeAuthorManager = "api/admin/promot-manager";

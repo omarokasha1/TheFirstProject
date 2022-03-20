@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -62,23 +63,16 @@ class AuthorRequest extends StatelessWidget {
                               return ListView.builder(
                                   physics: BouncingScrollPhysics(),
                                   itemBuilder: (context, index) =>
-                                      acceptsAuthorCard(cubit.authorRequests!.promotRequests![index], cubit),
+                                      acceptsAuthorCard(cubit.authorRequests!.promotRequests![index], cubit, context),
                                   itemCount: cubit.authorRequests!.promotRequests!.length);
                             },
                             fallback: (context) {
-                              return cubit.authorRequests == null
-                                  ? Center(
-                                      child:
-                                          CircularProgressIndicator.adaptive(),
-                                    )
-                                  : cubit.authorRequests!.promotRequests!
-                                          .length == 0
-                                      ? Center(
-                                        child: emptyPage(
-                                            text: "There's No Request's",
-                                            context: context),
-                                      )
-                                      : Container();
+                              return Center(
+                                child: cubit.authorRequests != null && cubit.authorRequests!.promotRequests!
+                                    .length == 0 ? emptyPage(
+                                    text: "There's No Request's",
+                                    context: context): CircularProgressIndicator.adaptive(),
+                              );
                             },
                           ),
                           ListView.builder(
@@ -103,7 +97,7 @@ class AuthorRequest extends StatelessWidget {
     );
   }
 
-  Widget acceptsAuthorCard(PromotRequests promotRequests, ManagerCubit cubit) {
+  Widget acceptsAuthorCard(PromotRequests promotRequests, ManagerCubit cubit, context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
@@ -126,8 +120,9 @@ class AuthorRequest extends StatelessWidget {
           children: [
             Row(
               children: [
-                const CircleAvatar(
+                CircleAvatar(
                   backgroundImage: NetworkImage(
+                    promotRequests.authorPromoted!.imageUrl ??
                     'https://img-c.udemycdn.com/user/200_H/317821_3cb5_10.jpg',
                   ),
                   radius: 20,
@@ -136,9 +131,9 @@ class AuthorRequest extends StatelessWidget {
                   width: 10,
                 ),
                 SizedBox(
-                  width: 160,
+                  width: 150.w,
                   child: Text(
-                    '${promotRequests.sId}',
+                    '${promotRequests.authorPromoted!.userName}',
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 17.sp,
@@ -151,7 +146,56 @@ class AuthorRequest extends StatelessWidget {
                 Spacer(),
                 TextButton(
                   onPressed: () {
-                    cubit.updateUserProfile(userRequestId: promotRequests.authorPromoted);
+                    AwesomeDialog(
+                      context: context,
+                      animType: AnimType.SCALE,
+                      dialogType: DialogType.NO_HEADER,
+                      body: Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Form(
+                            //  key: formkey,
+                            child: Column(
+                              children: [
+                                Text(
+                                  'Are you sure you want ${promotRequests.authorPromoted!.userName} become an Author ?',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,),
+                                ),
+                                SizedBox(
+                                  height: 30,
+                                ),
+                                Container(
+                                  height: 40,
+                                  child: defaultButton(
+                                    text: 'Yes, I\'m Agree',
+                                    onPressed: () {
+                                      cubit.updateUserProfile(userRequestId: promotRequests.authorPromoted!.sId);
+                                      Navigator.pop(context);
+                                    },
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                Container(
+                                  height: 40,
+                                  child: defaultButton(
+                                    text: 'No',
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      title: 'This is Ignored',
+                      desc: 'This is also Ignored',
+                      //   btnOkOnPress: () {},
+                    ).show();
                   },
                   child: Text(
                     'Accept',
@@ -159,7 +203,56 @@ class AuthorRequest extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () {
-                    cubit.deleteAuthorRequest(userRequestId: promotRequests.authorPromoted!);
+                    AwesomeDialog(
+                      context: context,
+                      animType: AnimType.SCALE,
+                      dialogType: DialogType.NO_HEADER,
+                      body: Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Form(
+                            //  key: formkey,
+                            child: Column(
+                              children: [
+                                Text(
+                                  'Are you sure you want remove request from ${promotRequests.authorPromoted!.userName} ?',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,),
+                                ),
+                                SizedBox(
+                                  height: 30,
+                                ),
+                                Container(
+                                  height: 40,
+                                  child: defaultButton(
+                                    text: 'Yes, I\'m Agree',
+                                    onPressed: () {
+                                      cubit.deleteAuthorRequest(userRequestId: promotRequests.authorPromoted!.sId!);
+                                      Navigator.pop(context);
+                                    },
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                Container(
+                                  height: 40,
+                                  child: defaultButton(
+                                    text: 'No',
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      title: 'This is Ignored',
+                      desc: 'This is also Ignored',
+                      //   btnOkOnPress: () {},
+                    ).show();
                   },
                   child: Text(
                     'Decline',
