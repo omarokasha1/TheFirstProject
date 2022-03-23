@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lms/layout/layout.dart';
+import 'package:lms/models/course_model.dart';
 import 'package:lms/models/wishlist_courses.dart';
 import 'package:lms/modules/my_learning/my_learning_cubit/cubit.dart';
 import 'package:lms/modules/my_learning/my_learning_cubit/state.dart';
@@ -22,7 +23,9 @@ class MyLearning extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => MyLearningCubit()..getAllWishlistData(),
+      create: (context) => MyLearningCubit()
+        ..getAllWishlistData()
+        ..getEnrollCourses(),
       child: BlocConsumer<MyLearningCubit, MyLearningStates>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -66,16 +69,33 @@ class MyLearning extends StatelessWidget {
                         child: TabBarView(
                           children: [
                             //Courses
-                            ListView.builder(
-                              //NeverScrollableScrollPhysics:Creates scroll physics that does not let the user scroll.
-                              physics: BouncingScrollPhysics(),
-                              //repeated widget
-                              itemBuilder: (context, index) => buildCourseItem(
-                                  context,
-                                  cubit.wishlistCourses!.wishList![index]),
-                              //number of repeats
-                              itemCount: 10,
-                            ),
+                            ConditionalBuilder(
+                                condition: cubit.enrolledCourses != null,
+                                builder: (context) {
+                                  return ListView.builder(
+                                    shrinkWrap: true,
+                                    //NeverScrollableScrollPhysics:Creates scroll physics that does not let the user scroll.
+                                    physics: BouncingScrollPhysics(),
+                                    //repeated widget
+                                    itemBuilder: (context, index) => cubit
+                                                .enrolledCourses.length ==
+                                            0
+                                        ? emptyPage(
+                                            text:
+                                                'You Are not Enrolled in Any Course yet',
+                                            context: context)
+                                        : buildCourseItem(context, true,
+                                            courses:
+                                                cubit.enrolledCourses[index]),
+                                    //number of repeats
+                                    itemCount: cubit.enrolledCourses.length,
+                                  );
+                                },
+                                fallback: (context) {
+                                  return Center(
+                                    child: CircularProgressIndicator.adaptive(),
+                                  );
+                                }),
                             //Tracks
                             ListView.builder(
                               //NeverScrollableScrollPhysics:Creates scroll physics that does not let the user scroll.
@@ -101,9 +121,8 @@ class MyLearning extends StatelessWidget {
                                         physics: BouncingScrollPhysics(),
                                         //repeated widget
                                         itemBuilder: (context, index) =>
-                                            buildCourseItem(
-                                                context,
-                                                cubit.wishlistCourses!
+                                            buildCourseItem(context, false,
+                                                wishList: cubit.wishlistCourses!
                                                     .wishList![index]),
                                         //number of repeats
                                         itemCount: cubit
@@ -252,7 +271,9 @@ class MyLearning extends StatelessWidget {
 //   }
 // }
 // widget design of one course
-  Widget buildCourseItem(context, WishList wishList) => Padding(
+  Widget buildCourseItem(context, bool course,
+          {WishList? wishList, Courses? courses}) =>
+      Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
           width: MediaQuery.of(context).size.width / 1.2,
@@ -279,7 +300,8 @@ class MyLearning extends StatelessWidget {
                       ),
                       child: Image(
                         fit: BoxFit.cover,
-                        image: NetworkImage('${wishList.imageUrl}'
+                        image: NetworkImage(
+                            '${course ? courses!.imageUrl : wishList!.imageUrl}'
                             //'https://img-c.udemycdn.com/course/240x135/3446572_346e_2.jpg',
                             ),
                       ),
@@ -296,7 +318,7 @@ class MyLearning extends StatelessWidget {
                     // name of course
                     Text(
                       //'Complete Instagram Marketing Course',
-                      '${wishList.title}',
+                      '${course ? courses!.title : wishList!.title}',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: Theme.of(context).textTheme.bodyText1,
@@ -310,7 +332,7 @@ class MyLearning extends StatelessWidget {
                         CircleAvatar(
                           backgroundImage: NetworkImage(
                             //'https://img-c.udemycdn.com/user/200_H/317821_3cb5_10.jpg',
-                            '${wishList.imageUrl}',
+                            '${course ? courses!.imageUrl : wishList!.imageUrl}',
                           ),
                           radius: 16,
                         ),
@@ -320,7 +342,7 @@ class MyLearning extends StatelessWidget {
                         //author name
                         Text(
                           //'Created by Kelvin',
-                          '${wishList.author}',
+                          '${course ? courses!.author : wishList!.author}',
                         ),
                         const Spacer(),
                         // number of videos
@@ -328,7 +350,7 @@ class MyLearning extends StatelessWidget {
                           padding: EdgeInsets.symmetric(horizontal: 20),
                           child: Text(
                             //'20 Videos',
-                            '${wishList.contents!.length} Modules',
+                            '${course ? courses!.contents!.length : wishList!.contents!.length} Modules',
                           ),
                         ),
                       ],

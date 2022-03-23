@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lms/models/course_model.dart';
 import 'package:lms/modules/courses/cubit/states.dart';
+import 'package:lms/shared/component/component.dart';
 
 import '../../../shared/component/constants.dart';
 import '../../../shared/network/end_points.dart';
@@ -74,8 +75,9 @@ class CourseCubit extends Cubit<CourseStates> {
   void enrollCourse({required courseId}){
     emit(EnrollCourseLoadingState());
     DioHelper.putData(url: enrollUserToCourse, data: {
-      '_id':courseId,
+      'courseId':courseId,
     },token: userToken).then((value) {
+      showToast(message: value.data['message']);
       emit(EnrollCourseSuccessState());
     }).catchError((error){
       emit(EnrollCourseErrorState(error));

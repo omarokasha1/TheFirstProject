@@ -13,30 +13,45 @@ class MyLearningCubit extends Cubit<MyLearningStates> {
   static MyLearningCubit get(context) => BlocProvider.of(context);
 
 
-  List<CourseModel?> coursesModel =[];
-  void getAllCoursesData() {
-    emit(MyLearningLoadingState());
-    DioHelper.getData(url: courses).then((value) {
-      value.data.forEach((element) {
-        coursesModel.add(CourseModel.fromJson(element)) ;
-      });
-      emit(MyLearningSuccessState(coursesModel));
-    }).catchError((error) {
-      emit(MyLearningErrorState(error.toString()));
-      print(error.toString());
-    });
-  }
+  // List<CourseModel?> coursesModel =[];
+  // void getAllCoursesData() {
+  //   emit(MyLearningLoadingState());
+  //   DioHelper.getData(url: enrolledCourses).then((value) {
+  //     value.data.forEach((element) {
+  //       coursesModel.add(CourseModel.fromJson(element)) ;
+  //     });
+  //     emit(MyLearningSuccessState(coursesModel));
+  //   }).catchError((error) {
+  //     emit(MyLearningErrorState(error.toString()));
+  //     print(error.toString());
+  //   });
+  // }
 
   WishlistCourses? wishlistCourses;
   void getAllWishlistData() {
-    emit(MyLearningLoadingState());
+    emit(GetWishlistCoursesLoadingState());
     DioHelper.getData(url: wishlist,token: userToken).then((value) {
       //print(value.data);
       wishlistCourses = WishlistCourses.fromJson(value.data);
       //print('Hereeeeeeeeeeeeeeeeeeee ${wishlistCourses!.wishList!.length}');
-      emit(MyLearningSuccessState(coursesModel));
+      emit(GetWishlistCoursesSuccessState());
     }).catchError((error) {
-      emit(MyLearningErrorState(error.toString()));
+      emit(GetWishlistCoursesErrorState(error.toString()));
+      print(error.toString());
+    });
+  }
+
+  List<Courses> enrolledCourses =[];
+  void getEnrollCourses() {
+    emit(GetEnrolledCoursesLoadingState());
+    DioHelper.getData(url: getEnrolledCourses,token: userToken).then((value) {
+      //print('Hereeeeeeeeeeeeeeeeeeee ${wishlistCourses!.wishList!.length}');
+      value.data['myCourses'].forEach((v) {
+        enrolledCourses.add(Courses.fromJson(v));
+      });
+      emit(GetEnrolledCoursesSuccessState());
+    }).catchError((error) {
+      emit(GetEnrolledCoursesErrorState(error.toString()));
       print(error.toString());
     });
   }

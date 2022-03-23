@@ -71,9 +71,9 @@ class AddManager extends StatelessWidget {
                       ),
                       Expanded(
                         child: ConditionalBuilder(
-                          condition: cubit.authorsManagerRequest != null && cubit.search.isNotEmpty,
+                          condition: cubit.authorsManagerRequest != null,
                           builder: (context) {
-                            return ListView.builder(
+                            return cubit.search.length == 0 ? emptyPage(text: 'There\'s Noe Search like This', context: context): ListView.builder(
                               shrinkWrap: true,
                               physics: const BouncingScrollPhysics(),
                               itemBuilder: (context, index) => buildUserData(context, cubit.search[index]!, cubit),
@@ -81,9 +81,7 @@ class AddManager extends StatelessWidget {
                             );
                           },
                           fallback: (context) {
-                            return cubit.authorsManagerRequest != null && cubit.search.length == 0 ? emptyPage(text: 'There\'s no Authors', context: context) : Center(
-                              child: CircularProgressIndicator(),
-                            );
+                            return CircularProgressIndicator();
                           },
                         ),
                       ),

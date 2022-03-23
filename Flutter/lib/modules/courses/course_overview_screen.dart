@@ -40,7 +40,7 @@ class CoursesOverViewScreen extends StatelessWidget {
                     child: defaultButton(
                       onPressed: () {
                         cubit.enrollCourse(courseId: courseModel.sId);
-                        navigatorAndRemove(context, ZoomDrawerScreen(widget: CoursesDetailsScreen(courseModel),));
+                        //navigatorAndRemove(context, ZoomDrawerScreen(widget: CoursesDetailsScreen(courseModel),));
                       }, text: 'Enroll Course',),
                   ),
                 ),

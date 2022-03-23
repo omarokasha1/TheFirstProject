@@ -5,6 +5,7 @@ const getProfile = "api/user/get-profile";
 const getUserProfile = "api/user/profile";
 const enrollUserToCourse = 'api/user/enrollCourse';
 const allUsers = "api/user/allUsers";
+const getEnrolledCourses = "api/user/enrollCourses";
 
           //<<<<<<<<<<<<<<<<<<<<<<<Create>>>>>>>>>>>>>>>>>>>>
 const login = "api/user/login";
