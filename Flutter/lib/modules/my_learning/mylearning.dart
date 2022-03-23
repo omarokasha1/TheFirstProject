@@ -1,9 +1,12 @@
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lms/layout/layout.dart';
+import 'package:lms/models/wishlist_courses.dart';
 import 'package:lms/modules/my_learning/my_learning_cubit/cubit.dart';
 import 'package:lms/modules/my_learning/my_learning_cubit/state.dart';
+import 'package:lms/shared/component/component.dart';
 
 import 'package:lms/shared/component/constants.dart';
 
@@ -14,13 +17,12 @@ class MyLearning extends StatelessWidget {
     Tab(text: 'Courses'),
     Tab(text: 'Tracks'),
     Tab(text: 'WishList'),
-    Tab(text: 'Pending'),
-    Tab(text: 'Archived'),
   ];
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(create: (context) => MyLearningCubit()..getAllCoursesData(),
+    return BlocProvider(
+      create: (context) => MyLearningCubit()..getAllWishlistData(),
       child: BlocConsumer<MyLearningCubit, MyLearningStates>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -63,14 +65,18 @@ class MyLearning extends StatelessWidget {
                       Expanded(
                         child: TabBarView(
                           children: [
+                            //Courses
                             ListView.builder(
                               //NeverScrollableScrollPhysics:Creates scroll physics that does not let the user scroll.
                               physics: BouncingScrollPhysics(),
                               //repeated widget
-                              itemBuilder: (context, index) => buildCourseItem(context, index),
+                              itemBuilder: (context, index) => buildCourseItem(
+                                  context,
+                                  cubit.wishlistCourses!.wishList![index]),
                               //number of repeats
                               itemCount: 10,
                             ),
+                            //Tracks
                             ListView.builder(
                               //NeverScrollableScrollPhysics:Creates scroll physics that does not let the user scroll.
                               physics: BouncingScrollPhysics(),
@@ -80,32 +86,35 @@ class MyLearning extends StatelessWidget {
                               //number of repeats
                               itemCount: 10,
                             ),
-                            ListView.builder(
-                              //NeverScrollableScrollPhysics:Creates scroll physics that does not let the user scroll.
-                              physics: BouncingScrollPhysics(),
-                              //repeated widget
-                              itemBuilder: (context, index) =>
-                                  buildCourseItem(context, index),
-                              //number of repeats
-                              itemCount: 3,
-                            ),
-                            ListView.builder(
-                              //NeverScrollableScrollPhysics:Creates scroll physics that does not let the user scroll.
-                              physics: BouncingScrollPhysics(),
-                              //repeated widget
-                              itemBuilder: (context, index) =>
-                                  buildPendingItem(context, index),
-                              //number of repeats
-                              itemCount: 3,
-                            ),
-                            ListView.builder(
-                              //NeverScrollableScrollPhysics:Creates scroll physics that does not let the user scroll.
-                              physics: BouncingScrollPhysics(),
-                              //repeated widget
-                              itemBuilder: (context, index) =>
-                                  buildArchived(context),
-                              //number of repeats
-                              itemCount: 3,
+                            //WishList
+                            ConditionalBuilder(
+                              condition: cubit.wishlistCourses != null,
+                              builder: (context) {
+                                return cubit.wishlistCourses!.wishList!
+                                            .length ==
+                                        0
+                                    ? emptyPage(
+                                        text: "There's No Wishlist added yet",
+                                        context: context)
+                                    : ListView.builder(
+                                        //NeverScrollableScrollPhysics:Creates scroll physics that does not let the user scroll.
+                                        physics: BouncingScrollPhysics(),
+                                        //repeated widget
+                                        itemBuilder: (context, index) =>
+                                            buildCourseItem(
+                                                context,
+                                                cubit.wishlistCourses!
+                                                    .wishList![index]),
+                                        //number of repeats
+                                        itemCount: cubit
+                                            .wishlistCourses!.wishList!.length,
+                                      );
+                              },
+                              fallback: (context) {
+                                return Center(
+                                  child: CircularProgressIndicator.adaptive(),
+                                );
+                              },
                             ),
                           ],
                         ),
@@ -243,393 +252,400 @@ class MyLearning extends StatelessWidget {
 //   }
 // }
 // widget design of one course
-  Widget buildCourseItem(context, model) => Padding(
-    padding: const EdgeInsets.all(8.0),
-    child: Container(
-      width: MediaQuery.of(context).size.width / 1.2,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(15),
-      ),
-      //column contains stack and column
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          //stack contains image of the course and clip
-          Stack(
-            alignment: AlignmentDirectional.bottomStart,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  //take same decoration of image
-                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                  width: MediaQuery.of(context).size.width / 1,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child:  Image(
-                    fit: BoxFit.cover,
-                    image: NetworkImage(
-                      //'${model}'
-                      'https://img-c.udemycdn.com/course/240x135/3446572_346e_2.jpg',
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Padding(
-            padding:
-            const EdgeInsets.symmetric(horizontal: 15.0, vertical: 7),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // name of course
-                Text(
-                  'Complete Instagram Marketing Course',
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).textTheme.bodyText1,
-                ),
-                const SizedBox(height: 14),
-                //row contains name of author,image of author and number of videos
-                Row(
-                  children: [
-                    // author image
-                    //CircleAvatar:is circle in which we can add background image.
-                    const CircleAvatar(
-                      backgroundImage: NetworkImage(
-                          'https://img-c.udemycdn.com/user/200_H/317821_3cb5_10.jpg'),
-                      radius: 16,
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    //author name
-                    const Text('Created by Kelvin'),
-                    const Spacer(),
-                    // number of videos
-                    Container(
-                        padding: EdgeInsets.symmetric(horizontal: 20),
-                        child: Text('20 Vides ')),
-                  ],
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                // stack contains two containers and text
-                Stack(
-                  children: [
-                    //container for completed percentage
-                    Container(
-                      height: 8,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(40),
-                        color: grayText,
-                      ),
-                    ),
-                    //container for uncompleted percentage
-                    Container(
-                      height: 8,
-                      width: 180,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(40),
-                        color: primaryColor,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Text('60% Complete')
-              ],
-            ),
-          ),
-        ],
-      ),
-    ),
-  );
-
-  Widget builtTrackContant(context) => Padding(
-    padding: const EdgeInsets.all(5.0),
-    child: Container(
-      padding: EdgeInsets.all(10),
-      width: double.infinity,
-      height: 120,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        color: Colors.white,
-      ),
-      // row contains image of the track,name of the track,number of courses and completed percentage.
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          //ClipRRect: widget that clips its child using a rounded rectangle
-          // show image of track
-          ClipRRect(
+  Widget buildCourseItem(context, WishList wishList) => Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
+          width: MediaQuery.of(context).size.width / 1.2,
+          decoration: BoxDecoration(
+            color: Colors.white,
             borderRadius: BorderRadius.circular(15),
-            child: Image.network(
-              'https://www.incimages.com/uploaded_files/image/1920x1080/getty_933383882_2000133420009280345_410292.jpg',
-              width: 100,
-              height: 100,
-              fit: BoxFit.cover,
-            ),
           ),
-          SizedBox(
-            width: 10,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 5.0),
-            //column contains name of track, number of courses and percentages of completed.
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Full Stack',
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).textTheme.bodyText1,
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Text(
-                  '10 Courses',
-                  style: TextStyle(color: Colors.grey[500]),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                // stack contains two containers and text
-                Stack(
-                  children: [
-                    //container for completed percentage
-                    Container(
-                      height: 8,
-                      width: 220.w,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(40),
-                        color: grayText,
-                      ),
-                    ),
-                    //container for uncompleted percentage
-                    Container(
-                      height: 8,
-                      width: 140.w,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(40),
-                        color: primaryColor,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                // text of completed percentage
-                Text('60% Complete')
-              ],
-            ),
-          ),
-          //empty spacer that can be used to tune the spacing between widgets in rows
-          Spacer(),
-        ],
-      ),
-    ),
-  );
-
-  Widget buildPendingItem(context, model) => Padding(
-    padding: const EdgeInsets.all(8.0),
-    child: Container(
-      width: MediaQuery.of(context).size.width / 1.2,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(15),
-      ),
-      //column contains stack and column
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          //stack contains image of the course and clip
-          Stack(
-            alignment: AlignmentDirectional.bottomStart,
+          //column contains stack and column
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  //take same decoration of image
-                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                  width: MediaQuery.of(context).size.width / 1,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
+              //stack contains image of the course and clip
+              Stack(
+                alignment: AlignmentDirectional.bottomStart,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      //take same decoration of image
+                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                      width: MediaQuery.of(context).size.width / 1,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Image(
+                        fit: BoxFit.cover,
+                        image: NetworkImage('${wishList.imageUrl}'
+                            //'https://img-c.udemycdn.com/course/240x135/3446572_346e_2.jpg',
+                            ),
+                      ),
+                    ),
                   ),
-                  child: Stack(
-                    alignment: AlignmentDirectional.bottomStart,
-                    children: [
-                      Container(
-                        width: double.infinity,
-                        child: const Image(
-                          fit: BoxFit.cover,
-                          image: NetworkImage(
-                            'https://img-c.udemycdn.com/course/240x135/3446572_346e_2.jpg',
+                ],
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 15.0, vertical: 7),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // name of course
+                    Text(
+                      //'Complete Instagram Marketing Course',
+                      '${wishList.title}',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context).textTheme.bodyText1,
+                    ),
+                    const SizedBox(height: 14),
+                    //row contains name of author,image of author and number of videos
+                    Row(
+                      children: [
+                        // author image
+                        //CircleAvatar:is circle in which we can add background image.
+                        CircleAvatar(
+                          backgroundImage: NetworkImage(
+                            //'https://img-c.udemycdn.com/user/200_H/317821_3cb5_10.jpg',
+                            '${wishList.imageUrl}',
+                          ),
+                          radius: 16,
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        //author name
+                        Text(
+                          //'Created by Kelvin',
+                          '${wishList.author}',
+                        ),
+                        const Spacer(),
+                        // number of videos
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          child: Text(
+                            //'20 Videos',
+                            '${wishList.contents!.length} Modules',
                           ),
                         ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.all(15),
-                        padding: EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: primaryColor),
-                        child: Text(
-                          '20 Vides',
-                          style: TextStyle(color: Colors.white),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    // stack contains two containers and text
+                    Stack(
+                      children: [
+                        //container for completed percentage
+                        Container(
+                          height: 8,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(40),
+                            color: grayText,
+                          ),
                         ),
-                      )
-                    ],
-                  ),
+                        //container for uncompleted percentage
+                        Container(
+                          height: 8,
+                          width: 180,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(40),
+                            color: primaryColor,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text('60% Complete')
+                  ],
                 ),
               ),
             ],
           ),
-          Padding(
-            padding:
-            const EdgeInsets.symmetric(horizontal: 15.0, vertical: 7),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // name of course
-                Text(
-                  'Complete Instagram Marketing Course',
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(fontSize: 16),
+        ),
+      );
+
+  Widget builtTrackContant(context) => Padding(
+        padding: const EdgeInsets.all(5.0),
+        child: Container(
+          padding: EdgeInsets.all(10),
+          width: double.infinity,
+          height: 120,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: Colors.white,
+          ),
+          // row contains image of the track,name of the track,number of courses and completed percentage.
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              //ClipRRect: widget that clips its child using a rounded rectangle
+              // show image of track
+              ClipRRect(
+                borderRadius: BorderRadius.circular(15),
+                child: Image.network(
+                  'https://www.incimages.com/uploaded_files/image/1920x1080/getty_933383882_2000133420009280345_410292.jpg',
+                  width: 100,
+                  height: 100,
+                  fit: BoxFit.cover,
                 ),
-                const SizedBox(height: 14),
-                //row contains name of author,image of author and number of videos
-                Row(
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 5.0),
+                //column contains name of track, number of courses and percentages of completed.
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // author image
-                    //CircleAvatar:is circle in which we can add background image.
-                    const CircleAvatar(
-                      backgroundImage: NetworkImage(
-                          'https://img-c.udemycdn.com/user/200_H/317821_3cb5_10.jpg'),
-                      radius: 16,
+                    Text(
+                      'Full Stack',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context).textTheme.bodyText1,
                     ),
-                    const SizedBox(
-                      width: 10,
+                    SizedBox(
+                      height: 5,
                     ),
-                    //author name
-                    const Text('Created by Kelvin'),
-                    const Spacer(),
-                    // number of videos
-                    MaterialButton(
-                      onPressed: () {},
-                      child: const Text(
-                        'Requested',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      color: primaryColor,
-                    )
+                    Text(
+                      '10 Courses',
+                      style: TextStyle(color: Colors.grey[500]),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    // stack contains two containers and text
+                    Stack(
+                      children: [
+                        //container for completed percentage
+                        Container(
+                          height: 8,
+                          width: 220.w,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(40),
+                            color: grayText,
+                          ),
+                        ),
+                        //container for uncompleted percentage
+                        Container(
+                          height: 8,
+                          width: 140.w,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(40),
+                            color: primaryColor,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    // text of completed percentage
+                    Text('60% Complete')
                   ],
                 ),
-              ],
-            ),
+              ),
+              //empty spacer that can be used to tune the spacing between widgets in rows
+              Spacer(),
+            ],
           ),
-        ],
-      ),
-    ),
-  );
+        ),
+      );
+
+  Widget buildPendingItem(context, model) => Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
+          width: MediaQuery.of(context).size.width / 1.2,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(15),
+          ),
+          //column contains stack and column
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              //stack contains image of the course and clip
+              Stack(
+                alignment: AlignmentDirectional.bottomStart,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      //take same decoration of image
+                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                      width: MediaQuery.of(context).size.width / 1,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Stack(
+                        alignment: AlignmentDirectional.bottomStart,
+                        children: [
+                          Container(
+                            width: double.infinity,
+                            child: const Image(
+                              fit: BoxFit.cover,
+                              image: NetworkImage(
+                                'https://img-c.udemycdn.com/course/240x135/3446572_346e_2.jpg',
+                              ),
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.all(15),
+                            padding: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: primaryColor),
+                            child: Text(
+                              '20 Vides',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 15.0, vertical: 7),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // name of course
+                    Text(
+                      'Complete Instagram Marketing Course',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(fontSize: 16),
+                    ),
+                    const SizedBox(height: 14),
+                    //row contains name of author,image of author and number of videos
+                    Row(
+                      children: [
+                        // author image
+                        //CircleAvatar:is circle in which we can add background image.
+                        const CircleAvatar(
+                          backgroundImage: NetworkImage(
+                              'https://img-c.udemycdn.com/user/200_H/317821_3cb5_10.jpg'),
+                          radius: 16,
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        //author name
+                        const Text('Created by Kelvin'),
+                        const Spacer(),
+                        // number of videos
+                        MaterialButton(
+                          onPressed: () {},
+                          child: const Text(
+                            'Requested',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          color: primaryColor,
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
 
   Widget buildArchived(context) => Padding(
-    padding: const EdgeInsets.all(5.0),
-    child: Container(
-      padding: EdgeInsets.all(10),
-      width: double.infinity,
-      height: 120,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        color: Colors.white,
-      ),
-      // row contains image of the track,name of the track,number of courses and completed percentage.
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          //ClipRRect: widget that clips its child using a rounded rectangle
-          // show image of track
-          ClipRRect(
-            borderRadius: BorderRadius.circular(15),
-            child: Image.network(
-              'https://www.incimages.com/uploaded_files/image/1920x1080/getty_933383882_2000133420009280345_410292.jpg',
-              width: 100,
-              height: 100,
-              fit: BoxFit.cover,
-            ),
+        padding: const EdgeInsets.all(5.0),
+        child: Container(
+          padding: EdgeInsets.all(10),
+          width: double.infinity,
+          height: 120,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: Colors.white,
           ),
-          SizedBox(
-            width: 10,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 5.0),
-            //column contains name of track, number of courses and percentages of completed.
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Full Stack',
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).textTheme.bodyText1,
+          // row contains image of the track,name of the track,number of courses and completed percentage.
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              //ClipRRect: widget that clips its child using a rounded rectangle
+              // show image of track
+              ClipRRect(
+                borderRadius: BorderRadius.circular(15),
+                child: Image.network(
+                  'https://www.incimages.com/uploaded_files/image/1920x1080/getty_933383882_2000133420009280345_410292.jpg',
+                  width: 100,
+                  height: 100,
+                  fit: BoxFit.cover,
                 ),
-                SizedBox(
-                  height: 5,
-                ),
-                Text(
-                  '10 Courses',
-                  style: TextStyle(color: Colors.grey[500]),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                // stack contains two containers and text
-                Stack(
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 5.0),
+                //column contains name of track, number of courses and percentages of completed.
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    //container for completed percentage
-                    Container(
-                      height: 8,
-                      width: 220.w,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(40),
-                        color: grayText,
-                      ),
+                    Text(
+                      'Full Stack',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context).textTheme.bodyText1,
                     ),
-                    //container for uncompleted percentage
-                    Container(
-                      height: 8,
-                      width: 220.w,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(40),
-                        color: primaryColor,
-                      ),
+                    SizedBox(
+                      height: 5,
                     ),
+                    Text(
+                      '10 Courses',
+                      style: TextStyle(color: Colors.grey[500]),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    // stack contains two containers and text
+                    Stack(
+                      children: [
+                        //container for completed percentage
+                        Container(
+                          height: 8,
+                          width: 220.w,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(40),
+                            color: grayText,
+                          ),
+                        ),
+                        //container for uncompleted percentage
+                        Container(
+                          height: 8,
+                          width: 220.w,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(40),
+                            color: primaryColor,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    // text of completed percentage
+                    Text('100% Complete')
                   ],
                 ),
-                SizedBox(
-                  height: 10,
-                ),
-                // text of completed percentage
-                Text('100% Complete')
-              ],
-            ),
+              ),
+              //empty spacer that can be used to tune the spacing between widgets in rows
+              Spacer(),
+            ],
           ),
-          //empty spacer that can be used to tune the spacing between widgets in rows
-          Spacer(),
-        ],
-      ),
-    ),
-  );
+        ),
+      );
 }
-
-

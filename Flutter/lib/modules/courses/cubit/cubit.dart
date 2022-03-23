@@ -1,5 +1,6 @@
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lms/models/course_model.dart';
 import 'package:lms/modules/courses/cubit/states.dart';
 
@@ -19,6 +20,7 @@ class CourseCubit extends Cubit<CourseStates> {
     DioHelper.getData(url: courses).then((value) {
       value.data['courses'].forEach((element) {
         coursesModel.add(CourseModel.fromJson(element));
+        //searchModel.add(CourseModel.fromJson(element));
         print("element$element");
       });
       emit(AllCoursesSuccessState(coursesModel));
@@ -27,6 +29,23 @@ class CourseCubit extends Cubit<CourseStates> {
       print(error.toString());
     });
   }
+  // List<CourseModel?> searchModel= [];
+  // bool searchFlag = false;
+  // void searchCourse(String search){
+  //   searchFlag = true;
+  //   searchModel.clear();
+  //   emit(SearchCourseLoadingState());
+  //   for (var i in coursesModel){
+  //     if(i!.title!.contains(search)||i.description!.contains(search)||i.requiremnets!.contains(search)){
+  //       searchModel.add(i);
+  //     }
+  //   }
+  //   if(searchModel.isEmpty){
+  //     searchModel = coursesModel;
+  //   }
+  //   emit(SearchCourseSuccessState());
+  //   searchFlag = false;
+  // }
 
   CourseModel? courseModel;
 
@@ -52,6 +71,20 @@ class CourseCubit extends Cubit<CourseStates> {
       emit(EnrollCourseErrorState(error));
     });
   }
+
+  void wishlistCourse({required courseId}){
+    emit(WishlistCourseLoadingState());
+    DioHelper.putData(url: wishlist, data: {
+      'courseId':courseId,
+    },token: userToken).then((value) {
+      print(value.data);
+      Fluttertoast.showToast(msg: value.data['message']);
+      emit(WishlistCourseSuccessState());
+    }).catchError((error){
+      emit(WishlistCourseErrorState(error));
+    });
+  }
+
 
   // CourseModel? createCourseModel;
   //

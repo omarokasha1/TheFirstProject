@@ -63,4 +63,24 @@ class EnrollCourseErrorState extends CourseStates {
   EnrollCourseErrorState(this.error);
 }
 
+class WishlistCourseLoadingState extends CourseStates {}
+
+class WishlistCourseSuccessState extends CourseStates {}
+
+class WishlistCourseErrorState extends CourseStates {
+  final String error;
+
+  WishlistCourseErrorState(this.error);
+}
+
+class SearchCourseLoadingState extends CourseStates {}
+
+class SearchCourseSuccessState extends CourseStates {}
+
+class SearchCourseErrorState extends CourseStates {
+  final String error;
+
+  SearchCourseErrorState(this.error);
+}
+
 

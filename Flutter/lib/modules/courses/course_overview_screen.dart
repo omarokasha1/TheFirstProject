@@ -52,7 +52,8 @@ class CoursesOverViewScreen extends StatelessWidget {
                     // object from defaultButton on component.dart file
                     child: defaultButton(onPressed: () {
                       print("asdasdas");
-                      Fluttertoast.showToast(msg: "Added To Your wishlist");
+                      cubit.wishlistCourse(courseId: courseModel.sId);
+
                     }, text: 'Add WatchList', widget: Icon(Icons.favorite_rounded, color: primaryColor,), color: false),
                   ),
                 ),

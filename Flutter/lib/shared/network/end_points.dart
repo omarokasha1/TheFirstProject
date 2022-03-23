@@ -5,7 +5,7 @@ const getProfile = "api/user/get-profile";
 const getUserProfile = "api/user/profile";
 const enrollUserToCourse = 'api/user/enrollCourse';
 const allUsers = "api/user/allUsers";
-const getWishList = "api/user/wishList";
+
           //<<<<<<<<<<<<<<<<<<<<<<<Create>>>>>>>>>>>>>>>>>>>>
 const login = "api/user/login";
 const register = "api/user/register";
@@ -16,7 +16,7 @@ const enrollRequest = 'api/user/enroll-request';
          //<<<<<<<<<<<<<<<<<<<<<<<Update>>>>>>>>>>>>>>>>>>>>
 const enrollFreeCourse = 'api/user/enrollCourse';
 const updateProfile = "api/user/update-profile";
-const wishList = "api/user/wishList";
+const wishlist = "api/user/wishList";
 
 //--------------------------------------Author----------------------------------
 //-----------------------------Get----------------------------
@@ -30,6 +30,7 @@ const getAllTrackPublished = 'api/course/allTracksPublished';
 const getAssignment = "api/course/authorAssignments";
 const getAuthorQuizzes = "api/course/authorQuizzes";
 const getAuthorQuestions = "api/course/authorQuestions";
+const getAuthor = "api/course/author";
 
 //-----------------------------Create----------------------------
 const createAuthorCourse = 'api/course/newCourse';

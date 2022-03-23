@@ -3,10 +3,10 @@
 3    package="dev.fluttercommunity.plus.connectivity" >
 4
 5    <uses-sdk android:minSdkVersion="16" />
-5-->C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\connectivity_plus-2.2.0\android\src\main\AndroidManifest.xml
+5-->E:\flutter\.pub-cache\hosted\pub.dartlang.org\connectivity_plus-2.2.0\android\src\main\AndroidManifest.xml
 6
 7    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-7-->C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\connectivity_plus-2.2.0\android\src\main\AndroidManifest.xml:3:3-76
-7-->C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\connectivity_plus-2.2.0\android\src\main\AndroidManifest.xml:3:20-74
+7-->E:\flutter\.pub-cache\hosted\pub.dartlang.org\connectivity_plus-2.2.0\android\src\main\AndroidManifest.xml:3:3-76
+7-->E:\flutter\.pub-cache\hosted\pub.dartlang.org\connectivity_plus-2.2.0\android\src\main\AndroidManifest.xml:3:20-74
 8
 9</manifest>

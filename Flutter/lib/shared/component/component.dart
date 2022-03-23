@@ -205,14 +205,14 @@ void navigator(context, Widget widget) {
   Navigator.push(context, MaterialPageRoute(builder: (context) => widget));
 }
 
-Widget buildCourseItem(context, bool enroll, CourseModel courseModel) =>
+Widget buildCourseItem(context, bool enroll, CourseModel? courseModel) =>
     InkWell(
       onTap: () {
         navigator(
             context,
             enroll
-                ? CoursesDetailsScreen(courseModel)
-                : CoursesOverViewScreen(courseModel));
+                ? CoursesDetailsScreen(courseModel!)
+                : CoursesOverViewScreen(courseModel!));
       },
       child: Padding(
         padding: EdgeInsets.all(8.0.w),
@@ -249,7 +249,7 @@ Widget buildCourseItem(context, bool enroll, CourseModel courseModel) =>
                             url:
 
                                 //'https://img-c.udemycdn.com/course/240x135/3446572_346e_2.jpg'
-                                '${courseModel.imageUrl}'),
+                                '${courseModel!.imageUrl}'),
                       ),
                     ),
                     Padding(
@@ -630,7 +630,7 @@ Widget emptyPage({required String text,required context})
           Lottie.asset('assets/empty.json',
               width: MediaQuery.of(context).size.width / 1),
           Text(
-            "$text",
+            text,
             style: TextStyle(fontSize: 20),
           ),
         ],

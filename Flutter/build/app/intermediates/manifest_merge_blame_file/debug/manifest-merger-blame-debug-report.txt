@@ -12,99 +12,99 @@
 12         to allow setting breakpoints, to provide hot reload, etc.
 13    -->
 14    <uses-permission android:name="android.permission.INTERNET" />
-14-->D:\Main Project\TheFirstProject\Flutter\android\app\src\main\AndroidManifest.xml:3:5-66
-14-->D:\Main Project\TheFirstProject\Flutter\android\app\src\main\AndroidManifest.xml:3:22-64
+14-->E:\Main Project\TheFirstProject\Flutter\android\app\src\main\AndroidManifest.xml:3:5-66
+14-->E:\Main Project\TheFirstProject\Flutter\android\app\src\main\AndroidManifest.xml:3:22-64
 15    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-15-->[:network_info_plus] D:\Main Project\TheFirstProject\Flutter\build\network_info_plus\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-79
-15-->[:network_info_plus] D:\Main Project\TheFirstProject\Flutter\build\network_info_plus\intermediates\library_manifest\debug\AndroidManifest.xml:7:22-76
+15-->[:network_info_plus] E:\Main Project\TheFirstProject\Flutter\build\network_info_plus\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-79
+15-->[:network_info_plus] E:\Main Project\TheFirstProject\Flutter\build\network_info_plus\intermediates\library_manifest\debug\AndroidManifest.xml:7:22-76
 16    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-16-->[:network_info_plus] D:\Main Project\TheFirstProject\Flutter\build\network_info_plus\intermediates\library_manifest\debug\AndroidManifest.xml:8:5-76
-16-->[:network_info_plus] D:\Main Project\TheFirstProject\Flutter\build\network_info_plus\intermediates\library_manifest\debug\AndroidManifest.xml:8:22-73
+16-->[:network_info_plus] E:\Main Project\TheFirstProject\Flutter\build\network_info_plus\intermediates\library_manifest\debug\AndroidManifest.xml:8:5-76
+16-->[:network_info_plus] E:\Main Project\TheFirstProject\Flutter\build\network_info_plus\intermediates\library_manifest\debug\AndroidManifest.xml:8:22-73
 17    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-17-->[:file_picker] D:\Main Project\TheFirstProject\Flutter\build\file_picker\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-80
-17-->[:file_picker] D:\Main Project\TheFirstProject\Flutter\build\file_picker\intermediates\library_manifest\debug\AndroidManifest.xml:7:22-77
+17-->[:file_picker] E:\Main Project\TheFirstProject\Flutter\build\file_picker\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-80
+17-->[:file_picker] E:\Main Project\TheFirstProject\Flutter\build\file_picker\intermediates\library_manifest\debug\AndroidManifest.xml:7:22-77
 18
 19    <queries>
-19-->[:file_picker] D:\Main Project\TheFirstProject\Flutter\build\file_picker\intermediates\library_manifest\debug\AndroidManifest.xml:9:5-15:15
+19-->[:file_picker] E:\Main Project\TheFirstProject\Flutter\build\file_picker\intermediates\library_manifest\debug\AndroidManifest.xml:9:5-15:15
 20        <intent>
-20-->[:file_picker] D:\Main Project\TheFirstProject\Flutter\build\file_picker\intermediates\library_manifest\debug\AndroidManifest.xml:10:9-14:18
+20-->[:file_picker] E:\Main Project\TheFirstProject\Flutter\build\file_picker\intermediates\library_manifest\debug\AndroidManifest.xml:10:9-14:18
 21            <action android:name="android.intent.action.GET_CONTENT" />
-21-->[:file_picker] D:\Main Project\TheFirstProject\Flutter\build\file_picker\intermediates\library_manifest\debug\AndroidManifest.xml:11:13-72
-21-->[:file_picker] D:\Main Project\TheFirstProject\Flutter\build\file_picker\intermediates\library_manifest\debug\AndroidManifest.xml:11:21-69
+21-->[:file_picker] E:\Main Project\TheFirstProject\Flutter\build\file_picker\intermediates\library_manifest\debug\AndroidManifest.xml:11:13-72
+21-->[:file_picker] E:\Main Project\TheFirstProject\Flutter\build\file_picker\intermediates\library_manifest\debug\AndroidManifest.xml:11:21-69
 22
 23            <data android:mimeType="*/*" />
-23-->[:file_picker] D:\Main Project\TheFirstProject\Flutter\build\file_picker\intermediates\library_manifest\debug\AndroidManifest.xml:13:13-44
-23-->[:file_picker] D:\Main Project\TheFirstProject\Flutter\build\file_picker\intermediates\library_manifest\debug\AndroidManifest.xml:13:19-41
+23-->[:file_picker] E:\Main Project\TheFirstProject\Flutter\build\file_picker\intermediates\library_manifest\debug\AndroidManifest.xml:13:13-44
+23-->[:file_picker] E:\Main Project\TheFirstProject\Flutter\build\file_picker\intermediates\library_manifest\debug\AndroidManifest.xml:13:19-41
 24        </intent>
 25    </queries>
 26
 27    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-27-->[:awesome_notifications] D:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-81
-27-->[:awesome_notifications] D:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:7:22-78
+27-->[:awesome_notifications] E:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-81
+27-->[:awesome_notifications] E:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:7:22-78
 28    <uses-permission android:name="android.permission.VIBRATE" />
-28-->[:awesome_notifications] D:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:8:5-66
-28-->[:awesome_notifications] D:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:8:22-63
+28-->[:awesome_notifications] E:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:8:5-66
+28-->[:awesome_notifications] E:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:8:22-63
 29    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" /> <!-- for android -->
-29-->[:open_file] D:\Main Project\TheFirstProject\Flutter\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:8:5-83
-29-->[:open_file] D:\Main Project\TheFirstProject\Flutter\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:8:22-80
+29-->[:open_file] E:\Main Project\TheFirstProject\Flutter\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:8:5-83
+29-->[:open_file] E:\Main Project\TheFirstProject\Flutter\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:8:22-80
 30    <!-- <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS"/> -->
 31    <!-- <uses-permission android:name="com.android.launcher.permission.WRITE_SETTINGS"/> -->
 32    <!-- <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" /> -->
 33    <!-- <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT" /> -->
 34    <!-- for Samsung -->
 35    <uses-permission android:name="com.sec.android.provider.badge.permission.READ" />
-35-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\karem\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:19:5-86
-35-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\karem\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:19:22-83
+35-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:19:5-86
+35-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:19:22-83
 36    <uses-permission android:name="com.sec.android.provider.badge.permission.WRITE" /> <!-- for htc -->
-36-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\karem\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:20:5-87
-36-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\karem\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:20:22-84
+36-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:20:5-87
+36-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:20:22-84
 37    <uses-permission android:name="com.htc.launcher.permission.READ_SETTINGS" />
-37-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\karem\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:23:5-81
-37-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\karem\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:23:22-78
+37-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:23:5-81
+37-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:23:22-78
 38    <uses-permission android:name="com.htc.launcher.permission.UPDATE_SHORTCUT" /> <!-- for sony -->
-38-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\karem\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:24:5-83
-38-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\karem\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:24:22-80
+38-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:24:5-83
+38-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:24:22-80
 39    <uses-permission android:name="com.sonyericsson.home.permission.BROADCAST_BADGE" />
-39-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\karem\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:27:5-88
-39-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\karem\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:27:22-85
+39-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:27:5-88
+39-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:27:22-85
 40    <uses-permission android:name="com.sonymobile.home.permission.PROVIDER_INSERT_BADGE" /> <!-- for apex -->
-40-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\karem\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:28:5-92
-40-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\karem\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:28:22-89
+40-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:28:5-92
+40-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:28:22-89
 41    <uses-permission android:name="com.anddoes.launcher.permission.UPDATE_COUNT" /> <!-- for solid -->
-41-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\karem\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:31:5-84
-41-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\karem\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:31:22-81
+41-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:31:5-84
+41-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:31:22-81
 42    <uses-permission android:name="com.majeur.launcher.permission.UPDATE_BADGE" /> <!-- for huawei -->
-42-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\karem\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:34:5-83
-42-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\karem\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:34:22-80
+42-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:34:5-83
+42-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:34:22-80
 43    <uses-permission android:name="com.huawei.android.launcher.permission.CHANGE_BADGE" />
-43-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\karem\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:37:5-91
-43-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\karem\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:37:22-88
+43-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:37:5-91
+43-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:37:22-88
 44    <uses-permission android:name="com.huawei.android.launcher.permission.READ_SETTINGS" />
-44-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\karem\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:38:5-92
-44-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\karem\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:38:22-89
+44-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:38:5-92
+44-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:38:22-89
 45    <uses-permission android:name="com.huawei.android.launcher.permission.WRITE_SETTINGS" /> <!-- for ZUK -->
-45-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\karem\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:39:5-93
-45-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\karem\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:39:22-90
+45-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:39:5-93
+45-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:39:22-90
 46    <uses-permission android:name="android.permission.READ_APP_BADGE" /> <!-- for OPPO -->
-46-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\karem\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:42:5-73
-46-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\karem\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:42:22-70
+46-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:42:5-73
+46-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:42:22-70
 47    <uses-permission android:name="com.oppo.launcher.permission.READ_SETTINGS" />
-47-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\karem\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:45:5-82
-47-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\karem\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:45:22-79
+47-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:45:5-82
+47-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:45:22-79
 48    <uses-permission android:name="com.oppo.launcher.permission.WRITE_SETTINGS" /> <!-- for EvMe -->
-48-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\karem\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:46:5-83
-48-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\karem\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:46:22-80
+48-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:46:5-83
+48-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:46:22-80
 49    <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_READ" />
-49-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\karem\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:49:5-88
-49-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\karem\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:49:22-85
+49-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:49:5-88
+49-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:49:22-85
 50    <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_WRITE" />
-50-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\karem\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:50:5-89
-50-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\karem\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:50:22-86
+50-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:50:5-89
+50-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:50:22-86
 51
 52    <application
 53        android:name="android.app.Application"
 54        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-54-->[androidx.core:core:1.7.0] C:\Users\karem\.gradle\caches\transforms-2\files-2.1\b9a960218f5163997c0fdfa3d3078c0e\core-1.7.0\AndroidManifest.xml:24:18-86
+54-->[androidx.core:core:1.7.0] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\b9a960218f5163997c0fdfa3d3078c0e\core-1.7.0\AndroidManifest.xml:24:18-86
 55        android:debuggable="true"
 56        android:icon="@mipmap/ic_launcher"
 57        android:label="lms"
@@ -143,115 +143,115 @@
 90            android:value="2" />
 91
 92        <provider
-92-->[:image_picker] D:\Main Project\TheFirstProject\Flutter\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-16:20
+92-->[:image_picker] E:\Main Project\TheFirstProject\Flutter\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-16:20
 93            android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
-93-->[:image_picker] D:\Main Project\TheFirstProject\Flutter\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-82
+93-->[:image_picker] E:\Main Project\TheFirstProject\Flutter\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-82
 94            android:authorities="com.example.lms.flutter.image_provider"
-94-->[:image_picker] D:\Main Project\TheFirstProject\Flutter\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:10:13-74
+94-->[:image_picker] E:\Main Project\TheFirstProject\Flutter\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:10:13-74
 95            android:exported="false"
-95-->[:image_picker] D:\Main Project\TheFirstProject\Flutter\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:11:13-37
+95-->[:image_picker] E:\Main Project\TheFirstProject\Flutter\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:11:13-37
 96            android:grantUriPermissions="true" >
-96-->[:image_picker] D:\Main Project\TheFirstProject\Flutter\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:12:13-47
+96-->[:image_picker] E:\Main Project\TheFirstProject\Flutter\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:12:13-47
 97            <meta-data
-97-->[:image_picker] D:\Main Project\TheFirstProject\Flutter\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:13:13-15:75
+97-->[:image_picker] E:\Main Project\TheFirstProject\Flutter\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:13:13-15:75
 98                android:name="android.support.FILE_PROVIDER_PATHS"
-98-->[:image_picker] D:\Main Project\TheFirstProject\Flutter\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:14:17-67
+98-->[:image_picker] E:\Main Project\TheFirstProject\Flutter\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:14:17-67
 99                android:resource="@xml/flutter_image_picker_file_paths" />
-99-->[:image_picker] D:\Main Project\TheFirstProject\Flutter\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:15:17-72
+99-->[:image_picker] E:\Main Project\TheFirstProject\Flutter\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:15:17-72
 100        </provider>
 101
 102        <receiver
-102-->[:awesome_notifications] D:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:11:9-13:40
+102-->[:awesome_notifications] E:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:11:9-13:40
 103            android:name="me.carda.awesome_notifications.notifications.broadcastReceivers.DismissedNotificationReceiver"
-103-->[:awesome_notifications] D:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:12:13-121
+103-->[:awesome_notifications] E:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:12:13-121
 104            android:exported="false" />
-104-->[:awesome_notifications] D:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:13:13-37
+104-->[:awesome_notifications] E:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:13:13-37
 105        <receiver
-105-->[:awesome_notifications] D:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:14:9-16:40
+105-->[:awesome_notifications] E:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:14:9-16:40
 106            android:name="me.carda.awesome_notifications.notifications.broadcastReceivers.ScheduledNotificationReceiver"
-106-->[:awesome_notifications] D:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:15:13-121
+106-->[:awesome_notifications] E:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:15:13-121
 107            android:exported="false" />
-107-->[:awesome_notifications] D:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:16:13-37
+107-->[:awesome_notifications] E:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:16:13-37
 108        <receiver
-108-->[:awesome_notifications] D:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:17:9-19:40
+108-->[:awesome_notifications] E:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:17:9-19:40
 109            android:name="me.carda.awesome_notifications.notifications.broadcastReceivers.KeepOnTopActionReceiver"
-109-->[:awesome_notifications] D:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:18:13-115
+109-->[:awesome_notifications] E:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:18:13-115
 110            android:exported="false" />
-110-->[:awesome_notifications] D:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:19:13-37
+110-->[:awesome_notifications] E:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:19:13-37
 111        <receiver
-111-->[:awesome_notifications] D:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:20:9-33:20
+111-->[:awesome_notifications] E:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:20:9-33:20
 112            android:name="me.carda.awesome_notifications.notifications.broadcastReceivers.RefreshSchedulesReceiver"
-112-->[:awesome_notifications] D:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:21:13-116
+112-->[:awesome_notifications] E:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:21:13-116
 113            android:exported="false" >
-113-->[:awesome_notifications] D:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:22:13-37
+113-->[:awesome_notifications] E:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:22:13-37
 114            <intent-filter>
-114-->[:awesome_notifications] D:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:23:13-32:29
+114-->[:awesome_notifications] E:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:23:13-32:29
 115                <category android:name="android.intent.category.DEFAULT" />
-115-->[:awesome_notifications] D:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:24:17-76
-115-->[:awesome_notifications] D:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:24:27-73
+115-->[:awesome_notifications] E:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:24:17-76
+115-->[:awesome_notifications] E:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:24:27-73
 116
 117                <action android:name="android.intent.action.BOOT_COMPLETED" />
-117-->[:awesome_notifications] D:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:26:17-79
-117-->[:awesome_notifications] D:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:26:25-76
+117-->[:awesome_notifications] E:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:26:17-79
+117-->[:awesome_notifications] E:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:26:25-76
 118                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
-118-->[:awesome_notifications] D:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:27:17-86
-118-->[:awesome_notifications] D:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:27:25-83
+118-->[:awesome_notifications] E:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:27:17-86
+118-->[:awesome_notifications] E:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:27:25-83
 119                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
-119-->[:awesome_notifications] D:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:28:17-84
-119-->[:awesome_notifications] D:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:28:25-81
+119-->[:awesome_notifications] E:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:28:17-84
+119-->[:awesome_notifications] E:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:28:25-81
 120                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
-120-->[:awesome_notifications] D:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:29:17-82
-120-->[:awesome_notifications] D:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:29:25-79
+120-->[:awesome_notifications] E:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:29:17-82
+120-->[:awesome_notifications] E:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:29:25-79
 121                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON" />
-121-->[:awesome_notifications] D:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:30:17-82
-121-->[:awesome_notifications] D:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:30:25-79
+121-->[:awesome_notifications] E:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:30:17-82
+121-->[:awesome_notifications] E:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:30:25-79
 122                <action android:name="android.app.action.SCHEDULE_EXACT_ALARM_PERMISSION_STATE_CHANGED" />
-122-->[:awesome_notifications] D:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:31:17-107
-122-->[:awesome_notifications] D:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:31:25-104
+122-->[:awesome_notifications] E:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:31:17-107
+122-->[:awesome_notifications] E:\Main Project\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:31:25-104
 123            </intent-filter>
 124        </receiver>
 125
 126        <provider
-126-->[:open_file] D:\Main Project\TheFirstProject\Flutter\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:12:9-21:20
+126-->[:open_file] E:\Main Project\TheFirstProject\Flutter\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:12:9-21:20
 127            android:name="com.crazecoder.openfile.FileProvider"
-127-->[:open_file] D:\Main Project\TheFirstProject\Flutter\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:13:13-64
+127-->[:open_file] E:\Main Project\TheFirstProject\Flutter\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:13:13-64
 128            android:authorities="com.example.lms.fileProvider.com.crazecoder.openfile"
-128-->[:open_file] D:\Main Project\TheFirstProject\Flutter\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:14:13-88
+128-->[:open_file] E:\Main Project\TheFirstProject\Flutter\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:14:13-88
 129            android:exported="false"
-129-->[:open_file] D:\Main Project\TheFirstProject\Flutter\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:15:13-37
+129-->[:open_file] E:\Main Project\TheFirstProject\Flutter\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:15:13-37
 130            android:grantUriPermissions="true" >
-130-->[:open_file] D:\Main Project\TheFirstProject\Flutter\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:16:13-47
+130-->[:open_file] E:\Main Project\TheFirstProject\Flutter\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:16:13-47
 131            <meta-data
-131-->[:image_picker] D:\Main Project\TheFirstProject\Flutter\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:13:13-15:75
+131-->[:image_picker] E:\Main Project\TheFirstProject\Flutter\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:13:13-15:75
 132                android:name="android.support.FILE_PROVIDER_PATHS"
-132-->[:image_picker] D:\Main Project\TheFirstProject\Flutter\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:14:17-67
+132-->[:image_picker] E:\Main Project\TheFirstProject\Flutter\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:14:17-67
 133                android:resource="@xml/filepaths" />
-133-->[:image_picker] D:\Main Project\TheFirstProject\Flutter\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:15:17-72
+133-->[:image_picker] E:\Main Project\TheFirstProject\Flutter\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:15:17-72
 134        </provider>
 135
 136        <uses-library
-136-->[androidx.window:window:1.0.0-beta04] C:\Users\karem\.gradle\caches\transforms-2\files-2.1\03c633e46d75bfb21f082f0417f55161\jetified-window-1.0.0-beta04\AndroidManifest.xml:25:9-27:40
+136-->[androidx.window:window:1.0.0-beta04] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\03c633e46d75bfb21f082f0417f55161\jetified-window-1.0.0-beta04\AndroidManifest.xml:25:9-27:40
 137            android:name="androidx.window.extensions"
-137-->[androidx.window:window:1.0.0-beta04] C:\Users\karem\.gradle\caches\transforms-2\files-2.1\03c633e46d75bfb21f082f0417f55161\jetified-window-1.0.0-beta04\AndroidManifest.xml:26:13-54
+137-->[androidx.window:window:1.0.0-beta04] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\03c633e46d75bfb21f082f0417f55161\jetified-window-1.0.0-beta04\AndroidManifest.xml:26:13-54
 138            android:required="false" />
-138-->[androidx.window:window:1.0.0-beta04] C:\Users\karem\.gradle\caches\transforms-2\files-2.1\03c633e46d75bfb21f082f0417f55161\jetified-window-1.0.0-beta04\AndroidManifest.xml:27:13-37
+138-->[androidx.window:window:1.0.0-beta04] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\03c633e46d75bfb21f082f0417f55161\jetified-window-1.0.0-beta04\AndroidManifest.xml:27:13-37
 139        <uses-library
-139-->[androidx.window:window:1.0.0-beta04] C:\Users\karem\.gradle\caches\transforms-2\files-2.1\03c633e46d75bfb21f082f0417f55161\jetified-window-1.0.0-beta04\AndroidManifest.xml:28:9-30:40
+139-->[androidx.window:window:1.0.0-beta04] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\03c633e46d75bfb21f082f0417f55161\jetified-window-1.0.0-beta04\AndroidManifest.xml:28:9-30:40
 140            android:name="androidx.window.sidecar"
-140-->[androidx.window:window:1.0.0-beta04] C:\Users\karem\.gradle\caches\transforms-2\files-2.1\03c633e46d75bfb21f082f0417f55161\jetified-window-1.0.0-beta04\AndroidManifest.xml:29:13-51
+140-->[androidx.window:window:1.0.0-beta04] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\03c633e46d75bfb21f082f0417f55161\jetified-window-1.0.0-beta04\AndroidManifest.xml:29:13-51
 141            android:required="false" />
-141-->[androidx.window:window:1.0.0-beta04] C:\Users\karem\.gradle\caches\transforms-2\files-2.1\03c633e46d75bfb21f082f0417f55161\jetified-window-1.0.0-beta04\AndroidManifest.xml:30:13-37
+141-->[androidx.window:window:1.0.0-beta04] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\03c633e46d75bfb21f082f0417f55161\jetified-window-1.0.0-beta04\AndroidManifest.xml:30:13-37
 142
 143        <provider
-143-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\karem\.gradle\caches\transforms-2\files-2.1\5b28ea65995a10537a2c988d76489f89\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:25:9-29:43
+143-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\5b28ea65995a10537a2c988d76489f89\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:25:9-29:43
 144            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
-144-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\karem\.gradle\caches\transforms-2\files-2.1\5b28ea65995a10537a2c988d76489f89\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:26:13-79
+144-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\5b28ea65995a10537a2c988d76489f89\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:26:13-79
 145            android:authorities="com.example.lms.lifecycle-process"
-145-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\karem\.gradle\caches\transforms-2\files-2.1\5b28ea65995a10537a2c988d76489f89\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:27:13-69
+145-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\5b28ea65995a10537a2c988d76489f89\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:27:13-69
 146            android:exported="false"
-146-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\karem\.gradle\caches\transforms-2\files-2.1\5b28ea65995a10537a2c988d76489f89\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:28:13-37
+146-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\5b28ea65995a10537a2c988d76489f89\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:28:13-37
 147            android:multiprocess="true" />
-147-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\karem\.gradle\caches\transforms-2\files-2.1\5b28ea65995a10537a2c988d76489f89\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:29:13-40
+147-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\5b28ea65995a10537a2c988d76489f89\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:29:13-40
 148    </application>
 149
 150</manifest>
