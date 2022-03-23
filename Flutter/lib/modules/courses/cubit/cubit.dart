@@ -23,29 +23,39 @@ class CourseCubit extends Cubit<CourseStates> {
         //searchModel.add(CourseModel.fromJson(element));
         print("element$element");
       });
+      search = coursesModel;
       emit(AllCoursesSuccessState(coursesModel));
     }).catchError((error) {
       emit(AllCoursesErrorState(error.toString()));
       print(error.toString());
     });
   }
-  // List<CourseModel?> searchModel= [];
-  // bool searchFlag = false;
-  // void searchCourse(String search){
-  //   searchFlag = true;
-  //   searchModel.clear();
-  //   emit(SearchCourseLoadingState());
-  //   for (var i in coursesModel){
-  //     if(i!.title!.contains(search)||i.description!.contains(search)||i.requiremnets!.contains(search)){
-  //       searchModel.add(i);
-  //     }
-  //   }
-  //   if(searchModel.isEmpty){
-  //     searchModel = coursesModel;
-  //   }
-  //   emit(SearchCourseSuccessState());
-  //   searchFlag = false;
-  // }
+  List<CourseModel?> search = [];
+  void searchCourse (String word){
+    search = coursesModel;
+    emit(SearchCourseLoadingState());
+    if(word.isEmpty){
+      search = coursesModel;
+    }else{
+      search = coursesModel.where((element) {
+        final titleLower = element!.title!.toLowerCase();
+        final authorLower =
+        element.author!.userName!.toLowerCase();
+        final descriptionLower =
+        element.description!.toLowerCase();
+        final requirementsLower =
+        element.requiremnets!.toLowerCase();
+        final searchLower = word.toLowerCase();
+
+        return titleLower.contains(searchLower) ||
+            authorLower.contains(searchLower) ||
+            descriptionLower.contains(searchLower) ||
+            requirementsLower.contains(searchLower);
+      }).toList();
+    }
+    emit(SearchCourseSuccessState());
+    //return search;
+  }
 
   CourseModel? courseModel;
 

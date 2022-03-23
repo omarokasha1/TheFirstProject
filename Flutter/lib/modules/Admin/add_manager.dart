@@ -65,22 +65,23 @@ class AddManager extends StatelessWidget {
                           ),
                           onChanged: (value) {
                             //call database to get Search
+                            cubit.searchManager(value);
                           },
                         ),
                       ),
                       Expanded(
                         child: ConditionalBuilder(
-                          condition: cubit.authorsManagerRequest != null,
+                          condition: cubit.authorsManagerRequest != null && cubit.search.isNotEmpty,
                           builder: (context) {
                             return ListView.builder(
                               shrinkWrap: true,
                               physics: const BouncingScrollPhysics(),
-                              itemBuilder: (context, index) => buildUserData(context, cubit.authorsManagerRequest!.users![index], cubit),
-                              itemCount: cubit.authorsManagerRequest!.users!.length,
+                              itemBuilder: (context, index) => buildUserData(context, cubit.search[index]!, cubit),
+                              itemCount: cubit.search.length,
                             );
                           },
                           fallback: (context) {
-                            return cubit.authorsManagerRequest != null && cubit.authorsManagerRequest!.users!.length == 0 ? emptyPage(text: 'There\'s no Authors', context: context) : Center(
+                            return cubit.authorsManagerRequest != null && cubit.search.length == 0 ? emptyPage(text: 'There\'s no Authors', context: context) : Center(
                               child: CircularProgressIndicator(),
                             );
                           },

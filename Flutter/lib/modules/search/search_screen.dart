@@ -1,3 +1,4 @@
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -53,7 +54,7 @@ class SearchScreen extends StatelessWidget {
                       ),
                       onChanged: (value) {
                         //call database to get Search
-                        //cubit.searchCourse(value);
+                        cubit.searchCourse(value);
                       },
                     ),
                   ),
@@ -72,32 +73,24 @@ class SearchScreen extends StatelessWidget {
                     height: 10.0,
                   ),
                   Expanded(
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      physics: const BouncingScrollPhysics(),
-                      itemBuilder: (context, index) {
-                        search = cubit.coursesModel.where((element) {
-                          final titleLower = element!.title!.toLowerCase();
-                          final authorLower =
-                          element.author!.userName!.toLowerCase();
-                          final descriptionLower =
-                          element.description!.toLowerCase();
-                          final requirementsLower =
-                          element.requiremnets!.toLowerCase();
-                          final searchLower =
-                          searchController.text.toLowerCase();
-
-                          return titleLower.contains(searchLower) ||
-                              authorLower.contains(searchLower) ||
-                              descriptionLower.contains(searchLower) ||
-                              requirementsLower.contains(searchLower);
-                        }).toList();
-                        return buildCourseItem(
-                            context,
-                            false,
-                            search[index]);
+                    child: ConditionalBuilder(
+                      condition: cubit.search.isNotEmpty,
+                      builder: (context){
+                        return ListView.builder(
+                          shrinkWrap: true,
+                          physics: const BouncingScrollPhysics(),
+                          itemBuilder: (context, index) {
+                            return buildCourseItem(
+                                context,
+                                false,
+                                cubit.search[index]);
+                          },
+                          itemCount: cubit.search.length,
+                        );
                       },
-                      itemCount: search.length,
+                      fallback: (context){
+                        return Center(child: emptyPage(text: 'There\'s No Courses Which your Search', context: context),);
+                      },
                     ),
                   ),
                 ],

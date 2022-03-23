@@ -266,136 +266,136 @@ class ProfileScreen extends StatelessWidget {
                               ),
                             ),
                           ),
-                        if (userView == 'author' && userType == 'author')
-                          TextButton(
-                            onPressed: () {
-                              AwesomeDialog(
-                                context: context,
-                                animType: AnimType.SCALE,
-                                dialogType: DialogType.QUESTION,
-                                body: Center(
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Form(
-                                      key: formKey,
-                                      child: Column(
-                                        children: [
-                                          Text(
-                                            'Are you sure to Switch User ?',
-                                            style: TextStyle(
-                                                fontStyle: FontStyle.italic),
-                                          ),
-                                          SizedBox(
-                                            height: 30,
-                                          ),
-                                          Container(
-                                            height: 40,
-                                            child: defaultButton(
-                                              text: 'Yes, I\'m Agree',
-                                              onPressed: () {
-                                                CacheHelper.put(key: "userView",value: "user");
-                                                userType = CacheHelper.get(key: 'userType');
-                                                navigatorAndRemove(context, SplashScreen());
-                                              },
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            height: 15,
-                                          ),
-                                          Container(
-                                            height: 40,
-                                            child: defaultButton(
-                                              color: false,
-                                              text: 'No',
-                                              onPressed: () {
-                                                Navigator.pop(context);
-                                              },
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                title: 'This is Ignored',
-                                desc: 'This is also Ignored',
-                                //   btnOkOnPress: () {},
-                              ).show();
-                            },
-                            child: Text(
-                              "Switch to User",
-                              style: TextStyle(
-                                fontSize: 16.0,
-                                color: Colors.grey[300],
-                                decoration: TextDecoration.underline,
-                              ),
-                            ),
-                          ),
-                        if (userView == 'user' && userType == 'author')
-                          TextButton(
-                            onPressed: () {
-                              AwesomeDialog(
-                                context: context,
-                                animType: AnimType.SCALE,
-                                dialogType: DialogType.QUESTION,
-                                body: Center(
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Form(
-                                      key: formKey,
-                                      child: Column(
-                                        children: [
-                                          Text(
-                                            'Are you sure to Switch Author ?',
-                                            style: TextStyle(
-                                                fontStyle: FontStyle.italic),
-                                          ),
-                                          SizedBox(
-                                            height: 30,
-                                          ),
-                                          Container(
-                                            height: 40,
-                                            child: defaultButton(
-                                              text: 'Yes, I\'m Agree',
-                                              onPressed: () {
-                                                CacheHelper.put(key: "userView",value: "author");
-                                                userType = CacheHelper.get(key: 'userType');
-                                                navigatorAndRemove(context, SplashScreen());
-                                              },
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            height: 15,
-                                          ),
-                                          Container(
-                                            height: 40,
-                                            child: defaultButton(
-                                              color: false,
-                                              text: 'No',
-                                              onPressed: () {
-                                                Navigator.pop(context);
-                                              },
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                title: 'This is Ignored',
-                                desc: 'This is also Ignored',
-                                //   btnOkOnPress: () {},
-                              ).show();
-                            },
-                            child: Text(
-                              "Switch to Author",
-                              style: TextStyle(
-                                fontSize: 16.0,
-                                color: Colors.grey[300],
-                                decoration: TextDecoration.underline,
-                              ),
-                            ),
-                          ),
+                        // if (userView == 'author' && userType == 'author')
+                        //   TextButton(
+                        //     onPressed: () {
+                        //       AwesomeDialog(
+                        //         context: context,
+                        //         animType: AnimType.SCALE,
+                        //         dialogType: DialogType.QUESTION,
+                        //         body: Center(
+                        //           child: Padding(
+                        //             padding: const EdgeInsets.all(8.0),
+                        //             child: Form(
+                        //               key: formKey,
+                        //               child: Column(
+                        //                 children: [
+                        //                   Text(
+                        //                     'Are you sure to Switch User ?',
+                        //                     style: TextStyle(
+                        //                         fontStyle: FontStyle.italic),
+                        //                   ),
+                        //                   SizedBox(
+                        //                     height: 30,
+                        //                   ),
+                        //                   Container(
+                        //                     height: 40,
+                        //                     child: defaultButton(
+                        //                       text: 'Yes, I\'m Agree',
+                        //                       onPressed: () {
+                        //                         CacheHelper.put(key: "userView",value: "user");
+                        //                         userType = CacheHelper.get(key: 'userType');
+                        //                         navigatorAndRemove(context, SplashScreen());
+                        //                       },
+                        //                     ),
+                        //                   ),
+                        //                   SizedBox(
+                        //                     height: 15,
+                        //                   ),
+                        //                   Container(
+                        //                     height: 40,
+                        //                     child: defaultButton(
+                        //                       color: false,
+                        //                       text: 'No',
+                        //                       onPressed: () {
+                        //                         Navigator.pop(context);
+                        //                       },
+                        //                     ),
+                        //                   ),
+                        //                 ],
+                        //               ),
+                        //             ),
+                        //           ),
+                        //         ),
+                        //         title: 'This is Ignored',
+                        //         desc: 'This is also Ignored',
+                        //         //   btnOkOnPress: () {},
+                        //       ).show();
+                        //     },
+                        //     child: Text(
+                        //       "Switch to User",
+                        //       style: TextStyle(
+                        //         fontSize: 16.0,
+                        //         color: Colors.grey[300],
+                        //         decoration: TextDecoration.underline,
+                        //       ),
+                        //     ),
+                        //   ),
+                        // if (userView == 'user' && userType == 'author')
+                        //   TextButton(
+                        //     onPressed: () {
+                        //       AwesomeDialog(
+                        //         context: context,
+                        //         animType: AnimType.SCALE,
+                        //         dialogType: DialogType.QUESTION,
+                        //         body: Center(
+                        //           child: Padding(
+                        //             padding: const EdgeInsets.all(8.0),
+                        //             child: Form(
+                        //               key: formKey,
+                        //               child: Column(
+                        //                 children: [
+                        //                   Text(
+                        //                     'Are you sure to Switch Author ?',
+                        //                     style: TextStyle(
+                        //                         fontStyle: FontStyle.italic),
+                        //                   ),
+                        //                   SizedBox(
+                        //                     height: 30,
+                        //                   ),
+                        //                   Container(
+                        //                     height: 40,
+                        //                     child: defaultButton(
+                        //                       text: 'Yes, I\'m Agree',
+                        //                       onPressed: () {
+                        //                         CacheHelper.put(key: "userView",value: "author");
+                        //                         userType = CacheHelper.get(key: 'userType');
+                        //                         navigatorAndRemove(context, SplashScreen());
+                        //                       },
+                        //                     ),
+                        //                   ),
+                        //                   SizedBox(
+                        //                     height: 15,
+                        //                   ),
+                        //                   Container(
+                        //                     height: 40,
+                        //                     child: defaultButton(
+                        //                       color: false,
+                        //                       text: 'No',
+                        //                       onPressed: () {
+                        //                         Navigator.pop(context);
+                        //                       },
+                        //                     ),
+                        //                   ),
+                        //                 ],
+                        //               ),
+                        //             ),
+                        //           ),
+                        //         ),
+                        //         title: 'This is Ignored',
+                        //         desc: 'This is also Ignored',
+                        //         //   btnOkOnPress: () {},
+                        //       ).show();
+                        //     },
+                        //     child: Text(
+                        //       "Switch to Author",
+                        //       style: TextStyle(
+                        //         fontSize: 16.0,
+                        //         color: Colors.grey[300],
+                        //         decoration: TextDecoration.underline,
+                        //       ),
+                        //     ),
+                        //   ),
                         SizedBox(
                           height: 15.0,
                         ),

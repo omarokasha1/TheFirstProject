@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,7 @@ import 'package:lms/modules/my_learning/mylearning.dart';
 import 'package:lms/modules/profile/profile_cubit/cubit.dart';
 import 'package:lms/modules/profile/profile_cubit/state.dart';
 import 'package:lms/modules/profile/profile_screen.dart';
+import 'package:lms/modules/splash_screen.dart';
 import 'package:lms/shared/component/zoomDrawer.dart';
 import 'package:lms/shared/network/local/cache_helper.dart';
 import '../../modules/Auther/dashboard/dashboard_auther.dart';
@@ -29,7 +31,7 @@ class MyDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<ProfileCubit,ProfileStates>(
+    return BlocConsumer<ProfileCubit, ProfileStates>(
       listener: (context, state) {},
       builder: (context, state) {
         var cubit = ProfileCubit.get(context);
@@ -37,8 +39,8 @@ class MyDrawer extends StatelessWidget {
           backgroundColor: primaryColor,
           // or drawer
           body: ConditionalBuilder(
-            condition: cubit.model!=null,
-            builder: (context)=>ListView(
+            condition: cubit.model != null,
+            builder: (context) => ListView(
               physics: const BouncingScrollPhysics(),
               children: [
                 Padding(
@@ -85,6 +87,342 @@ class MyDrawer extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
+                        //Switcher to User
+                        if ((userView == 'author' && userType == 'author') ||
+                            (userView == 'manager' && userType == 'manager') ||
+                            (userView == 'author' && userType == 'manager') ||
+                            (userView == 'admin' && userType == 'admin') ||
+                            (userView == 'manager' && userType == 'admin') ||
+                            (userView == 'author' && userType == 'admin'))
+                          ListTile(
+                            title: const Text(
+                              "Switch To User",
+                              style: TextStyle(
+                                color: textColorDrawer,
+                                fontSize: 16,
+                              ),
+                            ),
+                            leading: const Icon(
+                              Icons.swap_horiz,
+                              color: iconColorDrawer,
+                              size: 25,
+                            ),
+                            onTap: () {
+                              AwesomeDialog(
+                                context: context,
+                                animType: AnimType.SCALE,
+                                dialogType: DialogType.QUESTION,
+                                body: Center(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Form(
+                                      key: formKey,
+                                      child: Column(
+                                        children: [
+                                          Text(
+                                            'Are you sure to Switch User ?',
+                                            style: TextStyle(
+                                                fontStyle: FontStyle.italic),
+                                          ),
+                                          SizedBox(
+                                            height: 30,
+                                          ),
+                                          Container(
+                                            height: 40,
+                                            child: defaultButton(
+                                              text: 'Yes, I\'m Agree',
+                                              onPressed: () {
+                                                CacheHelper.put(
+                                                    key: "userView",
+                                                    value: "user");
+                                                userType = CacheHelper.get(
+                                                    key: 'userType');
+                                                navigatorAndRemove(
+                                                    context, SplashScreen());
+                                              },
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 15,
+                                          ),
+                                          Container(
+                                            height: 40,
+                                            child: defaultButton(
+                                              color: false,
+                                              text: 'No',
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                //   btnOkOnPress: () {},
+                              ).show();
+                              ZoomDrawer.of(context)!.toggle();
+                            },
+                          ),
+                        //Switcher to Author
+                        if ((userView == 'user' && userType == 'author')||
+                            (userView == 'manager' && userType == 'manager')||
+                            (userView == 'user' && userType == 'manager')||
+                            (userView == 'admin' && userType == 'admin')||
+                            (userView == 'manager' && userType == 'admin')||
+                            (userView == 'user' && userType == 'admin'))
+                          ListTile(
+                            title: const Text(
+                              "Switch To Author",
+                              style: TextStyle(
+                                color: textColorDrawer,
+                                fontSize: 16,
+                              ),
+                            ),
+                            leading: const Icon(
+                              Icons.swap_horiz,
+                              color: iconColorDrawer,
+                              size: 25,
+                            ),
+                            onTap: () {
+                              AwesomeDialog(
+                                context: context,
+                                animType: AnimType.SCALE,
+                                dialogType: DialogType.QUESTION,
+                                body: Center(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Form(
+                                      key: formKey,
+                                      child: Column(
+                                        children: [
+                                          Text(
+                                            'Are you sure to Switch Author ?',
+                                            style: TextStyle(
+                                                fontStyle: FontStyle.italic),
+                                          ),
+                                          SizedBox(
+                                            height: 30,
+                                          ),
+                                          Container(
+                                            height: 40,
+                                            child: defaultButton(
+                                              text: 'Yes, I\'m Agree',
+                                              onPressed: () {
+                                                CacheHelper.put(
+                                                    key: "userView",
+                                                    value: "author");
+                                                userType = CacheHelper.get(
+                                                    key: 'userType');
+                                                navigatorAndRemove(
+                                                    context, SplashScreen());
+                                              },
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 15,
+                                          ),
+                                          Container(
+                                            height: 40,
+                                            child: defaultButton(
+                                              color: false,
+                                              text: 'No',
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                title: 'This is Ignored',
+                                desc: 'This is also Ignored',
+                                //   btnOkOnPress: () {},
+                              ).show();
+                              ZoomDrawer.of(context)!.toggle();
+                            },
+                          ),
+                        //Switcher to Manager
+                        if ((userView == 'author' && userType == 'manager')||
+                            (userView == 'user' && userType == 'manager')||
+                            (userView == 'admin' && userType == 'admin')||
+                            (userView == 'author' && userType == 'admin')||
+                            (userView == 'user' && userType == 'admin'))
+                          ListTile(
+                            title: const Text(
+                              "Switch To Manager",
+                              style: TextStyle(
+                                color: textColorDrawer,
+                                fontSize: 16,
+                              ),
+                            ),
+                            leading: const Icon(
+                              Icons.swap_horiz,
+                              color: iconColorDrawer,
+                              size: 25,
+                            ),
+                            onTap: () {
+                              AwesomeDialog(
+                                context: context,
+                                animType: AnimType.SCALE,
+                                dialogType: DialogType.QUESTION,
+                                body: Center(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Form(
+                                      key: formKey,
+                                      child: Column(
+                                        children: [
+                                          Text(
+                                            'Are you sure to Switch Manager ?',
+                                            style: TextStyle(
+                                                fontStyle: FontStyle.italic),
+                                          ),
+                                          SizedBox(
+                                            height: 30,
+                                          ),
+                                          Container(
+                                            height: 40,
+                                            child: defaultButton(
+                                              text: 'Yes, I\'m Agree',
+                                              onPressed: () {
+                                                CacheHelper.put(
+                                                    key: "userView",
+                                                    value: "manager");
+                                                userType = CacheHelper.get(
+                                                    key: 'userType');
+                                                navigatorAndRemove(
+                                                    context, SplashScreen());
+                                              },
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 15,
+                                          ),
+                                          Container(
+                                            height: 40,
+                                            child: defaultButton(
+                                              color: false,
+                                              text: 'No',
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                title: 'This is Ignored',
+                                desc: 'This is also Ignored',
+                                //   btnOkOnPress: () {},
+                              ).show();
+                              ZoomDrawer.of(context)!.toggle();
+                            },
+                          ),
+                        //Switcher to Admin
+                        if ((userView == 'manager' && userType == 'admin')||
+                            (userView == 'author' && userType == 'admin')||
+                            (userView == 'user' && userType == 'admin'))
+                          ListTile(
+                            title: const Text(
+                              "Switch To Admin",
+                              style: TextStyle(
+                                color: textColorDrawer,
+                                fontSize: 16,
+                              ),
+                            ),
+                            leading: const Icon(
+                              Icons.swap_horiz,
+                              color: iconColorDrawer,
+                              size: 25,
+                            ),
+                            onTap: () {
+                              AwesomeDialog(
+                                context: context,
+                                animType: AnimType.SCALE,
+                                dialogType: DialogType.QUESTION,
+                                body: Center(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Form(
+                                      key: formKey,
+                                      child: Column(
+                                        children: [
+                                          Text(
+                                            'Are you sure to Switch Admin ?',
+                                            style: TextStyle(
+                                                fontStyle: FontStyle.italic),
+                                          ),
+                                          SizedBox(
+                                            height: 30,
+                                          ),
+                                          Container(
+                                            height: 40,
+                                            child: defaultButton(
+                                              text: 'Yes, I\'m Agree',
+                                              onPressed: () {
+                                                CacheHelper.put(
+                                                    key: "userView",
+                                                    value: "admin");
+                                                userType = CacheHelper.get(
+                                                    key: 'userType');
+                                                navigatorAndRemove(
+                                                    context, SplashScreen());
+                                              },
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 15,
+                                          ),
+                                          Container(
+                                            height: 40,
+                                            child: defaultButton(
+                                              color: false,
+                                              text: 'No',
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                title: 'This is Ignored',
+                                desc: 'This is also Ignored',
+                                //   btnOkOnPress: () {},
+                              ).show();
+                              ZoomDrawer.of(context)!.toggle();
+                            },
+                          ),
+                        ListTile(
+                          title: const Text(
+                            "Home",
+                            style: TextStyle(
+                              color: textColorDrawer,
+                              fontSize: 16,
+                            ),
+                          ),
+                          leading: const Icon(
+                            Icons.home,
+                            color: iconColorDrawer,
+                            size: 25,
+                          ),
+                          onTap: () {
+                            navigator(
+                                context,
+                                ZoomDrawerScreen(
+                                  widget: HomePage(),
+                                ));
+                            ZoomDrawer.of(context)!.toggle();
+                          },
+                        ),
                         if (userView == 'user')
                           ListTile(
                             title: const Text(
@@ -100,11 +438,16 @@ class MyDrawer extends StatelessWidget {
                               size: 25,
                             ),
                             onTap: () {
-                              navigator(context, ZoomDrawerScreen(widget: HomePage(),));
+                              navigator(
+                                  context,
+                                  ZoomDrawerScreen(
+                                    widget: HomePage(),
+                                  ));
                               ZoomDrawer.of(context)!.toggle();
                             },
                           ),
-                        ListTile(
+                        if (userView == 'manager')
+                          ListTile(
                             title: const Text(
                               "Author Requests",
                               style: TextStyle(
@@ -118,11 +461,16 @@ class MyDrawer extends StatelessWidget {
                               size: 25,
                             ),
                             onTap: () {
-                              navigator(context, ZoomDrawerScreen(widget: AuthorRequest(),));
+                              navigator(
+                                  context,
+                                  ZoomDrawerScreen(
+                                    widget: AuthorRequest(),
+                                  ));
                               ZoomDrawer.of(context)!.toggle();
                             },
                           ),
-                        ListTile(
+                        if (userView == 'admin')
+                          ListTile(
                             title: const Text(
                               "Add Manager",
                               style: TextStyle(
@@ -136,7 +484,11 @@ class MyDrawer extends StatelessWidget {
                               size: 25,
                             ),
                             onTap: () {
-                              navigator(context, ZoomDrawerScreen(widget: AddManager(),));
+                              navigator(
+                                  context,
+                                  ZoomDrawerScreen(
+                                    widget: AddManager(),
+                                  ));
                               ZoomDrawer.of(context)!.toggle();
                             },
                           ),
@@ -155,7 +507,11 @@ class MyDrawer extends StatelessWidget {
                               size: 25,
                             ),
                             onTap: () {
-                              navigator(context, ZoomDrawerScreen(widget: DashboardAuthorScreen(),));
+                              navigator(
+                                  context,
+                                  ZoomDrawerScreen(
+                                    widget: DashboardAuthorScreen(),
+                                  ));
                               ZoomDrawer.of(context)!.toggle();
                             },
                           ),
@@ -315,7 +671,9 @@ class MyDrawer extends StatelessWidget {
                 ),
               ],
             ),
-            fallback: (context)=>Center(child: CircularProgressIndicator(),),
+            fallback: (context) => Center(
+              child: CircularProgressIndicator(),
+            ),
           ),
         );
       },

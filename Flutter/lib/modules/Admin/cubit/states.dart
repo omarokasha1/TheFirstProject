@@ -1,4 +1,5 @@
 import 'package:lms/models/author_manger_request.dart';
+import 'package:lms/modules/Admin/cubit/cubit.dart';
 
 abstract class ManagerStates {}
 
@@ -19,4 +20,11 @@ class MakeAuthorManagerSuccessState extends ManagerStates{}
 class MakeAuthorManagerErrorState extends ManagerStates{
   final String error;
   MakeAuthorManagerErrorState(this.error);
+}
+
+class SearchManagerLoadingState extends ManagerStates{}
+class SearchManagerSuccessState extends ManagerStates{}
+class SearchManagerErrorState extends ManagerStates{
+  final String error;
+  SearchManagerErrorState(this.error);
 }

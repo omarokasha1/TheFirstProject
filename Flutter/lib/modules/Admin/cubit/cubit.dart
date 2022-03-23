@@ -18,11 +18,36 @@ class ManagerCubit extends Cubit<ManagerStates> {
         .then((value) {
       print(value.data);
       authorsManagerRequest = AuthorsManagerRequest.fromJson(value.data);
+      search = authorsManagerRequest!.users!;
       emit(GetAllAuthorsSuccessState(authorsManagerRequest!));
     }).catchError((error) {
       emit(GetAllAuthorsErrorState(error.toString()));
       print(error.toString());
     });
+  }
+
+  List<Users?> search = [];
+  void searchManager (String word){
+    search = authorsManagerRequest!.users!;
+    emit(SearchManagerLoadingState());
+    if(word.isEmpty){
+      search = authorsManagerRequest!.users!;
+    }else{
+      search = authorsManagerRequest!.users!.where((element) {
+        final usernameLower = element.userName!.toLowerCase();
+        final emailLower =
+        element.email!.toLowerCase();
+        final phoneLower =
+        element.phone!.toLowerCase();
+        final searchLower = word.toLowerCase();
+
+        return usernameLower.contains(searchLower) ||
+            emailLower.contains(searchLower) ||
+            phoneLower.contains(searchLower);
+      }).toList();
+    }
+    emit(SearchManagerSuccessState());
+    //return search;
   }
 
   void makeAuthorManagerRole({
