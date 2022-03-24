@@ -27,9 +27,9 @@ const managerCtrl={
          console.log(user)
          const id = user.id
          console.log(id)
-         promotRequest = await RequestToManager.find().select('-__v -userEnrolled -trackPublished -coursePublished')
+         promotRequest = await RequestToManager.find().populate('authorPromoted','-__v').select('-__v -userEnrolled -trackPublished -coursePublished')
           if (!promotRequest) {
-            return res.status(200).json({ status: 'false', message: 'Cannot find question' })
+            return res.status(200).json({ status: 'false', message: 'No promoted requests' })
           }
           return res.status(200).json({status : "ok",message:'get Author Promot Success',promotRequests:promotRequest})
         } catch (err) {
@@ -48,7 +48,7 @@ const managerCtrl={
          console.log(user)
          const id = user.id
          console.log(id)
-         enrollRequests = await enrollRequest.find().select(' -__v ')
+         enrollRequests = await enrollRequest.find().populate('courseId userId','-__v').select(' -__v ')
           if (!enrollRequests) {
             return res.status(200).json({ status: 'false', message: 'Cannot find Enroll Request' })
           }
@@ -69,7 +69,7 @@ const managerCtrl={
          console.log(user)
          const id = user.id
          console.log(id)
-         courseRequests = await courseRequest.find().select(' -__v ')
+         courseRequests = await courseRequest.find().populate('authorId courseId','-__v').select(' -__v ')
           if (!courseRequests) {
             return res.status(200).json({ status: 'false', message: 'Cannot find courses Request' })
           }
@@ -90,7 +90,7 @@ const managerCtrl={
          console.log(user)
          const id = user.id
          console.log(id)
-         trackRequests = await trackRequest.find().select(' -__v ')
+         trackRequests = await trackRequest.find().populate('authorId trackId').select(' -__v ')
           if (!trackRequests) {
             return res.status(200).json({ status: 'false', message: 'Cannot find track Requests' })
           }
@@ -101,6 +101,25 @@ const managerCtrl={
         }
       
        },
+
+       getAllUsers:async(req,res)=>{
+        try {
+            const users = await User.find({isAuthor:false,isManager:false,isAdmin:false}).select('-__v')
+            return res.status(200).json({status : "ok",message:"get users",users})
+          } catch (err) {
+          return  res.status(500).json({status:'false', message: err.message })
+          }
+    },
+
+    getAllAuthors:async(req,res)=>{
+      try {
+          const users = await User.find({isAuthor:true,isManager:false,isAdmin:false}).select('-__v')
+          return res.status(200).json({status : "ok",message:"get all authors",users})
+        } catch (err) {
+        return  res.status(500).json({status:'false', message: err.message })
+        }
+  },
+
 
 
     //* _______________________________________CREATE REQUEST______________________________
@@ -137,16 +156,24 @@ const managerCtrl={
         enrollRequested = await enrollRequest.findOne({userId:userId})
        console.log('here' + enrollRequested)
        console.log('here' + enrollRequested.id)
-
-     
-         await User.updateOne(
+        if(enrollRequest){
+          await User.updateOne(
            { _id: userId },
            {
              $set: {myCourses:req.body.courseId}
            }
         )
+         await Course.updateOne({_id:req.body.courseId} , { $push: { learner:ObjectId(userId) } } ,{
+          upsert: true,
+          runValidators: true
+        });
         await enrollRequested.remove()
        res.json({ status: 'ok', message: ' You Enrolled Now ', })
+        }else{
+          res.json({ status: 'false', message: ' Cannot find request ', })
+        }
+     
+         
      } catch (error) {
          console.log(error)
        return res.status(500).json({ status: 'false', message: error.message})

@@ -25,6 +25,10 @@ router.get('/courseRequest',[auth,manager,managerCtrl.getCourseRequest] )
 
 router.get('/trackRequest',[auth,manager,managerCtrl.getTarckRequest] )
 
+router.get('/allUsers',[auth,manager,managerCtrl.getAllUsers] )
+
+router.get('/allAuthors',[auth,manager,managerCtrl.getAllAuthors] )
+
 
 
 //? _________________________________________________UPDATE USER ROLE______________________________

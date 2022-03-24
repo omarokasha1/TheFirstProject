@@ -12,7 +12,7 @@ const UserSchema = new mongoose.Schema({
     password: { type: String, required: true, minlength: 8, maxlength: 1024 },
     phone: { type: String, minlength: 11, maxlength: 11, },
     gender: { type: String, enum: ['male', 'female'] },
-    imageUrl: { type: String, },
+    imageUrl: { type: String,default:'https://res.cloudinary.com/lms07/image/upload/v1645954589/avatar/6214b94ad832b0549b436264_avatar1645954588291.png' },
     cloudinary_id: {  type: String, },
     birthDay: { type: String },
     country: { type: String },
@@ -21,10 +21,10 @@ const UserSchema = new mongoose.Schema({
     isAdmin: { type: Boolean,default:false },
     isAuthor:{type:Boolean,default:false},
     isManager:{type:Boolean,default:false},
-    wishList:[{type:mongoose.Schema.Types.ObjectId,ref:'Course'}],
+    wishList:[{type:mongoose.Schema.Types.ObjectId,ref:'Course'},{type:mongoose.Schema.Types.ObjectId,ref:'Track'}],
         
     myCourses: [ {type:mongoose.Schema.Types.ObjectId,ref:'Course'}],
-        
+    myTracks: [ {type:mongoose.Schema.Types.ObjectId,ref:'Track'}],    
     userEducation:  {
         university: { type: String, },
         major: { type: String, },

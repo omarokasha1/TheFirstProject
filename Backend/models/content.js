@@ -9,6 +9,7 @@ const Content = new mongoose.Schema({
         createdAt:{type:String},
         enumType:{ type: String, enum: ['image', 'video','document']},   
         description:{type:String},
+        isFinished:{type:Boolean,default:false},
         author:{        
                 type:mongoose.Schema.Types.ObjectId ,
                 ref:'User'

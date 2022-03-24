@@ -14,14 +14,31 @@ const managerCtrl = {
 
 
 
-    allUsers:async(req,res)=>{
+    getAllUsers:async(req,res)=>{
         try {
-            const users = await Users.find().select('-__v')
+            const users = await Users.find({isAuthor:false,isManager:false,isAdmin:false}).select('-__v')
             return res.status(200).json({status : "ok",message:"All Users",users})
           } catch (err) {
           return  res.status(500).json({status:'false', message: err.message })
           }
     },
+    getAllManagers:async(req,res)=>{
+      try {
+          const users = await Users.find({isManager:true,isAdmin:false,isAuthor:false}).select('-__v')
+          return res.status(200).json({status : "ok",message:"get all managers",users})
+        } catch (err) {
+        return  res.status(500).json({status:'false', message: err.message })
+        }
+  },
+
+  getAllAuthors:async(req,res)=>{
+    try {
+        const users = await Users.find({isAuthor:true,isManager:false,isAdmin:false}).select('-__v')
+        return res.status(200).json({status : "ok",message:"get all authors",users})
+      } catch (err) {
+      return  res.status(500).json({status:'false', message: err.message })
+      }
+},
 
 
     managerPromot:async(req,res)=>{

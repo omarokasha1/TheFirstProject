@@ -41,8 +41,19 @@ router.get('/profile/:id',userCtrl.getUser)
 // Getting all
 router.get('/allUsers',userCtrl.allUsers )
 
+// Getting users count
+router.get('/usersCount',userCtrl.getUserCount )
+
+// Getting user
+router.get('/getUser/:search',userCtrl.getUser )
+
+
 // Getting enrolled courses
 router.get('/enrollCourses',userCtrl.getEnrollCourse )
+
+// Getting enrolled tracks
+router.get('/enrollTracks',userCtrl.getEnrollTrack )
+
 
 // Getting wishList
 router.get('/wishList',userCtrl.getWishCourses )
@@ -65,6 +76,8 @@ router.post('/promot-request', [auth,userCtrl.authorPromot])
     
 // Creating enroll course request
 router.post('/enroll-request', [auth,userCtrl.enrollCourseRequest])    
+
+router.post('/forgot', userCtrl.forgotPassword)
     
   
 //? ______________________________________UPDATE________________________________________
@@ -73,11 +86,17 @@ router.post('/enroll-request', [auth,userCtrl.enrollCourseRequest])
 router.put('/update-profile',[ upload.single('imageUrl'),auth,userCtrl.updateProfile])
 
 
-// Creating promot request
+// update enroll course
 router.put('/enrollCourse', [auth,userCtrl.enrollCourse])
 
-// Updating wishList request
+// update enroll track
+router.put('/enrollTrack', [auth,userCtrl.enrollTrack])
+
+// Updating wishList course
 router.put('/wishList', [auth,userCtrl.wishListCourse])
+
+// Updating wishList track
+router.put('/wishListTrack', [auth,userCtrl.wishListTrack])
 
 
 module.exports = router

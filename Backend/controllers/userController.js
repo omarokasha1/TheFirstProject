@@ -2,6 +2,7 @@ const express = require('express')
 const bcrypt = require('bcryptjs')
 const Users = require('../models/user');
 const Course = require('../models/course');
+const Track = require('../models/track')
 const {RequestToManager,courseRequest,enrollRequest} = require('../models/manager')
 const jwt = require('jsonwebtoken')
 const { validateUser } = require('../models/user')
@@ -16,7 +17,10 @@ const path = require('path');
 const mongoose =require('mongoose')
 const ObjectId = mongoose.Types.ObjectId; 
 
-
+const { CLIENT_URL } = process.env;
+const sendMail = require("./sendMail");
+const { google } = require("googleapis");
+const { OAuth2 } = google.auth;
 
 const userCtrl = {
 
@@ -168,6 +172,28 @@ console.log(user)
           }
     },
 
+    getUser:async(req,res)=>{
+
+     let search = req.params.search
+      try {
+          const users = await Users.find({userName:search}).select('-__v')
+          return res.status(200).json({status : "ok",message:"get user",users})
+        } catch (err) {
+        return  res.status(500).json({status:'false', message: err.message })
+        }
+  },
+
+  getUserCount:async(req,res)=>{
+
+    let search = req.params.search
+     try {
+         const users = await Users.count()
+         return res.status(200).json({status : "ok",message:"get user",users})
+       } catch (err) {
+       return  res.status(500).json({status:'false', message: err.message })
+       }
+ },
+
     changePassword:async(req,res)=>{
         //! take the password from user and validate it
     const { oldPassword:oldPassword,password: plainTextPassword } = req.body
@@ -234,6 +260,31 @@ console.log(user)
        return res.json({ status: 'false', message: error.message })
     }
     },
+
+    forgotPassword: async (req, res) => {
+    try {
+      /* forgotPassword: if click to forgotPwd btn  - we  send a email  and a req with the token_code(user)
+       */
+      console.log("forgot pass");
+      const { email } = req.body;
+      console.log(email)
+      const existingUser = await Users.findOne({ email });
+      console.log(existingUser)
+
+      if (!existingUser)
+        return res.status(400).json({ msg: "That Email doesn't exist." });
+
+      const access_token = createAccessToken({ id: existingUser._id });
+      const url = `${CLIENT_URL}user/reset/${access_token}`;
+
+      sendMail(email, url, existingUser.name, "Reset your password");
+      res.json({
+        msg: "Re-send the password, please check your email inbox or spam.",
+      }); //seccess
+    } catch (err) {
+      return res.status(500).json({ msg: err.message }); //err
+    }
+  },
 
 
   uploadProfile : async (req, res) => {
@@ -345,28 +396,27 @@ console.log(user)
   }
    },
 
-  enrollCourse :async(req,res)=>{
-    const courseId = req.body.courseId
-     console.log(courseId)
-     const token = req.header('x-auth-token')
+  
 
- try{
-  const user = jwt.verify(token, 'privateKey')
-  console.log(user)
-  const id = user.id
-  console.log(id)
+   getWishCourses :async(req,res)=>{
+   
+    const token = req.header('x-auth-token')
 
-   const course=  await Users.updateOne({_id:id} , { $push: { myCourses:ObjectId(courseId) } } ,{
-    upsert: true,
-    runValidators: true
-  });
-   console.log(course)
-   res.json({ status: 'ok', message: ' Enroll Success', })
- } catch (error) {
-   console.log(error)
-   return res.status(500).json({ status: 'false', message: error.message})
- }
-   },
+try{
+ const user = jwt.verify(token, 'privateKey')
+ console.log(user)
+ const id = user.id
+ console.log(id)
+
+  let course=  await Users.findById(ObjectId(id)).populate('wishList')
+  console.log(course)
+  res.json({ status: 'ok', message: ' Getting WishList Success',wishList:course.wishList })
+} catch (error) {
+  console.log(error)
+  return res.status(500).json({ status: 'false', message: error.message})
+}
+  },
+
 
    getEnrollCourse :async(req,res)=>{
    
@@ -387,7 +437,7 @@ console.log(user)
  }
    },
 
-   getWishCourses :async(req,res)=>{
+   getEnrollTrack :async(req,res)=>{
    
     const token = req.header('x-auth-token')
 
@@ -397,16 +447,73 @@ try{
  const id = user.id
  console.log(id)
 
-  let course=  await Users.findOne({_id:ObjectId(id)}).populate('wishList')
-  console.log(course.wishList)
-  res.json({ status: 'ok', message: ' Getting WishList Success',wishList:course.wishList })
+  let track=  await Users.findOne({_id:ObjectId(id)}).populate('myTracks')
+  console.log(track.myTracks)
+  res.json({ status: 'ok', message: ' Enroll Success',myTracks:track.myTracks })
 } catch (error) {
   console.log(error)
   return res.status(500).json({ status: 'false', message: error.message})
 }
   },
 
+   enrollCourse :async(req,res)=>{
+    const courseId = req.body.courseId
+     console.log(courseId)
+     const token = req.header('x-auth-token')
 
+ try{
+  const user = jwt.verify(token, 'privateKey')
+  console.log(user)
+  const id = user.id
+  console.log(id)
+   
+   const myCourses=  await Users.updateOne({_id:id} , { $push: { myCourses:ObjectId(courseId) } } ,{
+    upsert: true,
+    runValidators: true
+  });
+  const learner=  await Course.updateOne({_id:courseId} , { $push: { learner:ObjectId(id) } } ,{
+    upsert: true,
+    runValidators: true
+  });
+   console.log(myCourses)
+
+   console.log(learner)
+   res.json({ status: 'ok', message: ' Enroll Success', })
+ } catch (error) {
+   console.log(error)
+   return res.status(500).json({ status: 'false', message: error.message})
+ }
+   },
+
+   enrollTrack :async(req,res)=>{
+    const trackId = req.body.trackId
+     console.log(trackId)
+     const token = req.header('x-auth-token')
+
+ try{
+  const user = jwt.verify(token, 'privateKey')
+  console.log(user)
+  const id = user.id
+  console.log(id)
+   
+   const myTracks=  await Users.updateOne({_id:id} , { $push: { myTracks:ObjectId(trackId) } } ,{
+    upsert: true,
+    runValidators: true
+  });
+  const learner=  await Track.updateOne({_id:trackId} , { $push: { learner:ObjectId(id) } } ,{
+    upsert: true,
+    runValidators: true
+  });
+   console.log(myTracks)
+
+   console.log(learner)
+   res.json({ status: 'ok', message: ' Enroll Success', })
+ } catch (error) {
+   console.log(error)
+   return res.status(500).json({ status: 'false', message: error.message})
+ }
+   },
+  
    enrollCourseRequest:async(req,res)=>{
 
     let newRequest
@@ -470,7 +577,45 @@ try{
  }
    },
 
-};
+   wishListTrack :async(req,res)=>{
+    const trackId = req.body.trackId
+     console.log(trackId)
+     const token = req.header('x-auth-token')
+    let wishList
+   try{
+    const user = jwt.verify(token, 'privateKey')
+    console.log(user)
+    const id = user.id
+    console.log(id)
 
+  let check = await Users.findOne({_id:id,wishList:ObjectId(trackId)})
+      console.log("check "+check)
+  if(check){
+  wishList=  await  Users.updateMany({ '_id': id}, { $pull: { wishList: trackId } });
+
+   console.log("remove "+wishList)
+   return res.status(200).json({ status: 'ok', message: ' Removed From WishList Success', })
+    }else{
+  wishList=  await  Users.updateMany({ '_id': id}, { $push: { wishList: trackId } });
+  let addWishToTrack=  await  Track.updateMany({ '_id': trackId}, { $push: { wishers: id } });
+  console.log("add "+wishList)
+  console.log("add "+addWishToTrack)
+
+  return res.status(200).json({ status: 'ok', message: ' Add From WishList Success', })
+    }
+   
+ } catch (error) {
+   console.log(error)
+   return res.status(500).json({ status: 'false', message: error.message})
+ }
+   },
+  
+  
+};
+const createAccessToken = (payload) => {
+  return jwt.sign(payload, `${process.env.ACCESS_TOKEN_SECRET}`, {
+    expiresIn: "15m",
+  });
+};
  
 module.exports = userCtrl;

@@ -4,7 +4,7 @@
   "description": "",
   "main": "web.js",
   "scripts": {
-    "startDev": "nodemon server.js",
+    "devStart": "nodemon server.js",
     "start": "node server.js"
   },
   "engines": {

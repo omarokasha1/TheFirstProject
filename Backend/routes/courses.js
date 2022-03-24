@@ -45,6 +45,24 @@ const upload = multer({
 // get courses middleware
 router.get('/allCourses',authorCtrl.getCourses)
 
+// get course middleware
+router.get('/getCourse/:search',authorCtrl.getCourse)
+
+// get tracks search middleware
+router.get('/getTrack/:search',authorCtrl.getTrackSearch)
+
+// get content search middleware
+router.get('/getContent/:search',authorCtrl.getContentSearch)
+
+// get course count middleware
+router.get('/coursesCount',authorCtrl.getCourseCount)
+
+// get tracks count middleware
+router.get('/tracksCount',authorCtrl.getTrackCount)
+
+// get content count middleware
+router.get('/contentCount',authorCtrl.getContentCount)
+
 // Getting Author Contents
 router.get('/authorContents',authorCtrl.getAuthorContents)
 

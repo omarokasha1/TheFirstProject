@@ -127,7 +127,7 @@ uploadCourse : async (req, res) => {
   getCourses: async(req, res, next) =>{
     let course
     try {
-      course = await Course.find().populate('author','-__v').select('-__v')
+      course = await Course.find().populate('author learner contents wishers','-__v').select('-__v')
       if (!course) {
         return res.status(200).json({ status: 'false', message: 'Cannot find courses' })
       }
@@ -139,6 +139,90 @@ uploadCourse : async (req, res) => {
   
    
     },
+
+    getCourse: async(req, res, next) =>{
+      let search =req.params.search
+      try {
+       let course = await Course.find({title:search}).populate('author learner contents wishers','-__v').select('-__v')
+        if (!course) {
+          return res.status(200).json({ status: 'false', message: 'Cannot find courses' })
+        }
+       
+       return res.status(200).json({status : "ok",message:'get Courses success',courses:course})
+      } catch (err) {
+        return res.status(500).json({status:"false", message: err.message })
+      }    
+      },
+
+      getTrackSearch: async(req, res, next) =>{
+        let search =req.params.search
+        try {
+         let track = await Track.find({title:search}).populate('author courses','-__v').select('-__v')
+          if (!track) {
+            return res.status(200).json({ status: 'false', message: 'Cannot find track' })
+          }
+         
+         return res.status(200).json({status : "ok",message:'get track success',tracks:track})
+        } catch (err) {
+          return res.status(500).json({status:"false", message: err.message })
+        }    
+        },
+
+        getContentSearch: async(req, res, next) =>{
+          let search =req.params.search
+          try {
+           let content = await Content.find({title:search}).populate('author courses','-__v').select('-__v')
+            if (!content) {
+              return res.status(200).json({ status: 'false', message: 'Cannot find contents' })
+            }
+           
+           return res.status(200).json({status : "ok",message:'get contents success',tracks:track})
+          } catch (err) {
+            return res.status(500).json({status:"false", message: err.message })
+          }    
+          },
+
+      getCourseCount: async(req, res, next) =>{
+       
+        try {
+         let course = await Course.find({author:req.body.authorId}).count()
+          if (!course) {
+            return res.status(200).json({ status: 'false', message: 'Cannot find courses' })
+          }
+         
+         return res.status(200).json({status : "ok",message:'get Courses success',courses:course})
+        } catch (err) {
+          return res.status(500).json({status:"false", message: err.message })
+        }    
+        },
+
+        getTrackCount: async(req, res, next) =>{
+       
+          try {
+           let track = await Track.count()
+            if (!track) {
+              return res.status(200).json({ status: 'false', message: 'Cannot find tracks' })
+            }
+           
+           return res.status(200).json({status : "ok",message:'get Tracks success',courses:course})
+          } catch (err) {
+            return res.status(500).json({status:"false", message: err.message })
+          }    
+          },
+
+          getContentCount: async(req, res, next) =>{
+       
+            try {
+             let content = await Content.count()
+              if (!content) {
+                return res.status(200).json({ status: 'false', message: 'Cannot find contents' })
+              }
+             
+             return res.status(200).json({status : "ok",message:'get contents success',courses:course})
+            } catch (err) {
+              return res.status(500).json({status:"false", message: err.message })
+            }    
+            },
 
   getAuthorContents:async(req, res, next)=> {
     let content
@@ -174,7 +258,7 @@ uploadCourse : async (req, res) => {
      console.log(user)
      const id = user.id
      console.log(id)
-      course = await Course.find({author:ObjectId(id),isPublished:false}).populate('contents','-__v').select('-__v')
+      course = await Course.find({author:ObjectId(id),isPublished:false}).populate('author learner contents wishers','-__v').select('-__v')
 
     /*   course = await Course.aggregate([
         {
@@ -192,6 +276,7 @@ uploadCourse : async (req, res) => {
   
   
    },
+
    getAuthorPublishedCourses:async(req, res, next)=> {
     let course
     const token = req.header('x-auth-token')
@@ -201,6 +286,33 @@ uploadCourse : async (req, res) => {
      const id = user.id
      console.log(id)
       course = await Course.find({author:ObjectId(id),isPublished:true}).populate('contents','-__v').select('-__v')
+
+    /*   course = await Course.aggregate([
+        {
+          $match: { author: ObjectId(id) }
+        }
+      ]) */
+      if (!course) {
+        return res.status(200).json({ status: 'false', message: 'Cannot find courses' })
+      }
+      return res.status(200).json({status : "ok",message:'get Author Courses Success',courses:course})
+    } catch (err) {
+      console.log(err)
+      return res.status(500).json({status:'false', message: err.message })
+    }
+  
+  
+   },
+
+   getAllPublishedCourses:async(req, res, next)=> {
+    let course
+    const token = req.header('x-auth-token')
+    try {
+      const user = jwt.verify(token, 'privateKey')
+     console.log(user)
+     const id = user.id
+     console.log(id)
+      course = await Course.find({isPublished:true}).populate('contents','-__v').select('-__v')
 
     /*   course = await Course.aggregate([
         {
