@@ -7,7 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http_parser/http_parser.dart';
-import 'package:lms/models/course_model.dart';
+import 'package:lms/models/new/courses_model.dart';
 import 'package:lms/modules/courses/course_overview_screen.dart';
 import 'package:lms/shared/component/constants.dart';
 import 'package:lottie/lottie.dart';
@@ -205,7 +205,7 @@ void navigator(context, Widget widget) {
   Navigator.push(context, MaterialPageRoute(builder: (context) => widget));
 }
 
-Widget buildCourseItem(context, bool enroll, CourseModel? courseModel) =>
+Widget buildCourseItem(context, bool enroll, Courses? courseModel) =>
     InkWell(
       onTap: () {
         navigator(

@@ -1,14 +1,16 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lms/models/course_model.dart';
+import 'package:lms/models/new/courses_model.dart';
 import 'package:lms/modules/Auther/author_profile/author_profile_screen.dart';
 import 'package:lms/shared/component/MyAppBar.dart';
+import 'package:lms/shared/component/constants.dart';
+import 'package:lms/shared/component/constants.dart';
 import '../../shared/component/component.dart';
 import '../../shared/component/constants.dart';
 
 class CoursesDetailsScreen extends StatefulWidget {
-  final CourseModel courseModel;
+  final Courses courseModel;
   const CoursesDetailsScreen(this.courseModel,{Key? key}) : super(key: key);
 
   @override
@@ -17,7 +19,7 @@ class CoursesDetailsScreen extends StatefulWidget {
 
 class _CoursesDetailsScreenState extends State<CoursesDetailsScreen>
     with TickerProviderStateMixin {
-  final CourseModel courseModel;
+  final Courses courseModel;
   _CoursesDetailsScreenState(this.courseModel);
   late TabController _tabController;
   @required
@@ -76,8 +78,8 @@ class _CoursesDetailsScreenState extends State<CoursesDetailsScreen>
               const SizedBox(
                 height: 20,
               ),
-              const  Text(
-                'Created by',
+              Text(
+                'Created by ${courseModel.author!.userName}',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
               ),
               const SizedBox(
@@ -93,7 +95,6 @@ class _CoursesDetailsScreenState extends State<CoursesDetailsScreen>
                       backgroundImage:
                       CachedNetworkImageProvider(
                         '${courseModel.author!.imageUrl}',
-
                       ),
                       radius: 25,
                     ),
@@ -123,7 +124,7 @@ class _CoursesDetailsScreenState extends State<CoursesDetailsScreen>
                           width: 5,
                         ),
                         Text(
-                          "${courseModel.review}",
+                          "Test Here",
                           style: TextStyle(color: Colors.white),
                         )
                       ],

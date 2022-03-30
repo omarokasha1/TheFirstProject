@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lms/models/course_model.dart';
 import 'package:lms/modules/courses/cubit/cubit.dart';
 import 'package:lms/modules/courses/cubit/states.dart';
 import 'package:lms/shared/component/component.dart';
@@ -17,9 +16,9 @@ class ViewAllCoursesScreen extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(),
             body:ListView.builder(
-                 itemCount: CourseCubit.get(context).coursesModel.length,
+                 itemCount: CourseCubit.get(context).coursesModel!.courses!.length,
                 itemBuilder: (context, index) => buildCourseItem(context, true,
-                  CourseCubit.get(context).coursesModel[index]!))
+                  CourseCubit.get(context).coursesModel!.courses![index]))
 
           // ListView.separated(
           //     shrinkWrap: true,

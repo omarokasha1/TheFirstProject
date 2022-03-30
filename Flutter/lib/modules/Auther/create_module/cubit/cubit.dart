@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lms/models/new/contents_model.dart';
 import 'package:lms/modules/Auther/create_module/cubit/states.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/network/remote/dio-helper.dart';
@@ -25,7 +26,7 @@ class CreateModuleCubit extends Cubit<CreateModuleStates> {
     }
   }
 
-  CreateContent? getModuleModel;
+
   Map<String, String>? content = {};
   List? list = [];
   List? myActivities = [];
@@ -35,24 +36,18 @@ class CreateModuleCubit extends Cubit<CreateModuleStates> {
     print(myActivities);
     emit(ChangeActivityState());
   }
-
+  ContentsModel? getContent;
   void getModulesData() {
-    print(userToken);
-    emit(GetNewModuleLoadingState());
-
+    emit(GetContentsLoadingState());
     DioHelper.getData(url: getModule, token: userToken).then((value) {
-      //print(value.data);
       list = [];
-      getModuleModel = CreateContent.fromJson(value.data);
-
-      getModuleModel!.contents!.forEach((element) {
+      getContent = ContentsModel.fromJson(value.data);
+      getContent!.contents!.forEach((element) {
         list!.add({'display': element.contentTitle, 'value': element.sId});
       });
-      print(
-          "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh${list.toString()}");
-      emit(GetNewModuleSuccssesState(getModuleModel!));
+      emit(GetContentsSuccssesState(getContent!));
     }).catchError((error) {
-      emit(GetNewModuleErrorState(error.toString()));
+      emit(GetContentsErrorState(error.toString()));
       print(error.toString());
     });
   }
@@ -128,7 +123,7 @@ class CreateModuleCubit extends Cubit<CreateModuleStates> {
     required String description,
     required String duration,
     required content,
-    required String moduleType,
+    //required String moduleType,
   }) async {
     emit(UpdateModuleLoadingState());
 
@@ -139,7 +134,7 @@ class CreateModuleCubit extends Cubit<CreateModuleStates> {
         'description': description,
         'contentDuration': duration,
         'imageUrl': content,
-        'contentType': moduleType,
+        //'contentType': moduleType,
       },
       url: updateModule,
       token: userToken,

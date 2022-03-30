@@ -1,5 +1,4 @@
-
-import 'package:lms/models/course_model.dart';
+import 'package:lms/models/new/courses_model.dart';
 
 abstract class CourseStates {}
 
@@ -10,7 +9,7 @@ class ChangeActivityState extends CourseStates {}
 class CourseLoadingState extends CourseStates {}
 
 class CourseSuccessState extends CourseStates {
-  final CourseModel courseModel;
+  final CoursesModel courseModel;
 
   CourseSuccessState(this.courseModel);
 }
@@ -25,7 +24,7 @@ class CourseErrorState extends CourseStates {
 class AllCoursesLoadingState extends CourseStates {}
 
 class AllCoursesSuccessState extends CourseStates {
-  final List<CourseModel?> courseModel;
+  final CoursesModel? courseModel;
 
   AllCoursesSuccessState(this.courseModel);
 }
@@ -41,7 +40,7 @@ class AllCoursesErrorState extends CourseStates {
 class CreateCourseLoadingState extends CourseStates {}
 
 class CreateCourseSuccessState extends CourseStates {
-  final CourseModel courseModel;
+  final CoursesModel courseModel;
 
   CreateCourseSuccessState(this.courseModel);
 }

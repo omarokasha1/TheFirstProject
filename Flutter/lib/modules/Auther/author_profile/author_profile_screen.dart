@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
@@ -10,11 +9,8 @@ import 'package:lms/layout/layout.dart';
 import 'package:lms/modules/Auther/author_profile/author_profile_cubit/cubit.dart';
 import 'package:lms/modules/Auther/author_profile/author_profile_cubit/state.dart';
 import 'package:lms/modules/courses/cubit/cubit.dart';
-import 'package:lms/modules/home/home_screen.dart';
-import 'package:lms/modules/profile/profile_cubit/cubit.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
-import 'package:lms/shared/component/zoomDrawer.dart';
 
 class AuthorProfileScreen extends StatelessWidget {
   final String authorID;
@@ -387,14 +383,14 @@ class AuthorProfileScreen extends StatelessWidget {
                                   SizedBox(
                                     height: 300.h,
                                     child: ConditionalBuilder(
-                                      condition: courseCubit.coursesModel.length != 0 ,
+                                      condition: courseCubit.coursesModel!.courses!.length != 0 ,
                                       builder: (context) => ListView.builder(
                                         physics: const BouncingScrollPhysics(),
                                         scrollDirection: Axis.horizontal,
                                         shrinkWrap: true,
                                         itemBuilder: (context, index) =>
-                                            buildCourseItem(context, false, courseCubit.coursesModel[index]!),
-                                        itemCount: courseCubit.coursesModel.length,
+                                            buildCourseItem(context, false, courseCubit.coursesModel!.courses![index]),
+                                        itemCount: courseCubit.coursesModel!.courses!.length,
                                       ),
                                       fallback: (context) => Center(
                                         child: CircularProgressIndicator(),
@@ -450,15 +446,15 @@ class AuthorProfileScreen extends StatelessWidget {
                                     height: 300.h,
                                     child: ConditionalBuilder(
                                       condition:
-                                      courseCubit.coursesModel.length != 0,
+                                      courseCubit.coursesModel!.courses!.length != 0,
                                       builder: (context) => ListView.builder(
                                         physics: const BouncingScrollPhysics(),
                                         scrollDirection: Axis.horizontal,
                                         shrinkWrap: true,
                                         itemBuilder: (context, index) =>
                                             buildCourseItem(context, false,
-                                                courseCubit.coursesModel[index]!),
-                                        itemCount: courseCubit.coursesModel.length,
+                                                courseCubit.coursesModel!.courses![index]),
+                                        itemCount: courseCubit.coursesModel!.courses!.length,
                                       ),
                                       fallback: (context) => Center(
                                         child: CircularProgressIndicator(),

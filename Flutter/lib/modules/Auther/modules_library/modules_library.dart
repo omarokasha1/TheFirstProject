@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:lms/layout/layout.dart';
 import 'package:lms/models/assignment_model.dart';
+import 'package:lms/models/new/contents_model.dart';
 import 'package:lms/modules/Auther/create_assigment/assignment_screen.dart';
 import 'package:lms/modules/Auther/create_assigment/create_assignment.dart';
 import 'package:lms/modules/Auther/create_assigment/cubit/cubit.dart';
@@ -16,7 +17,6 @@ import 'package:lms/modules/Auther/modules_library/assignment_view.dart';
 import 'package:lms/modules/Auther/modules_library/module_view.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
-import '../../../models/module_model.dart';
 import '../create_module/cubit/cubit.dart';
 import '../create_module/cubit/states.dart';
 
@@ -111,13 +111,14 @@ class ModulesLibraryScreen extends StatelessWidget {
                             child: TabBarView(
                               physics: BouncingScrollPhysics(),
                               children: [
+                                //Contents
                                 ConditionalBuilder(
-                                  condition: cubit.getModuleModel != null,
+                                  condition: cubit.getContent != null,
                                   builder: (context) => ConditionalBuilder(
                                     condition: cubit
-                                        .getModuleModel!.contents!.isNotEmpty,
+                                        .getContent!.contents!.isNotEmpty,
                                     builder: (context) => buildContentTab(
-                                        cubit.getModuleModel!.contents!,
+                                        cubit.getContent!,
                                         cubit),
                                     fallback: (context) => Center(
                                       child: emptyPage(
@@ -129,6 +130,7 @@ class ModulesLibraryScreen extends StatelessWidget {
                                     child: CircularProgressIndicator(),
                                   ),
                                 ),
+                                //Assignments
                                 ConditionalBuilder(
                                   condition:
                                       CreateAssignmentCubit.get(context)
@@ -236,19 +238,19 @@ class ModulesLibraryScreen extends StatelessWidget {
     );
   }
 
-  Widget buildContentTab(List<Contents> content, cubit) {
+  Widget buildContentTab(ContentsModel contents, cubit) {
     return ListView.separated(
       physics: const BouncingScrollPhysics(),
       itemBuilder: (context, index) =>
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15.0,vertical: 5),
-            child: buildModuleItem(context, index, content[index], cubit),
+            child: buildModuleItem(context, index, contents.contents![index], cubit),
           ),
       separatorBuilder: (context, index) => const SizedBox(
         height: 0,
       ),
       shrinkWrap: true,
-      itemCount: content.length,
+      itemCount: contents.contents!.length,
     );
   }
 

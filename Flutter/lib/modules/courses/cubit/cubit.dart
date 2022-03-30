@@ -1,10 +1,8 @@
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:lms/models/course_model.dart';
+import 'package:lms/models/new/courses_model.dart';
 import 'package:lms/modules/courses/cubit/states.dart';
 import 'package:lms/shared/component/component.dart';
-
 import '../../../shared/component/constants.dart';
 import '../../../shared/network/end_points.dart';
 import '../../../shared/network/remote/dio-helper.dart';
@@ -13,39 +11,34 @@ class CourseCubit extends Cubit<CourseStates> {
 
   static CourseCubit get(context) => BlocProvider.of(context);
 
-  List<CourseModel?> coursesModel = [];
+  CoursesModel? coursesModel;
 
   void getAllCoursesData() {
     emit(AllCoursesLoadingState());
-    print("url $courses");
     DioHelper.getData(url: courses).then((value) {
-      value.data['courses'].forEach((element) {
-        coursesModel.add(CourseModel.fromJson(element));
-        //searchModel.add(CourseModel.fromJson(element));
-        print("element$element");
-      });
-      search = coursesModel;
+      coursesModel = CoursesModel.fromJson(value.data);
+      search = coursesModel!.courses!;
       emit(AllCoursesSuccessState(coursesModel));
     }).catchError((error) {
       emit(AllCoursesErrorState(error.toString()));
       print(error.toString());
     });
   }
-  List<CourseModel?> search = [];
+  List<Courses> search = [];
   void searchCourse (String word){
-    search = coursesModel;
+    search = coursesModel!.courses!;
     emit(SearchCourseLoadingState());
     if(word.isEmpty){
-      search = coursesModel;
+      search = coursesModel!.courses!;
     }else{
-      search = coursesModel.where((element) {
-        final titleLower = element!.title!.toLowerCase();
+      search = coursesModel!.courses!.where((element) {
+        final titleLower = element.title!.toLowerCase();
         final authorLower =
         element.author!.userName!.toLowerCase();
         final descriptionLower =
         element.description!.toLowerCase();
         final requirementsLower =
-        element.requiremnets!.toLowerCase();
+        element.requirements!.toLowerCase();
         final searchLower = word.toLowerCase();
 
         return titleLower.contains(searchLower) ||
@@ -58,13 +51,13 @@ class CourseCubit extends Cubit<CourseStates> {
     //return search;
   }
 
-  CourseModel? courseModel;
+  CoursesModel? courseModel;
 
   void getCourseData({required courseId}) {
     emit(CourseLoadingState());
-    DioHelper.getData(url: "$CourseModel/$courseId", token: userToken)
+    DioHelper.getData(url: "$CoursesModel/$courseId", token: userToken)
         .then((value) {
-      courseModel = CourseModel.fromJson(value.data);
+      courseModel = CoursesModel.fromJson(value.data);
       emit(CourseSuccessState(courseModel!));
     }).catchError((error) {
       emit(CourseErrorState(error.toString()));

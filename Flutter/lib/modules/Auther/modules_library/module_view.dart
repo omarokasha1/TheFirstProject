@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:lms/layout/layout.dart';
-import 'package:lms/models/module_model.dart';
+import 'package:lms/models/new/contents_model.dart';
 import 'package:lms/shared/component/constants.dart';
 import 'package:open_file/open_file.dart';
 import 'package:readmore/readmore.dart';

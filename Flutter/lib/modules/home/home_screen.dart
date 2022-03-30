@@ -54,7 +54,7 @@ class HomePage extends StatelessWidget {
                       widget: ScrollConfiguration(
                         behavior: TransparentBehavior(),
                         child: ConditionalBuilder(
-                          condition: courseCubit.coursesModel.length != 0 &&
+                          condition: courseCubit.coursesModel != null &&
                               profileCubit.model != null,
                           builder: (context) => SingleChildScrollView(
                             child: Column(
@@ -178,8 +178,8 @@ class HomePage extends StatelessWidget {
                                           shrinkWrap: true,
                                           itemBuilder: (context, index) =>
                                               buildCourseItem(context, false,
-                                                  courseCubit.coursesModel[index]!),
-                                          itemCount: courseCubit.coursesModel.length,
+                                                  courseCubit.coursesModel!.courses![index]),
+                                          itemCount: courseCubit.coursesModel!.courses!.length,
                                         ),
                                       ),
                                     ],
@@ -258,8 +258,8 @@ class HomePage extends StatelessWidget {
                                           shrinkWrap: true,
                                           itemBuilder: (context, index) =>
                                               buildCourseItem(context, true,
-                                                  courseCubit.coursesModel[index]!),
-                                          itemCount: courseCubit.coursesModel.length,
+                                                  courseCubit.coursesModel!.courses![index]),
+                                          itemCount: courseCubit.coursesModel!.courses!.length,
                                         ),
                                       ),
                                     ],

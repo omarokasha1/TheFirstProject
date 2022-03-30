@@ -10,6 +10,7 @@ import 'package:lms/modules/Auther/create_module/cubit/cubit.dart';
 import 'package:lms/modules/Auther/create_track/cubit/cubit.dart';
 import 'package:lms/modules/Auther/modules_library/module_view.dart';
 import 'package:lms/modules/courses/cubit/cubit.dart';
+import 'package:lms/modules/courses_test.dart';
 import 'package:lms/modules/onboarding/onboarding_screen.dart';
 import 'package:lms/modules/quiz/cubit/cubit.dart';
 import 'package:lms/modules/splash_screen.dart';
@@ -56,10 +57,10 @@ void main() async {
   Widget widget;
   if (onBoarding == null || onBoarding == false) {
     //Here User Enter the Application for the first time so we make widget = OnBoarding.
-    widget = OnBoardingScreen();
+    widget = const OnBoardingScreen();
   } else {
     //Here User Enter the Application Before so we mak widget = SplashScreen other Screens.
-    widget = SplashScreen();
+    widget = const SplashScreen();
   }
   //Here The Initialize of Observer of Bloc that's show me in Run where i'm in the States of Cubit
   BlocOverrides.runZoned(
@@ -127,6 +128,7 @@ class MyApp extends StatelessWidget {
           //Here The Theme.
           themeMode: ThemeMode.light,
           home: widget,
+          //home: const CoursesTestScreen(),
           //home:AddManager()
         ),
       ),

@@ -4,17 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:lms/models/author_courses_published_model.dart';
-import 'package:lms/models/course_model.dart';
-import 'package:lms/models/course_model.dart';
 import 'package:lms/modules/Auther/author_courses/author_courses_cubit/cubit.dart';
 import 'package:lms/modules/Auther/author_courses/author_courses_cubit/status.dart';
 import 'package:lms/modules/Auther/create_module/cubit/cubit.dart';
 import 'package:lms/modules/Auther/create_module/cubit/states.dart';
-import 'package:lms/modules/courses/cubit/cubit.dart';
+import '../../../models/new/courses_model.dart';
 import '../../../shared/component/component.dart';
 import '../../../shared/component/constants.dart';
-import '../../courses/cubit/states.dart';
 
 class UpdateCourseScreen extends StatelessWidget {
   final Courses courseModel;
@@ -48,7 +44,7 @@ class UpdateCourseScreen extends StatelessWidget {
             var moduleCubit = CreateModuleCubit.get(context);
             return Scaffold(
               body: ConditionalBuilder(
-                condition: moduleCubit.getModuleModel != null,
+                condition: moduleCubit.getContent != null,
                 builder: (context){
                   return SingleChildScrollView(
                     child: Column(

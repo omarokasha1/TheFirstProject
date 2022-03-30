@@ -1,6 +1,7 @@
 
 
 import 'package:lms/models/module_model.dart';
+import 'package:lms/models/new/contents_model.dart';
 import 'package:lms/models/response_model.dart';
 
 abstract class CreateModuleStates {}
@@ -21,17 +22,17 @@ class CreateNewModuleErrorState extends CreateModuleStates {
   final String error;
   CreateNewModuleErrorState(this.error);
 }
-class GetNewModuleLoadingState extends CreateModuleStates {}
+class GetContentsLoadingState extends CreateModuleStates {}
 
-class GetNewModuleSuccssesState extends CreateModuleStates {
+class GetContentsSuccssesState extends CreateModuleStates {
 
-  final CreateContent createContentModel;
-  GetNewModuleSuccssesState(this.createContentModel);
+  final ContentsModel createContentModel;
+  GetContentsSuccssesState(this.createContentModel);
 }
 
-class GetNewModuleErrorState extends CreateModuleStates {
+class GetContentsErrorState extends CreateModuleStates {
   final String error;
-  GetNewModuleErrorState(this.error);
+  GetContentsErrorState(this.error);
 }
 class ChangeActivityState extends CreateModuleStates {}
 

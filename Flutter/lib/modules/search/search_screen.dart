@@ -23,8 +23,7 @@ class SearchScreen extends StatelessWidget {
         var cubit = CourseCubit.get(context);
         return Scaffold(
           backgroundColor: Colors.grey[100],
-          appBar: myAppBar(
-            context,
+          appBar: AppBar(
           ),
           body: Layout(
             widget: Padding(

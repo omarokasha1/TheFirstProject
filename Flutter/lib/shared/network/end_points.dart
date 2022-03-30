@@ -6,7 +6,7 @@ const getUserProfile = "api/user/profile";
 const enrollUserToCourse = 'api/user/enrollCourse';
 const allUsers = "api/user/allUsers";
 const getEnrolledCourses = "api/user/enrollCourses";
-
+const courses = "api/course/allCourses";
           //<<<<<<<<<<<<<<<<<<<<<<<Create>>>>>>>>>>>>>>>>>>>>
 const login = "api/user/login";
 const register = "api/user/register";
@@ -21,7 +21,6 @@ const wishlist = "api/user/wishList";
 
 //--------------------------------------Author----------------------------------
 //-----------------------------Get----------------------------
-const courses = "api/course/allCourses";
 const getModule = "api/course/authorContents";
 const getAuthorCourses = 'api/course/authorCourses';
 const getAuthorCoursesPublished = 'api/course/authorCoursesPublished';

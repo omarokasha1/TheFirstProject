@@ -20,11 +20,8 @@ class CreateCourseScreen extends StatelessWidget {
   var picker = ImagePicker();
 
   TextEditingController courseNameController = TextEditingController();
-
   TextEditingController shortDescriptionController = TextEditingController();
-
   TextEditingController requiermentController = TextEditingController();
-
   TextEditingController moduleTypeController = TextEditingController();
 
   var formKey = GlobalKey<FormState>();
@@ -42,7 +39,7 @@ class CreateCourseScreen extends StatelessWidget {
             var moduleCubit = CreateModuleCubit.get(context);
             return Scaffold(
               body: ConditionalBuilder(
-                condition: moduleCubit.getModuleModel != null,
+                condition: moduleCubit.getContent != null,
                 builder: (context){
                   return SingleChildScrollView(
                     child: Column(

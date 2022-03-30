@@ -19,8 +19,8 @@ class TracksScreen extends StatelessWidget {
 
   final List<Widget> myTabs = [
     //Tab(text: 'Drafts'),
-    Tab(text: 'Pendding'),
-    Tab(text: 'Published'),
+    const Tab(text: 'Pendding'),
+    const Tab(text: 'Published'),
   ];
 
   @override
@@ -54,7 +54,7 @@ class TracksScreen extends StatelessWidget {
                                 color: Colors.black,
                               ),
                             ),
-                            Spacer(),
+                            const Spacer(),
                             ElevatedButton(
                               onPressed: () {
                                 //navigator(context, CreateTrackScreen());
@@ -90,7 +90,7 @@ class TracksScreen extends StatelessWidget {
                             ConditionalBuilder(
                               condition: cubit.trackModel!.tracks!.length != 0,
                               builder: (context) {
-                                return publishedCourses(cubit);
+                                return publishedTracks(cubit);
                               },
                               fallback: (context) {
                                 return emptyPage(
@@ -101,7 +101,7 @@ class TracksScreen extends StatelessWidget {
                             ConditionalBuilder(
                               condition: cubit.trackModel!.tracks!.length != 0,
                               builder: (context) {
-                                return penddingCourses(cubit);
+                                return pendingTracks(cubit);
                               },
                               fallback: (context) {
                                 return emptyPage(
@@ -125,8 +125,8 @@ class TracksScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  fallback: (context) => Center(
-                    child: CircularProgressIndicator(),
+                  fallback: (context) => const Center(
+                    child: const CircularProgressIndicator(),
                   ),
                 ),
               ),
@@ -138,21 +138,21 @@ class TracksScreen extends StatelessWidget {
   }
 
   //Published Courses PageView
-  Widget publishedCourses(CreateTrackCubit cubit) {
+  Widget publishedTracks(CreateTrackCubit cubit) {
     return ListView.builder(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         itemBuilder: (context, index) {
-          return BuildAuthorCourse(context, cubit.trackModel!.tracks![index], cubit);
+          return BuildAuthorCourse(context, cubit.trackModel!.tracks![index], cubit,true);
         },
         itemCount: cubit.trackModel!.tracks!.length);
   }
 
   //Pending Courses PageView
-  Widget penddingCourses(CreateTrackCubit cubit) {
+  Widget pendingTracks(CreateTrackCubit cubit) {
     return ListView.builder(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         itemBuilder: (context, index) {
-          return BuildAuthorCourse(context, cubit.trackModel!.tracks![index], cubit);
+          return BuildAuthorCourse(context, cubit.trackModel!.tracks![index], cubit,false);
         },
         itemCount: cubit.trackModel!.tracks!.length);
   }
@@ -168,7 +168,7 @@ class TracksScreen extends StatelessWidget {
   // }
 
   //Course Widget
-  Widget BuildAuthorCourse(context, Tracks modelTrack, CreateTrackCubit cubit) {
+  Widget BuildAuthorCourse(context, Tracks modelTrack, CreateTrackCubit cubit,bool request) {
     return InkWell(
       onTap: (){
         navigator(context, TracksDetailsScreen(modelTrack));
@@ -177,7 +177,7 @@ class TracksScreen extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Container(
           height: 120.h,
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           width: double.infinity,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30.0),
@@ -245,7 +245,7 @@ class TracksScreen extends StatelessWidget {
                             onPressed: () {
                               navigator(context, UpdateTrackScreen(modelTrack));
                             },
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.edit,
                               color: Colors.white,
                               size: 18,
@@ -263,7 +263,7 @@ class TracksScreen extends StatelessWidget {
                               print(modelTrack.sId!);
                               cubit.deleteTrack(trackId: modelTrack.sId!);
                             },
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.delete_rounded,
                               color: Colors.white,
                               size: 18,
@@ -273,12 +273,13 @@ class TracksScreen extends StatelessWidget {
                         SizedBox(
                           width: 10.w,
                         ),
+                        if(request)
                         CircleAvatar(
                           backgroundColor: Colors.greenAccent[400],
                           radius: 18.r,
                           child: IconButton(
                             onPressed: () {},
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.send_rounded,
                               color: Colors.white,
                               size: 18,
