@@ -1,19 +1,13 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lms/layout/layout.dart';
 import 'package:lms/modules/Auther/author_courses/author_courses_cubit/cubit.dart';
 import 'package:lms/modules/Auther/author_courses/author_courses_cubit/status.dart';
-import 'package:lms/modules/home/home_screen.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
 import 'package:readmore/readmore.dart';
 
-import '../../../models/author_courses.dart';
+import '../../../models/new/courses_model.dart';
 
 
 class CourseDetailsScreen extends StatelessWidget {

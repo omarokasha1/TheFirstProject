@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lms/layout/layout.dart';
 import 'package:lms/models/new/courses_model.dart';
 import 'package:lms/modules/Auther/author_courses/author_courses_cubit/cubit.dart';
+import 'package:lms/modules/Auther/author_courses/course_view.dart';
 import 'package:lms/modules/Auther/create_course/create_course_screen.dart';
 import 'package:lms/modules/Auther/create_course/update_course_screen.dart';
 import 'package:lms/shared/component/component.dart';
@@ -35,7 +36,8 @@ class AuthorCourses extends StatelessWidget {
             child: Scaffold(
               appBar: AppBar(),
               body: ConditionalBuilder(
-                condition: cubit.coursesModel != null && cubit.coursesModelPublish != null,
+                condition: cubit.coursesModel != null &&
+                    cubit.coursesModelPublish != null,
                 builder: (context) {
                   return Column(
                     children: [
@@ -84,9 +86,9 @@ class AuthorCourses extends StatelessWidget {
                           children: [
                             //Publish Courses
                             ConditionalBuilder(
-                              condition: cubit.coursesModelPublish!.courses!
-                                      .length !=
-                                  0,
+                              condition:
+                                  cubit.coursesModelPublish!.courses!.length !=
+                                      0,
                               builder: (context) {
                                 return publishedCourses(cubit);
                               },
@@ -98,9 +100,8 @@ class AuthorCourses extends StatelessWidget {
                             ),
                             //Pending Courses
                             ConditionalBuilder(
-                              condition: cubit.coursesModel!.courses!
-                                      .length !=
-                                  0,
+                              condition:
+                                  cubit.coursesModel!.courses!.length != 0,
                               builder: (context) {
                                 return penddingCourses(cubit);
                               },
@@ -137,8 +138,8 @@ class AuthorCourses extends StatelessWidget {
     return ListView.builder(
         physics: BouncingScrollPhysics(),
         itemBuilder: (context, index) {
-          return buildAuthorCourse(
-              context, cubit.coursesModelPublish!.courses![index], cubit, false);
+          return buildAuthorCourse(context,
+              cubit.coursesModelPublish!.courses![index], cubit, false);
         },
         itemCount: cubit.coursesModelPublish!.courses!.length);
   }
@@ -156,95 +157,124 @@ class AuthorCourses extends StatelessWidget {
   }
 
   //Course Widget
-  Widget buildAuthorCourse(context, Courses course, AuthorCoursesCubit cubit, bool request) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10),
-      child: Container(
-        height: 110.h,
-        padding: EdgeInsets.all(8),
-        width: double.infinity,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15.0),
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey[300]!,
-              offset: Offset(0.6, 1.2), //(x,y)
-              blurRadius: 6.0,
-            ),
-          ],
-        ),
-        //   clipBehavior: Clip.antiAliasWithSaveLayer,
-        child: Row(
-          children: [
-            Expanded(
-              flex: 4,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(15),
-                child: imageFromNetwork(
-                  //'https://media.gettyimages.com/vectors/-vector-id960988454',
-                  url: '${course.imageUrl}',
-                  fit: BoxFit.cover,
+  Widget buildAuthorCourse(
+      context, Courses course, AuthorCoursesCubit cubit, bool request) {
+    return InkWell(
+      onTap: (){
+        navigator(context, CourseDetailsScreen(course));
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10),
+        child: Container(
+          height: 110.h,
+          padding: EdgeInsets.all(8),
+          width: double.infinity,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15.0),
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey[300]!,
+                offset: Offset(0.6, 1.2), //(x,y)
+                blurRadius: 6.0,
+              ),
+            ],
+          ),
+          //   clipBehavior: Clip.antiAliasWithSaveLayer,
+          child: Row(
+            children: [
+              Expanded(
+                flex: 4,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(15),
+                  child: imageFromNetwork(
+                    //'https://media.gettyimages.com/vectors/-vector-id960988454',
+                    url: '${course.imageUrl}',
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
-            ),
-            SizedBox(
-              width: 10.w,
-            ),
-            Expanded(
-              flex: 4,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    height:0 ,
-                  ),
-                  Text(
-
-                   '${course.title}',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 15.sp,
-                      fontWeight: FontWeight.bold,
+              SizedBox(
+                width: 10.w,
+              ),
+              Expanded(
+                flex: 4,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: 0,
                     ),
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 4,
-                  ),
-                ],
+                    Text(
+                      '${course.title}',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 15.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 4,
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Expanded(
-              flex: 1,
-              child: PopupMenuButton(
-                icon: Icon(Icons.more_vert,size: 30,color: primaryColor,),
-                itemBuilder: (BuildContext context) => [
-                  PopupMenuItem(
-                    child: TextButton.icon(onPressed: (){
-                      navigator(context, UpdateCourseScreen(course));
-                    }, icon:Icon(Icons.edit) , label: Text('Edit')),
-                    value: 1,
+              Expanded(
+                flex: 1,
+                child: PopupMenuButton(
+                  icon: Icon(
+                    Icons.more_vert,
+                    size: 30,
+                    color: primaryColor,
                   ),
-                  PopupMenuItem(
-                    child: TextButton.icon(onPressed: (){
-                      print(course.sId);
-                      cubit.deleteCourse(courseId: course.sId!);
-                    }, icon:Icon(Icons.delete,color: Colors.red,) , label: Text('Delete',style: TextStyle(color: Colors.red),)),
-                    value: 2,
-
-                  ),
-                  if (request)
-                  PopupMenuItem(
-                    child: TextButton.icon(onPressed: (){
-                      cubit.sendNewCourseRequest(courseId: course.sId);
-                      showToast(message: 'The request has been sent');
-                    }, icon:const Icon(Icons.send,color: Colors.green,) , label: const Text('Request',style: TextStyle(color: Colors.green),)),
-                    value: 3,
-                  ),
-                ],
+                  itemBuilder: (BuildContext context) => [
+                    PopupMenuItem(
+                      child: TextButton.icon(
+                          onPressed: () {
+                            navigator(context, UpdateCourseScreen(course));
+                          },
+                          icon: Icon(Icons.edit),
+                          label: Text('Edit')),
+                      value: 1,
+                    ),
+                    PopupMenuItem(
+                      child: TextButton.icon(
+                          onPressed: () {
+                            print(course.sId);
+                            cubit.deleteCourse(courseId: course.sId!);
+                          },
+                          icon: Icon(
+                            Icons.delete,
+                            color: Colors.red,
+                          ),
+                          label: Text(
+                            'Delete',
+                            style: TextStyle(color: Colors.red),
+                          )),
+                      value: 2,
+                    ),
+                    if (request)
+                      PopupMenuItem(
+                        child: TextButton.icon(
+                            onPressed: () {
+                              cubit.sendNewCourseRequest(courseId: course.sId);
+                              print(course.sId.toString());
+                            },
+                            icon: const Icon(
+                              Icons.send,
+                              color: Colors.green,
+                            ),
+                            label: const Text(
+                              'Request',
+                              style: TextStyle(color: Colors.green),
+                            )),
+                        value: 3,
+                      ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

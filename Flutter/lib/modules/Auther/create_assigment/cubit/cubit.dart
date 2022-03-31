@@ -25,7 +25,7 @@ class CreateAssignmentCubit extends Cubit<CreateAssignmentStates> {
     }
   }
 
-  assignmentsModel? getModuleModel;
+  AssignmentsModel? getModuleModel;
   Map<String, String>? content = {};
   List? list = [];
   List? myActivities = [];
@@ -43,8 +43,7 @@ class CreateAssignmentCubit extends Cubit<CreateAssignmentStates> {
     DioHelper.getData(url: getAssignment, token: userToken).then((value) {
       //print(value.data);
       list = [];
-      getModuleModel = assignmentsModel.fromJson(value.data);
-
+      getModuleModel = AssignmentsModel.fromJson(value.data);
       getModuleModel!.assignments!.forEach((element) {
         list!.add({'display': element.assignmentTitle, 'value': element.sId});
       });
@@ -66,7 +65,7 @@ class CreateAssignmentCubit extends Cubit<CreateAssignmentStates> {
     });
   }
 
-  assignmentsModel? createAssignmentsModel;
+  AssignmentsModel? createAssignmentsModel;
 
   Future<void>createNewAssignment({
     required String moduleName,
@@ -89,7 +88,7 @@ class CreateAssignmentCubit extends Cubit<CreateAssignmentStates> {
     ).then((value) {
       print("value======>$value.data");
 
-      createAssignmentsModel = assignmentsModel.fromJson(value.data);
+      createAssignmentsModel = AssignmentsModel.fromJson(value.data);
         getAssignmentData();
       print("value======>$value.data");
 

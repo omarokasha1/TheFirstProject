@@ -1,110 +1,141 @@
-import 'package:flutter/cupertino.dart';
+import 'package:better_player/better_player.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lms/layout/layout.dart';
 import 'package:lms/models/new/contents_model.dart';
+import 'package:lms/modules/Auther/create_module/cubit/cubit.dart';
+import 'package:lms/modules/Auther/create_module/cubit/states.dart';
 import 'package:lms/shared/component/constants.dart';
 import 'package:open_file/open_file.dart';
 import 'package:readmore/readmore.dart';
 
-class ModuleDetailsScreen extends StatelessWidget {
+class ModuleDetailsScreen extends StatefulWidget {
   final Contents contentModel;
   ModuleDetailsScreen(this.contentModel, {Key? key}) : super(key: key);
+
+  @override
+  State<ModuleDetailsScreen> createState() => _ModuleDetailsScreenState();
+}
+class _ModuleDetailsScreenState extends State<ModuleDetailsScreen> {
+  BetterPlayerController? betterPlayerController;
+
+  @override
+  void initState() {
+    super.initState();
+    BetterPlayerDataSource betterPlayerDataSource = BetterPlayerDataSource(
+        BetterPlayerDataSourceType.network,
+        "${widget.contentModel.imageUrl}");
+    betterPlayerController = BetterPlayerController(
+        BetterPlayerConfiguration(),
+        betterPlayerDataSource: betterPlayerDataSource
+    );
+  }
   dynamic filePath;
 
   @override
   Widget build(BuildContext context) {
-    return Layout(
-      widget: Scaffold(
-        appBar: AppBar(),
-        body: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
+    return BlocConsumer<CreateModuleCubit,CreateModuleStates>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        return Layout(
+          widget: Scaffold(
+            appBar: AppBar(),
+            body: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Icon(Icons.file_copy_outlined),
+                  Row(
+                    children: [
+                      const Icon(Icons.file_copy_outlined),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        widget.contentModel.contentTitle.toString(),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          //color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18),
+                      ),
+                    ],
+                  ),
                   const SizedBox(
-                    width: 10,
+                    height: 20,
                   ),
-                  Text(
-                    contentModel.contentTitle.toString(),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                        //color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              const Text(
-                'Description:',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: ReadMoreText(
-                  //'I’m excited to announce the launch of my updated and improved Prime Sport and Prime Ski Racing online courses for athletes (ski racers), coaches, and parents. These courses offer the same information that I use with the professional and Olympic athletes, coaches, and parents I work with all over the world in a structured, engaging, and affordable format.',
-                  '${contentModel.description}',
-                  trimLines: 3,
-                  colorClickableText: Colors.black,
-                  trimMode: TrimMode.Line,
-                  trimCollapsedText: 'Show more',
-                  trimExpandedText: 'Show less',
-                  moreStyle: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: primaryColor),
-                  lessStyle: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: primaryColor),
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              Row(
-                children:  [
                   const Text(
-                    "Duration : ",
+                    'Description:',
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
                   ),
-                  Text(
-                    "${contentModel.contentDuration}",
-                    style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
-                  )
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: ReadMoreText(
+                      //'I’m excited to announce the launch of my updated and improved Prime Sport and Prime Ski Racing online courses for athletes (ski racers), coaches, and parents. These courses offer the same information that I use with the professional and Olympic athletes, coaches, and parents I work with all over the world in a structured, engaging, and affordable format.',
+                      '${widget.contentModel.description}',
+                      trimLines: 3,
+                      colorClickableText: Colors.black,
+                      trimMode: TrimMode.Line,
+                      trimCollapsedText: 'Show more',
+                      trimExpandedText: 'Show less',
+                      moreStyle: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: primaryColor),
+                      lessStyle: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: primaryColor),
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  Row(
+                    children:  [
+                      const Text(
+                        "Duration : ",
+                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+                      ),
+                      Text(
+                        "${widget.contentModel.contentDuration}",
+                        style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+                      )
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  const Text(
+                    'Content :',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+                  ),
+
+                  AspectRatio(
+                    aspectRatio: 16 / 9,
+                    child: BetterPlayer(
+                      controller: betterPlayerController!,
+                    ),
+                  ),
+                  InkWell(
+                    onTap: (){
+                      OpenFile.open(widget.contentModel.imageUrl.toString(),);
+                    },
+                    child: Text(
+                      widget.contentModel.imageUrl.toString(),
+                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+                    ),
+                  ),
+                  // viewFileDetails(contentModel),
                 ],
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              const Text(
-                'Content :',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
-              ),
 
-              InkWell(
-                onTap: (){
-                  OpenFile.open(contentModel.imageUrl.toString(),);
-                },
-                child: Text(
-                  contentModel.imageUrl.toString(),
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
-                ),
               ),
-             // viewFileDetails(contentModel),
-            ],
-
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

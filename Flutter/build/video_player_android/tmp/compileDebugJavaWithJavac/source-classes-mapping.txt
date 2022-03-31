@@ -21,6 +21,8 @@ io/flutter/plugins/videoplayer/CustomSSLSocketFactory.java
 io/flutter/plugins/videoplayer/Messages.java
  io.flutter.plugins.videoplayer.Messages
  io.flutter.plugins.videoplayer.Messages$1
+ io.flutter.plugins.videoplayer.Messages$AndroidVideoPlayerApi
+ io.flutter.plugins.videoplayer.Messages$AndroidVideoPlayerApiCodec
  io.flutter.plugins.videoplayer.Messages$CreateMessage
  io.flutter.plugins.videoplayer.Messages$CreateMessage$Builder
  io.flutter.plugins.videoplayer.Messages$LoopingMessage
@@ -33,7 +35,5 @@ io/flutter/plugins/videoplayer/Messages.java
  io.flutter.plugins.videoplayer.Messages$PositionMessage$Builder
  io.flutter.plugins.videoplayer.Messages$TextureMessage
  io.flutter.plugins.videoplayer.Messages$TextureMessage$Builder
- io.flutter.plugins.videoplayer.Messages$VideoPlayerApi
- io.flutter.plugins.videoplayer.Messages$VideoPlayerApiCodec
  io.flutter.plugins.videoplayer.Messages$VolumeMessage
  io.flutter.plugins.videoplayer.Messages$VolumeMessage$Builder

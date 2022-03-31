@@ -15,7 +15,7 @@ class CreateNewAssignmentLoadingState extends CreateAssignmentStates {}
 
 class CreateNewAssignmentSuccssesState extends CreateAssignmentStates {
 
-  final assignmentsModel createAssignmentsModel;
+  final AssignmentsModel createAssignmentsModel;
   CreateNewAssignmentSuccssesState(this.createAssignmentsModel);
 }
 
@@ -27,7 +27,7 @@ class GetNewAssignmentLoadingState extends CreateAssignmentStates {}
 
 class GetNewAssignmentSuccssesState extends CreateAssignmentStates {
 
-  final assignmentsModel createContentModel;
+  final AssignmentsModel createContentModel;
   GetNewAssignmentSuccssesState(this.createContentModel);
 }
 

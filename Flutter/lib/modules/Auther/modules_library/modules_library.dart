@@ -6,7 +6,6 @@ import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:lms/layout/layout.dart';
 import 'package:lms/models/assignment_model.dart';
 import 'package:lms/models/new/contents_model.dart';
-import 'package:lms/modules/Auther/create_assigment/assignment_screen.dart';
 import 'package:lms/modules/Auther/create_assigment/create_assignment.dart';
 import 'package:lms/modules/Auther/create_assigment/cubit/cubit.dart';
 import 'package:lms/modules/Auther/create_assigment/cubit/states.dart';
@@ -49,13 +48,13 @@ class ModulesLibraryScreen extends StatelessWidget {
                       icon: Icons.add,
                       children: [
                         SpeedDialChild(
-                            child: Icon(Icons.post_add),
+                            child: const Icon(Icons.post_add),
                             label: 'Add Assignment',
                             onTap: () {
                               navigator(context, CreateAssignmentScreen());
                             }),
                         SpeedDialChild(
-                            child: Icon(Icons.play_circle_fill),
+                            child: const Icon(Icons.play_circle_fill),
                             label: 'Add Modules',
                             onTap: () {
                               navigator(context, CreateModuleScreen());
@@ -78,7 +77,7 @@ class ModulesLibraryScreen extends StatelessWidget {
                                     color: Colors.black,
                                   ),
                                 ),
-                                Spacer(),
+                                const Spacer(),
                                 ElevatedButton(
                                   onPressed: () {
                                     navigator(context, CreateModuleScreen());
@@ -104,12 +103,12 @@ class ModulesLibraryScreen extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           Expanded(
                             child: TabBarView(
-                              physics: BouncingScrollPhysics(),
+                              physics: const BouncingScrollPhysics(),
                               children: [
                                 //Contents
                                 ConditionalBuilder(
@@ -126,22 +125,20 @@ class ModulesLibraryScreen extends StatelessWidget {
                                           text: "no Modules Yet"),
                                     ),
                                   ),
-                                  fallback: (context) => Center(
-                                    child: CircularProgressIndicator(),
+                                  fallback: (context) => const Center(
+                                    child:  CircularProgressIndicator(),
                                   ),
                                 ),
                                 //Assignments
                                 ConditionalBuilder(
                                   condition:
-                                      CreateAssignmentCubit.get(context)
-                                              .getModuleModel !=
-                                          null,
+                                      CreateAssignmentCubit.get(context).getModuleModel != null,
                                   builder: (context) => buildAssignmentTab(
                                       CreateAssignmentCubit.get(context)
                                           .getModuleModel!
                                           .assignments!,
                                       CreateAssignmentCubit.get(context)),
-                                  fallback: (context) => Center(
+                                  fallback: (context) => const Center(
                                     child: CircularProgressIndicator(),
                                   ),
                                 ),
@@ -177,12 +174,19 @@ class ModulesLibraryScreen extends StatelessWidget {
         height: 90.0,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15.0),
-          color: Colors.grey[100],
+          boxShadow:  [
+            BoxShadow(
+              color: Colors.grey[300]!,
+              offset: const Offset(0.6, 1.2), //(x,y)
+              blurRadius: 6.0,
+            ),
+          ],
+          color: Colors.white,
         ),
         clipBehavior: Clip.antiAliasWithSaveLayer,
         child: Row(
           children: [
-            SizedBox(
+            const SizedBox(
               width: 20.0,
             ),
             Text(
@@ -195,9 +199,11 @@ class ModulesLibraryScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 20.0,
             ),
+            const Spacer(),
+
             CircleAvatar(
               backgroundColor: primaryColor,
               radius: 18.r,
@@ -205,7 +211,7 @@ class ModulesLibraryScreen extends StatelessWidget {
                 onPressed: () {
                   navigator(context, UpdateModule(model));
                 },
-                icon: Icon(
+                icon: const Icon(
                   Icons.edit,
                   color: Colors.white,
                   size: 18,
@@ -222,7 +228,7 @@ class ModulesLibraryScreen extends StatelessWidget {
                 onPressed: () {
                   cubit.deleteModule(moduleId: model.sId!);
                 },
-                icon: Icon(
+                icon: const Icon(
                   Icons.delete_rounded,
                   color: Colors.white,
                   size: 18,
@@ -272,7 +278,7 @@ class ModulesLibraryScreen extends StatelessWidget {
           boxShadow:  [
             BoxShadow(
               color: Colors.grey[300]!,
-              offset: Offset(0.6, 1.2), //(x,y)
+              offset: const Offset(0.6, 1.2), //(x,y)
               blurRadius: 6.0,
             ),
           ],
@@ -317,7 +323,7 @@ class ModulesLibraryScreen extends StatelessWidget {
                 ],
               ),
             ),
-            Spacer(),
+            const Spacer(),
           // PopupMenuButton(
           //   elevation: 1,
           //   itemBuilder: (BuildContext context) => [
@@ -350,7 +356,7 @@ class ModulesLibraryScreen extends StatelessWidget {
                 onPressed: () {
                   navigator(context, UpdateAssignment(model));
                 },
-                icon: Icon(
+                icon: const Icon(
                   Icons.edit,
                   color: Colors.white,
                   size: 18,
@@ -367,7 +373,7 @@ class ModulesLibraryScreen extends StatelessWidget {
                 onPressed: () {
                   cubit.deleteAssignment(moduleId: model.sId!);
                 },
-                icon: Icon(
+                icon: const Icon(
                   Icons.delete_rounded,
                   color: Colors.white,
                   size: 18,

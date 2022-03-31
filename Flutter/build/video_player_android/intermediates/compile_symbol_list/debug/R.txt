@@ -16,6 +16,7 @@ int attr fontProviderSystemFontFamily 0x0
 int attr fontStyle 0x0
 int attr fontVariationSettings 0x0
 int attr fontWeight 0x0
+int attr lStar 0x0
 int attr nestedScrollViewStyle 0x0
 int attr placeholderActivityName 0x0
 int attr primaryActivityName 0x0
@@ -116,6 +117,10 @@ int id icon 0x0
 int id icon_group 0x0
 int id info 0x0
 int id italic 0x0
+int id item1 0x0
+int id item2 0x0
+int id item3 0x0
+int id item4 0x0
 int id line1 0x0
 int id line3 0x0
 int id locale 0x0
@@ -144,6 +149,7 @@ int id text 0x0
 int id text2 0x0
 int id time 0x0
 int id title 0x0
+int id view_tree_lifecycle_owner 0x0
 int integer status_bar_notification_info_maxnum 0x0
 int layout custom_dialog 0x0
 int layout notification_action 0x0
@@ -152,6 +158,17 @@ int layout notification_template_custom_big 0x0
 int layout notification_template_icon_group 0x0
 int layout notification_template_part_chronometer 0x0
 int layout notification_template_part_time 0x0
+int menu example_menu 0x0
+int menu example_menu2 0x0
+int string exo_download_completed 0x0
+int string exo_download_description 0x0
+int string exo_download_downloading 0x0
+int string exo_download_failed 0x0
+int string exo_download_notification_channel_name 0x0
+int string exo_download_paused 0x0
+int string exo_download_paused_for_network 0x0
+int string exo_download_paused_for_wifi 0x0
+int string exo_download_removing 0x0
 int string status_bar_notification_info_overflow 0x0
 int style TextAppearance_Compat_Notification 0x0
 int style TextAppearance_Compat_Notification_Info 0x0
@@ -168,10 +185,12 @@ int styleable ActivityRule_alwaysExpand 0
 int[] styleable Capability { 0x0, 0x0 }
 int styleable Capability_queryPatterns 0
 int styleable Capability_shortcutMatchRequired 1
-int[] styleable ColorStateListItem { 0x0, 0x101031f, 0x10101a5 }
+int[] styleable ColorStateListItem { 0x0, 0x101031f, 0x10101a5, 0x1010647, 0x0 }
 int styleable ColorStateListItem_alpha 0
 int styleable ColorStateListItem_android_alpha 1
 int styleable ColorStateListItem_android_color 2
+int styleable ColorStateListItem_android_lStar 3
+int styleable ColorStateListItem_lStar 4
 int[] styleable FontFamily { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
 int styleable FontFamily_fontProviderAuthority 0
 int styleable FontFamily_fontProviderCerts 1

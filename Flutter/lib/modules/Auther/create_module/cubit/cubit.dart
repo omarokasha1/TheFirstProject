@@ -6,7 +6,7 @@ import 'package:lms/models/new/contents_model.dart';
 import 'package:lms/modules/Auther/create_module/cubit/states.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/network/remote/dio-helper.dart';
-
+import 'package:better_player/better_player.dart';
 import '../../../../models/module_model.dart';
 import '../../../../models/response_model.dart';
 import '../../../../shared/component/constants.dart';
@@ -24,6 +24,19 @@ class CreateModuleCubit extends Cubit<CreateModuleStates> {
     if (name.length > 2) {
       hasModuleName = true;
     }
+  }
+
+
+  BetterPlayerController? betterPlayerController;
+  
+
+  void initStateVideo() {
+    BetterPlayerDataSource betterPlayerDataSource = BetterPlayerDataSource(
+        BetterPlayerDataSourceType.network,
+        "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4");
+        betterPlayerController = BetterPlayerController(
+        const BetterPlayerConfiguration(),
+        betterPlayerDataSource: betterPlayerDataSource);
   }
 
 
