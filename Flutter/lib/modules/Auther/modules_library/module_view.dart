@@ -118,6 +118,7 @@ class _ModuleDetailsScreenState extends State<ModuleDetailsScreen> {
                     child: BetterPlayer(
                       controller: betterPlayerController!,
                     ),
+
                   ),
                   InkWell(
                     onTap: (){

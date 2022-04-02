@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/odc5/MainProject/TheFirstProject/Flutter/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-ru/values-ru.xml",
+            "outputFile": "G:\\TheFirstProject\\Flutter\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ru\\values-ru.xml",
             "map": [
                 {
-                    "source": "/home/odc5/.gradle/caches/transforms-2/files-2.1/b9a960218f5163997c0fdfa3d3078c0e/core-1.7.0/res/values-ru/values-ru.xml",
+                    "source": "C:\\Users\\youss\\.gradle\\caches\\transforms-2\\files-2.1\\b9a960218f5163997c0fdfa3d3078c0e\\core-1.7.0\\res\\values-ru\\values-ru.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -21,24 +21,7 @@
                     }
                 },
                 {
-                    "source": "/home/odc5/.gradle/caches/transforms-2/files-2.1/dadf59073c0fdcbec26349186df5ad0f/jetified-extension-mediasession-2.15.1/res/values-ru/values-ru.xml",
-                    "from": {
-                        "startLines": "2,3,4",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "55,137,218",
-                        "endColumns": "81,80,82",
-                        "endOffsets": "132,213,296"
-                    },
-                    "to": {
-                        "startLines": "46,47,48",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "3203,3285,3366",
-                        "endColumns": "81,80,82",
-                        "endOffsets": "3280,3361,3444"
-                    }
-                },
-                {
-                    "source": "/home/odc5/.gradle/caches/transforms-2/files-2.1/354bd041aac4c1746a18bccfbcb49baa/jetified-exoplayer-ui-2.15.1/res/values-ru/values-ru.xml",
+                    "source": "C:\\Users\\youss\\.gradle\\caches\\transforms-2\\files-2.1\\8e0c139ac225526e2e5efb315f1c04fc\\jetified-exoplayer-ui-2.15.1\\res\\values-ru\\values-ru.xml",
                     "from": {
                         "startLines": "2,8,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -54,6 +37,23 @@
                         "endLines": "7,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65",
                         "endColumns": "12,12,82,82,82,89,99,70,72,98,100,72,71,64,74,77,77,76,78,76,94,71,72,88,86,68,64,71,60,64,65,77,76,52,61,47,60,66,67,65,81,57,56,65,64,65,51,60,84,84,62",
                         "endOffsets": "389,719,802,885,968,1058,1158,1229,1302,1401,1502,1575,1647,1712,1787,1865,1943,2020,2099,2176,2271,2343,2416,2505,2592,2661,2726,2798,2859,2924,2990,3068,3145,3198,3506,3554,3615,3682,3750,3816,3898,3956,4013,4079,4144,4210,4262,4323,4408,4493,4556"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\youss\\.gradle\\caches\\transforms-2\\files-2.1\\dadf59073c0fdcbec26349186df5ad0f\\jetified-extension-mediasession-2.15.1\\res\\values-ru\\values-ru.xml",
+                    "from": {
+                        "startLines": "2,3,4",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,137,218",
+                        "endColumns": "81,80,82",
+                        "endOffsets": "132,213,296"
+                    },
+                    "to": {
+                        "startLines": "46,47,48",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "3203,3285,3366",
+                        "endColumns": "81,80,82",
+                        "endOffsets": "3280,3361,3444"
                     }
                 }
             ]

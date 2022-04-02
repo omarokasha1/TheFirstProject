@@ -154,8 +154,7 @@ class CourseDetailsScreen extends StatelessWidget {
                                 ListView.builder(
                                     shrinkWrap: true,
                                     //   physics: NeverScrollableScrollPhysics(),
-                                    itemBuilder: (context, index) =>
-                                        builtCourseContant(context, course.contents![index]),
+                                    itemBuilder: (context, index) => builtCourseContant(context, course.contents![index]),
                                     itemCount: course.contents!.length),
                                 ListView.builder(
                                     shrinkWrap: true,
