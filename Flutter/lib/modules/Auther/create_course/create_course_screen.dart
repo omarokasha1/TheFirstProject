@@ -6,8 +6,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lms/modules/Auther/author_courses/author_courses_cubit/cubit.dart';
 import 'package:lms/modules/Auther/author_courses/author_courses_cubit/status.dart';
-import 'package:lms/modules/Auther/create_module/cubit/cubit.dart';
-import 'package:lms/modules/Auther/create_module/cubit/states.dart';
+import 'package:lms/modules/Auther/modules/create_module/cubit/cubit.dart';
+import 'package:lms/modules/Auther/modules/create_module/cubit/states.dart';
+
 import 'package:lms/modules/courses/cubit/cubit.dart';
 import '../../../shared/component/component.dart';
 import '../../../shared/component/constants.dart';

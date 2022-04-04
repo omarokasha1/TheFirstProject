@@ -5,14 +5,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lms/layout/layout.dart';
 import 'package:lms/models/track_model.dart';
-import 'package:lms/modules/Auther/create_track/Update_track.dart';
-import 'package:lms/modules/Auther/create_track/create_track.dart';
-import 'package:lms/modules/Auther/create_track/cubit/cubit.dart';
-import 'package:lms/modules/Auther/create_track/cubit/statues.dart';
+import 'package:lms/modules/Auther/traks/create_track/Update_track.dart';
+import 'package:lms/modules/Auther/traks/create_track/create_track.dart';
+import 'package:lms/modules/Auther/traks/create_track/cubit/cubit.dart';
+import 'package:lms/modules/Auther/traks/create_track/cubit/statues.dart';
+import 'package:lms/modules/Auther/traks/tracks_details_screen.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
-
-import '../tracks_details/tracks_details_screen.dart';
 
 class TracksScreen extends StatelessWidget {
   TracksScreen({Key? key}) : super(key: key);
@@ -38,7 +37,7 @@ class TracksScreen extends StatelessWidget {
               child: Scaffold(
                 appBar: AppBar(),
                 body: ConditionalBuilder(
-                  condition: cubit.trackModel != null && cubit.trackModelPublished != null,
+                  condition: cubit.trackModel != null ,
                   builder: (context) => Column(
                     children: [
                       Padding(
@@ -88,7 +87,7 @@ class TracksScreen extends StatelessWidget {
                         child: TabBarView(
                           children: [
                             ConditionalBuilder(
-                              condition: cubit.trackModelPublished!.tracks! != 0,
+                              condition: cubit.trackModel!.tracks! != 0,
                               builder: (context) {
                                 return publishedTracks(cubit);
                               },
@@ -142,9 +141,9 @@ class TracksScreen extends StatelessWidget {
     return ListView.builder(
         physics: const BouncingScrollPhysics(),
         itemBuilder: (context, index) {
-          return BuildAuthorCourse(context, cubit.trackModelPublished!.tracks![index], cubit,false);
+          return BuildAuthorCourse(context, cubit.trackModel!.tracks![index], cubit,false);
         },
-        itemCount: cubit.trackModelPublished!.tracks!.length);
+        itemCount: cubit.trackModel!.tracks!.length);
   }
 
   //Pending Courses PageView

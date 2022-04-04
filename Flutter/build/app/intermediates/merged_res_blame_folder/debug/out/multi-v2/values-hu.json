@@ -1,10 +1,27 @@
 {
     "logs": [
         {
-            "outputFile": "G:\\TheFirstProject\\Flutter\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-hu\\values-hu.xml",
+            "outputFile": "/home/odc5/MainProject/TheFirstProject/Flutter/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-hu/values-hu.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\youss\\.gradle\\caches\\transforms-2\\files-2.1\\8e0c139ac225526e2e5efb315f1c04fc\\jetified-exoplayer-ui-2.15.1\\res\\values-hu\\values-hu.xml",
+                    "source": "/home/odc5/.gradle/caches/transforms-2/files-2.1/dadf59073c0fdcbec26349186df5ad0f/jetified-extension-mediasession-2.15.1/res/values-hu/values-hu.xml",
+                    "from": {
+                        "startLines": "2,3,4",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,145,228",
+                        "endColumns": "89,82,86",
+                        "endOffsets": "140,223,310"
+                    },
+                    "to": {
+                        "startLines": "42,43,44",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "2934,3024,3107",
+                        "endColumns": "89,82,86",
+                        "endOffsets": "3019,3102,3189"
+                    }
+                },
+                {
+                    "source": "/home/odc5/.gradle/caches/transforms-2/files-2.1/354bd041aac4c1746a18bccfbcb49baa/jetified-exoplayer-ui-2.15.1/res/values-hu/values-hu.xml",
                     "from": {
                         "startLines": "2,6,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -23,24 +40,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\youss\\.gradle\\caches\\transforms-2\\files-2.1\\dadf59073c0fdcbec26349186df5ad0f\\jetified-extension-mediasession-2.15.1\\res\\values-hu\\values-hu.xml",
-                    "from": {
-                        "startLines": "2,3,4",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "55,145,228",
-                        "endColumns": "89,82,86",
-                        "endOffsets": "140,223,310"
-                    },
-                    "to": {
-                        "startLines": "42,43,44",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "2934,3024,3107",
-                        "endColumns": "89,82,86",
-                        "endOffsets": "3019,3102,3189"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\youss\\.gradle\\caches\\transforms-2\\files-2.1\\b9a960218f5163997c0fdfa3d3078c0e\\core-1.7.0\\res\\values-hu\\values-hu.xml",
+                    "source": "/home/odc5/.gradle/caches/transforms-2/files-2.1/b9a960218f5163997c0fdfa3d3078c0e/core-1.7.0/res/values-hu/values-hu.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
