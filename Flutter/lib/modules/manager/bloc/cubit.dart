@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lms/models/author_request.dart';
+import 'package:lms/models/new/course_requests.dart';
 import 'package:lms/modules/manager/bloc/states.dart';
 import 'package:lms/shared/component/constants.dart';
 import 'package:lms/shared/network/end_points.dart';
@@ -22,6 +23,21 @@ class ManagerCubit extends Cubit<ManagerStates> {
       emit(GetAllAuthorRequestsSuccessState(authorRequests!));
     }).catchError((error) {
       emit(GetAllAuthorRequestsErrorState(error.toString()));
+      print(error.toString());
+    });
+  }
+
+
+  CoursesRequests? coursesRequests;
+  Future<void> getCoursesRequests() async {
+    emit(GetAllCoursesRequestsLoadingState());
+    await DioHelper.getData(url: getCourseRequest, token: userToken)
+        .then((value) {
+      print(value.data);
+      coursesRequests = CoursesRequests.fromJson(value.data);
+      emit(GetAllCoursesRequestsSuccessState(coursesRequests!));
+    }).catchError((error) {
+      emit(GetAllCoursesRequestsErrorState(error.toString()));
       print(error.toString());
     });
   }

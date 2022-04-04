@@ -19,8 +19,8 @@ class TracksScreen extends StatelessWidget {
 
   final List<Widget> myTabs = [
     //Tab(text: 'Drafts'),
-    const Tab(text: 'Pendding'),
     const Tab(text: 'Published'),
+    const Tab(text: 'Pendding'),
   ];
 
   @override
@@ -38,7 +38,7 @@ class TracksScreen extends StatelessWidget {
               child: Scaffold(
                 appBar: AppBar(),
                 body: ConditionalBuilder(
-                  condition: cubit.trackModel != null,
+                  condition: cubit.trackModel != null && cubit.trackModelPublished != null,
                   builder: (context) => Column(
                     children: [
                       Padding(
@@ -88,7 +88,7 @@ class TracksScreen extends StatelessWidget {
                         child: TabBarView(
                           children: [
                             ConditionalBuilder(
-                              condition: cubit.trackModel!.tracks!.length != 0,
+                              condition: cubit.trackModelPublished!.tracks! != 0,
                               builder: (context) {
                                 return publishedTracks(cubit);
                               },
@@ -99,7 +99,7 @@ class TracksScreen extends StatelessWidget {
                               },
                             ),
                             ConditionalBuilder(
-                              condition: cubit.trackModel!.tracks!.length != 0,
+                              condition: cubit.trackModel!.tracks! != 0,
                               builder: (context) {
                                 return pendingTracks(cubit);
                               },
@@ -142,9 +142,9 @@ class TracksScreen extends StatelessWidget {
     return ListView.builder(
         physics: const BouncingScrollPhysics(),
         itemBuilder: (context, index) {
-          return BuildAuthorCourse(context, cubit.trackModel!.tracks![index], cubit,true);
+          return BuildAuthorCourse(context, cubit.trackModelPublished!.tracks![index], cubit,false);
         },
-        itemCount: cubit.trackModel!.tracks!.length);
+        itemCount: cubit.trackModelPublished!.tracks!.length);
   }
 
   //Pending Courses PageView
@@ -152,7 +152,7 @@ class TracksScreen extends StatelessWidget {
     return ListView.builder(
         physics: const BouncingScrollPhysics(),
         itemBuilder: (context, index) {
-          return BuildAuthorCourse(context, cubit.trackModel!.tracks![index], cubit,false);
+          return BuildAuthorCourse(context, cubit.trackModel!.tracks![index], cubit,true);
         },
         itemCount: cubit.trackModel!.tracks!.length);
   }

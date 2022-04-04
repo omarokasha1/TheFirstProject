@@ -1,5 +1,6 @@
 
 import 'package:lms/models/course_model.dart';
+import 'package:lms/models/new/courses_model.dart';
 import 'package:lms/models/track_model.dart';
 
 import '../../../../models/response_model.dart';
@@ -9,9 +10,9 @@ abstract class CreateTrackStates {}
 class InitCreateTrackState extends CreateTrackStates {}
 class GetAuthorCoursesLoadingState extends CreateTrackStates{}
 class GetAuthorCoursesSuccessState extends CreateTrackStates{
-  final AuthorCoursesTestModel? authorCoursesTestModel;
+  final CoursesModel? coursesModel;
 
-  GetAuthorCoursesSuccessState(this.authorCoursesTestModel);
+  GetAuthorCoursesSuccessState(this.coursesModel);
 }
 class GetAuthorCoursesErrorState extends CreateTrackStates{
   final String error;
@@ -69,3 +70,14 @@ class DeleteTrackErrorState extends CreateTrackStates {
   DeleteTrackErrorState(this.error);
 }
 
+class GetAuthorTrackPublishLoadingState extends CreateTrackStates {}
+class GetAuthorTrackPublishSuccessState extends CreateTrackStates {
+  final TrackModel? authorTrackModel;
+
+  GetAuthorTrackPublishSuccessState(this.authorTrackModel);
+}
+class GetAuthorTrackPublishErrorState extends CreateTrackStates {
+  final String error;
+
+  GetAuthorTrackPublishErrorState(this.error);
+}

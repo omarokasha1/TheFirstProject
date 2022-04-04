@@ -61,6 +61,7 @@ const deleteAuthorQuestions = "api/course/delete-questions";
 //--------------------------------------Manager----------------------------------
 //-----------------------------Get----------------------------
 const getAuthorRequest = "api/manager/promotRequest";
+const getCourseRequest = "api/manager/courseRequest";
 
 //-----------------------------Update----------------------------
 const updateUserRoleAuthor = "api/manager/accept-promot";

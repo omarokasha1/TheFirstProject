@@ -17,7 +17,7 @@ class CoursesModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['status'] = status;
     data['message'] = message;
     if (courses != null) {
@@ -84,7 +84,7 @@ class Courses {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['_id'] = sId;
     data['requirements'] = requirements;
     data['title'] = title;
@@ -169,7 +169,7 @@ class Author {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (userEducation != null) {
       data['userEducation'] = userEducation!.toJson();
     }
@@ -219,7 +219,7 @@ class UserEducation {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['interest'] = interest;
     data['major'] = major;
     data['university'] = university;
@@ -268,7 +268,7 @@ class Contents {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['isFinished'] = isFinished;
     data['_id'] = sId;
     data['contentTitle'] = contentTitle;

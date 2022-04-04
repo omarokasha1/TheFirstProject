@@ -1,4 +1,5 @@
 import 'package:lms/models/author_request.dart';
+import 'package:lms/models/new/course_requests.dart';
 
 abstract class ManagerStates {}
 
@@ -18,6 +19,20 @@ class GetAllAuthorRequestsErrorState extends ManagerStates {
   GetAllAuthorRequestsErrorState(this.error);
 }
 
+
+class GetAllCoursesRequestsLoadingState extends ManagerStates {}
+
+class GetAllCoursesRequestsSuccessState extends ManagerStates {
+  final CoursesRequests coursesRequests;
+
+  GetAllCoursesRequestsSuccessState(this.coursesRequests);
+}
+
+class GetAllCoursesRequestsErrorState extends ManagerStates {
+  final String error;
+
+  GetAllCoursesRequestsErrorState(this.error);
+}
 class UpdateUserRoleLoadingState extends ManagerStates {}
 
 class UpdateUserRoleSuccessState extends ManagerStates {}

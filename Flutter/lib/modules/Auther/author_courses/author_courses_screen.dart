@@ -132,9 +132,7 @@ class AuthorCourses extends StatelessWidget {
   }
 
   //Published Courses PageView
-  Widget publishedCourses(
-    AuthorCoursesCubit cubit,
-  ) {
+  Widget publishedCourses(AuthorCoursesCubit cubit,) {
     return ListView.builder(
         physics: BouncingScrollPhysics(),
         itemBuilder: (context, index) {

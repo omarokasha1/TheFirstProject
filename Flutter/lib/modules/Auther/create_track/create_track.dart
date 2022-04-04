@@ -37,7 +37,7 @@ class CreateTrackScreen extends StatelessWidget {
           var cubit = CreateTrackCubit.get(context);
           return Scaffold(
             body: ConditionalBuilder(
-              condition: cubit.authorCoursesTestModel != null,
+              condition: cubit.coursesModel != null,
               builder: (context) {
                 return SingleChildScrollView(
                   child: Column(

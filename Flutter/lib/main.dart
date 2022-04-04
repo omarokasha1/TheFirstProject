@@ -100,7 +100,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => CreateModuleCubit()..initStateVideo()),
         BlocProvider(create: (context)=> CreateAssignmentCubit()..getAssignmentData()..myActivities=[]),
         BlocProvider(create: (context)=> AuthorCoursesCubit()..getAuthorCoursesData()..getAuthorCoursesPublishedData()),
-        BlocProvider(create: (context)=>CreateTrackCubit()..getAuthorCoursesData()),
+        BlocProvider(create: (context)=>CreateTrackCubit()..getAuthorCoursesData()..getAuthorTrackPublishedData()),
         BlocProvider(create: (context)=>TrackCubit()..getAllTracksData()),
       ],
       //ScreenUTil is A Package make application responsive.

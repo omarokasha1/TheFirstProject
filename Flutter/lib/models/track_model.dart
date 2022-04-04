@@ -1,3 +1,5 @@
+import 'package:lms/models/new/courses_model.dart';
+
 class TrackModel {
   String? status;
   String? message;

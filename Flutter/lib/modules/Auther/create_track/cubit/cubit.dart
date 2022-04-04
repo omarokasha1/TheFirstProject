@@ -1,16 +1,12 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:http_parser/http_parser.dart';
 import 'package:lms/models/course_model.dart';
-import 'package:lms/models/module_model.dart';
+import 'package:lms/models/new/courses_model.dart';
 import 'package:lms/models/track_model.dart';
-import 'package:lms/modules/Auther/create_module/update_module.dart';
 import 'package:lms/modules/Auther/create_track/cubit/statues.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
 import 'package:lms/shared/network/end_points.dart';
-import 'package:lms/shared/network/local/cache_helper.dart';
 import 'package:lms/shared/network/remote/dio-helper.dart';
 
 import '../../../../models/response_model.dart';
@@ -42,7 +38,7 @@ class CreateTrackCubit extends Cubit<CreateTrackStates> {
     character = value;
   }
 
-  AuthorCoursesTestModel? authorCoursesTestModel;
+  CoursesModel? coursesModel;
   List? list = [];
 
 
@@ -51,18 +47,35 @@ class CreateTrackCubit extends Cubit<CreateTrackStates> {
     DioHelper.getData(url: getAuthorCourses, token: userToken).then((value) {
       print(value.data);
       list = [];
-      authorCoursesTestModel = AuthorCoursesTestModel.fromJson(value.data);
+      coursesModel = CoursesModel.fromJson(value.data);
 
-      authorCoursesTestModel!.courses!.forEach((element) {
+      coursesModel!.courses!.forEach((element) {
         list!.add({'display': element.title, 'value': element.sId});
       });
       //print(authorCoursesTestModel!.courses.toString());
-      emit(GetAuthorCoursesSuccessState(authorCoursesTestModel));
+      emit(GetAuthorCoursesSuccessState(coursesModel));
     }).catchError((error) {
       emit(GetAuthorCoursesErrorState(error.toString()));
       print(error.toString());
     });
   }
+  TrackModel? trackModelPublished;
+
+  Future<void> getAuthorTrackPublishedData() async {
+    emit(GetAuthorTrackPublishLoadingState());
+    await DioHelper.getData(url: getAuthorTrackPublished, token: userToken).then((value) {
+      print(value.data);
+      //authorTrackTestModel!.courses=[];
+      trackModelPublished = TrackModel.fromJson(value.data);
+      //print(authorTrackTestModel!.courses.toString());
+      emit(GetAuthorTrackPublishSuccessState(trackModelPublished));
+    }).catchError((error) {
+      emit(GetAuthorTrackPublishErrorState(error.toString()));
+      print(error.toString());
+    });
+  }
+
+
 
   void changeActivity(value) {
     myActivities = value;
@@ -96,6 +109,7 @@ class CreateTrackCubit extends Cubit<CreateTrackStates> {
       print('Hereeeeeee : ${value.data}');
       await getAllTracks();
       emit(CreateTrackSuccessState(trackModel!));
+      getAllTracks();
     }).catchError((onError) {
       print(onError.toString());
       emit(CreateTrackErrorState(onError.toString()));
