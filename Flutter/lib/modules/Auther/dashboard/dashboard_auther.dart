@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lms/modules/Auther/author_courses/author_courses_screen.dart';
-import 'package:lms/modules/Auther/create_course/create_course_screen.dart';
+import 'package:lms/modules/Auther/author_courses/create_course_screen.dart';
 import 'package:lms/modules/Auther/modules/create_assigment/create_assignment.dart';
 import 'package:lms/modules/Auther/modules/create_module/create_module_screen.dart';
 import 'package:lms/modules/Auther/modules/modules_library.dart';

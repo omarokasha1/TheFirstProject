@@ -6,8 +6,8 @@ import 'package:lms/layout/layout.dart';
 import 'package:lms/models/new/courses_model.dart';
 import 'package:lms/modules/Auther/author_courses/author_courses_cubit/cubit.dart';
 import 'package:lms/modules/Auther/author_courses/course_view.dart';
-import 'package:lms/modules/Auther/create_course/create_course_screen.dart';
-import 'package:lms/modules/Auther/create_course/update_course_screen.dart';
+import 'package:lms/modules/Auther/author_courses/create_course_screen.dart';
+import 'package:lms/modules/Auther/author_courses/update_course_screen.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
 

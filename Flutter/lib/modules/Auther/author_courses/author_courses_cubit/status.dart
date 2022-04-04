@@ -1,5 +1,4 @@
-import 'package:lms/models/author_courses_published_model.dart';
-import 'package:lms/models/course_model.dart';
+
 import 'package:lms/models/new/courses_model.dart';
 
 abstract class AuthorCoursesStates {}

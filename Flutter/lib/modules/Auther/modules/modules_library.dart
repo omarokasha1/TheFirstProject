@@ -45,23 +45,6 @@ class ModulesLibraryScreen extends StatelessWidget {
                 widget: DefaultTabController(
                   length: myTabs.length,
                   child: Scaffold(
-                    floatingActionButton: SpeedDial(
-                      icon: Icons.add,
-                      children: [
-                        SpeedDialChild(
-                            child: const Icon(Icons.post_add),
-                            label: 'Add Assignment',
-                            onTap: () {
-                              navigator(context, CreateAssignmentScreen());
-                            }),
-                        SpeedDialChild(
-                            child: const Icon(Icons.play_circle_fill),
-                            label: 'Add Modules',
-                            onTap: () {
-                              navigator(context, CreateModuleScreen());
-                            }),
-                      ],
-                    ),
                     appBar: AppBar(),
                     body: Container(
                       child: Column(
@@ -79,17 +62,44 @@ class ModulesLibraryScreen extends StatelessWidget {
                                   ),
                                 ),
                                 const Spacer(),
-                                ElevatedButton(
-                                  onPressed: () {
-                                    navigator(context, CreateModuleScreen());
-                                  },
-                                  child: Text(
-                                    'New Module',
-                                    style: TextStyle(
-                                      fontSize: 16.sp,
-                                      fontWeight: FontWeight.bold,
+                                    PopupMenuButton(
+                                      elevation: 1,
+                                      itemBuilder: (BuildContext context) => [
+                                        PopupMenuItem(
+                                          child: const Text('Add Assignment'),
+                                          onTap: (){
+                                            navigator(context, CreateAssignmentScreen());
+                                          },
+                                          value: 1,
+                                        ),
+                                        PopupMenuItem(
+                                          child: const Text('Add Modules'),
+                                          value: 2,
+                                          onTap: (){
+                                            navigator(context, CreateModuleScreen());
+                                          },
+                                        ),
+                                      ],
+                                  child: Container(
+                                    color: primaryColor,
+                                    child: Row(
+                                      children:const [
+                                        Icon(
+                                          Icons.add,
+                                          color: Colors.white,
+                                        ),
+                                         Text('Create',style: TextStyle(color: Colors.white,fontSize: 18),),
+                                      ],
                                     ),
                                   ),
+
+                                  // Text(
+                                  //   'Add Module',
+                                  //   style: TextStyle(
+                                  //     fontSize: 16.sp,
+                                  //     fontWeight: FontWeight.bold,
+                                  //   ),
+                                  // ),
                                 ),
                               ],
                             ),
@@ -171,8 +181,9 @@ class ModulesLibraryScreen extends StatelessWidget {
         navigator(context, ModuleDetailsScreen(model));
       },
       child: Container(
+        padding: const EdgeInsets.all(15),
         width: double.infinity,
-        height: 90.0,
+        //height: 90.0,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15.0),
           boxShadow:  [
@@ -191,7 +202,6 @@ class ModulesLibraryScreen extends StatelessWidget {
               width: 20.0,
             ),
             Text(
-              //  "File name asd afew werg  iuejh iujh iuvjh iuwjhuijv iujhuijh iuwhji uhwuivh iuwhu wiuhf uiwh ifuhwiushviu hsdfubifh iuhfbiughr siih iuv iusb bs ",
               model.contentTitle!,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
@@ -288,11 +298,6 @@ class ModulesLibraryScreen extends StatelessWidget {
         clipBehavior: Clip.antiAliasWithSaveLayer,
         child: Row(
           children: [
-            // Image.network(
-            //   'https://cdn-icons-png.flaticon.com/512/337/337946.png',
-            //   width: 55,
-            //   height: 55,
-            // ),
             SizedBox(
               width: 10.w,
             ),
@@ -302,7 +307,6 @@ class ModulesLibraryScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    //  "File name asd afew werg  iuejh iujh iuvjh iuwjhuijv iujhuijh iuwhji uhwuivh iuwhu wiuhf uiwh ifuhwiushviu hsdfubifh iuhfbiughr siih iuv iusb bs ",
                     '${model.assignmentTitle}',
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
@@ -311,16 +315,6 @@ class ModulesLibraryScreen extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  // Text(
-                  //   //  "File name asd afew werg  iuejh iujh iuvjh iuwjhuijv iujhuijh iuwhji uhwuivh iuwhu wiuhf uiwh ifuhwiushviu hsdfubifh iuhfbiughr siih iuv iusb bs ",
-                  //   '15 MB',
-                  //   maxLines: 1,
-                  //   overflow: TextOverflow.ellipsis,
-                  //   style: TextStyle(
-                  //       fontSize: 14.sp,
-                  //       fontWeight: FontWeight.bold,
-                  //       color: Colors.grey),
-                  // ),
                 ],
               ),
             ),

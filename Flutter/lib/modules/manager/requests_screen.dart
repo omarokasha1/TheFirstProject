@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lms/layout/layout.dart';
+import 'package:lms/models/author_manger_request.dart';
 import 'package:lms/models/author_request.dart';
 import 'package:lms/models/new/course_requests.dart';
 import 'package:lms/modules/manager/bloc/cubit.dart';
@@ -19,6 +20,7 @@ class AuthorRequest extends StatelessWidget {
     const Tab(text: 'Author'),
     const Tab(text: 'Courses'),
     const Tab(text: 'Track'),
+    const Tab(text: 'Users'),
   ];
 
   @override
@@ -30,67 +32,106 @@ class AuthorRequest extends StatelessWidget {
         builder: (context, state) {
           var cubit = ManagerCubit.get(context);
           return Scaffold(
-              appBar: AppBar(
-                title: Text(
-                  'Requests',
-                  style: TextStyle(
-                    fontSize: 20.sp,
-                    fontWeight: FontWeight.bold,
-                    color: primaryColor,
-                  ),
+            appBar: AppBar(
+              title: Text(
+                'Requests',
+                style: TextStyle(
+                  fontSize: 20.sp,
+                  fontWeight: FontWeight.bold,
+                  color: primaryColor,
                 ),
               ),
-              body: Layout(
-                widget: DefaultTabController(
-                  length: myTabs.length,
-                  child: Column(
-                    children: [
-                      TabBar(
-                        labelColor: primaryColor,
-                        indicatorColor: primaryColor,
-                        unselectedLabelColor: Colors.black,
-                        tabs: myTabs,
-                        labelStyle: const TextStyle(
-                          //fontSize: 16.sp,
-                          fontWeight: FontWeight.bold,
-                        ),
+            ),
+            body: Layout(
+              widget: DefaultTabController(
+                length: myTabs.length,
+                child: Column(
+                  children: [
+                    TabBar(
+                      labelColor: primaryColor,
+                      indicatorColor: primaryColor,
+                      unselectedLabelColor: Colors.black,
+                      tabs: myTabs,
+                      labelStyle: const TextStyle(
+                        //fontSize: 16.sp,
+                        fontWeight: FontWeight.bold,
                       ),
-                      Expanded(
-                        child: TabBarView(
-                          children: [
-                            ConditionalBuilder(
-                              condition: cubit.authorRequests != null,
-                              builder: (context) {
-                                return ListView.builder(
-                                    physics: const BouncingScrollPhysics(),
-                                    itemBuilder: (context, index) =>
-                                        acceptsAuthorCard(cubit.authorRequests!.promotRequests![index], cubit, context),
-                                    itemCount: cubit.authorRequests!.promotRequests!.length);
-                              },
-                              fallback: (context) {
-                                return Center(
-                                  child: cubit.authorRequests != null && cubit.authorRequests!.promotRequests!
-                                      .length == 0 ? emptyPage(
-                                      text: "There's No Request's",
-                                      context: context): const CircularProgressIndicator.adaptive(),
-                                );
-                              },
-                            ),
-                            ListView.builder(
-                                physics: const BouncingScrollPhysics(),
-                                itemBuilder: (context, index) => userCourseCard(cubit.coursesRequests!.courseRequests![index],cubit,context),
-                                itemCount: 5),
-                            ListView.builder(
-                                physics: const BouncingScrollPhysics(),
-                                itemBuilder: (context, index) => AuthorTrackCard(),
-                                itemCount: 10),
-                          ],
-                        ),
+                    ),
+                    Expanded(
+                      child: TabBarView(
+                        children: [
+                          ConditionalBuilder(
+                            condition: cubit.authorRequests != null,
+                            builder: (context) {
+                              return ListView.builder(
+                                  physics: const BouncingScrollPhysics(),
+                                  itemBuilder: (context, index) =>
+                                      acceptsAuthorCard(
+                                          cubit.authorRequests!
+                                              .promotRequests![index],
+                                          cubit,
+                                          context),
+                                  itemCount: cubit
+                                      .authorRequests!.promotRequests!.length);
+                            },
+                            fallback: (context) {
+                              return Center(
+                                child: cubit.authorRequests != null &&
+                                        cubit.authorRequests!.promotRequests!
+                                                .length ==
+                                            0
+                                    ? emptyPage(
+                                        text: "There's No Request's",
+                                        context: context)
+                                    : const CircularProgressIndicator
+                                        .adaptive(),
+                              );
+                            },
+                          ),
+                          ListView.builder(
+                              physics: const BouncingScrollPhysics(),
+                              itemBuilder: (context, index) => userCourseCard(
+                                  cubit.coursesRequests!.courseRequests![index].courseId,
+                                  cubit,
+                                  context),
+                              itemCount: 5),
+                          ListView.builder(
+                              physics: const BouncingScrollPhysics(),
+                              itemBuilder: (context, index) =>
+                                  AuthorTrackCard(),
+                              itemCount: 10),
+                          ConditionalBuilder(
+                            condition: cubit.userModel != null,
+                            builder: (context) {
+                              return ListView.builder(
+                                  physics: const BouncingScrollPhysics(),
+                                  itemBuilder: (context, index) => userCard(
+                                      cubit.userModel!.users![index],
+                                      cubit,
+                                      context),
+                                  itemCount: cubit.userModel!.users!.length);
+                            },
+                            fallback: (context) {
+                              return Center(
+                                child: cubit.authorRequests != null &&
+                                        cubit.authorRequests!.promotRequests!
+                                                .length ==
+                                            0
+                                    ? emptyPage(
+                                        text: "There's No Request's",
+                                        context: context)
+                                    : const CircularProgressIndicator
+                                        .adaptive(),
+                              );
+                            },
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
+            ),
           );
         },
       ),
@@ -123,7 +164,7 @@ class AuthorRequest extends StatelessWidget {
                 CircleAvatar(
                   backgroundImage: NetworkImage(
                     promotRequests.authorPromoted!.imageUrl ??
-                    'https://img-c.udemycdn.com/user/200_H/317821_3cb5_10.jpg',
+                        'https://img-c.udemycdn.com/user/200_H/317821_3cb5_10.jpg',
                   ),
                   radius: 20,
                 ),
@@ -160,7 +201,10 @@ class AuthorRequest extends StatelessWidget {
                                 Text(
                                   'Are you sure you want ${promotRequests.authorPromoted!.userName} become an Author ?',
                                   textAlign: TextAlign.center,
-                                  style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 20,),
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20,
+                                  ),
                                 ),
                                 const SizedBox(
                                   height: 30,
@@ -170,7 +214,9 @@ class AuthorRequest extends StatelessWidget {
                                   child: defaultButton(
                                     text: 'Yes, I\'m Agree',
                                     onPressed: () {
-                                      cubit.updateUserProfile(userRequestId: promotRequests.authorPromoted!.sId);
+                                      cubit.updateUserProfile(
+                                          userRequestId: promotRequests
+                                              .authorPromoted!.sId);
                                       Navigator.pop(context);
                                     },
                                   ),
@@ -217,7 +263,10 @@ class AuthorRequest extends StatelessWidget {
                                 Text(
                                   'Are you sure you want remove request from ${promotRequests.authorPromoted!.userName} ?',
                                   textAlign: TextAlign.center,
-                                  style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 20,),
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20,
+                                  ),
                                 ),
                                 const SizedBox(
                                   height: 30,
@@ -227,7 +276,187 @@ class AuthorRequest extends StatelessWidget {
                                   child: defaultButton(
                                     text: 'Yes, I\'m Agree',
                                     onPressed: () {
-                                      cubit.deleteAuthorRequest(userRequestId: promotRequests.authorPromoted!.sId!);
+                                      cubit.deleteAuthorRequest(
+                                          userRequestId: promotRequests
+                                              .authorPromoted!.sId!);
+                                      Navigator.pop(context);
+                                    },
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 20,
+                                ),
+                                Container(
+                                  height: 40,
+                                  child: defaultButton(
+                                    text: 'No',
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      title: 'This is Ignored',
+                      desc: 'This is also Ignored',
+                      //   btnOkOnPress: () {},
+                    ).show();
+                  },
+                  child: const Text(
+                    'Decline',
+                    style: TextStyle(color: Colors.red),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget userCard(Users model, ManagerCubit cubit, context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        padding: const EdgeInsets.all(10),
+        width: double.infinity,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8.0),
+          color: Colors.white,
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black12,
+              offset: Offset(0.0, 1.0), //(x,y)
+              blurRadius: 6.0,
+            ),
+          ],
+        ),
+        clipBehavior: Clip.antiAliasWithSaveLayer,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                CircleAvatar(
+                  backgroundImage: NetworkImage(
+                    model.imageUrl ??
+                        'https://img-c.udemycdn.com/user/200_H/317821_3cb5_10.jpg',
+                  ),
+                  radius: 20,
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                SizedBox(
+                  width: 150.w,
+                  child: Text(
+                    '${model.userName}',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 17.sp,
+                      fontWeight: FontWeight.bold,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    maxLines: 1,
+                  ),
+                ),
+                const Spacer(),
+                TextButton(
+                  onPressed: () {
+                    AwesomeDialog(
+                      context: context,
+                      animType: AnimType.SCALE,
+                      dialogType: DialogType.NO_HEADER,
+                      body: Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Form(
+                            //  key: formkey,
+                            child: Column(
+                              children: [
+                                Text(
+                                  'Are you sure you want ${model.userName} become an Author ?',
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 30,
+                                ),
+                                Container(
+                                  height: 40,
+                                  child: defaultButton(
+                                    text: 'Yes, I\'m Agree',
+                                    onPressed: () {
+                                      cubit.updateUserProfile(
+                                          userRequestId: model.userName);
+                                      Navigator.pop(context);
+                                    },
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 20,
+                                ),
+                                Container(
+                                  height: 40,
+                                  child: defaultButton(
+                                    text: 'No',
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      title: 'This is Ignored',
+                      desc: 'This is also Ignored',
+                      //   btnOkOnPress: () {},
+                    ).show();
+                  },
+                  child: const Text(
+                    'Accept',
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    AwesomeDialog(
+                      context: context,
+                      animType: AnimType.SCALE,
+                      dialogType: DialogType.NO_HEADER,
+                      body: Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Form(
+                            //  key: formkey,
+                            child: Column(
+                              children: [
+                                Text(
+                                  'Are you sure you want remove request from ${model.userName} ?',
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 30,
+                                ),
+                                Container(
+                                  height: 40,
+                                  child: defaultButton(
+                                    text: 'Yes, I\'m Agree',
+                                    onPressed: () {
+                                      cubit.deleteAuthorRequest(
+                                          userRequestId: model.sId!);
                                       Navigator.pop(context);
                                     },
                                   ),
@@ -289,8 +518,9 @@ class AuthorRequest extends StatelessWidget {
       ),
     );
   }
+
   //Course Widget
-  Widget userCourseCard(CourseRequests courseRequests , ManagerCubit cubit, context) {
+  Widget userCourseCard(CourseId model, ManagerCubit cubit, context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
@@ -300,12 +530,13 @@ class AuthorRequest extends StatelessWidget {
           borderRadius: BorderRadius.circular(8.0),
           color: Colors.white,
           boxShadow: const [
-             BoxShadow(
+            BoxShadow(
               color: Colors.black12,
               offset: Offset(0.0, 1.0), //(x,y)
               blurRadius: 6.0,
             ),
-          ],        ),
+          ],
+        ),
         clipBehavior: Clip.antiAliasWithSaveLayer,
         child: Row(
           children: [
@@ -359,11 +590,6 @@ class AuthorRequest extends StatelessWidget {
                             'Decline',
                             style: TextStyle(color: Colors.red),
                           )),
-                      // ElevatedButton(style:ElevatedButton.styleFrom(primary: Colors.green,) ,onPressed: (){}, child: Text("Accept"),),
-                      // SizedBox(
-                      //   width: 10.w,
-                      // ),
-                      // ElevatedButton(style:ElevatedButton.styleFrom(primary: Colors.red, ) ,onPressed: (){}, child: const Text("Decline")),
                     ],
                   ),
                 ],
@@ -413,33 +639,34 @@ class AuthorRequest extends StatelessWidget {
             ),
             Row(
               children: [
-                const Text(
-                  'Web Development Full stack Track ',
-                  style: TextStyle(
-                    // color: Colors.black,
-                    //  fontSize: 17.sp,
-                    fontWeight: FontWeight.bold,
+                const Expanded(
+                  flex: 2,
+                  child: Text(
+                    'Web Development Full stack Track ',
+                    style: TextStyle(
+                      // color: Colors.black,
+                      //  fontSize: 17.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
                   ),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
                 ),
-                const Spacer(),
-                TextButton(onPressed: () {}, child: const Text('Accept')),
-                TextButton(
-                    onPressed: () {},
-                    child: const Text(
-                      'Decline',
-                      style: TextStyle(color: Colors.red),
-                    )),
-                // ElevatedButton(style:ElevatedButton.styleFrom(primary: Colors.green,) ,onPressed: (){}, child: Text("Accept"),),
-                // SizedBox(
-                //   width: 10.w,
-                // ),
-                // ElevatedButton(style:ElevatedButton.styleFrom(primary: Colors.red, ) ,onPressed: (){}, child: const Text("Decline")),
-                // SizedBox(
-                //   width: 10.w,
-                // ),
-                // SizedBox(height: 8.h,),
+                Expanded(
+                  flex: 1,
+                  child: Row(
+                    children: [
+                      TextButton(onPressed: () {}, child: const Text('Accept')),
+                      TextButton(
+                          onPressed: () {},
+                          child: const Text(
+                            'Decline',
+                            style: TextStyle(color: Colors.red),
+                          )),
+                    ],
+                  ),
+                ),
+
               ],
             ),
           ],

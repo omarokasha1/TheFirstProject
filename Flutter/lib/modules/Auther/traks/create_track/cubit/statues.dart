@@ -81,3 +81,14 @@ class GetAuthorTrackPublishErrorState extends CreateTrackStates {
 
   GetAuthorTrackPublishErrorState(this.error);
 }
+
+
+class SendTrackRequestLoadingState extends CreateTrackStates {}
+
+class SendTrackRequestSuccessState extends CreateTrackStates {}
+
+class SendTrackRequestErrorState extends CreateTrackStates {
+  final String error;
+
+  SendTrackRequestErrorState(this.error);
+}

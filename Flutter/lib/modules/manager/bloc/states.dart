@@ -1,3 +1,4 @@
+import 'package:lms/models/author_manger_request.dart';
 import 'package:lms/models/author_request.dart';
 import 'package:lms/models/new/course_requests.dart';
 
@@ -51,4 +52,14 @@ class DeleteAuthorRequestErrorState extends ManagerStates {
   final String error;
 
   DeleteAuthorRequestErrorState(this.error);
+}
+
+class GetAllUsersLoadingState extends ManagerStates{}
+class GetAllUsersSuccessState extends ManagerStates{
+  final AuthorsManagerRequest authorsManagerRequest;
+  GetAllUsersSuccessState(this.authorsManagerRequest);
+}
+class GetAllUsersErrorState extends ManagerStates{
+  final String error;
+  GetAllUsersErrorState(this.error);
 }

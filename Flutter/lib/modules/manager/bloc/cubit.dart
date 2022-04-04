@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lms/models/author_manger_request.dart';
 import 'package:lms/models/author_request.dart';
 import 'package:lms/models/new/course_requests.dart';
 import 'package:lms/modules/manager/bloc/states.dart';
@@ -42,6 +43,20 @@ class ManagerCubit extends Cubit<ManagerStates> {
     });
   }
 
+  AuthorsManagerRequest? userModel;
+
+  Future<void> getAllUsers() async {
+    emit(GetAllUsersLoadingState());
+    await DioHelper.getData(url: allUsers, token: userToken)
+        .then((value) {
+      print(value.data);
+      userModel = AuthorsManagerRequest.fromJson(value.data);
+      emit(GetAllUsersSuccessState(userModel!));
+    }).catchError((error) {
+      emit(GetAllUsersErrorState(error.toString()));
+      print(error.toString());
+    });
+  }
   void updateUserProfile({
     required String? userRequestId,
   }) {

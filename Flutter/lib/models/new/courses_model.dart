@@ -108,7 +108,7 @@ class Courses {
   }
 }
 
-class Author {
+class   Author {
   UserEducation? userEducation;
   List<String>? myTracks;
   String? sId;

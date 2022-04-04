@@ -162,40 +162,7 @@ class CreateTrackCubit extends Cubit<CreateTrackStates> {
     });
   }
 
-  // void updateTrack({
-  //   required String trackId,
-  //   required String trackName,
-  //   required String shortDescription,
-  //   required String duration,
-  //   required courses,
-  //   required trackImage,
-  // }) async {
-  //   emit(UpdateModuleLoadingState());
-  //
-  //   DioHelper.putData(
-  //     data: {
-  //       "id": trackId,
-  //       'trackName': trackName,
-  //       'description': shortDescription,
-  //       'duration': duration,
-  //       //'imageUrl': trackImage,
-  //       'courses': courses,
-  //       'check': 'drafts',
-  //       'imageUrl': await fileUpload(trackImage),
-  //     },
-  //     url: updateModule,
-  //     token: userToken,
-  //   ).then((value) {
-  //     updateModel = ResponseModel.fromJson(value.data);
-  //     emit(UpdateModuleSuccssesState(updateModel!));
-  //   }).catchError((onError) {
-  //     print(onError.toString());
-  //     emit(UpdateModuleErrorState(onError.toString()));
-  //   });
-  // }
-
   ResponseModel? deleteModel;
-
   void deleteTrack({required String trackId}) {
     emit(DeleteTrackLoadingState());
     DioHelper.deleteData(url:'$deleteTrackData/$trackId',).then((value) {
@@ -207,4 +174,28 @@ class CreateTrackCubit extends Cubit<CreateTrackStates> {
       emit(DeleteTrackErrorState(error));
     });
   }
+
+
+  Future<void> sendTracksRequest({
+    required trackId,
+  }) async {
+    emit(SendTrackRequestLoadingState());
+    DioHelper.postData(
+      data: {
+        'trackId': trackId,
+        // 'token':userToken,
+      },
+      url: sendTrackRequest,
+      token: userToken,
+    ).then((value) async {
+      print(value.data);
+      emit(SendTrackRequestSuccessState());
+      showToast(message: '${value.data['message']}',color: Colors.green);
+      getAllTracks();
+    }).catchError((onError) {
+      print(onError.toString());
+      emit(SendTrackRequestErrorState(onError.toString()));
+    });
+  }
+
 }

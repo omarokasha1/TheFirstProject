@@ -277,7 +277,10 @@ class TracksScreen extends StatelessWidget {
                           backgroundColor: Colors.greenAccent[400],
                           radius: 18.r,
                           child: IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              cubit.sendTracksRequest(trackId: modelTrack.sId);
+                              print(modelTrack.sId.toString());
+                            },
                             icon: const Icon(
                               Icons.send_rounded,
                               color: Colors.white,

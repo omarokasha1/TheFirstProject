@@ -30,30 +30,39 @@ class CoursesRequests {
 
 class CourseRequests {
   String? sId;
-  AuthorId? authorId;
-  CourseId? courseId;
+  List<AuthorId>? authorId;
+  List<CourseId>? courseId;
 
-  CourseRequests({this.sId, this.authorId, this.courseId});
+  CourseRequests({this.sId,  this.authorId, this.courseId});
 
   CourseRequests.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
-    authorId = json['authorId'] != null
-        ? new AuthorId.fromJson(json['authorId'])
-        : null;
-    courseId = json['courseId'] != null
-        ? new CourseId.fromJson(json['courseId'])
-        : null;
+    if (json['authorId'] != null) {
+      authorId = <AuthorId>[];
+      json['wishers'].forEach((v) {
+        authorId!.add(AuthorId.fromJson(v));
+      });
+    }
+    if (json['courseId'] != null) {
+      courseId = <CourseId>[];
+      json['wishers'].forEach((v) {
+        courseId!.add(CourseId.fromJson(v));
+      });
+    }
+
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['_id'] = this.sId;
-    if (this.authorId != null) {
-      data['authorId'] = this.authorId!.toJson();
+
+    if (authorId != null) {
+      data['authorId'] = authorId!.map((v) => v.toJson()).toList();
     }
-    if (this.courseId != null) {
-      data['courseId'] = this.courseId!.toJson();
+    if (courseId != null) {
+      data['courseId'] = courseId!.map((v) => v.toJson()).toList();
     }
+
     return data;
   }
 }
