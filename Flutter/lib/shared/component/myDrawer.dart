@@ -22,6 +22,7 @@ import 'package:lms/modules/splash_screen.dart';
 import 'package:lms/shared/component/zoomDrawer.dart';
 import 'package:lms/shared/network/local/cache_helper.dart';
 import '../../modules/Auther/dashboard/dashboard_auther.dart';
+import '../../modules/dashboard/dashboard_screen.dart';
 import 'component.dart';
 import 'constants.dart';
 
@@ -87,6 +88,226 @@ class MyDrawer extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
+                        if (userView == 'user')
+                          ListTile(
+                            title: const Text(
+                              "Home",
+                              style: TextStyle(
+                                color: textColorDrawer,
+                                fontSize: 16,
+                              ),
+                            ),
+                            leading: const Icon(
+                              Icons.home,
+                              color: iconColorDrawer,
+                              size: 25,
+                            ),
+                            onTap: () {
+                              navigator(
+                                  context,
+                                  ZoomDrawerScreen(
+                                    widget: HomePage(),
+                                  ));
+                              ZoomDrawer.of(context)!.toggle();
+                            },
+                          ),
+                        if (userView == 'user')
+                          ListTile(
+                            title: const Text(
+                              "Dashboard",
+                              style: TextStyle(
+                                color: textColorDrawer,
+                                fontSize: 16,
+                              ),
+                            ),
+                            leading: const Icon(
+                              Icons.home,
+                              color: iconColorDrawer,
+                              size: 25,
+                            ),
+                            onTap: () {
+                              navigator(
+                                  context,
+                                  ZoomDrawerScreen(
+                                    widget: DashboardScreen(),
+                                  ));
+                              ZoomDrawer.of(context)!.toggle();
+                            },
+                          ),
+                        if (userView == 'manager')
+                          ListTile(
+                            title: const Text(
+                              "Author Requests",
+                              style: TextStyle(
+                                color: textColorDrawer,
+                                fontSize: 16,
+                              ),
+                            ),
+                            leading: const Icon(
+                              Icons.add,
+                              color: iconColorDrawer,
+                              size: 25,
+                            ),
+                            onTap: () {
+                              navigator(
+                                  context,
+                                  ZoomDrawerScreen(
+                                    widget: AuthorRequest(),
+                                  ));
+                              ZoomDrawer.of(context)!.toggle();
+                            },
+                          ),
+                        if (userView == 'admin')
+                          ListTile(
+                            title: const Text(
+                              "Add Manager",
+                              style: TextStyle(
+                                color: textColorDrawer,
+                                fontSize: 16,
+                              ),
+                            ),
+                            leading: const Icon(
+                              Icons.add,
+                              color: iconColorDrawer,
+                              size: 25,
+                            ),
+                            onTap: () {
+                              navigator(
+                                  context,
+                                  ZoomDrawerScreen(
+                                    widget: AddManager(),
+                                  ));
+                              ZoomDrawer.of(context)!.toggle();
+                            },
+                          ),
+                        if (userView == 'author')
+                          ListTile(
+                            title: const Text(
+                              "Dashboard",
+                              style: TextStyle(
+                                color: textColorDrawer,
+                                fontSize: 16,
+                              ),
+                            ),
+                            leading: const Icon(
+                              Icons.home,
+                              color: iconColorDrawer,
+                              size: 25,
+                            ),
+                            onTap: () {
+                              navigator(
+                                  context,
+                                  ZoomDrawerScreen(
+                                    widget: DashboardAuthorScreen(),
+                                  ));
+                              ZoomDrawer.of(context)!.toggle();
+                            },
+                          ),
+                        if (userView == 'author')
+                          ListTile(
+                            title: const Text(
+                              "Tracks",
+                              style: TextStyle(
+                                color: textColorDrawer,
+                                fontSize: 16,
+                              ),
+                            ),
+                            leading: const Icon(
+                              Icons.folder,
+                              color: iconColorDrawer,
+                              size: 25,
+                            ),
+                            onTap: () {
+                              navigator(context, TracksScreen());
+                            },
+                          ),
+                        if (userView == 'author')
+                          ListTile(
+                            title: const Text(
+                              "Courses",
+                              style: TextStyle(
+                                color: textColorDrawer,
+                                fontSize: 16,
+                              ),
+                            ),
+                            leading: const Icon(
+                              Icons.play_circle_fill,
+                              color: iconColorDrawer,
+                              size: 25,
+                            ),
+                            onTap: () {
+                              navigator(context, AuthorCourses());
+                            },
+                          ),
+                        if (userView == 'author')
+                          ListTile(
+                            title: const Text(
+                              "Modules",
+                              style: TextStyle(
+                                color: textColorDrawer,
+                                fontSize: 16,
+                              ),
+                            ),
+                            leading: const Icon(
+                              Icons.file_copy,
+                              color: iconColorDrawer,
+                              size: 25,
+                            ),
+                            onTap: () {
+                              navigator(context, ModulesLibraryScreen());
+                            },
+                          ),
+                        // if (userView == 'user')
+                        //   ListTile(
+                        //     title: const Text(
+                        //       "Dashboard",
+                        //       style: TextStyle(
+                        //         color: textColorDrawer,
+                        //         fontSize: 16,
+                        //       ),
+                        //     ),
+                        //     leading: const Icon(
+                        //       Icons.dashboard,
+                        //       color: iconColorDrawer,
+                        //       size: 25,
+                        //     ),
+                        //     onTap: () {},
+                        //   ),
+                        if (userView == 'user')
+                          ListTile(
+                            title: const Text(
+                              "My Learning",
+                              style: TextStyle(
+                                color: textColorDrawer,
+                                fontSize: 16,
+                              ),
+                            ),
+                            leading: const Icon(
+                              TablerIcons.table,
+                              color: iconColorDrawer,
+                              size: 25,
+                            ),
+                            onTap: () {
+                              navigator(context, MyLearning());
+                            },
+                          ),
+                        ListTile(
+                          title: const Text(
+                            "Change Password",
+                            style: TextStyle(
+                              color: textColorDrawer,
+                              fontSize: 16,
+                            ),
+                          ),
+                          leading: const Icon(
+                            Icons.lock,
+                            color: iconColorDrawer,
+                            size: 25,
+                          ),
+                          onTap: () {
+                            navigator(context, ChangePasswordScreen());
+                          },
+                        ),
                         //Switcher to User
                         if ((userView == 'author' && userType == 'author') ||
                             (userView == 'manager' && userType == 'manager') ||
@@ -401,225 +622,6 @@ class MyDrawer extends StatelessWidget {
                               ZoomDrawer.of(context)!.toggle();
                             },
                           ),
-                        ListTile(
-                          title: const Text(
-                            "Home",
-                            style: TextStyle(
-                              color: textColorDrawer,
-                              fontSize: 16,
-                            ),
-                          ),
-                          leading: const Icon(
-                            Icons.home,
-                            color: iconColorDrawer,
-                            size: 25,
-                          ),
-                          onTap: () {
-                            navigator(
-                                context,
-                                ZoomDrawerScreen(
-                                  widget: HomePage(),
-                                ));
-                            ZoomDrawer.of(context)!.toggle();
-                          },
-                        ),
-                        if (userView == 'user')
-                          ListTile(
-                            title: const Text(
-                              "Home",
-                              style: TextStyle(
-                                color: textColorDrawer,
-                                fontSize: 16,
-                              ),
-                            ),
-                            leading: const Icon(
-                              Icons.home,
-                              color: iconColorDrawer,
-                              size: 25,
-                            ),
-                            onTap: () {
-                              navigator(
-                                  context,
-                                  ZoomDrawerScreen(
-                                    widget: HomePage(),
-                                  ));
-                              ZoomDrawer.of(context)!.toggle();
-                            },
-                          ),
-                        if (userView == 'manager')
-                          ListTile(
-                            title: const Text(
-                              "Author Requests",
-                              style: TextStyle(
-                                color: textColorDrawer,
-                                fontSize: 16,
-                              ),
-                            ),
-                            leading: const Icon(
-                              Icons.add,
-                              color: iconColorDrawer,
-                              size: 25,
-                            ),
-                            onTap: () {
-                              navigator(
-                                  context,
-                                  ZoomDrawerScreen(
-                                    widget: AuthorRequest(),
-                                  ));
-                              ZoomDrawer.of(context)!.toggle();
-                            },
-                          ),
-                        if (userView == 'admin')
-                          ListTile(
-                            title: const Text(
-                              "Add Manager",
-                              style: TextStyle(
-                                color: textColorDrawer,
-                                fontSize: 16,
-                              ),
-                            ),
-                            leading: const Icon(
-                              Icons.add,
-                              color: iconColorDrawer,
-                              size: 25,
-                            ),
-                            onTap: () {
-                              navigator(
-                                  context,
-                                  ZoomDrawerScreen(
-                                    widget: AddManager(),
-                                  ));
-                              ZoomDrawer.of(context)!.toggle();
-                            },
-                          ),
-                        if (userView == 'author')
-                          ListTile(
-                            title: const Text(
-                              "Dashboard",
-                              style: TextStyle(
-                                color: textColorDrawer,
-                                fontSize: 16,
-                              ),
-                            ),
-                            leading: const Icon(
-                              Icons.home,
-                              color: iconColorDrawer,
-                              size: 25,
-                            ),
-                            onTap: () {
-                              navigator(
-                                  context,
-                                  ZoomDrawerScreen(
-                                    widget: DashboardAuthorScreen(),
-                                  ));
-                              ZoomDrawer.of(context)!.toggle();
-                            },
-                          ),
-                        if (userView == 'author')
-                          ListTile(
-                            title: const Text(
-                              "Tracks",
-                              style: TextStyle(
-                                color: textColorDrawer,
-                                fontSize: 16,
-                              ),
-                            ),
-                            leading: const Icon(
-                              Icons.folder,
-                              color: iconColorDrawer,
-                              size: 25,
-                            ),
-                            onTap: () {
-                              navigator(context, TracksScreen());
-                            },
-                          ),
-                        if (userView == 'author')
-                          ListTile(
-                            title: const Text(
-                              "Courses",
-                              style: TextStyle(
-                                color: textColorDrawer,
-                                fontSize: 16,
-                              ),
-                            ),
-                            leading: const Icon(
-                              Icons.play_circle_fill,
-                              color: iconColorDrawer,
-                              size: 25,
-                            ),
-                            onTap: () {
-                              navigator(context, AuthorCourses());
-                            },
-                          ),
-                        if (userView == 'author')
-                          ListTile(
-                            title: const Text(
-                              "Modules",
-                              style: TextStyle(
-                                color: textColorDrawer,
-                                fontSize: 16,
-                              ),
-                            ),
-                            leading: const Icon(
-                              Icons.file_copy,
-                              color: iconColorDrawer,
-                              size: 25,
-                            ),
-                            onTap: () {
-                              navigator(context, ModulesLibraryScreen());
-                            },
-                          ),
-                        if (userView == 'user')
-                          ListTile(
-                            title: const Text(
-                              "Dashboard",
-                              style: TextStyle(
-                                color: textColorDrawer,
-                                fontSize: 16,
-                              ),
-                            ),
-                            leading: const Icon(
-                              Icons.dashboard,
-                              color: iconColorDrawer,
-                              size: 25,
-                            ),
-                            onTap: () {},
-                          ),
-                        if (userView == 'user')
-                          ListTile(
-                            title: const Text(
-                              "My Learning",
-                              style: TextStyle(
-                                color: textColorDrawer,
-                                fontSize: 16,
-                              ),
-                            ),
-                            leading: const Icon(
-                              TablerIcons.table,
-                              color: iconColorDrawer,
-                              size: 25,
-                            ),
-                            onTap: () {
-                              navigator(context, MyLearning());
-                            },
-                          ),
-                        ListTile(
-                          title: const Text(
-                            "Change Password",
-                            style: TextStyle(
-                              color: textColorDrawer,
-                              fontSize: 16,
-                            ),
-                          ),
-                          leading: const Icon(
-                            Icons.lock,
-                            color: iconColorDrawer,
-                            size: 25,
-                          ),
-                          onTap: () {
-                            navigator(context, ChangePasswordScreen());
-                          },
-                        ),
                       ],
                     ),
                   ),

@@ -100,7 +100,7 @@ class EditProfileScreen extends StatelessWidget {
                       if (cubit.model!.profile!.userEducation!.grade! ==
                           cubit.gradeItems[i]) {
                         cubit.selectedItemGrade =
-                            cubit.model!.profile!.userEducation!.grade!;
+                            cubit.model!.profile!.userEducation!.grade ?? 'GPA';
                         check = false;
                         break;
                       }

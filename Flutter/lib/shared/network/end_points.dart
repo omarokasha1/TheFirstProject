@@ -10,7 +10,7 @@ const courses = "api/course/allCourses";
           //<<<<<<<<<<<<<<<<<<<<<<<Create>>>>>>>>>>>>>>>>>>>>
 const login = "api/user/login";
 const register = "api/user/register";
-const changePassword = "api/user/changePassword";
+const changePassword = "api/user/change-password";
 const authorRequest = 'api/user/promot-request';
 const uploadImageProfile2 = 'api/user/upload';
 const enrollRequest = 'api/user/enroll-request';

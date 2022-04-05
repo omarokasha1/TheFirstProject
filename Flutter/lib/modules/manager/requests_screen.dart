@@ -26,7 +26,9 @@ class AuthorRequest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ManagerCubit()..getAuthorRequests()..getCoursesRequests(),
+      create: (context) => ManagerCubit()
+        ..getAuthorRequests()
+        ..getCoursesRequests(),
       child: BlocConsumer<ManagerCubit, ManagerStates>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -65,26 +67,25 @@ class AuthorRequest extends StatelessWidget {
                             builder: (context) {
                               return ListView.builder(
                                   physics: const BouncingScrollPhysics(),
-                                  itemBuilder: (context, index) =>
-                                      acceptsAuthorCard(
+                                  itemBuilder: (context, index) => cubit
+                                              .authorRequests!
+                                              .promotRequests!
+                                              .length !=
+                                          0
+                                      ? acceptsAuthorCard(
                                           cubit.authorRequests!
                                               .promotRequests![index],
                                           cubit,
-                                          context),
+                                          context)
+                                      : emptyPage(
+                                          text: "There's No Request's",
+                                          context: context),
                                   itemCount: cubit
                                       .authorRequests!.promotRequests!.length);
                             },
                             fallback: (context) {
                               return Center(
-                                child: cubit.authorRequests != null &&
-                                        cubit.authorRequests!.promotRequests!
-                                                .length ==
-                                            0
-                                    ? emptyPage(
-                                        text: "There's No Request's",
-                                        context: context)
-                                    : const CircularProgressIndicator
-                                        .adaptive(),
+                                child: CircularProgressIndicator.adaptive(),
                               );
                             },
                           ),
@@ -100,7 +101,8 @@ class AuthorRequest extends StatelessWidget {
                                       physics: const BouncingScrollPhysics(),
                                       itemBuilder: (context, index) =>
                                           userCourseCard(
-                                              cubit.coursesRequests!.courseRequests![index],
+                                              cubit.coursesRequests!
+                                                  .courseRequests![index],
                                               cubit,
                                               context),
                                       itemCount: cubit.coursesRequests!
@@ -582,7 +584,7 @@ class AuthorRequest extends StatelessWidget {
                     children: [
                       CircleAvatar(
                         backgroundImage: NetworkImage(
-                            // 'https://img-c.udemycdn.com/user/200_H/317821_3cb5_10.jpg',
+                          // 'https://img-c.udemycdn.com/user/200_H/317821_3cb5_10.jpg',
                           '${model.authorId!.imageUrl}',
                         ),
                         radius: 18,

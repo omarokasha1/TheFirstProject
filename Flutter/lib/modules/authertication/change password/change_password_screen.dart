@@ -222,6 +222,8 @@ class ChangePasswordScreen extends StatelessWidget {
                                           "Conform Password Must be the Same",
                                       color: Colors.red,
                                     );
+                                  }else{
+                                    cubit.createNewPassword(currentPass: currentPasswordController.text,newPass: passwordController.text);
                                   }
                                 }
                               },

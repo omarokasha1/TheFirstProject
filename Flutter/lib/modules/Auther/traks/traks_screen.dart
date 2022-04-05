@@ -141,9 +141,9 @@ class TracksScreen extends StatelessWidget {
     return ListView.builder(
         physics: const BouncingScrollPhysics(),
         itemBuilder: (context, index) {
-          return BuildAuthorCourse(context, cubit.trackModel!.tracks![index], cubit,false);
+          return BuildAuthorCourse(context, cubit.trackModelPublished!.tracks![index], cubit,false);
         },
-        itemCount: cubit.trackModel!.tracks!.length);
+        itemCount: cubit.trackModelPublished!.tracks!.length);
   }
 
   //Pending Courses PageView
