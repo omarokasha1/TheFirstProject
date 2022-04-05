@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lms/models/chage_password_model.dart';
 import 'package:lms/modules/authertication/change%20password/cubit/states.dart';
@@ -14,8 +15,6 @@ class ChangePasswordCubit extends Cubit<ChangePasswordStates> {
   //This get Function to be Used when we need to get The Cubit all Over the Project
   static ChangePasswordCubit get(context) => BlocProvider.of(context);
 
-  //
-  ChangePasswordModel? changePasswordModel;
 
   void createNewPassword(
       {required String currentPass, required String newPass}) {
@@ -25,8 +24,8 @@ class ChangePasswordCubit extends Cubit<ChangePasswordStates> {
       "password": newPass,
     }).then((value) {
       print(value.data['message']);
-      emit(ChangePasswordSuccessState(changePasswordModel!));
-      showToast(message: changePasswordModel!.message!);
+      emit(ChangePasswordSuccessState());
+      showToast(message: value.data['message']);
     }).catchError((onError) {
       print(onError.toString());
       emit(ChangePasswordErrorState(onError.toString()));
