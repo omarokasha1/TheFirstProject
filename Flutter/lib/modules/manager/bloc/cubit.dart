@@ -29,13 +29,13 @@ class ManagerCubit extends Cubit<ManagerStates> {
   }
 
 
-  CoursesRequests? coursesRequests;
+  CourseRequestModel? coursesRequests;
   Future<void> getCoursesRequests() async {
     emit(GetAllCoursesRequestsLoadingState());
     await DioHelper.getData(url: getCourseRequest, token: userToken)
         .then((value) {
       print(value.data);
-      coursesRequests = CoursesRequests.fromJson(value.data);
+      coursesRequests = CourseRequestModel.fromJson(value.data);
       emit(GetAllCoursesRequestsSuccessState(coursesRequests!));
     }).catchError((error) {
       emit(GetAllCoursesRequestsErrorState(error.toString()));

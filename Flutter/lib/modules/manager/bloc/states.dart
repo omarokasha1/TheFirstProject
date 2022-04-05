@@ -24,7 +24,7 @@ class GetAllAuthorRequestsErrorState extends ManagerStates {
 class GetAllCoursesRequestsLoadingState extends ManagerStates {}
 
 class GetAllCoursesRequestsSuccessState extends ManagerStates {
-  final CoursesRequests coursesRequests;
+  final CourseRequestModel coursesRequests;
 
   GetAllCoursesRequestsSuccessState(this.coursesRequests);
 }

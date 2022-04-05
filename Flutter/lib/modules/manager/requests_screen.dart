@@ -26,7 +26,7 @@ class AuthorRequest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ManagerCubit()..getAuthorRequests(),
+      create: (context) => ManagerCubit()..getAuthorRequests()..getCoursesRequests(),
       child: BlocConsumer<ManagerCubit, ManagerStates>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -88,13 +88,30 @@ class AuthorRequest extends StatelessWidget {
                               );
                             },
                           ),
-                          ListView.builder(
-                              physics: const BouncingScrollPhysics(),
-                              itemBuilder: (context, index) => userCourseCard(
-                                  cubit.coursesRequests!.courseRequests![index].courseId,
-                                  cubit,
-                                  context),
-                              itemCount: 5),
+                          ConditionalBuilder(
+                            condition: cubit.coursesRequests != null,
+                            builder: (context) {
+                              return cubit
+                                      .coursesRequests!.courseRequests!.isEmpty
+                                  ? emptyPage(
+                                      text: "No Courses Requests yet",
+                                      context: context)
+                                  : ListView.builder(
+                                      physics: const BouncingScrollPhysics(),
+                                      itemBuilder: (context, index) =>
+                                          userCourseCard(
+                                              cubit.coursesRequests!.courseRequests![index],
+                                              cubit,
+                                              context),
+                                      itemCount: cubit.coursesRequests!
+                                          .courseRequests!.length);
+                            },
+                            fallback: (context) {
+                              return Center(
+                                child: CircularProgressIndicator.adaptive(),
+                              );
+                            },
+                          ),
                           ListView.builder(
                               physics: const BouncingScrollPhysics(),
                               itemBuilder: (context, index) =>
@@ -138,7 +155,8 @@ class AuthorRequest extends StatelessWidget {
     );
   }
 
-  Widget acceptsAuthorCard(PromotRequests promotRequests, ManagerCubit cubit, context) {
+  Widget acceptsAuthorCard(
+      PromotRequests promotRequests, ManagerCubit cubit, context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
@@ -520,7 +538,7 @@ class AuthorRequest extends StatelessWidget {
   }
 
   //Course Widget
-  Widget userCourseCard(CourseId model, ManagerCubit cubit, context) {
+  Widget userCourseCard(CourseRequests model, ManagerCubit cubit, context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
@@ -551,7 +569,7 @@ class AuthorRequest extends StatelessWidget {
                     height: 10.h,
                   ),
                   Text(
-                    '$courseRequests',
+                    model.courseId!.title ?? '',
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 17.sp,
@@ -562,9 +580,11 @@ class AuthorRequest extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      const CircleAvatar(
+                      CircleAvatar(
                         backgroundImage: NetworkImage(
-                            'https://img-c.udemycdn.com/user/200_H/317821_3cb5_10.jpg'),
+                            // 'https://img-c.udemycdn.com/user/200_H/317821_3cb5_10.jpg',
+                          '${model.authorId!.imageUrl}',
+                        ),
                         radius: 18,
                       ),
                       const SizedBox(
@@ -573,7 +593,7 @@ class AuthorRequest extends StatelessWidget {
                       Container(
                         width: 100.w,
                         child: Text(
-                          'authorName authorName',
+                          '${model.authorId!.userName}',
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 15.sp,
@@ -640,7 +660,7 @@ class AuthorRequest extends StatelessWidget {
             Row(
               children: [
                 const Expanded(
-                  flex: 2,
+                  flex: 1,
                   child: Text(
                     'Web Development Full stack Track ',
                     style: TextStyle(
@@ -666,7 +686,6 @@ class AuthorRequest extends StatelessWidget {
                     ],
                   ),
                 ),
-
               ],
             ),
           ],
