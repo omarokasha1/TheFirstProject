@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:dio/dio.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_picker/Picker.dart';
@@ -9,6 +10,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
+import 'package:open_file/open_file.dart';
 
 import 'cubit/cubit.dart';
 import 'cubit/statues.dart';
@@ -17,8 +19,9 @@ class CreateTrackScreen extends StatelessWidget {
   CreateTrackScreen({Key? key}) : super(key: key);
 
   File? file;
-  String? filePath;
+  dynamic filePath;
 
+  var result;
   TextEditingController trackNameController = TextEditingController();
   TextEditingController shortDescriptionController = TextEditingController();
   //TextEditingController durationController = TextEditingController();
@@ -245,27 +248,23 @@ class CreateTrackScreen extends StatelessWidget {
                                     Center(
                                       child: TextButton(
                                           onPressed: () async {
-                                            final pickedFile =
-                                                await picker.pickImage(
-                                                    source:
-                                                        ImageSource.gallery);
-                                            if (pickedFile != null) {
-                                              trackImage =
-                                                  File(pickedFile.path);
-                                              print(trackImage!);
+                                            result = await FilePicker.platform.pickFiles();
+                                            if (result != null) {
+                                              file = File(result!.files.single.path!);
+                                              filePath = result!.files.first;
                                               print(
                                                   "Piiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiic");
                                             } else {
                                               print('no image selected');
                                             }
                                           },
-                                          child: const Padding(
+                                          child:  Padding(
                                             padding: EdgeInsets.symmetric(
                                                 horizontal: 22.0),
-                                            child: Text(
+                                            child: filePath == null ?  Text(
                                               "Upload",
                                               style: TextStyle(fontSize: 20),
-                                            ),
+                                            ): viewFileDetails() ,
                                           )),
                                     ),
                                     // Row(children: [
@@ -334,4 +333,92 @@ class CreateTrackScreen extends StatelessWidget {
       ),
     );
   }
+  Widget viewFileDetails() {
+    final kb = filePath.size / 1024;
+    final mb = kb / 1024;
+    final fileSize =
+    mb > 1 ? "${mb.toStringAsFixed(2)} MB" : "${kb.toStringAsFixed(2)} Kb";
+    final extension = filePath.extension ?? "none";
+
+    return Stack(
+      children: [
+        Container(
+          padding: EdgeInsets.all(12),
+
+          child: InkWell(
+            onTap: () {
+              OpenFile.open(filePath.path);
+            },
+            child: Container(
+              padding: EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                // color: secondaryColor,
+                  borderRadius: BorderRadius.all(Radius.circular(15)),
+                  border: Border.all(
+                    color: primaryColor,
+                  )),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    filePath.name,
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                        overflow: TextOverflow.ellipsis),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        ".${filePath.extension}",
+                        style: TextStyle(
+                          fontSize: 20,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Text(
+                        "/ $fileSize",
+                        style: TextStyle(fontSize: 20),
+                      )
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+        Positioned(
+          top: 0,
+          right: 0,
+          child: CircleAvatar(
+            backgroundColor: secondaryColor,
+            radius: 20.0,
+            child: IconButton(
+              icon: const Icon(
+                Icons.edit,
+              ),
+              color: Colors.white,
+              iconSize: 20.0,
+              onPressed: () async {
+                result = await FilePicker.platform.pickFiles();
+
+                if (result != null) {
+                  file = File(result!.files.single.path!);
+                  filePath = result!.files.first;
+
+                }
+              },
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
 }

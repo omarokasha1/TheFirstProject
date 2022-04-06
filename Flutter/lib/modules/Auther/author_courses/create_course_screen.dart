@@ -9,21 +9,20 @@ import 'package:lms/modules/Auther/author_courses/author_courses_cubit/cubit.dar
 import 'package:lms/modules/Auther/author_courses/author_courses_cubit/status.dart';
 import 'package:lms/modules/Auther/modules/create_module/cubit/cubit.dart';
 import 'package:lms/modules/Auther/modules/create_module/cubit/states.dart';
-
-import 'package:lms/modules/courses/cubit/cubit.dart';
 import 'package:open_file/open_file.dart';
 import '../../../shared/component/component.dart';
 import '../../../shared/component/constants.dart';
-import '../../courses/cubit/states.dart';
 
 class CreateCourseScreen extends StatelessWidget {
   CreateCourseScreen({Key? key}) : super(key: key);
 
-  File? courseImage;
+ // File? courseImage;
   File? file;
-  FilePickerResult? result;
+ // FilePickerResult? result;
+
   dynamic filePath;
   var picker = ImagePicker();
+    var result;
 
   TextEditingController courseNameController = TextEditingController();
   TextEditingController shortDescriptionController = TextEditingController();
@@ -289,41 +288,66 @@ class CreateCourseScreen extends StatelessWidget {
                                         padding: const EdgeInsets.only(left: 8.0),
                                         child: Text("Course Image",
                                             style: TextStyle(
-                                                fontSize: 25,
-                                                color: Colors.grey[600])),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(left: 8.0),
-                                        child: Text("Course Image",
-                                            style: TextStyle(
                                                 fontSize: 25, color: Colors.grey[600])),
                                       ),
                                       Center(
                                         child: TextButton(
                                             onPressed: () async {
-                                              final pickedFile =
-                                              await picker.pickImage(
-                                                  source:
-                                                  ImageSource.gallery);
-                                              if (pickedFile != null) {
-                                                courseImage =
-                                                    File(pickedFile.path);
+                                              result = await FilePicker.platform.pickFiles();
+
+                                              if (result != null) {
+                                                file = File(result!.files.single.path!);
+                                                filePath = result!.files.first;
+                                                print(result!.files.single.path!);
+                                                print(result!.files.first);
+                                                //   cubit.uploadFile(file!);
                                               } else {
-                                                print('no image selected');
+                                                showToast(
+                                                    message:
+                                                    "upload file must be not empty");
                                               }
-                                              //image = await _picker.pickImage(source: ImageSource.gallery);
-                                              print(
-                                                  "Piiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiic");
+                                              moduleCubit.selectImage();
                                             },
                                             child: Padding(
                                               padding: EdgeInsets.symmetric(
-                                                  horizontal: 22.0),
-                                              child: filePath ==null ? Text(
+                                                  horizontal: 0.0),
+                                              child: filePath == null
+                                                  ? Text(
                                                 "Upload",
                                                 style: TextStyle(fontSize: 20),
-                                              ):viewFileDetails(courseCubit),
+                                              )
+                                                  : viewFileDetails(),
                                             )),
                                       ),
+                                      // Padding(
+                                      //   padding: const EdgeInsets.only(left: 8.0),
+                                      //   child: Text("Course Image",
+                                      //       style: TextStyle(
+                                      //           fontSize: 25, color: Colors.grey[600])),
+                                      // ),
+                                      // Center(
+                                      //   child: TextButton(
+                                      //       onPressed: () async {
+                                      //         result = await picker.pickImage(source: ImageSource.gallery);
+                                      //         if (result != null) {
+                                      //           file = File(result.path);
+                                      //         } else {
+                                      //           print('no image selected');
+                                      //         }
+                                      //         //image = await _picker.pickImage(source: ImageSource.gallery);
+                                      //         print(
+                                      //             "Piiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiic");
+                                      //       },
+                                      //       child: Padding(
+                                      //         padding: EdgeInsets.symmetric(
+                                      //             horizontal: 22.0),
+                                      //         child: filePath == null ?
+                                      //         Text(
+                                      //           "Upload",
+                                      //           style: TextStyle(fontSize: 20),
+                                      //         ):viewFileDetails(moduleCubit),
+                                      //       )),
+                                      // ),
                                     ],
                                   ),
                                 ),
@@ -335,7 +359,7 @@ class CreateCourseScreen extends StatelessWidget {
                                   text: 'Save',
                                   onPressed: () async {
                                     if (formKey.currentState!.validate()) {
-                                      if (courseImage == null) {
+                                      if (file == null) {
                                         showToast(
                                             message:
                                             "Course Image Must be Not empty",
@@ -347,7 +371,7 @@ class CreateCourseScreen extends StatelessWidget {
                                           requirements: requiermentController.text,
                                           contents: moduleCubit.myActivities!,
                                           language: courseCubit.selectedItem,
-                                          courseImage: courseImage,
+                                          courseImage: file,
                                         ).then((value) => Navigator.pop(context));
                                       }
                                     }
@@ -371,7 +395,7 @@ class CreateCourseScreen extends StatelessWidget {
       ),
     );
   }
-  Widget viewFileDetails(cubit) {
+  Widget viewFileDetails() {
     final kb = filePath.size / 1024;
     final mb = kb / 1024;
     final fileSize =
@@ -445,12 +469,9 @@ class CreateCourseScreen extends StatelessWidget {
               iconSize: 20.0,
               onPressed: () async {
                 result = await FilePicker.platform.pickFiles();
-
                 if (result != null) {
                   file = File(result!.files.single.path!);
                   filePath = result!.files.first;
-
-                  cubit.selectImage();
                 }
               },
             ),
