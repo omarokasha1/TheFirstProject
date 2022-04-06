@@ -4,11 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lms/layout/layout.dart';
 import 'package:lms/modules/Auther/dashboard/dashboard_auther.dart';
+import 'package:lms/modules/admin/dashboard_admin/admin_dashboard_screen.dart';
 import 'package:lms/modules/authertication/forget%20password/forget_Password_screen.dart';
 import 'package:lms/modules/authertication/login/login_cubit/state.dart';
 import 'package:lms/modules/authertication/register/register_screen.dart';
 import 'package:lms/modules/courses/cubit/cubit.dart';
 import 'package:lms/modules/home/home_screen.dart';
+import 'package:lms/modules/manager/dashboard_manager_screen.dart';
 import 'package:lms/modules/profile/profile_cubit/cubit.dart';
 import 'package:lms/shared/component/constants.dart';
 import 'package:lms/shared/component/zoomDrawer.dart';
@@ -69,7 +71,10 @@ class _LoginScreenState extends State<LoginScreen> {
               // }else{isManager =false; isAuthor =false; isAdmin=false;}
               navigatorAndRemove(
                 context,
-               isAuthor?ZoomDrawerScreen(widget:DashboardAuthorScreen()): ZoomDrawerScreen(),
+               userView == "admin" && (userType == 'author' || userType == 'manager' || userType == 'admin')? ZoomDrawerScreen(widget: DashboardAdminScreen(),):
+                userView == "manager" && (userType == 'author' || userType == 'manager')? ZoomDrawerScreen(widget: DashboardManagerScreen(),):
+                userView == "author"&& (userType == 'author') ? ZoomDrawerScreen(widget: DashboardAuthorScreen(),):
+                ZoomDrawerScreen(),
               );
             } else {
               print(" jsadjbasjdnj ${state.model.status}");

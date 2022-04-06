@@ -62,9 +62,9 @@ class ManagerCubit extends Cubit<ManagerStates> {
       },
     ).then((value) {
       print(value.toString());
-      getAllAuthor();
       //print(model!.profile!.userName);
       emit(MakeAuthorManagerSuccessState());
+      getAllAuthor();
     }).catchError((onError) {
       print(onError.toString());
       emit(MakeAuthorManagerErrorState(onError.toString()));

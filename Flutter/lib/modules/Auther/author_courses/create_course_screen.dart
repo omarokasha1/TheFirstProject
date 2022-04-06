@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,6 +11,7 @@ import 'package:lms/modules/Auther/modules/create_module/cubit/cubit.dart';
 import 'package:lms/modules/Auther/modules/create_module/cubit/states.dart';
 
 import 'package:lms/modules/courses/cubit/cubit.dart';
+import 'package:open_file/open_file.dart';
 import '../../../shared/component/component.dart';
 import '../../../shared/component/constants.dart';
 import '../../courses/cubit/states.dart';
@@ -18,6 +20,9 @@ class CreateCourseScreen extends StatelessWidget {
   CreateCourseScreen({Key? key}) : super(key: key);
 
   File? courseImage;
+  File? file;
+  FilePickerResult? result;
+  dynamic filePath;
   var picker = ImagePicker();
 
   TextEditingController courseNameController = TextEditingController();
@@ -26,6 +31,8 @@ class CreateCourseScreen extends StatelessWidget {
   TextEditingController moduleTypeController = TextEditingController();
 
   var formKey = GlobalKey<FormState>();
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +88,7 @@ class CreateCourseScreen extends StatelessWidget {
                                 alignment: Alignment.topLeft,
                                 child: Padding(
                                   padding:
-                                  const EdgeInsets.only(left: 40, top: 100),
+                                  EdgeInsets.only(left: 40, top: 100),
                                   child: Text("Create Course",
                                       style: TextStyle(
                                           fontSize: 30, color: Colors.white)),
@@ -285,6 +292,12 @@ class CreateCourseScreen extends StatelessWidget {
                                                 fontSize: 25,
                                                 color: Colors.grey[600])),
                                       ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(left: 8.0),
+                                        child: Text("Course Image",
+                                            style: TextStyle(
+                                                fontSize: 25, color: Colors.grey[600])),
+                                      ),
                                       Center(
                                         child: TextButton(
                                             onPressed: () async {
@@ -302,13 +315,13 @@ class CreateCourseScreen extends StatelessWidget {
                                               print(
                                                   "Piiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiic");
                                             },
-                                            child: const Padding(
+                                            child: Padding(
                                               padding: EdgeInsets.symmetric(
                                                   horizontal: 22.0),
-                                              child: Text(
+                                              child: filePath ==null ? Text(
                                                 "Upload",
                                                 style: TextStyle(fontSize: 20),
-                                              ),
+                                              ):viewFileDetails(courseCubit),
                                             )),
                                       ),
                                     ],
@@ -349,7 +362,7 @@ class CreateCourseScreen extends StatelessWidget {
                   );
                 },
                 fallback: (context){
-                  return Center(child: CircularProgressIndicator(),);
+                  return const Center(child: CircularProgressIndicator(),);
                 },
               ),
             );
@@ -358,4 +371,94 @@ class CreateCourseScreen extends StatelessWidget {
       ),
     );
   }
+  Widget viewFileDetails(cubit) {
+    final kb = filePath.size / 1024;
+    final mb = kb / 1024;
+    final fileSize =
+    mb > 1 ? "${mb.toStringAsFixed(2)} MB" : "${kb.toStringAsFixed(2)} Kb";
+    final extension = filePath.extension ?? "none";
+
+    return Stack(
+      children: [
+        Container(
+          padding: const EdgeInsets.all(12),
+
+          child: InkWell(
+            onTap: () {
+              OpenFile.open(filePath.path);
+            },
+            child: Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                // color: secondaryColor,
+                  borderRadius: const BorderRadius.all(Radius.circular(15)),
+                  border: Border.all(
+                    color: primaryColor,
+                  )),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    filePath.name,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                        overflow: TextOverflow.ellipsis),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        ".${filePath.extension}",
+                        style: const TextStyle(
+                          fontSize: 20,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Text(
+                        "/ $fileSize",
+                        style: const TextStyle(fontSize: 20),
+                      )
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+        Positioned(
+          top: 0,
+          right: 0,
+          child: CircleAvatar(
+            backgroundColor: secondaryColor,
+            radius: 20.0,
+            child: IconButton(
+              icon: const Icon(
+                Icons.edit,
+              ),
+              color: Colors.white,
+              iconSize: 20.0,
+              onPressed: () async {
+                result = await FilePicker.platform.pickFiles();
+
+                if (result != null) {
+                  file = File(result!.files.single.path!);
+                  filePath = result!.files.first;
+
+                  cubit.selectImage();
+                }
+              },
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
 }
+

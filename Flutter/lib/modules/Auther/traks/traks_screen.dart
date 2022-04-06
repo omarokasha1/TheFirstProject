@@ -37,7 +37,7 @@ class TracksScreen extends StatelessWidget {
               child: Scaffold(
                 appBar: AppBar(),
                 body: ConditionalBuilder(
-                  condition: cubit.trackModel != null ,
+                  condition: cubit.trackModel != null && cubit.trackModelPublished != null,
                   builder: (context) => Column(
                     children: [
                       Padding(
