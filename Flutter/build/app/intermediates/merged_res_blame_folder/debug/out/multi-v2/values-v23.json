@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/odc6/final clone/TheFirstProject/Flutter/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-v23/values-v23.xml",
+            "outputFile": "/home/odc5/MainProject/TheFirstProject/Flutter/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-v23/values-v23.xml",
             "map": [
                 {
-                    "source": "/home/odc6/.gradle/caches/transforms-2/files-2.1/fe874bc08108b4385ecbba01f969818b/work-runtime-2.7.0/res/values-v23/values-v23.xml",
+                    "source": "/home/odc5/.gradle/caches/transforms-2/files-2.1/fe874bc08108b4385ecbba01f969818b/work-runtime-2.7.0/res/values-v23/values-v23.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lms/models/course_model.dart';
+import 'package:lms/models/enroll_track.dart';
 import 'package:lms/models/wishlist_courses.dart';
 import 'package:lms/modules/my_learning/my_learning_cubit/state.dart';
 import 'package:lms/shared/component/constants.dart';
@@ -41,13 +42,14 @@ class MyLearningCubit extends Cubit<MyLearningStates> {
     });
   }
 
-  List<Courses> enrolledCourses =[];
+  List<WishList> enrolledCourses =[];
   void getEnrollCourses() {
+    enrolledCourses.clear();
     emit(GetEnrolledCoursesLoadingState());
     DioHelper.getData(url: getEnrolledCourses,token: userToken).then((value) {
       //print('Hereeeeeeeeeeeeeeeeeeee ${wishlistCourses!.wishList!.length}');
       value.data['myCourses'].forEach((v) {
-        enrolledCourses.add(Courses.fromJson(v));
+        enrolledCourses.add(WishList.fromJson(v));
       });
       emit(GetEnrolledCoursesSuccessState());
     }).catchError((error) {
@@ -55,5 +57,17 @@ class MyLearningCubit extends Cubit<MyLearningStates> {
       print(error.toString());
     });
   }
-
+  EnrollTracks? enrollTracks;
+  void getEnrolledTracksData() {
+    emit(GetEnrolledTracksLoadingState());
+    DioHelper.getData(url: getEnrollTracks,token: userToken).then((value) {
+      //print(value.data);
+      enrollTracks = EnrollTracks.fromJson(value.data);
+      //print('Hereeeeeeeeeeeeeeeeeeee ${wishlistCourses!.wishList!.length}');
+      emit(GetEnrolledTracksSuccessState());
+    }).catchError((error) {
+      emit(GetEnrolledTracksErrorState(error.toString()));
+      print(error.toString());
+    });
+  }
 }

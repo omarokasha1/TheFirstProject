@@ -19,6 +19,7 @@ import 'package:lms/shared/component/observer.dart';
 import 'package:lms/shared/network/local/cache_helper.dart';
 import 'package:lms/shared/network/remote/dio-helper.dart';
 import 'package:lms/shared/themes/light_theme.dart';
+import 'modules/my_learning/my_learning_cubit/cubit.dart';
 import 'modules/profile/profile_cubit/cubit.dart';
 import 'shared/cubit For Internet/cubit.dart';
 
@@ -103,6 +104,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context)=> AuthorCoursesCubit()..getAuthorCoursesData()..getAuthorCoursesPublishedData()),
         BlocProvider(create: (context)=>CreateTrackCubit()..getAuthorCoursesData()..getAuthorTrackPublishedData()),
         BlocProvider(create: (context)=>TrackCubit()..getAllTracksData()),
+        BlocProvider(create: (context)=>MyLearningCubit()..getEnrollCourses()),
       ],
       //ScreenUTil is A Package make application responsive.
       child: ScreenUtilInit(

@@ -6,8 +6,19 @@ import 'package:lms/shared/component/component.dart';
 import '../../../shared/component/constants.dart';
 import '../../../shared/network/end_points.dart';
 import '../../../shared/network/remote/dio-helper.dart';
+
 class CourseCubit extends Cubit<CourseStates> {
   CourseCubit() : super(CourseInitialState());
+  bool isEnrolled = false;
+  bool isWishlist = false;
+  void changeEnabledCourse(bool x){
+    isEnrolled = x;
+    emit(ChangeEnrolledState());
+  }
+  void changeWishlistCourse(bool x){
+    isWishlist = x;
+    emit(ChangeWishlistState());
+  }
 
   static CourseCubit get(context) => BlocProvider.of(context);
 
@@ -24,21 +35,20 @@ class CourseCubit extends Cubit<CourseStates> {
       print(error.toString());
     });
   }
+
   List<Courses> search = [];
-  void searchCourse (String word){
+
+  void searchCourse(String word) {
     search = coursesModel!.courses!;
     emit(SearchCourseLoadingState());
-    if(word.isEmpty){
+    if (word.isEmpty) {
       search = coursesModel!.courses!;
-    }else{
+    } else {
       search = coursesModel!.courses!.where((element) {
         final titleLower = element.title!.toLowerCase();
-        final authorLower =
-        element.author!.userName!.toLowerCase();
-        final descriptionLower =
-        element.description!.toLowerCase();
-        final requirementsLower =
-        element.requirements!.toLowerCase();
+        final authorLower = element.author!.userName!.toLowerCase();
+        final descriptionLower = element.description!.toLowerCase();
+        final requirementsLower = element.requirements!.toLowerCase();
         final searchLower = word.toLowerCase();
 
         return titleLower.contains(searchLower) ||
@@ -65,59 +75,66 @@ class CourseCubit extends Cubit<CourseStates> {
     });
   }
 
-  void enrollCourse({required courseId}){
+  void enrollCourse({required courseId}) {
     emit(EnrollCourseLoadingState());
-    DioHelper.putData(url: enrollUserToCourse, data: {
-      'courseId':courseId,
-    },token: userToken).then((value) {
+    DioHelper.putData(
+            url: enrollUserToCourse,
+            data: {
+              'courseId': courseId,
+            },
+            token: userToken)
+        .then((value) {
       showToast(message: value.data['message']);
       emit(EnrollCourseSuccessState());
-    }).catchError((error){
+    }).catchError((error) {
       emit(EnrollCourseErrorState(error));
     });
   }
 
-  void wishlistCourse({required courseId}){
+  void wishlistCourse({required courseId}) {
     emit(WishlistCourseLoadingState());
-    DioHelper.putData(url: wishlist, data: {
-      'courseId':courseId,
-    },token: userToken).then((value) {
+    DioHelper.putData(
+            url: wishlist,
+            data: {
+              'courseId': courseId,
+            },
+            token: userToken)
+        .then((value) {
       print(value.data);
       Fluttertoast.showToast(msg: value.data['message']);
       emit(WishlistCourseSuccessState());
-    }).catchError((error){
+    }).catchError((error) {
       emit(WishlistCourseErrorState(error));
     });
   }
 
-
-  // CourseModel? createCourseModel;
-  //
-  // void createNewCourse({
-  //   required String courseName,
-  //   required String description,
-  //   required String requirement,
-  //   required List<dynamic> content,
-  //   required String lang,
-  //   required image,
-  // }) {
-  //   emit(CreateCourseLoadingState());
-  //   DioHelper.postData(
-  //     data: {
-  //       'title': courseName,
-  //       'description': description,
-  //       'requirements': requirement,
-  //       'language': lang,
-  //       'imageUrl': image
-  //     },
-  //     url: module,
-  //     token: userToken,
-  //   ).then((value) {
-  //     createCourseModel = CourseModel.fromJson(value.data);
-  //     emit(CreateCourseSuccessState(createCourseModel!));
-  //   }).catchError((onError) {
-  //     print(onError.toString());
-  //     emit(CreateCourseErrorState(onError.toString()));
-  //   });
-  // }
+// CourseModel? createCourseModel;
+//
+// void createNewCourse({
+//   required String courseName,
+//   required String description,
+//   required String requirement,
+//   required List<dynamic> content,
+//   required String lang,
+//   required image,
+// }) {
+//   emit(CreateCourseLoadingState());
+//   DioHelper.postData(
+//     data: {
+//       'title': courseName,
+//       'description': description,
+//       'requirements': requirement,
+//       'language': lang,
+//       'imageUrl': image
+//     },
+//     url: module,
+//     token: userToken,
+//   ).then((value) {
+//     createCourseModel = CourseModel.fromJson(value.data);
+//     emit(CreateCourseSuccessState(createCourseModel!));
+//   }).catchError((onError) {
+//     print(onError.toString());
+//     emit(CreateCourseErrorState(onError.toString()));
+//   });
+// }
 }

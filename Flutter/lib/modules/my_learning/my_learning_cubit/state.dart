@@ -52,3 +52,9 @@ class GetEnrolledCoursesErrorState extends MyLearningStates{
   final String error;
   GetEnrolledCoursesErrorState(this.error);
 }
+class GetEnrolledTracksLoadingState extends MyLearningStates{}
+class GetEnrolledTracksSuccessState extends MyLearningStates{}
+class GetEnrolledTracksErrorState extends MyLearningStates{
+  final String error;
+  GetEnrolledTracksErrorState(this.error);
+}

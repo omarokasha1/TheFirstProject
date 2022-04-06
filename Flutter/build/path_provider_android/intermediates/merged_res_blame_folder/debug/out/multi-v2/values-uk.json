@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/odc6/final clone/TheFirstProject/Flutter/build/path_provider_android/intermediates/res/merged/debug/values-uk/values-uk.xml",
+            "outputFile": "/home/odc5/MainProject/TheFirstProject/Flutter/build/path_provider_android/intermediates/res/merged/debug/values-uk/values-uk.xml",
             "map": [
                 {
-                    "source": "/home/odc6/.gradle/caches/transforms-2/files-2.1/122df2e57d294d1a53db26bbc3b813c1/core-1.6.0/res/values-uk/values-uk.xml",
+                    "source": "/home/odc5/.gradle/caches/transforms-2/files-2.1/122df2e57d294d1a53db26bbc3b813c1/core-1.6.0/res/values-uk/values-uk.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -16,10 +16,10 @@
             ]
         },
         {
-            "outputFile": "/home/odc6/final clone/TheFirstProject/Flutter/build/path_provider_android/intermediates/incremental/mergeDebugResources/merged.dir/values-uk/values-uk.xml",
+            "outputFile": "/home/odc5/MainProject/TheFirstProject/Flutter/build/path_provider_android/intermediates/incremental/mergeDebugResources/merged.dir/values-uk/values-uk.xml",
             "map": [
                 {
-                    "source": "/home/odc6/.gradle/caches/transforms-2/files-2.1/122df2e57d294d1a53db26bbc3b813c1/core-1.6.0/res/values-uk/values-uk.xml",
+                    "source": "/home/odc5/.gradle/caches/transforms-2/files-2.1/122df2e57d294d1a53db26bbc3b813c1/core-1.6.0/res/values-uk/values-uk.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

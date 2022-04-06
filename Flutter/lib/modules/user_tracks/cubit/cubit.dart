@@ -17,7 +17,7 @@ class TrackCubit extends Cubit<AllTracksStates> {
   Tracks? trackModel;
   void getAllTracksData() {
     emit(AllTracksLoadingState());
-    print("url $getAuthorTrackPublished");
+    //print("url $getAllTrackPublished");
     DioHelper.getData(url: getAllTrackPublished,token: userToken).then((value) {
       value.data['tracks'].forEach((element) {
         tracksModel.add(Tracks.fromJson(element));

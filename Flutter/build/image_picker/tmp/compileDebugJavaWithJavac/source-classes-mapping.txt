@@ -1,3 +1,5 @@
+io/flutter/plugins/imagepicker/ImagePickerFileProvider.java
+ io.flutter.plugins.imagepicker.ImagePickerFileProvider
 io/flutter/plugins/imagepicker/ImagePickerPlugin.java
  io.flutter.plugins.imagepicker.ImagePickerPlugin
  io.flutter.plugins.imagepicker.ImagePickerPlugin$LifeCycleObserver
@@ -5,8 +7,6 @@ io/flutter/plugins/imagepicker/ImagePickerPlugin.java
  io.flutter.plugins.imagepicker.ImagePickerPlugin$MethodResultWrapper$1
  io.flutter.plugins.imagepicker.ImagePickerPlugin$MethodResultWrapper$2
  io.flutter.plugins.imagepicker.ImagePickerPlugin$MethodResultWrapper$3
-io/flutter/plugins/imagepicker/ImagePickerFileProvider.java
- io.flutter.plugins.imagepicker.ImagePickerFileProvider
 io/flutter/plugins/imagepicker/ExifDataCopier.java
  io.flutter.plugins.imagepicker.ExifDataCopier
 io/flutter/plugins/imagepicker/ImagePickerDelegate.java
@@ -24,9 +24,9 @@ io/flutter/plugins/imagepicker/ImageResizer.java
  io.flutter.plugins.imagepicker.ImageResizer
 io/flutter/plugins/imagepicker/ImagePickerUtils.java
  io.flutter.plugins.imagepicker.ImagePickerUtils
-io/flutter/plugins/imagepicker/ImagePickerCache.java
- io.flutter.plugins.imagepicker.ImagePickerCache
 io/flutter/plugins/imagepicker/FileUtils.java
  io.flutter.plugins.imagepicker.FileUtils
+io/flutter/plugins/imagepicker/ImagePickerCache.java
+ io.flutter.plugins.imagepicker.ImagePickerCache
 io/flutter/plugins/imagepicker/BuildConfig.java
  io.flutter.plugins.imagepicker.BuildConfig

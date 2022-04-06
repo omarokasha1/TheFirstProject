@@ -20,6 +20,8 @@ class CourseErrorState extends CourseStates {
   CourseErrorState(this.error);
 }
 
+class ChangeEnrolledState extends CourseStates{}
+class ChangeWishlistState extends CourseStates{}
 
 class AllCoursesLoadingState extends CourseStates {}
 

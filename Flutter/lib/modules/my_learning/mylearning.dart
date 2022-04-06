@@ -1,15 +1,17 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lms/layout/layout.dart';
-import 'package:lms/models/course_model.dart';
+import 'package:lms/models/enroll_track.dart';
 import 'package:lms/models/wishlist_courses.dart';
 import 'package:lms/modules/my_learning/my_learning_cubit/cubit.dart';
 import 'package:lms/modules/my_learning/my_learning_cubit/state.dart';
 import 'package:lms/shared/component/component.dart';
-
 import 'package:lms/shared/component/constants.dart';
+
+import '../../models/new/courses_model.dart';
 
 class MyLearning extends StatelessWidget {
   MyLearning({Key? key}) : super(key: key);
@@ -22,10 +24,10 @@ class MyLearning extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => MyLearningCubit()
-        ..getAllWishlistData()
-        ..getEnrollCourses(),
+    return BlocProvider.value(
+      value: BlocProvider.of<MyLearningCubit>(context)..getAllWishlistData()
+      ..getEnrollCourses()
+      ..getEnrolledTracksData(),
       child: BlocConsumer<MyLearningCubit, MyLearningStates>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -85,8 +87,7 @@ class MyLearning extends StatelessWidget {
                                                 'You Are not Enrolled in Any Course yet',
                                             context: context)
                                         : buildCourseItem(context, true,
-                                            courses:
-                                                cubit.enrolledCourses[index]),
+                                            cubit.enrolledCourses[index]),
                                     //number of repeats
                                     itemCount: cubit.enrolledCourses.length,
                                   );
@@ -97,14 +98,22 @@ class MyLearning extends StatelessWidget {
                                   );
                                 }),
                             //Tracks
-                            ListView.builder(
-                              //NeverScrollableScrollPhysics:Creates scroll physics that does not let the user scroll.
-                              physics: BouncingScrollPhysics(),
-                              //repeated widget
-                              itemBuilder: (context, index) =>
-                                  builtTrackContant(context),
-                              //number of repeats
-                              itemCount: 10,
+                            ConditionalBuilder(
+                              condition: cubit.enrollTracks != null,
+                              builder: (context){
+                                return cubit.enrollTracks!.myTracks!.length != 0 ? ListView.builder(
+                                  //NeverScrollableScrollPhysics:Creates scroll physics that does not let the user scroll.
+                                  physics: BouncingScrollPhysics(),
+                                  //repeated widget
+                                  itemBuilder: (context, index) =>
+                                      builtTrackContant(context,cubit.enrollTracks!.myTracks![index]),
+                                  //number of repeats
+                                  itemCount: cubit.enrollTracks!.myTracks!.length,
+                                ) : emptyPage(text: "There's No Tracks you Enrolled", context: context);
+                              },
+                              fallback: (context){
+                                return Center(child: CircularProgressIndicator.adaptive(),);
+                              },
                             ),
                             //WishList
                             ConditionalBuilder(
@@ -122,8 +131,7 @@ class MyLearning extends StatelessWidget {
                                         //repeated widget
                                         itemBuilder: (context, index) =>
                                             buildCourseItem(context, false,
-                                                wishList: cubit.wishlistCourses!
-                                                    .wishList![index]),
+                                                cubit.wishlistCourses!.wishList![index]),
                                         //number of repeats
                                         itemCount: cubit
                                             .wishlistCourses!.wishList!.length,
@@ -271,128 +279,129 @@ class MyLearning extends StatelessWidget {
 //   }
 // }
 // widget design of one course
-  Widget buildCourseItem(context, bool course,
-          {WishList? wishList, Courses? courses}) =>
-      Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Container(
-          width: MediaQuery.of(context).size.width / 1.2,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(15),
-          ),
-          //column contains stack and column
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              //stack contains image of the course and clip
-              Stack(
-                alignment: AlignmentDirectional.bottomStart,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      //take same decoration of image
-                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                      width: MediaQuery.of(context).size.width / 1,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      child: Image(
-                        fit: BoxFit.cover,
-                        image: NetworkImage(
-                            '${course ? courses!.imageUrl : wishList!.imageUrl}'
-                            //'https://img-c.udemycdn.com/course/240x135/3446572_346e_2.jpg',
-                            ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 15.0, vertical: 7),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+  static Widget buildCourseItem(context, bool course, WishList courses) =>
+      Container(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            width: MediaQuery.of(context).size.width / 1.2,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(15),
+            ),
+            //column contains stack and column
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                //stack contains image of the course and clip
+                Stack(
+                  alignment: AlignmentDirectional.bottomStart,
                   children: [
-                    // name of course
-                    Text(
-                      //'Complete Instagram Marketing Course',
-                      '${course ? courses!.title : wishList!.title}',
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.bodyText1,
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        //take same decoration of image
+                        clipBehavior: Clip.antiAliasWithSaveLayer,
+                        width: MediaQuery.of(context).size.width / 1,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        child: Image(
+                          fit: BoxFit.cover,
+                          image: NetworkImage(
+                              '${courses.imageUrl}'
+                              //'https://img-c.udemycdn.com/course/240x135/3446572_346e_2.jpg',
+                              ),
+                        ),
+                      ),
                     ),
-                    const SizedBox(height: 14),
-                    //row contains name of author,image of author and number of videos
-                    Row(
-                      children: [
-                        // author image
-                        //CircleAvatar:is circle in which we can add background image.
-                        CircleAvatar(
-                          backgroundImage: NetworkImage(
-                            //'https://img-c.udemycdn.com/user/200_H/317821_3cb5_10.jpg',
-                            '${course ? courses!.imageUrl : wishList!.imageUrl}',
-                          ),
-                          radius: 16,
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        //author name
-                        Text(
-                          //'Created by Kelvin',
-                          '${course ? courses!.author : wishList!.author}',
-                        ),
-                        const Spacer(),
-                        // number of videos
-                        Container(
-                          padding: EdgeInsets.symmetric(horizontal: 20),
-                          child: Text(
-                            //'20 Videos',
-                            '${course ? courses!.contents!.length : wishList!.contents!.length} Modules',
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    // stack contains two containers and text
-                    Stack(
-                      children: [
-                        //container for completed percentage
-                        Container(
-                          height: 8,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(40),
-                            color: grayText,
-                          ),
-                        ),
-                        //container for uncompleted percentage
-                        Container(
-                          height: 8,
-                          width: 180,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(40),
-                            color: primaryColor,
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text('60% Complete')
                   ],
                 ),
-              ),
-            ],
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 15.0, vertical: 7),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // name of course
+                      Text(
+                        //'Complete Instagram Marketing Course',
+                        '${courses.title}',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(context).textTheme.bodyText1,
+                      ),
+                      const SizedBox(height: 14),
+                      //row contains name of author,image of author and number of videos
+                      Row(
+                        children: [
+                          // author image
+                          //CircleAvatar:is circle in which we can add background image.
+                          CircleAvatar(
+                            backgroundImage: NetworkImage(
+                              //'https://img-c.udemycdn.com/user/200_H/317821_3cb5_10.jpg',
+                              '${courses.author!.imageUrl}',
+                            ),
+                            radius: 16,
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          //author name
+                          Text(
+                            //'Created by Kelvin',
+                            '${courses.author!.userName}',
+                          ),
+                          const Spacer(),
+                          // number of videos
+                          Container(
+                            padding: EdgeInsets.symmetric(horizontal: 20),
+                            child: Text(
+                              //'20 Videos',
+                              '${courses.contents!.length} Modules',
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      // stack contains two containers and text
+                      Stack(
+                        children: [
+                          //container for completed percentage
+                          Container(
+                            height: 8,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(40),
+                              color: grayText,
+                            ),
+                          ),
+                          //container for uncompleted percentage
+                          Container(
+                            height: 8,
+                            width: 180,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(40),
+                              color: primaryColor,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text('60% Complete')
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       );
 
-  Widget builtTrackContant(context) => Padding(
+  Widget builtTrackContant(context, MyTracks track) => Padding(
         padding: const EdgeInsets.all(5.0),
         child: Container(
           padding: EdgeInsets.all(10),
@@ -411,7 +420,8 @@ class MyLearning extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(15),
                 child: Image.network(
-                  'https://www.incimages.com/uploaded_files/image/1920x1080/getty_933383882_2000133420009280345_410292.jpg',
+                  '${track.imageUrl}',
+                  //'https://www.incimages.com/uploaded_files/image/1920x1080/getty_933383882_2000133420009280345_410292.jpg',
                   width: 100,
                   height: 100,
                   fit: BoxFit.cover,
@@ -427,7 +437,8 @@ class MyLearning extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Full Stack',
+                      '${track.trackName}',
+                      //'Full Stack',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: Theme.of(context).textTheme.bodyText1,
@@ -436,7 +447,7 @@ class MyLearning extends StatelessWidget {
                       height: 5,
                     ),
                     Text(
-                      '10 Courses',
+                      '${track.courses!.length} Courses',
                       style: TextStyle(color: Colors.grey[500]),
                     ),
                     SizedBox(
