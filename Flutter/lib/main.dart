@@ -5,10 +5,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lms/modules/Auther/author_courses/author_courses_cubit/cubit.dart';
 import 'package:lms/modules/Auther/author_profile/author_profile_cubit/cubit.dart';
-import 'package:lms/modules/Auther/create_assigment/cubit/cubit.dart';
-import 'package:lms/modules/Auther/create_module/cubit/cubit.dart';
-import 'package:lms/modules/Auther/create_track/cubit/cubit.dart';
-import 'package:lms/modules/Auther/modules_library/module_view.dart';
+import 'package:lms/modules/Auther/modules/create_assigment/cubit/cubit.dart';
+import 'package:lms/modules/Auther/modules/create_module/cubit/cubit.dart';
+
+import 'package:lms/modules/Auther/traks/create_track/cubit/cubit.dart';
 import 'package:lms/modules/courses/cubit/cubit.dart';
 import 'package:lms/modules/onboarding/onboarding_screen.dart';
 import 'package:lms/modules/quiz/cubit/cubit.dart';
@@ -16,12 +16,10 @@ import 'package:lms/modules/splash_screen.dart';
 import 'package:lms/modules/user_tracks/cubit/cubit.dart';
 import 'package:lms/shared/component/constants.dart';
 import 'package:lms/shared/component/observer.dart';
-import 'package:lms/shared/component/zoomDrawer.dart';
 import 'package:lms/shared/network/local/cache_helper.dart';
 import 'package:lms/shared/network/remote/dio-helper.dart';
 import 'package:lms/shared/themes/light_theme.dart';
-import 'package:native_notify/native_notify.dart';
-import 'modules/Auther/dashboard/dashboard_auther.dart';
+import 'modules/my_learning/my_learning_cubit/cubit.dart';
 import 'modules/profile/profile_cubit/cubit.dart';
 import 'shared/cubit For Internet/cubit.dart';
 
@@ -56,10 +54,10 @@ void main() async {
   Widget widget;
   if (onBoarding == null || onBoarding == false) {
     //Here User Enter the Application for the first time so we make widget = OnBoarding.
-    widget = OnBoardingScreen();
+    widget = const OnBoardingScreen();
   } else {
     //Here User Enter the Application Before so we mak widget = SplashScreen other Screens.
-    widget = SplashScreen();
+    widget = const SplashScreen();
   }
   //Here The Initialize of Observer of Bloc that's show me in Run where i'm in the States of Cubit
   BlocOverrides.runZoned(
@@ -101,11 +99,12 @@ class MyApp extends StatelessWidget {
           },
         ),
         BlocProvider(create: (context) => AuthorProfileCubit()),
-        BlocProvider(create: (context) => CreateModuleCubit()),
+        BlocProvider(create: (context) => CreateModuleCubit()..initStateVideo()),
         BlocProvider(create: (context)=> CreateAssignmentCubit()..getAssignmentData()..myActivities=[]),
         BlocProvider(create: (context)=> AuthorCoursesCubit()..getAuthorCoursesData()..getAuthorCoursesPublishedData()),
-        BlocProvider(create: (context)=>CreateTrackCubit()..getAuthorCoursesData()),
+        BlocProvider(create: (context)=>CreateTrackCubit()..getAuthorCoursesData()..getAuthorTrackPublishedData()),
         BlocProvider(create: (context)=>TrackCubit()..getAllTracksData()),
+        BlocProvider(create: (context)=>MyLearningCubit()..getEnrollCourses()),
       ],
       //ScreenUTil is A Package make application responsive.
       child: ScreenUtilInit(
@@ -126,7 +125,8 @@ class MyApp extends StatelessWidget {
           theme: lightTheme(context),
           //Here The Theme.
           themeMode: ThemeMode.light,
-          home: widget,
+           home: widget,
+          //home:  VideoFeedPostWidget(videoUrl: 'http://res.cloudinary.com/lms07/video/upload/v1647179011/content/6214b94ad832b0549b436264_content1647178984713.mp4',),
           //home:AddManager()
         ),
       ),

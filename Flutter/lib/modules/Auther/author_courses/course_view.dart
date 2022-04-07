@@ -1,19 +1,12 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lms/layout/layout.dart';
 import 'package:lms/modules/Auther/author_courses/author_courses_cubit/cubit.dart';
 import 'package:lms/modules/Auther/author_courses/author_courses_cubit/status.dart';
-import 'package:lms/modules/home/home_screen.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
 import 'package:readmore/readmore.dart';
-
-import '../../../models/author_courses.dart';
+import '../../../models/new/courses_model.dart';
 
 
 class CourseDetailsScreen extends StatelessWidget {
@@ -21,9 +14,9 @@ class CourseDetailsScreen extends StatelessWidget {
   CourseDetailsScreen(this.course, {Key? key}) : super(key: key);
 
   final List<Widget> myTabs = [
-    Tab(text: 'Content'),
-    Tab(text: 'Assignment'),
-    Tab(text: 'Quizzes'),
+    const Tab(text: 'Content'),
+    const Tab(text: 'Assignment'),
+    const Tab(text: 'Quizzes'),
   ];
 
   @override
@@ -40,146 +33,143 @@ class CourseDetailsScreen extends StatelessWidget {
                 appBar: AppBar(),
                 body: Padding(
                   padding: const EdgeInsets.all(10.0),
-                  child: Container(
-                    child: SingleChildScrollView(
-                      physics: BouncingScrollPhysics(),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(15),
-                            child: imageFromNetwork(
-                                url:"${course.imageUrl}",
-                                   // 'https://www.drjimtaylor.com/4.0/wp-content/uploads/2019/12/Online-courses.jpg',
-                                height: 130.h),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            "${course.title}",
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                                //color: Colors.black,
+                  child: SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(15),
+                          child: imageFromNetwork(
+                              url:"${course.imageUrl}",
+                                 // 'https://www.drjimtaylor.com/4.0/wp-content/uploads/2019/12/Online-courses.jpg',
+                              height: 130.h),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          "${course.title}",
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                              //color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        const Text(
+                          'Description:',
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.w700),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: ReadMoreText(
+                            "${course.description}",
+                            trimLines: 3,
+                            colorClickableText: Colors.black,
+                            trimMode: TrimMode.Line,
+                            trimCollapsedText: 'Show more',
+                            trimExpandedText: 'Show less',
+                            moreStyle: const TextStyle(
+                                fontSize: 14,
                                 fontWeight: FontWeight.bold,
-                                fontSize: 18),
+                                color: primaryColor),
+                            lessStyle: const TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: primaryColor),
+                            style: Theme.of(context).textTheme.titleMedium,
                           ),
-                          SizedBox(
-                            height: 10,
+                        ),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        const Text(
+                          'Requirement:',
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.w700),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: ReadMoreText(
+                            "${course.requirements}",
+                            trimLines: 3,
+                            colorClickableText: Colors.black,
+                            trimMode: TrimMode.Line,
+                            trimCollapsedText: 'Show more',
+                            trimExpandedText: 'Show less',
+                            moreStyle: const TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: primaryColor),
+                            lessStyle: const TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: primaryColor),
+                            style: Theme.of(context).textTheme.titleMedium,
                           ),
-                          Text(
-                            'Description:',
-                            style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.w700),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: ReadMoreText(
-                              "${course.description}",
-                              trimLines: 3,
-                              colorClickableText: Colors.black,
-                              trimMode: TrimMode.Line,
-                              trimCollapsedText: 'Show more',
-                              trimExpandedText: 'Show less',
-                              moreStyle: const TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: primaryColor),
-                              lessStyle: const TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: primaryColor),
-                              style: Theme.of(context).textTheme.titleMedium,
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          children: [
+                            const Text(
+                              "Language : ",
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.w700),
                             ),
+                            Text(
+                              "${course.language}",
+                              style: const TextStyle(
+                                  fontSize: 14, fontWeight: FontWeight.w500),
+                            )
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        TabBar(
+                          labelColor: primaryColor,
+                          indicatorColor: primaryColor,
+                          unselectedLabelColor: Colors.black45,
+                          //isScrollable: true,
+                          tabs: myTabs,
+                          labelStyle: TextStyle(
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.w700,
                           ),
-                          const SizedBox(
-                            height: 15,
-                          ),
-                          Text(
-                            'Requirement:',
-                            style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.w700),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: ReadMoreText(
-                              "${course.requirements}",
-                              trimLines: 3,
-                              colorClickableText: Colors.black,
-                              trimMode: TrimMode.Line,
-                              trimCollapsedText: 'Show more',
-                              trimExpandedText: 'Show less',
-                              moreStyle: const TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: primaryColor),
-                              lessStyle: const TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: primaryColor),
-                              style: Theme.of(context).textTheme.titleMedium,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Row(
+                        ),
+                        Container(
+                          height: MediaQuery.of(context).size.height / 2,
+                          width: double.infinity,
+                          child: TabBarView(
                             children: [
-                              Text(
-                                "Language : ",
-                                style: TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.w700),
-                              ),
-                              Text(
-                                "${course.language}",
-                                style: TextStyle(
-                                    fontSize: 14, fontWeight: FontWeight.w500),
-                              )
+                              ListView.builder(
+                                  shrinkWrap: true,
+                                  //   physics: NeverScrollableScrollPhysics(),
+                                  itemBuilder: (context, index) => builtCourseContant(context, course.contents![index]),
+                                  itemCount: course.contents!.length),
+                              ListView.builder(
+                                  shrinkWrap: true,
+                                  //    physics: NeverScrollableScrollPhysics(),
+                                  itemBuilder: (context, index) =>
+                                      builtCourseAssignment(context),
+                                  itemCount: 12),
+                              ListView.builder(
+                                  shrinkWrap: true,
+                                  //  physics: NeverScrollableScrollPhysics(),
+                                  itemBuilder: (context, index) =>
+                                      builtCourseContant(context, course.contents![index]),
+                                  itemCount: course.contents!.length),
                             ],
                           ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          TabBar(
-                            labelColor: primaryColor,
-                            indicatorColor: primaryColor,
-                            unselectedLabelColor: Colors.black45,
-                            //isScrollable: true,
-                            tabs: myTabs,
-                            labelStyle: TextStyle(
-                              fontSize: 14.sp,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                          Container(
-                            height: MediaQuery.of(context).size.height / 2,
-                            width: double.infinity,
-                            child: TabBarView(
-                              children: [
-                                ListView.builder(
-                                    shrinkWrap: true,
-                                    //   physics: NeverScrollableScrollPhysics(),
-                                    itemBuilder: (context, index) =>
-                                        builtCourseContant(context, course.contents![index]),
-                                    itemCount: course.contents!.length),
-                                ListView.builder(
-                                    shrinkWrap: true,
-                                    //    physics: NeverScrollableScrollPhysics(),
-                                    itemBuilder: (context, index) =>
-                                        builtCourseAssignment(context,),
-                                    itemCount: 12),
-                                ListView.builder(
-                                    shrinkWrap: true,
-                                    //  physics: NeverScrollableScrollPhysics(),
-                                    itemBuilder: (context, index) =>
-                                        builtCourseContant(context, course.contents![index]),
-                                    itemCount: course.contents!.length),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -212,7 +202,7 @@ Widget builtCourseContant(context, Contents content) {
         children: [
           Row(
             children: [
-              Icon(Icons.play_arrow_outlined),
+              const Icon(Icons.play_arrow_outlined),
               const SizedBox(
                 width: 10,
               ),
@@ -241,7 +231,7 @@ Widget builtCourseContant(context, Contents content) {
                       ),
                       Text(
                         //'3 min ',
-                        '${content.contentDuration ?? ''}',
+                        content.contentDuration ?? '',
                         style: TextStyle(
                           color: primaryColor,
                           fontSize: 14.sp,
@@ -253,7 +243,7 @@ Widget builtCourseContant(context, Contents content) {
                   ),
                   Text(
                     //'short description ',
-                    '${content.description ?? ''}',
+                    content.description ?? '',
                     style: TextStyle(
                       fontSize: 14.sp,
                       fontWeight: FontWeight.w500,
@@ -293,7 +283,7 @@ Widget builtCourseAssignment(context,) {
         children: [
           Row(
             children: [
-              Icon(Icons.file_copy_outlined),
+              const Icon(Icons.file_copy_outlined),
               const SizedBox(
                 width: 10,
               ),
@@ -304,7 +294,7 @@ Widget builtCourseAssignment(context,) {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Container(
-                        width: 100.w,
+                        width: 200.w,
                         child: Text(
                           'File Name File Name File Name File Name ',
                           style: TextStyle(
@@ -319,6 +309,7 @@ Widget builtCourseAssignment(context,) {
                       SizedBox(
                         width: 10.w,
                       ),
+
                       Text(
                         '3 min ',
                         style: TextStyle(

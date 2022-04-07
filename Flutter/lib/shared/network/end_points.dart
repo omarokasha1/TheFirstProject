@@ -5,22 +5,24 @@ const getProfile = "api/user/get-profile";
 const getUserProfile = "api/user/profile";
 const enrollUserToCourse = 'api/user/enrollCourse';
 const allUsers = "api/user/allUsers";
-const getWishList = "api/user/wishList";
+const getEnrolledCourses = "api/user/enrollCourses";
+const getEnrollTracks = "api/user/enrollTracks";
+const courses = "api/course/allCourses";
           //<<<<<<<<<<<<<<<<<<<<<<<Create>>>>>>>>>>>>>>>>>>>>
 const login = "api/user/login";
 const register = "api/user/register";
-const changePassword = "api/user/changePassword";
+const changePassword = "api/user/change-password";
 const authorRequest = 'api/user/promot-request';
 const uploadImageProfile2 = 'api/user/upload';
 const enrollRequest = 'api/user/enroll-request';
+const enrollTrack = 'api/user/enrollTrack';
          //<<<<<<<<<<<<<<<<<<<<<<<Update>>>>>>>>>>>>>>>>>>>>
 const enrollFreeCourse = 'api/user/enrollCourse';
 const updateProfile = "api/user/update-profile";
-const wishList = "api/user/wishList";
+const wishlist = "api/user/wishList";
 
 //--------------------------------------Author----------------------------------
 //-----------------------------Get----------------------------
-const courses = "api/course/allCourses";
 const getModule = "api/course/authorContents";
 const getAuthorCourses = 'api/course/authorCourses';
 const getAuthorCoursesPublished = 'api/course/authorCoursesPublished';
@@ -30,6 +32,8 @@ const getAllTrackPublished = 'api/course/allTracksPublished';
 const getAssignment = "api/course/authorAssignments";
 const getAuthorQuizzes = "api/course/authorQuizzes";
 const getAuthorQuestions = "api/course/authorQuestions";
+const getAuthor = "api/course/author";
+const getAuthorData = "api/user/profile";
 
 //-----------------------------Create----------------------------
 const createAuthorCourse = 'api/course/newCourse';
@@ -60,12 +64,18 @@ const deleteAuthorQuestions = "api/course/delete-questions";
 //--------------------------------------Manager----------------------------------
 //-----------------------------Get----------------------------
 const getAuthorRequest = "api/manager/promotRequest";
+const getCourseRequest = "api/manager/courseRequest";
+const getTrackRequest = "api/manager/trackRequest";
 
 //-----------------------------Update----------------------------
 const updateUserRoleAuthor = "api/manager/accept-promot";
+const acceptCourseAuthor = "api/manager/accept-course";
+const acceptTrackAuthor = "api/manager/accept-track";
 
 //-----------------------------delete----------------------------
 const deleteUserRequest = "api/manager/delete-request";
+const deleteCourseRequest = "api/manager/delete-course";
+const deleteTrackRequest = "api/manager/delete-track";
 
 //--------------------------------------Manager----------------------------------
 //-----------------------------Get----------------------------

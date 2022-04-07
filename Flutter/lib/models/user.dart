@@ -34,7 +34,9 @@ class Profile {
   bool? isAdmin = false;
   bool? isManager = false;
   bool? isAuthor = false;
-  //MyCourses? myCourses;
+  List<String>? myCourses = [];
+  List<String>? wishList = [];
+  List<String>? myTracks = [];
 
   Profile(
       {this.sId,
@@ -51,6 +53,9 @@ class Profile {
         this.isAdmin,
         this.isAuthor,
         this.isManager,
+        this.myCourses,
+        this.wishList,
+        this.myTracks,
       });
 
   Profile.fromJson(Map<String, dynamic> json) {
@@ -71,6 +76,9 @@ class Profile {
     isAdmin = json['isAdmin'] ;
     isAuthor = json['isAuthor'] ;
     isManager = json['isManager'] ;
+    myCourses = json['myCourses'].cast<String>() ?? '' ;
+    wishList = json['wishList'].cast<String>() ?? '' ;
+    myTracks = json['myTracks'].cast<String>() ?? '' ;
   }
 
   Map<String, dynamic> toJson() {

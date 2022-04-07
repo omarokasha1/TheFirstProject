@@ -20,7 +20,7 @@ class AuthorProfileCubit extends Cubit<AuthorProfileStates> {
     //Remove this in Integration
     userToken = CacheHelper.get(key: 'token');
     DioHelper.getData(
-      url: '$getProfile/$id',
+      url: '$getAuthorData/$id',
       token: userToken,
     ).then((value) {
       model = User.fromJson(value.data);

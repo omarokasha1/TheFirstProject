@@ -1,5 +1,5 @@
-import 'package:lms/models/author_courses_published_model.dart';
-import 'package:lms/models/course_model.dart';
+
+import 'package:lms/models/new/courses_model.dart';
 
 abstract class AuthorCoursesStates {}
 
@@ -10,7 +10,7 @@ class ChangeItemState extends AuthorCoursesStates {}
 class GetAuthorCoursesLoadingState extends AuthorCoursesStates {}
 
 class GetAuthorCoursesSuccessState extends AuthorCoursesStates {
-  final AuthorCoursesTestModel? authorCoursesTestModel;
+  final CoursesModel? authorCoursesTestModel;
 
   GetAuthorCoursesSuccessState(this.authorCoursesTestModel);
 }
@@ -23,7 +23,7 @@ class GetAuthorCoursesErrorState extends AuthorCoursesStates {
 
 class GetAuthorCoursesPublishLoadingState extends AuthorCoursesStates {}
 class GetAuthorCoursesPublishSuccessState extends AuthorCoursesStates {
-  final authorCoursesPublishedModel? authorCoursesTestModel;
+  final CoursesModel? authorCoursesTestModel;
 
   GetAuthorCoursesPublishSuccessState(this.authorCoursesTestModel);
 }

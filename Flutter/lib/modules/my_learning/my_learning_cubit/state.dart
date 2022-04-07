@@ -38,3 +38,23 @@ class MyLearningErrorState extends MyLearningStates {
 
   MyLearningErrorState(this.error);
 }
+
+class GetWishlistCoursesLoadingState extends MyLearningStates{}
+class GetWishlistCoursesSuccessState extends MyLearningStates{}
+class GetWishlistCoursesErrorState extends MyLearningStates{
+  final String error;
+  GetWishlistCoursesErrorState(this.error);
+}
+
+class GetEnrolledCoursesLoadingState extends MyLearningStates{}
+class GetEnrolledCoursesSuccessState extends MyLearningStates{}
+class GetEnrolledCoursesErrorState extends MyLearningStates{
+  final String error;
+  GetEnrolledCoursesErrorState(this.error);
+}
+class GetEnrolledTracksLoadingState extends MyLearningStates{}
+class GetEnrolledTracksSuccessState extends MyLearningStates{}
+class GetEnrolledTracksErrorState extends MyLearningStates{
+  final String error;
+  GetEnrolledTracksErrorState(this.error);
+}

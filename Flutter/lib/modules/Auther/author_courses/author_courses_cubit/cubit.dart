@@ -1,10 +1,8 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lms/models/author_courses_published_model.dart';
-import 'package:lms/models/course_model.dart';
+import 'package:lms/models/new/courses_model.dart';
 import 'package:lms/models/response_model.dart';
-import 'package:lms/models/track_model.dart';
 import 'package:lms/modules/Auther/author_courses/author_courses_cubit/status.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
@@ -34,34 +32,50 @@ class AuthorCoursesCubit extends Cubit<AuthorCoursesStates> {
     selectedItem=value;
     emit(ChangeItemState());
   }
-
-  AuthorCoursesTestModel? authorCoursesTestModel;
+int totalStudent = 0;
+  //AuthorCoursesTestModel? authorCoursesTestModel;
+  CoursesModel? coursesModel;
+  CoursesModel? coursesModelPublish;
 
   Future<void> getAuthorCoursesData() async {
     emit(GetAuthorCoursesLoadingState());
-
     await DioHelper.getData(url: getAuthorCourses, token: userToken).then((value) {
       //print(value.data);
       //authorCoursesTestModel!.courses=[];
-      authorCoursesTestModel = AuthorCoursesTestModel.fromJson(value.data);
+      //authorCoursesTestModel = AuthorCoursesTestModel.fromJson(value.data);
+      coursesModel = CoursesModel.fromJson(value.data);
       //print(authorCoursesTestModel!.courses.toString());
-      emit(GetAuthorCoursesSuccessState(authorCoursesTestModel));
+      emit(GetAuthorCoursesSuccessState(coursesModel));
     }).catchError((error) {
       emit(GetAuthorCoursesErrorState(error.toString()));
       print(error.toString());
     });
   }
-  authorCoursesPublishedModel? authorCoursesModel;
 
   Future<void> getAuthorCoursesPublishedData() async {
+    if(coursesModelPublish == null){
+      print('asd is null');
+    }
+    totalStudent = 0;
     emit(GetAuthorCoursesPublishLoadingState());
-
     await DioHelper.getData(url: getAuthorCoursesPublished, token: userToken).then((value) {
       //print(value.data);
       //authorCoursesTestModel!.courses=[];
-      authorCoursesModel = authorCoursesPublishedModel.fromJson(value.data);
+      coursesModelPublish = CoursesModel.fromJson(value.data);
+      if(coursesModelPublish == null){
+        print('asd222222 is null');
+      }
+      coursesModelPublish!.courses!.where((element) {
+        totalStudent+=element.learner!.length;
+        print("Here");
+        print(element.learner!.length);
+        return true;
+      }).toList();
+      print("totalStudent");
+
+      print(totalStudent);
       //print(authorCoursesTestModel!.courses.toString());
-      emit(GetAuthorCoursesPublishSuccessState(authorCoursesModel));
+      emit(GetAuthorCoursesPublishSuccessState(coursesModelPublish));
     }).catchError((error) {
       emit(GetAuthorCoursesPublishErrorState(error.toString()));
       print(error.toString());
@@ -73,16 +87,17 @@ class AuthorCoursesCubit extends Cubit<AuthorCoursesStates> {
   }) async {
     emit(SendCourseRequestLoadingState());
     DioHelper.postData(
-      files: true,
+
       data: {
         'courseId': courseId,
-        'token':userToken,
+       // 'token':userToken,
       },
       url: sendCourseRequest,
       token: userToken,
     ).then((value) async {
+      print(value.data);
       emit(SendCourseRequestSuccessState());
-      //showToast(message: '${updateModel!.message}',color: Colors.green);
+      showToast(message: '${value.data['message']}',color: Colors.green);
       getAuthorCoursesData();
     }).catchError((onError) {
       print(onError.toString());

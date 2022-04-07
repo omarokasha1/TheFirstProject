@@ -24,12 +24,7 @@ class ChangePasswordScreen extends StatelessWidget {
       child: BlocConsumer<ChangePasswordCubit, ChangePasswordStates>(
         listener: (context, state) {
           if (state is ChangePasswordSuccessState) {
-            showToast(
-                message: "${state.changePassword.message}",
-                color: primaryColor);
-          } else if (state is ChangePasswordErrorState) {
-            showToast(
-                message: "Your Current Password Failed", color: Colors.red);
+            //Navigator.pop(context);
           }
         },
         builder: (context, state) {
@@ -222,6 +217,8 @@ class ChangePasswordScreen extends StatelessWidget {
                                           "Conform Password Must be the Same",
                                       color: Colors.red,
                                     );
+                                  }else{
+                                    cubit.createNewPassword(currentPass: currentPasswordController.text,newPass: passwordController.text);
                                   }
                                 }
                               },

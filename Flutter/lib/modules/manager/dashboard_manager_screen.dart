@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lms/modules/Auther/create_track/create_track.dart';
+import 'package:lms/modules/Auther/traks/create_track/create_track.dart';
 import 'package:lms/modules/Auther/traks/traks_screen.dart';
 import 'package:lms/modules/manager/requests_screen.dart';
 import 'package:lms/shared/component/MyAppBar.dart';
@@ -26,7 +26,7 @@ class DashboardManagerScreen extends StatelessWidget {
             children: [
               Container(
                 width: double.infinity,
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   color: Colors.grey[100],
@@ -97,7 +97,7 @@ class DashboardManagerScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Row(
@@ -105,7 +105,7 @@ class DashboardManagerScreen extends StatelessWidget {
                   Expanded(
                     child: Container(
                       height: 240.h,
-                      padding: EdgeInsets.all(20),
+                      padding: const EdgeInsets.all(20),
                       width: double.infinity,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
@@ -144,7 +144,7 @@ class DashboardManagerScreen extends StatelessWidget {
                   ),
                   Expanded(
                     child: Container(
-                      padding: EdgeInsets.symmetric(vertical: 20),
+                      padding: const EdgeInsets.symmetric(vertical: 20),
                       width: double.infinity,
                       height: 240.h,
                       decoration: BoxDecoration(
@@ -153,41 +153,41 @@ class DashboardManagerScreen extends StatelessWidget {
                       // Package to display percentage inside a circle
                       child: Column(
                         children: [
-                          Text(
+                          const Text(
                             'Top Author',
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 15,
                           ),
                           ListView.separated(
                               shrinkWrap: true,
                               itemBuilder: (context, index) => Row(
                                 children: [
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 10,
                                   ),
-                                  CircleAvatar(
+                                  const CircleAvatar(
                                     backgroundImage: NetworkImage(
                                         'https://www.mnp.ca/-/media/foundation/integrations/personnel/2020/12/16/13/57/personnel-image-4483.jpg?h=800&w=600&hash=9D5E5FCBEE00EB562DCD8AC8FDA8433D'),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 10,
                                   ),
                                   Column(
                                     children: [
-                                      Text('Name Name'),
-                                      SizedBox(
+                                      const Text('Name Name'),
+                                      const SizedBox(
                                         height: 2,
                                       ),
-                                      Text('+12.8%',
+                                      const Text('+12.8%',
                                           style: TextStyle(
                                               color: Colors.green)),
                                     ],
                                   ),
                                 ],
                               ),
-                              separatorBuilder: (context, index) => Divider(),
+                              separatorBuilder: (context, index) => const Divider(),
                               itemCount: 3)
                         ],
                       ),
@@ -200,7 +200,7 @@ class DashboardManagerScreen extends StatelessWidget {
               ),
               Container(
                 width: double.infinity,
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   color: Colors.grey[100],
@@ -216,12 +216,12 @@ class DashboardManagerScreen extends StatelessWidget {
                                 navigator(context, TracksScreen());
                               },
                               child: const Text("Views All ")),
-                          Spacer(),
+                          const Spacer(),
                           MaterialButton(
                             onPressed: () {
                               navigator(context, CreateTrackScreen());
                             },
-                            child: Text(
+                            child: const Text(
                               'Add Tracks',
                               style: TextStyle(color: Colors.white),
                             ),
@@ -243,12 +243,12 @@ class DashboardManagerScreen extends StatelessWidget {
 
 
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Container(
                 width: double.infinity,
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   color: Colors.grey[100],
@@ -265,17 +265,17 @@ class DashboardManagerScreen extends StatelessWidget {
                                 fontSize: 18
                             ),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           TextButton(onPressed: (){
                             navigator(context, AuthorRequest());
-                          }, child: Text('View All')),
-                          Icon(Icons.arrow_forward,color: primaryColor,)
+                          }, child: const Text('View All')),
+                          const Icon(Icons.arrow_forward,color: primaryColor,)
                         ],
                       ),
                     ),
-                    SizedBox(height: 15,),
+                    const SizedBox(height: 15,),
                     ListView.builder(
-                      physics: NeverScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       itemBuilder: (context, index) => AuthorTrackCard(),itemCount: 3, ),
                   ],
@@ -293,7 +293,7 @@ class DashboardManagerScreen extends StatelessWidget {
 Widget builtTrackContant(context) => Padding(
   padding: const EdgeInsets.symmetric(vertical: 18.0),
   child: Container(
-    padding: EdgeInsets.all(10),
+    padding: const EdgeInsets.all(10),
     width: double.infinity,
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(20),
@@ -314,7 +314,7 @@ Widget builtTrackContant(context) => Padding(
             fit: BoxFit.cover,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           width: 10,
         ),
         Column(
@@ -330,7 +330,7 @@ Widget builtTrackContant(context) => Padding(
                 style: Theme.of(context).textTheme.bodyText1,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 5,
             ),
             Text(
@@ -349,7 +349,7 @@ Widget AuthorTrackCard() {
   return Padding(
     padding: const EdgeInsets.all(5.0),
     child: Container(
-      padding: EdgeInsets.all(5),
+      padding: const EdgeInsets.all(5),
       width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20.0),
@@ -380,12 +380,12 @@ Widget AuthorTrackCard() {
                   maxLines: 1,
                 ),
                 Row(children: [
-                  CircleAvatar(
-                    backgroundImage: NetworkImage(
+                  const CircleAvatar(
+                    backgroundImage: const NetworkImage(
                         'https://img-c.udemycdn.com/user/200_H/317821_3cb5_10.jpg'),
                     radius: 18,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10,),
                   Container(
                     width: 100.w,
@@ -399,9 +399,9 @@ Widget AuthorTrackCard() {
                       maxLines: 1,
                     ),
                   ),
-                  Spacer(),
-                  TextButton(onPressed: (){}, child: Text('Accept')),
-                  TextButton(onPressed: (){}, child: Text('Decline',style: TextStyle(color: Colors.red),)),
+                  const Spacer(),
+                  TextButton(onPressed: (){}, child: const Text('Accept')),
+                  TextButton(onPressed: (){}, child: const Text('Decline',style: const TextStyle(color: Colors.red),)),
                   // ElevatedButton(style:ElevatedButton.styleFrom(primary: Colors.green,) ,onPressed: (){}, child: Text("Accept"),),
                   // SizedBox(
                   //   width: 10.w,

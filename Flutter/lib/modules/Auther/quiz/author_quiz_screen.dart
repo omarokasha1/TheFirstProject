@@ -2,14 +2,11 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lms/modules/Auther/create_module/create_module_screen.dart';
-import 'package:lms/modules/Auther/create_quiz/create_quiz_screen.dart';
-import 'package:lms/modules/Auther/create_quiz/cubit/cubit.dart';
-import 'package:lms/modules/Auther/create_quiz/cubit/states.dart';
-import 'package:lms/modules/Auther/dashboard/dashboard_auther.dart';
-import 'package:lms/modules/quiz/screens/quiz/quiz_screen.dart';
 
-import 'package:lms/shared/component/MyAppBar.dart';
+import 'package:lms/modules/Auther/dashboard/dashboard_auther.dart';
+import 'package:lms/modules/Auther/quiz/create_quiz/create_quiz_screen.dart';
+import 'package:lms/modules/Auther/quiz/create_quiz/cubit/cubit.dart';
+import 'package:lms/modules/Auther/quiz/create_quiz/cubit/states.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
 

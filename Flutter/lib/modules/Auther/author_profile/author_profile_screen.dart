@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
@@ -10,14 +9,18 @@ import 'package:lms/layout/layout.dart';
 import 'package:lms/modules/Auther/author_profile/author_profile_cubit/cubit.dart';
 import 'package:lms/modules/Auther/author_profile/author_profile_cubit/state.dart';
 import 'package:lms/modules/courses/cubit/cubit.dart';
-import 'package:lms/modules/home/home_screen.dart';
-import 'package:lms/modules/profile/profile_cubit/cubit.dart';
+import 'package:lms/modules/home/view_all_courses_screen.dart';
+import 'package:lms/modules/user_tracks/cubit/cubit.dart';
+import 'package:lms/modules/user_tracks/view_all_tracks_screen.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
 import 'package:lms/shared/component/zoomDrawer.dart';
 
+import '../../home/home_screen.dart';
+
 class AuthorProfileScreen extends StatelessWidget {
   final String authorID;
+
   AuthorProfileScreen(this.authorID, {Key? key}) : super(key: key);
 
   File? profileImage;
@@ -25,8 +28,11 @@ class AuthorProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    BlocProvider.of<CourseCubit>(context).courseModelAuthor(authorID);
+    BlocProvider.of<TrackCubit>(context).trackModelAuthor(authorID);
     return BlocProvider.value(
-      value: BlocProvider.of<AuthorProfileCubit>(context)..getAuthorProfile(authorID),
+      value: BlocProvider.of<AuthorProfileCubit>(context)
+        ..getAuthorProfile(authorID),
       child: BlocConsumer<AuthorProfileCubit, AuthorProfileStates>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -56,7 +62,8 @@ class AuthorProfileScreen extends StatelessWidget {
                   ),
                 ),
                 body: ConditionalBuilder(
-                  condition: cubit.model != null && cubit.model!.profile != null,
+                  condition:
+                      cubit.model != null && cubit.model!.profile != null,
                   builder: (context) => Center(
                     child: SingleChildScrollView(
                       child: Column(
@@ -364,20 +371,29 @@ class AuthorProfileScreen extends StatelessWidget {
                                         ),
                                       ),
                                       const Spacer(),
-                                      const Text(
-                                        'View all',
-                                        style: TextStyle(
-                                          fontSize: 16,
+                                      InkWell(
+                                        onTap: (){
+                                          navigator(context, ZoomDrawerScreen(widget: ViewAllTracksScreen(BlocProvider.of<TrackCubit>(context).tracksModelAuthor),));
+                                        },
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              'View all',
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: 5.0,
+                                            ),
+                                            Icon(
+                                              Icons.arrow_forward_outlined,
+                                              size: 20.w,
+                                              color: primaryColor,
+                                            ),
+                                          ],
                                         ),
                                       ),
-                                      SizedBox(
-                                        width: 5.0,
-                                      ),
-                                      Icon(
-                                        Icons.arrow_forward_outlined,
-                                        size: 20.w,
-                                        color: primaryColor,
-                                      )
                                     ],
                                   ),
                                   Divider(),
@@ -387,14 +403,17 @@ class AuthorProfileScreen extends StatelessWidget {
                                   SizedBox(
                                     height: 300.h,
                                     child: ConditionalBuilder(
-                                      condition: courseCubit.coursesModel.length != 0 ,
+                                      condition: BlocProvider.of<TrackCubit>(context).tracksModelAuthor.length != 0,
                                       builder: (context) => ListView.builder(
                                         physics: const BouncingScrollPhysics(),
                                         scrollDirection: Axis.horizontal,
                                         shrinkWrap: true,
                                         itemBuilder: (context, index) =>
-                                            buildCourseItem(context, false, courseCubit.coursesModel[index]!),
-                                        itemCount: courseCubit.coursesModel.length,
+                                            buildUserTracksItem(
+                                                context,
+                                                true,
+                                                BlocProvider.of<TrackCubit>(context).tracksModelAuthor[index]!),
+                                        itemCount: BlocProvider.of<TrackCubit>(context).tracksModelAuthor.length,
                                       ),
                                       fallback: (context) => Center(
                                         child: CircularProgressIndicator(),
@@ -426,20 +445,29 @@ class AuthorProfileScreen extends StatelessWidget {
                                       const Spacer(
                                         flex: 1,
                                       ),
-                                      const Text(
-                                        'View all',
-                                        style: TextStyle(
-                                          fontSize: 16,
+                                      InkWell(
+                                        onTap: (){
+                                          navigator(context, ZoomDrawerScreen(widget: ViewAllCoursesScreen(courseCubit.coursesModelAuthor),));
+                                        },
+                                        child: Row(
+                                          children: [
+                                            const Text(
+                                              'View all',
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: 5.0,
+                                            ),
+                                            Icon(
+                                              Icons.arrow_forward_outlined,
+                                              size: 20.w,
+                                              color: primaryColor,
+                                            ),
+                                          ],
                                         ),
                                       ),
-                                      SizedBox(
-                                        width: 5.0,
-                                      ),
-                                      Icon(
-                                        Icons.arrow_forward_outlined,
-                                        size: 20.w,
-                                        color: primaryColor,
-                                      )
                                     ],
                                   ),
                                   Divider(),
@@ -449,16 +477,20 @@ class AuthorProfileScreen extends StatelessWidget {
                                   SizedBox(
                                     height: 300.h,
                                     child: ConditionalBuilder(
-                                      condition:
-                                      courseCubit.coursesModel.length != 0,
+                                      condition: courseCubit
+                                              .coursesModelAuthor.length !=
+                                          0,
                                       builder: (context) => ListView.builder(
                                         physics: const BouncingScrollPhysics(),
                                         scrollDirection: Axis.horizontal,
                                         shrinkWrap: true,
                                         itemBuilder: (context, index) =>
-                                            buildCourseItem(context, false,
-                                                courseCubit.coursesModel[index]!),
-                                        itemCount: courseCubit.coursesModel.length,
+                                            buildCourseItem(
+                                                context,
+                                                false,
+                                                courseCubit.coursesModelAuthor[index]),
+                                        itemCount: courseCubit
+                                            .coursesModelAuthor.length,
                                       ),
                                       fallback: (context) => Center(
                                         child: CircularProgressIndicator(),
@@ -481,7 +513,9 @@ class AuthorProfileScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              fallback: (context) => Center(child: CircularProgressIndicator(),),
+              fallback: (context) => Center(
+                child: CircularProgressIndicator(),
+              ),
             ),
           );
         },

@@ -29,9 +29,9 @@ class ProfileCubit extends Cubit<ProfileStates> {
     emit(DeleteInterestedItemState());
   }
 
-  void getUserProfile() {
+  Future<void> getUserProfile() async {
     emit(ProfileLoadingState());
-    DioHelper.getData(
+    await DioHelper.getData(
       url: getProfile,
       token: userToken,
     ).then((value) {

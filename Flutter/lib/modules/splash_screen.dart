@@ -31,12 +31,19 @@ class SplashScreen extends StatelessWidget {
       //Or go to LoginScreen
       nextScreen: userToken == null
           ? LoginScreen()
-          : userView == 'author'
-              ? ZoomDrawerScreen(
-                  widget: DashboardAuthorScreen(),
-                )
-              : ZoomDrawerScreen(),
-
+          : userView == 'author' && (userType == 'author' || userType == 'manager' || userType == 'admin')
+          ? ZoomDrawerScreen(
+        widget: DashboardAuthorScreen(),
+      )
+          : userView == 'admin' && (userType == 'admin')
+          ? ZoomDrawerScreen(
+        widget: DashboardAdminScreen(),
+      )
+          : userView == 'manager' && (userType == 'manager' || userType == 'admin')
+          ? ZoomDrawerScreen(
+        widget: DashboardManagerScreen(),
+      )
+          : ZoomDrawerScreen(),
       duration: 1,
       splashTransition: SplashTransition.fadeTransition,
       backgroundColor: Colors.white,

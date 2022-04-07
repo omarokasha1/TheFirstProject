@@ -2,16 +2,18 @@ import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dio/dio.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http_parser/http_parser.dart';
-import 'package:lms/models/course_model.dart';
+import 'package:lms/models/new/courses_model.dart';
 import 'package:lms/modules/courses/course_overview_screen.dart';
 import 'package:lms/shared/component/constants.dart';
 import 'package:lottie/lottie.dart';
 import 'package:multiselect_formfield/multiselect_formfield.dart';
+import 'package:open_file/open_file.dart';
 import '../../modules/courses/course_details_screen.dart';
 
 // Widget for Buttons
@@ -205,14 +207,14 @@ void navigator(context, Widget widget) {
   Navigator.push(context, MaterialPageRoute(builder: (context) => widget));
 }
 
-Widget buildCourseItem(context, bool enroll, CourseModel courseModel) =>
+Widget buildCourseItem(context, bool enroll, Courses? courseModel) =>
     InkWell(
       onTap: () {
         navigator(
             context,
             enroll
-                ? CoursesDetailsScreen(courseModel)
-                : CoursesOverViewScreen(courseModel));
+                ? CoursesDetailsScreen(courseModel!)
+                : CoursesOverViewScreen(courseModel!));
       },
       child: Padding(
         padding: EdgeInsets.all(8.0.w),
@@ -249,7 +251,7 @@ Widget buildCourseItem(context, bool enroll, CourseModel courseModel) =>
                             url:
 
                                 //'https://img-c.udemycdn.com/course/240x135/3446572_346e_2.jpg'
-                                '${courseModel.imageUrl}'),
+                                '${courseModel!.imageUrl}'),
                       ),
                     ),
                     Padding(
@@ -630,7 +632,7 @@ Widget emptyPage({required String text,required context})
           Lottie.asset('assets/empty.json',
               width: MediaQuery.of(context).size.width / 1),
           Text(
-            "$text",
+            text,
             style: TextStyle(fontSize: 20),
           ),
         ],

@@ -1,3 +1,5 @@
+import 'package:lms/models/new/courses_model.dart';
+
 class TrackModel {
   String? status;
   String? message;
@@ -213,6 +215,7 @@ class Courses {
   bool? isPublished;
   List<String>? contents;
   String? author;
+  List<String>? learner;
 
   Courses(
       {this.sId,
@@ -223,6 +226,7 @@ class Courses {
         this.imageUrl,
         this.isPublished,
         this.contents,
+        this.learner,
         this.author});
 
   Courses.fromJson(Map<String, dynamic> json) {
@@ -234,6 +238,7 @@ class Courses {
     imageUrl = json['imageUrl'];
     isPublished = json['isPublished'];
     contents = json['contents'].cast<String>();
+    learner = json['learner'].cast<String>();
     author = json['author'];
   }
 

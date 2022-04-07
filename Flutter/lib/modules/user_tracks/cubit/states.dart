@@ -46,4 +46,9 @@ class EnrollTrackErrorState extends AllTracksStates {
   EnrollTrackErrorState(this.error);
 }
 
+class TracksModelAuthorLoadingState extends AllTracksStates {}
+
+class TracksModelAuthorSuccessState extends AllTracksStates {}
+
+class ChangeEnrolledState extends AllTracksStates {}
 
