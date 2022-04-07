@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lms/models/new/courses_model.dart';
 import 'package:lms/modules/courses/cubit/cubit.dart';
 import 'package:lms/modules/courses/cubit/states.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/network/end_points.dart';
 
 class ViewAllCoursesScreen extends StatelessWidget {
-  const ViewAllCoursesScreen({Key? key}) : super(key: key);
+  List<Courses> model =[];
+  ViewAllCoursesScreen(this.model,{Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +18,9 @@ class ViewAllCoursesScreen extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(),
             body:ListView.builder(
-                 itemCount: CourseCubit.get(context).coursesModel!.courses!.length,
-                itemBuilder: (context, index) => buildCourseItem(context, true,
-                  CourseCubit.get(context).coursesModel!.courses![index]))
-
+                 itemCount: model.length,
+                itemBuilder: (context, index) => buildCourseItem(context, false,
+                  model[index]))
           // ListView.separated(
           //     shrinkWrap: true,
           //     itemBuilder: (context, index) => buildCourseItem(context, true,

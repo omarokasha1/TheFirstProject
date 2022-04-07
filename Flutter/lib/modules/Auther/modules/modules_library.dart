@@ -66,22 +66,33 @@ class ModulesLibraryScreen extends StatelessWidget {
                                       elevation: 1,
                                       itemBuilder: (BuildContext context) => [
                                         PopupMenuItem(
-                                          child: const Text('Add Assignment'),
-                                          onTap: (){
-                                            navigator(context, CreateAssignmentScreen());
-                                          },
+                                          child: MaterialButton(
+                                            onPressed: (){
+                                              navigator(context, CreateModuleScreen());
+                                            },
+                                            child: const Text('Add Content'),
+                                          ),
+                                        
                                           value: 1,
                                         ),
                                         PopupMenuItem(
-                                          child: const Text('Add Modules'),
+                                          child: MaterialButton(
+                                            onPressed: (){
+                                              navigator(context, CreateAssignmentScreen());
+                                            },
+                                            child: const Text('Add Assignment'),
+                                          ),
                                           value: 2,
-                                          onTap: (){
-                                            navigator(context, CreateModuleScreen());
-                                          },
+
                                         ),
                                       ],
                                   child: Container(
-                                    color: primaryColor,
+                                    padding: const EdgeInsets.all(5),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                      color: primaryColor,
+
+                                    ),
                                     child: Row(
                                       children:const [
                                         Icon(

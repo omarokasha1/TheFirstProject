@@ -10,7 +10,8 @@ import 'package:lms/modules/user_tracks/user_trcks_enroll_screen.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
 class ViewAllTracksScreen extends StatelessWidget {
-  const ViewAllTracksScreen({Key? key}) : super(key: key);
+  List<Tracks?> model;
+  ViewAllTracksScreen(this.model, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +22,8 @@ class ViewAllTracksScreen extends StatelessWidget {
         return  Scaffold(
             appBar: AppBar(),
             body:ListView.builder(
-                itemCount:cubit.tracksModel.length,
-                itemBuilder: (context, index) => buildUserTracksItem(context, false,TrackCubit.get(context).tracksModel[index]!))
+                itemCount:model.length,
+                itemBuilder: (context, index) => buildUserTrackItem(context, false,model[index]!))
 
         ) ;
       },
@@ -30,7 +31,7 @@ class ViewAllTracksScreen extends StatelessWidget {
   }
 }
 
-Widget buildUserTracksItem(context, bool enroll,Tracks model) =>
+Widget buildUserTrackItem(context, bool enroll,Tracks model) =>
     InkWell(
       onTap: () {
         navigator(

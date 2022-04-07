@@ -82,7 +82,7 @@ class AddManager extends StatelessWidget {
                             );
                           },
                           fallback: (context) {
-                            return CircularProgressIndicator();
+                            return Center(child: CircularProgressIndicator());
                           },
                         ),
                       ),

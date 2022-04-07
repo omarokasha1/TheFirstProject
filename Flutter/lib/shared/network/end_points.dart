@@ -15,6 +15,7 @@ const changePassword = "api/user/change-password";
 const authorRequest = 'api/user/promot-request';
 const uploadImageProfile2 = 'api/user/upload';
 const enrollRequest = 'api/user/enroll-request';
+const enrollTrack = 'api/user/enrollTrack';
          //<<<<<<<<<<<<<<<<<<<<<<<Update>>>>>>>>>>>>>>>>>>>>
 const enrollFreeCourse = 'api/user/enrollCourse';
 const updateProfile = "api/user/update-profile";
@@ -32,6 +33,7 @@ const getAssignment = "api/course/authorAssignments";
 const getAuthorQuizzes = "api/course/authorQuizzes";
 const getAuthorQuestions = "api/course/authorQuestions";
 const getAuthor = "api/course/author";
+const getAuthorData = "api/user/profile";
 
 //-----------------------------Create----------------------------
 const createAuthorCourse = 'api/course/newCourse';

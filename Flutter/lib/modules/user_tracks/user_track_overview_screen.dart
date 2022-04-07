@@ -3,16 +3,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lms/models/track_model.dart';
-import 'package:lms/modules/courses/course_details_screen.dart';
-import 'package:lms/modules/courses/cubit/cubit.dart';
-import 'package:lms/modules/courses/cubit/states.dart';
 import 'package:lms/modules/user_tracks/cubit/cubit.dart';
 import 'package:lms/modules/user_tracks/cubit/states.dart';
+import 'package:lms/modules/user_tracks/user_trcks_enroll_screen.dart';
 import 'package:lms/shared/component/component.dart';
-import 'package:lms/shared/component/zoomDrawer.dart';
-import '../../models/course_model.dart';
 import '../../shared/component/constants.dart';
 
 class UserTracksOverViewScreen extends StatelessWidget {
@@ -22,6 +19,7 @@ class UserTracksOverViewScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TrackCubit.get(context).changeEnrolledTrack(context, tracksModel.sId!);
     return BlocConsumer<TrackCubit,AllTracksStates>(
       listener: (context, state) {},
       builder: (context, state){
@@ -41,23 +39,27 @@ class UserTracksOverViewScreen extends StatelessWidget {
                     // object from defaultButton on component.dart file
                     child: defaultButton(
                       onPressed: () {
+                        if(cubit.isEnrolled) {
+                          navigator(context, UserTracksEnrollScreen(tracksModel));
+                        }else{
+                          cubit.enrollToTrack(context, trackId: tracksModel.sId);
+                        }
                         // cubit.enrollCourse(courseId: courseModel.sId);
                         // navigatorAndRemove(context, ZoomDrawerScreen(widget: CoursesDetailsScreen(courseModel),));
-                      }, text: 'Enroll Course',),
+                      }, text: cubit.isEnrolled ? 'Go To Track' : 'Enroll Track',),
                   ),
                 ),
-                Expanded(
-                  child: Padding(
-
-                    padding: const EdgeInsets.all(8),
-
-                    // object from defaultButton on component.dart file
-                    child: defaultButton(onPressed: () {
-                      print("asdasdas");
-                      Fluttertoast.showToast(msg: "Added To Your wishlist");
-                    }, text: 'Add WatchList', widget: Icon(Icons.favorite_rounded, color: primaryColor,), color: false),
-                  ),
-                ),
+                // Expanded(
+                //   child: Padding(
+                //
+                //     padding: const EdgeInsets.all(8),
+                //
+                //     // object from defaultButton on component.dart file
+                //     child: defaultButton(onPressed: () {
+                //       Fluttertoast.showToast(msg: "Added To Your wishlist");
+                //     }, text: 'Add WatchList', widget: Icon(Icons.favorite_rounded, color: primaryColor,), color: false),
+                //   ),
+                // ),
               ],
             ),
           ),
@@ -67,7 +69,6 @@ class UserTracksOverViewScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-
                   // Widget display course image in border radius
                   ClipRRect(
                     borderRadius: BorderRadius.circular(15),
@@ -77,7 +78,6 @@ class UserTracksOverViewScreen extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-
                   // course title
                   Text(
                     '${tracksModel.trackName}',
@@ -86,9 +86,7 @@ class UserTracksOverViewScreen extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-
                   // course description
-
                   Text(
                     '${tracksModel.description}',
                     style: Theme.of(context).textTheme.bodyText2,
@@ -97,13 +95,10 @@ class UserTracksOverViewScreen extends StatelessWidget {
                     height: 20,
                   ),
                   // What the course includes
-
                   // Row Inside tow Column
-
                   Row(
                     children: [
                       Expanded(
-
                         // Column inside text, icon, last update
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -121,7 +116,8 @@ class UserTracksOverViewScreen extends StatelessWidget {
                                 const SizedBox(
                                   width: 10,
                                 ),
-                                Text('${tracksModel}')
+                                //Last Updated text
+                                Text('')
                               ],
                             ),
                           ],
@@ -146,7 +142,7 @@ class UserTracksOverViewScreen extends StatelessWidget {
                                 const SizedBox(
                                   width: 10,
                                 ),
-                                //Text('${courseModel.language}')
+                                Text('${tracksModel.courses![0].language}')
                               ],
                             ),
                           ],
@@ -180,7 +176,7 @@ class UserTracksOverViewScreen extends StatelessWidget {
                                 const SizedBox(
                                   width: 10,
                                 ),
-                               // Text('${courseModel.totalTime}')
+                               Text('')
                               ],
                             ),
                           ],
@@ -196,15 +192,18 @@ class UserTracksOverViewScreen extends StatelessWidget {
                               height: 10,
                             ),
                             Row(
-                              children: const [
+                              children: [
                                 Icon(
                                   Icons.person,
                                   color: primaryColor,
                                 ),
-                                const SizedBox(
+                                SizedBox(
                                   width: 10,
                                 ),
-                                Text('700')
+                                Text('${tracksModel.courses!.where((element) {
+                                  element.learner!.length;
+                                  return true;
+                                }).toList().length}')
                               ],
                             ),
                           ],
@@ -226,20 +225,18 @@ class UserTracksOverViewScreen extends StatelessWidget {
 
                   Row(
                     children: [
-
                       // author image in a circular shape
                       CircleAvatar(
                         backgroundImage: CachedNetworkImageProvider(
-                          '${tracksModel.author}',
+                          '${tracksModel.author!.imageUrl}',
                         ),
                         radius: 25,
                       ),
                       const SizedBox(
                         width: 10,
                       ),
-
                       // author name
-                      //Text('${courseModel.author!.userName}'),
+                      Text('${tracksModel.author!.userName}'),
                       const Spacer(),
                       // course rate (title, icon)
                       Container(
@@ -268,20 +265,22 @@ class UserTracksOverViewScreen extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-
-
-                  const Text(
-                    'What you will learn',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
-                  ),
-                  const Text(
-                    'Course Requirements',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
-                  ),
-                  const Text(
-                    'Reviews',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
-                  ),
+                  // const Text(
+                  //   'What you will learn',
+                  //   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                  // ),
+                  // const Text(
+                  //   'Course Requirements',
+                  //   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                  // ),
+                  // Text(
+                  //   '${tracksModel.}',
+                  //   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                  // ),
+                  // const Text(
+                  //   'Reviews',
+                  //   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                  // ),
                 ],
               ),
             ),

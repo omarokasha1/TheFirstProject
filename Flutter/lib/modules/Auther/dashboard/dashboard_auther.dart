@@ -3,6 +3,8 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lms/modules/Auther/author_courses/author_courses_cubit/cubit.dart';
+import 'package:lms/modules/Auther/author_courses/author_courses_cubit/status.dart';
 import 'package:lms/modules/Auther/author_courses/author_courses_screen.dart';
 import 'package:lms/modules/Auther/author_courses/create_course_screen.dart';
 import 'package:lms/modules/Auther/modules/create_assigment/create_assignment.dart';
@@ -219,122 +221,136 @@ class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
                             SizedBox(
                               height: 10,
                             ),
-                            SizedBox(
-                              width: double.infinity,
-                              height: 45.h,
-                              child: TextField(
-                                keyboardType: TextInputType.none,
-                                cursorColor: primaryColor,
-                                decoration: InputDecoration(
-                                  fillColor: Colors.white,
-                                  filled: true,
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(18.r),
-                                    borderSide:
-                                    const BorderSide(color: Colors.white),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(18.r),
-                                    borderSide:
-                                    const BorderSide(color: secondaryColor),
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(18.r),
-                                    borderSide:
-                                    const BorderSide(color: Colors.white),
-                                  ),
-                                  hintText: "Search Courses",
-                                  prefixIcon: const Icon(Icons.search),
-                                ),
-                                onTap: () {
-                                  navigator(
-                                      context,
-                                      ZoomDrawerScreen(
-                                        widget: SearchScreen(),
-                                      ));
-                                },
-                              ),
-                            ),
+                            // SizedBox(
+                            //   width: double.infinity,
+                            //   height: 45.h,
+                            //   child: TextField(
+                            //     keyboardType: TextInputType.none,
+                            //     cursorColor: primaryColor,
+                            //     decoration: InputDecoration(
+                            //       fillColor: Colors.white,
+                            //       filled: true,
+                            //       border: OutlineInputBorder(
+                            //         borderRadius: BorderRadius.circular(18.r),
+                            //         borderSide:
+                            //         const BorderSide(color: Colors.white),
+                            //       ),
+                            //       focusedBorder: OutlineInputBorder(
+                            //         borderRadius: BorderRadius.circular(18.r),
+                            //         borderSide:
+                            //         const BorderSide(color: secondaryColor),
+                            //       ),
+                            //       enabledBorder: OutlineInputBorder(
+                            //         borderRadius: BorderRadius.circular(18.r),
+                            //         borderSide:
+                            //         const BorderSide(color: Colors.white),
+                            //       ),
+                            //       hintText: "Search Courses",
+                            //       prefixIcon: const Icon(Icons.search),
+                            //     ),
+                            //     onTap: () {
+                            //       navigator(
+                            //           context,
+                            //           ZoomDrawerScreen(
+                            //             widget: SearchScreen(),
+                            //           ));
+                            //     },
+                            //   ),
+                            // ),
                           ],
                         ),
                       ),
                       SizedBox(
                         height: 10,
                       ),
-                      Container(
-                        width: double.infinity,
-                        padding: EdgeInsets.all(20),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: Colors.grey[100],
-                        ),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Column(
-                                children: [
-                                  const Text(
-                                    'Total students:',
-                                    style: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold,
-                                        color: primaryColor),
-                                  ),
-                                  // package to add animation to numbers
-                                  NumberSlideAnimation(
-                                    number: "12345",
-                                    // number
-                                    duration: const Duration(seconds: 4),
-                                    //The time specified for the animation
-                                    curve: Curves.fastOutSlowIn,
-                                    //animation form
-                                    textStyle: const TextStyle(
-                                        fontSize: 20.0,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ),
+                      BlocConsumer<AuthorCoursesCubit,AuthorCoursesStates>(
+                        listener: (context, state) {},
+                        builder: (context, state) {
+                          var cubit =AuthorCoursesCubit.get(context);
+                          print('kareem -> ${cubit.totalStudent}');
+                          return Container(
+                            width: double.infinity,
+                            padding: EdgeInsets.all(20),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: Colors.grey[100],
                             ),
-                            Expanded(
-                              child: Column(
-                                children: [
-                                  const Text('Reviews',
-                                      style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold,
-                                          color: primaryColor)),
-                                  NumberSlideAnimation(
-                                    number: "6234",
-                                    duration: const Duration(seconds: 4),
-                                    curve: Curves.fastOutSlowIn,
-                                    textStyle: const TextStyle(
-                                        fontSize: 20.0,
-                                        fontWeight: FontWeight.bold),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Column(
+                                    children: [
+                                      const Text(
+                                        'Total students',
+                                        style: TextStyle(
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.bold,
+                                            color: primaryColor),
+                                      ),
+                                      // package to add animation to numbers
+                                      NumberSlideAnimation(
+                                        //number: "12345",
+                                        number: '${cubit.totalStudent}',
+                                        // number
+                                        duration: const Duration(seconds: 4),
+                                        //The time specified for the animation
+                                        curve: Curves.fastOutSlowIn,
+                                        //animation form
+                                        textStyle: const TextStyle(
+                                            fontSize: 20.0,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
-                            ),
-                            Expanded(
-                              child: Column(
-                                children: [
-                                  const Text('Total Courses:',
-                                      style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold,
-                                          color: primaryColor)),
-                                  NumberSlideAnimation(
-                                    number: "15",
-                                    duration: const Duration(seconds: 4),
-                                    curve: Curves.fastOutSlowIn,
-                                    textStyle: const TextStyle(
-                                        fontSize: 20.0,
-                                        fontWeight: FontWeight.bold),
+                                ),
+                                Expanded(
+                                  child: Column(
+                                    children: [
+                                      const Text('Reviews',
+                                          style: TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.bold,
+                                              color: primaryColor)),
+                                      NumberSlideAnimation(
+                                        number: "6234",
+                                        duration: const Duration(seconds: 4),
+                                        curve: Curves.fastOutSlowIn,
+                                        textStyle: const TextStyle(
+                                            fontSize: 20.0,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
+                                ),
+                                Expanded(
+                                  child: Column(
+                                    children: [
+                                      const Text('Total Courses',
+                                          style: TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.bold,
+                                              color: primaryColor)),
+                                      // Text("${cubit.coursesModelPublish == null ? 0 :  cubit.coursesModelPublish!.courses!.length}",
+                                      //     style: TextStyle(
+                                      //         fontSize: 15,
+                                      //         fontWeight: FontWeight.bold,
+                                      //         color: primaryColor)),
+                                      NumberSlideAnimation(
+                                        number: "${cubit.coursesModelPublish == null ? 0 :  cubit.coursesModelPublish!.courses!.length}",
+                                        //number: "123",
+                                        //duration: const Duration(seconds: 4),
+                                        curve: Curves.fastOutSlowIn,
+                                        textStyle: const TextStyle(
+                                            fontSize: 20.0,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
+                          );
+                        },
                       ),
                       SizedBox(
                         height: 10,

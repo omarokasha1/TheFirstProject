@@ -78,6 +78,10 @@ class SearchCourseLoadingState extends CourseStates {}
 
 class SearchCourseSuccessState extends CourseStates {}
 
+class CoursesModelAuthorLoadingState extends CourseStates {}
+
+class CoursesModelAuthorSuccessState extends CourseStates {}
+
 class SearchCourseErrorState extends CourseStates {
   final String error;
 

@@ -12,12 +12,20 @@ class CourseCubit extends Cubit<CourseStates> {
   CourseCubit() : super(CourseInitialState());
   bool isEnrolled = false;
   bool isWishlist = false;
-  void changeEnabledCourse(bool x){
-    isEnrolled = x;
+  void changeEnrolledCourse(context, String courseID){
+    bool isEnrolled = BlocProvider.of<ProfileCubit>(context).model!.profile!.myCourses!.where((element)  {
+      return element == courseID;
+    }).toList().isNotEmpty;
+    this.isEnrolled = isEnrolled;
+    print("enrolled : ${isEnrolled}");
     emit(ChangeEnrolledState());
   }
-  void changeWishlistCourse(bool x){
-    isWishlist = x;
+  void changeWishlistCourse(context, String courseID){
+    bool isWishlist = BlocProvider.of<ProfileCubit>(context).model!.profile!.wishList!.where((element)  {
+      return element == courseID;
+    }).toList().isNotEmpty;
+    this.isWishlist = isWishlist;
+    print("wishlisted : ${isWishlist}");
     emit(ChangeWishlistState());
   }
 
@@ -35,6 +43,25 @@ class CourseCubit extends Cubit<CourseStates> {
       emit(AllCoursesErrorState(error.toString()));
       print(error.toString());
     });
+  }
+
+  List<Courses> coursesModelAuthor = [];
+
+  void courseModelAuthor(String word) {
+    coursesModelAuthor = [];
+    emit(CoursesModelAuthorLoadingState());
+    if (word.isEmpty) {
+      coursesModelAuthor = [];
+    } else {
+      coursesModelAuthor = coursesModel!.courses!.where((element) {
+        final userID = element.author!.sId!.toLowerCase();
+        final searchLower = word.toLowerCase();
+
+        return userID.contains(searchLower);
+      }).toList();
+    }
+    emit(CoursesModelAuthorSuccessState());
+    //return search;
   }
 
   List<Courses> search = [];
@@ -86,15 +113,15 @@ class CourseCubit extends Cubit<CourseStates> {
             token: userToken)
         .then((value) async {
       showToast(message: value.data['message']);
-      await BlocProvider.of<ProfileCubit>(context)..getUserProfile();
+      await BlocProvider.of<ProfileCubit>(context).getUserProfile();
       emit(EnrollCourseSuccessState());
-      changeEnabledCourse(!isEnrolled);
+      changeEnrolledCourse(context, courseId);
     }).catchError((error) {
       emit(EnrollCourseErrorState(error));
     });
   }
 
-  void wishlistCourse(context, {required courseId}) {
+  void wishlistCourse(context,{required courseId}) {
     emit(WishlistCourseLoadingState());
     DioHelper.putData(
             url: wishlist,
@@ -105,9 +132,9 @@ class CourseCubit extends Cubit<CourseStates> {
         .then((value) async {
       print(value.data);
       Fluttertoast.showToast(msg: value.data['message']);
-      await BlocProvider.of<ProfileCubit>(context)..getUserProfile();
+      await BlocProvider.of<ProfileCubit>(context).getUserProfile();
       emit(WishlistCourseSuccessState());
-      changeWishlistCourse(!isWishlist);
+      changeWishlistCourse(context, courseId);
     }).catchError((error) {
       emit(WishlistCourseErrorState(error));
     });

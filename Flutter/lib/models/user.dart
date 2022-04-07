@@ -78,7 +78,7 @@ class Profile {
     isManager = json['isManager'] ;
     myCourses = json['myCourses'].cast<String>() ?? '' ;
     wishList = json['wishList'].cast<String>() ?? '' ;
-    wishList = json['myTracks'].cast<String>() ?? '' ;
+    myTracks = json['myTracks'].cast<String>() ?? '' ;
   }
 
   Map<String, dynamic> toJson() {

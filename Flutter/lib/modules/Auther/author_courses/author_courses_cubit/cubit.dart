@@ -32,7 +32,7 @@ class AuthorCoursesCubit extends Cubit<AuthorCoursesStates> {
     selectedItem=value;
     emit(ChangeItemState());
   }
-
+int totalStudent = 0;
   //AuthorCoursesTestModel? authorCoursesTestModel;
   CoursesModel? coursesModel;
   CoursesModel? coursesModelPublish;
@@ -53,11 +53,27 @@ class AuthorCoursesCubit extends Cubit<AuthorCoursesStates> {
   }
 
   Future<void> getAuthorCoursesPublishedData() async {
+    if(coursesModelPublish == null){
+      print('asd is null');
+    }
+    totalStudent = 0;
     emit(GetAuthorCoursesPublishLoadingState());
     await DioHelper.getData(url: getAuthorCoursesPublished, token: userToken).then((value) {
       //print(value.data);
       //authorCoursesTestModel!.courses=[];
       coursesModelPublish = CoursesModel.fromJson(value.data);
+      if(coursesModelPublish == null){
+        print('asd222222 is null');
+      }
+      coursesModelPublish!.courses!.where((element) {
+        totalStudent+=element.learner!.length;
+        print("Here");
+        print(element.learner!.length);
+        return true;
+      }).toList();
+      print("totalStudent");
+
+      print(totalStudent);
       //print(authorCoursesTestModel!.courses.toString());
       emit(GetAuthorCoursesPublishSuccessState(coursesModelPublish));
     }).catchError((error) {

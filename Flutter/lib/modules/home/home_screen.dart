@@ -162,7 +162,9 @@ class HomePage extends StatelessWidget {
                                     child: InkWell(
                                       onTap: () {
                                         navigator(
-                                            context, ViewAllCoursesScreen());
+                                            context,
+                                            ViewAllCoursesScreen(courseCubit
+                                                .coursesModel!.courses!));
                                       },
                                       child: Row(
                                         children: [
@@ -209,7 +211,10 @@ class HomePage extends StatelessWidget {
                                     child: InkWell(
                                       onTap: () {
                                         navigator(
-                                            context, ViewAllTracksScreen());
+                                            context,
+                                            ViewAllTracksScreen(
+                                                TrackCubit.get(context)
+                                                    .tracksModel));
                                       },
                                       child: Row(
                                         children: [
@@ -274,43 +279,43 @@ class HomePage extends StatelessWidget {
                                       ],
                                     ),
                                   ),
-                                  BlocConsumer<MyLearningCubit,MyLearningStates>(
+                                  BlocConsumer<MyLearningCubit,
+                                      MyLearningStates>(
                                     listener: (context, state) {},
                                     builder: (context, state) {
                                       var cubit = MyLearningCubit.get(context);
                                       return ConditionalBuilder(
-                                        condition: cubit.enrolledCourses != null,
+                                        condition:
+                                            cubit.enrolledCourses != null,
                                         builder: (context) {
-                                          return cubit.enrolledCourses
-                                              .length !=
-                                              0
+                                          return cubit.enrolledCourses.length !=
+                                                  0
                                               ? SizedBox(
-                                            height: MediaQuery.of(context)
-                                                .size
-                                                .height /
-                                                2.5,
-                                            child: ListView.builder(
-                                              physics:
-                                              const BouncingScrollPhysics(),
-                                              scrollDirection:
-                                              Axis.horizontal,
-                                              shrinkWrap: true,
-                                              itemBuilder: (context, index) =>
-                                                  MyLearning.buildCourseItem(
-                                                      context,
-                                                      true,
-                                                      cubit
-                                                          .enrolledCourses[
-                                                      index]),
-                                              itemCount: cubit
-                                                  .enrolledCourses
-                                                  .length,
-                                            ),
-                                          )
+                                                  height: MediaQuery.of(context)
+                                                          .size
+                                                          .height /
+                                                      2.5,
+                                                  child: ListView.builder(
+                                                    physics:
+                                                        const BouncingScrollPhysics(),
+                                                    scrollDirection:
+                                                        Axis.horizontal,
+                                                    shrinkWrap: true,
+                                                    itemBuilder: (context,
+                                                            index) =>
+                                                        MyLearning.buildCourseItem(
+                                                            context,
+                                                            true,
+                                                            cubit.enrolledCourses[
+                                                                index]),
+                                                    itemCount: cubit
+                                                        .enrolledCourses.length,
+                                                  ),
+                                                )
                                               : emptyPage(
-                                              text:
-                                              "There's no Enrolled Courses Yet",
-                                              context: context);
+                                                  text:
+                                                      "There's no Enrolled Courses Yet",
+                                                  context: context);
                                         },
                                         fallback: (context) {
                                           return Center(

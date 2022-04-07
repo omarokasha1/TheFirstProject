@@ -211,8 +211,7 @@ class CreateModuleScreen extends StatelessWidget {
                                 Center(
                                   child: TextButton(
                                       onPressed: () async {
-                                        result =
-                                            await FilePicker.platform.pickFiles();
+                                        result = await FilePicker.platform.pickFiles();
 
                                         if (result != null) {
                                           file = File(result!.files.single.path!);
@@ -229,8 +228,7 @@ class CreateModuleScreen extends StatelessWidget {
                                       child: Padding(
                                         padding: EdgeInsets.symmetric(
                                             horizontal: 0.0),
-                                        child: filePath == null
-                                            ? Text(
+                                        child: filePath == null ? Text(
                                                 "Upload",
                                                 style: TextStyle(fontSize: 20),
                                               )

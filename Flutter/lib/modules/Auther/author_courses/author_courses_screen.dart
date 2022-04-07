@@ -18,8 +18,9 @@ class AuthorCourses extends StatelessWidget {
 
   final List<Widget> myTabs = [
     //Tab(text: 'Drafts'),
-    Tab(text: 'Published'),
     Tab(text: 'Pendding'),
+    Tab(text: 'Published'),
+
   ];
 
   var icon = Icons.send;
@@ -84,24 +85,10 @@ class AuthorCourses extends StatelessWidget {
                       Expanded(
                         child: TabBarView(
                           children: [
-                            //Publish Courses
-                            ConditionalBuilder(
-                              condition:
-                                  cubit.coursesModelPublish!.courses!.length !=
-                                      0,
-                              builder: (context) {
-                                return publishedCourses(cubit);
-                              },
-                              fallback: (context) {
-                                return emptyPage(
-                                    text: "No Tracks Added Yet",
-                                    context: context);
-                              },
-                            ),
                             //Pending Courses
                             ConditionalBuilder(
                               condition:
-                                  cubit.coursesModel!.courses!.length != 0,
+                              cubit.coursesModel!.courses!.length != 0,
                               builder: (context) {
                                 return penddingCourses(cubit);
                               },
@@ -111,6 +98,20 @@ class AuthorCourses extends StatelessWidget {
                                     context: context);
                               },
                             ),
+                            //Publish Courses
+                            ConditionalBuilder(
+                              condition:
+                                  cubit.coursesModelPublish!.courses!.length != 0,
+                              builder: (context) {
+                                return publishedCourses(cubit);
+                              },
+                              fallback: (context) {
+                                return emptyPage(
+                                    text: "No Tracks Added Yet",
+                                    context: context);
+                              },
+                            ),
+
                             //draftsCourses(),
                           ],
                         ),
