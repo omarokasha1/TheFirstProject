@@ -20,7 +20,6 @@ class CoursesOverViewScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     bool isEnrolled = BlocProvider.of<ProfileCubit>(context).model!.profile!.myCourses!.where((element)  {
       return element == courseModel.sId;
     }).toList().length != 0 ? true:false;
@@ -32,7 +31,19 @@ class CoursesOverViewScreen extends StatelessWidget {
     BlocProvider.of<CourseCubit>(context).changeWishlistCourse(isWishlist);
 
     return BlocConsumer<CourseCubit,CourseStates>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if (state is EnrollCourseSuccessState){
+          bool isEnrolled = BlocProvider.of<ProfileCubit>(context).model!.profile!.myCourses!.where((element)  {
+            return element == courseModel.sId;
+          }).toList().length != 0 ? true:false;
+          BlocProvider.of<CourseCubit>(context).changeEnabledCourse(isEnrolled);
+        }else if(state is WishlistCourseSuccessState){
+          bool isWishlist = BlocProvider.of<ProfileCubit>(context).model!.profile!.wishList!.where((element)  {
+            return element == courseModel.sId;
+          }).toList().length != 0 ? true:false;
+          BlocProvider.of<CourseCubit>(context).changeWishlistCourse(isWishlist);
+        }
+      },
       builder: (context, state){
         var cubit = CourseCubit.get(context);
         return Scaffold(
@@ -50,14 +61,13 @@ class CoursesOverViewScreen extends StatelessWidget {
                     // object from defaultButton on component.dart file
                     child: defaultButton(
                       onPressed: () {
-                        if(!cubit.isEnrolled){
-                          cubit.enrollCourse(courseId: courseModel.sId);
-                          BlocProvider.of<ProfileCubit>(context)..getUserProfile();
+                        if(cubit.isEnrolled){
                           navigator(context, ZoomDrawerScreen(widget: CoursesDetailsScreen(courseModel),));
                         }else {
+                          cubit.enrollCourse(context, courseId: courseModel.sId);
                           navigator(context, ZoomDrawerScreen(widget: CoursesDetailsScreen(courseModel),));
                         }
-                      }, text: !cubit.isEnrolled ? 'Enroll Course' : 'Go To Course',),
+                      }, text: cubit.isEnrolled ? 'Go To Course' :'Enroll Course',),
                   ),
                 ),
                 Expanded(
@@ -65,9 +75,8 @@ class CoursesOverViewScreen extends StatelessWidget {
                     padding: const EdgeInsets.all(8),
                     // object from defaultButton on component.dart file
                     child: defaultButton(onPressed: () {
-                      cubit.wishlistCourse(courseId: courseModel.sId);
-                      BlocProvider.of<ProfileCubit>(context)..getUserProfile();
-                    }, text: 'Add Wishlist', widget: Icon(cubit.isWishlist ? Icons.favorite_rounded : Icons.favorite_border, color: primaryColor,), color: false),
+                      cubit.wishlistCourse(context, courseId: courseModel.sId);
+                    }, text: 'Add Wishlist', widget: Icon(!cubit.isWishlist ? Icons.favorite_rounded : Icons.favorite_border, color: primaryColor,), color: false),
                   ),
                 ),
               ],

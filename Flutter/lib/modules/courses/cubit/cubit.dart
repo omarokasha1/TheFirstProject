@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lms/models/new/courses_model.dart';
 import 'package:lms/modules/courses/cubit/states.dart';
+import 'package:lms/modules/profile/profile_cubit/cubit.dart';
 import 'package:lms/shared/component/component.dart';
 import '../../../shared/component/constants.dart';
 import '../../../shared/network/end_points.dart';
@@ -75,7 +76,7 @@ class CourseCubit extends Cubit<CourseStates> {
     });
   }
 
-  void enrollCourse({required courseId}) {
+  void enrollCourse(context, {required courseId}) {
     emit(EnrollCourseLoadingState());
     DioHelper.putData(
             url: enrollUserToCourse,
@@ -83,15 +84,17 @@ class CourseCubit extends Cubit<CourseStates> {
               'courseId': courseId,
             },
             token: userToken)
-        .then((value) {
+        .then((value) async {
       showToast(message: value.data['message']);
+      await BlocProvider.of<ProfileCubit>(context)..getUserProfile();
       emit(EnrollCourseSuccessState());
+      changeEnabledCourse(!isEnrolled);
     }).catchError((error) {
       emit(EnrollCourseErrorState(error));
     });
   }
 
-  void wishlistCourse({required courseId}) {
+  void wishlistCourse(context, {required courseId}) {
     emit(WishlistCourseLoadingState());
     DioHelper.putData(
             url: wishlist,
@@ -99,10 +102,12 @@ class CourseCubit extends Cubit<CourseStates> {
               'courseId': courseId,
             },
             token: userToken)
-        .then((value) {
+        .then((value) async {
       print(value.data);
       Fluttertoast.showToast(msg: value.data['message']);
+      await BlocProvider.of<ProfileCubit>(context)..getUserProfile();
       emit(WishlistCourseSuccessState());
+      changeWishlistCourse(!isWishlist);
     }).catchError((error) {
       emit(WishlistCourseErrorState(error));
     });
