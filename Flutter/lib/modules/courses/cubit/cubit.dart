@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:lms/models/new/contents_model.dart';
 import 'package:lms/models/new/courses_model.dart';
 import 'package:lms/modules/courses/cubit/states.dart';
 import 'package:lms/shared/component/component.dart';
@@ -89,6 +90,18 @@ class CourseCubit extends Cubit<CourseStates> {
       emit(WishlistCourseErrorState(error));
     });
   }
+
+  ContentsModel? newContent;
+  void getContentDetails(String id) {
+    DioHelper.getData(
+      url: "${getModule+ id}",
+    ).then((value) {
+      print(value.data.toString());
+      newContent = ContentsModel.fromJson(value.data);
+    }).catchError((error) {
+      print(error.toString());
+    });
+ }
 
 
   // CourseModel? createCourseModel;

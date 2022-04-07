@@ -62,12 +62,17 @@ const deleteAuthorQuestions = "api/course/delete-questions";
 //-----------------------------Get----------------------------
 const getAuthorRequest = "api/manager/promotRequest";
 const getCourseRequest = "api/manager/courseRequest";
+const getTrackRequest = "api/manager/trackRequest";
 
 //-----------------------------Update----------------------------
 const updateUserRoleAuthor = "api/manager/accept-promot";
+const acceptCourseAuthor = "api/manager/accept-course";
+const acceptTrackAuthor = "api/manager/accept-track";
 
 //-----------------------------delete----------------------------
 const deleteUserRequest = "api/manager/delete-request";
+const deleteCourseRequest = "api/manager/delete-course";
+const deleteTrackRequest = "api/manager/delete-track";
 
 //--------------------------------------Manager----------------------------------
 //-----------------------------Get----------------------------
