@@ -24,11 +24,20 @@ class _ModuleDetailsScreenState extends State<ModuleDetailsScreen> {
     super.initState();
     BetterPlayerDataSource betterPlayerDataSource = BetterPlayerDataSource(
         BetterPlayerDataSourceType.network,
-        "${widget.contentModel.imageUrl}");
+        "${widget.contentModel.imageUrl}",
+        notificationConfiguration: BetterPlayerNotificationConfiguration(
+          showNotification: true,
+          title: "${widget.contentModel.contentTitle}",
+          author: "${widget.contentModel.author!.userName}",
+          imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Orange_logo.svg/1200px-Orange_logo.svg.png",
+          activityName: "MainActivity",
+        ),
+    );
     betterPlayerController = BetterPlayerController(
         BetterPlayerConfiguration(),
         betterPlayerDataSource: betterPlayerDataSource
     );
+
   }
   dynamic filePath;
 
