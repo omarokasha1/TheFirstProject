@@ -4,12 +4,16 @@ import 'package:flutter/rendering.dart';
 import 'package:lms/layout/layout.dart';
 import 'package:lms/models/assignment_model.dart';
 import 'package:lms/models/module_model.dart';
+import 'package:lms/modules/Auther/modules/pdf_view_screen.dart';
 import 'package:lms/shared/component/constants.dart';
 import 'package:open_file/open_file.dart';
 import 'package:readmore/readmore.dart';
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
+import '../../../shared/component/component.dart';
 
 class AssignmentDetailsScreen extends StatelessWidget {
   final Assignments model;
+
   AssignmentDetailsScreen(this.model, {Key? key}) : super(key: key);
   dynamic filePath;
 
@@ -34,7 +38,7 @@ class AssignmentDetailsScreen extends StatelessWidget {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
-                      //color: Colors.black,
+                        //color: Colors.black,
                         fontWeight: FontWeight.bold,
                         fontSize: 18),
                   ),
@@ -72,14 +76,15 @@ class AssignmentDetailsScreen extends StatelessWidget {
                 height: 15,
               ),
               Row(
-                children:  [
+                children: [
                   const Text(
                     "Duration : ",
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
                   ),
                   Text(
                     "${model.assignmentDuration}",
-                    style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+                    style: const TextStyle(
+                        fontSize: 14, fontWeight: FontWeight.w500),
                   )
                 ],
               ),
@@ -90,114 +95,97 @@ class AssignmentDetailsScreen extends StatelessWidget {
                 'Content :',
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
               ),
-
-              InkWell(
-                onTap: (){
-                  OpenFile.open(model.fileUrl.toString(),);
-                },
-
-                child: Text(
-                  model.fileUrl.toString(),
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
-                ),
+              const SizedBox(
+                height: 15,
               ),
-              // viewFileDetails(contentmodel),
-            ],
+              if (model.fileUrl!.split('\.').last == 'jpg' ||
+                  model.fileUrl!.split('\.').last == 'png')
+                Container(
+                  width: double.infinity,
+                  height: 200,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: imageFromNetwork(
+                      url: '${model.fileUrl}',
+                    ),
+                  ),
+                ),
+              if (model.fileUrl!.split('\.').last == 'pdf')
 
+              Row(
+                children: [
+                  // Expanded(
+                  //   child: Container(
+                  //     padding: const EdgeInsets.all(10),
+                  //     margin: const EdgeInsets.all(5),
+                  //     decoration: BoxDecoration(
+                  //         color: primaryColor,
+                  //         borderRadius: BorderRadius.circular(10)),
+                  //     child: Row(
+                  //       mainAxisAlignment: MainAxisAlignment.center,
+                  //       children: const [
+                  //         Icon(
+                  //           Icons.download,
+                  //           color: Colors.white,
+                  //         ),
+                  //         SizedBox(
+                  //           width: 10,
+                  //         ),
+                  //         Text(
+                  //           'Download',
+                  //           style: TextStyle(color: Colors.white),
+                  //         ),
+                  //       ],
+                  //     ),
+                  //   ),
+                  // ),
+                  Expanded(
+                    child: InkWell(
+                      onTap: (){
+                        navigator(context, PdfViewScreen( fileUrl: model.fileUrl.toString(),));
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(10),
+                        margin: const EdgeInsets.all(5),
+                        decoration: BoxDecoration(
+                            color: primaryColor,
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            Icon(
+                              Icons.remove_red_eye,
+                              color: Colors.white,
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              'View',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              )
+              // InkWell(
+              //   onTap: (){
+              //     OpenFile.open(model.fileUrl,);
+              //   },
+              //   child: Text(
+              //     model.fileUrl.toString(),
+              //     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+              //   ),
+              // ),
+
+              // viewFileDetails(),
+            ],
           ),
         ),
       ),
     );
   }
 }
-
-Widget viewFileDetails(contentModel) {
-  final kb = contentModel.imageUrl.size / 1024;
-  final mb = kb / 1024;
-  final fileSize =
-  mb > 1 ? "${mb.toStringAsFixed(2)} MB" : "${kb.toStringAsFixed(2)} Kb";
-  dynamic filePath = contentModel.imageUrl;
-  final extension = filePath.extension ?? "none";
-
-  return Stack(
-    children: [
-      Container(
-        padding: EdgeInsets.all(12),
-
-        child: InkWell(
-          onTap: () {
-            OpenFile.open(filePath.path);
-          },
-          child: Container(
-            padding: EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              // color: secondaryColor,
-                borderRadius: BorderRadius.all(Radius.circular(15)),
-                border: Border.all(
-                  color: primaryColor,
-                )),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  filePath.name,
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                      overflow: TextOverflow.ellipsis),
-                ),
-                const SizedBox(
-                  height: 8,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      ".${filePath.extension}",
-                      style: TextStyle(
-                        fontSize: 20,
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    Text(
-                      "/ $fileSize",
-                      style: TextStyle(fontSize: 20),
-                    )
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-      // Positioned(
-      //   top: 0,
-      //   right: 0,
-      //   child: CircleAvatar(
-      //     backgroundColor: secondaryColor,
-      //     radius: 20.0,
-      //     child: IconButton(
-      //       icon: const Icon(
-      //         Icons.edit,
-      //       ),
-      //       color: Colors.white,
-      //       iconSize: 20.0,
-      //       onPressed: () async {
-      //         result = await FilePicker.platform.pickFiles();
-      //
-      //         if (result != null) {
-      //           file = File(result!.files.single.path!);
-      //           filePath = result!.files.first;
-      //
-      //           cubit.selectImage();
-      //         }
-      //       },
-      //     ),
-      //   ),
-      // ),
-    ],
-  );
-}
-

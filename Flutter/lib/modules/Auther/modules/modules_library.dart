@@ -36,7 +36,7 @@ class ModulesLibraryScreen extends StatelessWidget {
         return BlocProvider.value(
           value: BlocProvider.of<CreateModuleCubit>(context)
             ..getModulesData()
-            ..list,
+            ..contentList,
           child: BlocConsumer<CreateModuleCubit, CreateModuleStates>(
             listener: (context, state) {},
             builder: (context, state) {
@@ -184,7 +184,7 @@ class ModulesLibraryScreen extends StatelessWidget {
   Widget buildModuleItem(
     context,
     index,
-    Contents model,
+    Contentss model,
     CreateModuleCubit cubit,
   ) {
     return InkWell(
@@ -209,6 +209,13 @@ class ModulesLibraryScreen extends StatelessWidget {
         clipBehavior: Clip.antiAliasWithSaveLayer,
         child: Row(
           children: [
+            if(model.imageUrl!.split('\.').last == 'mp4' )
+              Image.asset('assets/images/video.png',height:45,),
+            if(model.imageUrl!.split('\.').last == 'pdf' )
+              Image.asset('assets/images/pdf.png',height:45),
+            if(model.imageUrl!.split('\.').last == 'png' || model.imageUrl!.split('\.').last == 'jpg')
+              Image.asset('assets/images/image.png',height:45),
+
             const SizedBox(
               width: 20.0,
             ),
@@ -309,6 +316,13 @@ class ModulesLibraryScreen extends StatelessWidget {
         clipBehavior: Clip.antiAliasWithSaveLayer,
         child: Row(
           children: [
+            if(model.fileUrl!.split('\.').last == 'mp4' )
+              Image.asset('assets/images/video.png',height:45,),
+            if(model.fileUrl!.split('\.').last == 'pdf' )
+              Image.asset('assets/images/pdf.png',height:45),
+            if(model.fileUrl!.split('\.').last == 'png' || model.fileUrl!.split('\.').last == 'jpg')
+              Image.asset('assets/images/image.png',height:45),
+
             SizedBox(
               width: 10.w,
             ),

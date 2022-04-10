@@ -120,6 +120,7 @@ class CreateAssignmentScreen extends StatelessWidget {
                                 prefixIcon: Icons.drive_file_rename_outline,
                               ),
                               customTextFormFieldWidget(
+                                state: TextInputAction.done,
                                 onChanged: (moduleName) {
                                   cubit.onModuleNameChanged(moduleName);
                                 },
@@ -165,7 +166,7 @@ class CreateAssignmentScreen extends StatelessWidget {
                                               end: 100,
                                               suffix: Text(' hr')),
                                           const NumberPickerColumn(
-                                              begin: 0,
+                                              begin: 1,
                                               end: 59,
                                               suffix: Text(' min')),
                                         ]),

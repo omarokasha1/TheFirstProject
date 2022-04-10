@@ -31,7 +31,7 @@ class CreateModuleScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider.value(
-      value: BlocProvider.of<CreateModuleCubit>(context)..getModulesData()..myActivities =[],
+      value: BlocProvider.of<CreateModuleCubit>(context)..getModulesData()..contentActivities =[],
       child: BlocConsumer<CreateModuleCubit, CreateModuleStates>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -119,6 +119,7 @@ class CreateModuleScreen extends StatelessWidget {
                                   prefixIcon: Icons.drive_file_rename_outline,
                                 ),
                                 customTextFormFieldWidget(
+                                  state: TextInputAction.done,
                                   onChanged: (moduleName) {
                                     cubit.onModuleNameChanged(moduleName);
                                   },
@@ -163,7 +164,7 @@ class CreateModuleScreen extends StatelessWidget {
                                                 end: 100,
                                                 suffix: Text(' hr')),
                                             const NumberPickerColumn(
-                                                begin: 0,
+                                                begin: 1,
                                                 end: 59,
                                                 suffix: Text(' min')),
                                           ]),
@@ -188,8 +189,7 @@ class CreateModuleScreen extends StatelessWidget {
                                         // You get your duration here
                                         duration = Duration(
                                             hours: picker.getSelectedValues()[0],
-                                            minutes:
-                                                picker.getSelectedValues()[1]);
+                                            minutes: picker.getSelectedValues()[1]);
                                       },
                                     ).showDialog(context).then((value) {
                                       print(value);
@@ -224,6 +224,7 @@ class CreateModuleScreen extends StatelessWidget {
                                                   "upload file must be not empty");
                                         }
                                         cubit.selectImage();
+                                        print("filePath herrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr>>>>> ${filePath.path}");
                                       },
                                       child: Padding(
                                         padding: EdgeInsets.symmetric(
@@ -234,6 +235,7 @@ class CreateModuleScreen extends StatelessWidget {
                                               )
                                             : viewFileDetails(cubit),
                                       )),
+
                                 ),
                                 const SizedBox(
                                   height: 20,
@@ -257,7 +259,7 @@ class CreateModuleScreen extends StatelessWidget {
                                             moduleName: moduleNameController.text,
                                             description: shortDescriptionController.text,
                                             duration: durationController.text,
-                                            content: file!
+                                            image: file!
                                     ).then((value) => Navigator.pop(context));
                                   }
                                 }

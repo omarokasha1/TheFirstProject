@@ -117,6 +117,7 @@ class ForgetPasswordScreen extends StatelessWidget {
                               child: Column(
                                 children: <Widget>[
                                   customTextFormFieldAuth(
+                                    state: TextInputAction.done,
                                     controller: emailController,
                                    // error: "Email Must Be Not Empty",
                                     label: "Enter your Email",

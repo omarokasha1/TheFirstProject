@@ -1,10 +1,17 @@
 {
     "logs": [
         {
-            "outputFile": "/home/odc5/MainProject/TheFirstProject/Flutter/build/flutter_plugin_android_lifecycle/intermediates/incremental/mergeDebugResources/merged.dir/values-km/values-km.xml",
+<<<<<<< HEAD
+            "outputFile": "E:\\LMS\\TheFirstProject\\Flutter\\build\\flutter_plugin_android_lifecycle\\intermediates\\res\\merged\\debug\\values-km\\values-km.xml",
             "map": [
                 {
-                    "source": "/home/odc5/.gradle/caches/transforms-2/files-2.1/122df2e57d294d1a53db26bbc3b813c1/core-1.6.0/res/values-km/values-km.xml",
+                    "source": "C:\\Users\\Ka8eem Helmy\\.gradle\\caches\\transforms-2\\files-2.1\\122df2e57d294d1a53db26bbc3b813c1\\core-1.6.0\\res\\values-km\\values-km.xml",
+=======
+            "outputFile": "G:\\TheFirstProject\\Flutter\\build\\flutter_plugin_android_lifecycle\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-km\\values-km.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\youss\\.gradle\\caches\\transforms-2\\files-2.1\\122df2e57d294d1a53db26bbc3b813c1\\core-1.6.0\\res\\values-km\\values-km.xml",
+>>>>>>> origin/Flutter_youssef
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -16,10 +23,17 @@
             ]
         },
         {
-            "outputFile": "/home/odc5/MainProject/TheFirstProject/Flutter/build/flutter_plugin_android_lifecycle/intermediates/res/merged/debug/values-km/values-km.xml",
+<<<<<<< HEAD
+            "outputFile": "E:\\LMS\\TheFirstProject\\Flutter\\build\\flutter_plugin_android_lifecycle\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-km\\values-km.xml",
             "map": [
                 {
-                    "source": "/home/odc5/.gradle/caches/transforms-2/files-2.1/122df2e57d294d1a53db26bbc3b813c1/core-1.6.0/res/values-km/values-km.xml",
+                    "source": "C:\\Users\\Ka8eem Helmy\\.gradle\\caches\\transforms-2\\files-2.1\\122df2e57d294d1a53db26bbc3b813c1\\core-1.6.0\\res\\values-km\\values-km.xml",
+=======
+            "outputFile": "G:\\TheFirstProject\\Flutter\\build\\flutter_plugin_android_lifecycle\\intermediates\\res\\merged\\debug\\values-km\\values-km.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\youss\\.gradle\\caches\\transforms-2\\files-2.1\\122df2e57d294d1a53db26bbc3b813c1\\core-1.6.0\\res\\values-km\\values-km.xml",
+>>>>>>> origin/Flutter_youssef
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

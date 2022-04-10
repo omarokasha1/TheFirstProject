@@ -116,7 +116,7 @@ class CoursesOverViewScreen extends StatelessWidget {
                   Row(
                     children: [
                       Expanded(
-
+                        flex: 2,
                         // Column inside text, icon, last update
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -134,7 +134,7 @@ class CoursesOverViewScreen extends StatelessWidget {
                                 const SizedBox(
                                   width: 10,
                                 ),
-                                Text('Last update from model'),
+                                Text('Last update'),
                               ],
                             ),
                           ],
@@ -142,7 +142,7 @@ class CoursesOverViewScreen extends StatelessWidget {
                       ),
                       Expanded(
                         // Column inside text, icon, language
-
+                        flex: 1,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -176,11 +176,11 @@ class CoursesOverViewScreen extends StatelessWidget {
                     children: [
                       Expanded(
                         // Column inside text, icon, Total Time
-
+                        flex: 2,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('Total Time'),
+                            Text('Total Modules'),
                             const SizedBox(
                               height: 10,
                             ),
@@ -193,7 +193,7 @@ class CoursesOverViewScreen extends StatelessWidget {
                                 const SizedBox(
                                   width: 10,
                                 ),
-                                Text('total time model')
+                                Text('${courseModel.contents!.length}')
                               ],
                             ),
                           ],
@@ -201,6 +201,7 @@ class CoursesOverViewScreen extends StatelessWidget {
                       ),
                       Expanded(
                         // Column inside text, icon, Learners number
+                        flex: 1,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -230,7 +231,7 @@ class CoursesOverViewScreen extends StatelessWidget {
                     height: 20,
                   ),
                   const Text(
-                    'Created by ',
+                    'Created by',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
                   ),
                   const SizedBox(
@@ -273,7 +274,7 @@ class CoursesOverViewScreen extends StatelessWidget {
                               width: 5,
                             ),
                             Text(
-                              'review model',
+                              '',
                               style: TextStyle(color: Colors.white),
                             )
                           ],
@@ -284,12 +285,10 @@ class CoursesOverViewScreen extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-
-
-                  const Text(
-                    'What you will learn',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
-                  ),
+                  // const Text(
+                  //   'What you will learn',
+                  //   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                  // ),
                   const Text(
                     'Course Requirements',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
@@ -298,10 +297,10 @@ class CoursesOverViewScreen extends StatelessWidget {
                     '${courseModel.requirements}',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
                   ),
-                  const Text(
-                    'Reviews',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
-                  ),
+                  // const Text(
+                  //   'Reviews',
+                  //   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                  // ),
                 ],
               ),
             ),

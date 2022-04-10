@@ -5,12 +5,16 @@ import 'package:lms/layout/layout.dart';
 import 'package:lms/models/new/contents_model.dart';
 import 'package:lms/modules/Auther/modules/create_module/cubit/cubit.dart';
 import 'package:lms/modules/Auther/modules/create_module/cubit/states.dart';
+import 'package:lms/modules/Auther/modules/pdf_view_screen.dart';
 import 'package:lms/shared/component/constants.dart';
 import 'package:open_file/open_file.dart';
 import 'package:readmore/readmore.dart';
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
+
+import '../../../shared/component/component.dart';
 
 class ModuleDetailsScreen extends StatefulWidget {
-  final Contents contentModel;
+  final Contentss contentModel;
   ModuleDetailsScreen(this.contentModel, {Key? key}) : super(key: key);
 
   @override
@@ -122,22 +126,85 @@ class _ModuleDetailsScreenState extends State<ModuleDetailsScreen> {
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
                   ),
 
-                  AspectRatio(
+
+                  if(widget.contentModel.imageUrl!.split('\.').last == 'jpg' || widget.contentModel.imageUrl!.split('\.').last == 'png' )
+                    Container(
+                      width: double.infinity,
+                      height: 200,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: imageFromNetwork(
+                          url: '${widget.contentModel.imageUrl}',
+                        ),
+                      ),
+                    ),
+                  if(widget.contentModel.imageUrl!.split('\.').last == 'mp4' )
+                    AspectRatio(
                     aspectRatio: 16 / 9,
                     child: BetterPlayer(
                       controller: betterPlayerController!,
                     ),
-
                   ),
-                  InkWell(
-                    onTap: (){
-                      OpenFile.open(widget.contentModel.imageUrl.toString(),);
-                    },
-                    child: Text(
-                      widget.contentModel.imageUrl.toString(),
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
-                    ),
-                  ),
+                  if (widget.contentModel.imageUrl!.split('\.').last == 'pdf')
+                    Row(
+                      children: [
+                        // Expanded(
+                        //   child: Container(
+                        //     padding: const EdgeInsets.all(10),
+                        //     margin: const EdgeInsets.all(5),
+                        //     decoration: BoxDecoration(
+                        //         color: primaryColor,
+                        //         borderRadius: BorderRadius.circular(10)),
+                        //     child: Row(
+                        //       mainAxisAlignment: MainAxisAlignment.center,
+                        //       children: const [
+                        //         Icon(
+                        //           Icons.download,
+                        //           color: Colors.white,
+                        //         ),
+                        //         SizedBox(
+                        //           width: 10,
+                        //         ),
+                        //         Text(
+                        //           'Download',
+                        //           style: TextStyle(color: Colors.white),
+                        //         ),
+                        //       ],
+                        //     ),
+                        //   ),
+                        // ),
+                        Expanded(
+                          child: InkWell(
+                            onTap: (){
+                              navigator(context, PdfViewScreen( fileUrl: widget.contentModel.imageUrl.toString(),));
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.all(10),
+                              margin: const EdgeInsets.all(5),
+                              decoration: BoxDecoration(
+                                  color: primaryColor,
+                                  borderRadius: BorderRadius.circular(10)),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: const [
+                                  Icon(
+                                    Icons.remove_red_eye,
+                                    color: Colors.white,
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Text(
+                                    'View',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
                   // viewFileDetails(contentModel),
                 ],
 

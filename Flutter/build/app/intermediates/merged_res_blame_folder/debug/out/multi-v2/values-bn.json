@@ -1,10 +1,17 @@
 {
     "logs": [
         {
-            "outputFile": "/home/odc5/MainProject/TheFirstProject/Flutter/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-bn/values-bn.xml",
+<<<<<<< HEAD
+            "outputFile": "E:\\LMS\\TheFirstProject\\Flutter\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-bn\\values-bn.xml",
             "map": [
                 {
-                    "source": "/home/odc5/.gradle/caches/transforms-2/files-2.1/dadf59073c0fdcbec26349186df5ad0f/jetified-extension-mediasession-2.15.1/res/values-bn/values-bn.xml",
+                    "source": "C:\\Users\\Ka8eem Helmy\\.gradle\\caches\\transforms-2\\files-2.1\\dadf59073c0fdcbec26349186df5ad0f\\jetified-extension-mediasession-2.15.1\\res\\values-bn\\values-bn.xml",
+=======
+            "outputFile": "G:\\TheFirstProject\\Flutter\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-bn\\values-bn.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\youss\\.gradle\\caches\\transforms-2\\files-2.1\\dadf59073c0fdcbec26349186df5ad0f\\jetified-extension-mediasession-2.15.1\\res\\values-bn\\values-bn.xml",
+>>>>>>> origin/Flutter_youssef
                     "from": {
                         "startLines": "2,3,4",
                         "startColumns": "4,4,4",
@@ -21,7 +28,28 @@
                     }
                 },
                 {
-                    "source": "/home/odc5/.gradle/caches/transforms-2/files-2.1/354bd041aac4c1746a18bccfbcb49baa/jetified-exoplayer-ui-2.15.1/res/values-bn/values-bn.xml",
+<<<<<<< HEAD
+                    "source": "C:\\Users\\Ka8eem Helmy\\.gradle\\caches\\transforms-2\\files-2.1\\b9a960218f5163997c0fdfa3d3078c0e\\core-1.7.0\\res\\values-bn\\values-bn.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "62",
+                        "startColumns": "4",
+                        "startOffsets": "4249",
+                        "endColumns": "100",
+                        "endOffsets": "4345"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Ka8eem Helmy\\.gradle\\caches\\transforms-2\\files-2.1\\a6aae59136d3348e6b6e552f8ac82f56\\jetified-exoplayer-ui-2.15.1\\res\\values-bn\\values-bn.xml",
+=======
+                    "source": "C:\\Users\\youss\\.gradle\\caches\\transforms-2\\files-2.1\\8e0c139ac225526e2e5efb315f1c04fc\\jetified-exoplayer-ui-2.15.1\\res\\values-bn\\values-bn.xml",
+>>>>>>> origin/Flutter_youssef
                     "from": {
                         "startLines": "2,6,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -38,9 +66,11 @@
                         "endColumns": "12,12,84,83,80,92,95,75,65,88,88,66,63,61,69,72,87,90,85,70,82,68,75,89,88,63,64,67,65,66,65,74,88,52,61,47,60,59,61,63,65,56,63,64,65,65,52,62,76,76,51",
                         "endOffsets": "259,453,538,622,703,796,892,968,1034,1123,1212,1279,1343,1405,1475,1548,1636,1727,1813,1884,1967,2036,2112,2202,2291,2355,2420,2488,2554,2621,2687,2762,2851,2904,3243,3291,3352,3412,3474,3538,3604,3661,3725,3790,3856,3922,3975,4038,4115,4192,4244"
                     }
+<<<<<<< HEAD
+=======
                 },
                 {
-                    "source": "/home/odc5/.gradle/caches/transforms-2/files-2.1/b9a960218f5163997c0fdfa3d3078c0e/core-1.7.0/res/values-bn/values-bn.xml",
+                    "source": "C:\\Users\\youss\\.gradle\\caches\\transforms-2\\files-2.1\\b9a960218f5163997c0fdfa3d3078c0e\\core-1.7.0\\res\\values-bn\\values-bn.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -55,6 +85,7 @@
                         "endColumns": "100",
                         "endOffsets": "4345"
                     }
+>>>>>>> origin/Flutter_youssef
                 }
             ]
         }

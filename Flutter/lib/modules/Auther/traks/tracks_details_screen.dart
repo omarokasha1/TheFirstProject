@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lms/models/author_courses_published_model.dart';
 import 'package:lms/models/track_model.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
@@ -108,7 +109,7 @@ class TracksDetailsScreen extends StatelessWidget {
 Widget builtTrackContant(context,Courses course, ) {
   return InkWell(
     onTap: (){
-      // navigator(context, CourseDetailsScreen());
+     //navigator(context, CourseDetailsScreen());
     },
     child: Padding(
       padding: const EdgeInsets.all(8.0),

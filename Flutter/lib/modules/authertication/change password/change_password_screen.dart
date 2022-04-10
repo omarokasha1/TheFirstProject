@@ -167,6 +167,7 @@ class ChangePasswordScreen extends StatelessWidget {
                                     },
                                   ),
                                   customTextFormFieldAuth(
+                                    state: TextInputAction.done,
                                     onChanged: (password)
                                     {
                                       cubit.onPasswordChanged(password);

@@ -1,0 +1,7 @@
+com/syncfusion/flutter/pdfviewer/SyncfusionFlutterPdfViewerPlugin.java
+ com.syncfusion.flutter.pdfviewer.PdfFileRenderer
+ com.syncfusion.flutter.pdfviewer.PdfRunnable
+ com.syncfusion.flutter.pdfviewer.PdfRunnable$1
+ com.syncfusion.flutter.pdfviewer.SyncfusionFlutterPdfViewerPlugin
+com/syncfusion/flutter/pdfviewer/BuildConfig.java
+ com.syncfusion.flutter.pdfviewer.BuildConfig

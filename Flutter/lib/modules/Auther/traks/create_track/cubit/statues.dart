@@ -92,3 +92,16 @@ class SendTrackRequestErrorState extends CreateTrackStates {
 
   SendTrackRequestErrorState(this.error);
 }
+
+
+class GetAuthorCoursesPublishLoadingState extends CreateTrackStates {}
+class GetAuthorCoursesPublishSuccessState extends CreateTrackStates {
+  final CoursesModel? authorCoursesTestModel;
+
+  GetAuthorCoursesPublishSuccessState(this.authorCoursesTestModel);
+}
+class GetAuthorCoursesPublishErrorState extends CreateTrackStates {
+  final String error;
+
+  GetAuthorCoursesPublishErrorState(this.error);
+}

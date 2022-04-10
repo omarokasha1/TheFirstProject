@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dio/dio.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,7 +12,6 @@ import 'package:lms/modules/courses/course_overview_screen.dart';
 import 'package:lms/shared/component/constants.dart';
 import 'package:lottie/lottie.dart';
 import 'package:multiselect_formfield/multiselect_formfield.dart';
-import 'package:open_file/open_file.dart';
 import '../../modules/courses/course_details_screen.dart';
 
 // Widget for Buttons
@@ -71,8 +69,10 @@ Widget customTextFormFieldAuth({
   TextInputType type = TextInputType.text,
   int maxDigit = 100,
   Function? onChanged,
+  TextInputAction? state = TextInputAction.next,
 }) {
   return TextFormField(
+    textInputAction: state,
     onChanged: (value) {
       onChanged!(value);
     },
@@ -137,10 +137,12 @@ Widget customTextFormFieldWidget({
   TextInputFormatter? textInputFormatter,
   bool textInput = false,
   Function? onTab,
+  TextInputAction? state = TextInputAction.next,
 }) {
   return Padding(
     padding: EdgeInsets.only(bottom: 20.0),
     child: TextFormField(
+      textInputAction: state,
       onChanged: (value) {
         onChanged != null ? onChanged(value) : null;
       },
@@ -265,7 +267,7 @@ Widget buildCourseItem(context, bool enroll, Courses? courseModel) =>
                           borderRadius: BorderRadius.circular(20.r),
                         ),
                         child: Text(
-                          '14 Videos',
+                          '${courseModel.contents!.length} Modules',
                           style: TextStyle(
                             fontSize: 12.0.sp,
                             fontWeight: FontWeight.w600,
@@ -605,10 +607,8 @@ Widget selectMoreItem(
       cancelButtonLabel: 'CANCEL',
       hintWidget: const Text('Please choose one or more Course'),
       initialValue: myActivities,
-
       onSaved: (value) {
         //print("skmdjsnhdbcshbcbshcnjsmccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc $value");
-
         onSaved(value);
       },
     ),

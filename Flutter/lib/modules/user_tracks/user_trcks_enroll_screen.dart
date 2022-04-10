@@ -156,7 +156,7 @@ class _UserTracksEnrollScreenState extends State<UserTracksEnrollScreen>
                   labelPadding: const EdgeInsets.only(left: 20, right: 20),
                   //tab name
                   tabs: const [
-                    Tab(text: 'Course Content'),
+                    Tab(text: 'Track Content'),
                     Tab(text: 'OverView'),
                     Tab(text: 'Assignments'),
                     Tab(text: 'Reviews'),
@@ -176,8 +176,8 @@ class _UserTracksEnrollScreenState extends State<UserTracksEnrollScreen>
                   ListView.builder(
                     // stop scroll in list view and rely scroll on the column
                     physics: NeverScrollableScrollPhysics(),
-                    itemBuilder: (context, index) => builtCourseContent(context,trackModel),
-                    itemCount: 5,
+                    itemBuilder: (context, index) => builtTrackContent(context,trackModel.courses![index],index),
+                    itemCount: trackModel.courses!.length,
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -206,11 +206,11 @@ class _UserTracksEnrollScreenState extends State<UserTracksEnrollScreen>
                     ),
                   ),
                   ListView.builder(
-                    itemBuilder: (context, index) => SizedBox(),
+                    itemBuilder: (context, index) => Container(),
                     itemCount: 3,
                   ),
                   ListView.builder(
-                    itemBuilder: (context, index) => SizedBox(),
+                    itemBuilder: (context, index) => Container(),
                     itemCount: 3,
                   ),
                 ],
@@ -221,10 +221,10 @@ class _UserTracksEnrollScreenState extends State<UserTracksEnrollScreen>
       ),
     );
   }
-  Widget builtCourseContent(context,TrackModel ) => Padding(
+  Widget builtTrackContent(context,TrackModel,index ) => Padding(
     padding: const EdgeInsets.all(5.0),
     child: Container(
-      padding: EdgeInsets.symmetric(vertical: 10),
+      padding: EdgeInsets.all(10),
       width: double.infinity,
       height: 120,
       decoration: BoxDecoration(
@@ -233,26 +233,12 @@ class _UserTracksEnrollScreenState extends State<UserTracksEnrollScreen>
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Expanded(
-            flex: 1,
-            child: Checkbox(
-              value: checkedValue,
-              onChanged: (v) {
-                setState(() {
-                  checkedValue= v!;
-                });
-              },
-              // controlAffinity: ListTileControlAffinity.leading,
-            ),
-          ),
-          //image
-
+        children: [ //image
           ClipRRect(
             borderRadius: BorderRadius.circular(15),
             child: Image.network(
-             // '${trackModel.courses}',
-              'https://www.incimages.com/uploaded_files/image/1920x1080/getty_933383882_2000133420009280345_410292.jpg',
+             '${trackModel.courses![index].imageUrl}',
+            //'https://www.incimages.com/uploaded_files/image/1920x1080/getty_933383882_2000133420009280345_410292.jpg',
               width: 100,
               height: 100,
               fit: BoxFit.cover,
@@ -269,15 +255,15 @@ class _UserTracksEnrollScreenState extends State<UserTracksEnrollScreen>
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    'Welcome To The Course Welcome To The Course',
+                   Text(
+                    '${trackModel.courses![index].title}',
                     maxLines: 3,
                   ),
                   const SizedBox(
                     height: 2,
                   ),
                   Text(
-                    '10 Minutes',
+                    '${trackModel.courses![index].contents!.length} videos',
                     style: TextStyle(color: Colors.grey[500]),
                   ),
                 ],

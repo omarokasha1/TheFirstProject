@@ -1,27 +1,11 @@
 {
     "logs": [
         {
-            "outputFile": "/home/odc5/MainProject/TheFirstProject/Flutter/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-et/values-et.xml",
+<<<<<<< HEAD
+            "outputFile": "E:\\LMS\\TheFirstProject\\Flutter\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-et\\values-et.xml",
             "map": [
                 {
-                    "source": "/home/odc5/.gradle/caches/transforms-2/files-2.1/b9a960218f5163997c0fdfa3d3078c0e/core-1.7.0/res/values-et/values-et.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "62",
-                        "startColumns": "4",
-                        "startOffsets": "4151",
-                        "endColumns": "100",
-                        "endOffsets": "4247"
-                    }
-                },
-                {
-                    "source": "/home/odc5/.gradle/caches/transforms-2/files-2.1/dadf59073c0fdcbec26349186df5ad0f/jetified-extension-mediasession-2.15.1/res/values-et/values-et.xml",
+                    "source": "C:\\Users\\Ka8eem Helmy\\.gradle\\caches\\transforms-2\\files-2.1\\dadf59073c0fdcbec26349186df5ad0f\\jetified-extension-mediasession-2.15.1\\res\\values-et\\values-et.xml",
                     "from": {
                         "startLines": "2,3,4",
                         "startColumns": "4,4,4",
@@ -38,7 +22,30 @@
                     }
                 },
                 {
-                    "source": "/home/odc5/.gradle/caches/transforms-2/files-2.1/354bd041aac4c1746a18bccfbcb49baa/jetified-exoplayer-ui-2.15.1/res/values-et/values-et.xml",
+                    "source": "C:\\Users\\Ka8eem Helmy\\.gradle\\caches\\transforms-2\\files-2.1\\a6aae59136d3348e6b6e552f8ac82f56\\jetified-exoplayer-ui-2.15.1\\res\\values-et\\values-et.xml",
+=======
+            "outputFile": "G:\\TheFirstProject\\Flutter\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-et\\values-et.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\youss\\.gradle\\caches\\transforms-2\\files-2.1\\b9a960218f5163997c0fdfa3d3078c0e\\core-1.7.0\\res\\values-et\\values-et.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "62",
+                        "startColumns": "4",
+                        "startOffsets": "4151",
+                        "endColumns": "100",
+                        "endOffsets": "4247"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\youss\\.gradle\\caches\\transforms-2\\files-2.1\\8e0c139ac225526e2e5efb315f1c04fc\\jetified-exoplayer-ui-2.15.1\\res\\values-et\\values-et.xml",
+>>>>>>> origin/Flutter_youssef
                     "from": {
                         "startLines": "2,6,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -54,6 +61,40 @@
                         "endLines": "5,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61",
                         "endColumns": "12,12,80,80,75,90,92,69,63,83,82,64,63,62,71,69,75,80,74,71,83,68,68,94,93,64,65,73,66,66,73,81,76,52,59,47,60,64,69,64,65,63,59,64,64,65,51,61,75,75,54",
                         "endOffsets": "241,429,510,591,667,758,851,921,985,1069,1152,1217,1281,1344,1416,1486,1562,1643,1718,1790,1874,1943,2012,2107,2201,2266,2332,2406,2473,2540,2614,2696,2773,2826,3130,3178,3239,3304,3374,3439,3505,3569,3629,3694,3759,3825,3877,3939,4015,4091,4146"
+                    }
+                },
+                {
+<<<<<<< HEAD
+                    "source": "C:\\Users\\Ka8eem Helmy\\.gradle\\caches\\transforms-2\\files-2.1\\b9a960218f5163997c0fdfa3d3078c0e\\core-1.7.0\\res\\values-et\\values-et.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "62",
+                        "startColumns": "4",
+                        "startOffsets": "4151",
+                        "endColumns": "100",
+                        "endOffsets": "4247"
+=======
+                    "source": "C:\\Users\\youss\\.gradle\\caches\\transforms-2\\files-2.1\\dadf59073c0fdcbec26349186df5ad0f\\jetified-extension-mediasession-2.15.1\\res\\values-et\\values-et.xml",
+                    "from": {
+                        "startLines": "2,3,4",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,135,220",
+                        "endColumns": "79,84,78",
+                        "endOffsets": "130,215,294"
+                    },
+                    "to": {
+                        "startLines": "42,43,44",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "2831,2911,2996",
+                        "endColumns": "79,84,78",
+                        "endOffsets": "2906,2991,3070"
+>>>>>>> origin/Flutter_youssef
                     }
                 }
             ]
