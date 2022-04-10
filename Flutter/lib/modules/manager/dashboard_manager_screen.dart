@@ -29,18 +29,18 @@ class DashboardManagerScreen extends StatelessWidget {
           builder: (context, state) {
             var cubit = ManagerCubit.get(context);
             var totalRequests = 0;
-            totalRequests = cubit.authorsManagerRequest!.users!.length + cubit.trackRequestsModel!.trackRequests!.length + cubit.coursesRequests!.courseRequests!.length;
+            totalRequests =  cubit.trackRequestsModel!.trackRequests!.length ;
             return Scaffold(
               appBar: myAppBar(context),
               body: ConditionalBuilder(
-                condition: aCubit.author != null && aCubit.trackNumber != null && cubit.trackRequestsModel != null   ,
+                condition: aCubit.author != null && aCubit.trackNumber != null && cubit.trackRequestsModel != null,
                 builder: (context) => SingleChildScrollView(
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
                       children: [
                         ConditionalBuilder(
-                          condition:aCubit.author.length !=0 && aCubit.trackNumber!.tracks!.length !=0 ,
+                          condition:true,
                           builder: (context)=> Container(
                             width: double.infinity,
                             padding: const EdgeInsets.all(20),
@@ -325,7 +325,7 @@ class DashboardManagerScreen extends StatelessWidget {
                                 height: 15,
                               ),
                               ConditionalBuilder(
-                                condition: cubit.trackRequestsModel!.trackRequests!.length != 0,
+                                condition: cubit.trackRequestsModel!.trackRequests!.isNotEmpty,
                                 builder: (context) =>
                                     ListView.builder(
                                         physics: const NeverScrollableScrollPhysics(),
@@ -335,7 +335,7 @@ class DashboardManagerScreen extends StatelessWidget {
                                                 cubit.trackRequestsModel!
                                                     .trackRequests![index],
                                                 context,cubit),
-                                        itemCount: 3
+                                        itemCount: cubit.trackRequestsModel!.trackRequests!.length
                                     ),
                                 fallback: (context) =>
                                 const Center(

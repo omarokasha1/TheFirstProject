@@ -65,17 +65,11 @@ class AuthorRequest extends StatelessWidget {
                             return ListView.builder(
                                 physics: const BouncingScrollPhysics(),
                                 itemBuilder: (context, index) {
-                                  return cubit.authorRequests!.promotRequests!
-                                              .length ==
-                                          0
+                                  return cubit.authorRequests!.promotRequests!.isEmpty
                                       ? emptyPage(
                                           text: "No Author Requests yet",
                                           context: context)
-                                      : acceptsAuthorCard(
-                                          cubit.authorRequests!
-                                              .promotRequests![index],
-                                          cubit,
-                                          context);
+                                      : acceptsAuthorCard(cubit.authorRequests!.promotRequests![index], cubit, context);
                                 },
                                 itemCount: cubit
                                     .authorRequests!.promotRequests!.length);
@@ -92,9 +86,7 @@ class AuthorRequest extends StatelessWidget {
                           builder: (context) {
                             print(cubit
                                 .coursesRequests!.courseRequests!.length);
-                            return cubit.coursesRequests!.courseRequests!
-                                        .length ==
-                                    0
+                            return cubit.coursesRequests!.courseRequests!.isEmpty
                                 ? emptyPage(
                                     text: "There's no Track request yet",
                                     context: context)
@@ -119,9 +111,7 @@ class AuthorRequest extends StatelessWidget {
                         ConditionalBuilder(
                           condition: cubit.trackRequestsModel != null,
                           builder: (context) {
-                            return cubit.trackRequestsModel!.trackRequests!
-                                        .length ==
-                                    0
+                            return cubit.trackRequestsModel!.trackRequests!.isEmpty
                                 ? emptyPage(
                                     text: "There's no Track request yet",
                                     context: context)
@@ -138,15 +128,7 @@ class AuthorRequest extends StatelessWidget {
                           },
                           fallback: (context) {
                             return Center(
-                              child: cubit.trackRequestsModel != null &&
-                                      cubit.trackRequestsModel!.trackRequests!
-                                              .length ==
-                                          0
-                                  ? emptyPage(
-                                      text: "There's No Request's",
-                                      context: context)
-                                  : const CircularProgressIndicator
-                                      .adaptive(),
+                              child: const CircularProgressIndicator.adaptive(),
                             );
                           },
                         ),
