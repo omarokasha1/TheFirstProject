@@ -20,339 +20,342 @@ class DashboardManagerScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AdminCubit,AdminStates>(
-      listener:(context, state) {},
-      builder:(context, state) {
-        var aCubit=AdminCubit.get(context);
-        return BlocConsumer<ManagerCubit, ManagerStates>(
-          listener: (context, state) {},
-          builder: (context, state) {
-            var cubit = ManagerCubit.get(context);
-            var totalRequests = 0;
-            totalRequests =  cubit.trackRequestsModel!.trackRequests!.length ;
-            return Scaffold(
-              appBar: myAppBar(context),
-              body: ConditionalBuilder(
-                condition: aCubit.author != null && aCubit.trackNumber != null && cubit.trackRequestsModel != null,
-                builder: (context) => SingleChildScrollView(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      children: [
-                        ConditionalBuilder(
-                          condition:true,
-                          builder: (context)=> Container(
+    return BlocProvider(
+      create: (context) => ManagerCubit() ..getAuthorRequests()..getCoursesRequests()..getTracksRequests()..getAllAuthor()..getAllUsers(),
+      child: BlocConsumer<AdminCubit,AdminStates>(
+        listener:(context, state) {},
+        builder:(context, state) {
+          var aCubit=AdminCubit.get(context);
+          return BlocConsumer<ManagerCubit, ManagerStates>(
+            listener: (context, state) {},
+            builder: (context, state) {
+              var cubit = ManagerCubit.get(context);
+              var totalRequests = 0;
+              totalRequests =  cubit.trackRequestsModel!.trackRequests!.length ;
+              return Scaffold(
+                appBar: myAppBar(context),
+                body: ConditionalBuilder(
+                  condition: aCubit.author != null && aCubit.trackNumber != null && cubit.trackRequestsModel != null,
+                  builder: (context) => SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: [
+                          ConditionalBuilder(
+                            condition:true,
+                            builder: (context)=> Container(
+                              width: double.infinity,
+                              padding: const EdgeInsets.all(20),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.grey[100],
+                              ),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: Column(
+                                      children: [
+                                        const Text(
+                                          'Total Author:',
+                                          style: TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.bold,
+                                              color: primaryColor),
+                                        ),
+
+                                        // package to add animation to numbers
+
+                                        NumberSlideAnimation(
+                                          number: '${aCubit.author.length}',
+                                          // number
+                                          duration: const Duration(seconds: 4),
+                                          //The time specified for the animation
+                                          curve: Curves.fastOutSlowIn,
+                                          //animation form
+                                          textStyle: const TextStyle(
+                                              fontSize: 20.0,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Column(
+                                      children: [
+                                        const Text('Total Tracks',
+                                            style: TextStyle(
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.bold,
+                                                color: primaryColor)),
+                                        NumberSlideAnimation(
+                                          number: '${aCubit.trackNumber!.tracks!.length}',
+                                          duration: const Duration(seconds: 4),
+                                          curve: Curves.fastOutSlowIn,
+                                          textStyle: const TextStyle(
+                                              fontSize: 20.0,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Column(
+                                      children: [
+                                        const Text('Requests:',
+                                            style: TextStyle(
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.bold,
+                                                color: primaryColor)),
+                                        NumberSlideAnimation(
+                                          number: "$totalRequests",
+                                          duration: const Duration(seconds: 4),
+                                          curve: Curves.fastOutSlowIn,
+                                          textStyle: const TextStyle(
+                                              fontSize: 20.0, fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            fallback: (context)=> Center(child: CircularProgressIndicator.adaptive(),),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Container(
+                                  height: 240.h,
+                                  padding: const EdgeInsets.all(20),
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(12),
+                                      color: Colors.grey[100]),
+                                  child: CircularPercentIndicator(
+                                    radius: 70.0.r,
+                                    lineWidth: 14.0,
+                                    animationDuration: 250,
+                                    animation: true,
+                                    percent: 0.7,
+                                    center: const Text(
+                                      "70.0%",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20.0),
+                                    ),
+                                    footer: Column(
+                                      children: [
+                                        const Text(
+                                          "Tracks",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 17.0),
+                                        ),
+                                        Text(
+                                          "22 submitted",
+                                          style: Theme
+                                              .of(context)
+                                              .textTheme
+                                              .caption,
+                                        ),
+                                      ],
+                                    ),
+                                    circularStrokeCap: CircularStrokeCap.round,
+                                    progressColor: primaryColor,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 10,
+
+                              ),
+                              Expanded(
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 20),
+                                  width: double.infinity,
+                                  height: 240.h,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(12),
+                                      color: Colors.grey[100]),
+                                  // Package to display percentage inside a circle
+                                  child: Column(
+                                    children: [
+                                      const Text(
+                                        'Top Author',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      const SizedBox(
+                                        height: 15,
+                                      ),
+                                      ListView.separated(
+                                          physics: const NeverScrollableScrollPhysics(),
+                                          shrinkWrap: true,
+                                          itemBuilder: (context, index) =>
+                                              Row(
+                                                children: [
+                                                  const SizedBox(
+                                                    width: 10,
+                                                  ),
+                                                  CircleAvatar(
+                                                    backgroundImage: NetworkImage(
+                                                        '${aCubit.author[index].imageUrl}'),
+                                                  ),
+                                                  const SizedBox(
+                                                    width: 10,
+                                                  ),
+                                                  Column(
+                                                    children: [
+                                                      Text('${aCubit.author[index].userName}'),
+                                                      const SizedBox(
+                                                        height: 2,
+                                                      ),
+                                                      const Text('+12.8%',
+                                                          style: TextStyle(
+                                                              color: Colors
+                                                                  .green)),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                          separatorBuilder: (context, index) =>
+                                          const Divider(),
+                                          itemCount: 3)
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          // Container(
+                          //   width: double.infinity,
+                          //   padding: const EdgeInsets.all(20),
+                          //   decoration: BoxDecoration(
+                          //     borderRadius: BorderRadius.circular(20),
+                          //     color: Colors.grey[100],
+                          //   ),
+                          //   child: Container(
+                          //     width: double.infinity,
+                          //     child: Column(
+                          //       children: [
+                          //         Row(
+                          //           children: [
+                          //             TextButton(
+                          //                 onPressed: () {
+                          //                   navigator(context, TracksScreen());
+                          //                 },
+                          //                 child: const Text("Views All ")),
+                          //             const Spacer(),
+                          //             MaterialButton(
+                          //               onPressed: () {
+                          //                 navigator(context, CreateTrackScreen());
+                          //               },
+                          //               child: const Text(
+                          //                 'Add Tracks',
+                          //                 style: TextStyle(color: Colors.white),
+                          //               ),
+                          //               color: primaryColor,
+                          //             )
+                          //           ],
+                          //         ),
+                          //         CarouselSlider(
+                          //             options: CarouselOptions(
+                          //               viewportFraction: 0.80,
+                          //               enlargeCenterPage: true,
+                          //               disableCenter: true,
+                          //             ),
+                          //             items: List.generate(
+                          //                 5, (index) => builtTrackContant(context))),
+                          //       ],
+                          //     ),
+                          //   ),
+                          // ),
+                          // const SizedBox(
+                          //   height: 10,
+                          // ),
+                          Container(
                             width: double.infinity,
-                            padding: const EdgeInsets.all(20),
+                            padding: const EdgeInsets.all(10),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
                               color: Colors.grey[100],
                             ),
-                            child: Row(
+                            child: Column(
                               children: [
-                                Expanded(
-                                  child: Column(
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 20.0),
+                                  child: Row(
                                     children: [
                                       const Text(
-                                        'Total Author:',
+                                        'Requests :',
                                         style: TextStyle(
-                                            fontSize: 15,
                                             fontWeight: FontWeight.bold,
-                                            color: primaryColor),
+                                            fontSize: 18),
                                       ),
+                                      const Spacer(),
+                                      InkWell(
+                                        onTap: (){
+                                          navigator(context, AuthorRequest());
+                                        },
+                                        child: Row(
+                                          children: const [
+                                            Text('View All',style: TextStyle(
+                                              color: primaryColor,
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w600
 
-                                      // package to add animation to numbers
-
-                                      NumberSlideAnimation(
-                                        number: '${aCubit.author.length}',
-                                        // number
-                                        duration: const Duration(seconds: 4),
-                                        //The time specified for the animation
-                                        curve: Curves.fastOutSlowIn,
-                                        //animation form
-                                        textStyle: const TextStyle(
-                                            fontSize: 20.0,
-                                            fontWeight: FontWeight.bold),
-                                      ),
+                                            ),),
+                                            Icon(
+                                              Icons.arrow_forward,
+                                              color: primaryColor,
+                                            ),
+                                          ],
+                                        ),
+                                      )
                                     ],
                                   ),
                                 ),
-                                Expanded(
-                                  child: Column(
-                                    children: [
-                                      const Text('Total Tracks',
-                                          style: TextStyle(
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold,
-                                              color: primaryColor)),
-                                      NumberSlideAnimation(
-                                        number: '${aCubit.trackNumber!.tracks!.length}',
-                                        duration: const Duration(seconds: 4),
-                                        curve: Curves.fastOutSlowIn,
-                                        textStyle: const TextStyle(
-                                            fontSize: 20.0,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ],
-                                  ),
+                                const SizedBox(
+                                  height: 15,
                                 ),
-                                Expanded(
-                                  child: Column(
-                                    children: [
-                                      const Text('Requests:',
-                                          style: TextStyle(
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold,
-                                              color: primaryColor)),
-                                      NumberSlideAnimation(
-                                        number: "$totalRequests",
-                                        duration: const Duration(seconds: 4),
-                                        curve: Curves.fastOutSlowIn,
-                                        textStyle: const TextStyle(
-                                            fontSize: 20.0, fontWeight: FontWeight.bold),
+                                ConditionalBuilder(
+                                  condition: cubit.trackRequestsModel!.trackRequests!.isNotEmpty,
+                                  builder: (context) =>
+                                      ListView.builder(
+                                          physics: const NeverScrollableScrollPhysics(),
+                                          shrinkWrap: true,
+                                          itemBuilder: (context, index) =>
+                                              authorTrackCard(
+                                                  cubit.trackRequestsModel!
+                                                      .trackRequests![index],
+                                                  context,cubit),
+                                          itemCount: cubit.trackRequestsModel!.trackRequests!.length
                                       ),
-                                    ],
-                                  ),
+                                  fallback: (context) =>
+                                  const Center(
+                                      child: const Text('Requsets is empty')),
                                 ),
                               ],
                             ),
                           ),
-                          fallback: (context)=> Center(child: CircularProgressIndicator.adaptive(),),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Container(
-                                height: 240.h,
-                                padding: const EdgeInsets.all(20),
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(12),
-                                    color: Colors.grey[100]),
-                                child: CircularPercentIndicator(
-                                  radius: 70.0.r,
-                                  lineWidth: 14.0,
-                                  animationDuration: 250,
-                                  animation: true,
-                                  percent: 0.7,
-                                  center: const Text(
-                                    "70.0%",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 20.0),
-                                  ),
-                                  footer: Column(
-                                    children: [
-                                      const Text(
-                                        "Tracks",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 17.0),
-                                      ),
-                                      Text(
-                                        "22 submitted",
-                                        style: Theme
-                                            .of(context)
-                                            .textTheme
-                                            .caption,
-                                      ),
-                                    ],
-                                  ),
-                                  circularStrokeCap: CircularStrokeCap.round,
-                                  progressColor: primaryColor,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 10,
-
-                            ),
-                            Expanded(
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 20),
-                                width: double.infinity,
-                                height: 240.h,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(12),
-                                    color: Colors.grey[100]),
-                                // Package to display percentage inside a circle
-                                child: Column(
-                                  children: [
-                                    const Text(
-                                      'Top Author',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    const SizedBox(
-                                      height: 15,
-                                    ),
-                                    ListView.separated(
-                                        physics: const NeverScrollableScrollPhysics(),
-                                        shrinkWrap: true,
-                                        itemBuilder: (context, index) =>
-                                            Row(
-                                              children: [
-                                                const SizedBox(
-                                                  width: 10,
-                                                ),
-                                                CircleAvatar(
-                                                  backgroundImage: NetworkImage(
-                                                      '${aCubit.author[index].imageUrl}'),
-                                                ),
-                                                const SizedBox(
-                                                  width: 10,
-                                                ),
-                                                Column(
-                                                  children: [
-                                                    Text('${aCubit.author[index].userName}'),
-                                                    const SizedBox(
-                                                      height: 2,
-                                                    ),
-                                                    const Text('+12.8%',
-                                                        style: TextStyle(
-                                                            color: Colors
-                                                                .green)),
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-                                        separatorBuilder: (context, index) =>
-                                        const Divider(),
-                                        itemCount: 3)
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        // Container(
-                        //   width: double.infinity,
-                        //   padding: const EdgeInsets.all(20),
-                        //   decoration: BoxDecoration(
-                        //     borderRadius: BorderRadius.circular(20),
-                        //     color: Colors.grey[100],
-                        //   ),
-                        //   child: Container(
-                        //     width: double.infinity,
-                        //     child: Column(
-                        //       children: [
-                        //         Row(
-                        //           children: [
-                        //             TextButton(
-                        //                 onPressed: () {
-                        //                   navigator(context, TracksScreen());
-                        //                 },
-                        //                 child: const Text("Views All ")),
-                        //             const Spacer(),
-                        //             MaterialButton(
-                        //               onPressed: () {
-                        //                 navigator(context, CreateTrackScreen());
-                        //               },
-                        //               child: const Text(
-                        //                 'Add Tracks',
-                        //                 style: TextStyle(color: Colors.white),
-                        //               ),
-                        //               color: primaryColor,
-                        //             )
-                        //           ],
-                        //         ),
-                        //         CarouselSlider(
-                        //             options: CarouselOptions(
-                        //               viewportFraction: 0.80,
-                        //               enlargeCenterPage: true,
-                        //               disableCenter: true,
-                        //             ),
-                        //             items: List.generate(
-                        //                 5, (index) => builtTrackContant(context))),
-                        //       ],
-                        //     ),
-                        //   ),
-                        // ),
-                        // const SizedBox(
-                        //   height: 10,
-                        // ),
-                        Container(
-                          width: double.infinity,
-                          padding: const EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: Colors.grey[100],
-                          ),
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 20.0),
-                                child: Row(
-                                  children: [
-                                    const Text(
-                                      'Requests :',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 18),
-                                    ),
-                                    const Spacer(),
-                                    InkWell(
-                                      onTap: (){
-                                        navigator(context, AuthorRequest());
-                                      },
-                                      child: Row(
-                                        children: const [
-                                          Text('View All',style: TextStyle(
-                                            color: primaryColor,
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w600
-
-                                          ),),
-                                          Icon(
-                                            Icons.arrow_forward,
-                                            color: primaryColor,
-                                          ),
-                                        ],
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 15,
-                              ),
-                              ConditionalBuilder(
-                                condition: cubit.trackRequestsModel!.trackRequests!.isNotEmpty,
-                                builder: (context) =>
-                                    ListView.builder(
-                                        physics: const NeverScrollableScrollPhysics(),
-                                        shrinkWrap: true,
-                                        itemBuilder: (context, index) =>
-                                            authorTrackCard(
-                                                cubit.trackRequestsModel!
-                                                    .trackRequests![index],
-                                                context,cubit),
-                                        itemCount: cubit.trackRequestsModel!.trackRequests!.length
-                                    ),
-                                fallback: (context) =>
-                                const Center(
-                                    child: const Text('Requsets is empty')),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                fallback: (context) => const Center(child: CircularProgressIndicator.adaptive()),),
-            );
-          },
-        );
-      },
+                  fallback: (context) => const Center(child: CircularProgressIndicator.adaptive()),),
+              );
+            },
+          );
+        },
+      ),
     );
   }
 }

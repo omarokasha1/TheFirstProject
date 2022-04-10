@@ -109,7 +109,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context)=>TrackCubit()..getAllTracksData()),
         BlocProvider(create: (context)=>MyLearningCubit()..getEnrollCourses()),
         BlocProvider(create: (context)=>AdminCubit()..getAllAuthor()..getUserData()..getNumberOfCourses()..getNumberOfTracks()),
-        BlocProvider(create: (context)=>ManagerCubit() ..getAuthorRequests()..getCoursesRequests()..getTracksRequests()..getAllAuthor()..getAllUsers(),),
+     //   BlocProvider(create: (context)=>ManagerCubit() ..getAuthorRequests()..getCoursesRequests()..getTracksRequests()..getAllAuthor()..getAllUsers(),),
 
       ],
       //ScreenUTil is A Package make application responsive.
