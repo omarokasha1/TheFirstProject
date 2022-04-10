@@ -12,7 +12,7 @@ import 'cubit/cubit.dart';
 import 'cubit/states.dart';
 
 class UpdateModule extends StatelessWidget {
-  final Contents contentModel;
+  final Contentss contentModel;
 
   UpdateModule(this.contentModel, {Key? key}) : super(key: key);
 

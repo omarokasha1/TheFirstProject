@@ -21,6 +21,16 @@ class GetAllAuthorRequestsErrorState extends ManagerStates {
   GetAllAuthorRequestsErrorState(this.error);
 }
 
+class GetAllAuthorsLoadingState extends ManagerStates{}
+class GetAllAuthorsSuccessState extends ManagerStates{
+  final AuthorsManagerRequest authorsManagerRequest;
+  GetAllAuthorsSuccessState(this.authorsManagerRequest);
+}
+class GetAllAuthorsErrorState extends ManagerStates{
+  final String error;
+  GetAllAuthorsErrorState(this.error);
+}
+
 
 class GetAllCoursesRequestsLoadingState extends ManagerStates {}
 

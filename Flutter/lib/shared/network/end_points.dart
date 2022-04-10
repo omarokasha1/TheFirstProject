@@ -80,5 +80,6 @@ const deleteTrackRequest = "api/manager/delete-track";
 //--------------------------------------Manager----------------------------------
 //-----------------------------Get----------------------------
 const getAllAuthors = "api/admin/allAuthors";
+const getAllManager = "api/admin/allManagers";
 //-----------------------------Update----------------------------
 const makeAuthorManager = "api/admin/promot-manager";

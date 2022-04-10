@@ -13,6 +13,20 @@ class ManagerCubit extends Cubit<ManagerStates> {
   ManagerCubit() : super(ManagerRequestAuthorInitialState());
 
   static ManagerCubit get(context) => BlocProvider.of(context);
+  AuthorsManagerRequest? authorsManagerRequest;
+
+  Future<void> getAllAuthor() async {
+    emit(GetAllAuthorsLoadingState());
+    await DioHelper.getData(url: getAllAuthors, token: userToken)
+        .then((value) {
+      print(value.data);
+      authorsManagerRequest = AuthorsManagerRequest.fromJson(value.data);
+      emit(GetAllAuthorsSuccessState(authorsManagerRequest!));
+    }).catchError((error) {
+      emit(GetAllAuthorsErrorState(error.toString()));
+      print(error.toString());
+    });
+  }
 
   AuthorRequests? authorRequests;
 

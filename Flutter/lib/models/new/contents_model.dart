@@ -3,7 +3,7 @@ import 'package:lms/models/new/courses_model.dart';
 class ContentsModel {
   String? status;
   String? message;
-  List<Contents>? contents;
+  List<Contentss>? contents;
 
   ContentsModel({this.status, this.message, this.contents});
 
@@ -11,9 +11,9 @@ class ContentsModel {
     status = json['status'];
     message = json['message'];
     if (json['contents'] != null) {
-      contents = <Contents>[];
+      contents = <Contentss>[];
       json['contents'].forEach((v) {
-        contents!.add(Contents.fromJson(v));
+        contents!.add(Contentss.fromJson(v));
       });
     }
   }
@@ -29,7 +29,7 @@ class ContentsModel {
   }
 }
 
-class Contents {
+class Contentss {
   bool? isFinished;
   String? sId;
   String? contentTitle;
@@ -38,7 +38,7 @@ class Contents {
   String? description;
   Author? author;
 
-  Contents(
+  Contentss(
       {this.isFinished,
         this.sId,
         this.contentTitle,
@@ -47,7 +47,7 @@ class Contents {
         this.description,
         this.author,});
 
-  Contents.fromJson(Map<String, dynamic> json) {
+  Contentss.fromJson(Map<String, dynamic> json) {
     isFinished = json['isFinished'];
     sId = json['_id'];
     contentTitle = json['contentTitle'];

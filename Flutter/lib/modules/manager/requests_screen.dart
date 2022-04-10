@@ -25,172 +25,166 @@ class AuthorRequest extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => ManagerCubit()
-        ..getAuthorRequests()
-        ..getCoursesRequests()
-        ..getTracksRequests(),
-      child: BlocConsumer<ManagerCubit, ManagerStates>(
-        listener: (context, state) {},
-        builder: (context, state) {
-          var cubit = ManagerCubit.get(context);
-          return Scaffold(
-            appBar: AppBar(
-              title: Text(
-                'Requests',
-                style: TextStyle(
-                  fontSize: 20.sp,
-                  fontWeight: FontWeight.bold,
-                  color: primaryColor,
-                ),
+    return BlocConsumer<ManagerCubit, ManagerStates>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        var cubit = ManagerCubit.get(context);
+        return Scaffold(
+          appBar: AppBar(
+            title: Text(
+              'Requests',
+              style: TextStyle(
+                fontSize: 20.sp,
+                fontWeight: FontWeight.bold,
+                color: primaryColor,
               ),
             ),
-            body: Layout(
-              widget: DefaultTabController(
-                length: myTabs.length,
-                child: Column(
-                  children: [
-                    TabBar(
-                      labelColor: primaryColor,
-                      indicatorColor: primaryColor,
-                      unselectedLabelColor: Colors.black,
-                      tabs: myTabs,
-                      labelStyle: const TextStyle(
-                        //fontSize: 16.sp,
-                        fontWeight: FontWeight.bold,
-                      ),
+          ),
+          body: Layout(
+            widget: DefaultTabController(
+              length: myTabs.length,
+              child: Column(
+                children: [
+                  TabBar(
+                    labelColor: primaryColor,
+                    indicatorColor: primaryColor,
+                    unselectedLabelColor: Colors.black,
+                    tabs: myTabs,
+                    labelStyle: const TextStyle(
+                      //fontSize: 16.sp,
+                      fontWeight: FontWeight.bold,
                     ),
-                    Expanded(
-                      child: TabBarView(
-                        children: [
-                          //Author Requests
-                          ConditionalBuilder(
-                            condition: cubit.authorRequests != null,
-                            builder: (context) {
-                              return ListView.builder(
-                                  physics: const BouncingScrollPhysics(),
-                                  itemBuilder: (context, index) {
-                                    return cubit.authorRequests!.promotRequests!
-                                                .length ==
-                                            0
-                                        ? emptyPage(
-                                            text: "No Author Requests yet",
-                                            context: context)
-                                        : acceptsAuthorCard(
-                                            cubit.authorRequests!
-                                                .promotRequests![index],
+                  ),
+                  Expanded(
+                    child: TabBarView(
+                      children: [
+                        //Author Requests
+                        ConditionalBuilder(
+                          condition: cubit.authorRequests != null,
+                          builder: (context) {
+                            return ListView.builder(
+                                physics: const BouncingScrollPhysics(),
+                                itemBuilder: (context, index) {
+                                  return cubit.authorRequests!.promotRequests!
+                                              .length ==
+                                          0
+                                      ? emptyPage(
+                                          text: "No Author Requests yet",
+                                          context: context)
+                                      : acceptsAuthorCard(
+                                          cubit.authorRequests!
+                                              .promotRequests![index],
+                                          cubit,
+                                          context);
+                                },
+                                itemCount: cubit
+                                    .authorRequests!.promotRequests!.length);
+                          },
+                          fallback: (context) {
+                            return Center(
+                              child: CircularProgressIndicator.adaptive(),
+                            );
+                          },
+                        ),
+                        //Courses Requests
+                        ConditionalBuilder(
+                          condition: cubit.coursesRequests != null,
+                          builder: (context) {
+                            print(cubit
+                                .coursesRequests!.courseRequests!.length);
+                            return cubit.coursesRequests!.courseRequests!
+                                        .length ==
+                                    0
+                                ? emptyPage(
+                                    text: "There's no Track request yet",
+                                    context: context)
+                                : ListView.builder(
+                                    physics: const BouncingScrollPhysics(),
+                                    itemBuilder: (context, index) =>
+                                        userCourseCard(
+                                            cubit.coursesRequests!
+                                                .courseRequests![index],
                                             cubit,
-                                            context);
-                                  },
-                                  itemCount: cubit
-                                      .authorRequests!.promotRequests!.length);
-                            },
-                            fallback: (context) {
-                              return Center(
-                                child: CircularProgressIndicator.adaptive(),
-                              );
-                            },
-                          ),
-                          //Courses Requests
-                          ConditionalBuilder(
-                            condition: cubit.coursesRequests != null,
-                            builder: (context) {
-                              print(cubit
-                                  .coursesRequests!.courseRequests!.length);
-                              return cubit.coursesRequests!.courseRequests!
-                                          .length ==
-                                      0
+                                            context),
+                                    itemCount: cubit.coursesRequests!
+                                        .courseRequests!.length);
+                          },
+                          fallback: (context) {
+                            return Center(
+                              child: CircularProgressIndicator.adaptive(),
+                            );
+                          },
+                        ),
+                        //Track Requests
+                        ConditionalBuilder(
+                          condition: cubit.trackRequestsModel != null,
+                          builder: (context) {
+                            return cubit.trackRequestsModel!.trackRequests!
+                                        .length ==
+                                    0
+                                ? emptyPage(
+                                    text: "There's no Track request yet",
+                                    context: context)
+                                : ListView.builder(
+                                    physics: const BouncingScrollPhysics(),
+                                    itemBuilder: (context, index) =>
+                                        AuthorTrackCard(
+                                            cubit.trackRequestsModel!
+                                                .trackRequests![index],
+                                            cubit,
+                                            context),
+                                    itemCount: cubit.trackRequestsModel!
+                                        .trackRequests!.length);
+                          },
+                          fallback: (context) {
+                            return Center(
+                              child: cubit.trackRequestsModel != null &&
+                                      cubit.trackRequestsModel!.trackRequests!
+                                              .length ==
+                                          0
                                   ? emptyPage(
-                                      text: "There's no Track request yet",
+                                      text: "There's No Request's",
                                       context: context)
-                                  : ListView.builder(
-                                      physics: const BouncingScrollPhysics(),
-                                      itemBuilder: (context, index) =>
-                                          userCourseCard(
-                                              cubit.coursesRequests!
-                                                  .courseRequests![index],
-                                              cubit,
-                                              context),
-                                      itemCount: cubit.coursesRequests!
-                                          .courseRequests!.length);
-                            },
-                            fallback: (context) {
-                              return Center(
-                                child: CircularProgressIndicator.adaptive(),
-                              );
-                            },
-                          ),
-                          //Track Requests
-                          ConditionalBuilder(
-                            condition: cubit.trackRequestsModel != null,
-                            builder: (context) {
-                              return cubit.trackRequestsModel!.trackRequests!
-                                          .length ==
-                                      0
-                                  ? emptyPage(
-                                      text: "There's no Track request yet",
-                                      context: context)
-                                  : ListView.builder(
-                                      physics: const BouncingScrollPhysics(),
-                                      itemBuilder: (context, index) =>
-                                          AuthorTrackCard(
-                                              cubit.trackRequestsModel!
-                                                  .trackRequests![index],
-                                              cubit,
-                                              context),
-                                      itemCount: cubit.trackRequestsModel!
-                                          .trackRequests!.length);
-                            },
-                            fallback: (context) {
-                              return Center(
-                                child: cubit.trackRequestsModel != null &&
-                                        cubit.trackRequestsModel!.trackRequests!
-                                                .length ==
-                                            0
-                                    ? emptyPage(
-                                        text: "There's No Request's",
-                                        context: context)
-                                    : const CircularProgressIndicator
-                                        .adaptive(),
-                              );
-                            },
-                          ),
-                          //User Request for Enrolled Course
-                          // ConditionalBuilder(
-                          //   condition: cubit.userModel != null,
-                          //   builder: (context) {
-                          //     return ListView.builder(
-                          //         physics: const BouncingScrollPhysics(),
-                          //         itemBuilder: (context, index) => userCard(
-                          //             cubit.userModel!.users![index],
-                          //             cubit,
-                          //             context),
-                          //         itemCount: cubit.userModel!.users!.length);
-                          //   },
-                          //   fallback: (context) {
-                          //     return Center(
-                          //       child: cubit.authorRequests != null &&
-                          //               cubit.authorRequests!.promotRequests!
-                          //                       .length ==
-                          //                   0
-                          //           ? emptyPage(
-                          //               text: "There's No Request's",
-                          //               context: context)
-                          //           : const CircularProgressIndicator
-                          //               .adaptive(),
-                          //     );
-                          //   },
-                          // ),
-                        ],
-                      ),
+                                  : const CircularProgressIndicator
+                                      .adaptive(),
+                            );
+                          },
+                        ),
+                        //User Request for Enrolled Course
+                        // ConditionalBuilder(
+                        //   condition: cubit.userModel != null,
+                        //   builder: (context) {
+                        //     return ListView.builder(
+                        //         physics: const BouncingScrollPhysics(),
+                        //         itemBuilder: (context, index) => userCard(
+                        //             cubit.userModel!.users![index],
+                        //             cubit,
+                        //             context),
+                        //         itemCount: cubit.userModel!.users!.length);
+                        //   },
+                        //   fallback: (context) {
+                        //     return Center(
+                        //       child: cubit.authorRequests != null &&
+                        //               cubit.authorRequests!.promotRequests!
+                        //                       .length ==
+                        //                   0
+                        //           ? emptyPage(
+                        //               text: "There's No Request's",
+                        //               context: context)
+                        //           : const CircularProgressIndicator
+                        //               .adaptive(),
+                        //     );
+                        //   },
+                        // ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 
