@@ -120,6 +120,25 @@ const managerCtrl = {
     }
   },
 
+       getAllUsers:async(req,res)=>{
+        try {
+            const users = await User.find({isAuthor:false,isManager:false,isAdmin:false}).select('-__v')
+            return res.status(200).json({status : "ok",message:"get users",users})
+          } catch (err) {
+          return  res.status(500).json({status:'false', message: err.message })
+          }
+    },
+
+    getAllAuthors:async(req,res)=>{
+      try {
+          const users = await User.find({isAuthor:true,isManager:false,isAdmin:false}).select('-__v')
+          return res.status(200).json({status : "ok",message:"get all authors",users})
+        } catch (err) {
+        return  res.status(500).json({status:'false', message: err.message })
+        }
+  },
+
+
 
 
   //* _______________________________________CREATE REQUEST______________________________

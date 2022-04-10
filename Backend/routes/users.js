@@ -48,11 +48,22 @@ router.get('/usersCount', userCtrl.getUserCount)
 router.get('/getUser/:search', userCtrl.getUser)
 
 
+// Getting users count
+router.get('/usersCount',userCtrl.getUserCount )
+
+// Getting user
+router.get('/getUser/:search',userCtrl.getUser )
+
+
 // Getting enrolled courses
 router.get('/enrollCourses', userCtrl.getEnrollCourse)
 
 // Getting enrolled tracks
 router.get('/enrollTracks', userCtrl.getEnrollTrack)
+
+
+// Getting enrolled tracks
+router.get('/enrollTracks',userCtrl.getEnrollTrack )
 
 
 // Getting wishList
@@ -87,16 +98,16 @@ router.put('/update-profile', [upload.single('imageUrl'), auth, userCtrl.updateP
 
 
 // update enroll course
-router.put('/enrollCourse', [auth, userCtrl.enrollCourse])
+router.put('/enrollCourse', [auth,userCtrl.enrollCourse])
 
 // update enroll track
-router.put('/enrollTrack', [auth, userCtrl.enrollTrack])
+router.put('/enrollTrack', [auth,userCtrl.enrollTrack])
 
 // Updating wishList course
-router.put('/wishList', [auth, userCtrl.wishListCourse])
+router.put('/wishList', [auth,userCtrl.wishListCourse])
 
 // Updating wishList track
-router.put('/wishListTrack', [auth, userCtrl.wishListTrack])
+router.put('/wishListTrack', [auth,userCtrl.wishListTrack])
 
 
 module.exports = router

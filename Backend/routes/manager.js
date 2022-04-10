@@ -29,6 +29,10 @@ router.get('/allUsers', [auth, manager, managerCtrl.getAllUsers])
 
 router.get('/allAuthors', [auth, manager, managerCtrl.getAllAuthors])
 
+router.get('/allUsers',[auth,manager,managerCtrl.getAllUsers] )
+
+router.get('/allAuthors',[auth,manager,managerCtrl.getAllAuthors] )
+
 
 
 //? _________________________________________________UPDATE USER ROLE______________________________
