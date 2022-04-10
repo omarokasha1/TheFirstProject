@@ -2,8 +2,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lms/layout/layout.dart';
+import 'package:lms/models/new/contents_model.dart';
 import 'package:lms/models/new/courses_model.dart';
+import 'package:lms/modules/Auther/author_courses/contant_view.dart';
 import 'package:lms/modules/Auther/author_profile/author_profile_screen.dart';
+import 'package:lms/modules/Auther/modules/module_view.dart';
 import 'package:lms/shared/component/constants.dart';
 import '../../shared/component/component.dart';
 import '../../shared/component/constants.dart';
@@ -195,7 +198,7 @@ class CoursesDetailsScreen extends StatelessWidget {
 // Widget include design course Content card
 Widget builtCourseContent(Contents model,context) => InkWell(
   onTap: (){
-   // navigator(context,ModuleDetailsScreen(model) );
+    navigator(context,ContentViewScreen(model) );
   },
   child:   Padding(
     padding: const EdgeInsets.all(5.0),
@@ -218,10 +221,21 @@ Widget builtCourseContent(Contents model,context) => InkWell(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           //image
-          ClipRRect(
+          if(model.imageUrl!.split('\.').last == 'mp4' )
+            const CircleAvatar(
+            backgroundColor: primaryColor,
+            radius: 20,
+            child: Icon(
+              Icons.play_arrow,
+              color: Colors.white,
+              size: 35,
+            ),
+          ),
+          SizedBox(width: 20,),
+          if(model.imageUrl!.split('\.').last == 'jpg' || model.imageUrl!.split('\.').last == 'png' )
+            ClipRRect(
             borderRadius: BorderRadius.circular(15),
             child: Image.network(
-             // 'https://www.incimages.com/uploaded_files/image/1920x1080/getty_933383882_2000133420009280345_410292.jpg',
               '${model.imageUrl}',
               width: 100,
               height: 100,
@@ -248,14 +262,7 @@ Widget builtCourseContent(Contents model,context) => InkWell(
             ),
           ),
           const Spacer(),
-          const CircleAvatar(
-            backgroundColor: primaryColor,
-            radius: 16,
-            child: Icon(
-              Icons.play_arrow,
-              color: Colors.white,
-            ),
-          )
+
         ],
       ),
     ),

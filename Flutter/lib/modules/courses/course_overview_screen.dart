@@ -116,7 +116,7 @@ class CoursesOverViewScreen extends StatelessWidget {
                   Row(
                     children: [
                       Expanded(
-
+                        flex: 2,
                         // Column inside text, icon, last update
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -142,7 +142,7 @@ class CoursesOverViewScreen extends StatelessWidget {
                       ),
                       Expanded(
                         // Column inside text, icon, language
-
+                        flex: 1,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -176,7 +176,7 @@ class CoursesOverViewScreen extends StatelessWidget {
                     children: [
                       Expanded(
                         // Column inside text, icon, Total Time
-
+                        flex: 2,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -201,6 +201,7 @@ class CoursesOverViewScreen extends StatelessWidget {
                       ),
                       Expanded(
                         // Column inside text, icon, Learners number
+                        flex: 1,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [

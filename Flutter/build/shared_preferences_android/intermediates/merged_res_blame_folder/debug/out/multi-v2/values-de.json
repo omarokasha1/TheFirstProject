@@ -1,10 +1,17 @@
 {
     "logs": [
         {
+<<<<<<< HEAD
             "outputFile": "E:\\LMS\\TheFirstProject\\Flutter\\build\\shared_preferences_android\\intermediates\\res\\merged\\debug\\values-de\\values-de.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Ka8eem Helmy\\.gradle\\caches\\transforms-2\\files-2.1\\122df2e57d294d1a53db26bbc3b813c1\\core-1.6.0\\res\\values-de\\values-de.xml",
+=======
+            "outputFile": "G:\\TheFirstProject\\Flutter\\build\\shared_preferences_android\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-de\\values-de.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\youss\\.gradle\\caches\\transforms-2\\files-2.1\\122df2e57d294d1a53db26bbc3b813c1\\core-1.6.0\\res\\values-de\\values-de.xml",
+>>>>>>> origin/Flutter_youssef
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -16,10 +23,17 @@
             ]
         },
         {
+<<<<<<< HEAD
             "outputFile": "E:\\LMS\\TheFirstProject\\Flutter\\build\\shared_preferences_android\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-de\\values-de.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Ka8eem Helmy\\.gradle\\caches\\transforms-2\\files-2.1\\122df2e57d294d1a53db26bbc3b813c1\\core-1.6.0\\res\\values-de\\values-de.xml",
+=======
+            "outputFile": "G:\\TheFirstProject\\Flutter\\build\\shared_preferences_android\\intermediates\\res\\merged\\debug\\values-de\\values-de.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\youss\\.gradle\\caches\\transforms-2\\files-2.1\\122df2e57d294d1a53db26bbc3b813c1\\core-1.6.0\\res\\values-de\\values-de.xml",
+>>>>>>> origin/Flutter_youssef
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

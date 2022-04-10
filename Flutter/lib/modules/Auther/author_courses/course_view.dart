@@ -3,9 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lms/modules/Auther/author_courses/author_courses_cubit/cubit.dart';
 import 'package:lms/modules/Auther/author_courses/author_courses_cubit/status.dart';
+import 'package:lms/modules/Auther/author_courses/contant_view.dart';
+import 'package:lms/modules/Auther/modules/module_view.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
 import 'package:readmore/readmore.dart';
+import '../../../models/new/contents_model.dart';
 import '../../../models/new/courses_model.dart';
 
 
@@ -181,81 +184,86 @@ class CourseDetailsScreen extends StatelessWidget {
 }
 
 Widget builtCourseContant(context, Contents content) {
-  return Padding(
-    padding: const EdgeInsets.all(8.0),
-    child: Container(
-      padding: const EdgeInsets.all(10),
-      width: double.infinity,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8.0),
-        color: Colors.white,
-        boxShadow: const [
-          BoxShadow(
-            color: Colors.black12,
-            offset: Offset(0.0, 1.0), //(x,y)
-            blurRadius: 6.0,
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              const Icon(Icons.play_arrow_outlined),
-              const SizedBox(
-                width: 10,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Container(
-                        width: 100.w,
-                        child: Text(
-                          //'File Name File Name File Name File Name ',
-                          '${content.contentTitle}',
+  return InkWell(
+    onTap: (){
+      navigator(context, ContentViewScreen(content));
+    },
+    child: Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        padding: const EdgeInsets.all(10),
+        width: double.infinity,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8.0),
+          color: Colors.white,
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black12,
+              offset: Offset(0.0, 1.0), //(x,y)
+              blurRadius: 6.0,
+            ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                const Icon(Icons.play_arrow_outlined),
+                const SizedBox(
+                  width: 10,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Container(
+                          width: 100.w,
+                          child: Text(
+                            //'File Name File Name File Name File Name ',
+                            '${content.contentTitle}',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 15.sp,
+                              fontWeight: FontWeight.w600,
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                        Text(
+                          //'3 min ',
+                          content.contentDuration ?? '',
                           style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 15.sp,
-                            fontWeight: FontWeight.w600,
+                            color: primaryColor,
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.w500,
                           ),
                           maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
                         ),
-                      ),
-                      SizedBox(
-                        width: 10.w,
-                      ),
-                      Text(
-                        //'3 min ',
-                        content.contentDuration ?? '',
-                        style: TextStyle(
-                          color: primaryColor,
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w500,
-                        ),
-                        maxLines: 1,
-                      ),
-                    ],
-                  ),
-                  Text(
-                    //'short description ',
-                    content.description ?? '',
-                    style: TextStyle(
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w500,
+                      ],
                     ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ],
+                    Text(
+                      //'short description ',
+                      content.description ?? '',
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     ),
   );

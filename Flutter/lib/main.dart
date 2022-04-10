@@ -7,8 +7,10 @@ import 'package:lms/modules/Auther/author_courses/author_courses_cubit/cubit.dar
 import 'package:lms/modules/Auther/author_profile/author_profile_cubit/cubit.dart';
 import 'package:lms/modules/Auther/modules/create_assigment/cubit/cubit.dart';
 import 'package:lms/modules/Auther/modules/create_module/cubit/cubit.dart';
+import 'package:lms/modules/Auther/modules/pdf_view_screen.dart';
 
 import 'package:lms/modules/Auther/traks/create_track/cubit/cubit.dart';
+import 'package:lms/modules/admin/cubit/cubit.dart';
 import 'package:lms/modules/courses/cubit/cubit.dart';
 import 'package:lms/modules/onboarding/onboarding_screen.dart';
 import 'package:lms/modules/quiz/cubit/cubit.dart';
@@ -19,6 +21,7 @@ import 'package:lms/shared/component/observer.dart';
 import 'package:lms/shared/network/local/cache_helper.dart';
 import 'package:lms/shared/network/remote/dio-helper.dart';
 import 'package:lms/shared/themes/light_theme.dart';
+import 'modules/manager/bloc/cubit.dart';
 import 'modules/my_learning/my_learning_cubit/cubit.dart';
 import 'modules/profile/profile_cubit/cubit.dart';
 import 'shared/cubit For Internet/cubit.dart';
@@ -93,7 +96,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) {
             if (userToken != null) {
-              return CourseCubit()..getAllCoursesData();
+              return CourseCubit()..getAllCoursesData()..getContentDetails('62209fed117cfb712ca92fbc');
             }
             return CourseCubit();
           },
@@ -105,6 +108,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context)=>CreateTrackCubit()..getAuthorTrackPublishedData()),
         BlocProvider(create: (context)=>TrackCubit()..getAllTracksData()),
         BlocProvider(create: (context)=>MyLearningCubit()..getEnrollCourses()),
+        BlocProvider(create: (context)=>AdminCubit()..getAllAuthor()..getUserData()..getNumberOfCourses()..getNumberOfTracks()),
+        BlocProvider(create: (context)=>ManagerCubit() ..getAuthorRequests()..getCoursesRequests()..getTracksRequests()..getAllAuthor()..getAllUsers(),),
+
       ],
       //ScreenUTil is A Package make application responsive.
       child: ScreenUtilInit(

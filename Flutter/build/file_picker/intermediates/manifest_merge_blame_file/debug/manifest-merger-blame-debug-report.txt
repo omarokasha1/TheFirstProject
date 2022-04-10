@@ -3,6 +3,7 @@
 3    package="com.mr.flutter.plugin.filepicker" >
 4
 5    <uses-sdk android:minSdkVersion="16" />
+<<<<<<< HEAD
 5-->E:\flutter\.pub-cache\hosted\pub.dartlang.org\file_picker-4.4.0\android\src\main\AndroidManifest.xml
 6
 7    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -20,6 +21,25 @@
 13            <data android:mimeType="*/*" />
 13-->E:\flutter\.pub-cache\hosted\pub.dartlang.org\file_picker-4.4.0\android\src\main\AndroidManifest.xml:7:9-39
 13-->E:\flutter\.pub-cache\hosted\pub.dartlang.org\file_picker-4.4.0\android\src\main\AndroidManifest.xml:7:15-37
+=======
+5-->C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\file_picker-4.4.0\android\src\main\AndroidManifest.xml
+6
+7    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+7-->C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\file_picker-4.4.0\android\src\main\AndroidManifest.xml:3:5-79
+7-->C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\file_picker-4.4.0\android\src\main\AndroidManifest.xml:3:22-77
+8
+9    <queries>
+9-->C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\file_picker-4.4.0\android\src\main\AndroidManifest.xml:4:5-9:15
+10        <intent>
+10-->C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\file_picker-4.4.0\android\src\main\AndroidManifest.xml:5:6-8:14
+11            <action android:name="android.intent.action.GET_CONTENT" />
+11-->C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\file_picker-4.4.0\android\src\main\AndroidManifest.xml:6:9-68
+11-->C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\file_picker-4.4.0\android\src\main\AndroidManifest.xml:6:17-65
+12
+13            <data android:mimeType="*/*" />
+13-->C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\file_picker-4.4.0\android\src\main\AndroidManifest.xml:7:9-39
+13-->C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\file_picker-4.4.0\android\src\main\AndroidManifest.xml:7:15-37
+>>>>>>> origin/Flutter_youssef
 14        </intent>
 15    </queries>
 16

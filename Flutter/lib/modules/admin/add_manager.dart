@@ -20,82 +20,79 @@ class AddManager extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => ManagerCubit()..getAllAuthor(),
-      child: BlocConsumer<ManagerCubit, ManagerStates>(
-          listener: (context, state) {},
-          builder: (context, state) {
-            var cubit = ManagerCubit.get(context);
-            return Scaffold(
-              backgroundColor: Colors.grey[100],
-              appBar: AppBar(
-                title: Text(
-                  'Add Manager',
-                  style: TextStyle(
-                    fontSize: 20.sp,
-                    fontWeight: FontWeight.bold,
-                    color: primaryColor,
-                  ),
+    return BlocConsumer<AdminCubit, AdminStates>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          var cubit = AdminCubit.get(context);
+          return Scaffold(
+            backgroundColor: Colors.grey[100],
+            appBar: AppBar(
+              title: Text(
+                'Add Manager',
+                style: TextStyle(
+                  fontSize: 20.sp,
+                  fontWeight: FontWeight.bold,
+                  color: primaryColor,
                 ),
               ),
-              body: Layout(
-                widget: Padding(
-                  padding: EdgeInsets.all(10.0.w),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        height: 40.h,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(100.0),
-                        ),
-                        child: TextFormField(
-                          controller: searchController,
-                          cursorColor: primaryColor,
-                          decoration: const InputDecoration(
-                            fillColor: primaryColor,
-                            iconColor: primaryColor,
-                            border: InputBorder.none,
-                            hintText: "Search Users",
-                            prefixIcon: Icon(
-                              Icons.search_rounded,
-                              color: primaryColor,
-                            ),
-                            prefixIconColor: primaryColor,
+            ),
+            body: Layout(
+              widget: Padding(
+                padding: EdgeInsets.all(10.0.w),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      height: 40.h,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(100.0),
+                      ),
+                      child: TextFormField(
+                        controller: searchController,
+                        cursorColor: primaryColor,
+                        decoration: const InputDecoration(
+                          fillColor: primaryColor,
+                          iconColor: primaryColor,
+                          border: InputBorder.none,
+                          hintText: "Search Users",
+                          prefixIcon: Icon(
+                            Icons.search_rounded,
+                            color: primaryColor,
                           ),
-                          onChanged: (value) {
-                            //call database to get Search
-                            cubit.searchManager(value);
-                          },
+                          prefixIconColor: primaryColor,
                         ),
+                        onChanged: (value) {
+                          //call database to get Search
+                          cubit.searchManager(value);
+                        },
                       ),
-                      Expanded(
-                        child: ConditionalBuilder(
-                          condition: cubit.authorsManagerRequest != null,
-                          builder: (context) {
-                            return cubit.search.length == 0 ? emptyPage(text: 'There\'s Noe Search like This', context: context): ListView.builder(
-                              shrinkWrap: true,
-                              physics: const BouncingScrollPhysics(),
-                              itemBuilder: (context, index) => buildUserData(context, cubit.search[index]!, cubit),
-                              itemCount: cubit.search.length,
-                            );
-                          },
-                          fallback: (context) {
-                            return Center(child: CircularProgressIndicator());
-                          },
-                        ),
+                    ),
+                    Expanded(
+                      child: ConditionalBuilder(
+                        condition: cubit.authorsManagerRequest != null,
+                        builder: (context) {
+                          return cubit.search.length == 0 ? emptyPage(text: 'There\'s Noe Search like This', context: context): ListView.builder(
+                            shrinkWrap: true,
+                            physics: const BouncingScrollPhysics(),
+                            itemBuilder: (context, index) => buildUserData(context, cubit.search[index]!, cubit),
+                            itemCount: cubit.search.length,
+                          );
+                        },
+                        fallback: (context) {
+                          return Center(child: CircularProgressIndicator());
+                        },
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-            );
-          }),
-    );
+            ),
+          );
+        });
   }
 }
-Widget buildUserData(context, Users user, ManagerCubit cubit) => Padding(
+Widget buildUserData(context, Users user, AdminCubit cubit) => Padding(
   padding: const EdgeInsets.all(8.0),
   child: Container(
     width: double.infinity,

@@ -170,13 +170,15 @@ class CourseCubit extends Cubit<CourseStates> {
 //   });
 // }
 
+  List<Contentss> content = [];
+
   ContentsModel? newContent;
   void getContentDetails(String id) {
     DioHelper.getData(
       url: "${getModule+ id}",
     ).then((value) {
       print(value.data.toString());
-      newContent = ContentsModel.fromJson(value.data);
+    //  newContent = ContentsModel.fromJson(value.data);
     }).catchError((error) {
       print(error.toString());
     });

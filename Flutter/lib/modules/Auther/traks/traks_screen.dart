@@ -219,15 +219,15 @@ class TracksScreen extends StatelessWidget {
               Expanded(
                 flex: 4,
                 child: Text(
-                  //'Track Name',
+                 // 'Track Name Track NameTrack Name Track NameTrack NameTrack Name Track Name',
                   '${modelTrack.trackName}',
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: 20.sp,
+                    fontSize: 15.sp,
                     fontWeight: FontWeight.bold,
                   ),
                   overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
+                  maxLines: 4,
                 ),
               ),
               Expanded(

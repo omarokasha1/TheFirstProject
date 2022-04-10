@@ -1,6 +1,7 @@
 {
     "logs": [
         {
+<<<<<<< HEAD
             "outputFile": "E:\\LMS\\TheFirstProject\\Flutter\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ky\\values-ky.xml",
             "map": [
                 {
@@ -22,6 +23,52 @@
                 },
                 {
                     "source": "C:\\Users\\Ka8eem Helmy\\.gradle\\caches\\transforms-2\\files-2.1\\a6aae59136d3348e6b6e552f8ac82f56\\jetified-exoplayer-ui-2.15.1\\res\\values-ky\\values-ky.xml",
+=======
+            "outputFile": "G:\\TheFirstProject\\Flutter\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ky\\values-ky.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\youss\\.gradle\\caches\\transforms-2\\files-2.1\\dadf59073c0fdcbec26349186df5ad0f\\jetified-extension-mediasession-2.15.1\\res\\values-ky\\values-ky.xml",
+>>>>>>> origin/Flutter_youssef
+                    "from": {
+                        "startLines": "2,3,4",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,139,221",
+                        "endColumns": "83,81,84",
+                        "endOffsets": "134,216,301"
+                    },
+                    "to": {
+                        "startLines": "42,43,44",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "2924,3008,3090",
+                        "endColumns": "83,81,84",
+                        "endOffsets": "3003,3085,3170"
+                    }
+                },
+                {
+<<<<<<< HEAD
+                    "source": "C:\\Users\\Ka8eem Helmy\\.gradle\\caches\\transforms-2\\files-2.1\\b9a960218f5163997c0fdfa3d3078c0e\\core-1.7.0\\res\\values-ky\\values-ky.xml",
+=======
+                    "source": "C:\\Users\\youss\\.gradle\\caches\\transforms-2\\files-2.1\\b9a960218f5163997c0fdfa3d3078c0e\\core-1.7.0\\res\\values-ky\\values-ky.xml",
+>>>>>>> origin/Flutter_youssef
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "62",
+                        "startColumns": "4",
+                        "startOffsets": "4254",
+                        "endColumns": "100",
+                        "endOffsets": "4350"
+                    }
+<<<<<<< HEAD
+=======
+                },
+                {
+                    "source": "C:\\Users\\youss\\.gradle\\caches\\transforms-2\\files-2.1\\8e0c139ac225526e2e5efb315f1c04fc\\jetified-exoplayer-ui-2.15.1\\res\\values-ky\\values-ky.xml",
                     "from": {
                         "startLines": "2,6,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -38,23 +85,7 @@
                         "endColumns": "12,12,91,89,77,89,96,86,65,94,95,67,65,64,69,69,79,77,80,71,80,71,87,81,81,66,65,70,64,70,70,86,80,52,60,47,60,72,75,59,69,57,56,65,64,65,51,58,75,75,54",
                         "endOffsets": "249,441,533,623,701,791,888,975,1041,1136,1232,1300,1366,1431,1501,1571,1651,1729,1810,1882,1963,2035,2123,2205,2287,2354,2420,2491,2556,2627,2698,2785,2866,2919,3231,3279,3340,3413,3489,3549,3619,3677,3734,3800,3865,3931,3983,4042,4118,4194,4249"
                     }
-                },
-                {
-                    "source": "C:\\Users\\Ka8eem Helmy\\.gradle\\caches\\transforms-2\\files-2.1\\b9a960218f5163997c0fdfa3d3078c0e\\core-1.7.0\\res\\values-ky\\values-ky.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "62",
-                        "startColumns": "4",
-                        "startOffsets": "4254",
-                        "endColumns": "100",
-                        "endOffsets": "4350"
-                    }
+>>>>>>> origin/Flutter_youssef
                 }
             ]
         }

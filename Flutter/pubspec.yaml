@@ -76,6 +76,7 @@ dependencies:
   carousel_slider: ^4.0.0
   readmore:
   better_player: ^0.0.81
+  syncfusion_flutter_pdfviewer:
 
   path_provider:
   open_file:
