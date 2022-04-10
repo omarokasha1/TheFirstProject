@@ -1,7 +1,7 @@
 require('dotenv').config()
 const express = require('express')
 require('express-async-errors');
-const bodyParser =require('body-parser')
+const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const logger = require('./config/logger')
 const app = express()
@@ -14,7 +14,7 @@ const compression = require('compression')
 //* initial start
 app.use(bodyParser.json())
 app.use(express.urlencoded({ extended: false }));
-app.use('/uploads', express.static(__dirname +'/uploads'));
+app.use('/uploads', express.static(__dirname + '/uploads'));
 
 //* mongoose connection
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true, }).then(
@@ -46,6 +46,6 @@ app.all('*', (req, res, next) => {
 })
 
 //* listen on port 8080 local host
-app.listen( process.env.PORT || 8080, function(){
+app.listen(process.env.PORT || 8080, function () {
     console.log("Expreass server listening on port 8080");
-  });
+});

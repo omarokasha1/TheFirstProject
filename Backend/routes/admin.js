@@ -9,17 +9,23 @@ const author = require('../middleware/author')
 const admin = require('../middleware/admin')
 
 const authorCtrl = require('../controllers/authorController')
-const managerCtrl=require('../controllers/managerController')
-const adminCtrl=require('../controllers/adminController')
+const managerCtrl = require('../controllers/managerController')
+const adminCtrl = require('../controllers/adminController')
 
 
 
 
 //* getting all users
-router.get('/allUsers',[ auth,admin,adminCtrl.allUsers])
+router.get('/allUsers', [auth, admin, adminCtrl.getAllUsers])
+
+//* getting all users
+router.get('/allAuthors', [auth, admin, adminCtrl.getAllAuthors])
+
+//* getting all users
+router.get('/allManagers', [auth, admin, adminCtrl.getAllManagers])
 
 //? Updating user role
-router.put('/promot-manager',[ auth,admin,adminCtrl.managerPromot])
+router.put('/promot-manager', [auth, admin, adminCtrl.managerPromot])
 
 
 
