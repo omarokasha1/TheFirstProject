@@ -26,7 +26,7 @@ class CreateAssignmentCubit extends Cubit<CreateAssignmentStates> {
 
   AssignmentsModel? getModuleModel;
   Map<String, String>? content = {};
-  List? list = [];
+  List? assignmentList = [];
   List? myActivities = [];
 
   void changeActivity(value) {
@@ -41,22 +41,11 @@ class CreateAssignmentCubit extends Cubit<CreateAssignmentStates> {
 
     DioHelper.getData(url: getAssignment, token: userToken).then((value) {
       //print(value.data);
-      list = [];
+      assignmentList = [];
       getModuleModel = AssignmentsModel.fromJson(value.data);
       getModuleModel!.assignments!.forEach((element) {
-        list!.add({'display': element.assignmentTitle, 'value': element.sId});
+        assignmentList!.add({'display': element.assignmentTitle, 'value': element.sId});
       });
-      //print(content!);
-      // value.data['contents'].forEach((element) {
-      //
-      //   content!.addAll({element.sId!: element.contentTitle!});
-      // });
-
-      // cartModel = GetCartModel.fromJson(json.data);
-      // cartModel.data.cartItems.forEach((element) {
-      //   productCartIds[element.product.id] = element.id;
-      //   productsQuantity[element.product.id] = element.quantity;
-      // });
       emit(GetNewAssignmentSuccssesState(getModuleModel!));
     }).catchError((error) {
       emit(GetNewAssignmentErrorState(error.toString()));

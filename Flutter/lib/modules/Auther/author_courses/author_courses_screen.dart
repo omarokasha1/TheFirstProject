@@ -27,108 +27,111 @@ class AuthorCourses extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AuthorCoursesCubit, AuthorCoursesStates>(
-      listener: (context, state) {},
-      builder: (context, state) {
-        var cubit = AuthorCoursesCubit.get(context);
-        return Layout(
-          widget: DefaultTabController(
-            length: myTabs.length,
-            child: Scaffold(
-              appBar: AppBar(),
-              body: ConditionalBuilder(
-                condition: cubit.coursesModel != null &&
-                    cubit.coursesModelPublish != null,
-                builder: (context) {
-                  return Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            left: 20.0, right: 20.0, top: 10),
-                        child: Row(
-                          children: [
-                            Text(
-                              'My Courses',
-                              style: TextStyle(
-                                fontSize: 20.sp,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
-                              ),
-                            ),
-                            Spacer(),
-                            ElevatedButton(
-                              onPressed: () {
-                                navigator(context, CreateCourseScreen());
-                              },
-                              child: Text(
-                                'New Course',
+    return BlocProvider.value(
+      value: BlocProvider.of<AuthorCoursesCubit>(context)..getAuthorCoursesData()..getAuthorCoursesPublishedData(),
+      child: BlocConsumer<AuthorCoursesCubit, AuthorCoursesStates>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          var cubit = AuthorCoursesCubit.get(context);
+          return Layout(
+            widget: DefaultTabController(
+              length: myTabs.length,
+              child: Scaffold(
+                appBar: AppBar(),
+                body: ConditionalBuilder(
+                  condition: cubit.coursesModel != null &&
+                      cubit.coursesModelPublish != null,
+                  builder: (context) {
+                    return Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              left: 20.0, right: 20.0, top: 10),
+                          child: Row(
+                            children: [
+                              Text(
+                                'My Courses',
                                 style: TextStyle(
-                                  fontSize: 16.sp,
+                                  fontSize: 20.sp,
                                   fontWeight: FontWeight.bold,
+                                  color: Colors.black,
                                 ),
                               ),
-                            ),
-                          ],
+                              Spacer(),
+                              ElevatedButton(
+                                onPressed: () {
+                                  navigator(context, CreateCourseScreen());
+                                },
+                                child: Text(
+                                  'New Course',
+                                  style: TextStyle(
+                                    fontSize: 16.sp,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      TabBar(
-                        labelColor: primaryColor,
-                        indicatorColor: primaryColor,
-                        unselectedLabelColor: Colors.black,
-                        // isScrollable: true,
-                        labelStyle: TextStyle(
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.bold,
+                        TabBar(
+                          labelColor: primaryColor,
+                          indicatorColor: primaryColor,
+                          unselectedLabelColor: Colors.black,
+                          // isScrollable: true,
+                          labelStyle: TextStyle(
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          tabs: myTabs,
                         ),
-                        tabs: myTabs,
-                      ),
-                      Expanded(
-                        child: TabBarView(
-                          children: [
-                            //Pending Courses
-                            ConditionalBuilder(
-                              condition:
-                              cubit.coursesModel!.courses!.length != 0,
-                              builder: (context) {
-                                return penddingCourses(cubit);
-                              },
-                              fallback: (context) {
-                                return emptyPage(
-                                    text: "No Tracks Added Yet",
-                                    context: context);
-                              },
-                            ),
-                            //Publish Courses
-                            ConditionalBuilder(
-                              condition:
-                                  cubit.coursesModelPublish!.courses!.length != 0,
-                              builder: (context) {
-                                return publishedCourses(cubit);
-                              },
-                              fallback: (context) {
-                                return emptyPage(
-                                    text: "No Tracks Added Yet",
-                                    context: context);
-                              },
-                            ),
+                        Expanded(
+                          child: TabBarView(
+                            children: [
+                              //Pending Courses
+                              ConditionalBuilder(
+                                condition:
+                                cubit.coursesModel!.courses!.length != 0,
+                                builder: (context) {
+                                  return penddingCourses(cubit);
+                                },
+                                fallback: (context) {
+                                  return emptyPage(
+                                      text: "No Courses Added Yet",
+                                      context: context);
+                                },
+                              ),
+                              //Publish Courses
+                              ConditionalBuilder(
+                                condition:
+                                    cubit.coursesModelPublish!.courses!.length != 0,
+                                builder: (context) {
+                                  return publishedCourses(cubit);
+                                },
+                                fallback: (context) {
+                                  return emptyPage(
+                                      text: "No Courses Published Yet",
+                                      context: context);
+                                },
+                              ),
 
-                            //draftsCourses(),
-                          ],
+                              //draftsCourses(),
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
-                  );
-                },
-                fallback: (context) {
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
-                },
+                      ],
+                    );
+                  },
+                  fallback: (context) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  },
+                ),
               ),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 
@@ -160,6 +163,7 @@ class AuthorCourses extends StatelessWidget {
       context, Courses course, AuthorCoursesCubit cubit, bool request) {
     return InkWell(
       onTap: (){
+        print(course.sId);
         navigator(context, CourseDetailsScreen(course));
       },
       child: Padding(

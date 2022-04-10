@@ -36,7 +36,7 @@ class ModulesLibraryScreen extends StatelessWidget {
         return BlocProvider.value(
           value: BlocProvider.of<CreateModuleCubit>(context)
             ..getModulesData()
-            ..list,
+            ..contentList,
           child: BlocConsumer<CreateModuleCubit, CreateModuleStates>(
             listener: (context, state) {},
             builder: (context, state) {

@@ -134,7 +134,7 @@ class CoursesOverViewScreen extends StatelessWidget {
                                 const SizedBox(
                                   width: 10,
                                 ),
-                                Text('Last update from model'),
+                                Text('Last update'),
                               ],
                             ),
                           ],
@@ -180,7 +180,7 @@ class CoursesOverViewScreen extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('Total Time'),
+                            Text('Total Modules'),
                             const SizedBox(
                               height: 10,
                             ),
@@ -193,7 +193,7 @@ class CoursesOverViewScreen extends StatelessWidget {
                                 const SizedBox(
                                   width: 10,
                                 ),
-                                Text('total time model')
+                                Text('${courseModel.contents!.length}')
                               ],
                             ),
                           ],
@@ -230,7 +230,7 @@ class CoursesOverViewScreen extends StatelessWidget {
                     height: 20,
                   ),
                   const Text(
-                    'Created by ',
+                    'Created by',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
                   ),
                   const SizedBox(
@@ -273,7 +273,7 @@ class CoursesOverViewScreen extends StatelessWidget {
                               width: 5,
                             ),
                             Text(
-                              'review model',
+                              '',
                               style: TextStyle(color: Colors.white),
                             )
                           ],
@@ -284,12 +284,10 @@ class CoursesOverViewScreen extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-
-
-                  const Text(
-                    'What you will learn',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
-                  ),
+                  // const Text(
+                  //   'What you will learn',
+                  //   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                  // ),
                   const Text(
                     'Course Requirements',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
@@ -298,10 +296,10 @@ class CoursesOverViewScreen extends StatelessWidget {
                     '${courseModel.requirements}',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
                   ),
-                  const Text(
-                    'Reviews',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
-                  ),
+                  // const Text(
+                  //   'Reviews',
+                  //   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                  // ),
                 ],
               ),
             ),

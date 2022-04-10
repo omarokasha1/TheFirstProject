@@ -31,41 +31,42 @@ class CreateTrackCubit extends Cubit<CreateTrackStates> {
     }
   }
 
+  List coursesList = [];
+  CoursesModel? coursesModelPublish;
+
+  Future<void> getAuthorCoursesPublishedData() async {
+    emit(GetAuthorCoursesPublishLoadingState());
+    coursesList = [];
+    await DioHelper.getData(url: getAuthorCoursesPublished, token: userToken)
+        .then((value) {
+      coursesModelPublish = CoursesModel.fromJson(value.data);
+      coursesModelPublish!.courses!.forEach((element) {
+        coursesList.add({'display': element.title, 'value': element.sId});
+      });
+      print(coursesList);
+      //print(authorCoursesTestModel!.courses.toString());
+      emit(GetAuthorCoursesPublishSuccessState(coursesModelPublish));
+    }).catchError((error) {
+      emit(GetAuthorCoursesPublishErrorState(error.toString()));
+      print(error.toString());
+    });
+  }
+
 
   changeRadio(Sequences? value) {
     character = value;
   }
 
-  CoursesModel? coursesModel;
-  List? list = [];
-
-
-  void getAuthorCoursesData() {
-    emit(GetAuthorCoursesLoadingState());
-    DioHelper.getData(url: getAuthorCourses, token: userToken).then((value) {
-      print(value.data);
-      list = [];
-      coursesModel = CoursesModel.fromJson(value.data);
-
-      coursesModel!.courses!.forEach((element) {
-        list!.add({'display': element.title, 'value': element.sId});
-      });
-      //print(authorCoursesTestModel!.courses.toString());
-      emit(GetAuthorCoursesSuccessState(coursesModel));
-    }).catchError((error) {
-      emit(GetAuthorCoursesErrorState(error.toString()));
-      print(error.toString());
-    });
-  }
   TrackModel? trackModelPublished;
 
   Future<void> getAuthorTrackPublishedData() async {
     emit(GetAuthorTrackPublishLoadingState());
     await DioHelper.getData(url: getAuthorTrackPublished, token: userToken).then((value) {
-      print(value.data);
-      //authorTrackTestModel!.courses=[];
       trackModelPublished = TrackModel.fromJson(value.data);
-      //print(authorTrackTestModel!.courses.toString());
+      // coursesList = [];
+      // coursesModel!.courses!.forEach((element) {
+      //   coursesList!.add({'display': element.title, 'value': element.sId});
+      // });
       emit(GetAuthorTrackPublishSuccessState(trackModelPublished));
     }).catchError((error) {
       emit(GetAuthorTrackPublishErrorState(error.toString()));
@@ -104,10 +105,10 @@ class CreateTrackCubit extends Cubit<CreateTrackStates> {
       token: userToken,
     ).then((value) async {
       //  trackModel = TrackModel.fromJson(value.data);
-      print('Hereeeeeee : ${value.data}');
+      //print('Hereeeeeee : ${value.data}');
       await getAllTracks();
+      await getAuthorTrackPublishedData();
       emit(CreateTrackSuccessState(trackModel!));
-      getAllTracks();
     }).catchError((onError) {
       print(onError.toString());
       emit(CreateTrackErrorState(onError.toString()));
@@ -134,15 +135,17 @@ class CreateTrackCubit extends Cubit<CreateTrackStates> {
         'check': 'drafts',
         'id': sID,
       },
+      files: true,
       url: updateTrack,
       token: userToken,
     ).then((value) async {
       //  trackModel = TrackModel.fromJson(value.data);
       updateModel = ResponseModel.fromJson(value.data);
       showToast(message: '${updateModel!.message}',color: Colors.green);
-      print('Hereeeeeee : ${value.data}');
-      await getAllTracks();
+      print('Hereeeeeee Update Track : ${value.data}');
       emit(UpdateTrackSuccessState());
+      await getAllTracks();
+      await getAuthorTrackPublishedData();
     }).catchError((onError) {
       print(onError.toString());
       emit(UpdateTrackErrorState(onError.toString()));
@@ -163,12 +166,14 @@ class CreateTrackCubit extends Cubit<CreateTrackStates> {
   }
 
   ResponseModel? deleteModel;
-  void deleteTrack({required String trackId}) {
+  Future<void> deleteTrack({required String trackId}) async {
     emit(DeleteTrackLoadingState());
-    DioHelper.deleteData(url:'$deleteTrackData/$trackId',).then((value) {
+    await DioHelper.deleteData(url:'$deleteTrackData/$trackId',).then((value) async {
       print(value.data);
       deleteModel = ResponseModel.fromJson(value.data);
-      getAllTracks();
+      await getAllTracks();
+      await getAuthorTrackPublishedData();
+      await showToast(message: '${deleteModel!.message}',color: Colors.green);
       emit(DeleteTrackSuccessState(deleteModel!));
     }).catchError((error) {
       emit(DeleteTrackErrorState(error));
@@ -191,7 +196,8 @@ class CreateTrackCubit extends Cubit<CreateTrackStates> {
       print(value.data);
       emit(SendTrackRequestSuccessState());
       showToast(message: '${value.data['message']}',color: Colors.green);
-      getAllTracks();
+      await getAllTracks();
+      await getAuthorTrackPublishedData();
     }).catchError((onError) {
       print(onError.toString());
       emit(SendTrackRequestErrorState(onError.toString()));

@@ -201,6 +201,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                                     ),
                                     customTextFormFieldAuth(
+                                      state: TextInputAction.done,
                                       onChanged: (password)
                                       {
                                         cubit.onPasswordChanged(password);

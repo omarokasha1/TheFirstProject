@@ -224,6 +224,7 @@ class RegisterScreen extends StatelessWidget {
                                   },
                                 ),
                                 customTextFormFieldAuth(
+                                  state: TextInputAction.done,
                                   onChanged: (p)
                                   {
                                     cubit.onPasswordChanged(p);

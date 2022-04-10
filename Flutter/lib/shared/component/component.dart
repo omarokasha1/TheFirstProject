@@ -71,8 +71,10 @@ Widget customTextFormFieldAuth({
   TextInputType type = TextInputType.text,
   int maxDigit = 100,
   Function? onChanged,
+  TextInputAction? state = TextInputAction.next,
 }) {
   return TextFormField(
+    textInputAction: state,
     onChanged: (value) {
       onChanged!(value);
     },
@@ -137,10 +139,12 @@ Widget customTextFormFieldWidget({
   TextInputFormatter? textInputFormatter,
   bool textInput = false,
   Function? onTab,
+  TextInputAction? state = TextInputAction.next,
 }) {
   return Padding(
     padding: EdgeInsets.only(bottom: 20.0),
     child: TextFormField(
+      textInputAction: state,
       onChanged: (value) {
         onChanged != null ? onChanged(value) : null;
       },
@@ -265,7 +269,7 @@ Widget buildCourseItem(context, bool enroll, Courses? courseModel) =>
                           borderRadius: BorderRadius.circular(20.r),
                         ),
                         child: Text(
-                          '14 Videos',
+                          '${courseModel.contents!.length} Modules',
                           style: TextStyle(
                             fontSize: 12.0.sp,
                             fontWeight: FontWeight.w600,
@@ -605,10 +609,8 @@ Widget selectMoreItem(
       cancelButtonLabel: 'CANCEL',
       hintWidget: const Text('Please choose one or more Course'),
       initialValue: myActivities,
-
       onSaved: (value) {
         //print("skmdjsnhdbcshbcbshcnjsmccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc $value");
-
         onSaved(value);
       },
     ),

@@ -120,6 +120,7 @@ class UpdateAssignment extends StatelessWidget {
                                 prefixIcon: Icons.drive_file_rename_outline,
                               ),
                               customTextFormFieldWidget(
+                                state: TextInputAction.done,
                                 onChanged: (moduleName) {
                                   cubit.onModuleNameChanged(moduleName);
                                 },

@@ -6,28 +6,30 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lms/models/track_model.dart';
+import 'package:lms/modules/Auther/author_profile/author_profile_screen.dart';
 import 'package:lms/modules/user_tracks/cubit/cubit.dart';
 import 'package:lms/modules/user_tracks/cubit/states.dart';
-import 'package:lms/modules/user_tracks/user_trcks_enroll_screen.dart';
+import 'package:lms/modules/user_tracks/user_tracks_enroll_screen.dart';
 import 'package:lms/shared/component/component.dart';
+import 'package:lms/shared/component/zoomDrawer.dart';
 import '../../shared/component/constants.dart';
 
 class UserTracksOverViewScreen extends StatelessWidget {
-
   final Tracks tracksModel;
-  const UserTracksOverViewScreen(this.tracksModel, {Key? key}) : super(key: key);
+
+  const UserTracksOverViewScreen(this.tracksModel, {Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     TrackCubit.get(context).changeEnrolledTrack(context, tracksModel.sId!);
-    return BlocConsumer<TrackCubit,AllTracksStates>(
+    return BlocConsumer<TrackCubit, AllTracksStates>(
       listener: (context, state) {},
-      builder: (context, state){
+      builder: (context, state) {
         var cubit = TrackCubit.get(context);
         return Scaffold(
           backgroundColor: Colors.grey[100],
-          appBar: AppBar(
-          ),
+          appBar: AppBar(),
           // create two button in bottomNavigationBar
           bottomNavigationBar: Container(
             child: Row(
@@ -39,14 +41,18 @@ class UserTracksOverViewScreen extends StatelessWidget {
                     // object from defaultButton on component.dart file
                     child: defaultButton(
                       onPressed: () {
-                        if(cubit.isEnrolled) {
-                          navigator(context, UserTracksEnrollScreen(tracksModel));
-                        }else{
-                          cubit.enrollToTrack(context, trackId: tracksModel.sId);
+                        if (cubit.isEnrolled) {
+                          navigator(
+                              context, UserTracksEnrollScreen(tracksModel));
+                        } else {
+                          cubit.enrollToTrack(context,
+                              trackId: tracksModel.sId);
                         }
                         // cubit.enrollCourse(courseId: courseModel.sId);
                         // navigatorAndRemove(context, ZoomDrawerScreen(widget: CoursesDetailsScreen(courseModel),));
-                      }, text: cubit.isEnrolled ? 'Go To Track' : 'Enroll Track',),
+                      },
+                      text: cubit.isEnrolled ? 'Go To Track' : 'Enroll Track',
+                    ),
                   ),
                 ),
                 // Expanded(
@@ -163,7 +169,7 @@ class UserTracksOverViewScreen extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('Total Time'),
+                            Text('Total Courses'),
                             const SizedBox(
                               height: 10,
                             ),
@@ -176,7 +182,7 @@ class UserTracksOverViewScreen extends StatelessWidget {
                                 const SizedBox(
                                   width: 10,
                                 ),
-                               Text('')
+                                Text('${tracksModel.courses!.length}')
                               ],
                             ),
                           ],
@@ -201,9 +207,9 @@ class UserTracksOverViewScreen extends StatelessWidget {
                                   width: 10,
                                 ),
                                 Text('${tracksModel.courses!.where((element) {
-                                  element.learner!.length;
-                                  return true;
-                                }).toList().length}')
+                                      element.learner!.length;
+                                      return true;
+                                    }).toList().length}')
                               ],
                             ),
                           ],
@@ -226,11 +232,21 @@ class UserTracksOverViewScreen extends StatelessWidget {
                   Row(
                     children: [
                       // author image in a circular shape
-                      CircleAvatar(
-                        backgroundImage: CachedNetworkImageProvider(
-                          '${tracksModel.author!.imageUrl}',
+                      InkWell(
+                        onTap: () {
+                          navigator(
+                              context,
+                              ZoomDrawerScreen(
+                                widget: AuthorProfileScreen(
+                                    tracksModel.author!.sId!),
+                              ));
+                        },
+                        child: CircleAvatar(
+                          backgroundImage: CachedNetworkImageProvider(
+                            '${tracksModel.author!.imageUrl}',
+                          ),
+                          radius: 25,
                         ),
-                        radius: 25,
                       ),
                       const SizedBox(
                         width: 10,

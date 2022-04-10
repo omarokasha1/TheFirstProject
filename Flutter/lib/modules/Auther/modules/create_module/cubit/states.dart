@@ -34,7 +34,9 @@ class GetContentsErrorState extends CreateModuleStates {
   final String error;
   GetContentsErrorState(this.error);
 }
-class ChangeActivityState extends CreateModuleStates {}
+class ChangeContentActivityState extends CreateModuleStates {}
+class ChangeAssignmentActivityState extends CreateModuleStates {}
+class ChangeQuizActivityState extends CreateModuleStates {}
 
 class UpdateModuleLoadingState extends CreateModuleStates {}
 

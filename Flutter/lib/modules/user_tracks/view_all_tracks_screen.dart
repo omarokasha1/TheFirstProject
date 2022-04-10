@@ -6,7 +6,7 @@ import 'package:lms/models/track_model.dart';
 import 'package:lms/modules/user_tracks/cubit/cubit.dart';
 import 'package:lms/modules/user_tracks/cubit/states.dart';
 import 'package:lms/modules/user_tracks/user_track_overview_screen.dart';
-import 'package:lms/modules/user_tracks/user_trcks_enroll_screen.dart';
+import 'package:lms/modules/user_tracks/user_tracks_enroll_screen.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
 class ViewAllTracksScreen extends StatelessWidget {

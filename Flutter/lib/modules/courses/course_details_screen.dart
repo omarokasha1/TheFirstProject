@@ -17,7 +17,7 @@ class CoursesDetailsScreen extends StatelessWidget {
     const Tab(text: 'Course Content'),
     const Tab(text: 'OverView'),
     const Tab(text: 'Assignments'),
-    const Tab(text: 'Reviews'),
+    //const Tab(text: 'Reviews'),
   ];
 
   @override
@@ -47,11 +47,11 @@ class CoursesDetailsScreen extends StatelessWidget {
                       // ),
                       imageFromNetwork(url: '${courseModel.imageUrl}',height: 200.h),
                     ),
-                    const Icon(
-                      Icons.play_arrow,
-                      color: Colors.grey,
-                      size: 50,
-                    )
+                    // const Icon(
+                    //   Icons.play_arrow,
+                    //   color: Colors.grey,
+                    //   size: 50,
+                    // )
                   ],
                 ),
                 const SizedBox(
@@ -66,7 +66,7 @@ class CoursesDetailsScreen extends StatelessWidget {
                   height: 20,
                 ),
                 Text(
-                  'Created by ${courseModel.author!.userName}',
+                  'Created by',
                   style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
                 ),
                 const SizedBox(
@@ -111,7 +111,7 @@ class CoursesDetailsScreen extends StatelessWidget {
                             width: 5,
                           ),
                           Text(
-                            "Test Here",
+                            "",
                             style: TextStyle(color: Colors.white),
                           )
                         ],
@@ -123,7 +123,6 @@ class CoursesDetailsScreen extends StatelessWidget {
                   height: 10,
                 ),
                 Container(
-
                   child: TabBar(
                       tabs: myTabs,
                       isScrollable: true,
@@ -134,20 +133,19 @@ class CoursesDetailsScreen extends StatelessWidget {
                       //tab name
                      ),
                 ),
-
                 //tab bar children
                 Expanded(
                   child: TabBarView(
                     children: [
-                      // tab bar Course Content
+                      //Content
                       ListView.builder(
-
                         // stop scroll in list view and rely scroll on the column
                    //    physics: const NeverScrollableScrollPhysics(),
 
                         itemBuilder: (context, index) => builtCourseContent(courseModel.contents![index]),
                         itemCount: courseModel.contents!.length,
                       ),
+                      //OverView
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
@@ -174,14 +172,16 @@ class CoursesDetailsScreen extends StatelessWidget {
                           ],
                         ),
                       ),
+                      //Assignments
                       ListView.builder(
                         itemBuilder: (context, index) => const SizedBox(),
                         itemCount: 3,
                       ),
-                      ListView.builder(
-                        itemBuilder: (context, index) => const SizedBox(),
-                        itemCount: 3,
-                      ),
+                      //Reviews
+                      // ListView.builder(
+                      //   itemBuilder: (context, index) => const SizedBox(),
+                      //   itemCount: 3,
+                      // ),
                     ],
                   ),
                 ),

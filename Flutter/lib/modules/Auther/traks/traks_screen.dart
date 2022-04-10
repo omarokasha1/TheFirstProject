@@ -25,8 +25,10 @@ class TracksScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-     // value: BlocProvider.of<CreateTrackCubit>(context)..getAllTracks(),
-      create: (BuildContext context)=> CreateTrackCubit()..getAllTracks()..getAuthorTrackPublishedData(),
+      // value: BlocProvider.of<CreateTrackCubit>(context)..getAllTracks(),
+      create: (BuildContext context) => CreateTrackCubit()
+        ..getAllTracks()
+        ..getAuthorTrackPublishedData(),
       child: BlocConsumer<CreateTrackCubit, CreateTrackStates>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -37,7 +39,8 @@ class TracksScreen extends StatelessWidget {
               child: Scaffold(
                 appBar: AppBar(),
                 body: ConditionalBuilder(
-                  condition: cubit.trackModel != null && cubit.trackModelPublished != null,
+                  condition: cubit.trackModel != null &&
+                      cubit.trackModelPublished != null,
                   builder: (context) => Column(
                     children: [
                       Padding(
@@ -57,9 +60,12 @@ class TracksScreen extends StatelessWidget {
                             ElevatedButton(
                               onPressed: () {
                                 //navigator(context, CreateTrackScreen());
-                                Navigator.push(context, MaterialPageRoute(
+                                Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
                                             builder: (context) =>
-                                                CreateTrackScreen())).then((value) {});
+                                                CreateTrackScreen()))
+                                    .then((value) {});
                               },
                               child: Text(
                                 'New Track',
@@ -87,7 +93,7 @@ class TracksScreen extends StatelessWidget {
                         child: TabBarView(
                           children: [
                             ConditionalBuilder(
-                              condition: cubit.trackModel!.tracks! != 0,
+                              condition: cubit.trackModel!.tracks!.isNotEmpty,
                               builder: (context) {
                                 return pendingTracks(cubit);
                               },
@@ -98,13 +104,13 @@ class TracksScreen extends StatelessWidget {
                               },
                             ),
                             ConditionalBuilder(
-                              condition: cubit.trackModel!.tracks! != 0,
+                              condition: cubit.trackModelPublished!.tracks!.isNotEmpty,
                               builder: (context) {
                                 return publishedTracks(cubit);
                               },
                               fallback: (context) {
                                 return emptyPage(
-                                    text: "No Tracks Added Yet",
+                                    text: "No Tracks Published Yet",
                                     context: context);
                               },
                             ),
@@ -141,7 +147,8 @@ class TracksScreen extends StatelessWidget {
     return ListView.builder(
         physics: const BouncingScrollPhysics(),
         itemBuilder: (context, index) {
-          return buildAuthorTrack(context, cubit.trackModelPublished!.tracks![index], cubit,false);
+          return buildAuthorTrack(
+              context, cubit.trackModelPublished!.tracks![index], cubit, false);
         },
         itemCount: cubit.trackModelPublished!.tracks!.length);
   }
@@ -151,7 +158,8 @@ class TracksScreen extends StatelessWidget {
     return ListView.builder(
         physics: const BouncingScrollPhysics(),
         itemBuilder: (context, index) {
-          return buildAuthorTrack(context, cubit.trackModel!.tracks![index], cubit,true);
+          return buildAuthorTrack(
+              context, cubit.trackModel!.tracks![index], cubit, true);
         },
         itemCount: cubit.trackModel!.tracks!.length);
   }
@@ -167,9 +175,10 @@ class TracksScreen extends StatelessWidget {
   // }
 
   //Course Widget
-  Widget buildAuthorTrack(context, Tracks modelTrack, CreateTrackCubit cubit,bool request) {
+  Widget buildAuthorTrack(
+      context, Tracks modelTrack, CreateTrackCubit cubit, bool request) {
     return InkWell(
-      onTap: (){
+      onTap: () {
         navigator(context, TracksDetailsScreen(modelTrack));
       },
       child: Padding(
@@ -224,6 +233,15 @@ class TracksScreen extends StatelessWidget {
               Expanded(
                 flex: 1,
                 child: PopupMenuButton(
+                  onSelected: (select){
+                    if(select == 1){
+                      navigator(context, UpdateTrackScreen(modelTrack));
+                    }else if(select == 2){
+                      cubit.deleteTrack(trackId: modelTrack.sId!);
+                    }else if(select == 3){
+                      cubit.sendTracksRequest(trackId: modelTrack.sId);
+                    }
+                  },
                   icon: Icon(
                     Icons.more_vert,
                     size: 30,
@@ -231,51 +249,60 @@ class TracksScreen extends StatelessWidget {
                   ),
                   itemBuilder: (BuildContext context) => [
                     PopupMenuItem(
-                      child: TextButton.icon(
-                          onPressed: () {
-                            navigator(context, UpdateTrackScreen(modelTrack));
-                          },
-                          icon: Icon(Icons.edit),
-                          label: Text('Edit')),
+                      child: Row(
+                        children: [
+                          SizedBox(width: 10,),
+                            Icon(
+                              Icons.edit,
+                              color: primaryColor,
+                            ),
+                            SizedBox(width: 10,),
+                            Text(
+                              'Edit',
+                              style: TextStyle(color: primaryColor),
+                            ),
+                        ],
+                      ),
                       value: 1,
                     ),
                     PopupMenuItem(
-                      child: TextButton.icon(
-                          onPressed: () {
-                            print(modelTrack.sId!);
-                            cubit.deleteTrack(trackId: modelTrack.sId!);
-                          },
-                          icon: Icon(
+                      child: Row(
+                        children: [
+                          SizedBox(width: 10,),
+                          Icon(
                             Icons.delete,
                             color: Colors.red,
                           ),
-                          label: Text(
+                          SizedBox(width: 10,),
+                          Text(
                             'Delete',
                             style: TextStyle(color: Colors.red),
-                          )),
+                          ),
+                        ],
+                      ),
                       value: 2,
                     ),
                     if (request)
                       PopupMenuItem(
-                        child: TextButton.icon(
-                            onPressed: () {
-                              cubit.sendTracksRequest(trackId: modelTrack.sId);
-                              print(modelTrack.sId.toString());
-                            },
-                            icon: const Icon(
+                        child: Row(
+                          children: [
+                            SizedBox(width: 10,),
+                            Icon(
                               Icons.send,
                               color: Colors.green,
                             ),
-                            label: const Text(
+                            SizedBox(width: 10,),
+                            Text(
                               'Request',
                               style: TextStyle(color: Colors.green),
-                            )),
+                            ),
+                          ],
+                        ),
                         value: 3,
                       ),
                   ],
                 ),
               ),
-
             ],
           ),
         ),

@@ -102,7 +102,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => CreateModuleCubit()..initStateVideo()),
         BlocProvider(create: (context)=> CreateAssignmentCubit()..getAssignmentData()..myActivities=[]),
         BlocProvider(create: (context)=> AuthorCoursesCubit()..getAuthorCoursesData()..getAuthorCoursesPublishedData()),
-        BlocProvider(create: (context)=>CreateTrackCubit()..getAuthorCoursesData()..getAuthorTrackPublishedData()),
+        BlocProvider(create: (context)=>CreateTrackCubit()..getAuthorTrackPublishedData()),
         BlocProvider(create: (context)=>TrackCubit()..getAllTracksData()),
         BlocProvider(create: (context)=>MyLearningCubit()..getEnrollCourses()),
       ],
