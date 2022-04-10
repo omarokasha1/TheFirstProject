@@ -168,6 +168,7 @@ class DashboardManagerScreen extends StatelessWidget {
                             ),
                             const SizedBox(
                               width: 10,
+
                             ),
                             Expanded(
                               child: Container(

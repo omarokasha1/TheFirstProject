@@ -148,31 +148,31 @@ class _ModuleDetailsScreenState extends State<ModuleDetailsScreen> {
                   if (widget.contentModel.imageUrl!.split('\.').last == 'pdf')
                     Row(
                       children: [
-                        Expanded(
-                          child: Container(
-                            padding: const EdgeInsets.all(10),
-                            margin: const EdgeInsets.all(5),
-                            decoration: BoxDecoration(
-                                color: primaryColor,
-                                borderRadius: BorderRadius.circular(10)),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
-                                Icon(
-                                  Icons.download,
-                                  color: Colors.white,
-                                ),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                Text(
-                                  'Download',
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
+                        // Expanded(
+                        //   child: Container(
+                        //     padding: const EdgeInsets.all(10),
+                        //     margin: const EdgeInsets.all(5),
+                        //     decoration: BoxDecoration(
+                        //         color: primaryColor,
+                        //         borderRadius: BorderRadius.circular(10)),
+                        //     child: Row(
+                        //       mainAxisAlignment: MainAxisAlignment.center,
+                        //       children: const [
+                        //         Icon(
+                        //           Icons.download,
+                        //           color: Colors.white,
+                        //         ),
+                        //         SizedBox(
+                        //           width: 10,
+                        //         ),
+                        //         Text(
+                        //           'Download',
+                        //           style: TextStyle(color: Colors.white),
+                        //         ),
+                        //       ],
+                        //     ),
+                        //   ),
+                        // ),
                         Expanded(
                           child: InkWell(
                             onTap: (){
