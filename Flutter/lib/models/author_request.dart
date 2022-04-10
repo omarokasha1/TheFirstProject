@@ -1,28 +1,25 @@
 class AuthorRequests {
   String? status;
   String? message;
-  List<PromotRequests>? promotRequests;
+  List<PromotRequests>? promotRequests = [];
 
   AuthorRequests({this.status, this.message, this.promotRequests});
 
   AuthorRequests.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
-    if (json['promotRequests'] != null) {
-      promotRequests = <PromotRequests>[];
-      json['promotRequests'].forEach((v) {
-        promotRequests!.add(PromotRequests.fromJson(v));
-      });
-    }
+    json['promotRequests'].forEach((v) {
+      promotRequests!.add(PromotRequests.fromJson(v));
+    });
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
-    data['status'] = this.status;
-    data['message'] = this.message;
-    if (this.promotRequests != null) {
+    data['status'] = status;
+    data['message'] = message;
+    if (promotRequests != null) {
       data['promotRequests'] =
-          this.promotRequests!.map((v) => v.toJson()).toList();
+          promotRequests!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -43,9 +40,9 @@ class PromotRequests {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
-    data['_id'] = this.sId;
-    if (this.authorPromoted != null) {
-      data['authorPromoted'] = this.authorPromoted!.toJson();
+    data['_id'] = sId;
+    if (authorPromoted != null) {
+      data['authorPromoted'] = authorPromoted!.toJson();
     }
     return data;
   }
@@ -61,16 +58,16 @@ class AuthorPromoted {
   bool? isManager;
   String? imageUrl;
 
-  AuthorPromoted(
-      {
-        this.sId,
-        this.userName,
-        this.email,
-        this.phone,
-        this.isAdmin,
-        this.isAuthor,
-        this.isManager,
-        this.imageUrl,});
+  AuthorPromoted({
+    this.sId,
+    this.userName,
+    this.email,
+    this.phone,
+    this.isAdmin,
+    this.isAuthor,
+    this.isManager,
+    this.imageUrl,
+  });
 
   AuthorPromoted.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -85,14 +82,14 @@ class AuthorPromoted {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
-    data['_id'] = this.sId;
-    data['userName'] = this.userName;
-    data['email'] = this.email;
-    data['phone'] = this.phone;
-    data['isAdmin'] = this.isAdmin;
-    data['isAuthor'] = this.isAuthor;
-    data['isManager'] = this.isManager;
-    data['imageUrl'] = this.imageUrl;
+    data['_id'] = sId;
+    data['userName'] = userName;
+    data['email'] = email;
+    data['phone'] = phone;
+    data['isAdmin'] = isAdmin;
+    data['isAuthor'] = isAuthor;
+    data['isManager'] = isManager;
+    data['imageUrl'] = imageUrl;
     return data;
   }
 }

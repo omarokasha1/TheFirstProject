@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:lms/models/new/contents_model.dart';
 import 'package:lms/models/new/courses_model.dart';
 import 'package:lms/modules/courses/cubit/states.dart';
 import 'package:lms/modules/profile/profile_cubit/cubit.dart';
@@ -139,7 +140,6 @@ class CourseCubit extends Cubit<CourseStates> {
       emit(WishlistCourseErrorState(error));
     });
   }
-
 // CourseModel? createCourseModel;
 //
 // void createNewCourse({
@@ -169,4 +169,47 @@ class CourseCubit extends Cubit<CourseStates> {
 //     emit(CreateCourseErrorState(onError.toString()));
 //   });
 // }
+
+  ContentsModel? newContent;
+  void getContentDetails(String id) {
+    DioHelper.getData(
+      url: "${getModule+ id}",
+    ).then((value) {
+      print(value.data.toString());
+      newContent = ContentsModel.fromJson(value.data);
+    }).catchError((error) {
+      print(error.toString());
+    });
+ }
+
+
+  // CourseModel? createCourseModel;
+  //
+  // void createNewCourse({
+  //   required String courseName,
+  //   required String description,
+  //   required String requirement,
+  //   required List<dynamic> content,
+  //   required String lang,
+  //   required image,
+  // }) {
+  //   emit(CreateCourseLoadingState());
+  //   DioHelper.postData(
+  //     data: {
+  //       'title': courseName,
+  //       'description': description,
+  //       'requirements': requirement,
+  //       'language': lang,
+  //       'imageUrl': image
+  //     },
+  //     url: module,
+  //     token: userToken,
+  //   ).then((value) {
+  //     createCourseModel = CourseModel.fromJson(value.data);
+  //     emit(CreateCourseSuccessState(createCourseModel!));
+  //   }).catchError((onError) {
+  //     print(onError.toString());
+  //     emit(CreateCourseErrorState(onError.toString()));
+  //   });
+  // }
 }

@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lms/layout/layout.dart';
 import 'package:lms/models/new/courses_model.dart';
 import 'package:lms/modules/Auther/author_profile/author_profile_screen.dart';
-import 'package:lms/shared/component/MyAppBar.dart';
 import 'package:lms/shared/component/constants.dart';
 import '../../shared/component/component.dart';
 import '../../shared/component/constants.dart';
@@ -142,7 +141,7 @@ class CoursesDetailsScreen extends StatelessWidget {
                         // stop scroll in list view and rely scroll on the column
                    //    physics: const NeverScrollableScrollPhysics(),
 
-                        itemBuilder: (context, index) => builtCourseContent(courseModel.contents![index]),
+                        itemBuilder: (context, index) => builtCourseContent(courseModel.contents![index],context),
                         itemCount: courseModel.contents!.length,
                       ),
                       //OverView
@@ -194,66 +193,71 @@ class CoursesDetailsScreen extends StatelessWidget {
   }
 }
 // Widget include design course Content card
-Widget builtCourseContent(Contents model) => Padding(
-  padding: const EdgeInsets.all(5.0),
-  child: Container(
-    padding: const EdgeInsets.all(10),
-    width: double.infinity,
-    height: 120,
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(20),
-      color: Colors.white,
-      boxShadow: const [
-        BoxShadow(
-          color: Colors.black12,
-          offset: Offset(0.0, 1.0), //(x,y)
-          blurRadius: 6.0,
-        ),
-      ],
-    ),
-    child: Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        //image
-        ClipRRect(
-          borderRadius: BorderRadius.circular(15),
-          child: Image.network(
-           // 'https://www.incimages.com/uploaded_files/image/1920x1080/getty_933383882_2000133420009280345_410292.jpg',
-            '${model.imageUrl}',
-            width: 100,
-            height: 100,
-            fit: BoxFit.cover,
+Widget builtCourseContent(Contents model,context) => InkWell(
+  onTap: (){
+   // navigator(context,ModuleDetailsScreen(model) );
+  },
+  child:   Padding(
+    padding: const EdgeInsets.all(5.0),
+    child: Container(
+      padding: const EdgeInsets.all(10),
+      width: double.infinity,
+      height: 120,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        color: Colors.white,
+        boxShadow: const [
+          BoxShadow(
+            color: Colors.black12,
+            offset: Offset(0.0, 1.0), //(x,y)
+            blurRadius: 6.0,
           ),
-        ),
-        const SizedBox(
-          width: 10,
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 30.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(model.contentTitle.toString()),
-              const SizedBox(
-                height: 2,
-              ),
-              Text(
-                '${model.contentDuration}',
-                style: TextStyle(color: Colors.grey[500]),
-              ),
-            ],
+        ],
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          //image
+          ClipRRect(
+            borderRadius: BorderRadius.circular(15),
+            child: Image.network(
+             // 'https://www.incimages.com/uploaded_files/image/1920x1080/getty_933383882_2000133420009280345_410292.jpg',
+              '${model.imageUrl}',
+              width: 100,
+              height: 100,
+              fit: BoxFit.cover,
+            ),
           ),
-        ),
-        const Spacer(),
-        const CircleAvatar(
-          backgroundColor: primaryColor,
-          radius: 16,
-          child: Icon(
-            Icons.play_arrow,
-            color: Colors.white,
+          const SizedBox(
+            width: 10,
           ),
-        )
-      ],
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 30.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(model.contentTitle.toString()),
+                const SizedBox(
+                  height: 2,
+                ),
+                Text(
+                  '${model.contentDuration}',
+                  style: TextStyle(color: Colors.grey[500]),
+                ),
+              ],
+            ),
+          ),
+          const Spacer(),
+          const CircleAvatar(
+            backgroundColor: primaryColor,
+            radius: 16,
+            child: Icon(
+              Icons.play_arrow,
+              color: Colors.white,
+            ),
+          )
+        ],
+      ),
     ),
   ),
 );
