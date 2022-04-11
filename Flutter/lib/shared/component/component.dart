@@ -69,8 +69,10 @@ Widget customTextFormFieldAuth({
   TextInputType type = TextInputType.text,
   int maxDigit = 100,
   Function? onChanged,
+  TextInputAction? state = TextInputAction.next,
 }) {
   return TextFormField(
+    textInputAction: state,
     onChanged: (value) {
       onChanged!(value);
     },
@@ -135,10 +137,12 @@ Widget customTextFormFieldWidget({
   TextInputFormatter? textInputFormatter,
   bool textInput = false,
   Function? onTab,
+  TextInputAction? state = TextInputAction.next,
 }) {
   return Padding(
     padding: EdgeInsets.only(bottom: 20.0),
     child: TextFormField(
+      textInputAction: state,
       onChanged: (value) {
         onChanged != null ? onChanged(value) : null;
       },
@@ -263,7 +267,7 @@ Widget buildCourseItem(context, bool enroll, Courses? courseModel) =>
                           borderRadius: BorderRadius.circular(20.r),
                         ),
                         child: Text(
-                          '14 Videos',
+                          '${courseModel.contents!.length} Modules',
                           style: TextStyle(
                             fontSize: 12.0.sp,
                             fontWeight: FontWeight.w600,
@@ -320,7 +324,7 @@ Widget buildCourseItem(context, bool enroll, Courses? courseModel) =>
                                 width: 5.w,
                               ),
                               //Text('${courseModel.review}'),
-                              const Text('4.5',style: TextStyle(fontWeight: FontWeight.bold),),
+                              Text('${courseModel.review ?? ''}',style: TextStyle(fontWeight: FontWeight.bold),),
                             ],
                           ),
                         ),
@@ -335,106 +339,6 @@ Widget buildCourseItem(context, bool enroll, Courses? courseModel) =>
       ),
     );
 
-Widget buildCourseItems(context) => Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(15),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Stack(
-              alignment: AlignmentDirectional.bottomStart,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                    width: MediaQuery.of(context).size.width / 1,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: const Image(
-                      fit: BoxFit.cover,
-                      image: NetworkImage(
-                        'https://www.incimages.com/uploaded_files/image/1920x1080/getty_933383882_2000133420009280345_410292.jpg',
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  padding: const EdgeInsets.all(6.0),
-                  margin: const EdgeInsets.all(16.0),
-                  decoration: BoxDecoration(
-                    color: primaryColor,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: const Text(
-                    '14 Videos',
-                    style: TextStyle(
-                      fontSize: 15.0,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 7),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Instagram Marketing Course',
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.subtitle2,
-                  ),
-                  const SizedBox(height: 14),
-                  Row(
-                    children: [
-                      const CircleAvatar(
-                        backgroundImage: NetworkImage(
-                            'https://img-c.udemycdn.com/user/200_H/317821_3cb5_10.jpg'),
-                        radius: 16,
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      const Text('Created by Kelvin'),
-                      const Spacer(),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 10.0, vertical: 3),
-                        decoration: BoxDecoration(
-                          color: gray,
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                        child: Row(
-                          children: const [
-                            Icon(
-                              Icons.star,
-                              color: Colors.yellow,
-                            ),
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Text('4.5'),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
 
 Widget builtTrackContant(context) => Padding(
       padding: const EdgeInsets.all(5.0),
@@ -603,10 +507,8 @@ Widget selectMoreItem(
       cancelButtonLabel: 'CANCEL',
       hintWidget: const Text('Please choose one or more Course'),
       initialValue: myActivities,
-
       onSaved: (value) {
         //print("skmdjsnhdbcshbcbshcnjsmccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc $value");
-
         onSaved(value);
       },
     ),

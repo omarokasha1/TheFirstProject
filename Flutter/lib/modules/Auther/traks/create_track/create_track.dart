@@ -8,6 +8,7 @@ import 'package:flutter_picker/Picker.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:lms/modules/Auther/author_courses/author_courses_cubit/cubit.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
 import 'package:open_file/open_file.dart';
@@ -32,16 +33,16 @@ class CreateTrackScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    BlocProvider.of<AuthorCoursesCubit>(context)..getAuthorCoursesPublishedData();
     return BlocProvider.value(
-      value: BlocProvider.of<CreateTrackCubit>(context)..getAuthorCoursesData()..myActivities=[],
-
+      value: BlocProvider.of<CreateTrackCubit>(context)..myActivities=[],
       child: BlocConsumer<CreateTrackCubit, CreateTrackStates>(
         listener: (context, state) {},
         builder: (context, state) {
           var cubit = CreateTrackCubit.get(context);
           return Scaffold(
             body: ConditionalBuilder(
-              condition: cubit.coursesModel != null,
+              condition: BlocProvider.of<AuthorCoursesCubit>(context).coursesModelPublish != null,
               builder: (context) {
                 return SingleChildScrollView(
                   child: Column(
@@ -128,6 +129,7 @@ class CreateTrackScreen extends StatelessWidget {
                                     ),
 
                                     customTextFormFieldWidget(
+                                      state: TextInputAction.done,
                                       onChanged: (moduleName) {
                                         print(moduleName);
                                         cubit.onCourseNameChanged(moduleName);
@@ -225,6 +227,7 @@ class CreateTrackScreen extends StatelessWidget {
                                         //   myActivities = value;
                                         // });
                                         cubit.changeActivity(value);
+                                        //print('value is ${value}');
                                       },
                                       validate: (value) {
                                         if (value == null ||
@@ -233,7 +236,7 @@ class CreateTrackScreen extends StatelessWidget {
                                         }
                                         return null;
                                       },
-                                      dataSource: cubit.list,
+                                      dataSource: BlocProvider.of<AuthorCoursesCubit>(context).coursesList,
                                     ),
                                     const SizedBox(
                                       height: 20,
@@ -291,7 +294,7 @@ class CreateTrackScreen extends StatelessWidget {
                                           //print(trackImage);
                                           if (cubit.formKey.currentState!
                                               .validate()) {
-                                            if (trackImage == null) {
+                                            if (file == null) {
                                               showToast(
                                                   message: "No Image Selected",
                                                   color: Colors.red);
@@ -301,7 +304,7 @@ class CreateTrackScreen extends StatelessWidget {
                                                 shortDescription: shortDescriptionController.text,
                                                 //duration: durationController.text,
                                                 courses: cubit.myActivities,
-                                                trackImage: trackImage,
+                                                trackImage: file,
                                               )
                                                   .then((value) {
                                                   cubit.myActivities = [];

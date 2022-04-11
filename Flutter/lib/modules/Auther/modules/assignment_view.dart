@@ -9,10 +9,11 @@ import 'package:lms/shared/component/constants.dart';
 import 'package:open_file/open_file.dart';
 import 'package:readmore/readmore.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
+import '../../../models/new/courses_model.dart';
 import '../../../shared/component/component.dart';
 
 class AssignmentDetailsScreen extends StatelessWidget {
-  final Assignments model;
+  final Assignment model;
 
   AssignmentDetailsScreen(this.model, {Key? key}) : super(key: key);
   dynamic filePath;

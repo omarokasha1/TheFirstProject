@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,6 +20,8 @@ import 'package:lms/modules/Auther/modules/module_view.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
 
+import '../../../models/new/courses_model.dart';
+
 
 class ModulesLibraryScreen extends StatelessWidget {
   ModulesLibraryScreen({Key? key}) : super(key: key);
@@ -36,7 +39,7 @@ class ModulesLibraryScreen extends StatelessWidget {
         return BlocProvider.value(
           value: BlocProvider.of<CreateModuleCubit>(context)
             ..getModulesData()
-            ..list,
+            ..contentList,
           child: BlocConsumer<CreateModuleCubit, CreateModuleStates>(
             listener: (context, state) {},
             builder: (context, state) {
@@ -154,10 +157,10 @@ class ModulesLibraryScreen extends StatelessWidget {
                                 //Assignments
                                 ConditionalBuilder(
                                   condition:
-                                      CreateAssignmentCubit.get(context).getModuleModel != null,
+                                      CreateAssignmentCubit.get(context).assignments != null,
                                   builder: (context) => buildAssignmentTab(
                                       CreateAssignmentCubit.get(context)
-                                          .getModuleModel!
+                                          .assignments!
                                           .assignments!,
                                       CreateAssignmentCubit.get(context)),
                                   fallback: (context) => const Center(
@@ -255,7 +258,76 @@ class ModulesLibraryScreen extends StatelessWidget {
               radius: 18.r,
               child: IconButton(
                 onPressed: () {
-                  cubit.deleteModule(moduleId: model.sId!);
+                  AwesomeDialog(
+                    context: context,
+                    animType: AnimType.SCALE,
+                    dialogType:
+                    DialogType.NO_HEADER,
+                    body: Center(
+                      child: Padding(
+                        padding:
+                        const EdgeInsets
+                            .all(8.0),
+                        child: Form(
+                          //  key: formkey,
+                          child: Column(
+                            children: [
+                              Text(
+                                'Are you sure you want to delete this Module ?',
+                                textAlign:
+                                TextAlign
+                                    .center,
+                                style:
+                                TextStyle(
+                                  fontWeight:
+                                  FontWeight
+                                      .bold,
+                                  fontSize:
+                                  20,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 30,
+                              ),
+                              Container(
+                                height: 40,
+                                child:
+                                defaultButton(
+                                  text:
+                                  'Yes, I\'m Agree',
+                                  onPressed:
+                                      () {
+                                        cubit.deleteModule(moduleId: model.sId!);
+                                    Navigator.pop(
+                                        context);
+                                  },
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Container(
+                                height: 40,
+                                child:
+                                defaultButton(
+                                  text: 'No',
+                                  onPressed:
+                                      () {
+                                    Navigator.pop(
+                                        context);
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    title: 'This is Ignored',
+                    desc:
+                    'This is also Ignored',
+                    //   btnOkOnPress: () {},
+                  ).show();
                 },
                 icon: const Icon(
                   Icons.delete_rounded,
@@ -292,7 +364,7 @@ class ModulesLibraryScreen extends StatelessWidget {
   Widget buildAssignmentItem(
     context,
     index,
-    Assignments model,
+    Assignment model,
     CreateAssignmentCubit cubit,
   ) {
     return InkWell(
@@ -391,7 +463,76 @@ class ModulesLibraryScreen extends StatelessWidget {
               radius: 18.r,
               child: IconButton(
                 onPressed: () {
-                  cubit.deleteAssignment(moduleId: model.sId!);
+                  AwesomeDialog(
+                    context: context,
+                    animType: AnimType.SCALE,
+                    dialogType:
+                    DialogType.NO_HEADER,
+                    body: Center(
+                      child: Padding(
+                        padding:
+                        const EdgeInsets
+                            .all(8.0),
+                        child: Form(
+                          //  key: formkey,
+                          child: Column(
+                            children: [
+                              Text(
+                                'Are you sure you want to delete this Assignment ?',
+                                textAlign:
+                                TextAlign
+                                    .center,
+                                style:
+                                TextStyle(
+                                  fontWeight:
+                                  FontWeight
+                                      .bold,
+                                  fontSize:
+                                  20,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 30,
+                              ),
+                              Container(
+                                height: 40,
+                                child:
+                                defaultButton(
+                                  text:
+                                  'Yes, I\'m Agree',
+                                  onPressed:
+                                      () {
+                                        cubit.deleteAssignment(moduleId: model.sId!);
+                                    Navigator.pop(
+                                        context);
+                                  },
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Container(
+                                height: 40,
+                                child:
+                                defaultButton(
+                                  text: 'No',
+                                  onPressed:
+                                      () {
+                                    Navigator.pop(
+                                        context);
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    title: 'This is Ignored',
+                    desc:
+                    'This is also Ignored',
+                    //   btnOkOnPress: () {},
+                  ).show();
                 },
                 icon: const Icon(
                   Icons.delete_rounded,
@@ -409,7 +550,7 @@ class ModulesLibraryScreen extends StatelessWidget {
     );
   }
 
-  Widget buildAssignmentTab(List<Assignments> assignment, cubit) {
+  Widget buildAssignmentTab(List<Assignment> assignment, cubit) {
     return ListView.separated(
       physics: const BouncingScrollPhysics(),
       itemBuilder: (context, index) =>

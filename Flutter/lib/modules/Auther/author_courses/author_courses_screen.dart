@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,108 +28,111 @@ class AuthorCourses extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AuthorCoursesCubit, AuthorCoursesStates>(
-      listener: (context, state) {},
-      builder: (context, state) {
-        var cubit = AuthorCoursesCubit.get(context);
-        return Layout(
-          widget: DefaultTabController(
-            length: myTabs.length,
-            child: Scaffold(
-              appBar: AppBar(),
-              body: ConditionalBuilder(
-                condition: cubit.coursesModel != null &&
-                    cubit.coursesModelPublish != null,
-                builder: (context) {
-                  return Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            left: 20.0, right: 20.0, top: 10),
-                        child: Row(
-                          children: [
-                            Text(
-                              'My Courses',
-                              style: TextStyle(
-                                fontSize: 20.sp,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
-                              ),
-                            ),
-                            Spacer(),
-                            ElevatedButton(
-                              onPressed: () {
-                                navigator(context, CreateCourseScreen());
-                              },
-                              child: Text(
-                                'New Course',
+    return BlocProvider.value(
+      value: BlocProvider.of<AuthorCoursesCubit>(context)..getAuthorCoursesData()..getAuthorCoursesPublishedData(),
+      child: BlocConsumer<AuthorCoursesCubit, AuthorCoursesStates>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          var cubit = AuthorCoursesCubit.get(context);
+          return Layout(
+            widget: DefaultTabController(
+              length: myTabs.length,
+              child: Scaffold(
+                appBar: AppBar(),
+                body: ConditionalBuilder(
+                  condition: cubit.coursesModel != null &&
+                      cubit.coursesModelPublish != null,
+                  builder: (context) {
+                    return Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              left: 20.0, right: 20.0, top: 10),
+                          child: Row(
+                            children: [
+                              Text(
+                                'My Courses',
                                 style: TextStyle(
-                                  fontSize: 16.sp,
+                                  fontSize: 20.sp,
                                   fontWeight: FontWeight.bold,
+                                  color: Colors.black,
                                 ),
                               ),
-                            ),
-                          ],
+                              Spacer(),
+                              ElevatedButton(
+                                onPressed: () {
+                                  navigator(context, CreateCourseScreen());
+                                },
+                                child: Text(
+                                  'New Course',
+                                  style: TextStyle(
+                                    fontSize: 16.sp,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      TabBar(
-                        labelColor: primaryColor,
-                        indicatorColor: primaryColor,
-                        unselectedLabelColor: Colors.black,
-                        // isScrollable: true,
-                        labelStyle: TextStyle(
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.bold,
+                        TabBar(
+                          labelColor: primaryColor,
+                          indicatorColor: primaryColor,
+                          unselectedLabelColor: Colors.black,
+                          // isScrollable: true,
+                          labelStyle: TextStyle(
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          tabs: myTabs,
                         ),
-                        tabs: myTabs,
-                      ),
-                      Expanded(
-                        child: TabBarView(
-                          children: [
-                            //Pending Courses
-                            ConditionalBuilder(
-                              condition:
-                              cubit.coursesModel!.courses!.length != 0,
-                              builder: (context) {
-                                return penddingCourses(cubit);
-                              },
-                              fallback: (context) {
-                                return emptyPage(
-                                    text: "No Tracks Added Yet",
-                                    context: context);
-                              },
-                            ),
-                            //Publish Courses
-                            ConditionalBuilder(
-                              condition:
-                                  cubit.coursesModelPublish!.courses!.length != 0,
-                              builder: (context) {
-                                return publishedCourses(cubit);
-                              },
-                              fallback: (context) {
-                                return emptyPage(
-                                    text: "No Tracks Added Yet",
-                                    context: context);
-                              },
-                            ),
+                        Expanded(
+                          child: TabBarView(
+                            children: [
+                              //Pending Courses
+                              ConditionalBuilder(
+                                condition:
+                                cubit.coursesModel!.courses!.length != 0,
+                                builder: (context) {
+                                  return penddingCourses(cubit);
+                                },
+                                fallback: (context) {
+                                  return emptyPage(
+                                      text: "No Courses Added Yet",
+                                      context: context);
+                                },
+                              ),
+                              //Publish Courses
+                              ConditionalBuilder(
+                                condition:
+                                    cubit.coursesModelPublish!.courses!.length != 0,
+                                builder: (context) {
+                                  return publishedCourses(cubit);
+                                },
+                                fallback: (context) {
+                                  return emptyPage(
+                                      text: "No Courses Published Yet",
+                                      context: context);
+                                },
+                              ),
 
-                            //draftsCourses(),
-                          ],
+                              //draftsCourses(),
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
-                  );
-                },
-                fallback: (context) {
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
-                },
+                      ],
+                    );
+                  },
+                  fallback: (context) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  },
+                ),
               ),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 
@@ -160,6 +164,7 @@ class AuthorCourses extends StatelessWidget {
       context, Courses course, AuthorCoursesCubit cubit, bool request) {
     return InkWell(
       onTap: (){
+        print(course.sId);
         navigator(context, CourseDetailsScreen(course));
       },
       child: Padding(
@@ -221,6 +226,153 @@ class AuthorCourses extends StatelessWidget {
               Expanded(
                 flex: 1,
                 child: PopupMenuButton(
+                  onSelected: (select){
+                    if(select == 1){
+                      navigator(context, UpdateCourseScreen(course));
+                    }else if(select == 2){
+                      AwesomeDialog(
+                        context: context,
+                        animType: AnimType.SCALE,
+                        dialogType:
+                        DialogType.NO_HEADER,
+                        body: Center(
+                          child: Padding(
+                            padding:
+                            const EdgeInsets
+                                .all(8.0),
+                            child: Form(
+                              //  key: formkey,
+                              child: Column(
+                                children: [
+                                  Text(
+                                    'Are you sure you want to delete this track ?',
+                                    textAlign:
+                                    TextAlign
+                                        .center,
+                                    style:
+                                    TextStyle(
+                                      fontWeight:
+                                      FontWeight
+                                          .bold,
+                                      fontSize:
+                                      20,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 30,
+                                  ),
+                                  Container(
+                                    height: 40,
+                                    child:
+                                    defaultButton(
+                                      text:
+                                      'Yes, I\'m Agree',
+                                      onPressed:
+                                          () {
+                                            cubit.deleteCourse(courseId: course.sId!);
+                                        Navigator.pop(
+                                            context);
+                                      },
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Container(
+                                    height: 40,
+                                    child:
+                                    defaultButton(
+                                      text: 'No',
+                                      onPressed:
+                                          () {
+                                        Navigator.pop(
+                                            context);
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        title: 'This is Ignored',
+                        desc:
+                        'This is also Ignored',
+                        //   btnOkOnPress: () {},
+                      ).show();
+                    }else if(select == 3){
+                      AwesomeDialog(
+                        context: context,
+                        animType: AnimType.SCALE,
+                        dialogType:
+                        DialogType.NO_HEADER,
+                        body: Center(
+                          child: Padding(
+                            padding:
+                            const EdgeInsets
+                                .all(8.0),
+                            child: Form(
+                              //  key: formkey,
+                              child: Column(
+                                children: [
+                                  Text(
+                                    'Are you sure you want to send request this track ?',
+                                    textAlign:
+                                    TextAlign
+                                        .center,
+                                    style:
+                                    TextStyle(
+                                      fontWeight:
+                                      FontWeight
+                                          .bold,
+                                      fontSize:
+                                      20,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 30,
+                                  ),
+                                  Container(
+                                    height: 40,
+                                    child:
+                                    defaultButton(
+                                      text:
+                                      'Yes, I\'m Agree',
+                                      onPressed:
+                                          () {
+                                            cubit.sendNewCourseRequest(courseId: course.sId);
+                                        Navigator.pop(
+                                            context);
+                                      },
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Container(
+                                    height: 40,
+                                    child:
+                                    defaultButton(
+                                      text: 'No',
+                                      onPressed:
+                                          () {
+                                        Navigator.pop(
+                                            context);
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        title: 'This is Ignored',
+                        desc:
+                        'This is also Ignored',
+                        //   btnOkOnPress: () {},
+                      ).show();
+                    }
+                  },
                   icon: Icon(
                     Icons.more_vert,
                     size: 30,
@@ -228,45 +380,55 @@ class AuthorCourses extends StatelessWidget {
                   ),
                   itemBuilder: (BuildContext context) => [
                     PopupMenuItem(
-                      child: TextButton.icon(
-                          onPressed: () {
-                            navigator(context, UpdateCourseScreen(course));
-                          },
-                          icon: Icon(Icons.edit),
-                          label: Text('Edit')),
+                      child: Row(
+                        children: [
+                          SizedBox(width: 10,),
+                          Icon(
+                            Icons.edit,
+                            color: primaryColor,
+                          ),
+                          SizedBox(width: 10,),
+                          Text(
+                            'Edit',
+                            style: TextStyle(color: primaryColor),
+                          ),
+                        ],
+                      ),
                       value: 1,
                     ),
                     PopupMenuItem(
-                      child: TextButton.icon(
-                          onPressed: () {
-                            print(course.sId);
-                            cubit.deleteCourse(courseId: course.sId!);
-                          },
-                          icon: Icon(
+                      child: Row(
+                        children: [
+                          SizedBox(width: 10,),
+                          Icon(
                             Icons.delete,
                             color: Colors.red,
                           ),
-                          label: Text(
+                          SizedBox(width: 10,),
+                          Text(
                             'Delete',
                             style: TextStyle(color: Colors.red),
-                          )),
+                          ),
+                        ],
+                      ),
                       value: 2,
                     ),
                     if (request)
                       PopupMenuItem(
-                        child: TextButton.icon(
-                            onPressed: () {
-                              cubit.sendNewCourseRequest(courseId: course.sId);
-                              print(course.sId.toString());
-                            },
-                            icon: const Icon(
+                        child: Row(
+                          children: [
+                            SizedBox(width: 10,),
+                            Icon(
                               Icons.send,
                               color: Colors.green,
                             ),
-                            label: const Text(
+                            SizedBox(width: 10,),
+                            Text(
                               'Request',
                               style: TextStyle(color: Colors.green),
-                            )),
+                            ),
+                          ],
+                        ),
                         value: 3,
                       ),
                   ],

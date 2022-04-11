@@ -312,7 +312,7 @@ class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
                                               fontWeight: FontWeight.bold,
                                               color: primaryColor)),
                                       NumberSlideAnimation(
-                                        number: "6234",
+                                        number: "0",
                                         duration: const Duration(seconds: 4),
                                         curve: Curves.fastOutSlowIn,
                                         textStyle: const TextStyle(

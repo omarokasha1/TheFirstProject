@@ -122,6 +122,7 @@ class UpdateModule extends StatelessWidget {
                                 prefixIcon: Icons.drive_file_rename_outline,
                               ),
                               customTextFormFieldWidget(
+                                state: TextInputAction.done,
                                 onChanged: (moduleName) {
                                   cubit.onModuleNameChanged(moduleName);
                                 },
@@ -267,7 +268,7 @@ class UpdateModule extends StatelessWidget {
                                     moduleName: moduleNameController.text,
                                     description: shortDescriptionController.text,
                                     duration: durationController.text,
-                                    content: file!,
+                                    image: file,
                                     //moduleType: contentModel.contentType.toString(),
                                   );
                                   Navigator.pop(context);

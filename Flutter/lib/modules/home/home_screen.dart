@@ -17,7 +17,7 @@ import 'package:lms/modules/search/search_screen.dart';
 import 'package:lms/modules/user_tracks/cubit/cubit.dart';
 import 'package:lms/modules/user_tracks/cubit/states.dart';
 import 'package:lms/modules/user_tracks/user_track_overview_screen.dart';
-import 'package:lms/modules/user_tracks/user_trcks_enroll_screen.dart';
+import 'package:lms/modules/user_tracks/user_tracks_enroll_screen.dart';
 import 'package:lms/modules/user_tracks/view_all_tracks_screen.dart';
 import 'package:lms/shared/component/MyAppBar.dart';
 import 'package:lms/shared/component/component.dart';
@@ -242,7 +242,7 @@ class HomePage extends StatelessWidget {
                                       itemBuilder: (context, index) =>
                                           buildUserTracksItem(
                                               context,
-                                              true,
+                                              false,
                                               TrackCubit.get(context)
                                                   .tracksModel[index]!),
                                       itemCount: TrackCubit.get(context)
@@ -403,7 +403,7 @@ Widget buildUserTracksItem(context, bool enroll, Tracks tracksModel) => InkWell(
                           borderRadius: BorderRadius.circular(20.r),
                         ),
                         child: Text(
-                          '14 Courses',
+                          '${tracksModel.courses!.length} Courses',
                           style: TextStyle(
                             fontSize: 12.0.sp,
                             fontWeight: FontWeight.w600,

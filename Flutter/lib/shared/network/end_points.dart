@@ -8,6 +8,7 @@ const allUsers = "api/user/allUsers";
 const getEnrolledCourses = "api/user/enrollCourses";
 const getEnrollTracks = "api/user/enrollTracks";
 const courses = "api/course/allCourses";
+const getCourseByID = "api/course/getCourse";
           //<<<<<<<<<<<<<<<<<<<<<<<Create>>>>>>>>>>>>>>>>>>>>
 const login = "api/user/login";
 const register = "api/user/register";

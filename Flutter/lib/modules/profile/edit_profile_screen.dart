@@ -373,6 +373,7 @@ class EditProfileScreen extends StatelessWidget {
           },
         ),
         customTextFormFieldWidget(
+          state: TextInputAction.done,
           colorPerfix: true,
           label: 'Birthday',
           controller: birthdayController,
@@ -520,6 +521,7 @@ class EditProfileScreen extends StatelessWidget {
           height: 10.0,
         ),
         customTextFormFieldWidget(
+
           colorPerfix: true,
           label: 'Experience',
           controller: experienceController,

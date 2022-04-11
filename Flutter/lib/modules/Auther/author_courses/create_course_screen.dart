@@ -7,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lms/modules/Auther/author_courses/author_courses_cubit/cubit.dart';
 import 'package:lms/modules/Auther/author_courses/author_courses_cubit/status.dart';
+import 'package:lms/modules/Auther/modules/create_assigment/cubit/cubit.dart';
 import 'package:lms/modules/Auther/modules/create_module/cubit/cubit.dart';
 import 'package:lms/modules/Auther/modules/create_module/cubit/states.dart';
 import 'package:open_file/open_file.dart';
@@ -31,12 +32,11 @@ class CreateCourseScreen extends StatelessWidget {
 
   var formKey = GlobalKey<FormState>();
 
-
-
   @override
   Widget build(BuildContext context) {
+    BlocProvider.of<CreateAssignmentCubit>(context)..getAssignmentData();
     return BlocProvider.value(
-      value: BlocProvider.of<CreateModuleCubit>(context)..getModulesData()..myActivities=[],
+      value: BlocProvider.of<CreateModuleCubit>(context)..getModulesData()..contentActivities=[]..assignmentActivities =[],
       child: BlocConsumer<AuthorCoursesCubit, AuthorCoursesStates>(
         listener: (context, state) {},
         builder: (context, state) => BlocConsumer<CreateModuleCubit, CreateModuleStates>(
@@ -46,7 +46,7 @@ class CreateCourseScreen extends StatelessWidget {
             var moduleCubit = CreateModuleCubit.get(context);
             return Scaffold(
               body: ConditionalBuilder(
-                condition: moduleCubit.getContent != null,
+                condition: moduleCubit.getContent != null && BlocProvider.of<CreateAssignmentCubit>(context).assignments != null,
                 builder: (context){
                   return SingleChildScrollView(
                     child: Column(
@@ -150,6 +150,7 @@ class CreateCourseScreen extends StatelessWidget {
                                         prefixIcon: Icons.description_outlined,
                                       ),
                                       customTextFormFieldWidget(
+                                        state: TextInputAction.done,
                                         controller: requiermentController,
                                         validate: (value) {
                                           return null;
@@ -181,14 +182,14 @@ class CreateCourseScreen extends StatelessWidget {
                                               height: 25,
                                             ),
                                             selectMoreItem(
-                                              dataSource: moduleCubit.list,
+                                              dataSource: moduleCubit.contentList,
                                               name: "Content",
                                               myActivities:
-                                              moduleCubit.myActivities,
+                                              moduleCubit.contentActivities,
                                               onSaved: (value) {
                                                 print(value);
                                                 if (value == null) return;
-                                                moduleCubit.changeActivity(value);
+                                                moduleCubit.changeContentActivity(value);
                                               },
                                               validate: (value) {
                                                 if (value == null ||
@@ -204,15 +205,15 @@ class CreateCourseScreen extends StatelessWidget {
                                                 return null;
                                               },
                                               myActivities:
-                                              moduleCubit.myActivities,
+                                              moduleCubit.assignmentActivities,
                                               onSaved: (value) {
                                                 if (value == null) return;
                                                 // setState(() {
                                                 //   myActivities = value;
                                                 // });
-                                                moduleCubit.changeActivity(value);
+                                                moduleCubit.changeAssignmentActivity(value);
                                               },
-                                              dataSource: [],
+                                              dataSource: BlocProvider.of<CreateAssignmentCubit>(context).assignmentList,
                                             ),
                                             selectMoreItem(
                                               name: "Quiz",
@@ -220,13 +221,13 @@ class CreateCourseScreen extends StatelessWidget {
                                                 return null;
                                               },
                                               myActivities:
-                                              moduleCubit.myActivities,
+                                              moduleCubit.contentActivities,
                                               onSaved: (value) {
                                                 if (value == null) return;
                                                 // setState(() {
                                                 //   myActivities = value;
                                                 // });
-                                                moduleCubit.changeActivity(value);
+                                                //moduleCubit.changeContentActivity(value);
                                               },
                                               dataSource: [],
                                             ),
@@ -369,7 +370,8 @@ class CreateCourseScreen extends StatelessWidget {
                                           courseName: courseNameController.text,
                                           shortDescription: shortDescriptionController.text,
                                           requirements: requiermentController.text,
-                                          contents: moduleCubit.myActivities!,
+                                          contents: moduleCubit.contentActivities,
+                                          assignments: moduleCubit.assignmentActivities,
                                           language: courseCubit.selectedItem,
                                           courseImage: file,
                                         ).then((value) => Navigator.pop(context));

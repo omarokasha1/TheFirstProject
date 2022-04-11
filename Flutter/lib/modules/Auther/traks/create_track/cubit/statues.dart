@@ -23,8 +23,7 @@ class ChangeActivityState extends CreateTrackStates{}
 
 class CreateTrackLoadingState extends CreateTrackStates{}
 class CreateTrackSuccessState extends CreateTrackStates{
-  final TrackModel? trackModel;
-  CreateTrackSuccessState(this.trackModel);
+  CreateTrackSuccessState();
 }
 class CreateTrackErrorState extends CreateTrackStates{
   final String error;
@@ -91,4 +90,17 @@ class SendTrackRequestErrorState extends CreateTrackStates {
   final String error;
 
   SendTrackRequestErrorState(this.error);
+}
+
+
+class GetAuthorCoursesPublishLoadingState extends CreateTrackStates {}
+class GetAuthorCoursesPublishSuccessState extends CreateTrackStates {
+  final CoursesModel? authorCoursesTestModel;
+
+  GetAuthorCoursesPublishSuccessState(this.authorCoursesTestModel);
+}
+class GetAuthorCoursesPublishErrorState extends CreateTrackStates {
+  final String error;
+
+  GetAuthorCoursesPublishErrorState(this.error);
 }

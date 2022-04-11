@@ -10,9 +10,11 @@ import 'package:lms/modules/Auther/modules/create_assigment/cubit/states.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
 
+import '../../../../models/new/courses_model.dart';
+
 
 class UpdateAssignment extends StatelessWidget {
-  final Assignments model;
+  final Assignment model;
   UpdateAssignment(this.model,{Key? key}) : super(key: key);
 
   Duration? duration;
@@ -120,6 +122,7 @@ class UpdateAssignment extends StatelessWidget {
                                 prefixIcon: Icons.drive_file_rename_outline,
                               ),
                               customTextFormFieldWidget(
+                                state: TextInputAction.done,
                                 onChanged: (moduleName) {
                                   cubit.onModuleNameChanged(moduleName);
                                 },

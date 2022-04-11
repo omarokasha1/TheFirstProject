@@ -31,7 +31,7 @@ class CreateModuleScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider.value(
-      value: BlocProvider.of<CreateModuleCubit>(context)..getModulesData()..myActivities =[],
+      value: BlocProvider.of<CreateModuleCubit>(context)..getModulesData()..contentActivities =[],
       child: BlocConsumer<CreateModuleCubit, CreateModuleStates>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -119,6 +119,7 @@ class CreateModuleScreen extends StatelessWidget {
                                   prefixIcon: Icons.drive_file_rename_outline,
                                 ),
                                 customTextFormFieldWidget(
+                                  state: TextInputAction.done,
                                   onChanged: (moduleName) {
                                     cubit.onModuleNameChanged(moduleName);
                                   },
@@ -258,7 +259,7 @@ class CreateModuleScreen extends StatelessWidget {
                                             moduleName: moduleNameController.text,
                                             description: shortDescriptionController.text,
                                             duration: durationController.text,
-                                            content: file!
+                                            image: file!
                                     ).then((value) => Navigator.pop(context));
                                   }
                                 }

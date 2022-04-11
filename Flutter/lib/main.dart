@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 import 'package:lms/modules/Auther/author_courses/author_courses_cubit/cubit.dart';
 import 'package:lms/modules/Auther/author_profile/author_profile_cubit/cubit.dart';
 import 'package:lms/modules/Auther/modules/create_assigment/cubit/cubit.dart';
@@ -105,12 +106,11 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => CreateModuleCubit()..initStateVideo()),
         BlocProvider(create: (context)=> CreateAssignmentCubit()..getAssignmentData()..myActivities=[]),
         BlocProvider(create: (context)=> AuthorCoursesCubit()..getAuthorCoursesData()..getAuthorCoursesPublishedData()),
-        BlocProvider(create: (context)=>CreateTrackCubit()..getAuthorCoursesData()..getAuthorTrackPublishedData()),
+        BlocProvider(create: (context)=>CreateTrackCubit()..getAuthorTrackPublishedData()),
         BlocProvider(create: (context)=>TrackCubit()..getAllTracksData()),
         BlocProvider(create: (context)=>MyLearningCubit()..getEnrollCourses()),
         BlocProvider(create: (context)=>AdminCubit()..getAllAuthor()..getUserData()..getNumberOfCourses()..getNumberOfTracks()),
-     //   BlocProvider(create: (context)=>ManagerCubit() ..getAuthorRequests()..getCoursesRequests()..getTracksRequests()..getAllAuthor()..getAllUsers(),),
-
+        BlocProvider(create: (context)=>ManagerCubit() ..getAuthorRequests()..getCoursesRequests()..getTracksRequests()..getAllAuthor()..getAllUsers(),),
       ],
       //ScreenUTil is A Package make application responsive.
       child: ScreenUtilInit(

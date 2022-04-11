@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lms/modules/Auther/author_courses/author_courses_cubit/cubit.dart';
 import 'package:lms/modules/Auther/author_courses/author_courses_cubit/status.dart';
+import 'package:lms/modules/Auther/modules/create_assigment/cubit/cubit.dart';
 import 'package:lms/modules/Auther/modules/create_module/cubit/cubit.dart';
 import 'package:lms/modules/Auther/modules/create_module/cubit/states.dart';
 
@@ -32,10 +33,15 @@ class UpdateCourseScreen extends StatelessWidget {
     courseNameController.text = courseModel.title ?? '';
     shortDescriptionController.text = courseModel.description ?? '';
     requirementController.text = courseModel.requirements ?? '';
-    CreateModuleCubit.get(context).myActivities = courseModel.contents;
-
+    List myContent = [];
+    if(courseModel.contents != null){
+      courseModel.contents!.forEach((element) {
+        myContent.add(element.sId);
+      });
+    }
+    CreateModuleCubit.get(context).changeContentActivity(myContent);
     return BlocProvider.value(
-      value: BlocProvider.of<CreateModuleCubit>(context)..getModulesData(),
+      value: BlocProvider.of<CreateModuleCubit>(context)..getModulesData()..changeAssignmentActivity([]),
       child: BlocConsumer<AuthorCoursesCubit, AuthorCoursesStates>(
         listener: (context, state) {},
         builder: (context, state) => BlocConsumer<CreateModuleCubit, CreateModuleStates>(
@@ -149,6 +155,7 @@ class UpdateCourseScreen extends StatelessWidget {
                                         prefixIcon: Icons.description_outlined,
                                       ),
                                       customTextFormFieldWidget(
+                                        state: TextInputAction.done,
                                         controller: requirementController,
                                         validate: (value) {
                                           return null;
@@ -180,14 +187,14 @@ class UpdateCourseScreen extends StatelessWidget {
                                               height: 25,
                                             ),
                                             selectMoreItem(
-                                              dataSource: moduleCubit.list,
+                                              dataSource: moduleCubit.contentList,
                                               name: "Content",
                                               myActivities:
-                                              moduleCubit.myActivities,
+                                              moduleCubit.contentActivities,
                                               onSaved: (value) {
                                                 print(value);
                                                 if (value == null) return;
-                                                moduleCubit.changeActivity(value);
+                                                moduleCubit.changeContentActivity(value);
                                               },
                                               validate: (value) {
                                                 if (value == null ||
@@ -202,16 +209,16 @@ class UpdateCourseScreen extends StatelessWidget {
                                               validate: (value) {
                                                 return null;
                                               },
-                                              myActivities: [],
+                                              myActivities: moduleCubit.assignmentActivities,
                                               //moduleCubit.myActivities,
                                               onSaved: (value) {
                                                 if (value == null) return;
                                                 // setState(() {
                                                 //   myActivities = value;
                                                 // });
-                                                //moduleCubit.changeActivity(value);
+                                                moduleCubit.changeAssignmentActivity(value);
                                               },
-                                              dataSource: [],
+                                              dataSource: BlocProvider.of<CreateAssignmentCubit>(context).assignmentList,
                                             ),
                                             selectMoreItem(
                                               name: "Quiz",
@@ -337,12 +344,13 @@ class UpdateCourseScreen extends StatelessWidget {
                                           courseName: courseNameController.text,
                                           shortDescription: shortDescriptionController.text,
                                           requirements: requirementController.text,
-                                          contents: moduleCubit.myActivities!,
+                                          contents: moduleCubit.contentActivities!,
+                                          assignments: moduleCubit.assignmentActivities!,
                                           language: courseCubit.selectedItem,
                                           courseImage: courseImage,
                                           sID : courseModel.sId,
                                         ).then((value) {
-                                          moduleCubit.myActivities = [];
+                                          moduleCubit.contentActivities = [];
                                           Navigator.pop(context);
                                         });
                                       }

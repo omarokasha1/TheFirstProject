@@ -41,23 +41,36 @@ class CreateModuleCubit extends Cubit<CreateModuleStates> {
 
 
   Map<String, String>? content = {};
-  List? list = [];
-  List? myActivities = [];
+  List? contentList = [];
+  List? contentActivities = [];
+  List? assignmentActivities = [];
+  List? quizActivities = [];
 
-  void changeActivity(value) {
-    myActivities = value;
-    print(myActivities);
-    emit(ChangeActivityState());
+  void changeContentActivity(value) {
+    contentActivities = value;
+    print(contentActivities);
+    emit(ChangeContentActivityState());
+  }
+  void changeAssignmentActivity(value) {
+    assignmentActivities = value;
+    print(assignmentActivities);
+    emit(ChangeAssignmentActivityState());
+  }
+  void changeQuizActivity(value) {
+    quizActivities = value;
+    print(quizActivities);
+    emit(ChangeQuizActivityState());
   }
   ContentsModel? getContent;
   void getModulesData() {
     emit(GetContentsLoadingState());
     DioHelper.getData(url: getModule, token: userToken).then((value) {
-      list = [];
+      contentList = [];
       getContent = ContentsModel.fromJson(value.data);
       getContent!.contents!.forEach((element) {
-        list!.add({'display': element.contentTitle, 'value': element.sId});
+        contentList!.add({'display': element.contentTitle, 'value': element.sId});
       });
+      print('Here Content List ${contentList}');
       emit(GetContentsSuccssesState(getContent!));
     }).catchError((error) {
       emit(GetContentsErrorState(error.toString()));
@@ -82,7 +95,7 @@ class CreateModuleCubit extends Cubit<CreateModuleStates> {
     required String moduleName,
     required String description,
     required String duration,
-    required content,
+    required image,
   })async  {
     emit(CreateNewModuleLoadingState());
 
@@ -92,7 +105,7 @@ class CreateModuleCubit extends Cubit<CreateModuleStates> {
         'contentTitle': moduleName,
         'description': description,
         'contentDuration': duration,
-        'imageUrl':await fileUpload(content),
+        'imageUrl':await fileUpload(image),
       },
       url: module,
       token: userToken,
@@ -135,7 +148,7 @@ class CreateModuleCubit extends Cubit<CreateModuleStates> {
     required String moduleName,
     required String description,
     required String duration,
-    required content,
+    required image,
     //required String moduleType,
   }) async {
     emit(UpdateModuleLoadingState());
@@ -146,9 +159,10 @@ class CreateModuleCubit extends Cubit<CreateModuleStates> {
         'contentTitle': moduleName,
         'description': description,
         'contentDuration': duration,
-        'imageUrl': content,
+        'imageUrl': await fileUpload(image),
         //'contentType': moduleType,
       },
+      files: true,
       url: updateModule,
       token: userToken,
     ).then((value) {

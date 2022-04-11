@@ -695,7 +695,7 @@ class AuthorRequest extends StatelessWidget {
                                       child: defaultButton(
                                         text: 'Yes, I\'m Agree',
                                         onPressed: () {
-                                          cubit.deleteTrackRequestData(
+                                          cubit.deleteTrackRequestData(context,
                                               trackId: model.trackId!.sId!);
                                           Navigator.pop(context);
                                         },

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:lms/models/author_courses_published_model.dart';
 import 'package:lms/models/new/courses_model.dart';
 import 'package:lms/models/response_model.dart';
@@ -22,25 +23,28 @@ class AuthorCoursesCubit extends Cubit<AuthorCoursesStates> {
       hasCourseName = true;
     }
   }
+
   bool checkedValue = false;
 
   List<String> items = ['English', 'Arabic'];
   String selectedItem = "English";
 
-  void changeItem(String value)
-  {
-    selectedItem=value;
+  void changeItem(String value) {
+    selectedItem = value;
     emit(ChangeItemState());
   }
-int totalStudent = 0;
+
+  int totalStudent = 0;
+
   //AuthorCoursesTestModel? authorCoursesTestModel;
   CoursesModel? coursesModel;
   CoursesModel? coursesModelPublish;
 
   Future<void> getAuthorCoursesData() async {
     emit(GetAuthorCoursesLoadingState());
-    await DioHelper.getData(url: getAuthorCourses, token: userToken).then((value) {
-      //print(value.data);
+    await DioHelper.getData(url: getAuthorCourses, token: userToken)
+        .then((value) {
+      print(value.data);
       //authorCoursesTestModel!.courses=[];
       //authorCoursesTestModel = AuthorCoursesTestModel.fromJson(value.data);
       coursesModel = CoursesModel.fromJson(value.data);
@@ -52,28 +56,24 @@ int totalStudent = 0;
     });
   }
 
+  List coursesList = [];
+
   Future<void> getAuthorCoursesPublishedData() async {
-    if(coursesModelPublish == null){
+    if (coursesModelPublish == null) {
       print('asd is null');
     }
     totalStudent = 0;
     emit(GetAuthorCoursesPublishLoadingState());
-    await DioHelper.getData(url: getAuthorCoursesPublished, token: userToken).then((value) {
+    coursesList = [];
+    await DioHelper.getData(url: getAuthorCoursesPublished, token: userToken)
+        .then((value) {
       //print(value.data);
       //authorCoursesTestModel!.courses=[];
       coursesModelPublish = CoursesModel.fromJson(value.data);
-      if(coursesModelPublish == null){
-        print('asd222222 is null');
-      }
-      coursesModelPublish!.courses!.where((element) {
-        totalStudent+=element.learner!.length;
-        print("Here");
-        print(element.learner!.length);
-        return true;
-      }).toList();
-      print("totalStudent");
-
-      print(totalStudent);
+      coursesModelPublish!.courses!.forEach((element) {
+        coursesList.add({'display': element.title, 'value': element.sId});
+      });
+      print(coursesList);
       //print(authorCoursesTestModel!.courses.toString());
       emit(GetAuthorCoursesPublishSuccessState(coursesModelPublish));
     }).catchError((error) {
@@ -87,18 +87,18 @@ int totalStudent = 0;
   }) async {
     emit(SendCourseRequestLoadingState());
     DioHelper.postData(
-
       data: {
         'courseId': courseId,
-       // 'token':userToken,
+        // 'token':userToken,
       },
       url: sendCourseRequest,
       token: userToken,
     ).then((value) async {
       print(value.data);
       emit(SendCourseRequestSuccessState());
-      showToast(message: '${value.data['message']}',color: Colors.green);
-      getAuthorCoursesData();
+      showToast(message: '${value.data['message']}', color: Colors.green);
+      await getAuthorCoursesData();
+      await getAuthorCoursesPublishedData();
     }).catchError((onError) {
       print(onError.toString());
       emit(SendCourseRequestErrorState(onError.toString()));
@@ -110,6 +110,7 @@ int totalStudent = 0;
     required String shortDescription,
     required String requirements,
     required contents,
+    required assignments,
     required language,
     required courseImage,
   }) async {
@@ -119,9 +120,12 @@ int totalStudent = 0;
       data: {
         'title': courseName,
         'description': shortDescription,
-        'requirements' : requirements,
+        'requirements': requirements,
         'contents': contents,
+        'assignments': assignments,
         'language': language,
+        'lastUpdate': DateFormat("dd-MM-yyyy").format(DateTime.now()).toString(),
+        'review' : '4.5',
         'imageUrl': await fileUpload(courseImage),
       },
       url: createAuthorCourse,
@@ -129,7 +133,8 @@ int totalStudent = 0;
     ).then((value) async {
       //print('Hereeeeeee : ${value.data}');
       emit(CreateCourseSuccessState());
-      getAuthorCoursesData();
+      await getAuthorCoursesData();
+      await getAuthorCoursesPublishedData();
     }).catchError((onError) {
       print(onError.toString());
       emit(CreateCourseErrorState(onError.toString()));
@@ -144,6 +149,7 @@ int totalStudent = 0;
     required String shortDescription,
     required String requirements,
     required contents,
+    required assignments,
     required language,
     required courseImage,
     required sID,
@@ -153,21 +159,26 @@ int totalStudent = 0;
       data: {
         'title': courseName,
         'description': shortDescription,
-        'requirements' : requirements,
+        'requirements': requirements,
         'contents': contents,
+        'assignments': assignments,
         'language': language,
+        'lastUpdate': DateFormat("dd-MM-yyyy").format(DateTime.now()).toString(),
+        'review' : '4.5',
         'imageUrl': await fileUpload(courseImage),
         'id': sID,
       },
+      files: true,
       url: updateAuthorCourse,
       token: userToken,
     ).then((value) async {
       //  trackModel = TrackModel.fromJson(value.data);
       updateModel = ResponseModel.fromJson(value.data);
-      showToast(message: '${updateModel!.message}',color: Colors.green);
+      showToast(message: '${updateModel!.message}', color: Colors.green);
       print('Hereeeeeee : ${value.data}');
       emit(UpdateCourseSuccessState());
-      getAuthorCoursesData();
+      await getAuthorCoursesData();
+      await getAuthorCoursesPublishedData();
     }).catchError((onError) {
       print(onError.toString());
       emit(UpdateCourseErrorState(onError.toString()));
@@ -178,11 +189,14 @@ int totalStudent = 0;
 
   void deleteCourse({required String courseId}) {
     emit(DeleteCourseLoadingState());
-    DioHelper.deleteData(url:'$deleteAuthorCourse/$courseId',).then((value) async {
+    DioHelper.deleteData(
+      url: '$deleteAuthorCourse/$courseId',
+    ).then((value) async {
       //print(value.data);
       deleteModel = ResponseModel.fromJson(value.data);
-      await getAuthorCoursesData();
       emit(DeleteCourseSuccessState());
+      await getAuthorCoursesData();
+      await getAuthorCoursesPublishedData();
     }).catchError((error) {
       emit(DeleteCourseErrorState(error));
     });
