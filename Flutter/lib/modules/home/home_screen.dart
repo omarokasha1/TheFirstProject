@@ -449,33 +449,33 @@ Widget buildUserTracksItem(context, bool enroll, Tracks tracksModel) => InkWell(
                             ),
                           ],
                         ),
-                        const Spacer(),
-                        Container(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 10.0.w, vertical: 3.h),
-                          decoration: BoxDecoration(
-                            border:
-                                Border.all(color: Colors.grey[300]!, width: 1),
-                            borderRadius: BorderRadius.circular(50.r),
-                          ),
-                          child: Row(
-                            children: [
-                              Image.asset(
-                                'assets/images/star.png',
-                                width: 20,
-                                height: 20,
-                              ),
-                              SizedBox(
-                                width: 5.w,
-                              ),
-                              //Text('${courseModel.review}'),
-                              const Text(
-                                '4.5',
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                        ),
+                        // const Spacer(),
+                        // Container(
+                        //   padding: EdgeInsets.symmetric(
+                        //       horizontal: 10.0.w, vertical: 3.h),
+                        //   decoration: BoxDecoration(
+                        //     border:
+                        //         Border.all(color: Colors.grey[300]!, width: 1),
+                        //     borderRadius: BorderRadius.circular(50.r),
+                        //   ),
+                        //   child: Row(
+                        //     children: [
+                        //       Image.asset(
+                        //         'assets/images/star.png',
+                        //         width: 20,
+                        //         height: 20,
+                        //       ),
+                        //       SizedBox(
+                        //         width: 5.w,
+                        //       ),
+                        //       //Text('${courseModel.review}'),
+                        //       const Text(
+                        //         '4.5',
+                        //         style: TextStyle(fontWeight: FontWeight.bold),
+                        //       ),
+                        //     ],
+                        //   ),
+                        //),
                       ],
                     ),
                   ],

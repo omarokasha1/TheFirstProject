@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:better_player/better_player.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lms/layout/layout.dart';
@@ -47,7 +50,7 @@ class _ModuleDetailsScreenState extends State<ModuleDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<CreateModuleCubit,CreateModuleStates>(
+    return BlocConsumer<ModuleCubit,CreateModuleStates>(
       listener: (context, state) {},
       builder: (context, state) {
         return Layout(
@@ -217,7 +220,7 @@ class _ModuleDetailsScreenState extends State<ModuleDetailsScreen> {
   }
 }
 
-Widget viewFileDetails(contentModel) {
+Widget viewImageDetails(contentModel) {
   final kb = contentModel.imageUrl.size / 1024;
   final mb = kb / 1024;
   final fileSize =
@@ -307,3 +310,92 @@ Widget viewFileDetails(contentModel) {
   );
 }
 
+Widget viewFileDetails(cubit,FilePickerResult? result,
+dynamic filePath,
+File? file) {
+  final kb = filePath.size / 1024;
+  final mb = kb / 1024;
+  final fileSize =
+  mb > 1 ? "${mb.toStringAsFixed(2)} MB" : "${kb.toStringAsFixed(2)} Kb";
+  final extension = filePath.extension ?? "none";
+
+  return Stack(
+    children: [
+      Container(
+        padding: EdgeInsets.all(12),
+        child: InkWell(
+          onTap: () {
+            OpenFile.open(filePath.path);
+          },
+          child: Container(
+            padding: EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              // color: secondaryColor,
+                borderRadius: BorderRadius.all(Radius.circular(15)),
+                border: Border.all(
+                  color: primaryColor,
+                )),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  filePath.name,
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                      overflow: TextOverflow.ellipsis),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      ".${filePath.extension}",
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    Text(
+                      "/ $fileSize",
+                      style: TextStyle(fontSize: 20),
+                    )
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+      Positioned(
+        top: 0,
+        right: 0,
+        child: CircleAvatar(
+          backgroundColor: secondaryColor,
+          radius: 20.0,
+          child: IconButton(
+            icon: const Icon(
+              Icons.edit,
+            ),
+            color: Colors.white,
+            iconSize: 20.0,
+            onPressed: () async {
+              result = await FilePicker.platform.pickFiles();
+
+              if (result != null) {
+                file = File(result!.files.single.path!);
+                filePath = result!.files.first;
+
+                cubit.selectImage();
+              }
+            },
+          ),
+        ),
+      ),
+    ],
+  );
+}

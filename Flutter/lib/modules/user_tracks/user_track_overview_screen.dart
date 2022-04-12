@@ -253,29 +253,29 @@ class UserTracksOverViewScreen extends StatelessWidget {
                       ),
                       // author name
                       Text('${tracksModel.author!.userName}'),
-                      const Spacer(),
-                      // course rate (title, icon)
-                      Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            color: primaryColor.withOpacity(0.7)),
-                        padding: EdgeInsets.symmetric(horizontal: 8),
-                        child: Row(
-                          children: [
-                            const Icon(
-                              Icons.star,
-                              color: Colors.yellow,
-                            ),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                            // Text(
-                            //   '${courseModel.review}',
-                            //   style: TextStyle(color: Colors.white),
-                            // )
-                          ],
-                        ),
-                      ),
+                      // const Spacer(),
+                      // // course rate (title, icon)
+                      // Container(
+                      //   decoration: BoxDecoration(
+                      //       borderRadius: BorderRadius.circular(15),
+                      //       color: primaryColor.withOpacity(0.7)),
+                      //   padding: EdgeInsets.symmetric(horizontal: 8),
+                      //   child: Row(
+                      //     children: [
+                      //       const Icon(
+                      //         Icons.star,
+                      //         color: Colors.yellow,
+                      //       ),
+                      //       const SizedBox(
+                      //         width: 5,
+                      //       ),
+                      //       // Text(
+                      //       //   '${courseModel.review}',
+                      //       //   style: TextStyle(color: Colors.white),
+                      //       // )
+                      //     ],
+                      //   ),
+                      // ),
                     ],
                   ),
                   const SizedBox(

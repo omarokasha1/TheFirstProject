@@ -10,8 +10,6 @@ import 'package:lms/modules/my_learning/my_learning_cubit/state.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
 
-import '../../models/new/courses_model.dart';
-
 class MyLearning extends StatelessWidget {
   MyLearning({Key? key}) : super(key: key);
 
@@ -24,9 +22,10 @@ class MyLearning extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider.value(
-      value: BlocProvider.of<MyLearningCubit>(context)..getAllWishlistData()
-      ..getEnrollCourses()
-      ..getEnrolledTracksData(),
+      value: BlocProvider.of<MyLearningCubit>(context)
+        ..getAllWishlistData()
+        ..getEnrollCourses()
+        ..getEnrolledTracksData(),
       child: BlocConsumer<MyLearningCubit, MyLearningStates>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -73,23 +72,23 @@ class MyLearning extends StatelessWidget {
                             ConditionalBuilder(
                                 condition: cubit.enrolledCourses != null,
                                 builder: (context) {
-                                  return ListView.builder(
-                                    shrinkWrap: true,
-                                    //NeverScrollableScrollPhysics:Creates scroll physics that does not let the user scroll.
-                                    physics: BouncingScrollPhysics(),
-                                    //repeated widget
-                                    itemBuilder: (context, index) => cubit
-                                                .enrolledCourses.length ==
-                                            0
-                                        ? emptyPage(
-                                            text:
-                                                'You Are not Enrolled in Any Course yet',
-                                            context: context)
-                                        : buildCourseItem(context, true,
-                                            cubit.enrolledCourses[index]),
-                                    //number of repeats
-                                    itemCount: cubit.enrolledCourses.length,
-                                  );
+                                  return cubit.enrolledCourses.length == 0
+                                      ? emptyPage(
+                                          text:
+                                              'You Are not Enrolled in Any Course yet',
+                                          context: context)
+                                      : ListView.builder(
+                                          shrinkWrap: true,
+                                          //NeverScrollableScrollPhysics:Creates scroll physics that does not let the user scroll.
+                                          physics: BouncingScrollPhysics(),
+                                          //repeated widget
+                                          itemBuilder: (context, index) =>
+                                              buildCourseItem(context, true,
+                                                  cubit.enrolledCourses[index]),
+                                          //number of repeats
+                                          itemCount:
+                                              cubit.enrolledCourses.length,
+                                        );
                                 },
                                 fallback: (context) {
                                   return Center(
@@ -99,19 +98,29 @@ class MyLearning extends StatelessWidget {
                             //Tracks
                             ConditionalBuilder(
                               condition: cubit.enrollTracks != null,
-                              builder: (context){
-                                return cubit.enrollTracks!.myTracks!.length != 0 ? ListView.builder(
-                                  //NeverScrollableScrollPhysics:Creates scroll physics that does not let the user scroll.
-                                  physics: BouncingScrollPhysics(),
-                                  //repeated widget
-                                  itemBuilder: (context, index) =>
-                                      builtTrackContant(context,cubit.enrollTracks!.myTracks![index]),
-                                  //number of repeats
-                                  itemCount: cubit.enrollTracks!.myTracks!.length,
-                                ) : emptyPage(text: "There's No Tracks you Enrolled", context: context);
+                              builder: (context) {
+                                return cubit.enrollTracks!.myTracks!.length != 0
+                                    ? ListView.builder(
+                                        //NeverScrollableScrollPhysics:Creates scroll physics that does not let the user scroll.
+                                        physics: BouncingScrollPhysics(),
+                                        //repeated widget
+                                        itemBuilder: (context, index) =>
+                                            builtTrackContant(
+                                                context,
+                                                cubit.enrollTracks!
+                                                    .myTracks![index]),
+                                        //number of repeats
+                                        itemCount: cubit
+                                            .enrollTracks!.myTracks!.length,
+                                      )
+                                    : emptyPage(
+                                        text: "There's No Tracks you Enrolled",
+                                        context: context);
                               },
-                              fallback: (context){
-                                return Center(child: CircularProgressIndicator.adaptive(),);
+                              fallback: (context) {
+                                return Center(
+                                  child: CircularProgressIndicator.adaptive(),
+                                );
                               },
                             ),
                             //WishList
@@ -129,8 +138,11 @@ class MyLearning extends StatelessWidget {
                                         physics: BouncingScrollPhysics(),
                                         //repeated widget
                                         itemBuilder: (context, index) =>
-                                            buildCourseItem(context, false,
-                                                cubit.wishlistCourses!.wishList![index]),
+                                            buildCourseItem(
+                                                context,
+                                                false,
+                                                cubit.wishlistCourses!
+                                                    .wishList![index]),
                                         //number of repeats
                                         itemCount: cubit
                                             .wishlistCourses!.wishList!.length,
@@ -307,8 +319,7 @@ class MyLearning extends StatelessWidget {
                         ),
                         child: Image(
                           fit: BoxFit.cover,
-                          image: NetworkImage(
-                              '${courses.imageUrl}'
+                          image: NetworkImage('${courses.imageUrl}'
                               //'https://img-c.udemycdn.com/course/240x135/3446572_346e_2.jpg',
                               ),
                         ),

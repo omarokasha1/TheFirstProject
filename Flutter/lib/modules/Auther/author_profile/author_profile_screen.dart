@@ -28,8 +28,12 @@ class AuthorProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<CourseCubit>(context).courseModelAuthor(authorID);
-    BlocProvider.of<TrackCubit>(context).trackModelAuthor(authorID);
+    BlocProvider.of<CourseCubit>(context).getAllCoursesData().then((value) => {
+      BlocProvider.of<CourseCubit>(context).courseModelAuthor(authorID)
+    });
+    BlocProvider.of<TrackCubit>(context).getAllTracksData().then((value) => {
+    BlocProvider.of<TrackCubit>(context).trackModelAuthor(authorID)
+    });
     return BlocProvider.value(
       value: BlocProvider.of<AuthorProfileCubit>(context)
         ..getAuthorProfile(authorID),
@@ -40,7 +44,7 @@ class AuthorProfileScreen extends StatelessWidget {
           var courseCubit = CourseCubit.get(context);
           return Layout(
             widget: ConditionalBuilder(
-              condition: cubit.model != null,
+              condition: cubit.model != null ,
               builder: (context) => Scaffold(
                 backgroundColor: primaryColor,
                 appBar: AppBar(
@@ -62,8 +66,10 @@ class AuthorProfileScreen extends StatelessWidget {
                   ),
                 ),
                 body: ConditionalBuilder(
-                  condition:
-                      cubit.model != null && cubit.model!.profile != null,
+                  condition: cubit.model != null &&
+                      cubit.model!.profile != null &&
+                      BlocProvider.of<TrackCubit>(context).tracksModelAuthor !=
+                          null && courseCubit.coursesModelAuthor != null,
                   builder: (context) => Center(
                     child: SingleChildScrollView(
                       child: Column(
@@ -135,7 +141,7 @@ class AuthorProfileScreen extends StatelessWidget {
                               Column(
                                 children: [
                                   Text(
-                                    '12',
+                                    '${courseCubit.coursesModelAuthor.length}',
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 20.sp,
@@ -158,7 +164,7 @@ class AuthorProfileScreen extends StatelessWidget {
                               Column(
                                 children: [
                                   Text(
-                                    '12',
+                                    '${BlocProvider.of<TrackCubit>(context).tracksModelAuthor.length}',
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 20.sp,
@@ -178,26 +184,26 @@ class AuthorProfileScreen extends StatelessWidget {
                               SizedBox(
                                 width: 25.w,
                               ),
-                              Column(
-                                children: [
-                                  Text(
-                                    '4.3',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 20.sp,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Text(
-                                    'Rating',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 20.sp,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ],
-                              ),
+                              // Column(
+                              //   children: [
+                              //     Text(
+                              //       '4.3',
+                              //       style: TextStyle(
+                              //         color: Colors.white,
+                              //         fontSize: 20.sp,
+                              //         fontWeight: FontWeight.bold,
+                              //       ),
+                              //     ),
+                              //     Text(
+                              //       'Rating',
+                              //       style: TextStyle(
+                              //         color: Colors.white,
+                              //         fontSize: 20.sp,
+                              //         fontWeight: FontWeight.bold,
+                              //       ),
+                              //     ),
+                              //   ],
+                              // ),
                             ],
                           ),
                           SizedBox(
@@ -372,8 +378,15 @@ class AuthorProfileScreen extends StatelessWidget {
                                       ),
                                       const Spacer(),
                                       InkWell(
-                                        onTap: (){
-                                          navigator(context, ZoomDrawerScreen(widget: ViewAllTracksScreen(BlocProvider.of<TrackCubit>(context).tracksModelAuthor),));
+                                        onTap: () {
+                                          navigator(
+                                              context,
+                                              ZoomDrawerScreen(
+                                                widget: ViewAllTracksScreen(
+                                                    BlocProvider.of<TrackCubit>(
+                                                            context)
+                                                        .tracksModelAuthor),
+                                              ));
                                         },
                                         child: Row(
                                           children: [
@@ -403,7 +416,11 @@ class AuthorProfileScreen extends StatelessWidget {
                                   SizedBox(
                                     height: 300.h,
                                     child: ConditionalBuilder(
-                                      condition: BlocProvider.of<TrackCubit>(context).tracksModelAuthor.length != 0,
+                                      condition:
+                                          BlocProvider.of<TrackCubit>(context)
+                                                  .tracksModelAuthor
+                                                  .length !=
+                                              0,
                                       builder: (context) => ListView.builder(
                                         physics: const BouncingScrollPhysics(),
                                         scrollDirection: Axis.horizontal,
@@ -411,12 +428,17 @@ class AuthorProfileScreen extends StatelessWidget {
                                         itemBuilder: (context, index) =>
                                             buildUserTracksItem(
                                                 context,
-                                                true,
-                                                BlocProvider.of<TrackCubit>(context).tracksModelAuthor[index]!),
-                                        itemCount: BlocProvider.of<TrackCubit>(context).tracksModelAuthor.length,
+                                                userType == 'admin' ? true : false,
+                                                BlocProvider.of<TrackCubit>(
+                                                        context)
+                                                    .tracksModelAuthor[index]!),
+                                        itemCount:
+                                            BlocProvider.of<TrackCubit>(context)
+                                                .tracksModelAuthor
+                                                .length,
                                       ),
                                       fallback: (context) => Center(
-                                        child: CircularProgressIndicator(),
+                                        child: emptyPage(text: "No Tracks Published yet", context: context),
                                       ),
                                     ),
                                   ),
@@ -446,8 +468,14 @@ class AuthorProfileScreen extends StatelessWidget {
                                         flex: 1,
                                       ),
                                       InkWell(
-                                        onTap: (){
-                                          navigator(context, ZoomDrawerScreen(widget: ViewAllCoursesScreen(courseCubit.coursesModelAuthor),));
+                                        onTap: () {
+                                          navigator(
+                                              context,
+                                              ZoomDrawerScreen(
+                                                widget: ViewAllCoursesScreen(
+                                                    courseCubit
+                                                        .coursesModelAuthor),
+                                              ));
                                         },
                                         child: Row(
                                           children: [
@@ -487,13 +515,14 @@ class AuthorProfileScreen extends StatelessWidget {
                                         itemBuilder: (context, index) =>
                                             buildCourseItem(
                                                 context,
-                                                false,
-                                                courseCubit.coursesModelAuthor[index]),
+                                                userType == 'admin' ? true : false,
+                                                courseCubit
+                                                    .coursesModelAuthor[index]),
                                         itemCount: courseCubit
                                             .coursesModelAuthor.length,
                                       ),
                                       fallback: (context) => Center(
-                                        child: CircularProgressIndicator(),
+                                        child: emptyPage(text: "No Courses Published yet", context: context),
                                       ),
                                     ),
                                   ),

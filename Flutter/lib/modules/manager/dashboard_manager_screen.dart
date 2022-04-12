@@ -12,7 +12,6 @@ import 'package:lms/modules/manager/requests_screen.dart';
 import 'package:lms/shared/component/MyAppBar.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
-import 'package:number_slide_animation/number_slide_animation.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 class DashboardManagerScreen extends StatelessWidget {
@@ -20,28 +19,28 @@ class DashboardManagerScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AdminCubit,AdminStates>(
-      listener:(context, state) {},
-      builder:(context, state) {
-        var aCubit=AdminCubit.get(context);
+    return BlocConsumer<AdminCubit, AdminStates>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        var aCubit = AdminCubit.get(context);
         return BlocConsumer<ManagerCubit, ManagerStates>(
           listener: (context, state) {},
           builder: (context, state) {
             var cubit = ManagerCubit.get(context);
-            var totalRequests = 0;
-            totalRequests =  cubit.trackRequestsModel!.trackRequests!.length ;
             return Scaffold(
               appBar: myAppBar(context),
               body: ConditionalBuilder(
-                condition: aCubit.author != null && aCubit.trackNumber != null && cubit.trackRequestsModel != null,
+                condition: aCubit.author != null &&
+                    aCubit.trackNumber != null &&
+                    cubit.trackRequestsModel != null,
                 builder: (context) => SingleChildScrollView(
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
                       children: [
                         ConditionalBuilder(
-                          condition:true,
-                          builder: (context)=> Container(
+                          condition: true,
+                          builder: (context) => Container(
                             width: double.infinity,
                             padding: const EdgeInsets.all(20),
                             decoration: BoxDecoration(
@@ -62,18 +61,24 @@ class DashboardManagerScreen extends StatelessWidget {
                                       ),
 
                                       // package to add animation to numbers
-
-                                      NumberSlideAnimation(
-                                        number: '${aCubit.author.length}',
-                                        // number
-                                        duration: const Duration(seconds: 4),
-                                        //The time specified for the animation
-                                        curve: Curves.fastOutSlowIn,
-                                        //animation form
-                                        textStyle: const TextStyle(
-                                            fontSize: 20.0,
+                                      // Text("${aCubit.author.length}"),
+                                      Text(
+                                        '${aCubit.author.length}',
+                                        style: TextStyle(
+                                            fontSize: 20,
                                             fontWeight: FontWeight.bold),
                                       ),
+                                      // NumberSlideAnimation(
+                                      //   number: '${aCubit.author.length}',
+                                      //   // number
+                                      //   duration: const Duration(seconds: 4),
+                                      //   //The time specified for the animation
+                                      //   curve: Curves.fastOutSlowIn,
+                                      //   //animation form
+                                      //   textStyle: const TextStyle(
+                                      //       fontSize: 20.0,
+                                      //       fontWeight: FontWeight.bold),
+                                      // ),
                                     ],
                                   ),
                                 ),
@@ -85,14 +90,21 @@ class DashboardManagerScreen extends StatelessWidget {
                                               fontSize: 15,
                                               fontWeight: FontWeight.bold,
                                               color: primaryColor)),
-                                      NumberSlideAnimation(
-                                        number: '${aCubit.trackNumber!.tracks!.length}',
-                                        duration: const Duration(seconds: 4),
-                                        curve: Curves.fastOutSlowIn,
-                                        textStyle: const TextStyle(
-                                            fontSize: 20.0,
+                                      Text(
+                                        '${aCubit.trackNumber!.tracks!.length}',
+                                        style: TextStyle(
+                                            fontSize: 20,
                                             fontWeight: FontWeight.bold),
                                       ),
+                                      // NumberSlideAnimation(
+                                      //   number:
+                                      //       '${aCubit.trackNumber!.tracks!.length}',
+                                      //   duration: const Duration(seconds: 4),
+                                      //   curve: Curves.fastOutSlowIn,
+                                      //   textStyle: const TextStyle(
+                                      //       fontSize: 20.0,
+                                      //       fontWeight: FontWeight.bold),
+                                      // ),
                                     ],
                                   ),
                                 ),
@@ -104,20 +116,29 @@ class DashboardManagerScreen extends StatelessWidget {
                                               fontSize: 15,
                                               fontWeight: FontWeight.bold,
                                               color: primaryColor)),
-                                      NumberSlideAnimation(
-                                        number: "$totalRequests",
-                                        duration: const Duration(seconds: 4),
-                                        curve: Curves.fastOutSlowIn,
-                                        textStyle: const TextStyle(
-                                            fontSize: 20.0, fontWeight: FontWeight.bold),
+                                      Text(
+                                        '${cubit.totalRequests}',
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold),
                                       ),
+                                      // NumberSlideAnimation(
+                                      //   number: "${cubit.totalRequests}",
+                                      //   duration: const Duration(seconds: 4),
+                                      //   curve: Curves.fastOutSlowIn,
+                                      //   textStyle: const TextStyle(
+                                      //       fontSize: 20.0,
+                                      //       fontWeight: FontWeight.bold),
+                                      // ),
                                     ],
                                   ),
                                 ),
                               ],
                             ),
                           ),
-                          fallback: (context)=> Center(child: CircularProgressIndicator.adaptive(),),
+                          fallback: (context) => Center(
+                            child: CircularProgressIndicator.adaptive(),
+                          ),
                         ),
                         const SizedBox(
                           height: 10,
@@ -154,10 +175,8 @@ class DashboardManagerScreen extends StatelessWidget {
                                       ),
                                       Text(
                                         "22 submitted",
-                                        style: Theme
-                                            .of(context)
-                                            .textTheme
-                                            .caption,
+                                        style:
+                                            Theme.of(context).textTheme.caption,
                                       ),
                                     ],
                                   ),
@@ -168,12 +187,11 @@ class DashboardManagerScreen extends StatelessWidget {
                             ),
                             const SizedBox(
                               width: 10,
-
                             ),
                             Expanded(
                               child: Container(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 20),
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 20),
                                 width: double.infinity,
                                 height: 240.h,
                                 decoration: BoxDecoration(
@@ -190,39 +208,53 @@ class DashboardManagerScreen extends StatelessWidget {
                                     const SizedBox(
                                       height: 15,
                                     ),
-                                    ListView.separated(
-                                        physics: const NeverScrollableScrollPhysics(),
-                                        shrinkWrap: true,
-                                        itemBuilder: (context, index) =>
-                                            Row(
-                                              children: [
-                                                const SizedBox(
-                                                  width: 10,
-                                                ),
-                                                CircleAvatar(
-                                                  backgroundImage: NetworkImage(
-                                                      '${aCubit.author[index].imageUrl}'),
-                                                ),
-                                                const SizedBox(
-                                                  width: 10,
-                                                ),
-                                                Column(
+                                    ConditionalBuilder(
+                                      condition: aCubit.author.isNotEmpty ||
+                                          aCubit.author.length >= 3,
+                                      builder: (context) {
+                                        return ListView.separated(
+                                            physics:
+                                                const NeverScrollableScrollPhysics(),
+                                            shrinkWrap: true,
+                                            itemBuilder: (context, index) =>
+                                                Row(
                                                   children: [
-                                                    Text('${aCubit.author[index].userName}'),
                                                     const SizedBox(
-                                                      height: 2,
+                                                      width: 10,
                                                     ),
-                                                    const Text('+12.8%',
-                                                        style: TextStyle(
-                                                            color: Colors
-                                                                .green)),
+                                                    CircleAvatar(
+                                                      backgroundImage: NetworkImage(
+                                                          '${aCubit.author[index].imageUrl}'),
+                                                    ),
+                                                    const SizedBox(
+                                                      width: 10,
+                                                    ),
+                                                    Column(
+                                                      children: [
+                                                        Text(
+                                                            '${aCubit.author[index].userName}'),
+                                                        const SizedBox(
+                                                          height: 2,
+                                                        ),
+                                                        const Text(
+                                                          '+12.8%',
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.green),
+                                                        ),
+                                                      ],
+                                                    ),
                                                   ],
                                                 ),
-                                              ],
-                                            ),
-                                        separatorBuilder: (context, index) =>
-                                        const Divider(),
-                                        itemCount: 3)
+                                            separatorBuilder:
+                                                (context, index) =>
+                                                    const Divider(),
+                                            itemCount: 3);
+                                      },
+                                      fallback: (context) {
+                                        return Text("Top Author is Empty");
+                                      },
+                                    )
                                   ],
                                 ),
                               ),
@@ -300,17 +332,18 @@ class DashboardManagerScreen extends StatelessWidget {
                                     ),
                                     const Spacer(),
                                     InkWell(
-                                      onTap: (){
+                                      onTap: () {
                                         navigator(context, AuthorRequest());
                                       },
                                       child: Row(
                                         children: const [
-                                          Text('View All',style: TextStyle(
-                                            color: primaryColor,
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w600
-
-                                          ),),
+                                          Text(
+                                            'View All',
+                                            style: TextStyle(
+                                                color: primaryColor,
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.w600),
+                                          ),
                                           Icon(
                                             Icons.arrow_forward,
                                             color: primaryColor,
@@ -325,20 +358,21 @@ class DashboardManagerScreen extends StatelessWidget {
                                 height: 15,
                               ),
                               ConditionalBuilder(
-                                condition: cubit.trackRequestsModel!.trackRequests!.isNotEmpty,
-                                builder: (context) =>
-                                    ListView.builder(
-                                        physics: const NeverScrollableScrollPhysics(),
-                                        shrinkWrap: true,
-                                        itemBuilder: (context, index) =>
-                                            authorTrackCard(
-                                                cubit.trackRequestsModel!
-                                                    .trackRequests![index],
-                                                context,cubit),
-                                        itemCount: cubit.trackRequestsModel!.trackRequests!.length
-                                    ),
-                                fallback: (context) =>
-                                const Center(
+                                condition: cubit.trackRequestsModel!
+                                    .trackRequests!.isNotEmpty,
+                                builder: (context) => ListView.builder(
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
+                                    shrinkWrap: true,
+                                    itemBuilder: (context, index) =>
+                                        authorTrackCard(
+                                            cubit.trackRequestsModel!
+                                                .trackRequests![index],
+                                            context,
+                                            cubit),
+                                    itemCount: cubit.trackRequestsModel!
+                                        .trackRequests!.length),
+                                fallback: (context) => const Center(
                                     child: const Text('Requsets is empty')),
                               ),
                             ],
@@ -348,7 +382,9 @@ class DashboardManagerScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                fallback: (context) => const Center(child: CircularProgressIndicator.adaptive()),),
+                fallback: (context) =>
+                    const Center(child: CircularProgressIndicator.adaptive()),
+              ),
             );
           },
         );
@@ -412,7 +448,7 @@ class DashboardManagerScreen extends StatelessWidget {
 //       ),
 //     );
 
-Widget authorTrackCard(TrackRequests trackModel, context,ManagerCubit cubit) {
+Widget authorTrackCard(TrackRequests trackModel, context, ManagerCubit cubit) {
   return Column(
     children: [
       Padding(
@@ -450,8 +486,8 @@ Widget authorTrackCard(TrackRequests trackModel, context,ManagerCubit cubit) {
                     Row(
                       children: [
                         CircleAvatar(
-                          backgroundImage: NetworkImage(
-                              '${trackModel.authorId!.imageUrl}'),
+                          backgroundImage:
+                              NetworkImage('${trackModel.authorId!.imageUrl}'),
                           radius: 18,
                         ),
                         const SizedBox(
@@ -500,8 +536,10 @@ Widget authorTrackCard(TrackRequests trackModel, context,ManagerCubit cubit) {
                                               text: 'Yes, I\'m Agree',
                                               onPressed: () {
                                                 cubit.acceptTrackRequest(
-                                                    authorId: trackModel.authorId!.sId,
-                                                    trackId: trackModel.trackId!.sId);
+                                                    authorId: trackModel
+                                                        .authorId!.sId,
+                                                    trackId: trackModel
+                                                        .trackId!.sId);
                                                 Navigator.pop(context);
                                               },
                                             ),
@@ -558,8 +596,9 @@ Widget authorTrackCard(TrackRequests trackModel, context,ManagerCubit cubit) {
                                           child: defaultButton(
                                             text: 'Yes, I\'m Agree',
                                             onPressed: () {
-                                              cubit.deleteTrackRequestData(
-                                                  trackId: trackModel.trackId!.sId!);
+                                              cubit.deleteTrackRequestData(context,
+                                                  trackId:
+                                                      trackModel.trackId!.sId!);
                                               Navigator.pop(context);
                                             },
                                           ),
@@ -609,7 +648,6 @@ Widget authorTrackCard(TrackRequests trackModel, context,ManagerCubit cubit) {
           ),
         ),
       ),
-
     ],
   );
 }

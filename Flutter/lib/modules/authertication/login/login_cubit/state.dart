@@ -5,6 +5,8 @@ abstract class LoginStates {}
 class InitLoginState extends LoginStates {}
 
 class LoginLoadingState extends LoginStates {}
+class ChangeLoginBtnState extends LoginStates {}
+class ChangeEnableLoginBtnState extends LoginStates {}
 
 class LoginSuccessState extends LoginStates {
   final LoginModel model;

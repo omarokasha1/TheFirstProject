@@ -34,9 +34,9 @@ class CourseCubit extends Cubit<CourseStates> {
 
   CoursesModel? coursesModel;
 
-  void getAllCoursesData() {
+  Future<void> getAllCoursesData() async{
     emit(AllCoursesLoadingState());
-    DioHelper.getData(url: courses).then((value) {
+    await DioHelper.getData(url: courses).then((value) {
       coursesModel = CoursesModel.fromJson(value.data);
       search = coursesModel!.courses!;
       emit(AllCoursesSuccessState(coursesModel));
@@ -46,9 +46,23 @@ class CourseCubit extends Cubit<CourseStates> {
     });
   }
 
+  Courses? courseByID;
+  Future<void> getCourseData(String courseID) async {
+    emit(GetCourseByIDLoadingState());
+    //courseByID!.courses = [];
+    await DioHelper.getData(url: '$getCourseByID/$courseID',token: userToken).then((value) {
+      print(value.data);
+      courseByID = Courses.fromJson(value.data['courses']);
+      emit(GetCourseByIDSuccessState());
+    }).catchError((error) {
+      emit(GetCourseByIDErrorState(error.toString()));
+      print(error.toString());
+    });
+  }
+
   List<Courses> coursesModelAuthor = [];
 
-  void courseModelAuthor(String word) {
+  Future<void> courseModelAuthor(String word) async{
     coursesModelAuthor = [];
     emit(CoursesModelAuthorLoadingState());
     if (word.isEmpty) {
@@ -90,19 +104,19 @@ class CourseCubit extends Cubit<CourseStates> {
     //return search;
   }
 
-  CoursesModel? courseModel;
+  //CoursesModel? courseModel;
 
-  void getCourseData({required courseId}) {
-    emit(CourseLoadingState());
-    DioHelper.getData(url: "$CoursesModel/$courseId", token: userToken)
-        .then((value) {
-      courseModel = CoursesModel.fromJson(value.data);
-      emit(CourseSuccessState(courseModel!));
-    }).catchError((error) {
-      emit(CourseErrorState(error.toString()));
-      print(error.toString());
-    });
-  }
+  // void getCourseData({required courseId}) {
+  //   emit(CourseLoadingState());
+  //   DioHelper.getData(url: "$CoursesModel/$courseId", token: userToken)
+  //       .then((value) {
+  //     courseModel = CoursesModel.fromJson(value.data);
+  //     emit(CourseSuccessState(courseModel!));
+  //   }).catchError((error) {
+  //     emit(CourseErrorState(error.toString()));
+  //     print(error.toString());
+  //   });
+  // }
 
   void enrollCourse(context, {required courseId}) {
     emit(EnrollCourseLoadingState());

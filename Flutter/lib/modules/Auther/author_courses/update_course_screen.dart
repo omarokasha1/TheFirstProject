@@ -1,18 +1,18 @@
 import 'dart:io';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lms/modules/Auther/author_courses/author_courses_cubit/cubit.dart';
 import 'package:lms/modules/Auther/author_courses/author_courses_cubit/status.dart';
-import 'package:lms/modules/Auther/modules/create_assigment/cubit/cubit.dart';
 import 'package:lms/modules/Auther/modules/create_module/cubit/cubit.dart';
 import 'package:lms/modules/Auther/modules/create_module/cubit/states.dart';
-
 import '../../../models/new/courses_model.dart';
 import '../../../shared/component/component.dart';
 import '../../../shared/component/constants.dart';
+import '../modules/module_view.dart';
 
 class UpdateCourseScreen extends StatelessWidget {
   final Courses courseModel;
@@ -21,6 +21,9 @@ class UpdateCourseScreen extends StatelessWidget {
   File? courseImage;
   var picker = ImagePicker();
 
+  FilePickerResult? result;
+  dynamic filePath;
+  File? file;
   TextEditingController courseNameController = TextEditingController();
   TextEditingController shortDescriptionController = TextEditingController();
   TextEditingController requirementController = TextEditingController();
@@ -39,19 +42,27 @@ class UpdateCourseScreen extends StatelessWidget {
         myContent.add(element.sId);
       });
     }
-    CreateModuleCubit.get(context).changeContentActivity(myContent);
+    ModuleCubit.get(context).changeContentActivity(myContent);
+
+    List myAssignment = [];
+    if(courseModel.assignment != null){
+      courseModel.assignment!.forEach((element) {
+        myAssignment.add(element.sId);
+      });
+    }
+    ModuleCubit.get(context).changeAssignmentActivity(myAssignment);
     return BlocProvider.value(
-      value: BlocProvider.of<CreateModuleCubit>(context)..getModulesData()..changeAssignmentActivity([]),
+      value: BlocProvider.of<ModuleCubit>(context)..getModulesData()..getAssignmentData(),
       child: BlocConsumer<AuthorCoursesCubit, AuthorCoursesStates>(
         listener: (context, state) {},
-        builder: (context, state) => BlocConsumer<CreateModuleCubit, CreateModuleStates>(
+        builder: (context, state) => BlocConsumer<ModuleCubit, CreateModuleStates>(
           listener: (context, state) {},
           builder: (context, state) {
             var courseCubit = AuthorCoursesCubit.get(context);
-            var moduleCubit = CreateModuleCubit.get(context);
+            var moduleCubit = ModuleCubit.get(context);
             return Scaffold(
               body: ConditionalBuilder(
-                condition: moduleCubit.getContent != null,
+                condition: moduleCubit.getContent != null && moduleCubit.assignments != null,
                 builder: (context){
                   return SingleChildScrollView(
                     child: Column(
@@ -218,7 +229,7 @@ class UpdateCourseScreen extends StatelessWidget {
                                                 // });
                                                 moduleCubit.changeAssignmentActivity(value);
                                               },
-                                              dataSource: BlocProvider.of<CreateAssignmentCubit>(context).assignmentList,
+                                              dataSource: moduleCubit.assignmentList,
                                             ),
                                             selectMoreItem(
                                               name: "Quiz",
@@ -298,30 +309,64 @@ class UpdateCourseScreen extends StatelessWidget {
                                                 color: Colors.grey[600])),
                                       ),
                                       Center(
-                                        child: TextButton(
-                                            onPressed: () async {
-                                              final pickedFile =
-                                              await picker.pickImage(
-                                                  source:
-                                                  ImageSource.gallery);
-                                              if (pickedFile != null) {
-                                                courseImage =
-                                                    File(pickedFile.path);
-                                              } else {
-                                                print('no image selected');
-                                              }
-                                              //image = await _picker.pickImage(source: ImageSource.gallery);
-                                              print(
-                                                  "Piiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiic");
-                                            },
-                                            child: const Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: 22.0),
-                                              child: Text(
-                                                "Upload",
-                                                style: TextStyle(fontSize: 20),
-                                              ),
-                                            )),
+                                        child:
+                                        // TextButton(
+                                        //     onPressed: () async {
+                                        //       final pickedFile =
+                                        //       await picker.pickImage(
+                                        //           source:
+                                        //           ImageSource.gallery);
+                                        //       if (pickedFile != null) {
+                                        //         courseImage =
+                                        //             File(pickedFile.path);
+                                        //       } else {
+                                        //         print('no image selected');
+                                        //       }
+                                        //       moduleCubit.selectImage();
+                                        //       //image = await _picker.pickImage(source: ImageSource.gallery);
+                                        //       print(
+                                        //           "Piiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiic");
+                                        //     },
+                                        //     child: Padding(
+                                        //       padding:
+                                        //       EdgeInsets.symmetric(horizontal: 0.0),
+                                        //       child: courseImage == null
+                                        //           ? Text(
+                                        //         "Upload",
+                                        //         style: TextStyle(fontSize: 20),
+                                        //       )
+                                        //           : viewImageDetails(courseImage!.uri),
+                                        //     ),
+                                        // ),
+                                        TextButton(
+                                          onPressed: () async {
+                                            result =
+                                            await FilePicker.platform.pickFiles();
+                                            if (result != null) {
+                                              file = File(result!.files.single.path!);
+                                              filePath = result!.files.first;
+                                              //   cubit.uploadFile(file!);
+                                            } else {
+                                              showToast(
+                                                  message:
+                                                  "upload file must be not empty");
+                                            }
+                                            moduleCubit.selectImage();
+                                            print(
+                                                "filePath herrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr>>>>> ${filePath.path}");
+                                          },
+                                          child: Padding(
+                                            padding:
+                                            EdgeInsets.symmetric(horizontal: 0.0),
+                                            child: filePath == null
+                                                ? Text(
+                                              "Upload",
+                                              style: TextStyle(fontSize: 20),
+                                            )
+                                                : viewFileDetails(
+                                                moduleCubit, result, filePath, file),
+                                          ),
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -345,6 +390,7 @@ class UpdateCourseScreen extends StatelessWidget {
                                           shortDescription: shortDescriptionController.text,
                                           requirements: requirementController.text,
                                           contents: moduleCubit.contentActivities!,
+                                          assignments: moduleCubit.assignmentActivities!,
                                           language: courseCubit.selectedItem,
                                           courseImage: courseImage,
                                           sID : courseModel.sId,

@@ -42,6 +42,13 @@ class CoursesOverViewScreen extends StatelessWidget {
         return Scaffold(
           backgroundColor: Colors.grey[100],
           appBar: AppBar(
+            toolbarHeight: 40,
+            title: Text("Course Overview",
+                style: TextStyle(
+                    color: primaryColor,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold)),
+            centerTitle: true,
           ),
           // create two button in bottomNavigationBar
           bottomNavigationBar: Container(
@@ -134,7 +141,7 @@ class CoursesOverViewScreen extends StatelessWidget {
                                 const SizedBox(
                                   width: 10,
                                 ),
-                                Text('Last update'),
+                                Text('${courseModel.lastUpdate ?? ''}'),
                               ],
                             ),
                           ],
@@ -274,7 +281,7 @@ class CoursesOverViewScreen extends StatelessWidget {
                               width: 5,
                             ),
                             Text(
-                              '',
+                              '${courseModel.review ?? ''}',
                               style: TextStyle(color: Colors.white),
                             )
                           ],

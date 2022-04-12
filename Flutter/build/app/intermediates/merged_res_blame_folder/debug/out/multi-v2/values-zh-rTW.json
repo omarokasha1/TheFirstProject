@@ -1,7 +1,6 @@
 {
     "logs": [
         {
-<<<<<<< HEAD
             "outputFile": "E:\\LMS\\TheFirstProject\\Flutter\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-zh-rTW\\values-zh-rTW.xml",
             "map": [
                 {
@@ -40,12 +39,6 @@
                 },
                 {
                     "source": "C:\\Users\\Ka8eem Helmy\\.gradle\\caches\\transforms-2\\files-2.1\\a6aae59136d3348e6b6e552f8ac82f56\\jetified-exoplayer-ui-2.15.1\\res\\values-zh-rTW\\values-zh-rTW.xml",
-=======
-            "outputFile": "G:\\TheFirstProject\\Flutter\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-zh-rTW\\values-zh-rTW.xml",
-            "map": [
-                {
-                    "source": "C:\\Users\\youss\\.gradle\\caches\\transforms-2\\files-2.1\\8e0c139ac225526e2e5efb315f1c04fc\\jetified-exoplayer-ui-2.15.1\\res\\values-zh-rTW\\values-zh-rTW.xml",
->>>>>>> origin/Flutter_youssef
                     "from": {
                         "startLines": "2,6,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -61,40 +54,6 @@
                         "endLines": "5,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61",
                         "endColumns": "12,12,80,79,67,77,76,55,60,73,73,61,60,58,65,64,72,69,72,62,66,64,55,72,71,60,62,55,55,56,52,69,58,51,57,46,60,56,61,56,60,55,54,62,61,62,48,51,65,65,48",
                         "endOffsets": "213,371,452,532,600,678,755,811,872,946,1020,1082,1143,1202,1268,1333,1406,1476,1549,1612,1679,1744,1800,1873,1945,2006,2069,2125,2181,2238,2291,2361,2420,2472,2758,2805,2866,2923,2985,3042,3103,3159,3214,3277,3339,3402,3451,3503,3569,3635,3684"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\youss\\.gradle\\caches\\transforms-2\\files-2.1\\dadf59073c0fdcbec26349186df5ad0f\\jetified-extension-mediasession-2.15.1\\res\\values-zh-rTW\\values-zh-rTW.xml",
-                    "from": {
-                        "startLines": "2,3,4",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "55,132,206",
-                        "endColumns": "76,73,76",
-                        "endOffsets": "127,201,278"
-                    },
-                    "to": {
-                        "startLines": "42,43,44",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "2477,2554,2628",
-                        "endColumns": "76,73,76",
-                        "endOffsets": "2549,2623,2700"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\youss\\.gradle\\caches\\transforms-2\\files-2.1\\b9a960218f5163997c0fdfa3d3078c0e\\core-1.7.0\\res\\values-zh-rTW\\values-zh-rTW.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "62",
-                        "startColumns": "4",
-                        "startOffsets": "3689",
-                        "endColumns": "100",
-                        "endOffsets": "3785"
                     }
                 }
             ]

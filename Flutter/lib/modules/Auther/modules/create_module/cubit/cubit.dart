@@ -12,10 +12,12 @@ import 'package:lms/shared/network/end_points.dart';
 import 'package:lms/shared/network/remote/dio-helper.dart';
 import 'package:better_player/better_player.dart';
 
-class CreateModuleCubit extends Cubit<CreateModuleStates> {
-  CreateModuleCubit() : super(InitCreateModuleState());
+import '../../../../../models/assignment_model.dart';
 
-  static CreateModuleCubit get(context) => BlocProvider.of(context);
+class ModuleCubit extends Cubit<CreateModuleStates> {
+  ModuleCubit() : super(InitCreateModuleState());
+
+  static ModuleCubit get(context) => BlocProvider.of(context);
 
   bool hasModuleName = false;
 
@@ -62,9 +64,9 @@ class CreateModuleCubit extends Cubit<CreateModuleStates> {
     emit(ChangeQuizActivityState());
   }
   ContentsModel? getContent;
-  void getModulesData() {
+  Future<void> getModulesData() async {
     emit(GetContentsLoadingState());
-    DioHelper.getData(url: getModule, token: userToken).then((value) {
+    await DioHelper.getData(url: getModule, token: userToken).then((value) {
       contentList = [];
       getContent = ContentsModel.fromJson(value.data);
       getContent!.contents!.forEach((element) {
@@ -74,6 +76,26 @@ class CreateModuleCubit extends Cubit<CreateModuleStates> {
       emit(GetContentsSuccssesState(getContent!));
     }).catchError((error) {
       emit(GetContentsErrorState(error.toString()));
+      print(error.toString());
+    });
+  }
+
+  AssignmentsModel? assignments;
+  List? assignmentList = [];
+  Future<void> getAssignmentData() async {
+    print(userToken);
+    emit(GetAssignmentsLoadingState());
+
+    await DioHelper.getData(url: getAssignment, token: userToken).then((value) {
+      //print(value.data);
+      assignmentList = [];
+      assignments = AssignmentsModel.fromJson(value.data);
+      assignments!.assignments!.forEach((element) {
+        assignmentList!.add({'display': element.assignmentTitle, 'value': element.sId});
+      });
+      emit(GetAssignmentsSuccssesState(assignments!));
+    }).catchError((error) {
+      emit(GetAssignmentsErrorState(error.toString()));
       print(error.toString());
     });
   }
@@ -109,9 +131,9 @@ class CreateModuleCubit extends Cubit<CreateModuleStates> {
       },
       url: module,
       token: userToken,
-    ).then((value) {
+    ).then((value) async {
       createContentModel = CreateContent.fromJson(value.data);
-      getModulesData();
+      await getModulesData();
       emit(CreateNewModuleSuccssesState(createContentModel!));
     }).catchError((onError) {
       print(onError.toString());
@@ -143,7 +165,7 @@ class CreateModuleCubit extends Cubit<CreateModuleStates> {
   ResponseModel? updateModel;
   String? message;
 
-  Future <void> updateNewModule({
+  Future <void> updateModuleData({
     required moduleId,
     required String moduleName,
     required String description,
@@ -165,9 +187,10 @@ class CreateModuleCubit extends Cubit<CreateModuleStates> {
       files: true,
       url: updateModule,
       token: userToken,
-    ).then((value) {
+    ).then((value) async {
       updateModel = ResponseModel.fromJson(value.data);
       showToast(message: '${updateModel!.message}',color: Colors.green);
+      await getModulesData();
       emit(UpdateModuleSuccssesState(updateModel!));
     }).catchError((onError) {
       print(onError.toString());
@@ -179,9 +202,10 @@ class CreateModuleCubit extends Cubit<CreateModuleStates> {
 
   void deleteModule({required String moduleId}) {
     emit(DeleteModuleLoadingState());
-    DioHelper.deleteData(url: "$deleteOneModule/$moduleId").then((value) {
+    DioHelper.deleteData(url: "$deleteOneModule/$moduleId").then((value) async {
       deleteModel = ResponseModel.fromJson(value.data);
-      getModulesData();
+      await getModulesData();
+      showToast(message: "${deleteModel!.message}");
       emit(DeleteModuleSuccssesState(deleteModel!));
     }).catchError((error) {
       emit(DeleteModuleErrorState(error));

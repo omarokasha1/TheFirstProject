@@ -1,3 +1,4 @@
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,6 +11,7 @@ import 'package:lms/shared/component/constants.dart';
 import 'package:readmore/readmore.dart';
 import '../../../models/new/contents_model.dart';
 import '../../../models/new/courses_model.dart';
+import '../modules/assignment_view.dart';
 
 
 class CourseDetailsScreen extends StatelessWidget {
@@ -19,7 +21,7 @@ class CourseDetailsScreen extends StatelessWidget {
   final List<Widget> myTabs = [
     const Tab(text: 'Content'),
     const Tab(text: 'Assignment'),
-    const Tab(text: 'Quizzes'),
+    //const Tab(text: 'Quizzes'),
   ];
 
   @override
@@ -155,20 +157,28 @@ class CourseDetailsScreen extends StatelessWidget {
                               ListView.builder(
                                   shrinkWrap: true,
                                   //   physics: NeverScrollableScrollPhysics(),
-                                  itemBuilder: (context, index) => builtCourseContant(context, course.contents![index]),
+                                  itemBuilder: (context, index) => builtCourseContent(context, course.contents![index]),
                                   itemCount: course.contents!.length),
-                              ListView.builder(
-                                  shrinkWrap: true,
-                                  //    physics: NeverScrollableScrollPhysics(),
-                                  itemBuilder: (context, index) =>
-                                      builtCourseAssignment(context),
-                                  itemCount: 12),
-                              ListView.builder(
-                                  shrinkWrap: true,
-                                  //  physics: NeverScrollableScrollPhysics(),
-                                  itemBuilder: (context, index) =>
-                                      builtCourseContant(context, course.contents![index]),
-                                  itemCount: course.contents!.length),
+                              ConditionalBuilder(
+                                condition: course.assignment != null,
+                                builder: (context){
+                                  return ListView.builder(
+                                      shrinkWrap: true,
+                                      //    physics: NeverScrollableScrollPhysics(),
+                                      itemBuilder: (context, index) =>
+                                          builtCourseAssignment(context, course.assignment![index]),
+                                      itemCount: course.assignment!.length);
+                                },
+                                fallback: (context){
+                                  return emptyPage(text: "No Assignment", context: context);
+                                },
+                              ),
+                              // ListView.builder(
+                              //     shrinkWrap: true,
+                              //     //  physics: NeverScrollableScrollPhysics(),
+                              //     itemBuilder: (context, index) =>
+                              //         builtCourseContant(context, course.contents![index]),
+                              //     itemCount: course.contents!.length),
                             ],
                           ),
                         ),
@@ -183,7 +193,7 @@ class CourseDetailsScreen extends StatelessWidget {
   }
 }
 
-Widget builtCourseContant(context, Contents content) {
+Widget builtCourseContent(context, Contents content) {
   return InkWell(
     onTap: (){
       navigator(context, ContentViewScreen(content));
@@ -234,11 +244,11 @@ Widget builtCourseContant(context, Contents content) {
                           ),
                         ),
                         SizedBox(
-                          width: 10.w,
+                          width: 70.w,
                         ),
                         Text(
                           //'3 min ',
-                          content.contentDuration ?? '',
+                          content.contentDuration!.replaceAll('Hours', 'H').replaceAll('Minutes', 'M') ?? '',
                           style: TextStyle(
                             color: primaryColor,
                             fontSize: 14.sp,
@@ -248,15 +258,18 @@ Widget builtCourseContant(context, Contents content) {
                         ),
                       ],
                     ),
-                    Text(
-                      //'short description ',
-                      content.description ?? '',
-                      style: TextStyle(
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w500,
+                    Container(
+                      width: 250.w,
+                      child: Text(
+                        //'short description ',
+                        content.description ?? '',
+                        style: TextStyle(
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
                     ),
                   ],
                 ),
@@ -269,80 +282,87 @@ Widget builtCourseContant(context, Contents content) {
   );
 }
 
-Widget builtCourseAssignment(context,) {
-  return Padding(
-    padding: const EdgeInsets.all(8.0),
-    child: Container(
-      padding: const EdgeInsets.all(10),
-      width: double.infinity,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8.0),
-        color: Colors.white,
-        boxShadow: const [
-          BoxShadow(
-            color: Colors.black12,
-            offset: Offset(0.0, 1.0), //(x,y)
-            blurRadius: 6.0,
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              const Icon(Icons.file_copy_outlined),
-              const SizedBox(
-                width: 10,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Container(
-                        width: 200.w,
-                        child: Text(
-                          'File Name File Name File Name File Name ',
+Widget builtCourseAssignment(context,Assignment assignment) {
+  return InkWell(
+    onTap: (){
+      navigator(context, AssignmentDetailsScreen(assignment));
+    },
+    child: Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        padding: const EdgeInsets.all(10),
+        width: double.infinity,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8.0),
+          color: Colors.white,
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black12,
+              offset: Offset(0.0, 1.0), //(x,y)
+              blurRadius: 6.0,
+            ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                const Icon(Icons.file_copy_outlined),
+                const SizedBox(
+                  width: 10,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Container(
+                          width: 150.w,
+                          child: Text(
+                            assignment.assignmentTitle ?? '',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 15.sp,
+                              fontWeight: FontWeight.w600,
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                        Text(
+                          assignment.assignmentDuration!.replaceAll('min', 'M').replaceAll('Hours', 'H').replaceAll('Minutes', 'M'),
                           style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 15.sp,
-                            fontWeight: FontWeight.w600,
+                            color: primaryColor,
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.w500,
                           ),
                           maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
                         ),
-                      ),
-                      SizedBox(
-                        width: 10.w,
-                      ),
-
-                      Text(
-                        '3 min ',
+                      ],
+                    ),
+                    Container(
+                      width: 250.w,
+                      child: Text(
+                        assignment.description ?? '',
                         style: TextStyle(
-                          color: primaryColor,
                           fontSize: 14.sp,
                           fontWeight: FontWeight.w500,
                         ),
                         maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
-                    ],
-                  ),
-                  Text(
-                    'short description',
-                    style: TextStyle(
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w500,
                     ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ],
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     ),
   );

@@ -8,6 +8,7 @@ const allUsers = "api/user/allUsers";
 const getEnrolledCourses = "api/user/enrollCourses";
 const getEnrollTracks = "api/user/enrollTracks";
 const courses = "api/course/allCourses";
+const getCourseByID = "api/course/getCourse";
           //<<<<<<<<<<<<<<<<<<<<<<<Create>>>>>>>>>>>>>>>>>>>>
 const login = "api/user/login";
 const register = "api/user/register";
@@ -34,6 +35,7 @@ const getAuthorQuizzes = "api/course/authorQuizzes";
 const getAuthorQuestions = "api/course/authorQuestions";
 const getAuthor = "api/course/author";
 const getAuthorData = "api/user/profile";
+const getTrackData = "api/course/getTrack";
 
 //-----------------------------Create----------------------------
 const createAuthorCourse = 'api/course/newCourse';

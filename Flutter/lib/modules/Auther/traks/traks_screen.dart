@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,11 +25,11 @@ class TracksScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      // value: BlocProvider.of<CreateTrackCubit>(context)..getAllTracks(),
-      create: (BuildContext context) => CreateTrackCubit()
-        ..getAllTracks()
-        ..getAuthorTrackPublishedData(),
+    return BlocProvider.value(
+      value: BlocProvider.of<CreateTrackCubit>(context)..getAllTracks()..getAuthorTrackPublishedData(),
+      // create: (BuildContext context) => CreateTrackCubit()
+      //   ..getAllTracks()
+      //   ..getAuthorTrackPublishedData(),
       child: BlocConsumer<CreateTrackCubit, CreateTrackStates>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -237,9 +238,147 @@ class TracksScreen extends StatelessWidget {
                     if(select == 1){
                       navigator(context, UpdateTrackScreen(modelTrack));
                     }else if(select == 2){
-                      cubit.deleteTrack(trackId: modelTrack.sId!);
+                      AwesomeDialog(
+                        context: context,
+                        animType: AnimType.SCALE,
+                        dialogType:
+                        DialogType.NO_HEADER,
+                        body: Center(
+                          child: Padding(
+                            padding:
+                            const EdgeInsets
+                                .all(8.0),
+                            child: Form(
+                              //  key: formkey,
+                              child: Column(
+                                children: [
+                                  Text(
+                                    'Are you sure you want to delete this track ${modelTrack.trackName} ?',
+                                    textAlign:
+                                    TextAlign
+                                        .center,
+                                    style:
+                                    TextStyle(
+                                      fontWeight:
+                                      FontWeight
+                                          .bold,
+                                      fontSize:
+                                      20,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 30,
+                                  ),
+                                  Container(
+                                    height: 40,
+                                    child:
+                                    defaultButton(
+                                      text:
+                                      'Yes, I\'m Agree',
+                                      onPressed:
+                                          () {
+                                            cubit.deleteTrack(trackId: modelTrack.sId!);
+                                        Navigator.pop(
+                                            context);
+                                      },
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Container(
+                                    height: 40,
+                                    child:
+                                    defaultButton(
+                                      text: 'No',
+                                      onPressed:
+                                          () {
+                                        Navigator.pop(
+                                            context);
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        title: 'This is Ignored',
+                        desc:
+                        'This is also Ignored',
+                        //   btnOkOnPress: () {},
+                      ).show();
                     }else if(select == 3){
-                      cubit.sendTracksRequest(trackId: modelTrack.sId);
+                      AwesomeDialog(
+                        context: context,
+                        animType: AnimType.SCALE,
+                        dialogType:
+                        DialogType.NO_HEADER,
+                        body: Center(
+                          child: Padding(
+                            padding:
+                            const EdgeInsets
+                                .all(8.0),
+                            child: Form(
+                              //  key: formkey,
+                              child: Column(
+                                children: [
+                                  Text(
+                                    'Are you sure you want to send request this track ${modelTrack.trackName} ?',
+                                    textAlign:
+                                    TextAlign
+                                        .center,
+                                    style:
+                                    TextStyle(
+                                      fontWeight:
+                                      FontWeight
+                                          .bold,
+                                      fontSize:
+                                      20,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 30,
+                                  ),
+                                  Container(
+                                    height: 40,
+                                    child:
+                                    defaultButton(
+                                      text:
+                                      'Yes, I\'m Agree',
+                                      onPressed:
+                                          () {
+                                            cubit.sendTracksRequest(trackId: modelTrack.sId);
+                                        Navigator.pop(
+                                            context);
+                                      },
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Container(
+                                    height: 40,
+                                    child:
+                                    defaultButton(
+                                      text: 'No',
+                                      onPressed:
+                                          () {
+                                        Navigator.pop(
+                                            context);
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        title: 'This is Ignored',
+                        desc:
+                        'This is also Ignored',
+                        //   btnOkOnPress: () {},
+                      ).show();
                     }
                   },
                   icon: Icon(

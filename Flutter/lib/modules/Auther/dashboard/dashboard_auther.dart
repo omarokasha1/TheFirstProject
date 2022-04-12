@@ -16,11 +16,9 @@ import 'package:lms/modules/Auther/traks/create_track/create_track.dart';
 import 'package:lms/modules/Auther/traks/traks_screen.dart';
 import 'package:lms/modules/profile/profile_cubit/cubit.dart';
 import 'package:lms/modules/profile/profile_cubit/state.dart';
-import 'package:lms/modules/search/search_screen.dart';
 import 'package:lms/shared/component/MyAppBar.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
-import 'package:lms/shared/component/zoomDrawer.dart';
 import 'package:number_slide_animation/number_slide_animation.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -71,98 +69,102 @@ class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
       builder: (context, state) {
         var cubit = ProfileCubit.get(context);
         return Scaffold(
-          floatingActionButton: cubit.model!= null ? SpeedDial(
-            animatedIcon: AnimatedIcons.menu_close,
-            //   label: Text('Create',style: TextStyle(fontWeight: FontWeight.bold)),
-            children: [
-              SpeedDialChild(
-                  child: Icon(Icons.post_add),
-                  onTap: () {
-                    AwesomeDialog(
-                      context: context,
-                      animType: AnimType.SCALE,
-                      dialogType: DialogType.QUESTION,
-                      body: Form(
-                        key: formKey,
-                        child: Center(
-                          child: Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 8.0),
-                            child: Column(
-                              children: [
-                                customTextFormFieldWidget(
-                                    type: TextInputType.text,
-                                    prefixIcon: Icons.drive_file_rename_outline,
-                                    prefix: true,
-                                    label: "Quiz Name",
-                                    controller: quizController,
-                                    validate: (value) {
-                                      if (value!.isEmpty) {
-                                        return 'Quiz Name Must Be Not Empty';
-                                      }
-                                      return null;
-                                    }),
-                                Container(
-                                  height: 40,
-                                  child: defaultButton(
-                                      text: 'OK',
-                                      onPressed: () {
-                                        if (formKey.currentState!.validate()) {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      CreateQuizScreen(
-                                                          quizController
-                                                              .text))).then(
-                                            (value) {
-                                              quizController.text = "";
-                                              Navigator.pop(context);
-                                            },
-                                          );
-                                        }
-                                      }),
+          floatingActionButton: cubit.model != null
+              ? SpeedDial(
+                  animatedIcon: AnimatedIcons.menu_close,
+                  //   label: Text('Create',style: TextStyle(fontWeight: FontWeight.bold)),
+                  children: [
+                    SpeedDialChild(
+                        child: Icon(Icons.post_add),
+                        onTap: () {
+                          AwesomeDialog(
+                            context: context,
+                            animType: AnimType.SCALE,
+                            dialogType: DialogType.QUESTION,
+                            body: Form(
+                              key: formKey,
+                              child: Center(
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 8.0),
+                                  child: Column(
+                                    children: [
+                                      customTextFormFieldWidget(
+                                          type: TextInputType.text,
+                                          prefixIcon:
+                                              Icons.drive_file_rename_outline,
+                                          prefix: true,
+                                          label: "Quiz Name",
+                                          controller: quizController,
+                                          validate: (value) {
+                                            if (value!.isEmpty) {
+                                              return 'Quiz Name Must Be Not Empty';
+                                            }
+                                            return null;
+                                          }),
+                                      Container(
+                                        height: 40,
+                                        child: defaultButton(
+                                            text: 'OK',
+                                            onPressed: () {
+                                              if (formKey.currentState!
+                                                  .validate()) {
+                                                Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            CreateQuizScreen(
+                                                                quizController
+                                                                    .text))).then(
+                                                  (value) {
+                                                    quizController.text = "";
+                                                    Navigator.pop(context);
+                                                  },
+                                                );
+                                              }
+                                            }),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ],
+                              ),
                             ),
-                          ),
-                        ),
-                      ),
-                      title: 'This is Ignored',
-                      desc: 'This is also Ignored',
+                            title: 'This is Ignored',
+                            desc: 'This is also Ignored',
 
-                      // btnOkOnPress: () {
-                      //   navigator(context, CreateQuizScreen());
-                      // },
-                    ).show();
-                  },
-                  label: 'Add Quiz'),
-              SpeedDialChild(
-                  child: Icon(Icons.description),
-                  onTap: () {
-                    navigator(context, CreateAssignmentScreen());
-                  },
-                  label: 'Add Assignment'),
-              SpeedDialChild(
-                  child: Icon(Icons.play_circle_fill),
-                  onTap: () {
-                    navigator(context, CreateModuleScreen());
-                  },
-                  label: 'Add Module'),
-              SpeedDialChild(
-                  child: Icon(Icons.add),
-                  onTap: () {
-                    navigator(context, CreateCourseScreen());
-                  },
-                  label: 'Add Course'),
-              SpeedDialChild(
-                  child: Icon(Icons.location_on_outlined),
-                  onTap: () {
-                    navigator(context, CreateTrackScreen());
-                  },
-                  label: 'Add Track'),
-            ],
-          ) : null,
+                            // btnOkOnPress: () {
+                            //   navigator(context, CreateQuizScreen());
+                            // },
+                          ).show();
+                        },
+                        label: 'Add Quiz'),
+                    SpeedDialChild(
+                        child: Icon(Icons.description),
+                        onTap: () {
+                          navigator(context, CreateAssignmentScreen());
+                        },
+                        label: 'Add Assignment'),
+                    SpeedDialChild(
+                        child: Icon(Icons.play_circle_fill),
+                        onTap: () {
+                          navigator(context, CreateModuleScreen());
+                        },
+                        label: 'Add Module'),
+                    SpeedDialChild(
+                        child: Icon(Icons.add),
+                        onTap: () {
+                          navigator(context, CreateCourseScreen());
+                        },
+                        label: 'Add Course'),
+                    SpeedDialChild(
+                        child: Icon(Icons.location_on_outlined),
+                        onTap: () {
+                          navigator(context, CreateTrackScreen());
+                        },
+                        label: 'Add Track'),
+                  ],
+                )
+              : null,
           appBar: myAppBar(context),
           body: ConditionalBuilder(
             condition: cubit.model != null,
@@ -189,7 +191,8 @@ class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
                                 children: [
                                   Row(
                                     children: [
-                                      Text("Hi, ${cubit.model!.profile!.userName}",
+                                      Text(
+                                          "Hi, ${cubit.model!.profile!.userName}",
                                           style: TextStyle(
                                               color: Colors.white,
                                               fontFamily: 'Poppins',
@@ -211,9 +214,10 @@ class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
                                   Text(
                                     "Lets start teaching!",
                                     style: TextStyle(
-                                        color: Colors.white,
-                                        fontFamily: 'Poppins',
-                                        fontSize: 25.0.sp),
+                                      color: Colors.white,
+                                      fontFamily: 'Poppins',
+                                      fontSize: 25.0.sp,
+                                    ),
                                   ),
                                 ],
                               ),
@@ -263,10 +267,10 @@ class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
                       SizedBox(
                         height: 10,
                       ),
-                      BlocConsumer<AuthorCoursesCubit,AuthorCoursesStates>(
+                      BlocConsumer<AuthorCoursesCubit, AuthorCoursesStates>(
                         listener: (context, state) {},
                         builder: (context, state) {
-                          var cubit =AuthorCoursesCubit.get(context);
+                          var cubit = AuthorCoursesCubit.get(context);
                           print('kareem -> ${cubit.totalStudent}');
                           return Container(
                             width: double.infinity,
@@ -288,18 +292,24 @@ class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
                                             color: primaryColor),
                                       ),
                                       // package to add animation to numbers
-                                      NumberSlideAnimation(
-                                        //number: "12345",
-                                        number: '${cubit.totalStudent}',
-                                        // number
-                                        duration: const Duration(seconds: 4),
-                                        //The time specified for the animation
-                                        curve: Curves.fastOutSlowIn,
-                                        //animation form
-                                        textStyle: const TextStyle(
-                                            fontSize: 20.0,
+                                      Text(
+                                        '${cubit.totalStudent}',
+                                        style: TextStyle(
+                                            fontSize: 20,
                                             fontWeight: FontWeight.bold),
                                       ),
+                                      // NumberSlideAnimation(
+                                      //   //number: "12345",
+                                      //   number: '${cubit.totalStudent}',
+                                      //   // number
+                                      //   duration: const Duration(seconds: 4),
+                                      //   //The time specified for the animation
+                                      //   curve: Curves.fastOutSlowIn,
+                                      //   //animation form
+                                      //   textStyle: const TextStyle(
+                                      //       fontSize: 20.0,
+                                      //       fontWeight: FontWeight.bold),
+                                      // ),
                                     ],
                                   ),
                                 ),
@@ -312,7 +322,7 @@ class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
                                               fontWeight: FontWeight.bold,
                                               color: primaryColor)),
                                       NumberSlideAnimation(
-                                        number: "6234",
+                                        number: "0",
                                         duration: const Duration(seconds: 4),
                                         curve: Curves.fastOutSlowIn,
                                         textStyle: const TextStyle(
@@ -335,15 +345,24 @@ class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
                                       //         fontSize: 15,
                                       //         fontWeight: FontWeight.bold,
                                       //         color: primaryColor)),
-                                      NumberSlideAnimation(
-                                        number: "${cubit.coursesModelPublish == null ? 0 :  cubit.coursesModelPublish!.courses!.length}",
-                                        //number: "123",
-                                        //duration: const Duration(seconds: 4),
-                                        curve: Curves.fastOutSlowIn,
-                                        textStyle: const TextStyle(
-                                            fontSize: 20.0,
+                                      Text(
+                                        '${cubit.coursesModelPublish == null ? 0 : cubit.coursesModelPublish!.courses!.length}',
+                                        style: TextStyle(
+                                            fontSize: 20,
                                             fontWeight: FontWeight.bold),
                                       ),
+                                      // NumberSlideAnimation(
+                                      //   number: "${cubit.coursesModelPublish ==
+                                      //       null ? 0 : cubit
+                                      //       .coursesModelPublish!.courses!
+                                      //       .length}",
+                                      //   //number: "123",
+                                      //   //duration: const Duration(seconds: 4),
+                                      //   curve: Curves.fastOutSlowIn,
+                                      //   textStyle: const TextStyle(
+                                      //       fontSize: 20.0,
+                                      //       fontWeight: FontWeight.bold),
+                                      // ),
                                     ],
                                   ),
                                 ),
@@ -371,8 +390,10 @@ class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
                                 },
                                 child: Column(
                                   children: [
-                                    Image.asset('assets/images/online-course.png',
-                                        width: 50.w, height: 50.h),
+                                    Image.asset(
+                                        'assets/images/online-course.png',
+                                        width: 50.w,
+                                        height: 50.h),
                                     const Text(
                                       'Courses',
                                       style: TextStyle(
@@ -461,7 +482,8 @@ class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
                                 center: const Text(
                                   "70.0%",
                                   style: TextStyle(
-                                      fontWeight: FontWeight.bold, fontSize: 20.0),
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20.0),
                                 ),
                                 footer: Column(
                                   children: [
@@ -473,7 +495,8 @@ class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
                                     ),
                                     Text(
                                       "22 submitted",
-                                      style: Theme.of(context).textTheme.caption,
+                                      style:
+                                          Theme.of(context).textTheme.caption,
                                     ),
                                   ],
                                 ),
@@ -501,7 +524,8 @@ class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
                                 center: const Text(
                                   "40.0%",
                                   style: TextStyle(
-                                      fontWeight: FontWeight.bold, fontSize: 20.0),
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20.0),
                                 ),
                                 footer: Column(
                                   children: [
@@ -513,7 +537,8 @@ class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
                                     ),
                                     Text(
                                       "17 completed",
-                                      style: Theme.of(context).textTheme.caption,
+                                      style:
+                                          Theme.of(context).textTheme.caption,
                                     ),
                                   ],
                                 ),
@@ -637,10 +662,12 @@ class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
                             LineSeries<_SalesData, String>(
                               dataSource: data,
                               xValueMapper: (_SalesData views, _) => views.year,
-                              yValueMapper: (_SalesData views, _) => views.views,
+                              yValueMapper: (_SalesData views, _) =>
+                                  views.views,
                               name: 'Views',
                               // Enable data label
-                              dataLabelSettings: DataLabelSettings(isVisible: true),
+                              dataLabelSettings:
+                                  DataLabelSettings(isVisible: true),
                             ),
                           ],
                         ),
@@ -651,7 +678,9 @@ class _DashboardAuthorScreenState extends State<DashboardAuthorScreen> {
               );
             },
             fallback: (context) {
-              return Center(child: CircularProgressIndicator.adaptive(),);
+              return Center(
+                child: CircularProgressIndicator.adaptive(),
+              );
             },
           ),
         );

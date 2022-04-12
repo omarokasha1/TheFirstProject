@@ -1,3 +1,4 @@
+import 'package:better_player/better_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -77,11 +78,16 @@ class _LoginScreenState extends State<LoginScreen> {
                 ZoomDrawerScreen(),
               );
             } else {
+              LoginCubit.get(context).changeEnabledLogin(true);
               print(" jsadjbasjdnj ${state.model.status}");
+              LoginCubit.get(context).changeWidgetLogin(Text("Login",style: TextStyle(color : Colors.white,fontSize: 25,fontWeight: FontWeight.bold),));
               showToast(message: "${state.model.message}", color: Colors.red);
             }
           } else if (state is LoginErrorState) {
             showToast(message: state.error, color: Colors.red);
+          }else if (state is LoginLoadingState){
+            LoginCubit.get(context).changeEnabledLogin(false);
+            LoginCubit.get(context).changeWidgetLogin(CircularProgressIndicator(color: Colors.white,));
           }
         },
         builder: (context, state) {
@@ -243,8 +249,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                             defaultButton(
                                 text: 'Login',
+                                widget: cubit.btnLogin,
                                 onPressed: () {
-                                  if (formKey.currentState!.validate()) {
+                                  if (formKey.currentState!.validate() && cubit.enableLogin) {
                                     print(emailController.text);
                                     print(passwordController.text);
                                     cubit.userLogin(
@@ -269,7 +276,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 const Text(
-                                  "Don't hava an account ?",
+                                  "Don't have an account ?",
                                 ),
                                 SizedBox(
                                   width: 10.w,

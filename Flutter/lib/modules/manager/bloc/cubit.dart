@@ -4,6 +4,7 @@ import 'package:lms/models/author_manger_request.dart';
 import 'package:lms/models/author_request.dart';
 import 'package:lms/models/new/course_requests.dart';
 import 'package:lms/models/new/track_requests.dart';
+import 'package:lms/modules/admin/cubit/cubit.dart';
 import 'package:lms/modules/manager/bloc/states.dart';
 import 'package:lms/shared/component/constants.dart';
 import 'package:lms/shared/network/end_points.dart';
@@ -29,13 +30,20 @@ class ManagerCubit extends Cubit<ManagerStates> {
   }
 
   AuthorRequests? authorRequests;
-
+  int totalRequests = 0;
+  int totalRequestsAuthors = 0;
+  int totalRequestsCourses = 0;
+  int totalRequestsTracks = 0;
   Future<void> getAuthorRequests() async {
     emit(GetAllAuthorRequestsLoadingState());
+    totalRequestsAuthors = 0;
     await DioHelper.getData(url: getAuthorRequest, token: userToken)
         .then((value) {
       print(value.data);
       authorRequests = AuthorRequests.fromJson(value.data);
+      totalRequestsAuthors += authorRequests!.promotRequests!.length;
+      totalRequests = 0;
+      totalRequests = totalRequestsAuthors + totalRequestsCourses + totalRequestsTracks;
       emit(GetAllAuthorRequestsSuccessState(authorRequests!));
     }).catchError((error) {
       emit(GetAllAuthorRequestsErrorState(error.toString()));
@@ -47,10 +55,16 @@ class ManagerCubit extends Cubit<ManagerStates> {
   CourseRequestModel? coursesRequests;
   Future<void> getCoursesRequests() async {
     emit(GetAllCoursesRequestsLoadingState());
+    totalRequestsCourses =0;
     await DioHelper.getData(url: getCourseRequest, token: userToken)
         .then((value) {
-      print("asd asd Kareem KAsd ${value.data}");
+       print("asd asd Kareem KAsd ${value.data}");
       coursesRequests = CourseRequestModel.fromJson(value.data);
+      totalRequestsCourses += coursesRequests!.courseRequests!.length;
+      totalRequests = 0;
+      print(totalRequests);
+      totalRequests = totalRequestsAuthors + totalRequestsCourses + totalRequestsTracks;
+      // print("R courses >>>>>>>>>>>>>>>>> $totalRequests");
       emit(GetAllCoursesRequestsSuccessState(coursesRequests!));
     }).catchError((error) {
       emit(GetAllCoursesRequestsErrorState(error.toString()));
@@ -62,10 +76,15 @@ class ManagerCubit extends Cubit<ManagerStates> {
   TrackRequestsModel? trackRequestsModel;
   Future<void> getTracksRequests() async {
     emit(GetAllTracksRequestsLoadingState());
+    totalRequestsTracks = 0;
     await DioHelper.getData(url: getTrackRequest, token: userToken)
         .then((value) {
-      print("Requestes>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>${value.data}");
+      // print("Requestes>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>${value.data}");
       trackRequestsModel = TrackRequestsModel.fromJson(value.data);
+      totalRequestsTracks += trackRequestsModel!.trackRequests!.length;
+      totalRequests = 0;
+      totalRequests = totalRequestsAuthors + totalRequestsCourses + totalRequestsTracks;
+      // print("R tracks >>>>>>>>>>>>>>>>> $totalRequests");
       emit(GetAllTracksRequestsSuccessState(trackRequestsModel!));
     }).catchError((error) {
       emit(GetAllTracksRequestsErrorState(error.toString()));
@@ -174,12 +193,13 @@ class ManagerCubit extends Cubit<ManagerStates> {
     });
   }
 
-  void deleteTrackRequestData({required String trackId}) {
+  void deleteTrackRequestData(context, {required String trackId}) {
     emit(DeleteTrackRequestLoadingState());
     DioHelper.deleteData(url: deleteTrackRequest, data: {
       "trackId": trackId,
     }).then((value) {
       getTracksRequests();
+      BlocProvider.of<AdminCubit>(context).getNumberOfTracks();
       emit(DeleteTrackRequestSuccessState());
     }).catchError((error) {
       emit(DeleteTrackRequestErrorState(error));

@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lms/models/author_courses_published_model.dart';
 import 'package:lms/models/track_model.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
 import 'package:readmore/readmore.dart';
+
+import '../../courses/cubit/cubit.dart';
+import '../author_courses/course_view.dart';
 
 class TracksDetailsScreen extends StatelessWidget {
   final Tracks track;
@@ -96,7 +100,7 @@ class TracksDetailsScreen extends StatelessWidget {
               ListView.builder(
                   shrinkWrap: true,
                   physics: const BouncingScrollPhysics(),
-                  itemBuilder: (context, index) => builtTrackContant(context,track.courses![index],),
+                  itemBuilder: (context, index) => builtTrackContent(context,track.courses![index],),
                   itemCount: track.courses!.length),
             ],
           ),
@@ -106,10 +110,12 @@ class TracksDetailsScreen extends StatelessWidget {
   }
 }
 
-Widget builtTrackContant(context,Courses course, ) {
+Widget builtTrackContent(context,Courses course, ) {
   return InkWell(
-    onTap: (){
-     //navigator(context, CourseDetailsScreen());
+    onTap: () async {
+      await BlocProvider.of<CourseCubit>(context).getCourseData(course.sId!).then((value) {
+        navigator(context, CourseDetailsScreen(BlocProvider.of<CourseCubit>(context).courseByID!));
+      });
     },
     child: Padding(
       padding: const EdgeInsets.all(8.0),

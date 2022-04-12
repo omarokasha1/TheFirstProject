@@ -45,13 +45,13 @@ class AdminCubit extends Cubit<AdminStates> {
         user =allUsersModel!.users!;
         emit(GetAllUsersSuccessState());
         author=allUsersModel!.users!.where((element){
-          return element.isAuthor == true && element.isAdmin ==false ;
+          return element.isAuthor == true && element.isAdmin ==false && element.isManager == false;
         }).toList();
         manager=allUsersModel!.users!.where((element){
           return element.isManager == true && element.isAdmin ==false;
         }).toList();
         user=allUsersModel!.users!.where((element){
-          return element.isAdmin ==false ;
+          return element.isAdmin ==false;
         }).toList();
         emit(GetAllUsersSuccessState());
         print("Number of author >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>${author.length}");

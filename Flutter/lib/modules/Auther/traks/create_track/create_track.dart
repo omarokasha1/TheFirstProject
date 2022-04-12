@@ -258,8 +258,11 @@ class CreateTrackScreen extends StatelessWidget {
                                               print(
                                                   "Piiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiic");
                                             } else {
-                                              print('no image selected');
+                                              showToast(
+                                                  message:
+                                                  "upload file must be not empty");
                                             }
+                                            cubit.selectImage();
                                           },
                                           child:  Padding(
                                             padding: EdgeInsets.symmetric(

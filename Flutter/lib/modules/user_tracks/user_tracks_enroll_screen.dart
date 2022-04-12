@@ -1,9 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lms/models/track_model.dart';
 import 'package:lms/modules/Auther/author_profile/author_profile_screen.dart';
+import 'package:lms/modules/courses/course_details_screen.dart';
 import 'package:lms/modules/courses/course_overview_screen.dart';
+import 'package:lms/modules/courses/cubit/cubit.dart';
 import 'package:lms/shared/component/zoomDrawer.dart';
 import '../../shared/component/component.dart';
 import '../../shared/component/constants.dart';
@@ -129,31 +133,31 @@ class _UserTracksEnrollScreenState extends State<UserTracksEnrollScreen>
                         width: 10,
                       ),
                       Text('${trackModel.author!.userName}'),
-                      const Spacer(),
-                      //course rate
-                      Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            color: primaryColor.withOpacity(0.7)),
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 5),
-                        child: Row(
-                          children: [
-                            Image.asset(
-                              'assets/images/star.png',
-                              width: 20,
-                              height: 20,
-                            ),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                            Text(
-                              "",
-                              style: TextStyle(color: Colors.white),
-                            )
-                          ],
-                        ),
-                      ),
+                      // const Spacer(),
+                      // //course rate
+                      // Container(
+                      //   decoration: BoxDecoration(
+                      //       borderRadius: BorderRadius.circular(15),
+                      //       color: primaryColor.withOpacity(0.7)),
+                      //   padding: const EdgeInsets.symmetric(
+                      //       horizontal: 10, vertical: 5),
+                      //   child: Row(
+                      //     children: [
+                      //       Image.asset(
+                      //         'assets/images/star.png',
+                      //         width: 20,
+                      //         height: 20,
+                      //       ),
+                      //       const SizedBox(
+                      //         width: 5,
+                      //       ),
+                      //       Text(
+                      //         "",
+                      //         style: TextStyle(color: Colors.white),
+                      //       )
+                      //     ],
+                      //   ),
+                      // ),
                     ],
                   ),
                   const SizedBox(
@@ -239,90 +243,97 @@ class _UserTracksEnrollScreenState extends State<UserTracksEnrollScreen>
     );
   }
 
-  Widget builtCourseContent(context, Courses course) => InkWell(
-    onTap: (){
-      //navigator(context, CoursesOverViewScreen(course));
-    },
-    child: Padding(
-          padding: const EdgeInsets.all(5.0),
-          child: Container(
-            padding: EdgeInsets.symmetric(vertical: 10),
-            width: double.infinity,
-            height: 120,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: Colors.white,
-            ),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SizedBox(width: 10,),
-                // Expanded(
-                //   flex: 1,
-                //   child: Checkbox(
-                //     value: checkedValue,
-                //     onChanged: (v) {
-                //       setState(() {
-                //         checkedValue = v!;
-                //       });
-                //     },
-                //     // controlAffinity: ListTileControlAffinity.leading,
-                //   ),
-                // ),
-                //image
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(15),
-                  child: Image.network(
-                    '${course.imageUrl}',
-                    //'https://www.incimages.com/uploaded_files/image/1920x1080/getty_933383882_2000133420009280345_410292.jpg',
-                    width: 100,
-                    height: 100,
-                    fit: BoxFit.cover,
+  Widget builtCourseContent(context, Courses course) {
+    return InkWell(
+      onTap: () async {
+        //print('Here Please');
+        await BlocProvider.of<CourseCubit>(context).getCourseData(course.sId!).then((value) {
+          userType == 'admin' ?
+          navigator(context, CoursesDetailsScreen(BlocProvider.of<CourseCubit>(context).courseByID!)):
+          navigator(context, CoursesOverViewScreen(BlocProvider.of<CourseCubit>(context).courseByID!));
+        });
+      },
+      child: Padding(
+        padding: const EdgeInsets.all(5.0),
+        child: Container(
+          padding: EdgeInsets.symmetric(vertical: 10),
+          width: double.infinity,
+          height: 120,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: Colors.white,
+          ),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(width: 10,),
+              // Expanded(
+              //   flex: 1,
+              //   child: Checkbox(
+              //     value: checkedValue,
+              //     onChanged: (v) {
+              //       setState(() {
+              //         checkedValue = v!;
+              //       });
+              //     },
+              //     // controlAffinity: ListTileControlAffinity.leading,
+              //   ),
+              // ),
+              //image
+              ClipRRect(
+                borderRadius: BorderRadius.circular(15),
+                child: Image.network(
+                  '${course.imageUrl}',
+                  //'https://www.incimages.com/uploaded_files/image/1920x1080/getty_933383882_2000133420009280345_410292.jpg',
+                  width: 100,
+                  height: 100,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              const SizedBox(
+                width: 15,
+              ),
+              Expanded(
+                flex: 3,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 5.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        '${course.title}',
+                        //'Welcome To The Course Welcome To The Course',
+                        maxLines: 3,
+                      ),
+                      const SizedBox(
+                        height: 2,
+                      ),
+                      Text(
+                        '${course.contents!.length} Modules',
+                        style: TextStyle(color: Colors.grey[500]),
+                      ),
+                    ],
                   ),
                 ),
-                const SizedBox(
-                  width: 15,
-                ),
-                Expanded(
-                  flex: 3,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 5.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          '${course.title}',
-                          //'Welcome To The Course Welcome To The Course',
-                          maxLines: 3,
-                        ),
-                        const SizedBox(
-                          height: 2,
-                        ),
-                        Text(
-                          '${course.contents!.length} Modules',
-                          style: TextStyle(color: Colors.grey[500]),
-                        ),
-                      ],
-                    ),
+              ),
+              const Spacer(),
+              const Expanded(
+                flex: 1,
+                child: CircleAvatar(
+                  backgroundColor: primaryColor,
+                  radius: 16,
+                  child: Icon(
+                    Icons.play_arrow,
+                    color: Colors.white,
                   ),
                 ),
-                const Spacer(),
-                const Expanded(
-                  flex: 1,
-                  child: CircleAvatar(
-                    backgroundColor: primaryColor,
-                    radius: 16,
-                    child: Icon(
-                      Icons.play_arrow,
-                      color: Colors.white,
-                    ),
-                  ),
-                )
-              ],
-            ),
+              )
+            ],
           ),
         ),
-  );
+      ),
+    );
+  }
 }
 
 // Widget include design course Content card

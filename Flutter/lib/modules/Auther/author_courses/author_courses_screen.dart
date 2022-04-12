@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -225,6 +226,153 @@ class AuthorCourses extends StatelessWidget {
               Expanded(
                 flex: 1,
                 child: PopupMenuButton(
+                  onSelected: (select){
+                    if(select == 1){
+                      navigator(context, UpdateCourseScreen(course));
+                    }else if(select == 2){
+                      AwesomeDialog(
+                        context: context,
+                        animType: AnimType.SCALE,
+                        dialogType:
+                        DialogType.NO_HEADER,
+                        body: Center(
+                          child: Padding(
+                            padding:
+                            const EdgeInsets
+                                .all(8.0),
+                            child: Form(
+                              //  key: formkey,
+                              child: Column(
+                                children: [
+                                  Text(
+                                    'Are you sure you want to delete this Course ${course.title} ?',
+                                    textAlign:
+                                    TextAlign
+                                        .center,
+                                    style:
+                                    TextStyle(
+                                      fontWeight:
+                                      FontWeight
+                                          .bold,
+                                      fontSize:
+                                      20,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 30,
+                                  ),
+                                  Container(
+                                    height: 40,
+                                    child:
+                                    defaultButton(
+                                      text:
+                                      'Yes, I\'m Agree',
+                                      onPressed:
+                                          () {
+                                            cubit.deleteCourse(courseId: course.sId!);
+                                        Navigator.pop(
+                                            context);
+                                      },
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Container(
+                                    height: 40,
+                                    child:
+                                    defaultButton(
+                                      text: 'No',
+                                      onPressed:
+                                          () {
+                                        Navigator.pop(
+                                            context);
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        title: 'This is Ignored',
+                        desc:
+                        'This is also Ignored',
+                        //   btnOkOnPress: () {},
+                      ).show();
+                    }else if(select == 3){
+                      AwesomeDialog(
+                        context: context,
+                        animType: AnimType.SCALE,
+                        dialogType:
+                        DialogType.NO_HEADER,
+                        body: Center(
+                          child: Padding(
+                            padding:
+                            const EdgeInsets
+                                .all(8.0),
+                            child: Form(
+                              //  key: formkey,
+                              child: Column(
+                                children: [
+                                  Text(
+                                    'Are you sure you want to send request this Course ${course.title} ?',
+                                    textAlign:
+                                    TextAlign
+                                        .center,
+                                    style:
+                                    TextStyle(
+                                      fontWeight:
+                                      FontWeight
+                                          .bold,
+                                      fontSize:
+                                      20,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 30,
+                                  ),
+                                  Container(
+                                    height: 40,
+                                    child:
+                                    defaultButton(
+                                      text:
+                                      'Yes, I\'m Agree',
+                                      onPressed:
+                                          () {
+                                            cubit.sendNewCourseRequest(courseId: course.sId);
+                                        Navigator.pop(
+                                            context);
+                                      },
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Container(
+                                    height: 40,
+                                    child:
+                                    defaultButton(
+                                      text: 'No',
+                                      onPressed:
+                                          () {
+                                        Navigator.pop(
+                                            context);
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        title: 'This is Ignored',
+                        desc:
+                        'This is also Ignored',
+                        //   btnOkOnPress: () {},
+                      ).show();
+                    }
+                  },
                   icon: Icon(
                     Icons.more_vert,
                     size: 30,
@@ -232,45 +380,55 @@ class AuthorCourses extends StatelessWidget {
                   ),
                   itemBuilder: (BuildContext context) => [
                     PopupMenuItem(
-                      child: TextButton.icon(
-                          onPressed: () {
-                            navigator(context, UpdateCourseScreen(course));
-                          },
-                          icon: Icon(Icons.edit),
-                          label: Text('Edit')),
+                      child: Row(
+                        children: [
+                          SizedBox(width: 10,),
+                          Icon(
+                            Icons.edit,
+                            color: primaryColor,
+                          ),
+                          SizedBox(width: 10,),
+                          Text(
+                            'Edit',
+                            style: TextStyle(color: primaryColor),
+                          ),
+                        ],
+                      ),
                       value: 1,
                     ),
                     PopupMenuItem(
-                      child: TextButton.icon(
-                          onPressed: () {
-                            print(course.sId);
-                            cubit.deleteCourse(courseId: course.sId!);
-                          },
-                          icon: Icon(
+                      child: Row(
+                        children: [
+                          SizedBox(width: 10,),
+                          Icon(
                             Icons.delete,
                             color: Colors.red,
                           ),
-                          label: Text(
+                          SizedBox(width: 10,),
+                          Text(
                             'Delete',
                             style: TextStyle(color: Colors.red),
-                          )),
+                          ),
+                        ],
+                      ),
                       value: 2,
                     ),
                     if (request)
                       PopupMenuItem(
-                        child: TextButton.icon(
-                            onPressed: () {
-                              cubit.sendNewCourseRequest(courseId: course.sId);
-                              print(course.sId.toString());
-                            },
-                            icon: const Icon(
+                        child: Row(
+                          children: [
+                            SizedBox(width: 10,),
+                            Icon(
                               Icons.send,
                               color: Colors.green,
                             ),
-                            label: const Text(
+                            SizedBox(width: 10,),
+                            Text(
                               'Request',
                               style: TextStyle(color: Colors.green),
-                            )),
+                            ),
+                          ],
+                        ),
                         value: 3,
                       ),
                   ],

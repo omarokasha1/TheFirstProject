@@ -12,7 +12,6 @@
 12         to allow setting breakpoints, to provide hot reload, etc.
 13    -->
 14    <uses-permission android:name="android.permission.INTERNET" />
-<<<<<<< HEAD
 14-->E:\LMS\TheFirstProject\Flutter\android\app\src\main\AndroidManifest.xml:3:5-66
 14-->E:\LMS\TheFirstProject\Flutter\android\app\src\main\AndroidManifest.xml:3:22-64
 15    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -42,42 +41,10 @@
 26            <action android:name="android.media.browse.MediaBrowserService" />
 26-->[androidx.media:media:1.3.1] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\6652b6215475c12e535a7dad89862150\media-1.3.1\AndroidManifest.xml:26:13-79
 26-->[androidx.media:media:1.3.1] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\6652b6215475c12e535a7dad89862150\media-1.3.1\AndroidManifest.xml:26:21-76
-=======
-14-->G:\TheFirstProject\Flutter\android\app\src\main\AndroidManifest.xml:3:5-66
-14-->G:\TheFirstProject\Flutter\android\app\src\main\AndroidManifest.xml:3:22-64
-15    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-15-->[:network_info_plus] G:\TheFirstProject\Flutter\build\network_info_plus\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-79
-15-->[:network_info_plus] G:\TheFirstProject\Flutter\build\network_info_plus\intermediates\library_manifest\debug\AndroidManifest.xml:7:22-76
-16    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-16-->[:network_info_plus] G:\TheFirstProject\Flutter\build\network_info_plus\intermediates\library_manifest\debug\AndroidManifest.xml:8:5-76
-16-->[:network_info_plus] G:\TheFirstProject\Flutter\build\network_info_plus\intermediates\library_manifest\debug\AndroidManifest.xml:8:22-73
-17    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-17-->[:file_picker] G:\TheFirstProject\Flutter\build\file_picker\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-80
-17-->[:file_picker] G:\TheFirstProject\Flutter\build\file_picker\intermediates\library_manifest\debug\AndroidManifest.xml:7:22-77
-18
-19    <queries>
-19-->[:file_picker] G:\TheFirstProject\Flutter\build\file_picker\intermediates\library_manifest\debug\AndroidManifest.xml:9:5-15:15
-20        <intent>
-20-->[:file_picker] G:\TheFirstProject\Flutter\build\file_picker\intermediates\library_manifest\debug\AndroidManifest.xml:10:9-14:18
-21            <action android:name="android.intent.action.GET_CONTENT" />
-21-->[:file_picker] G:\TheFirstProject\Flutter\build\file_picker\intermediates\library_manifest\debug\AndroidManifest.xml:11:13-72
-21-->[:file_picker] G:\TheFirstProject\Flutter\build\file_picker\intermediates\library_manifest\debug\AndroidManifest.xml:11:21-69
-22
-23            <data android:mimeType="*/*" />
-23-->[:file_picker] G:\TheFirstProject\Flutter\build\file_picker\intermediates\library_manifest\debug\AndroidManifest.xml:13:13-44
-23-->[:file_picker] G:\TheFirstProject\Flutter\build\file_picker\intermediates\library_manifest\debug\AndroidManifest.xml:13:19-41
-24        </intent>
-25        <intent>
-25-->[androidx.media:media:1.3.1] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\6652b6215475c12e535a7dad89862150\media-1.3.1\AndroidManifest.xml:25:9-27:18
-26            <action android:name="android.media.browse.MediaBrowserService" />
-26-->[androidx.media:media:1.3.1] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\6652b6215475c12e535a7dad89862150\media-1.3.1\AndroidManifest.xml:26:13-79
-26-->[androidx.media:media:1.3.1] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\6652b6215475c12e535a7dad89862150\media-1.3.1\AndroidManifest.xml:26:21-76
->>>>>>> origin/Flutter_youssef
 27        </intent>
 28    </queries>
 29
 30    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-<<<<<<< HEAD
 30-->[:awesome_notifications] E:\LMS\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-81
 30-->[:awesome_notifications] E:\LMS\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:7:22-78
 31    <uses-permission android:name="android.permission.VIBRATE" />
@@ -92,29 +59,12 @@
 34    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" /> <!-- for android -->
 34-->[androidx.work:work-runtime:2.7.0] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:28:5-77
 34-->[androidx.work:work-runtime:2.7.0] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:28:22-74
-=======
-30-->[:awesome_notifications] G:\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-81
-30-->[:awesome_notifications] G:\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:7:22-78
-31    <uses-permission android:name="android.permission.VIBRATE" />
-31-->[:awesome_notifications] G:\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:8:5-66
-31-->[:awesome_notifications] G:\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:8:22-63
-32    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
-32-->[:open_file] G:\TheFirstProject\Flutter\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:8:5-83
-32-->[:open_file] G:\TheFirstProject\Flutter\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:8:22-80
-33    <uses-permission android:name="android.permission.WAKE_LOCK" />
-33-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:25:5-68
-33-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:25:22-65
-34    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" /> <!-- for android -->
-34-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:28:5-77
-34-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:28:22-74
->>>>>>> origin/Flutter_youssef
 35    <!-- <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS"/> -->
 36    <!-- <uses-permission android:name="com.android.launcher.permission.WRITE_SETTINGS"/> -->
 37    <!-- <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" /> -->
 38    <!-- <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT" /> -->
 39    <!-- for Samsung -->
 40    <uses-permission android:name="com.sec.android.provider.badge.permission.READ" />
-<<<<<<< HEAD
 40-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:19:5-86
 40-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:19:22-83
 41    <uses-permission android:name="com.sec.android.provider.badge.permission.WRITE" /> <!-- for htc -->
@@ -162,64 +112,11 @@
 55    <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_WRITE" />
 55-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:50:5-89
 55-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:50:22-86
-=======
-40-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:19:5-86
-40-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:19:22-83
-41    <uses-permission android:name="com.sec.android.provider.badge.permission.WRITE" /> <!-- for htc -->
-41-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:20:5-87
-41-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:20:22-84
-42    <uses-permission android:name="com.htc.launcher.permission.READ_SETTINGS" />
-42-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:23:5-81
-42-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:23:22-78
-43    <uses-permission android:name="com.htc.launcher.permission.UPDATE_SHORTCUT" /> <!-- for sony -->
-43-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:24:5-83
-43-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:24:22-80
-44    <uses-permission android:name="com.sonyericsson.home.permission.BROADCAST_BADGE" />
-44-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:27:5-88
-44-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:27:22-85
-45    <uses-permission android:name="com.sonymobile.home.permission.PROVIDER_INSERT_BADGE" /> <!-- for apex -->
-45-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:28:5-92
-45-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:28:22-89
-46    <uses-permission android:name="com.anddoes.launcher.permission.UPDATE_COUNT" /> <!-- for solid -->
-46-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:31:5-84
-46-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:31:22-81
-47    <uses-permission android:name="com.majeur.launcher.permission.UPDATE_BADGE" /> <!-- for huawei -->
-47-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:34:5-83
-47-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:34:22-80
-48    <uses-permission android:name="com.huawei.android.launcher.permission.CHANGE_BADGE" />
-48-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:37:5-91
-48-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:37:22-88
-49    <uses-permission android:name="com.huawei.android.launcher.permission.READ_SETTINGS" />
-49-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:38:5-92
-49-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:38:22-89
-50    <uses-permission android:name="com.huawei.android.launcher.permission.WRITE_SETTINGS" /> <!-- for ZUK -->
-50-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:39:5-93
-50-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:39:22-90
-51    <uses-permission android:name="android.permission.READ_APP_BADGE" /> <!-- for OPPO -->
-51-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:42:5-73
-51-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:42:22-70
-52    <uses-permission android:name="com.oppo.launcher.permission.READ_SETTINGS" />
-52-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:45:5-82
-52-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:45:22-79
-53    <uses-permission android:name="com.oppo.launcher.permission.WRITE_SETTINGS" /> <!-- for EvMe -->
-53-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:46:5-83
-53-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:46:22-80
-54    <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_READ" />
-54-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:49:5-88
-54-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:49:22-85
-55    <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_WRITE" />
-55-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:50:5-89
-55-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\644c21982e4e9db8623e39519462506e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:50:22-86
->>>>>>> origin/Flutter_youssef
 56
 57    <application
 58        android:name="android.app.Application"
 59        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-<<<<<<< HEAD
 59-->[androidx.core:core:1.7.0] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\b9a960218f5163997c0fdfa3d3078c0e\core-1.7.0\AndroidManifest.xml:24:18-86
-=======
-59-->[androidx.core:core:1.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\b9a960218f5163997c0fdfa3d3078c0e\core-1.7.0\AndroidManifest.xml:24:18-86
->>>>>>> origin/Flutter_youssef
 60        android:debuggable="true"
 61        android:icon="@mipmap/ic_launcher"
 62        android:label="lms"
@@ -259,7 +156,6 @@
 96            android:value="2" />
 97
 98        <provider
-<<<<<<< HEAD
 98-->[:image_picker] E:\LMS\TheFirstProject\Flutter\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-16:20
 99            android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
 99-->[:image_picker] E:\LMS\TheFirstProject\Flutter\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-82
@@ -325,78 +221,10 @@
 128                <action android:name="android.app.action.SCHEDULE_EXACT_ALARM_PERMISSION_STATE_CHANGED" />
 128-->[:awesome_notifications] E:\LMS\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:31:17-107
 128-->[:awesome_notifications] E:\LMS\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:31:25-104
-=======
-98-->[:image_picker] G:\TheFirstProject\Flutter\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-16:20
-99            android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
-99-->[:image_picker] G:\TheFirstProject\Flutter\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-82
-100            android:authorities="com.example.lms.flutter.image_provider"
-100-->[:image_picker] G:\TheFirstProject\Flutter\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:10:13-74
-101            android:exported="false"
-101-->[:image_picker] G:\TheFirstProject\Flutter\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:11:13-37
-102            android:grantUriPermissions="true" >
-102-->[:image_picker] G:\TheFirstProject\Flutter\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:12:13-47
-103            <meta-data
-103-->[:image_picker] G:\TheFirstProject\Flutter\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:13:13-15:75
-104                android:name="android.support.FILE_PROVIDER_PATHS"
-104-->[:image_picker] G:\TheFirstProject\Flutter\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:14:17-67
-105                android:resource="@xml/flutter_image_picker_file_paths" />
-105-->[:image_picker] G:\TheFirstProject\Flutter\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:15:17-72
-106        </provider>
-107
-108        <receiver
-108-->[:awesome_notifications] G:\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:11:9-13:40
-109            android:name="me.carda.awesome_notifications.notifications.broadcastReceivers.DismissedNotificationReceiver"
-109-->[:awesome_notifications] G:\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:12:13-121
-110            android:exported="false" />
-110-->[:awesome_notifications] G:\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:13:13-37
-111        <receiver
-111-->[:awesome_notifications] G:\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:14:9-16:40
-112            android:name="me.carda.awesome_notifications.notifications.broadcastReceivers.ScheduledNotificationReceiver"
-112-->[:awesome_notifications] G:\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:15:13-121
-113            android:exported="false" />
-113-->[:awesome_notifications] G:\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:16:13-37
-114        <receiver
-114-->[:awesome_notifications] G:\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:17:9-19:40
-115            android:name="me.carda.awesome_notifications.notifications.broadcastReceivers.KeepOnTopActionReceiver"
-115-->[:awesome_notifications] G:\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:18:13-115
-116            android:exported="false" />
-116-->[:awesome_notifications] G:\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:19:13-37
-117        <receiver
-117-->[:awesome_notifications] G:\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:20:9-33:20
-118            android:name="me.carda.awesome_notifications.notifications.broadcastReceivers.RefreshSchedulesReceiver"
-118-->[:awesome_notifications] G:\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:21:13-116
-119            android:exported="false" >
-119-->[:awesome_notifications] G:\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:22:13-37
-120            <intent-filter>
-120-->[:awesome_notifications] G:\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:23:13-32:29
-121                <category android:name="android.intent.category.DEFAULT" />
-121-->[:awesome_notifications] G:\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:24:17-76
-121-->[:awesome_notifications] G:\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:24:27-73
-122
-123                <action android:name="android.intent.action.BOOT_COMPLETED" />
-123-->[:awesome_notifications] G:\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:26:17-79
-123-->[:awesome_notifications] G:\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:26:25-76
-124                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
-124-->[:awesome_notifications] G:\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:27:17-86
-124-->[:awesome_notifications] G:\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:27:25-83
-125                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
-125-->[:awesome_notifications] G:\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:28:17-84
-125-->[:awesome_notifications] G:\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:28:25-81
-126                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
-126-->[:awesome_notifications] G:\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:29:17-82
-126-->[:awesome_notifications] G:\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:29:25-79
-127                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON" />
-127-->[:awesome_notifications] G:\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:30:17-82
-127-->[:awesome_notifications] G:\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:30:25-79
-128                <action android:name="android.app.action.SCHEDULE_EXACT_ALARM_PERMISSION_STATE_CHANGED" />
-128-->[:awesome_notifications] G:\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:31:17-107
-128-->[:awesome_notifications] G:\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:31:25-104
->>>>>>> origin/Flutter_youssef
 129            </intent-filter>
 130        </receiver>
 131
 132        <provider
-<<<<<<< HEAD
 132-->[:open_file] E:\LMS\TheFirstProject\Flutter\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:12:9-21:20
 133            android:name="com.crazecoder.openfile.FileProvider"
 133-->[:open_file] E:\LMS\TheFirstProject\Flutter\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:13:13-64
@@ -620,236 +448,10 @@
 246                <action android:name="androidx.work.diagnostics.REQUEST_DIAGNOSTICS" />
 246-->[androidx.work:work-runtime:2.7.0] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:140:17-88
 246-->[androidx.work:work-runtime:2.7.0] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:140:25-85
-=======
-132-->[:open_file] G:\TheFirstProject\Flutter\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:12:9-21:20
-133            android:name="com.crazecoder.openfile.FileProvider"
-133-->[:open_file] G:\TheFirstProject\Flutter\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:13:13-64
-134            android:authorities="com.example.lms.fileProvider.com.crazecoder.openfile"
-134-->[:open_file] G:\TheFirstProject\Flutter\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:14:13-88
-135            android:exported="false"
-135-->[:open_file] G:\TheFirstProject\Flutter\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:15:13-37
-136            android:grantUriPermissions="true" >
-136-->[:open_file] G:\TheFirstProject\Flutter\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:16:13-47
-137            <meta-data
-137-->[:image_picker] G:\TheFirstProject\Flutter\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:13:13-15:75
-138                android:name="android.support.FILE_PROVIDER_PATHS"
-138-->[:image_picker] G:\TheFirstProject\Flutter\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:14:17-67
-139                android:resource="@xml/filepaths" />
-139-->[:image_picker] G:\TheFirstProject\Flutter\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:15:17-72
-140        </provider>
-141
-142        <uses-library
-142-->[androidx.window:window:1.0.0-beta04] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\03c633e46d75bfb21f082f0417f55161\jetified-window-1.0.0-beta04\AndroidManifest.xml:25:9-27:40
-143            android:name="androidx.window.extensions"
-143-->[androidx.window:window:1.0.0-beta04] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\03c633e46d75bfb21f082f0417f55161\jetified-window-1.0.0-beta04\AndroidManifest.xml:26:13-54
-144            android:required="false" />
-144-->[androidx.window:window:1.0.0-beta04] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\03c633e46d75bfb21f082f0417f55161\jetified-window-1.0.0-beta04\AndroidManifest.xml:27:13-37
-145        <uses-library
-145-->[androidx.window:window:1.0.0-beta04] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\03c633e46d75bfb21f082f0417f55161\jetified-window-1.0.0-beta04\AndroidManifest.xml:28:9-30:40
-146            android:name="androidx.window.sidecar"
-146-->[androidx.window:window:1.0.0-beta04] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\03c633e46d75bfb21f082f0417f55161\jetified-window-1.0.0-beta04\AndroidManifest.xml:29:13-51
-147            android:required="false" />
-147-->[androidx.window:window:1.0.0-beta04] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\03c633e46d75bfb21f082f0417f55161\jetified-window-1.0.0-beta04\AndroidManifest.xml:30:13-37
-148
-149        <provider
-149-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:31:9-39:20
-150            android:name="androidx.startup.InitializationProvider"
-150-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:32:13-67
-151            android:authorities="com.example.lms.androidx-startup"
-151-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:33:13-68
-152            android:exported="false" >
-152-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:34:13-37
-153            <meta-data
-153-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:36:13-38:52
-154                android:name="androidx.work.WorkManagerInitializer"
-154-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:37:17-68
-155                android:value="androidx.startup" />
-155-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:38:17-49
-156        </provider>
-157
-158        <service
-158-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:41:9-46:35
-159            android:name="androidx.work.impl.background.systemalarm.SystemAlarmService"
-159-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:42:13-88
-160            android:directBootAware="false"
-160-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:43:13-44
-161            android:enabled="@bool/enable_system_alarm_service_default"
-161-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:44:13-72
-162            android:exported="false" />
-162-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:45:13-37
-163        <service
-163-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:47:9-53:35
-164            android:name="androidx.work.impl.background.systemjob.SystemJobService"
-164-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:48:13-84
-165            android:directBootAware="false"
-165-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:49:13-44
-166            android:enabled="@bool/enable_system_job_service_default"
-166-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:50:13-70
-167            android:exported="true"
-167-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:51:13-36
-168            android:permission="android.permission.BIND_JOB_SERVICE" />
-168-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:52:13-69
-169        <service
-169-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:54:9-59:35
-170            android:name="androidx.work.impl.foreground.SystemForegroundService"
-170-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:55:13-81
-171            android:directBootAware="false"
-171-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:56:13-44
-172            android:enabled="@bool/enable_system_foreground_service_default"
-172-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:57:13-77
-173            android:exported="false" />
-173-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:58:13-37
-174
-175        <receiver
-175-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:61:9-66:35
-176            android:name="androidx.work.impl.utils.ForceStopRunnable$BroadcastReceiver"
-176-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:62:13-88
-177            android:directBootAware="false"
-177-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:63:13-44
-178            android:enabled="true"
-178-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:64:13-35
-179            android:exported="false" />
-179-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:65:13-37
-180        <receiver
-180-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:67:9-77:20
-181            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryChargingProxy"
-181-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:68:13-106
-182            android:directBootAware="false"
-182-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:69:13-44
-183            android:enabled="false"
-183-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:70:13-36
-184            android:exported="false" >
-184-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:71:13-37
-185            <intent-filter>
-185-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:73:13-76:29
-186                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
-186-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:74:17-87
-186-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:74:25-84
-187                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
-187-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:75:17-90
-187-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:75:25-87
-188            </intent-filter>
-189        </receiver>
-190        <receiver
-190-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:78:9-88:20
-191            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryNotLowProxy"
-191-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:79:13-104
-192            android:directBootAware="false"
-192-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:80:13-44
-193            android:enabled="false"
-193-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:81:13-36
-194            android:exported="false" >
-194-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:82:13-37
-195            <intent-filter>
-195-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:84:13-87:29
-196                <action android:name="android.intent.action.BATTERY_OKAY" />
-196-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:85:17-77
-196-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:85:25-74
-197                <action android:name="android.intent.action.BATTERY_LOW" />
-197-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:86:17-76
-197-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:86:25-73
-198            </intent-filter>
-199        </receiver>
-200        <receiver
-200-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:89:9-99:20
-201            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$StorageNotLowProxy"
-201-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:90:13-104
-202            android:directBootAware="false"
-202-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:91:13-44
-203            android:enabled="false"
-203-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:92:13-36
-204            android:exported="false" >
-204-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:93:13-37
-205            <intent-filter>
-205-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:95:13-98:29
-206                <action android:name="android.intent.action.DEVICE_STORAGE_LOW" />
-206-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:96:17-83
-206-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:96:25-80
-207                <action android:name="android.intent.action.DEVICE_STORAGE_OK" />
-207-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:97:17-82
-207-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:97:25-79
-208            </intent-filter>
-209        </receiver>
-210        <receiver
-210-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:100:9-109:20
-211            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$NetworkStateProxy"
-211-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:101:13-103
-212            android:directBootAware="false"
-212-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:102:13-44
-213            android:enabled="false"
-213-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:103:13-36
-214            android:exported="false" >
-214-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:104:13-37
-215            <intent-filter>
-215-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:106:13-108:29
-216                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-216-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:107:17-79
-216-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:107:25-76
-217            </intent-filter>
-218        </receiver>
-219        <receiver
-219-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:110:9-121:20
-220            android:name="androidx.work.impl.background.systemalarm.RescheduleReceiver"
-220-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:111:13-88
-221            android:directBootAware="false"
-221-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:112:13-44
-222            android:enabled="false"
-222-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:113:13-36
-223            android:exported="false" >
-223-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:114:13-37
-224            <intent-filter>
-224-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:116:13-120:29
-225                <action android:name="android.intent.action.BOOT_COMPLETED" />
-225-->[:awesome_notifications] G:\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:26:17-79
-225-->[:awesome_notifications] G:\TheFirstProject\Flutter\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:26:25-76
-226                <action android:name="android.intent.action.TIME_SET" />
-226-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:118:17-73
-226-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:118:25-70
-227                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
-227-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:119:17-81
-227-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:119:25-78
-228            </intent-filter>
-229        </receiver>
-230        <receiver
-230-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:122:9-131:20
-231            android:name="androidx.work.impl.background.systemalarm.ConstraintProxyUpdateReceiver"
-231-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:123:13-99
-232            android:directBootAware="false"
-232-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:124:13-44
-233            android:enabled="@bool/enable_system_alarm_service_default"
-233-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:125:13-72
-234            android:exported="false" >
-234-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:126:13-37
-235            <intent-filter>
-235-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:128:13-130:29
-236                <action android:name="androidx.work.impl.background.systemalarm.UpdateProxies" />
-236-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:129:17-98
-236-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:129:25-95
-237            </intent-filter>
-238        </receiver>
-239        <receiver
-239-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:132:9-142:20
-240            android:name="androidx.work.impl.diagnostics.DiagnosticsReceiver"
-240-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:133:13-78
-241            android:directBootAware="false"
-241-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:134:13-44
-242            android:enabled="true"
-242-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:135:13-35
-243            android:exported="true"
-243-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:136:13-36
-244            android:permission="android.permission.DUMP" >
-244-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:137:13-57
-245            <intent-filter>
-245-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:139:13-141:29
-246                <action android:name="androidx.work.diagnostics.REQUEST_DIAGNOSTICS" />
-246-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:140:17-88
-246-->[androidx.work:work-runtime:2.7.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\fe874bc08108b4385ecbba01f969818b\work-runtime-2.7.0\AndroidManifest.xml:140:25-85
->>>>>>> origin/Flutter_youssef
 247            </intent-filter>
 248        </receiver>
 249
 250        <provider
-<<<<<<< HEAD
 250-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\5b28ea65995a10537a2c988d76489f89\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:25:9-29:43
 251            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
 251-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\5b28ea65995a10537a2c988d76489f89\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:26:13-79
@@ -868,26 +470,6 @@
 258-->[androidx.room:room-runtime:2.2.5] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\5a9abbd9b8f0f835c4fddb4cf7ae6694\room-runtime-2.2.5\AndroidManifest.xml:27:13-43
 259            android:exported="false" />
 259-->[androidx.room:room-runtime:2.2.5] C:\Users\Ka8eem Helmy\.gradle\caches\transforms-2\files-2.1\5a9abbd9b8f0f835c4fddb4cf7ae6694\room-runtime-2.2.5\AndroidManifest.xml:28:13-37
-=======
-250-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\5b28ea65995a10537a2c988d76489f89\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:25:9-29:43
-251            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
-251-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\5b28ea65995a10537a2c988d76489f89\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:26:13-79
-252            android:authorities="com.example.lms.lifecycle-process"
-252-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\5b28ea65995a10537a2c988d76489f89\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:27:13-69
-253            android:exported="false"
-253-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\5b28ea65995a10537a2c988d76489f89\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:28:13-37
-254            android:multiprocess="true" />
-254-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\5b28ea65995a10537a2c988d76489f89\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:29:13-40
-255
-256        <service
-256-->[androidx.room:room-runtime:2.2.5] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\5a9abbd9b8f0f835c4fddb4cf7ae6694\room-runtime-2.2.5\AndroidManifest.xml:25:9-28:40
-257            android:name="androidx.room.MultiInstanceInvalidationService"
-257-->[androidx.room:room-runtime:2.2.5] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\5a9abbd9b8f0f835c4fddb4cf7ae6694\room-runtime-2.2.5\AndroidManifest.xml:26:13-74
-258            android:directBootAware="true"
-258-->[androidx.room:room-runtime:2.2.5] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\5a9abbd9b8f0f835c4fddb4cf7ae6694\room-runtime-2.2.5\AndroidManifest.xml:27:13-43
-259            android:exported="false" />
-259-->[androidx.room:room-runtime:2.2.5] C:\Users\youss\.gradle\caches\transforms-2\files-2.1\5a9abbd9b8f0f835c4fddb4cf7ae6694\room-runtime-2.2.5\AndroidManifest.xml:28:13-37
->>>>>>> origin/Flutter_youssef
 260    </application>
 261
 262</manifest>

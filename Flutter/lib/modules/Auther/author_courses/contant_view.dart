@@ -2,15 +2,11 @@ import 'package:better_player/better_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lms/layout/layout.dart';
-import 'package:lms/models/new/contents_model.dart';
 import 'package:lms/modules/Auther/modules/create_module/cubit/cubit.dart';
 import 'package:lms/modules/Auther/modules/create_module/cubit/states.dart';
 import 'package:lms/modules/Auther/modules/pdf_view_screen.dart';
 import 'package:lms/shared/component/constants.dart';
-import 'package:open_file/open_file.dart';
 import 'package:readmore/readmore.dart';
-import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
-
 import '../../../models/new/courses_model.dart';
 import '../../../shared/component/component.dart';
 
@@ -48,7 +44,7 @@ class _ContentViewScreenState extends State<ContentViewScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<CreateModuleCubit,CreateModuleStates>(
+    return BlocConsumer<ModuleCubit,CreateModuleStates>(
       listener: (context, state) {},
       builder: (context, state) {
         return Layout(
@@ -126,8 +122,6 @@ class _ContentViewScreenState extends State<ContentViewScreen> {
                     'Content :',
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
                   ),
-
-
                   if(widget.contentModel.imageUrl!.split('\.').last == 'jpg' || widget.contentModel.imageUrl!.split('\.').last == 'png' )
                     Container(
                       width: double.infinity,
@@ -208,7 +202,6 @@ class _ContentViewScreenState extends State<ContentViewScreen> {
                     )
                   // viewFileDetails(contentModel),
                 ],
-
               ),
             ),
           ),

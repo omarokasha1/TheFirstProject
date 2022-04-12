@@ -1,7 +1,9 @@
+import 'new/courses_model.dart';
+
 class AssignmentsModel {
   String? status;
   String? message;
-  List<Assignments>? assignments;
+  List<Assignment>? assignments;
 
   AssignmentsModel({this.status, this.message, this.assignments});
 
@@ -9,15 +11,15 @@ class AssignmentsModel {
     status = json['status'];
     message = json['message'];
     if (json['assignments'] != null) {
-      assignments = <Assignments>[];
+      assignments = <Assignment>[];
       json['assignments'].forEach((v) {
-        assignments!.add(new Assignments.fromJson(v));
+        assignments!.add(Assignment.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['status'] = this.status;
     data['message'] = this.message;
     if (this.assignments != null) {
@@ -27,49 +29,6 @@ class AssignmentsModel {
   }
 }
 
-class Assignments {
-  String? sId;
-  String? assignmentTitle;
-  String? assignmentDuration;
-  String? fileUrl;
-  String? description;
-  Author? author;
-  int? iV;
-
-  Assignments(
-      {this.sId,
-        this.assignmentTitle,
-        this.assignmentDuration,
-        this.fileUrl,
-        this.description,
-        this.author,
-        this.iV});
-
-  Assignments.fromJson(Map<String, dynamic> json) {
-    sId = json['_id'];
-    assignmentTitle = json['assignmentTitle'];
-    assignmentDuration = json['assignmentDuration'];
-    fileUrl = json['fileUrl'];
-    description = json['description'];
-    author =
-    json['author'] != null ? new Author.fromJson(json['author']) : null;
-    iV = json['__v'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.sId;
-    data['assignmentTitle'] = this.assignmentTitle;
-    data['assignmentDuration'] = this.assignmentDuration;
-    data['fileUrl'] = this.fileUrl;
-    data['description'] = this.description;
-    if (this.author != null) {
-      data['author'] = this.author!.toJson();
-    }
-    data['__v'] = this.iV;
-    return data;
-  }
-}
 
 class Author {
   UserEducation? userEducation;
@@ -111,7 +70,7 @@ class Author {
 
   Author.fromJson(Map<String, dynamic> json) {
     userEducation = json['userEducation'] != null
-        ? new UserEducation.fromJson(json['userEducation'])
+        ? UserEducation.fromJson(json['userEducation'])
         : null;
     sId = json['_id'];
     userName = json['userName'];
@@ -132,7 +91,7 @@ class Author {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     if (this.userEducation != null) {
       data['userEducation'] = this.userEducation!.toJson();
     }
@@ -182,7 +141,7 @@ class UserEducation {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['university'] = this.university;
     data['major'] = this.major;
     data['faculty'] = this.faculty;

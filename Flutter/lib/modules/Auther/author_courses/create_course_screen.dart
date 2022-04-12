@@ -34,19 +34,19 @@ class CreateCourseScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<CreateAssignmentCubit>(context)..getAssignmentData();
+    BlocProvider.of<AssignmentCubit>(context)..getAssignmentData();
     return BlocProvider.value(
-      value: BlocProvider.of<CreateModuleCubit>(context)..getModulesData()..contentActivities=[]..assignmentActivities =[],
+      value: BlocProvider.of<ModuleCubit>(context)..getModulesData()..contentActivities=[]..assignmentActivities =[],
       child: BlocConsumer<AuthorCoursesCubit, AuthorCoursesStates>(
         listener: (context, state) {},
-        builder: (context, state) => BlocConsumer<CreateModuleCubit, CreateModuleStates>(
+        builder: (context, state) => BlocConsumer<ModuleCubit, CreateModuleStates>(
           listener: (context, state) {},
           builder: (context, state) {
             var courseCubit = AuthorCoursesCubit.get(context);
-            var moduleCubit = CreateModuleCubit.get(context);
+            var moduleCubit = ModuleCubit.get(context);
             return Scaffold(
               body: ConditionalBuilder(
-                condition: moduleCubit.getContent != null && BlocProvider.of<CreateAssignmentCubit>(context).getModuleModel != null,
+                condition: moduleCubit.getContent != null && BlocProvider.of<AssignmentCubit>(context).assignments != null,
                 builder: (context){
                   return SingleChildScrollView(
                     child: Column(
@@ -213,7 +213,7 @@ class CreateCourseScreen extends StatelessWidget {
                                                 // });
                                                 moduleCubit.changeAssignmentActivity(value);
                                               },
-                                              dataSource: BlocProvider.of<CreateAssignmentCubit>(context).assignmentList,
+                                              dataSource: BlocProvider.of<AssignmentCubit>(context).assignmentList,
                                             ),
                                             selectMoreItem(
                                               name: "Quiz",
@@ -371,6 +371,7 @@ class CreateCourseScreen extends StatelessWidget {
                                           shortDescription: shortDescriptionController.text,
                                           requirements: requiermentController.text,
                                           contents: moduleCubit.contentActivities,
+                                          assignments: moduleCubit.assignmentActivities,
                                           language: courseCubit.selectedItem,
                                           courseImage: file,
                                         ).then((value) => Navigator.pop(context));

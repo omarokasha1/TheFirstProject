@@ -37,8 +37,11 @@ class Courses {
   List<Author>? wishers;
   bool? isPublished;
   List<Contents>? contents;
+  List<Assignment>? assignment;
   List<Author>? learner;
   Author? author;
+  String? lastUpdate;
+  String? review;
 
   Courses(
       {this.sId,
@@ -50,7 +53,10 @@ class Courses {
         this.wishers,
         this.isPublished,
         this.contents,
+        this.assignment,
         this.learner,
+        this.lastUpdate,
+        this.review,
         this.author});
 
   Courses.fromJson(Map<String, dynamic> json) {
@@ -58,7 +64,9 @@ class Courses {
     requirements = json['requirements'];
     title = json['title'];
     language = json['language'];
+    lastUpdate = json['lastUpdate'];
     description = json['description'];
+    review = json['review'];
     imageUrl = json['imageUrl'];
     if (json['wishers'] != null) {
       wishers = <Author>[];
@@ -71,6 +79,12 @@ class Courses {
       contents = <Contents>[];
       json['contents'].forEach((v) {
         contents!.add(Contents.fromJson(v));
+      });
+    }
+    if (json['assignments'] != null) {
+      assignment = <Assignment>[];
+      json['assignments'].forEach((v) {
+        assignment!.add(Assignment.fromJson(v));
       });
     }
     if (json['learner'] != null) {
@@ -279,6 +293,43 @@ class Contents {
     // if (courses != null) {
     //   data['courses'] = courses!.map((v) => v.toJson()).toList();
     // }
+    return data;
+  }
+}
+class Assignment {
+  String? sId;
+  String? assignmentTitle;
+  String? assignmentDuration;
+  String? fileUrl;
+  String? description;
+  //String? author;
+
+  Assignment(
+      {this.sId,
+        this.assignmentTitle,
+        this.assignmentDuration,
+        this.fileUrl,
+        this.description,
+        //this.author
+      });
+
+  Assignment.fromJson(Map<String, dynamic> json) {
+    sId = json['_id'];
+    assignmentTitle = json['assignmentTitle'];
+    assignmentDuration = json['assignmentDuration'];
+    fileUrl = json['fileUrl'];
+    description = json['description'];
+    //author = json['author'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['_id'] = this.sId;
+    data['assignmentTitle'] = this.assignmentTitle;
+    data['assignmentDuration'] = this.assignmentDuration;
+    data['fileUrl'] = this.fileUrl;
+    data['description'] = this.description;
+    //data['author'] = this.author;
     return data;
   }
 }
