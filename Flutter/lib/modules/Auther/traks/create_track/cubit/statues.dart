@@ -81,6 +81,18 @@ class GetAuthorTrackPublishErrorState extends CreateTrackStates {
   GetAuthorTrackPublishErrorState(this.error);
 }
 
+class GetAuthorTrackByIDLoadingState extends CreateTrackStates {}
+class GetAuthorTrackByIDSuccessState extends CreateTrackStates {
+  final Tracks? authorTrackModel;
+
+  GetAuthorTrackByIDSuccessState(this.authorTrackModel);
+}
+class GetAuthorTrackByIDErrorState extends CreateTrackStates {
+  final String error;
+
+  GetAuthorTrackByIDErrorState(this.error);
+}
+
 
 class SendTrackRequestLoadingState extends CreateTrackStates {}
 
@@ -93,6 +105,7 @@ class SendTrackRequestErrorState extends CreateTrackStates {
 }
 
 
+class SelectImageState extends CreateTrackStates {}
 class GetAuthorCoursesPublishLoadingState extends CreateTrackStates {}
 class GetAuthorCoursesPublishSuccessState extends CreateTrackStates {
   final CoursesModel? authorCoursesTestModel;

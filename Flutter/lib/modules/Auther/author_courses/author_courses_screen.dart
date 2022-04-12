@@ -245,7 +245,7 @@ class AuthorCourses extends StatelessWidget {
                               child: Column(
                                 children: [
                                   Text(
-                                    'Are you sure you want to delete this track ?',
+                                    'Are you sure you want to delete this Course ${course.title} ?',
                                     textAlign:
                                     TextAlign
                                         .center,
@@ -316,7 +316,7 @@ class AuthorCourses extends StatelessWidget {
                               child: Column(
                                 children: [
                                   Text(
-                                    'Are you sure you want to send request this track ?',
+                                    'Are you sure you want to send request this Course ${course.title} ?',
                                     textAlign:
                                     TextAlign
                                         .center,

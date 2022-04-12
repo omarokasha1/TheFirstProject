@@ -4,6 +4,8 @@ import 'package:lms/models/module_model.dart';
 import 'package:lms/models/new/contents_model.dart';
 import 'package:lms/models/response_model.dart';
 
+import '../../../../../models/assignment_model.dart';
+
 abstract class CreateModuleStates {}
 
 class InitCreateModuleState extends CreateModuleStates {}
@@ -61,6 +63,19 @@ class DeleteModuleSuccssesState extends CreateModuleStates {
 class DeleteModuleErrorState extends CreateModuleStates {
   final String error;
   DeleteModuleErrorState(this.error);
+}
+
+class GetAssignmentsLoadingState extends CreateModuleStates {}
+
+class GetAssignmentsSuccssesState extends CreateModuleStates {
+
+  final AssignmentsModel assignmentsModel;
+  GetAssignmentsSuccssesState(this.assignmentsModel);
+}
+
+class GetAssignmentsErrorState extends CreateModuleStates {
+  final String error;
+  GetAssignmentsErrorState(this.error);
 }
 
 

@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "G:\\TheFirstProject\\Flutter\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ka\\values-ka.xml",
+            "outputFile": "E:\\LMS\\TheFirstProject\\Flutter\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ka\\values-ka.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\youss\\.gradle\\caches\\transforms-2\\files-2.1\\dadf59073c0fdcbec26349186df5ad0f\\jetified-extension-mediasession-2.15.1\\res\\values-ka\\values-ka.xml",
+                    "source": "C:\\Users\\Ka8eem Helmy\\.gradle\\caches\\transforms-2\\files-2.1\\dadf59073c0fdcbec26349186df5ad0f\\jetified-extension-mediasession-2.15.1\\res\\values-ka\\values-ka.xml",
                     "from": {
                         "startLines": "2,3,4",
                         "startColumns": "4,4,4",
@@ -21,24 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\youss\\.gradle\\caches\\transforms-2\\files-2.1\\b9a960218f5163997c0fdfa3d3078c0e\\core-1.7.0\\res\\values-ka\\values-ka.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "62",
-                        "startColumns": "4",
-                        "startOffsets": "4290",
-                        "endColumns": "100",
-                        "endOffsets": "4386"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\youss\\.gradle\\caches\\transforms-2\\files-2.1\\8e0c139ac225526e2e5efb315f1c04fc\\jetified-exoplayer-ui-2.15.1\\res\\values-ka\\values-ka.xml",
+                    "source": "C:\\Users\\Ka8eem Helmy\\.gradle\\caches\\transforms-2\\files-2.1\\a6aae59136d3348e6b6e552f8ac82f56\\jetified-exoplayer-ui-2.15.1\\res\\values-ka\\values-ka.xml",
                     "from": {
                         "startLines": "2,6,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -54,6 +37,23 @@
                         "endLines": "5,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61",
                         "endColumns": "12,12,83,83,78,97,101,84,64,98,98,64,64,63,74,66,80,82,79,74,78,73,84,90,87,66,65,71,64,77,72,80,84,52,60,47,60,65,78,63,67,63,60,65,65,65,51,61,75,75,52",
                         "endOffsets": "243,433,517,601,680,778,880,965,1030,1129,1228,1293,1358,1422,1497,1564,1645,1728,1808,1883,1962,2036,2121,2212,2300,2367,2433,2505,2570,2648,2721,2802,2887,2940,3257,3305,3366,3432,3511,3575,3643,3707,3768,3834,3900,3966,4018,4080,4156,4232,4285"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Ka8eem Helmy\\.gradle\\caches\\transforms-2\\files-2.1\\b9a960218f5163997c0fdfa3d3078c0e\\core-1.7.0\\res\\values-ka\\values-ka.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "62",
+                        "startColumns": "4",
+                        "startOffsets": "4290",
+                        "endColumns": "100",
+                        "endOffsets": "4386"
                     }
                 }
             ]

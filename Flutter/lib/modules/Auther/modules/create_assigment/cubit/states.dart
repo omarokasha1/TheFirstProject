@@ -9,6 +9,7 @@ class InitCreateAssignmentState extends CreateAssignmentStates {}
 
 class ChangeItemState extends CreateAssignmentStates {}
 class ChangeAActivityState extends CreateAssignmentStates {}
+class SelectImageState extends CreateAssignmentStates {}
 
 class CreateNewAssignmentLoadingState extends CreateAssignmentStates {}
 
@@ -22,17 +23,17 @@ class CreateNewAssignmentErrorState extends CreateAssignmentStates {
   final String error;
   CreateNewAssignmentErrorState(this.error);
 }
-class GetNewAssignmentLoadingState extends CreateAssignmentStates {}
+class GetAssignmentsLoadingState extends CreateAssignmentStates {}
 
-class GetNewAssignmentSuccssesState extends CreateAssignmentStates {
+class GetAssignmentsSuccssesState extends CreateAssignmentStates {
 
   final AssignmentsModel createContentModel;
-  GetNewAssignmentSuccssesState(this.createContentModel);
+  GetAssignmentsSuccssesState(this.createContentModel);
 }
 
-class GetNewAssignmentErrorState extends CreateAssignmentStates {
+class GetAssignmentsErrorState extends CreateAssignmentStates {
   final String error;
-  GetNewAssignmentErrorState(this.error);
+  GetAssignmentsErrorState(this.error);
 }
 
 class UpdateAssignmentLoadingState extends CreateAssignmentStates {}

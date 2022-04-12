@@ -12,7 +12,6 @@ import 'package:lms/modules/manager/requests_screen.dart';
 import 'package:lms/shared/component/MyAppBar.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
-import 'package:number_slide_animation/number_slide_animation.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 class DashboardManagerScreen extends StatelessWidget {

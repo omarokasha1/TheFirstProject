@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lms/models/login_model.dart';
 import 'package:lms/modules/authertication/login/login_cubit/state.dart';
@@ -16,7 +17,18 @@ class LoginCubit extends Cubit<LoginStates> {
 
   int loginStatus = 0;
 
+  Widget? btnLogin;
+  bool enableLogin = true;
 
+  void changeEnabledLogin(bool x){
+    enableLogin = x;
+    emit(ChangeEnableLoginBtnState());
+  }
+
+  void changeWidgetLogin(Widget x){
+    btnLogin = x;
+    emit(ChangeLoginBtnState());
+  }
 
   void userLogin({required String email, required String password}) {
     emit(LoginLoadingState());
@@ -33,11 +45,11 @@ class LoginCubit extends Cubit<LoginStates> {
     });
   }
 
-
   void changeEye() {
     eye = !eye;
     emit(ChangeEyeState());
   }
+
   void changeConfirmEye() {
     confirmEye = !confirmEye;
     emit(ChangeEyeState());
@@ -47,10 +59,11 @@ class LoginCubit extends Cubit<LoginStates> {
     loginStatus = index;
     emit(ChangeLoginState());
   }
-  bool forgetPassword=false;
-  void changeForgetPassword()
-  {
-    forgetPassword=!forgetPassword;
+
+  bool forgetPassword = false;
+
+  void changeForgetPassword() {
+    forgetPassword = !forgetPassword;
     emit(ChangeForgetPasswordState());
   }
 
@@ -58,29 +71,24 @@ class LoginCubit extends Cubit<LoginStates> {
   bool hasPasswordNumber = false;
   bool hasEmailValid = false;
 
-
   onPasswordChanged(String password) {
     final numericRegex = RegExp(r'[0-9]');
-      isPasswordCharacters = false;
-      if (password.length >= 8) {
-        isPasswordCharacters = true;
-      }
-      hasPasswordNumber = false;
-      if (numericRegex.hasMatch(password)) {
-        hasPasswordNumber = true;
-      }
+    isPasswordCharacters = false;
+    if (password.length >= 8) {
+      isPasswordCharacters = true;
+    }
+    hasPasswordNumber = false;
+    if (numericRegex.hasMatch(password)) {
+      hasPasswordNumber = true;
+    }
   }
 
-  onEmailChanged(String email)
-  {
-    final emailValid =RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
-      hasEmailValid =false;
-      if(emailValid.hasMatch(email)){
-        hasEmailValid = true;
-      }
-
+  onEmailChanged(String email) {
+    final emailValid = RegExp(
+        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+    hasEmailValid = false;
+    if (emailValid.hasMatch(email)) {
+      hasEmailValid = true;
+    }
   }
-
-
-
 }

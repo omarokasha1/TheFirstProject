@@ -58,7 +58,7 @@ class ManagerCubit extends Cubit<ManagerStates> {
     totalRequestsCourses =0;
     await DioHelper.getData(url: getCourseRequest, token: userToken)
         .then((value) {
-      // print("asd asd Kareem KAsd ${value.data}");
+       print("asd asd Kareem KAsd ${value.data}");
       coursesRequests = CourseRequestModel.fromJson(value.data);
       totalRequestsCourses += coursesRequests!.courseRequests!.length;
       totalRequests = 0;

@@ -34,9 +34,9 @@ class CourseCubit extends Cubit<CourseStates> {
 
   CoursesModel? coursesModel;
 
-  void getAllCoursesData() {
+  Future<void> getAllCoursesData() async{
     emit(AllCoursesLoadingState());
-    DioHelper.getData(url: courses).then((value) {
+    await DioHelper.getData(url: courses).then((value) {
       coursesModel = CoursesModel.fromJson(value.data);
       search = coursesModel!.courses!;
       emit(AllCoursesSuccessState(coursesModel));
@@ -62,7 +62,7 @@ class CourseCubit extends Cubit<CourseStates> {
 
   List<Courses> coursesModelAuthor = [];
 
-  void courseModelAuthor(String word) {
+  Future<void> courseModelAuthor(String word) async{
     coursesModelAuthor = [];
     emit(CoursesModelAuthorLoadingState());
     if (word.isEmpty) {

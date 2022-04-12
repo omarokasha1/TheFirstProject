@@ -3,6 +3,6 @@
 3    package="com.jhomlala.better_player" >
 4
 5    <uses-sdk android:minSdkVersion="16" />
-5-->C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\better_player-0.0.81\android\src\main\AndroidManifest.xml
+5-->E:\flutter\.pub-cache\hosted\pub.dartlang.org\better_player-0.0.81\android\src\main\AndroidManifest.xml
 6
 7</manifest>

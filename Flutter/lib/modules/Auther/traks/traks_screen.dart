@@ -25,11 +25,11 @@ class TracksScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      // value: BlocProvider.of<CreateTrackCubit>(context)..getAllTracks(),
-      create: (BuildContext context) => CreateTrackCubit()
-        ..getAllTracks()
-        ..getAuthorTrackPublishedData(),
+    return BlocProvider.value(
+      value: BlocProvider.of<CreateTrackCubit>(context)..getAllTracks()..getAuthorTrackPublishedData(),
+      // create: (BuildContext context) => CreateTrackCubit()
+      //   ..getAllTracks()
+      //   ..getAuthorTrackPublishedData(),
       child: BlocConsumer<CreateTrackCubit, CreateTrackStates>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -253,7 +253,7 @@ class TracksScreen extends StatelessWidget {
                               child: Column(
                                 children: [
                                   Text(
-                                    'Are you sure you want to delete this track ?',
+                                    'Are you sure you want to delete this track ${modelTrack.trackName} ?',
                                     textAlign:
                                     TextAlign
                                         .center,
@@ -324,7 +324,7 @@ class TracksScreen extends StatelessWidget {
                               child: Column(
                                 children: [
                                   Text(
-                                    'Are you sure you want to send request this track ?',
+                                    'Are you sure you want to send request this track ${modelTrack.trackName} ?',
                                     textAlign:
                                     TextAlign
                                         .center,

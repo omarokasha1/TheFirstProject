@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lms/models/track_model.dart';
 import 'package:lms/modules/Auther/author_profile/author_profile_screen.dart';
+import 'package:lms/modules/courses/course_details_screen.dart';
 import 'package:lms/modules/courses/course_overview_screen.dart';
 import 'package:lms/modules/courses/cubit/cubit.dart';
 import 'package:lms/shared/component/zoomDrawer.dart';
@@ -132,31 +133,31 @@ class _UserTracksEnrollScreenState extends State<UserTracksEnrollScreen>
                         width: 10,
                       ),
                       Text('${trackModel.author!.userName}'),
-                      const Spacer(),
-                      //course rate
-                      Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            color: primaryColor.withOpacity(0.7)),
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 5),
-                        child: Row(
-                          children: [
-                            Image.asset(
-                              'assets/images/star.png',
-                              width: 20,
-                              height: 20,
-                            ),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                            Text(
-                              "",
-                              style: TextStyle(color: Colors.white),
-                            )
-                          ],
-                        ),
-                      ),
+                      // const Spacer(),
+                      // //course rate
+                      // Container(
+                      //   decoration: BoxDecoration(
+                      //       borderRadius: BorderRadius.circular(15),
+                      //       color: primaryColor.withOpacity(0.7)),
+                      //   padding: const EdgeInsets.symmetric(
+                      //       horizontal: 10, vertical: 5),
+                      //   child: Row(
+                      //     children: [
+                      //       Image.asset(
+                      //         'assets/images/star.png',
+                      //         width: 20,
+                      //         height: 20,
+                      //       ),
+                      //       const SizedBox(
+                      //         width: 5,
+                      //       ),
+                      //       Text(
+                      //         "",
+                      //         style: TextStyle(color: Colors.white),
+                      //       )
+                      //     ],
+                      //   ),
+                      // ),
                     ],
                   ),
                   const SizedBox(
@@ -246,7 +247,9 @@ class _UserTracksEnrollScreenState extends State<UserTracksEnrollScreen>
     return InkWell(
       onTap: () async {
         //print('Here Please');
-        await BlocProvider.of<CourseCubit>(context)..getCourseData(course.sId!).then((value) {
+        await BlocProvider.of<CourseCubit>(context).getCourseData(course.sId!).then((value) {
+          userType == 'admin' ?
+          navigator(context, CoursesDetailsScreen(BlocProvider.of<CourseCubit>(context).courseByID!)):
           navigator(context, CoursesOverViewScreen(BlocProvider.of<CourseCubit>(context).courseByID!));
         });
       },

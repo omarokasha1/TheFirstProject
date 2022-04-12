@@ -157,7 +157,7 @@ class CourseDetailsScreen extends StatelessWidget {
                               ListView.builder(
                                   shrinkWrap: true,
                                   //   physics: NeverScrollableScrollPhysics(),
-                                  itemBuilder: (context, index) => builtCourseContant(context, course.contents![index]),
+                                  itemBuilder: (context, index) => builtCourseContent(context, course.contents![index]),
                                   itemCount: course.contents!.length),
                               ConditionalBuilder(
                                 condition: course.assignment != null,
@@ -193,7 +193,7 @@ class CourseDetailsScreen extends StatelessWidget {
   }
 }
 
-Widget builtCourseContant(context, Contents content) {
+Widget builtCourseContent(context, Contents content) {
   return InkWell(
     onTap: (){
       navigator(context, ContentViewScreen(content));
@@ -244,11 +244,11 @@ Widget builtCourseContant(context, Contents content) {
                           ),
                         ),
                         SizedBox(
-                          width: 10.w,
+                          width: 70.w,
                         ),
                         Text(
                           //'3 min ',
-                          content.contentDuration ?? '',
+                          content.contentDuration!.replaceAll('Hours', 'H').replaceAll('Minutes', 'M') ?? '',
                           style: TextStyle(
                             color: primaryColor,
                             fontSize: 14.sp,
@@ -258,15 +258,18 @@ Widget builtCourseContant(context, Contents content) {
                         ),
                       ],
                     ),
-                    Text(
-                      //'short description ',
-                      content.description ?? '',
-                      style: TextStyle(
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w500,
+                    Container(
+                      width: 250.w,
+                      child: Text(
+                        //'short description ',
+                        content.description ?? '',
+                        style: TextStyle(
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
                     ),
                   ],
                 ),

@@ -7,8 +7,9 @@ import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/network/end_points.dart';
 
 class ViewAllCoursesScreen extends StatelessWidget {
-  List<Courses> model =[];
-  ViewAllCoursesScreen(this.model,{Key? key}) : super(key: key);
+  List<Courses> model = [];
+
+  ViewAllCoursesScreen(this.model, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,21 +17,23 @@ class ViewAllCoursesScreen extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         return Scaffold(
-          appBar: AppBar(),
-            body:ListView.builder(
-                 itemCount: model.length,
-                itemBuilder: (context, index) => buildCourseItem(context, false,
-                  model[index]))
-          // ListView.separated(
-          //     shrinkWrap: true,
-          //     itemBuilder: (context, index) => buildCourseItem(context, true,
-          //         CourseCubit.get(context).coursesModel[index]!),
-          //     separatorBuilder: (context, index) =>  SizedBox(
-          //       height: 10,
-          //     ),
-          //     itemCount: 10)
+            appBar: AppBar(),
+            body: model.isEmpty
+                ? emptyPage(text: "No Courses Published yet", context: context)
+                : ListView.builder(
+                    itemCount: model.length,
+                    itemBuilder: (context, index) =>
+                        buildCourseItem(context, false, model[index]))
+            // ListView.separated(
+            //     shrinkWrap: true,
+            //     itemBuilder: (context, index) => buildCourseItem(context, true,
+            //         CourseCubit.get(context).coursesModel[index]!),
+            //     separatorBuilder: (context, index) =>  SizedBox(
+            //       height: 10,
+            //     ),
+            //     itemCount: 10)
 
-        );
+            );
       },
     );
   }

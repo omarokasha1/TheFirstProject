@@ -100,7 +100,7 @@ class TracksDetailsScreen extends StatelessWidget {
               ListView.builder(
                   shrinkWrap: true,
                   physics: const BouncingScrollPhysics(),
-                  itemBuilder: (context, index) => builtTrackContant(context,track.courses![index],),
+                  itemBuilder: (context, index) => builtTrackContent(context,track.courses![index],),
                   itemCount: track.courses!.length),
             ],
           ),
@@ -110,10 +110,10 @@ class TracksDetailsScreen extends StatelessWidget {
   }
 }
 
-Widget builtTrackContant(context,Courses course, ) {
+Widget builtTrackContent(context,Courses course, ) {
   return InkWell(
     onTap: () async {
-      await BlocProvider.of<CourseCubit>(context)..getCourseData(course.sId!).then((value) {
+      await BlocProvider.of<CourseCubit>(context).getCourseData(course.sId!).then((value) {
         navigator(context, CourseDetailsScreen(BlocProvider.of<CourseCubit>(context).courseByID!));
       });
     },

@@ -4,18 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_picker/Picker.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lms/models/assignment_model.dart';
 import 'package:lms/modules/Auther/modules/create_assigment/cubit/cubit.dart';
 import 'package:lms/modules/Auther/modules/create_assigment/cubit/states.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
-
 import '../../../../models/new/courses_model.dart';
-
+import '../module_view.dart';
 
 class UpdateAssignment extends StatelessWidget {
   final Assignment model;
-  UpdateAssignment(this.model,{Key? key}) : super(key: key);
+
+  UpdateAssignment(this.model, {Key? key}) : super(key: key);
 
   Duration? duration;
 
@@ -26,19 +25,19 @@ class UpdateAssignment extends StatelessWidget {
   TextEditingController moduleTypeController = TextEditingController();
 
   var formKey = GlobalKey<FormState>();
-  String? filePath;
+  dynamic filePath;
   String dropdownValue = "City";
   File? file;
 
   @override
   Widget build(BuildContext context) {
-    moduleNameController.text=model.assignmentTitle ?? '';
-    shortDescriptionController.text=model.description ?? '';
-    durationController.text=model.assignmentDuration ?? '';
-    return BlocConsumer<CreateAssignmentCubit, CreateAssignmentStates>(
+    moduleNameController.text = model.assignmentTitle ?? '';
+    shortDescriptionController.text = model.description ?? '';
+    durationController.text = model.assignmentDuration ?? '';
+    return BlocConsumer<AssignmentCubit, CreateAssignmentStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        var cubit = CreateAssignmentCubit.get(context);
+        var cubit = AssignmentCubit.get(context);
         return Scaffold(
           body: SingleChildScrollView(
             child: Column(
@@ -78,8 +77,8 @@ class UpdateAssignment extends StatelessWidget {
                         child: Padding(
                           padding: EdgeInsets.only(left: 40, top: 100),
                           child: Text("Update Assignment",
-                              style: TextStyle(
-                                  fontSize: 30, color: Colors.white)),
+                              style:
+                                  TextStyle(fontSize: 30, color: Colors.white)),
                         ),
                       ),
                     ),
@@ -146,8 +145,8 @@ class UpdateAssignment extends StatelessWidget {
                                   prefixIcon: const Icon(Icons.timer),
                                   labelText: "Duration",
                                   labelStyle: const TextStyle(
-                                    //  color: primaryColor,
-                                  ),
+                                      //  color: primaryColor,
+                                      ),
                                   focusedBorder: OutlineInputBorder(
                                     borderSide: const BorderSide(
                                       color: primaryColor,
@@ -186,20 +185,19 @@ class UpdateAssignment extends StatelessWidget {
                                         inherit: false, color: primaryColor),
                                     title: const Text('Select duration'),
                                     selectedTextStyle:
-                                    const TextStyle(color: primaryColor),
+                                        const TextStyle(color: primaryColor),
                                     onConfirm:
                                         (Picker picker, List<int> value) {
                                       // You get your duration here
                                       duration = Duration(
-                                          hours:
-                                          picker.getSelectedValues()[0],
+                                          hours: picker.getSelectedValues()[0],
                                           minutes:
-                                          picker.getSelectedValues()[1]);
+                                              picker.getSelectedValues()[1]);
                                     },
                                   ).showDialog(context).then((value) {
                                     print(value);
                                     durationController.text =
-                                    '${duration!.inHours.toString()} Hours ${(duration!.inHours * 60 - duration!.inMinutes)} Minutes';
+                                        '${duration!.inHours.toString()} Hours ${(duration!.inHours * 60 - duration!.inMinutes)} Minutes';
                                   });
                                 },
                                 controller: durationController,
@@ -211,35 +209,36 @@ class UpdateAssignment extends StatelessWidget {
                                 padding: const EdgeInsets.only(left: 8.0),
                                 child: Text("Content",
                                     style: TextStyle(
-                                        fontSize: 25,
-                                        color: Colors.grey[600])),
+                                        fontSize: 25, color: Colors.grey[600])),
                               ),
-                              // Center(
-                              //   child: TextButton(
-                              //       onPressed: () async {
-                              //         result = await FilePicker.platform.pickFiles();
-                              //         file = File(result!.files.single.path!);
-                              //         file!.openRead();
-                              //         filePath = file!.path;
-                              //         cubit.uploadFile(file!);
-                              //       //   if (result != null) {
-                              //       //   } else {
-                              //       //     showToast(
-                              //       //         message:
-                              //       //         "upload file must be not empty");
-                              //       //   }
-                              //        },
-                              //       child: Padding(
-                              //         padding: EdgeInsets.symmetric(
-                              //             horizontal: 22.0),
-                              //         child: Text(
-                              //           filePath == null
-                              //               ? "Upload"
-                              //               : filePath!,
-                              //           style: TextStyle(fontSize: 20),
-                              //         ),
-                              //       )),
-                              // ),
+                              Center(
+                                child: TextButton(
+                                    onPressed: () async {
+                                      result =
+                                          await FilePicker.platform.pickFiles();
+                                      if (result != null) {
+                                        file = File(result!.files.single.path!);
+                                        filePath = result!.files.first;
+                                      } else {
+                                        showToast(
+                                            message:
+                                                "upload file must be not empty");
+                                      }
+                                      cubit.selectImage();
+                                      print(
+                                          "filePath herrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr>>>>> ${filePath.path}");
+                                    },
+                                    child: Padding(
+                                      padding:
+                                          EdgeInsets.symmetric(horizontal: 0.0),
+                                      child: filePath == null
+                                          ? Text(
+                                              "Upload",
+                                              style: TextStyle(fontSize: 20),
+                                            )
+                                          : viewFileDetails(cubit, result,filePath,file),
+                                    )),
+                              ),
                               const SizedBox(
                                 height: 20,
                               ),
@@ -251,38 +250,26 @@ class UpdateAssignment extends StatelessWidget {
                         padding: const EdgeInsets.only(
                             top: 20.0, left: 10, right: 10, bottom: 10),
                         child: defaultButton(
-                            text: 'Save',
-                            onPressed: () {
-                              if (formKey.currentState!.validate()) {
-                                // if (result == null) {
-                                //   showToast(
-                                //       message: "content must be not empty");
-                                // }
-                                // if(filePath!=null)
-                                //   {
-                                //     // //var r = JSON.stringify();
-                                //     // print(filePath);
-                                //      print(file!.uri.data);
-                                //     // print(cubit.formData!.files.single.value);
-                                //   //  print(cubit.formData!.files.single.runtimeType);
-                                //     cubit.createNewModule(moduleName: moduleNameController.text, description: shortDescriptionController.text, duration: durationController.text, moduleType: moduleTypeController.text,content:"https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg");
-                                //
-                                //   //  navigator(context, ModulesLibraryScreen());
-                                //   }
-                                // else
-                                //   {
-                                //
-                                //   }
-                                cubit.updateNewAssignment(
-                                    moduleName: moduleNameController.text,
-                                    description: shortDescriptionController.text,
-                                    duration: durationController.text,
-                                    // content:file!,
-                                    moduleId: model.sId!,
-                                );
-                                Navigator.pop(context);
+                          text: 'Save',
+                          onPressed: () {
+                            if (formKey.currentState!.validate()) {
+                              if (result == null) {
+                                showToast(message: "content must be not empty");
+                              } else {
+                                cubit
+                                    .updateAssignmentData(
+                                      moduleName: moduleNameController.text,
+                                      description:
+                                          shortDescriptionController.text,
+                                      duration: durationController.text,
+                                      file: file!,
+                                      moduleId: model.sId!,
+                                    )
+                                    .then((value) => Navigator.pop(context));
                               }
-                            }),
+                            }
+                          },
+                        ),
                       ),
                     ],
                   ),

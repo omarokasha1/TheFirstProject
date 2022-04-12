@@ -35,6 +35,7 @@ const getAuthorQuizzes = "api/course/authorQuizzes";
 const getAuthorQuestions = "api/course/authorQuestions";
 const getAuthor = "api/course/author";
 const getAuthorData = "api/user/profile";
+const getTrackData = "api/course/getTrack";
 
 //-----------------------------Create----------------------------
 const createAuthorCourse = 'api/course/newCourse';

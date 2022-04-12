@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:lms/models/author_courses_published_model.dart';
 import 'package:lms/models/new/courses_model.dart';
 import 'package:lms/models/response_model.dart';
 import 'package:lms/modules/Auther/author_courses/author_courses_cubit/status.dart';
@@ -63,6 +62,7 @@ class AuthorCoursesCubit extends Cubit<AuthorCoursesStates> {
       print('asd is null');
     }
     totalStudent = 0;
+
     emit(GetAuthorCoursesPublishLoadingState());
     coursesList = [];
     await DioHelper.getData(url: getAuthorCoursesPublished, token: userToken)
@@ -72,6 +72,7 @@ class AuthorCoursesCubit extends Cubit<AuthorCoursesStates> {
       coursesModelPublish = CoursesModel.fromJson(value.data);
       coursesModelPublish!.courses!.forEach((element) {
         coursesList.add({'display': element.title, 'value': element.sId});
+        totalStudent += element.learner!.length;
       });
       print(coursesList);
       //print(authorCoursesTestModel!.courses.toString());
@@ -164,7 +165,6 @@ class AuthorCoursesCubit extends Cubit<AuthorCoursesStates> {
         'assignments': assignments,
         'language': language,
         'lastUpdate': DateFormat("dd-MM-yyyy").format(DateTime.now()).toString(),
-        'review' : '4.5',
         'imageUrl': await fileUpload(courseImage),
         'id': sID,
       },

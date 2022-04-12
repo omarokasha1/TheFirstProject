@@ -28,8 +28,12 @@ class AuthorProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<CourseCubit>(context).courseModelAuthor(authorID);
-    BlocProvider.of<TrackCubit>(context).trackModelAuthor(authorID);
+    BlocProvider.of<CourseCubit>(context).getAllCoursesData().then((value) => {
+      BlocProvider.of<CourseCubit>(context).courseModelAuthor(authorID)
+    });
+    BlocProvider.of<TrackCubit>(context).getAllTracksData().then((value) => {
+    BlocProvider.of<TrackCubit>(context).trackModelAuthor(authorID)
+    });
     return BlocProvider.value(
       value: BlocProvider.of<AuthorProfileCubit>(context)
         ..getAuthorProfile(authorID),
@@ -40,7 +44,7 @@ class AuthorProfileScreen extends StatelessWidget {
           var courseCubit = CourseCubit.get(context);
           return Layout(
             widget: ConditionalBuilder(
-              condition: cubit.model != null,
+              condition: cubit.model != null ,
               builder: (context) => Scaffold(
                 backgroundColor: primaryColor,
                 appBar: AppBar(
@@ -424,7 +428,7 @@ class AuthorProfileScreen extends StatelessWidget {
                                         itemBuilder: (context, index) =>
                                             buildUserTracksItem(
                                                 context,
-                                                true,
+                                                userType == 'admin' ? true : false,
                                                 BlocProvider.of<TrackCubit>(
                                                         context)
                                                     .tracksModelAuthor[index]!),
@@ -434,7 +438,7 @@ class AuthorProfileScreen extends StatelessWidget {
                                                 .length,
                                       ),
                                       fallback: (context) => Center(
-                                        child: CircularProgressIndicator(),
+                                        child: emptyPage(text: "No Tracks Published yet", context: context),
                                       ),
                                     ),
                                   ),
@@ -511,14 +515,14 @@ class AuthorProfileScreen extends StatelessWidget {
                                         itemBuilder: (context, index) =>
                                             buildCourseItem(
                                                 context,
-                                                false,
+                                                userType == 'admin' ? true : false,
                                                 courseCubit
                                                     .coursesModelAuthor[index]),
                                         itemCount: courseCubit
                                             .coursesModelAuthor.length,
                                       ),
                                       fallback: (context) => Center(
-                                        child: CircularProgressIndicator(),
+                                        child: emptyPage(text: "No Courses Published yet", context: context),
                                       ),
                                     ),
                                   ),

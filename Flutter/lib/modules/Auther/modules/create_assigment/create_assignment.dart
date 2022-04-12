@@ -30,10 +30,10 @@ class CreateAssignmentScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<CreateAssignmentCubit, CreateAssignmentStates>(
+    return BlocConsumer<AssignmentCubit, CreateAssignmentStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        var cubit = CreateAssignmentCubit.get(context);
+        var cubit = AssignmentCubit.get(context);
         return Scaffold(
           body: SingleChildScrollView(
             child: Column(
@@ -220,16 +220,16 @@ class CreateAssignmentScreen extends StatelessWidget {
                                 child: TextButton(
                                     onPressed: () async {
                                       result = await FilePicker.platform.pickFiles();
-
                                       if (result != null) {
                                         file = File(result!.files.single.path!);
                                         filePath = result!.files.first;
-                                        cubit.uploadFile(file!);
+                                        //cubit.uploadFile(file!);
                                       } else {
                                         showToast(
                                             message:
                                             "upload file must be not empty");
                                       }
+                                      cubit.selectImage();
                                     },
                                     child: Padding(
                                       padding: EdgeInsets.symmetric(
@@ -271,7 +271,7 @@ class CreateAssignmentScreen extends StatelessWidget {
                                   showToast(
                                       message: "content must be not empty");
                                 } else {
-                                  cubit.createNewAssignment(
+                                  cubit.createAssignment(
                                       moduleName: moduleNameController.text,
                                       description: shortDescriptionController.text,
                                       duration: durationController.text,

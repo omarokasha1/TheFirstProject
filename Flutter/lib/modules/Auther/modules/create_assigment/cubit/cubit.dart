@@ -9,11 +9,10 @@ import 'package:lms/shared/component/constants.dart';
 import 'package:lms/shared/network/end_points.dart';
 import 'package:lms/shared/network/remote/dio-helper.dart';
 
+class AssignmentCubit extends Cubit<CreateAssignmentStates> {
+  AssignmentCubit() : super(InitCreateAssignmentState());
 
-class CreateAssignmentCubit extends Cubit<CreateAssignmentStates> {
-  CreateAssignmentCubit() : super(InitCreateAssignmentState());
-
-  static CreateAssignmentCubit get(context) => BlocProvider.of(context);
+  static AssignmentCubit get(context) => BlocProvider.of(context);
 
   bool hasModuleName = false;
 
@@ -24,8 +23,11 @@ class CreateAssignmentCubit extends Cubit<CreateAssignmentStates> {
     }
   }
 
+  void selectImage() {
+    emit(SelectImageState());
+  }
+
   AssignmentsModel? assignments;
-  Map<String, String>? content = {};
   List? assignmentList = [];
   List? myActivities = [];
 
@@ -35,32 +37,33 @@ class CreateAssignmentCubit extends Cubit<CreateAssignmentStates> {
     emit(ChangeAActivityState());
   }
 
-  void getAssignmentData() {
+  Future<void> getAssignmentData() async {
     print(userToken);
-    emit(GetNewAssignmentLoadingState());
+    emit(GetAssignmentsLoadingState());
 
-    DioHelper.getData(url: getAssignment, token: userToken).then((value) {
+    await DioHelper.getData(url: getAssignment, token: userToken).then((value) {
       //print(value.data);
       assignmentList = [];
       assignments = AssignmentsModel.fromJson(value.data);
       assignments!.assignments!.forEach((element) {
-        assignmentList!.add({'display': element.assignmentTitle, 'value': element.sId});
+        assignmentList!
+            .add({'display': element.assignmentTitle, 'value': element.sId});
       });
-      emit(GetNewAssignmentSuccssesState(assignments!));
+      emit(GetAssignmentsSuccssesState(assignments!));
     }).catchError((error) {
-      emit(GetNewAssignmentErrorState(error.toString()));
+      emit(GetAssignmentsErrorState(error.toString()));
       print(error.toString());
     });
   }
 
   AssignmentsModel? createAssignmentsModel;
 
-  Future<void>createNewAssignment({
+  Future<void> createAssignment({
     required String moduleName,
     required String description,
     required String duration,
-   required content,
-  }) async{
+    required content,
+  }) async {
     emit(CreateNewAssignmentLoadingState());
 
     DioHelper.postData(
@@ -69,15 +72,15 @@ class CreateAssignmentCubit extends Cubit<CreateAssignmentStates> {
         'assignmentTitle': moduleName,
         'description': description,
         'assignmentDuration': duration,
-       'fileUrl': await fileUpload(content),
+        'fileUrl': await fileUpload(content),
       },
       url: newAssignment,
       token: userToken,
-    ).then((value) {
+    ).then((value) async {
       print("value======>$value.data");
 
       createAssignmentsModel = AssignmentsModel.fromJson(value.data);
-        getAssignmentData();
+      await getAssignmentData();
       print("value======>$value.data");
 
       emit(CreateNewAssignmentSuccssesState(createAssignmentsModel!));
@@ -111,13 +114,14 @@ class CreateAssignmentCubit extends Cubit<CreateAssignmentStates> {
   ResponseModel? updateModel;
   String? message;
 
-  Future<void> updateNewAssignment({
+  Future<void> updateAssignmentData({
     required String moduleId,
     required String moduleName,
     required String description,
     required String duration,
-  //   content,
-  })async {
+    required file,
+    //   content,
+  }) async {
     emit(UpdateAssignmentLoadingState());
 
     DioHelper.putData(
@@ -126,16 +130,17 @@ class CreateAssignmentCubit extends Cubit<CreateAssignmentStates> {
         'assignmentTitle': moduleName,
         'description': description,
         'assignmentDuration': duration,
-        // 'fileUrl':  await fileUpload(content),
+        'fileUrl':  await fileUpload(file),
       },
+      files: true,
       url: updateAssignment,
       token: userToken,
-    ).then((value) {
-      print("IIIIDDDDDD>>>>>>${moduleId}");
-      print("value======>${value.data}");
-
+    ).then((value) async {
       updateModel = ResponseModel.fromJson(value.data);
-      getAssignmentData();
+      print(value.data);
+      print(updateModel!.message);
+      showToast(message: "${updateModel!.message}");
+      await getAssignmentData();
       print("value======>${updateModel}");
       emit(UpdateAssignmentSuccssesState(updateModel!));
     }).catchError((onError) {
@@ -150,9 +155,10 @@ class CreateAssignmentCubit extends Cubit<CreateAssignmentStates> {
 
   void deleteAssignment({required String moduleId}) {
     emit(DeleteAssignmentLoadingState());
-    DioHelper.deleteData(url: "$deleteDataAssignment/$moduleId").then((value) {
+    DioHelper.deleteData(url: "$deleteDataAssignment/$moduleId").then((value) async {
       deleteModel = ResponseModel.fromJson(value.data);
-      getAssignmentData();
+      await getAssignmentData();
+      showToast(message: "${deleteModel!.message}");
       emit(DeleteAssignmentSuccssesState(deleteModel!));
     }).catchError((error) {
       emit(DeleteAssignmentErrorState(error));

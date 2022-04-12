@@ -9,20 +9,20 @@ import 'package:lms/shared/component/constants.dart';
 import 'package:lms/shared/network/end_points.dart';
 import 'package:lms/shared/network/remote/dio-helper.dart';
 
-enum Sequences { ordered, unordered }
-
 class CreateTrackCubit extends Cubit<CreateTrackStates> {
   CreateTrackCubit() : super(InitCreateTrackState());
 
   static CreateTrackCubit get(context) => BlocProvider.of(context);
 
   List? myActivities = [];
-  String myActivitiesResult = '';
 
   bool hasTrackName = false;
   var formKey = GlobalKey<FormState>();
 
-  Sequences? character = Sequences.ordered;
+  void selectImage()
+  {
+    emit(SelectImageState());
+  }
 
   onCourseNameChanged(String name) {
     hasTrackName = false;
@@ -52,11 +52,6 @@ class CreateTrackCubit extends Cubit<CreateTrackStates> {
     });
   }
 
-
-  changeRadio(Sequences? value) {
-    character = value;
-  }
-
   TrackModel? trackModelPublished;
 
   Future<void> getAuthorTrackPublishedData() async {
@@ -74,7 +69,19 @@ class CreateTrackCubit extends Cubit<CreateTrackStates> {
     });
   }
 
+  Tracks? trackModelByID;
 
+  Future<void> getAuthorTrackByIDData(String trackID) async {
+    emit(GetAuthorTrackByIDLoadingState());
+    await DioHelper.getData(url: '$getTrackData/$trackID', token: userToken).then((value) {
+      print('herooooooooo >>>> ${value.data}');
+      trackModelByID = Tracks.fromJson(value.data['tracks']);
+      emit(GetAuthorTrackByIDSuccessState(trackModelByID));
+    }).catchError((error) {
+      emit(GetAuthorTrackByIDErrorState(error.toString()));
+      print('asd asd here   ---->>> ${error.toString()}');
+    });
+  }
 
   void changeActivity(value) {
     myActivities = value;
@@ -104,9 +111,9 @@ class CreateTrackCubit extends Cubit<CreateTrackStates> {
       url: createTrack,
       token: userToken,
     ).then((value) async {
-      emit(CreateTrackSuccessState());
       await getAllTracks();
       await getAuthorTrackPublishedData();
+      emit(CreateTrackSuccessState());
     }).catchError((onError) {
       print(onError.toString());
       emit(CreateTrackErrorState(onError.toString()));
@@ -141,9 +148,9 @@ class CreateTrackCubit extends Cubit<CreateTrackStates> {
       updateModel = ResponseModel.fromJson(value.data);
       showToast(message: '${updateModel!.message}',color: Colors.green);
       print('Hereeeeeee Update Track : ${value.data}');
-      emit(UpdateTrackSuccessState());
       await getAllTracks();
       await getAuthorTrackPublishedData();
+      emit(UpdateTrackSuccessState());
     }).catchError((onError) {
       print(onError.toString());
       emit(UpdateTrackErrorState(onError.toString()));

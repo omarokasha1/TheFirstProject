@@ -13,6 +13,7 @@ import 'package:lms/modules/Auther/author_courses/author_courses_cubit/cubit.dar
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
 
+import '../../modules/module_view.dart';
 import 'cubit/cubit.dart';
 import 'cubit/statues.dart';
 
@@ -25,6 +26,9 @@ class UpdateTrackScreen extends StatelessWidget {
   TextEditingController shortDescriptionController = TextEditingController();
   File? trackImage;
   var picker = ImagePicker();
+  FilePickerResult? result;
+  dynamic filePath;
+  File? file;
 
   @override
   Widget build(BuildContext context) {
@@ -243,27 +247,34 @@ class UpdateTrackScreen extends StatelessWidget {
                                     ),
                                     Center(
                                       child: TextButton(
-                                          onPressed: () async {
-                                            final pickedFile =
-                                            await picker.pickImage(
-                                                source: ImageSource.gallery);
-                                            if (pickedFile != null) {
-                                              trackImage = File(pickedFile.path);
-                                              print(trackImage!);
-                                              print(
-                                                  "Piiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiic");
-                                            } else {
-                                              print('no image selected');
-                                            }
-                                          },
-                                          child: const Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 22.0),
-                                            child: Text(
-                                              "Upload",
-                                              style: TextStyle(fontSize: 20),
-                                            ),
-                                          )),
+                                        onPressed: () async {
+                                          result =
+                                          await FilePicker.platform.pickFiles();
+                                          if (result != null) {
+                                            file = File(result!.files.single.path!);
+                                            filePath = result!.files.first;
+                                            //   cubit.uploadFile(file!);
+                                          } else {
+                                            showToast(
+                                                message:
+                                                "upload file must be not empty");
+                                          }
+                                          cubit.selectImage();
+                                          print(
+                                              "filePath herrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr>>>>> ${filePath.path}");
+                                        },
+                                        child: Padding(
+                                          padding:
+                                          EdgeInsets.symmetric(horizontal: 0.0),
+                                          child: filePath == null
+                                              ? Text(
+                                            "Upload",
+                                            style: TextStyle(fontSize: 20),
+                                          )
+                                              : viewFileDetails(
+                                              cubit, result, filePath, file),
+                                        ),
+                                      ),
                                     ),
                                     // Row(children: [
                                     //   ListTile(

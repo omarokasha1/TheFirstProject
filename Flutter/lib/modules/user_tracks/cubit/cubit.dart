@@ -12,10 +12,11 @@ class TrackCubit extends Cubit<AllTracksStates> {
   static TrackCubit get(context) => BlocProvider.of(context);
 
   List<Tracks?> tracksModel = [];
-  void getAllTracksData() {
+  Future<void> getAllTracksData() async {
+    tracksModel = [];
     emit(AllTracksLoadingState());
     //print("url $getAllTrackPublished");
-    DioHelper.getData(url: getAllTrackPublished,token: userToken).then((value) {
+    await DioHelper.getData(url: getAllTrackPublished,token: userToken).then((value) {
       value.data['tracks'].forEach((element) {
         tracksModel.add(Tracks.fromJson(element));
         //print("element$element");

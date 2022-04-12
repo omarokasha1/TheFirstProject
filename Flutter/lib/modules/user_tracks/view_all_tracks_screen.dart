@@ -9,30 +9,32 @@ import 'package:lms/modules/user_tracks/user_track_overview_screen.dart';
 import 'package:lms/modules/user_tracks/user_tracks_enroll_screen.dart';
 import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
+
 class ViewAllTracksScreen extends StatelessWidget {
   List<Tracks?> model;
+
   ViewAllTracksScreen(this.model, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<TrackCubit,AllTracksStates>(
+    return BlocConsumer<TrackCubit, AllTracksStates>(
       listener: (context, state) {},
       builder: (context, state) {
         var cubit = TrackCubit.get(context);
-        return  Scaffold(
+        return Scaffold(
             appBar: AppBar(),
-            body:ListView.builder(
-                itemCount:model.length,
-                itemBuilder: (context, index) => buildUserTrackItem(context, false,model[index]!))
-
-        ) ;
+            body: model.isEmpty
+                ? emptyPage(text: "No Tracks Published yet", context: context)
+                : ListView.builder(
+                    itemCount: model.length,
+                    itemBuilder: (context, index) =>
+                        buildUserTrackItem(context, false, model[index]!)));
       },
     );
   }
 }
 
-Widget buildUserTrackItem(context, bool enroll,Tracks model) =>
-    InkWell(
+Widget buildUserTrackItem(context, bool enroll, Tracks model) => InkWell(
       onTap: () {
         navigator(
             context,
@@ -44,9 +46,8 @@ Widget buildUserTrackItem(context, bool enroll,Tracks model) =>
         padding: EdgeInsets.all(8.0.w),
         child: Container(
           height: 250.h,
-
           decoration: BoxDecoration(
-            boxShadow:  [
+            boxShadow: [
               BoxShadow(
                 color: Colors.black12,
                 offset: Offset(0.6, 1.2), //(x,y)
@@ -72,9 +73,9 @@ Widget buildUserTrackItem(context, bool enroll,Tracks model) =>
                           borderRadius: BorderRadius.circular(15.r),
                         ),
                         child: imageFromNetwork(
-                          url:
-                         // 'https://img-c.udemycdn.com/course/240x135/3446572_346e_2.jpg',),
-                         '${model.imageUrl}'),
+                            url:
+                                // 'https://img-c.udemycdn.com/course/240x135/3446572_346e_2.jpg',),
+                                '${model.imageUrl}'),
                       ),
                     ),
                     Padding(
@@ -102,13 +103,13 @@ Widget buildUserTrackItem(context, bool enroll,Tracks model) =>
               ),
               Padding(
                 padding:
-                EdgeInsets.symmetric(horizontal: 8.0.w, vertical: 10.h),
+                    EdgeInsets.symmetric(horizontal: 8.0.w, vertical: 10.h),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                     // 'Complete Instagram Marketing Course',
-                     '${model.trackName}',
+                      // 'Complete Instagram Marketing Course',
+                      '${model.trackName}',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: Theme.of(context).textTheme.subtitle2,
@@ -119,8 +120,8 @@ Widget buildUserTrackItem(context, bool enroll,Tracks model) =>
                         CircleAvatar(
                           backgroundImage: CachedNetworkImageProvider(
 
-                           // 'https://img-c.udemycdn.com/user/200_H/317821_3cb5_10.jpg',),
-                           '${model.author!.imageUrl}'),
+                              // 'https://img-c.udemycdn.com/user/200_H/317821_3cb5_10.jpg',),
+                              '${model.author!.imageUrl}'),
                           radius: 16.r,
                         ),
                         SizedBox(
@@ -135,17 +136,24 @@ Widget buildUserTrackItem(context, bool enroll,Tracks model) =>
                               horizontal: 10.0.w, vertical: 3.h),
                           decoration: BoxDecoration(
                             border:
-                            Border.all(color: Colors.grey[300]!, width: 1),
+                                Border.all(color: Colors.grey[300]!, width: 1),
                             borderRadius: BorderRadius.circular(50.r),
                           ),
                           child: Row(
                             children: [
-                              Image.asset('assets/images/star.png',width: 20,height: 20,),
+                              Image.asset(
+                                'assets/images/star.png',
+                                width: 20,
+                                height: 20,
+                              ),
                               SizedBox(
                                 width: 5.w,
                               ),
                               //Text('${courseModel.review}'),
-                              const Text('4.5',style: TextStyle(fontWeight: FontWeight.bold),),
+                              const Text(
+                                '4.5',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
                             ],
                           ),
                         ),
@@ -159,4 +167,3 @@ Widget buildUserTrackItem(context, bool enroll,Tracks model) =>
         ),
       ),
     );
-

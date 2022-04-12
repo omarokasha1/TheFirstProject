@@ -8,6 +8,7 @@ import 'package:lms/shared/component/component.dart';
 import 'package:lms/shared/component/constants.dart';
 import '../../../../models/new/contents_model.dart';
 
+import '../module_view.dart';
 import 'cubit/cubit.dart';
 import 'cubit/states.dart';
 
@@ -25,7 +26,7 @@ class UpdateModule extends StatelessWidget {
   TextEditingController moduleTypeController = TextEditingController();
 
   var formKey = GlobalKey<FormState>();
-  String? filePath;
+  dynamic filePath;
   String dropdownValue = "City";
   File? file;
 
@@ -35,10 +36,10 @@ class UpdateModule extends StatelessWidget {
     shortDescriptionController.text = contentModel.description ?? '';
     durationController.text = contentModel.contentDuration ?? '';
     //moduleTypeController.text = contentModel.enumType ?? '';
-    return BlocConsumer<CreateModuleCubit, CreateModuleStates>(
+    return BlocConsumer<ModuleCubit, CreateModuleStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        var cubit = CreateModuleCubit.get(context);
+        var cubit = ModuleCubit.get(context);
         return Scaffold(
           body: SingleChildScrollView(
             child: Column(
@@ -214,29 +215,34 @@ class UpdateModule extends StatelessWidget {
                               ),
                               Center(
                                 child: TextButton(
-                                    onPressed: () async {
-                                      result =
-                                          await FilePicker.platform.pickFiles();
-
-                                      if (result != null) {
-                                        file = File(result!.files.single.path!);
-                                        file!.openRead();
-                                        filePath = file!.path;
-                                        //  cubit.uploadFile(file!);
-                                      } else {
-                                        showToast(
-                                            message:
-                                                "upload file must be not empty");
-                                      }
-                                    },
-                                    child: Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 22.0),
-                                      child: Text(
-                                        filePath == null ? "Upload" : filePath!,
-                                        style: TextStyle(fontSize: 20),
-                                      ),
-                                    )),
+                                  onPressed: () async {
+                                    result =
+                                    await FilePicker.platform.pickFiles();
+                                    if (result != null) {
+                                      file = File(result!.files.single.path!);
+                                      filePath = result!.files.first;
+                                      //   cubit.uploadFile(file!);
+                                    } else {
+                                      showToast(
+                                          message:
+                                          "upload file must be not empty");
+                                    }
+                                    cubit.selectImage();
+                                    print(
+                                        "filePath herrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr>>>>> ${filePath.path}");
+                                  },
+                                  child: Padding(
+                                    padding:
+                                    EdgeInsets.symmetric(horizontal: 0.0),
+                                    child: filePath == null
+                                        ? Text(
+                                      "Upload",
+                                      style: TextStyle(fontSize: 20),
+                                    )
+                                        : viewFileDetails(
+                                        cubit, result, filePath, file),
+                                  ),
+                                ),
                               ),
                               const SizedBox(
                                 height: 20,
@@ -263,10 +269,11 @@ class UpdateModule extends StatelessWidget {
                                   // print(cubit.formData!.files.single.value);
                                   //print(cubit.formData!.files.single.runtimeType);
                                   // cubit.createNewModule(moduleName: moduleNameController.text, description: shortDescriptionController.text, duration: durationController.text,content:cubit.formData);
-                                  cubit.updateNewModule(
+                                  cubit.updateModuleData(
                                     moduleId: contentModel.sId,
                                     moduleName: moduleNameController.text,
-                                    description: shortDescriptionController.text,
+                                    description:
+                                        shortDescriptionController.text,
                                     duration: durationController.text,
                                     image: file,
                                     //moduleType: contentModel.contentType.toString(),
