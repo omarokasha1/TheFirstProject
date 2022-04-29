@@ -6,7 +6,7 @@
 - [Kareem Ahmed](https://www.github.com/kareemahmed22) : Flutter Developer
 - [Mariam Youssef](https://www.github.com/mariamyoussefwiliam) : Flutter Developer
 - [Mirette Atef](https://www.github.com/mirette3) : Product Owner
-- [Ahmed Emad](https://www.github.com/omda07) : Backend Developer
+- [Ahmed Emad](https://www.github.com/omda07) : Flutter Developer and Backend Developer
 - [Youssef El Gebaly](https://www.github.com/youssefelgebaly) : Flutter Developer
 - [Omar Okasha](https://www.github.com/Drmicrosoft) : Project Manager
 
